@@ -21,32 +21,32 @@
   <meta name="description" content="#说明 该笔记为观看尚硅谷Web前端Promise教程从入门到精通（2021抢先版）与尚硅谷Promise教程(promise前端进阶必学)两个课程视频以及参考其课件;以及阮一峰的ES6日志整理而成 仅本人洪用作Promise知识点补缺及系统学习记录使用 此部分知识为学习axios预备知识,预备知识链:ajax –&gt; promise –&gt; axios  –&gt; react&amp;#x2F">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Promise">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Promise-%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Promise-%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 该笔记为观看尚硅谷Web前端Promise教程从入门到精通（2021抢先版）与尚硅谷Promise教程(promise前端进阶必学)两个课程视频以及参考其课件;以及阮一峰的ES6日志整理而成 仅本人洪用作Promise知识点补缺及系统学习记录使用 此部分知识为学习axios预备知识,预备知识链:ajax –&gt; promise –&gt; axios  –&gt; react&amp;#x2F">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_promise%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1.jpg">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210927105504988.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210926180306961.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210926182129672.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210926182506259.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210927105504988.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210927135255264.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%8E%9F%E7%90%86%E5%9B%BE.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827094130354.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827095144833.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827095702736.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827100156570.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827094130354.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_promise%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1.jpg">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210927105504988.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210926180306961.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210926182129672.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210926182506259.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210927105504988.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210927135255264.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%BE%AE%E4%BB%BB%E5%8A%A1%E5%8E%9F%E7%90%86%E5%9B%BE.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827094130354.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827095144833.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827095702736.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827100156570.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210827094130354.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T09:50:39.109Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_promise%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png">
+<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/A_Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Promise%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0_promise%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Promise-%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Promise-%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -929,7 +929,7 @@
 <h4 id="⑥-Promise-allSettled"><a href="#⑥-Promise-allSettled" class="headerlink" title="⑥ Promise.allSettled()"></a>⑥ Promise.allSettled()</h4><blockquote>
 <p><code>Promise.allSettled()</code>方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例。</p>
 <p><strong>只有等到所有这些参数实例都返回结果</strong>，不管是<code>fulfilled</code>还是<code>rejected</code>，包装实例才会结束。</p>
-<p>该方法由 <a href="https://github.com/tc39/proposal-promise-allSettled">ES2020</a> 引入。</p>
+<p>该方法由 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-promise-allSettled">ES2020</a> 引入。</p>
 </blockquote>
 <h5 id="a-举个简单的🌰-1"><a href="#a-举个简单的🌰-1" class="headerlink" title="a) 举个简单的🌰"></a>a) 举个简单的🌰</h5><blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">const</span> promises = [</span><br><span class="line">&gt;<span class="title function_">fetch</span>(<span class="string">&#x27;https://gitee.com/hongjilin&#x27;</span>),</span><br><span class="line">&gt;<span class="title function_">fetch</span>(<span class="string">&#x27;https://github.com/Hongjilin&#x27;</span>),</span><br><span class="line">&gt;<span class="title function_">fetch</span>(<span class="string">&#x27;./hong.json&#x27;</span>),</span><br><span class="line">&gt;];</span><br><span class="line">&gt;loading = <span class="literal">true</span>; <span class="comment">//请求前将 loading 改为true ; 页面出现滚动加载图标蒙层</span></span><br><span class="line">&gt;<span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">allSettled</span>(promises);</span><br><span class="line">&gt;loading = <span class="literal">false</span>;</span><br></pre></td></tr></table></figure>
@@ -958,7 +958,7 @@
 <p>上面代码中，<code>Promise.all()</code>无法确定所有请求都结束。想要达到这个目的，写起来很麻烦，有了<code>Promise.allSettled()</code>，这就很容易了</p>
 </blockquote>
 <h4 id="⑦-Promise-any"><a href="#⑦-Promise-any" class="headerlink" title="⑦ Promise.any()"></a>⑦ Promise.any()</h4><blockquote>
-<p>ES2021 引入了<a href="https://github.com/tc39/proposal-promise-any"><code>Promise.any()</code>方法</a>。该方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例返回。只要参数实例有一个变成<code>fulfilled</code>状态，包装实例就会变成<code>fulfilled</code>状态；如果所有参数实例都变成<code>rejected</code>状态，包装实例就会变成<code>rejected</code>状态。</p>
+<p>ES2021 引入了<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-promise-any"><code>Promise.any()</code>方法</a>。该方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例返回。只要参数实例有一个变成<code>fulfilled</code>状态，包装实例就会变成<code>fulfilled</code>状态；如果所有参数实例都变成<code>rejected</code>状态，包装实例就会变成<code>rejected</code>状态。</p>
 </blockquote>
 <h5 id="a-与-Promise-race-方法的区别"><a href="#a-与-Promise-race-方法的区别" class="headerlink" title="a) 与 Promise.race() 方法的区别"></a>a) 与 <code>Promise.race()</code> 方法的区别</h5><blockquote>
 <p><code>Promise.any()</code>跟<code>Promise.race()</code>方法很像，只有一点不同，就是不会因为某个 Promise 变成<code>rejected</code>状态而结束。</p>
@@ -1060,10 +1060,10 @@
 <p>上面代码也是使用立即执行的匿名函数，执行<code>new Promise()</code>。这种情况下，同步函数也是同步执行的。</p>
 </blockquote>
 <h5 id="c-Promise-try的引出"><a href="#c-Promise-try的引出" class="headerlink" title="c) Promise.try的引出"></a>c) Promise.try的引出</h5><blockquote>
-<p>鉴于这是一个很常见的需求，所以现在有一个<a href="https://github.com/ljharb/proposal-promise-try">提案</a>，提供<code>Promise.try</code>方法替代上面的写法。</p>
+<p>鉴于这是一个很常见的需求，所以现在有一个<a target="_blank" rel="noopener" href="https://github.com/ljharb/proposal-promise-try">提案</a>，提供<code>Promise.try</code>方法替代上面的写法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">const</span> <span class="title function_">f</span> = (<span class="params"></span>) =&gt; <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;now&#x27;</span>);</span><br><span class="line">&gt;<span class="title class_">Promise</span>.<span class="title function_">try</span>(f);</span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;next&#x27;</span>);</span><br><span class="line">&gt;<span class="comment">// now</span></span><br><span class="line">&gt;<span class="comment">// next</span></span><br></pre></td></tr></table></figure>
 
-<p>事实上，<code>Promise.try</code>存在已久，Promise 库<a target="_blank" rel="noopener" href="http://bluebirdjs.com/docs/api/promise.try.html"><code>Bluebird</code></a>、<a href="https://github.com/kriskowal/q/wiki/API-Reference#promisefcallargs"><code>Q</code></a>和<a href="https://github.com/cujojs/when/blob/master/docs/api.md#whentry"><code>when</code></a>，早就提供了这个方法。</p>
+<p>事实上，<code>Promise.try</code>存在已久，Promise 库<a target="_blank" rel="noopener" href="http://bluebirdjs.com/docs/api/promise.try.html"><code>Bluebird</code></a>、<a target="_blank" rel="noopener" href="https://github.com/kriskowal/q/wiki/API-Reference#promisefcallargs"><code>Q</code></a>和<a target="_blank" rel="noopener" href="https://github.com/cujojs/when/blob/master/docs/api.md#whentry"><code>when</code></a>，早就提供了这个方法。</p>
 <p>由于<code>Promise.try</code>为所有操作提供了统一的处理机制，所以如果想用<code>then</code>方法管理流程，最好都用<code>Promise.try</code>包装一下。这样有<a target="_blank" rel="noopener" href="http://cryto.net/~joepie91/blog/2016/05/11/what-is-promise-try-and-why-does-it-matter/">许多好处</a>，其中一点就是可以更好地管理异常。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">function</span> <span class="title function_">getUsername</span>(<span class="params">userId</span>) &#123;</span><br><span class="line"> <span class="keyword">return</span> database.<span class="property">users</span>.<span class="title function_">get</span>(&#123;<span class="attr">id</span>: userId&#125;)</span><br><span class="line"> .<span class="title function_">then</span>(<span class="keyword">function</span>(<span class="params">user</span>) &#123;</span><br><span class="line">   <span class="keyword">return</span> user.<span class="property">name</span>;</span><br><span class="line"> &#125;);</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
 
@@ -1412,7 +1412,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Promise-%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Promise" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Promise-系统学习笔记/</a>
+      <a href="https://k705.github.io/2024/04/08/Promise-%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Promise" target="_blank" rel="external">https://k705.github.io/2024/04/08/Promise-系统学习笔记/</a>
     </li>
     
     <li class="post-copyright-license">

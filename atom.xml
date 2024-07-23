@@ -3,11 +3,11 @@
   <title>KK</title>
   
   <subtitle>KK Blog</subtitle>
-  <link href="https://github.com/k705/kk.github.io.git/atom.xml" rel="self"/>
+  <link href="https://k705.github.io/atom.xml" rel="self"/>
   
-  <link href="https://github.com/k705/kk.github.io.git/"/>
+  <link href="https://k705.github.io/"/>
   <updated>2024-04-25T09:18:31.539Z</updated>
-  <id>https://github.com/k705/kk.github.io.git/</id>
+  <id>https://k705.github.io/</id>
   
   <author>
     <name>KK</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>代码规范</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</id>
+    <link href="https://k705.github.io/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    <id>https://k705.github.io/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</id>
     <published>2024-04-25T09:08:57.000Z</published>
     <updated>2024-04-25T09:18:31.539Z</updated>
     
@@ -36,14 +36,14 @@
     
     
     
-    <category term="代码规范" scheme="https://github.com/k705/kk.github.io.git/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
+    <category term="代码规范" scheme="https://k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/"/>
     
   </entry>
   
   <entry>
     <title>vscode 功能与技巧</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/</id>
+    <link href="https://k705.github.io/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/"/>
+    <id>https://k705.github.io/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/</id>
     <published>2024-04-25T03:22:46.000Z</published>
     <updated>2024-04-25T03:30:55.577Z</updated>
     
@@ -60,14 +60,14 @@
     
     
     
-    <category term="工具" scheme="https://github.com/k705/kk.github.io.git/tags/%E5%B7%A5%E5%85%B7/"/>
+    <category term="工具" scheme="https://k705.github.io/tags/%E5%B7%A5%E5%85%B7/"/>
     
   </entry>
   
   <entry>
     <title>Vue3-pure-admin</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/22/Vue3-pure-admin/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/22/Vue3-pure-admin/</id>
+    <link href="https://k705.github.io/2024/04/22/Vue3-pure-admin/"/>
+    <id>https://k705.github.io/2024/04/22/Vue3-pure-admin/</id>
     <published>2024-04-22T01:58:28.000Z</published>
     <updated>2024-04-22T02:01:47.144Z</updated>
     
@@ -75,14 +75,14 @@
     
     
     
-    <category term="Vue3" scheme="https://github.com/k705/kk.github.io.git/tags/Vue3/"/>
+    <category term="Vue3" scheme="https://k705.github.io/tags/Vue3/"/>
     
   </entry>
   
   <entry>
     <title>Ajax笔记</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://k705.github.io/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>https://k705.github.io/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:44:52.879Z</updated>
     
@@ -98,14 +98,14 @@
     
     
     
-    <category term="Ajax" scheme="https://github.com/k705/kk.github.io.git/tags/Ajax/"/>
+    <category term="Ajax" scheme="https://k705.github.io/tags/Ajax/"/>
     
   </entry>
   
   <entry>
     <title>AntDesign封装</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/</id>
+    <link href="https://k705.github.io/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/"/>
+    <id>https://k705.github.io/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T10:16:20.155Z</updated>
     
@@ -121,14 +121,14 @@
     
     
     
-    <category term="AntDesign" scheme="https://github.com/k705/kk.github.io.git/tags/AntDesign/"/>
+    <category term="AntDesign" scheme="https://k705.github.io/tags/AntDesign/"/>
     
   </entry>
   
   <entry>
     <title>antd原生Notification通知提醒框</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-%E5%B0%81%E8%A3%85Notification%E9%80%9A%E7%9F%A5%E6%8F%90%E9%86%92%E6%A1%86%E7%BB%84%E4%BB%B6/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-%E5%B0%81%E8%A3%85Notification%E9%80%9A%E7%9F%A5%E6%8F%90%E9%86%92%E6%A1%86%E7%BB%84%E4%BB%B6/</id>
+    <link href="https://k705.github.io/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-%E5%B0%81%E8%A3%85Notification%E9%80%9A%E7%9F%A5%E6%8F%90%E9%86%92%E6%A1%86%E7%BB%84%E4%BB%B6/"/>
+    <id>https://k705.github.io/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-%E5%B0%81%E8%A3%85Notification%E9%80%9A%E7%9F%A5%E6%8F%90%E9%86%92%E6%A1%86%E7%BB%84%E4%BB%B6/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:33:17.628Z</updated>
     
@@ -144,14 +144,14 @@
     
     
     
-    <category term="antDesign" scheme="https://github.com/k705/kk.github.io.git/tags/antDesign/"/>
+    <category term="antDesign" scheme="https://k705.github.io/tags/antDesign/"/>
     
   </entry>
   
   <entry>
     <title>Axios笔记</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://k705.github.io/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/"/>
+    <id>https://k705.github.io/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:45:11.165Z</updated>
     
@@ -168,14 +168,14 @@
     
     
     
-    <category term="Axios" scheme="https://github.com/k705/kk.github.io.git/tags/Axios/"/>
+    <category term="Axios" scheme="https://k705.github.io/tags/Axios/"/>
     
   </entry>
   
   <entry>
     <title>Css补缺</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Css%E8%A1%A5%E7%BC%BA%E7%AC%94%E8%AE%B0/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Css%E8%A1%A5%E7%BC%BA%E7%AC%94%E8%AE%B0/</id>
+    <link href="https://k705.github.io/2024/04/08/Css%E8%A1%A5%E7%BC%BA%E7%AC%94%E8%AE%B0/"/>
+    <id>https://k705.github.io/2024/04/08/Css%E8%A1%A5%E7%BC%BA%E7%AC%94%E8%AE%B0/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-10T03:08:11.020Z</updated>
     
@@ -193,14 +193,14 @@
     
     
     
-    <category term="CSS" scheme="https://github.com/k705/kk.github.io.git/tags/CSS/"/>
+    <category term="CSS" scheme="https://k705.github.io/tags/CSS/"/>
     
   </entry>
   
   <entry>
     <title>Chrome拓展</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/</id>
+    <link href="https://k705.github.io/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/"/>
+    <id>https://k705.github.io/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:46:02.593Z</updated>
     
@@ -217,14 +217,14 @@
     
     
     
-    <category term="软件" scheme="https://github.com/k705/kk.github.io.git/tags/%E8%BD%AF%E4%BB%B6/"/>
+    <category term="软件" scheme="https://k705.github.io/tags/%E8%BD%AF%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>对象的新增方法</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-10%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-27/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-10%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-27/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-10%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-27/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-10%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-27/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:31:39.756Z</updated>
     
@@ -242,14 +242,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Symbol</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:31:32.615Z</updated>
     
@@ -267,14 +267,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Set 和 Map 数据结构</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:31:26.385Z</updated>
     
@@ -292,14 +292,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Reflect</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-14%E3%80%81Es6_Reflect_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%8C%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-14%E3%80%81Es6_Reflect_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%8C%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-14%E3%80%81Es6_Reflect_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%8C%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-14%E3%80%81Es6_Reflect_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%8C%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:29:40.148Z</updated>
     
@@ -317,14 +317,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Proxy</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-13%E3%80%81Es6_Proxy_%E9%87%8D%E8%A6%81/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-13%E3%80%81Es6_Proxy_%E9%87%8D%E8%A6%81/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-13%E3%80%81Es6_Proxy_%E9%87%8D%E8%A6%81/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-13%E3%80%81Es6_Proxy_%E9%87%8D%E8%A6%81/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:29:51.829Z</updated>
     
@@ -342,14 +342,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Iterator 和 for...of 循环</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-16%E3%80%81Es6_Iterator%20%E5%92%8C%20for...of%20%E5%BE%AA%E7%8E%AF_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-16%E3%80%81Es6_Iterator%20%E5%92%8C%20for...of%20%E5%BE%AA%E7%8E%AF_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-16%E3%80%81Es6_Iterator%20%E5%92%8C%20for...of%20%E5%BE%AA%E7%8E%AF_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-16%E3%80%81Es6_Iterator%20%E5%92%8C%20for...of%20%E5%BE%AA%E7%8E%AF_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:29:15.981Z</updated>
     
@@ -367,14 +367,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Promise 对象</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-15%E3%80%81Es6_Promise%E5%AF%B9%E8%B1%A1_day11-30/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-15%E3%80%81Es6_Promise%E5%AF%B9%E8%B1%A1_day11-30/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-15%E3%80%81Es6_Promise%E5%AF%B9%E8%B1%A1_day11-30/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-15%E3%80%81Es6_Promise%E5%AF%B9%E8%B1%A1_day11-30/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:29:33.801Z</updated>
     
@@ -391,14 +391,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Generator 函数的异步应用</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-18%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%BC%82%E6%AD%A5%E5%BA%94%E7%94%A8_day11-30(%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5)/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-18%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%BC%82%E6%AD%A5%E5%BA%94%E7%94%A8_day11-30(%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5)/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-18%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%BC%82%E6%AD%A5%E5%BA%94%E7%94%A8_day11-30(%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5)/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-18%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E5%BC%82%E6%AD%A5%E5%BA%94%E7%94%A8_day11-30(%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5)/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:28:54.409Z</updated>
     
@@ -416,14 +416,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Generator 函数的语法</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-17%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E8%AF%AD%E6%B3%95_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-17%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E8%AF%AD%E6%B3%95_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-17%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E8%AF%AD%E6%B3%95_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-17%E3%80%81Es6_Generator%20%E5%87%BD%E6%95%B0%E7%9A%84%E8%AF%AD%E6%B3%95_day11-30%EF%BC%88%E4%BA%86%E8%A7%A3%E5%8F%AF%E5%BF%BD%E7%95%A5%EF%BC%89/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:29:03.762Z</updated>
     
@@ -441,14 +441,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>async 函数</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:28:43.995Z</updated>
     
@@ -465,14 +465,14 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   
   <entry>
     <title>Class 的继承</title>
-    <link href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-21%E3%80%81Es6_Class%20%E7%9A%84%E7%BB%A7%E6%89%BF_day11-30/"/>
-    <id>https://github.com/k705/kk.github.io.git/2024/04/08/Es6-21%E3%80%81Es6_Class%20%E7%9A%84%E7%BB%A7%E6%89%BF_day11-30/</id>
+    <link href="https://k705.github.io/2024/04/08/Es6-21%E3%80%81Es6_Class%20%E7%9A%84%E7%BB%A7%E6%89%BF_day11-30/"/>
+    <id>https://k705.github.io/2024/04/08/Es6-21%E3%80%81Es6_Class%20%E7%9A%84%E7%BB%A7%E6%89%BF_day11-30/</id>
     <published>2024-04-08T06:36:10.000Z</published>
     <updated>2024-04-09T09:28:15.865Z</updated>
     
@@ -490,7 +490,7 @@
     
     
     
-    <category term="ES" scheme="https://github.com/k705/kk.github.io.git/tags/ES/"/>
+    <category term="ES" scheme="https://k705.github.io/tags/ES/"/>
     
   </entry>
   

@@ -21,20 +21,20 @@
   <meta name="description" content="#说明 此部分知识点实际上在本人 A_JavaScript进阶学习笔记 中就有详细的记载,但现在仍单独抽出,为了是自己复习or同学们更快地找到这个知识点  1、原型与原型链 本人JS进阶部分有详细分析 –&gt;点我跳转 什么是原型呢? 你可以这么理解: 每一个JS对象(除了Null) 在创建时就会与之关联的另一个对象,这个对象就是我们所说的原型,每一个对象都会从自己的 ‘原型对象’ 中继承属性">
 <meta property="og:type" content="article">
 <meta property="og:title" content="原型与原型链构造函数">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Js-JS%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%89%E7%9F%A5%E8%AF%86%E7%82%B9%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Js-JS%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%89%E7%9F%A5%E8%AF%86%E7%82%B9%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 此部分知识点实际上在本人 A_JavaScript进阶学习笔记 中就有详细的记载,但现在仍单独抽出,为了是自己复习or同学们更快地找到这个知识点  1、原型与原型链 本人JS进阶部分有详细分析 –&gt;点我跳转 什么是原型呢? 你可以这么理解: 每一个JS对象(除了Null) 在创建时就会与之关联的另一个对象,这个对象就是我们所说的原型,每一个对象都会从自己的 ‘原型对象’ 中继承属性">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211025145849223.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211025150900591.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211025145849223.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211025150900591.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T08:58:19.107Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211025145849223.png">
+<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211025145849223.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Js-JS%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%89%E7%9F%A5%E8%AF%86%E7%82%B9%E7%AC%94%E8%AE%B0/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Js-JS%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%89%E7%9F%A5%E8%AF%86%E7%82%B9%E7%AC%94%E8%AE%B0/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -480,7 +480,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Js-JS%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%89%E7%9F%A5%E8%AF%86%E7%82%B9%E7%AC%94%E8%AE%B0/" title="原型与原型链构造函数" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Js-JS原型、原型链、构造函数等知识点笔记/</a>
+      <a href="https://k705.github.io/2024/04/08/Js-JS%E5%8E%9F%E5%9E%8B%E3%80%81%E5%8E%9F%E5%9E%8B%E9%93%BE%E3%80%81%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%AD%89%E7%9F%A5%E8%AF%86%E7%82%B9%E7%AC%94%E8%AE%B0/" title="原型与原型链构造函数" target="_blank" rel="external">https://k705.github.io/2024/04/08/Js-JS原型、原型链、构造函数等知识点笔记/</a>
     </li>
     
     <li class="post-copyright-license">

@@ -21,7 +21,7 @@
   <meta name="description" content="此笔记为网上API文档摘录  #目录 [TOC]  九、对象的扩展属性的简洁表示法ES6 允许在大括号里面，直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。 123456const foo &#x3D; &#x27;bar&#x27;;const baz &#x3D; &#123;foo&#125;;baz &#x2F;&#x2F; &#123;foo: &quot;bar&quot;&#125;&#x2F;&#x2F; 等同于const">
 <meta property="og:type" content="article">
 <meta property="og:title" content="对象的扩展">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-9%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Es6-9%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="此笔记为网上API文档摘录  #目录 [TOC]  九、对象的扩展属性的简洁表示法ES6 允许在大括号里面，直接写入变量和函数，作为对象的属性和方法。这样的书写更加简洁。 123456const foo &#x3D; &#x27;bar&#x27;;const baz &#x3D; &#123;foo&#125;;baz &#x2F;&#x2F; &#123;foo: &quot;bar&quot;&#125;&#x2F;&#x2F; 等同于const">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-9%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Es6-9%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -506,7 +506,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proto = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="string">&#x27;hello&#x27;</span>,</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">x</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> obj = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="string">&#x27;world&#x27;</span>,</span><br><span class="line">  <span class="title function_">foo</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">super</span>.<span class="title function_">foo</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title class_">Object</span>.<span class="title function_">setPrototypeOf</span>(obj, proto);</span><br><span class="line"></span><br><span class="line">obj.<span class="title function_">foo</span>() <span class="comment">// &quot;world&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>super.foo</code>指向原型对象<code>proto</code>的<code>foo</code>方法，但是绑定的<code>this</code>却还是当前对象<code>obj</code>，因此输出的就是<code>world</code>。</p>
-<h2 id="对象的扩展运算符"><a href="#对象的扩展运算符" class="headerlink" title="对象的扩展运算符"></a>对象的扩展运算符</h2><p>《数组的扩展》一章中，已经介绍过扩展运算符（<code>...</code>）。ES2018 将这个运算符<a href="https://github.com/sebmarkbage/ecmascript-rest-spread">引入</a>了对象。</p>
+<h2 id="对象的扩展运算符"><a href="#对象的扩展运算符" class="headerlink" title="对象的扩展运算符"></a>对象的扩展运算符</h2><p>《数组的扩展》一章中，已经介绍过扩展运算符（<code>...</code>）。ES2018 将这个运算符<a target="_blank" rel="noopener" href="https://github.com/sebmarkbage/ecmascript-rest-spread">引入</a>了对象。</p>
 <h3 id="解构赋值"><a href="#解构赋值" class="headerlink" title="解构赋值"></a>解构赋值</h3><p>对象的解构赋值用于从一个对象取值，相当于将目标对象自身的所有可遍历的（enumerable）、但尚未被读取的属性，分配到指定的对象上面。所有的键和它们的值，都会拷贝到新对象上面。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> &#123; x, y, ...z &#125; = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span>, <span class="attr">a</span>: <span class="number">3</span>, <span class="attr">b</span>: <span class="number">4</span> &#125;;</span><br><span class="line">x <span class="comment">// 1</span></span><br><span class="line">y <span class="comment">// 2</span></span><br><span class="line">z <span class="comment">// &#123; a: 3, b: 4 &#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -591,7 +591,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fooInput = myForm.<span class="title function_">querySelector</span>(<span class="string">&#x27;input[name=foo]&#x27;</span>)</span><br><span class="line"><span class="keyword">const</span> fooValue = fooInput ? fooInput.<span class="property">value</span> : <span class="literal">undefined</span></span><br></pre></td></tr></table></figure>
 
 <p>上面例子中，必须先判断<code>fooInput</code>是否存在，才能读取<code>fooInput.value</code>。</p>
-<p>这样的层层判断非常麻烦，因此 <a href="https://github.com/tc39/proposal-optional-chaining">ES2020</a> 引入了“链判断运算符”（optional chaining operator）<code>?.</code>，简化上面的写法。</p>
+<p>这样的层层判断非常麻烦，因此 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-optional-chaining">ES2020</a> 引入了“链判断运算符”（optional chaining operator）<code>?.</code>，简化上面的写法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> firstName = message?.<span class="property">body</span>?.<span class="property">user</span>?.<span class="property">firstName</span> || <span class="string">&#x27;default&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> fooValue = myForm.<span class="title function_">querySelector</span>(<span class="string">&#x27;input[name=foo]&#x27;</span>)?.<span class="property">value</span></span><br></pre></td></tr></table></figure>
 
 <p>上面代码使用了<code>?.</code>运算符，直接在链式调用的时候判断，左侧的对象是否为<code>null</code>或<code>undefined</code>。如果是的，就不再往下运算，而是返回<code>undefined</code>。</p>
@@ -643,7 +643,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headerText = response.<span class="property">settings</span>.<span class="property">headerText</span> || <span class="string">&#x27;Hello, world!&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> animationDuration = response.<span class="property">settings</span>.<span class="property">animationDuration</span> || <span class="number">300</span>;</span><br><span class="line"><span class="keyword">const</span> showSplashScreen = response.<span class="property">settings</span>.<span class="property">showSplashScreen</span> || <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
 
 <p>上面的三行代码都通过<code>||</code>运算符指定默认值，但是这样写是错的。开发者的原意是，只要属性的值为<code>null</code>或<code>undefined</code>，默认值就会生效，但是属性的值如果为空字符串或<code>false</code>或<code>0</code>，默认值也会生效。</p>
-<p>为了避免这种情况，<a href="https://github.com/tc39/proposal-nullish-coalescing">ES2020</a> 引入了一个新的 Null 判断运算符<code>??</code>。它的行为类似<code>||</code>，但是只有运算符左侧的值为<code>null</code>或<code>undefined</code>时，才会返回右侧的值。</p>
+<p>为了避免这种情况，<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-nullish-coalescing">ES2020</a> 引入了一个新的 Null 判断运算符<code>??</code>。它的行为类似<code>||</code>，但是只有运算符左侧的值为<code>null</code>或<code>undefined</code>时，才会返回右侧的值。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> headerText = response.<span class="property">settings</span>.<span class="property">headerText</span> ?? <span class="string">&#x27;Hello, world!&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> animationDuration = response.<span class="property">settings</span>.<span class="property">animationDuration</span> ?? <span class="number">300</span>;</span><br><span class="line"><span class="keyword">const</span> showSplashScreen = response.<span class="property">settings</span>.<span class="property">showSplashScreen</span> ?? <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，默认值只有在左侧属性值为<code>null</code>或<code>undefined</code>时，才会生效。</p>
@@ -670,7 +670,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-9%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/" title="对象的扩展" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Es6-9、Es6_对象的扩展_day11-27/</a>
+      <a href="https://k705.github.io/2024/04/08/Es6-9%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/" title="对象的扩展" target="_blank" rel="external">https://k705.github.io/2024/04/08/Es6-9、Es6_对象的扩展_day11-27/</a>
     </li>
     
     <li class="post-copyright-license">

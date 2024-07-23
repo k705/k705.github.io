@@ -21,7 +21,7 @@
   <meta name="description" content="Github Actions 备忘清单本备忘单总结了 Github Actions 常用的配置说明，以供快速参考。 入门介绍GitHub Actions 的仓库中自动化、自定义和执行软件开发工作流程，有四个基本的概念，如下：    :- :-    workflow (工作流程) 持续集成一次运行的过程，就是一个 workflow   job (任务) 一个 workflow 由一个或多个 job">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Github Actions 备忘清单">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-github-actions/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-github-actions/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="Github Actions 备忘清单本备忘单总结了 Github Actions 常用的配置说明，以供快速参考。 入门介绍GitHub Actions 的仓库中自动化、自定义和执行软件开发工作流程，有四个基本的概念，如下：    :- :-    workflow (工作流程) 持续集成一次运行的过程，就是一个 workflow   job (任务) 一个 workflow 由一个或多个 job">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="快速参考备忘清单">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-github-actions/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-github-actions/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -383,8 +383,8 @@
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
-        <h1 id="Github-Actions-备忘清单"><a href="#Github-Actions-备忘清单" class="headerlink" title="Github Actions 备忘清单"></a>Github Actions 备忘清单</h1><p>本备忘单总结了 <a href="https://github.com/actions">Github Actions</a> 常用的配置说明，以供快速参考。</p>
-<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>GitHub <a href="https://github.com/actions">Actions</a> 的仓库中自动化、自定义和执行软件开发工作流程，有四个基本的概念，如下：</p>
+        <h1 id="Github-Actions-备忘清单"><a href="#Github-Actions-备忘清单" class="headerlink" title="Github Actions 备忘清单"></a>Github Actions 备忘清单</h1><p>本备忘单总结了 <a target="_blank" rel="noopener" href="https://github.com/actions">Github Actions</a> 常用的配置说明，以供快速参考。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>GitHub <a target="_blank" rel="noopener" href="https://github.com/actions">Actions</a> 的仓库中自动化、自定义和执行软件开发工作流程，有四个基本的概念，如下：</p>
 <table>
 <thead>
 <tr>
@@ -483,7 +483,7 @@
 <h4 id="自定义环境变量"><a href="#自定义环境变量" class="headerlink" title="自定义环境变量"></a>自定义环境变量</h4><p><code>GitHub</code> 会保留 <code>GITHUB_</code> 环境变量前缀供 <code>GitHub</code> 内部使用。设置有 <code>GITHUB_</code> 前缀的环境变量或密码将导致错误。</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">测试</span> <span class="string">nodejs</span> <span class="string">获取环境变量</span></span><br><span class="line">  <span class="attr">env:</span></span><br><span class="line">    <span class="attr">API_TOKEN:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.API_TOKEN</span> <span class="string">&#125;&#125;</span></span><br></pre></td></tr></table></figure>
 
-<p>在 <code>https://github.com/&lt;用户名&gt;/&lt;项目名称&gt;/settings/secrets</code> 中添加 <code>secrets</code> <code>API_TOKEN</code>，在工作流中设置环境变量 <a href="https://github.com/jaywcjlove/github-actions/blob/799b232fca3d9df0272eaa12610f9ebfca51b288/.github/workflows/ci.yml#L46"><code>API_TOKEN</code></a></p>
+<p>在 <code>https://github.com/&lt;用户名&gt;/&lt;项目名称&gt;/settings/secrets</code> 中添加 <code>secrets</code> <code>API_TOKEN</code>，在工作流中设置环境变量 <a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/github-actions/blob/799b232fca3d9df0272eaa12610f9ebfca51b288/.github/workflows/ci.yml#L46"><code>API_TOKEN</code></a></p>
 <h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><p>在 <code>if</code> 条件下使用表达式时，可以省略表达式语法 (<code>$&#123;&#123; &#125;&#125;</code>)，因为 GitHub 会自动将 <code>if</code> 条件作为表达式求值</p>
 <figure class="highlight yml"><figcaption><span>&#123;3&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">steps:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">uses:</span> <span class="string">actions/hello-world-action@v1.1</span></span><br><span class="line">    <span class="attr">if:</span> <span class="string">github.repository</span> <span class="string">==</span> <span class="string">&#x27;uiw/uiw-repo&#x27;</span></span><br><span class="line">    <span class="comment"># if: $&#123;&#123; &lt;expression&gt; &#125;&#125;</span></span><br></pre></td></tr></table></figure>
 
@@ -669,7 +669,7 @@
 </tr>
 <tr>
 <td><code>GITHUB_WORKSPACE</code></td>
-<td>GitHub 工作空间目录路径。 如果您的工作流程使用 <a href="https://github.com/actions/checkout">actions&#x2F;checkout</a> 操作，工作空间目录将包含存储仓库副本的子目录。 如果不使用 <a href="https://github.com/actions/checkout">actions&#x2F;checkout</a> 操作，该目录将为空。 例如 &#x2F;home</td>
+<td>GitHub 工作空间目录路径。 如果您的工作流程使用 <a target="_blank" rel="noopener" href="https://github.com/actions/checkout">actions&#x2F;checkout</a> 操作，工作空间目录将包含存储仓库副本的子目录。 如果不使用 <a target="_blank" rel="noopener" href="https://github.com/actions/checkout">actions&#x2F;checkout</a> 操作，该目录将为空。 例如 &#x2F;home</td>
 </tr>
 <tr>
 <td><code>GITHUB_SHA</code></td>
@@ -767,7 +767,7 @@
 <h3 id="修改-package-json"><a href="#修改-package-json" class="headerlink" title="修改 package.json"></a>修改 package.json</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Modify</span> <span class="string">Version</span></span><br><span class="line">  <span class="attr">shell:</span> <span class="string">bash</span></span><br><span class="line">  <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">    <span class="string">node</span> <span class="string">-e</span> <span class="string">&#x27;var pkg = require(&quot;./package.json&quot;); pkg.version= (new Date().getFullYear().toString().substr(2)) + &quot;.&quot; + (new Date().getMonth() + 1) + &quot;.&quot; + (new Date().getDate()); require(&quot;fs&quot;).writeFileSync(&quot;./package.json&quot;, JSON.stringify(pkg, null, 2))&#x27;</span></span><br></pre></td></tr></table></figure>
 <!--rehype:className=wrap-text -->
 
-<p>使用 <a href="https://github.com/jaywcjlove/github-action-package">github-action-package</a> 修改 <code>name</code> 字段</p>
+<p>使用 <a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/github-action-package">github-action-package</a> 修改 <code>name</code> 字段</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">package.json</span> <span class="string">info</span></span><br><span class="line">  <span class="attr">uses:</span> <span class="string">jaywcjlove/github-action-package@main</span></span><br><span class="line">  <span class="attr">with:</span></span><br><span class="line">    <span class="attr">rename:</span> <span class="string">&#x27;@wcj/github-package-test&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="克隆带有-Submodule-的仓库"><a href="#克隆带有-Submodule-的仓库" class="headerlink" title="克隆带有 Submodule 的仓库"></a>克隆带有 Submodule 的仓库</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span> <span class="string">Checkout</span></span><br><span class="line">  <span class="attr">uses:</span> <span class="string">actions/checkout@v3</span></span><br><span class="line">  <span class="attr">with:</span></span><br><span class="line">    <span class="attr">path:</span> <span class="string">main</span></span><br><span class="line">    <span class="attr">submodules:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
@@ -798,7 +798,7 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm token list [--json|--parseable] # 查看</span><br><span class="line">npm token create [--read-only] [--cidr=1.1.1.1/24,2.2.2.2/16] # 创建</span><br><span class="line">npm token revoke &lt;id|token&gt; # 撤销</span><br></pre></td></tr></table></figure>
 <!--rehype:className=wrap-text -->
 
-<p>可以使用 <a href="https://github.com/JS-DevTools/npm-publish">JS-DevTools&#x2F;npm-publish</a> 提交</p>
+<p>可以使用 <a target="_blank" rel="noopener" href="https://github.com/JS-DevTools/npm-publish">JS-DevTools&#x2F;npm-publish</a> 提交</p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="bullet">-</span> <span class="attr">name:</span>  <span class="string">📦</span> <span class="string">@province-city-china/data</span></span><br><span class="line">  <span class="attr">uses:</span> <span class="string">JS-DevTools/npm-publish@v1</span></span><br><span class="line">  <span class="attr">with:</span></span><br><span class="line">    <span class="attr">token:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.NPM_TOKEN</span> <span class="string">&#125;&#125;</span></span><br><span class="line">    <span class="attr">package:</span> <span class="string">packages/data/package.json</span></span><br></pre></td></tr></table></figure>
 
 <p>它有个好处，检测 <code>package.json</code> 中版本号是否发生变更，来决定是否提交版本，不会引发流程错误。</p>
@@ -861,51 +861,51 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="left"><a href="https://github.com/jaywcjlove/create-tag-action"><code>create-tag-action</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/create-tag-action"><code>create-tag-action</code></a></td>
 <td align="left">根据 package.json 创建 <code>Tag</code> &#x2F; <code>Release</code></td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/changelog-generator"><code>changelog-generator</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/changelog-generator"><code>changelog-generator</code></a></td>
 <td align="left">生成 <code>changelog</code> 日志</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/github-action-modify-file-content"><code>github-action-modify-file-content</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/github-action-modify-file-content"><code>github-action-modify-file-content</code></a></td>
 <td align="left">修改仓库文件内容</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/github-action-contributors"><code>github-action-contributors</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/github-action-contributors"><code>github-action-contributors</code></a></td>
 <td align="left">生成贡献(contributors.svg)图片</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/generated-badges"><code>generated-badges</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/generated-badges"><code>generated-badges</code></a></td>
 <td align="left">生成徽章(Badges)图片</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/coverage-badges-cli"><code>coverage-badges-cli</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/coverage-badges-cli"><code>coverage-badges-cli</code></a></td>
 <td align="left">生成覆盖率徽章(Badges)图片</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/action-ejs"><code>action-ejs</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/action-ejs"><code>action-ejs</code></a></td>
 <td align="left">基于 ejs 生成 HTML</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/github-action-package"><code>github-action-package</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/github-action-package"><code>github-action-package</code></a></td>
 <td align="left">修改 JSON 文件内容</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/github-action-read-file"><code>github-action-read-file</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/github-action-read-file"><code>github-action-read-file</code></a></td>
 <td align="left">读取文件内容</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/jaywcjlove/markdown-to-html-cli"><code>markdown-to-html-cli</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/jaywcjlove/markdown-to-html-cli"><code>markdown-to-html-cli</code></a></td>
 <td align="left">Markdown 转换成 HTML</td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/ncipollo/release-action"><code>ncipollo/release-action</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/ncipollo/release-action"><code>ncipollo/release-action</code></a></td>
 <td align="left">创建 <code>Release</code></td>
 </tr>
 <tr>
-<td align="left"><a href="https://github.com/peaceiris/actions-gh-pages"><code>peaceiris/actions-gh-pages</code></a></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages"><code>peaceiris/actions-gh-pages</code></a></td>
 <td align="left">将文件或文件夹内容提交到 <code>gh-pages</code> 分支</td>
 </tr>
 </tbody></table>
@@ -991,7 +991,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-github-actions/" title="Github Actions 备忘清单" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/快速参考-github-actions/</a>
+      <a href="https://k705.github.io/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-github-actions/" title="Github Actions 备忘清单" target="_blank" rel="external">https://k705.github.io/2024/04/08/快速参考-github-actions/</a>
     </li>
     
     <li class="post-copyright-license">

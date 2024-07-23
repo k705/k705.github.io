@@ -21,7 +21,7 @@
   <meta name="description" content="此笔记为网上API文档摘录  #目录 [TOC]  十一、Symbol概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入Symbol的原因。 ES6 引入了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Symbol">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="此笔记为网上API文档摘录  #目录 [TOC]  十一、Symbol概述ES5 的对象属性名都是字符串，这容易造成属性名的冲突。比如，你使用了一个他人提供的对象，但又想为这个对象添加新的方法（mixin 模式），新方法的名字就有可能与现有方法产生冲突。如果有一种机制，保证每个属性的名字都是独一无二的就好了，这样就从根本上防止属性名的冲突。这就是 ES6 引入Symbol的原因。 ES6 引入了">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -423,7 +423,7 @@
 <p>但是，读取这个描述需要将 Symbol 显式转为字符串，即下面的写法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sym = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="title class_">String</span>(sym) <span class="comment">// &quot;Symbol(foo)&quot;</span></span><br><span class="line">sym.<span class="title function_">toString</span>() <span class="comment">// &quot;Symbol(foo)&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>上面的用法不是很方便。<a href="https://github.com/tc39/proposal-Symbol-description">ES2019</a> 提供了一个实例属性<code>description</code>，直接返回 Symbol 的描述。</p>
+<p>上面的用法不是很方便。<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-Symbol-description">ES2019</a> 提供了一个实例属性<code>description</code>，直接返回 Symbol 的描述。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sym = <span class="title class_">Symbol</span>(<span class="string">&#x27;foo&#x27;</span>);</span><br><span class="line"></span><br><span class="line">sym.<span class="property">description</span> <span class="comment">// &quot;foo&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="作为属性名的-Symbol"><a href="#作为属性名的-Symbol" class="headerlink" title="作为属性名的 Symbol"></a>作为属性名的 Symbol</h2><p>由于每一个 Symbol 值都是不相等的，这意味着 Symbol 值可以作为标识符，用于对象的属性名，就能保证不会出现同名的属性。这对于一个对象由多个模块构成的情况非常有用，能防止某一个键被不小心改写或覆盖。</p>
@@ -633,7 +633,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/" title="Symbol" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Es6-11、Es6_Symbol_day11-27（了解）/</a>
+      <a href="https://k705.github.io/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/" title="Symbol" target="_blank" rel="external">https://k705.github.io/2024/04/08/Es6-11、Es6_Symbol_day11-27（了解）/</a>
     </li>
     
     <li class="post-copyright-license">

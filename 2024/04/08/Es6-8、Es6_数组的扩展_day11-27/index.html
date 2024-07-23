@@ -21,7 +21,7 @@
   <meta name="description" content="此笔记为网上API文档摘录  #目录 [TOC]  八、数组的扩展扩展运算符含义扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。 12345678console.log(...[1, 2, 3])&#x2F;&#x2F; 1 2 3console.log(1, ...[2, 3, 4], 5)&#x2F;&#x2F; 1 2 3 4 5[...document.quer">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数组的扩展">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-8%E3%80%81Es6_%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Es6-8%E3%80%81Es6_%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="此笔记为网上API文档摘录  #目录 [TOC]  八、数组的扩展扩展运算符含义扩展运算符（spread）是三个点（...）。它好比 rest 参数的逆运算，将一个数组转为用逗号分隔的参数序列。 12345678console.log(...[1, 2, 3])&#x2F;&#x2F; 1 2 3console.log(1, ...[2, 3, 4], 5)&#x2F;&#x2F; 1 2 3 4 5[...document.quer">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-8%E3%80%81Es6_%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Es6-8%E3%80%81Es6_%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -694,7 +694,7 @@
 
 <p>上面代码中，排序结果是<code>spork</code>在<code>straw</code>前面，跟原始顺序相反，所以排序算法<code>unstableSorting</code>是不稳定的。</p>
 <p>常见的排序算法之中，插入排序、合并排序、冒泡排序等都是稳定的，堆排序、快速排序等是不稳定的。不稳定排序的主要缺点是，多重排序时可能会产生问题。假设有一个姓和名的列表，要求按照“姓氏为主要关键字，名字为次要关键字”进行排序。开发者可能会先按名字排序，再按姓氏进行排序。如果排序算法是稳定的，这样就可以达到“先姓氏，后名字”的排序效果。如果是不稳定的，就不行。</p>
-<p>早先的 ECMAScript 没有规定，<code>Array.prototype.sort()</code>的默认排序算法是否稳定，留给浏览器自己决定，这导致某些实现是不稳定的。<a href="https://github.com/tc39/ecma262/pull/1340">ES2019</a> 明确规定，<code>Array.prototype.sort()</code>的默认排序算法必须稳定。这个规定已经做到了，现在 JavaScript 各个主要实现的默认排序算法都是稳定的。</p>
+<p>早先的 ECMAScript 没有规定，<code>Array.prototype.sort()</code>的默认排序算法是否稳定，留给浏览器自己决定，这导致某些实现是不稳定的。<a target="_blank" rel="noopener" href="https://github.com/tc39/ecma262/pull/1340">ES2019</a> 明确规定，<code>Array.prototype.sort()</code>的默认排序算法必须稳定。这个规定已经做到了，现在 JavaScript 各个主要实现的默认排序算法都是稳定的。</p>
 
       
     </div>
@@ -704,7 +704,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-8%E3%80%81Es6_%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/" title="数组的扩展" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Es6-8、Es6_数组的扩展_day11-27/</a>
+      <a href="https://k705.github.io/2024/04/08/Es6-8%E3%80%81Es6_%E6%95%B0%E7%BB%84%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/" title="数组的扩展" target="_blank" rel="external">https://k705.github.io/2024/04/08/Es6-8、Es6_数组的扩展_day11-27/</a>
     </li>
     
     <li class="post-copyright-license">

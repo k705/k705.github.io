@@ -21,7 +21,7 @@
   <meta name="description" content="本人的React学习笔记分类(也是对应本人技术成长过程):[想快速入门看这部分]、[想对React系统全面进行学习的同学看这里]、[对基础学习完成且有了一定开发经验,想尝试解析源码的看这里]  实战分析：评论功能（一）课程到这里大家已经掌握了 React.js 的基础知识和组件的基本写法了。现在可以把我们所学到的内容应用于实战当中。这里给大家提供一个实战的案例：一个评论功能。效果如下：  在线演">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react小书阶段练习">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="本人的React学习笔记分类(也是对应本人技术成长过程):[想快速入门看这部分]、[想对React系统全面进行学习的同学看这里]、[对基础学习完成且有了一定开发经验,想尝试解析源码的看这里]  实战分析：评论功能（一）课程到这里大家已经掌握了 React.js 的基础知识和组件的基本写法了。现在可以把我们所学到的内容应用于实战当中。这里给大家提供一个实战的案例：一个评论功能。效果如下：  在线演">
 <meta property="og:locale" content="zh_CN">
@@ -52,7 +52,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://huzidaha.github.io/static/assets/img/posts/2B86ED50-DDF5-4B3A-82A0-DECFD6767A8F.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -455,7 +455,7 @@
 
 <p>在浏览器中可以看到样式生效了：</p>
 <p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/770AFFBC-852C-4770-965A-695B43B7BB65.png"><img src="http://huzidaha.github.io/static/assets/img/posts/770AFFBC-852C-4770-965A-695B43B7BB65.png" alt="React.js 小书实战之评论功能图片"></a></p>
-<p>评论功能案例的所有样式都是通过这种方式进行添加。由于我们专注点在于 React.js，本案例后续不会在样式上过于纠缠。这里写好了一个样式文件（<a href="https://github.com/huzidaha/react-naive-book-examples/blob/master/comment-app/src/index.css">index.css</a> ）提供给大家，可以复制到 <code>index.css</code> 当中。后续只需要在元素上加上类名就可以了。</p>
+<p>评论功能案例的所有样式都是通过这种方式进行添加。由于我们专注点在于 React.js，本案例后续不会在样式上过于纠缠。这里写好了一个样式文件（<a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples/blob/master/comment-app/src/index.css">index.css</a> ）提供给大家，可以复制到 <code>index.css</code> 当中。后续只需要在元素上加上类名就可以了。</p>
 <blockquote>
 <p>index.css</p>
 </blockquote>
@@ -542,7 +542,7 @@
 <p>为了让代码的健壮性更强，给 <code>handleSubmitComment</code> 加入简单的数据检查：</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleSubmitComment (comment) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!comment) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> (!comment.<span class="property">username</span>) <span class="keyword">return</span> <span class="title function_">alert</span>(<span class="string">&#x27;请输入用户名&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (!comment.<span class="property">content</span>) <span class="keyword">return</span> <span class="title function_">alert</span>(<span class="string">&#x27;请输入评论内容&#x27;</span>)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span>.<span class="title function_">push</span>(comment)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">comments</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
 
-<p>到这里，我们的第一个实战案例——评论功能已经完成了！完整的案例代码可以在这里 <a href="https://github.com/huzidaha/react-naive-book-examples/tree/master/comment-app">comment-app</a> 找到， <a target="_blank" rel="noopener" href="https://huzidaha.github.io/react-naive-book-examples/comment-app/build/index.html">在线演示</a> 体验。</p>
+<p>到这里，我们的第一个实战案例——评论功能已经完成了！完整的案例代码可以在这里 <a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples/tree/master/comment-app">comment-app</a> 找到， <a target="_blank" rel="noopener" href="https://huzidaha.github.io/react-naive-book-examples/comment-app/build/index.html">在线演示</a> 体验。</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这个案例里面，我们除了复习了之前所学过的内容以外还学习了新的知识点。包括：</p>
 <ol>
 <li>实现功能之前先理解、分析需求，划分组件。并且掌握划分组件的基本原则——可复用性、可维护性。</li>
@@ -563,7 +563,7 @@
 </ol>
 <p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/E01D3698-F041-4149-9626-849F023E5638.png"><img src="http://huzidaha.github.io/static/assets/img/posts/E01D3698-F041-4149-9626-849F023E5638.png" alt="React.js 小书实战评论功能图片"></a></p>
 <p><a target="_blank" rel="noopener" href="https://huzidaha.github.io/react-naive-book-examples/comment-app2/build/index.html">在线演示地址</a>。</p>
-<p>大家可以在原来的第一阶段代码的基础上进行修改，第一、二阶段评论功能代码可以在这里找到： <a href="https://github.com/huzidaha/react-naive-book-examples">react-naive-book-examples</a>。可以直接使用最新的样式文件 <a href="https://github.com/huzidaha/react-naive-book-examples/blob/master/comment-app2/src/index.css">index.css</a> 覆盖原来的 index.css。</p>
+<p>大家可以在原来的第一阶段代码的基础上进行修改，第一、二阶段评论功能代码可以在这里找到： <a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples">react-naive-book-examples</a>。可以直接使用最新的样式文件 <a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples/blob/master/comment-app2/src/index.css">index.css</a> 覆盖原来的 index.css。</p>
 <p>接下来可以分析如何利用第二阶段的知识来构建这些功能，在这个过程里面可能会穿插一些小技巧，希望对大家有用。我们回顾一下这个页面的组成：</p>
 <p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/1.003.png"><img src="http://huzidaha.github.io/static/assets/img/posts/1.003.png" alt="React.js 小书实战评论功能图片"></a></p>
 <p>我们之前把页面分成了四种不同的组件：分别是 <code>CommentApp</code> 、<code>CommentInput</code>、<code>CommentList</code>、<code>Comment</code>。我们开始修改这个组件，把上面的需求逐个完成。</p>
@@ -682,7 +682,7 @@
 </blockquote>
 <p>然后点击发布，看看效果：</p>
 <p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/5C18C820-E406-4D38-95DC-B4FEA70E34EE.png"><img src="http://huzidaha.github.io/static/assets/img/posts/5C18C820-E406-4D38-95DC-B4FEA70E34EE.png" alt="React.js 小书实战评论功能图片"></a></p>
-<p>我们安全地完成了第 6 个需求。到目前为止，第二阶段的实战已经全部完成，你可以在<a href="https://github.com/huzidaha/react-naive-book-examples">这里</a>找到完整的代码。</p>
+<p>我们安全地完成了第 6 个需求。到目前为止，第二阶段的实战已经全部完成，你可以在<a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples">这里</a>找到完整的代码。</p>
 <h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>到这里第二阶段已经全部结束，我们已经掌握了全部 React.js 实战需要的入门知识。接下来我们会学习两个相对比较高级的 React.js 的概念，然后进入 React-redux 的世界，让它们配合 React.js 来构建更成熟的前端页面。</p>
 
       
@@ -693,7 +693,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/" title="react小书阶段练习" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/react-贰、React小书_阶段练习_day12-2/</a>
+      <a href="https://k705.github.io/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/" title="react小书阶段练习" target="_blank" rel="external">https://k705.github.io/2024/04/08/react-贰、React小书_阶段练习_day12-2/</a>
     </li>
     
     <li class="post-copyright-license">

@@ -21,7 +21,7 @@
   <meta name="description" content="此笔记为网上API文档摘录 本人有对此知识更为详细的学习笔记，于Promise学习笔记中  #目录 [TOC]  async 函数含义ES2017 标准引入了 async 函数，使得异步操作变得更加方便。 async 函数是什么？一句话，它就是 Generator 函数的语法糖。 前文有一个 Generator 函数，依次读取两个文件。 1234567891011121314151617cons">
 <meta property="og:type" content="article">
 <meta property="og:title" content="async 函数">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="此笔记为网上API文档摘录 本人有对此知识更为详细的学习笔记，于Promise学习笔记中  #目录 [TOC]  async 函数含义ES2017 标准引入了 async 函数，使得异步操作变得更加方便。 async 函数是什么？一句话，它就是 Generator 函数的语法糖。 前文有一个 Generator 函数，依次读取两个文件。 1234567891011121314151617cons">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -552,7 +552,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 报错</span></span><br><span class="line"><span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">&#x27;https://api.example.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>await</code>命令独立使用，没有放在 async 函数里面，就会报错。</p>
-<p>目前，有一个<a href="https://github.com/tc39/proposal-top-level-await">语法提案</a>，允许在模块的顶层独立使用<code>await</code>命令，使得上面那行代码不会报错了。这个提案的目的，是借用<code>await</code>解决模块异步加载的问题。</p>
+<p>目前，有一个<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-top-level-await">语法提案</a>，允许在模块的顶层独立使用<code>await</code>命令，使得上面那行代码不会报错了。这个提案的目的，是借用<code>await</code>解决模块异步加载的问题。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// awaiting.js</span></span><br><span class="line"><span class="keyword">let</span> output;</span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">main</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> dynamic = <span class="keyword">await</span> <span class="keyword">import</span>(someMission);</span><br><span class="line">  <span class="keyword">const</span> data = <span class="keyword">await</span> <span class="title function_">fetch</span>(url);</span><br><span class="line">  output = <span class="title function_">someProcess</span>(dynamic.<span class="property">default</span>, data);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">main</span>();</span><br><span class="line"><span class="keyword">export</span> &#123; output &#125;;</span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，模块<code>awaiting.js</code>的输出值<code>output</code>，取决于异步操作。我们把异步操作包装在一个 async 函数里面，然后调用这个函数，只有等里面的异步操作都执行，变量<code>output</code>才会有值，否则就返回<code>undefined</code>。</p>
@@ -599,7 +599,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/" title="async 函数" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Es6-19、Es6_async 函数_day11-30/</a>
+      <a href="https://k705.github.io/2024/04/08/Es6-19%E3%80%81Es6_async%20%E5%87%BD%E6%95%B0_day11-30/" title="async 函数" target="_blank" rel="external">https://k705.github.io/2024/04/08/Es6-19、Es6_async 函数_day11-30/</a>
     </li>
     
     <li class="post-copyright-license">

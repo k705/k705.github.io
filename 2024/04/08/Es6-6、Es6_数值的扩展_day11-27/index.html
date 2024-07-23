@@ -21,7 +21,7 @@
   <meta name="description" content="此笔记为网上API文档摘录  #目录 [TOC]  六、数值的扩展二进制和八进制表示法ES6 提供了二进制和八进制数值的新的写法，分别用前缀0b（或0B）和0o（或0O）表示。 120b111110111 &#x3D;&#x3D;&#x3D; 503 &#x2F;&#x2F; true0o767 &#x3D;&#x3D;&#x3D; 503 &#x2F;&#x2F; true  从 ES5 开始，在严格模式之中，八进制就不再允许使用前缀0表示，ES6 进一步明确，要使用前缀0o表示。 1234">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数值的扩展">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-6%E3%80%81Es6_%E6%95%B0%E5%80%BC%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Es6-6%E3%80%81Es6_%E6%95%B0%E5%80%BC%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="此笔记为网上API文档摘录  #目录 [TOC]  六、数值的扩展二进制和八进制表示法ES6 提供了二进制和八进制数值的新的写法，分别用前缀0b（或0B）和0o（或0O）表示。 120b111110111 &#x3D;&#x3D;&#x3D; 503 &#x2F;&#x2F; true0o767 &#x3D;&#x3D;&#x3D; 503 &#x2F;&#x2F; true  从 ES5 开始，在严格模式之中，八进制就不再允许使用前缀0表示，ES6 进一步明确，要使用前缀0o表示。 1234">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-6%E3%80%81Es6_%E6%95%B0%E5%80%BC%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Es6-6%E3%80%81Es6_%E6%95%B0%E5%80%BC%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -609,7 +609,7 @@
 <h2 id="BigInt-数据类型"><a href="#BigInt-数据类型" class="headerlink" title="BigInt 数据类型"></a>BigInt 数据类型</h2><h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>JavaScript 所有数字都保存成 64 位浮点数，这给数值的表示带来了两大限制。一是数值的精度只能到 53 个二进制位（相当于 16 个十进制位），大于这个范围的整数，JavaScript 是无法精确表示的，这使得 JavaScript 不适合进行科学和金融方面的精确计算。二是大于或等于2的1024次方的数值，JavaScript 无法表示，会返回<code>Infinity</code>。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 超过 53 个二进制位的数值，无法保持精度</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">2</span>, <span class="number">53</span>) === <span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">2</span>, <span class="number">53</span>) + <span class="number">1</span> <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 超过 2 的 1024 次方的数值，无法表示</span></span><br><span class="line"><span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">2</span>, <span class="number">1024</span>) <span class="comment">// Infinity</span></span><br></pre></td></tr></table></figure>
 
-<p><a href="https://github.com/tc39/proposal-bigint">ES2020</a> 引入了一种新的数据类型 BigInt（大整数），来解决这个问题，这是 ECMAScript 的第八种数据类型。BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-bigint">ES2020</a> 引入了一种新的数据类型 BigInt（大整数），来解决这个问题，这是 ECMAScript 的第八种数据类型。BigInt 只用来表示整数，没有位数的限制，任何位数的整数都可以精确表示。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a = <span class="number">2172141653n</span>;</span><br><span class="line"><span class="keyword">const</span> b = <span class="number">15346349309n</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// BigInt 可以保持精度</span></span><br><span class="line">a * b <span class="comment">// 33334444555566667777n</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 普通整数无法保持精度</span></span><br><span class="line"><span class="title class_">Number</span>(a) * <span class="title class_">Number</span>(b) <span class="comment">// 33334444555566670000</span></span><br></pre></td></tr></table></figure>
 
 <p>为了与 Number 类型区别，BigInt 类型的数据必须添加后缀<code>n</code>。</p>
@@ -714,7 +714,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-6%E3%80%81Es6_%E6%95%B0%E5%80%BC%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/" title="数值的扩展" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Es6-6、Es6_数值的扩展_day11-27/</a>
+      <a href="https://k705.github.io/2024/04/08/Es6-6%E3%80%81Es6_%E6%95%B0%E5%80%BC%E7%9A%84%E6%89%A9%E5%B1%95_day11-27/" title="数值的扩展" target="_blank" rel="external">https://k705.github.io/2024/04/08/Es6-6、Es6_数值的扩展_day11-27/</a>
     </li>
     
     <li class="post-copyright-license">

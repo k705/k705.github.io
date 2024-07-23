@@ -21,7 +21,7 @@
   <meta name="description" content="此笔记为网上API文档摘录  #目录 [TOC]  四、字符串的新增方法String.fromCodePoint()ES5 提供String.fromCharCode()方法，用于从 Unicode 码点返回对应字符，但是这个方法不能识别码点大于0xFFFF的字符。 12String.fromCharCode(0x20BB7)&#x2F;&#x2F; &quot;ஷ&quot;  上面代码中，String.from">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串的新增方法">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-4%E3%80%81Es6_%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-26/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Es6-4%E3%80%81Es6_%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-26/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="此笔记为网上API文档摘录  #目录 [TOC]  四、字符串的新增方法String.fromCodePoint()ES5 提供String.fromCharCode()方法，用于从 Unicode 码点返回对应字符，但是这个方法不能识别码点大于0xFFFF的字符。 12String.fromCharCode(0x20BB7)&#x2F;&#x2F; &quot;ஷ&quot;  上面代码中，String.from">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-4%E3%80%81Es6_%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-26/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Es6-4%E3%80%81Es6_%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-26/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -501,7 +501,7 @@
 <p>另一个用途是提示字符串格式。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;12&#x27;</span>.<span class="title function_">padStart</span>(<span class="number">10</span>, <span class="string">&#x27;YYYY-MM-DD&#x27;</span>) <span class="comment">// &quot;YYYY-MM-12&quot;</span></span><br><span class="line"><span class="string">&#x27;09-12&#x27;</span>.<span class="title function_">padStart</span>(<span class="number">10</span>, <span class="string">&#x27;YYYY-MM-DD&#x27;</span>) <span class="comment">// &quot;YYYY-09-12&quot;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="实例方法：trimStart-，trimEnd"><a href="#实例方法：trimStart-，trimEnd" class="headerlink" title="实例方法：trimStart()，trimEnd()"></a>实例方法：trimStart()，trimEnd()</h2><p><a href="https://github.com/tc39/proposal-string-left-right-trim">ES2019</a> 对字符串实例新增了<code>trimStart()</code>和<code>trimEnd()</code>这两个方法。它们的行为与<code>trim()</code>一致，<code>trimStart()</code>消除字符串头部的空格，<code>trimEnd()</code>消除尾部的空格。它们返回的都是新字符串，不会修改原始字符串。</p>
+<h2 id="实例方法：trimStart-，trimEnd"><a href="#实例方法：trimStart-，trimEnd" class="headerlink" title="实例方法：trimStart()，trimEnd()"></a>实例方法：trimStart()，trimEnd()</h2><p><a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-string-left-right-trim">ES2019</a> 对字符串实例新增了<code>trimStart()</code>和<code>trimEnd()</code>这两个方法。它们的行为与<code>trim()</code>一致，<code>trimStart()</code>消除字符串头部的空格，<code>trimEnd()</code>消除尾部的空格。它们返回的都是新字符串，不会修改原始字符串。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> s = <span class="string">&#x27;  abc  &#x27;</span>;</span><br><span class="line"></span><br><span class="line">s.<span class="title function_">trim</span>() <span class="comment">// &quot;abc&quot;</span></span><br><span class="line">s.<span class="title function_">trimStart</span>() <span class="comment">// &quot;abc  &quot;</span></span><br><span class="line">s.<span class="title function_">trimEnd</span>() <span class="comment">// &quot;  abc&quot;</span></span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>trimStart()</code>只消除头部的空格，保留尾部的空格。<code>trimEnd()</code>也是类似行为。</p>
@@ -515,7 +515,7 @@
 <p>如果要替换所有的匹配，不得不使用正则表达式的<code>g</code>修饰符。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;aabbcc&#x27;</span>.<span class="title function_">replace</span>(<span class="regexp">/b/g</span>, <span class="string">&#x27;_&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;aa__cc&#x27;</span></span><br></pre></td></tr></table></figure>
 
-<p>正则表达式毕竟不是那么方便和直观，<a href="https://github.com/tc39/proposal-string-replaceall">ES2021</a> 引入了<code>replaceAll()</code>方法，可以一次性替换所有匹配。</p>
+<p>正则表达式毕竟不是那么方便和直观，<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-string-replaceall">ES2021</a> 引入了<code>replaceAll()</code>方法，可以一次性替换所有匹配。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;aabbcc&#x27;</span>.<span class="title function_">replaceAll</span>(<span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;_&#x27;</span>)</span><br><span class="line"><span class="comment">// &#x27;aa__cc&#x27;</span></span><br></pre></td></tr></table></figure>
 
 <p>它的用法与<code>replace()</code>相同，返回一个新字符串，不会改变原字符串。</p>
@@ -554,7 +554,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-4%E3%80%81Es6_%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-26/" title="字符串的新增方法" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Es6-4、Es6_字符串的新增方法_day11-26/</a>
+      <a href="https://k705.github.io/2024/04/08/Es6-4%E3%80%81Es6_%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-26/" title="字符串的新增方法" target="_blank" rel="external">https://k705.github.io/2024/04/08/Es6-4、Es6_字符串的新增方法_day11-26/</a>
     </li>
     
     <li class="post-copyright-license">

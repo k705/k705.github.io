@@ -21,30 +21,30 @@
   <meta name="description" content="#说明 本笔记是本人参照阿里云官方文档的 通过VNC搭建Ubuntu图形界面、查阅csdn的NinoSun的阿里云服务器VNC连接Timed out waiting for a response from the computer报错解决方案、yanlaifan的ubuntu命令行模式与图形桌面切换方法 、sinat_40482939的Ubuntu中yum命令相关问题详解进行操作,但期间出现了文档">
 <meta property="og:type" content="article">
 <meta property="og:title" content="通过VNC搭建Ubuntu图形界面">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87VNC%E6%90%AD%E5%BB%BAUbuntu%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87VNC%E6%90%AD%E5%BB%BAUbuntu%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 本笔记是本人参照阿里云官方文档的 通过VNC搭建Ubuntu图形界面、查阅csdn的NinoSun的阿里云服务器VNC连接Timed out waiting for a response from the computer报错解决方案、yanlaifan的ubuntu命令行模式与图形桌面切换方法 、sinat_40482939的Ubuntu中yum命令相关问题详解进行操作,但期间出现了文档">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622111239870.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622102129466.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622104059898.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622111814937.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622112236508.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622151743547.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622151906113.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621155106316.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621155425769.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622152549767.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622152732905.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622152839759.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622111239870.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622102129466.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622104059898.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622111814937.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622112236508.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622151743547.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622151906113.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621155106316.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621155425769.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622152549767.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622152732905.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622152839759.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:05:44.802Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="云服务器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622111239870.png">
+<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622111239870.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87VNC%E6%90%AD%E5%BB%BAUbuntu%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87VNC%E6%90%AD%E5%BB%BAUbuntu%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -565,7 +565,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87VNC%E6%90%AD%E5%BB%BAUbuntu%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2/" title="通过VNC搭建Ubuntu图形界面" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/云服务器-云服务器通过VNC搭建Ubuntu安装图形界面/</a>
+      <a href="https://k705.github.io/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87VNC%E6%90%AD%E5%BB%BAUbuntu%E5%AE%89%E8%A3%85%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2/" title="通过VNC搭建Ubuntu图形界面" target="_blank" rel="external">https://k705.github.io/2024/04/08/云服务器-云服务器通过VNC搭建Ubuntu安装图形界面/</a>
     </li>
     
     <li class="post-copyright-license">

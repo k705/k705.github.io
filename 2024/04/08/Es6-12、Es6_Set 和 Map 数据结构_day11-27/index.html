@@ -21,7 +21,7 @@
   <meta name="description" content="此笔记为网上API文档摘录  #目录 [TOC]  十二、Set 和 Map 数据结构Set基本用法ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。 Set本身是一个构造函数，用来生成 Set 数据结构。 12345678const s &#x3D; new Set();[2, 3, 5, 4, 5, 2, 2].forEach(x &#x3D;&gt; s.add(x));">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Set 和 Map 数据结构">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="此笔记为网上API文档摘录  #目录 [TOC]  十二、Set 和 Map 数据结构Set基本用法ES6 提供了新的数据结构 Set。它类似于数组，但是成员的值都是唯一的，没有重复的值。 Set本身是一个构造函数，用来生成 Set 数据结构。 12345678const s &#x3D; new Set();[2, 3, 5, 4, 5, 2, 2].forEach(x &#x3D;&gt; s.add(x));">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="ES">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -674,7 +674,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> wm = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// size、forEach、clear 方法都不存在</span></span><br><span class="line">wm.<span class="property">size</span> <span class="comment">// undefined</span></span><br><span class="line">wm.<span class="property">forEach</span> <span class="comment">// undefined</span></span><br><span class="line">wm.<span class="property">clear</span> <span class="comment">// undefined</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="WeakMap-的示例"><a href="#WeakMap-的示例" class="headerlink" title="WeakMap 的示例"></a>WeakMap 的示例</h3><p>WeakMap 的例子很难演示，因为无法观察它里面的引用会自动消失。此时，其他引用都解除了，已经没有引用指向 WeakMap 的键名了，导致无法证实那个键名是不是存在。</p>
-<p>贺师俊老师<a href="https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292109104">提示</a>，如果引用所指向的值占用特别多的内存，就可以通过 Node 的<code>process.memoryUsage</code>方法看出来。根据这个思路，网友<a href="https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292451925">vtxf</a>补充了下面的例子。</p>
+<p>贺师俊老师<a target="_blank" rel="noopener" href="https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292109104">提示</a>，如果引用所指向的值占用特别多的内存，就可以通过 Node 的<code>process.memoryUsage</code>方法看出来。根据这个思路，网友<a target="_blank" rel="noopener" href="https://github.com/ruanyf/es6tutorial/issues/362#issuecomment-292451925">vtxf</a>补充了下面的例子。</p>
 <p>首先，打开 Node 命令行。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ node --expose-gc</span><br></pre></td></tr></table></figure>
 
@@ -708,7 +708,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/" title="Set 和 Map 数据结构" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Es6-12、Es6_Set 和 Map 数据结构_day11-27/</a>
+      <a href="https://k705.github.io/2024/04/08/Es6-12%E3%80%81Es6_Set%20%E5%92%8C%20Map%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84_day11-27/" title="Set 和 Map 数据结构" target="_blank" rel="external">https://k705.github.io/2024/04/08/Es6-12、Es6_Set 和 Map 数据结构_day11-27/</a>
     </li>
     
     <li class="post-copyright-license">

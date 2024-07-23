@@ -21,23 +21,23 @@
   <meta name="description" content="#说明 此部分为学习码上前端的2021年前端程序员必须要掌握的浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程视频而整理的学习笔记 此笔记主要用作概览,不深入学习计浏览器工作原理,为之后深入学习计算机网络打基础 本人全部笔记地址分享 –&gt;点我跳转  #目录 [TOC]  浅学浏览器工作原理一、浏览器工作流程概览 •浏览器首先使用 HTTP 协议或者 HTTPS 协议，">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 此部分为学习码上前端的2021年前端程序员必须要掌握的浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程视频而整理的学习笔记 此笔记主要用作概览,不深入学习计浏览器工作原理,为之后深入学习计算机网络打基础 本人全部笔记地址分享 –&gt;点我跳转  #目录 [TOC]  浅学浏览器工作原理一、浏览器工作流程概览 •浏览器首先使用 HTTP 协议或者 HTTPS 协议，">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621175650437.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622195949961.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622202103234.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622202158322.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622203341816.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621175650437.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622195949961.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622202103234.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622202158322.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210622203341816.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:15:35.697Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="底层知识">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621175650437.png">
+<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210621175650437.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -507,7 +507,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/计算机网络-浅学Http协议底层原理及浏览器工作流程笔记/</a>
+      <a href="https://k705.github.io/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0/" title="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程" target="_blank" rel="external">https://k705.github.io/2024/04/08/计算机网络-浅学Http协议底层原理及浏览器工作流程笔记/</a>
     </li>
     
     <li class="post-copyright-license">

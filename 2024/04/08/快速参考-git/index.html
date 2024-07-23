@@ -21,7 +21,7 @@
   <meta name="description" content="Git 备忘清单本备忘单总结了常用的 Git 命令行指令，以供快速参考。 入门创建存储库创建一个新的本地存储库 1$ git init [项目名称]  克隆存储库(代码仓库) 1$ git clone &lt;git_url&gt;  将存储库克隆到指定目录 1$ git clone &lt;git_url&gt; 指定目录  将存储库克隆到指定目录，并指定分支 1$ git clone &lt;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git 备忘清单">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-git/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-git/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="Git 备忘清单本备忘单总结了常用的 Git 命令行指令，以供快速参考。 入门创建存储库创建一个新的本地存储库 1$ git init [项目名称]  克隆存储库(代码仓库) 1$ git clone &lt;git_url&gt;  将存储库克隆到指定目录 1$ git clone &lt;git_url&gt; 指定目录  将存储库克隆到指定目录，并指定分支 1$ git clone &lt;">
 <meta property="og:locale" content="zh_CN">
@@ -31,7 +31,7 @@
 <meta property="article:tag" content="快速参考备忘清单">
 <meta name="twitter:card" content="summary">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-git/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-git/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -606,7 +606,7 @@
 
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 设置默认行为，以防人们没有设置 core.autocrlf</span></span><br><span class="line">* <span class="attr">text</span>=auto</span><br><span class="line"><span class="comment"># 明确声明您希望始终规范化并在结帐时</span></span><br><span class="line"><span class="comment"># 转换为本机行结尾的文本文件</span></span><br><span class="line">*.c text</span><br><span class="line">*.h text</span><br><span class="line"><span class="comment"># 声明在结帐时始终以 CRLF 行结尾的文件</span></span><br><span class="line">*.sln text <span class="attr">eol</span>=crlf</span><br><span class="line"><span class="comment"># 表示所有真正二进制且不应修改的文件</span></span><br><span class="line">*.png binary</span><br><span class="line">*.jpg binary</span><br></pre></td></tr></table></figure>
 
-<p><a href="https://github.com/github/linguist/blob/master/docs/overrides.md#using-gitattributes">计入存储库语言</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/github/linguist/blob/master/docs/overrides.md#using-gitattributes">计入存储库语言</a></p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 标记或取消标记要根据存储库的语言统计数据而</span></span><br><span class="line"><span class="comment"># 忽略或默认隐藏差异的路径</span></span><br><span class="line">search/index.json <span class="attr">linguist-generated</span>=<span class="literal">true</span></span><br><span class="line"><span class="comment"># 以下属性统计 SQL 文件</span></span><br><span class="line">*.sql <span class="attr">linguist-detectable</span>=<span class="literal">true</span></span><br><span class="line"><span class="comment"># 从统计信息中排除</span></span><br><span class="line">docs/formatter.rb <span class="attr">linguist-documentation</span>=<span class="literal">false</span></span><br><span class="line"><span class="comment"># 将它们从统计信息中排除</span></span><br><span class="line">special-vendored-path/* linguist-vendored</span><br><span class="line"><span class="comment"># 将所有 .rb 文件检测为 Java 文件</span></span><br><span class="line">*.rb <span class="attr">linguist-language</span>=Java</span><br></pre></td></tr></table></figure>
 
 <h3 id="git-配置-ssh-代理"><a href="#git-配置-ssh-代理" class="headerlink" title="git 配置 ssh 代理"></a>git 配置 ssh 代理</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> ~/.ssh/config</span><br><span class="line">Host gitlab.com</span><br><span class="line"><span class="comment"># 直接使用 sh**socks 提供的 socks5 代理端口</span></span><br><span class="line">ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p</span><br><span class="line"></span><br><span class="line">Host github.com</span><br><span class="line">ProxyCommand nc -X 5 -x 127.0.0.1:1080 %h %p</span><br></pre></td></tr></table></figure>
@@ -995,7 +995,7 @@
 <!--rehype:className=left-align-->
 
 <h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
-<li><a href="https://github.com/git-tips/tips">最常用的 git 提示和技巧</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/git-tips/tips">最常用的 git 提示和技巧</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.conventionalcommits.org/zh-hans/v1.0.0/">Conventional Commits 官方网站</a> <em>(conventionalcommits.org)</em></li>
 <li><a target="_blank" rel="noopener" href="https://gist.github.com/Zekfad/f51cb06ac76e2457f11c80ed705c95a3">Conventional Commits Cheatsheet</a> <em>(gist.github.com)</em></li>
 </ul>
@@ -1008,7 +1008,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-git/" title="Git 备忘清单" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/快速参考-git/</a>
+      <a href="https://k705.github.io/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-git/" title="Git 备忘清单" target="_blank" rel="external">https://k705.github.io/2024/04/08/快速参考-git/</a>
     </li>
     
     <li class="post-copyright-license">

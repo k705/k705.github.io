@@ -21,19 +21,19 @@
   <meta name="description" content="———————–&#x3D;&#x3D;(VUE叁)&#x3D;&#x3D;————————-过滤器、键盘修饰符、自定义指令、生命周期&#x3D;&gt;Day8_8笔记总结一.过滤器1.全局过滤器: 相当于是Prototype 12原型变量：是所有的这一类型的实例共享，任意一个实例改变这个变量，所有的实例的这个变量会同步发生变更，所以通常protype只用来定义常量或者方法构造函数里头的成员变量">
 <meta property="og:type" content="article">
 <meta property="og:title" content="过滤器、键盘修饰符、自定义指令、生命周期">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Vue2.x-3_(%E5%8F%81)_%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E9%94%AE%E7%9B%98%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Fday_8_8/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Vue2.x-3_(%E5%8F%81)_%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E9%94%AE%E7%9B%98%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Fday_8_8/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="———————–&#x3D;&#x3D;(VUE叁)&#x3D;&#x3D;————————-过滤器、键盘修饰符、自定义指令、生命周期&#x3D;&gt;Day8_8笔记总结一.过滤器1.全局过滤器: 相当于是Prototype 12原型变量：是所有的这一类型的实例共享，任意一个实例改变这个变量，所有的实例的这个变量会同步发生变更，所以通常protype只用来定义常量或者方法构造函数里头的成员变量">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/2024/AppData/Roaming/Typora/typora-user-images/image-20200808193539283.png">
+<meta property="og:image" content="https://k705.github.io/2024/AppData/Roaming/Typora/typora-user-images/image-20200808193539283.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T08:33:32.746Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="Vue2">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/2024/AppData/Roaming/Typora/typora-user-images/image-20200808193539283.png">
+<meta name="twitter:image" content="https://k705.github.io/2024/AppData/Roaming/Typora/typora-user-images/image-20200808193539283.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Vue2.x-3_(%E5%8F%81)_%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E9%94%AE%E7%9B%98%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Fday_8_8/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Vue2.x-3_(%E5%8F%81)_%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E9%94%AE%E7%9B%98%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Fday_8_8/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -445,7 +445,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Vue2.x-3_(%E5%8F%81)_%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E9%94%AE%E7%9B%98%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Fday_8_8/" title="过滤器、键盘修饰符、自定义指令、生命周期" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Vue2.x-3_(叁)_过滤器、键盘修饰符、自定义指令、生命周期day_8_8/</a>
+      <a href="https://k705.github.io/2024/04/08/Vue2.x-3_(%E5%8F%81)_%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%81%E9%94%AE%E7%9B%98%E4%BF%AE%E9%A5%B0%E7%AC%A6%E3%80%81%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8C%87%E4%BB%A4%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9Fday_8_8/" title="过滤器、键盘修饰符、自定义指令、生命周期" target="_blank" rel="external">https://k705.github.io/2024/04/08/Vue2.x-3_(叁)_过滤器、键盘修饰符、自定义指令、生命周期day_8_8/</a>
     </li>
     
     <li class="post-copyright-license">

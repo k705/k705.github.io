@@ -21,20 +21,20 @@
   <meta name="description" content="#说明 本笔记为尚硅谷axios入门与源码解析的学习笔记 该课程主要讲述 axios的API、源码分析、模拟实现重要功能 课程预备知识点: HTTP ajax promise   ps:大学时候的课程一定要好好学,不然迟早要还的,留下了不学无术的眼泪:cry: 仅供本人洪学习使用 本人笔记地址分享:全部笔记、axios笔记 ​												记录时间: 2021-3-15晚启  2021-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Axios笔记">
-<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 本笔记为尚硅谷axios入门与源码解析的学习笔记 该课程主要讲述 axios的API、源码分析、模拟实现重要功能 课程预备知识点: HTTP ajax promise   ps:大学时候的课程一定要好好学,不然迟早要还的,留下了不学无术的眼泪:cry: 仅供本人洪学习使用 本人笔记地址分享:全部笔记、axios笔记 ​												记录时间: 2021-3-15晚启  2021-">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E5%9B%BE.png">
-<meta property="og:image" content="https://github.com/k705/kk.github.io.git/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E5%9B%BE.png">
+<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T09:45:11.165Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="Axios">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E5%9B%BE.png">
+<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E5%9B%BE.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -408,14 +408,14 @@
 
 <ol start="4">
 <li>启动json-server<br>在当前文件夹下输入如下命令：<code>json-server db.json</code></li>
-<li><a href="https://github.com/typicode/json-server">文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/typicode/json-server">文档</a></li>
 </ol>
 </blockquote>
 <h1 id="一、Axios的理解与使用"><a href="#一、Axios的理解与使用" class="headerlink" title="一、Axios的理解与使用"></a>一、Axios的理解与使用</h1><h2 id="Ⅰ-axios-是什么"><a href="#Ⅰ-axios-是什么" class="headerlink" title="Ⅰ-axios 是什么?"></a>Ⅰ-axios 是什么?</h2><blockquote>
 <ol>
 <li>前端最流行的 ajax 请求库 </li>
 <li>react&#x2F;vue 官方都推荐使用 axios 发 ajax 请求 </li>
-<li>文档: <a href="https://github.com/axios/axios">https://github.com/axios/axios</a></li>
+<li>文档: <a target="_blank" rel="noopener" href="https://github.com/axios/axios">https://github.com/axios/axios</a></li>
 </ol>
 </blockquote>
 <h2 id="Ⅱ-axios-特点"><a href="#Ⅱ-axios-特点" class="headerlink" title="Ⅱ-axios 特点"></a>Ⅱ-axios 特点</h2><blockquote>
@@ -586,7 +586,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" title="Axios笔记" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/Axios入门与源码解析笔记/</a>
+      <a href="https://k705.github.io/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" title="Axios笔记" target="_blank" rel="external">https://k705.github.io/2024/04/08/Axios入门与源码解析笔记/</a>
     </li>
     
     <li class="post-copyright-license">
