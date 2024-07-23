@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>vscode 功能与技巧 | Hexo</title>
+  <meta name="description" content="vscode 功能与技巧 一键执行 npm scripts 一键 diff、预览 在新页面搜索 禅模式 git 视图显示目录树 在新编辑器打开文件 编辑时快速删除、复制、移动行 全局搜索文件、跳转到某行 快速切换大小写  一键执行 npm scriptsvscode 会扫描所有的 npm scripts，然后列出来，直接点击 run 就会打开 terminal 来跑，而且高版本 vscode 还可">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vscode 功能与技巧">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="vscode 功能与技巧 一键执行 npm scripts 一键 diff、预览 在新页面搜索 禅模式 git 视图显示目录树 在新编辑器打开文件 编辑时快速删除、复制、移动行 全局搜索文件、跳转到某行 快速切换大小写  一键执行 npm scriptsvscode 会扫描所有的 npm scripts，然后列出来，直接点击 run 就会打开 terminal 来跑，而且高版本 vscode 还可">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-25T03:22:46.000Z">
+<meta property="article:modified_time" content="2024-04-25T03:30:55.577Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="工具">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-工具-vscode 功能与技巧" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vscode 功能与技巧
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="article-date">
+	  <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="vscode-功能与技巧"><a href="#vscode-功能与技巧" class="headerlink" title="vscode 功能与技巧"></a>vscode 功能与技巧</h1><ul>
+<li>一键执行 npm scripts</li>
+<li>一键 diff、预览</li>
+<li>在新页面搜索</li>
+<li>禅模式</li>
+<li>git 视图显示目录树</li>
+<li>在新编辑器打开文件</li>
+<li>编辑时快速删除、复制、移动行</li>
+<li>全局搜索文件、跳转到某行</li>
+<li>快速切换大小写</li>
+</ul>
+<h2 id="一键执行-npm-scripts"><a href="#一键执行-npm-scripts" class="headerlink" title="一键执行 npm scripts"></a>一键执行 npm scripts</h2><p>vscode 会扫描所有的 npm scripts，然后列出来，直接点击 run 就会打开 terminal 来跑，而且高版本 vscode 还可以直接 debug 来跑。</p>
+<p>根本不需要自己输入 npm run xxx。</p>
+<h2 id="在侧栏打开文件"><a href="#在侧栏打开文件" class="headerlink" title="在侧栏打开文件"></a>在侧栏打开文件</h2><p>当打开文件的时候，默认会在当前编辑器打开，如果想新开一个编辑器打开呢？这时候可以按住 option 再点击文件，就会新开一个编辑器打开文件了。</p>
+<h2 id="更强大的搜索"><a href="#更强大的搜索" class="headerlink" title="更强大的搜索"></a>更强大的搜索</h2><p>搜索这个面板有个按钮可能很多同学都没注意到过，点击之后会打开搜索页面来搜索，可以预览的搜索结果更丰富，行数更多。</p>
+<h2 id="文件-diff-显示目录信息"><a href="#文件-diff-显示目录信息" class="headerlink" title="文件 diff 显示目录信息"></a>文件 diff 显示目录信息</h2><p>当我们改了多个文件的时候，会列在 source control 面板的列表里，有多个同名文件的时候特别不直观。</p>
+<p>这时候其实可以切换成 tree view 的，显示目录树。</p>
+<p>当有多个同名文件的时候，这样会清晰的多：</p>
+<h2 id="编辑器一键预览-markdown"><a href="#编辑器一键预览-markdown" class="headerlink" title="编辑器一键预览 markdown"></a>编辑器一键预览 markdown</h2><p>markdown 需要安装插件么？不需要，vscode 本身就内置了这个功能。</p>
+<p>右上角有个预览按钮，点击就会打开 markdown 预览界面，按住 option 再点击，则是同个窗口打开预览。</p>
+<p>预览之后再点击 show source 按钮就会回去</p>
+<h2 id="编辑区一键-diff"><a href="#编辑区一键-diff" class="headerlink" title="编辑区一键 diff"></a>编辑区一键 diff</h2><h3 id="快速切换-diff-和文件编辑视图"><a href="#快速切换-diff-和文件编辑视图" class="headerlink" title="快速切换 diff 和文件编辑视图"></a>快速切换 diff 和文件编辑视图</h3><p>当改了文件内容的时候，可以点击编辑区右上角的按钮，直接打开 diff，可能很多同学都没注意到这些按钮，但其实是很有用的。</p>
+<p>再次点击就可以回到文件编辑状态</p>
+<p>看功能描述 open changes、open files，很明显就是用于 diff 视图和文件编辑视图的切换。</p>
+<h3 id="diff-视图快速在-diff-之间跳转"><a href="#diff-视图快速在-diff-之间跳转" class="headerlink" title="diff 视图快速在 diff 之间跳转"></a>diff 视图快速在 diff 之间跳转</h3><p>当文件内容特别多，比如好几千行的时候，要找 diff 还是比较麻烦的。其实根本不用自己去找，还容易漏，vscode 编辑器提供了上下按钮，可以直接跳到上一个 diff、下一个 diff</p>
+<p>一键预览、一键 diff，这些都是能提高效率的功能。</p>
+<h2 id="快速搜索功能入口"><a href="#快速搜索功能入口" class="headerlink" title="快速搜索功能入口"></a>快速搜索功能入口</h2><p>知道 vscode 有某个功能但是不知道入口在哪？ 直接用 help 下面的搜索框，搜索结果会直接标出来在哪个菜单下有什么按钮。</p>
+<h2 id="禅模式"><a href="#禅模式" class="headerlink" title="禅模式"></a>禅模式</h2><p>vscode 提供了禅模式（zen mode），可以让你专注于写代码。</p>
+<p>先按 command + k 再按 z 就可以进入禅模式，再按一次退出禅模式。</p>
+<p>禅模式下只显示编辑区的信息，并且会全屏，看不到其他的东西，写代码能更专注。</p>
+<h2 id="编辑快捷键"><a href="#编辑快捷键" class="headerlink" title="编辑快捷键"></a>编辑快捷键</h2><p>编辑器最主要的功能还是编辑，但其实有很多 vscode 的请打编辑功能大家可能没有过，我来罗列一下。</p>
+<h3 id="行上下移动-复制"><a href="#行上下移动-复制" class="headerlink" title="行上下移动&#x2F;复制"></a>行上下移动&#x2F;复制</h3><p>如果把一行内容上移下移怎么做？</p>
+<p>手动剪切粘贴的效率太低了，不如试下 option + 上&#x2F;下 的快捷键，快速把一行内容上下移动。</p>
+<p>移动的时候想复制呢？再按住 shift 就行了。</p>
+<h3 id="快速删除行"><a href="#快速删除行" class="headerlink" title="快速删除行"></a>快速删除行</h3><p>我们知道了如何快速复制行，那快速删除行呢？</p>
+<p>按 command + shift + k 就好了。</p>
+<p>如果删除多行，那么先选中，再按 command + shift + k。</p>
+<h3 id="多光标同时编辑"><a href="#多光标同时编辑" class="headerlink" title="多光标同时编辑"></a>多光标同时编辑</h3><p>同时修改多个地方的内容？按住 option 点击要修改的地方就可以了。</p>
+<p>如果是上下行的同一位置呢？那就 <strong>option + command + 上&#x2F;下</strong>，这样就是添加多行的同一位置的光标。</p>
+<h2 id="comand-shift-p-相关"><a href="#comand-shift-p-相关" class="headerlink" title="comand + shift + p 相关"></a>comand + shift + p 相关</h2><p>这可能是大家都知道的一个快捷键，输入框中会有一个 &gt; 代表后面是命令，但还有一些大家可能不知道。</p>
+<p>比如直接 command + p，不按 shift，这时候就是搜索文件。</p>
+<p>比如直接按 ctrl + g，或者在输入框输入冒号就代表后面是跳转的行号，可以快速跳到某一行</p>
+<p>当然搜索文件的时候也可以加冒号和行号，快速跳到该文件的那一行。</p>
+<h3 id="快速切换大小写"><a href="#快速切换大小写" class="headerlink" title="快速切换大小写"></a>快速切换大小写</h3><p>还有一个小功能，有个内置的 upppercase、lowercase 的切换功能，可以快速切换选中内容的大小写。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>本文梳理了 vscode 中那些可以提效的一些功能，大家可能没有注意到过。</p>
+<ul>
+<li>一键 diff、预览</li>
+<li>在新页面搜索</li>
+<li>git 视图显示目录树</li>
+<li>一键执行 npm scripts</li>
+<li>在新编辑器打开文件</li>
+<li>编辑时快速删除、复制、移动行</li>
+<li>全局搜索文件、跳转到某行</li>
+<li>快速切换大小写</li>
+<li>禅模式</li>
+</ul>
+<p>熟悉了这些功能的使用，相信会给我们日常开发提升一些效率，学习下每天写代码的工具的使用技巧还是挺有意义的。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" title="vscode 功能与技巧" target="_blank" rel="external">https://gitee.com/study73/2024/04/25/工具-vscode 功能与技巧/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" title="代码规范"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/22/Vue3-pure-admin/" title="Vue3-pure-admin"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

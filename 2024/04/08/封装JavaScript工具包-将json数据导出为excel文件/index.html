@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>JSON数据导出为excel文件 | Hexo</title>
+  <meta name="description" content="参考资料出于:挥刀北上  前端如何将JSON数据导出为excel文件 前端人员在开发时，有时为了满足用户需求，需要下载excel文件。这里通常有两种做法，一种是后端工程师将数据转化为excel，然后前端进行下载即可，还有一种方式，前端请求需要下载的数据，在浏览器端生成excel文件，然后进行下载 此处就以前端导出excel的方式进行说明   –&gt;本人用TS写法,但实际上只是多了类型声明,不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSON数据导出为excel文件">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85-%E5%B0%86json%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA%E4%B8%BAexcel%E6%96%87%E4%BB%B6/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="参考资料出于:挥刀北上  前端如何将JSON数据导出为excel文件 前端人员在开发时，有时为了满足用户需求，需要下载excel文件。这里通常有两种做法，一种是后端工程师将数据转化为excel，然后前端进行下载即可，还有一种方式，前端请求需要下载的数据，在浏览器端生成excel文件，然后进行下载 此处就以前端导出excel的方式进行说明   –&gt;本人用TS写法,但实际上只是多了类型声明,不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/JavaScirpt%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210721155153046.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScirpt%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210728185703085.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScirpt%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210721154328134.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:38:31.916Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="封装JavaScript工具包">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/JavaScirpt%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210721155153046.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85-%E5%B0%86json%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA%E4%B8%BAexcel%E6%96%87%E4%BB%B6/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-封装JavaScript工具包-将json数据导出为excel文件" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JSON数据导出为excel文件
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85-%E5%B0%86json%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA%E4%B8%BAexcel%E6%96%87%E4%BB%B6/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85-%E5%B0%86json%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA%E4%B8%BAexcel%E6%96%87%E4%BB%B6/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>参考资料出于:<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/user/5837318">挥刀北上</a></p>
+</blockquote>
+<h1 id="前端如何将JSON数据导出为excel文件"><a href="#前端如何将JSON数据导出为excel文件" class="headerlink" title="前端如何将JSON数据导出为excel文件"></a>前端如何将JSON数据导出为excel文件</h1><blockquote>
+<p>前端人员在开发时，有时为了满足用户需求，需要下载excel文件。这里通常有两种做法，一种是后端工程师将数据转化为excel，然后前端进行下载即可，还有一种方式，<code>前端请求需要下载的数据，在浏览器端生成excel文件，然后进行下载</code></p>
+<p>此处就以前端导出excel的方式进行说明   –&gt;本人用TS写法,但实际上只是多了类型声明,不用的删除即可</p>
+</blockquote>
+<h1 id="Ⅰ-代码示例与注释"><a href="#Ⅰ-代码示例与注释" class="headerlink" title="Ⅰ-代码示例与注释"></a>Ⅰ-代码示例与注释</h1><blockquote>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//1、定义导出文件名称</span></span><br><span class="line">&gt;<span class="keyword">var</span> filename = <span class="string">&quot;write.xlsx&quot;</span>;</span><br><span class="line">&gt;<span class="comment">// 定义导出数据 此处需传入数组类型的数据</span></span><br><span class="line">&gt;<span class="keyword">var</span> data = dataSource</span><br><span class="line">&gt;<span class="comment">// 定义excel文档的名称</span></span><br><span class="line">&gt;<span class="keyword">var</span> ws_name = <span class="string">&quot;SheetJS&quot;</span>;</span><br><span class="line">&gt;<span class="comment">// 初始化一个excel文件</span></span><br><span class="line">&gt;<span class="keyword">var</span> wb = <span class="variable constant_">XLSX</span>.<span class="property">utils</span>.<span class="title function_">book_new</span>();</span><br><span class="line">&gt;<span class="comment">// 初始化一个excel文档，此时需要传入数据</span></span><br><span class="line">&gt;<span class="keyword">var</span> ws = <span class="variable constant_">XLSX</span>.<span class="property">utils</span>.<span class="title function_">aoa_to_sheet</span>(data);</span><br><span class="line">&gt;<span class="comment">// 将文档插入文件并定义名称</span></span><br><span class="line">&gt;<span class="variable constant_">XLSX</span>.<span class="property">utils</span>.<span class="title function_">book_append_sheet</span>(wb, ws, ws_name);</span><br><span class="line">&gt;<span class="comment">// 执行下载</span></span><br><span class="line">&gt;<span class="variable constant_">XLSX</span>.<span class="title function_">writeFile</span>(wb, filename);</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//自己模拟服务端数据</span></span><br><span class="line">&gt;<span class="keyword">const</span> dataSource = [</span><br><span class="line"> &#123;</span><br><span class="line">   <span class="attr">agentTotalAmt</span>: <span class="string">&#x27;999&#x27;</span>,</span><br><span class="line">   <span class="attr">agentId</span>: <span class="string">&#x27;hongjilin&#x27;</span>,</span><br><span class="line">   <span class="attr">name</span>: <span class="string">&#x27;努力学习的汪&#x27;</span>,</span><br><span class="line">   <span class="attr">cooperationStatus</span>: <span class="number">2</span>,</span><br><span class="line">   <span class="attr">month</span>: <span class="string">&#x27;202106&#x27;</span>,</span><br><span class="line">   <span class="attr">totalCompany</span>: <span class="number">666</span>,</span><br><span class="line">   <span class="attr">qty</span>: <span class="number">999</span>,</span><br><span class="line">   <span class="attr">increaQty</span>: <span class="number">666</span>,</span><br><span class="line">   <span class="attr">totalAmt</span>: <span class="number">9999</span>,</span><br><span class="line">   <span class="attr">incomeType</span>: <span class="string">&#x27;收款方式&#x27;</span>,</span><br><span class="line">   <span class="attr">algorithm</span>: <span class="string">&#x27;帅的很&#x27;</span>,</span><br><span class="line"> &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">   <span class="attr">agentTotalAmt</span>: <span class="string">&#x27;888&#x27;</span>,</span><br><span class="line">   <span class="attr">agentId</span>: <span class="string">&#x27;jilinhong&#x27;</span>,</span><br><span class="line">   <span class="attr">name</span>: <span class="string">&#x27;特别努力学习的单身汪&#x27;</span>,</span><br><span class="line">   <span class="attr">cooperationStatus</span>: <span class="number">2</span>,</span><br><span class="line">   <span class="attr">month</span>: <span class="string">&#x27;202107&#x27;</span>,</span><br><span class="line">   <span class="attr">totalCompany</span>: <span class="number">666</span>,</span><br><span class="line">   <span class="attr">qty</span>: <span class="number">1111</span>,</span><br><span class="line">   <span class="attr">increaQty</span>: <span class="number">111</span>,</span><br><span class="line">   <span class="attr">totalAmt</span>: <span class="number">1111</span>,</span><br><span class="line">   <span class="attr">incomeType</span>: <span class="string">&#x27;收款方式&#x27;</span>,</span><br><span class="line">   <span class="attr">algorithm</span>: <span class="string">&#x27;可怜得很&#x27;</span>,</span><br><span class="line"> &#125;,</span><br><span class="line">&gt;];</span><br></pre></td></tr></table></figure>
+
+<p>使用xlse导出文件时，json数据需要转换为数组，通常为二维数组，通常第一行为表头，如：***<code>[&#39;第一列&#39;,&#39;第二列&#39;,&#39;第三列&#39;]</code>***，然后就是使用xlse的步骤了，通常分为如下几个步骤：</p>
+<p>1、调用XLSX.utils.book_new()初始化excel文件。</p>
+<p>2、调用XLSX.utils.aoa_to_sheet(data),初始化excel文档，此时需要传入数据，数据为二维数组，第一行通常为表头。</p>
+<p>3、调用XLSX.utils.book_append_sheet(wb, ws, ws_name)，将文档插入excel文件，并为文档命名。</p>
+<p>4、调用XLSX.writeFile(wb, filename)下载excel文件，并为excel文件命名。</p>
+</blockquote>
+<h1 id="Ⅱ-本人在自己React中使用"><a href="#Ⅱ-本人在自己React中使用" class="headerlink" title="Ⅱ-本人在自己React中使用"></a>Ⅱ-本人在自己React中使用</h1><h2 id="1、直接将服务端JSON字段导出成表格"><a href="#1、直接将服务端JSON字段导出成表格" class="headerlink" title="1、直接将服务端JSON字段导出成表格"></a>1、直接将服务端JSON字段导出成表格</h2><blockquote>
+<p>本人项目代码中会多处使用该导出功能,所以会进行封装</p>
+<ol>
+<li>工具包封装(函数实现主体)</li>
+</ol>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="variable constant_">XLSX</span> <span class="keyword">from</span> <span class="string">&#x27;xlsx&#x27;</span>;</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Tool</span> &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 导出成XLSX文件</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> dataSource  传入的对象数组</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> fileName  生成的文件名</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> title 设置列名,如果不传入则默认将对象数组的key当作表头</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title class_">OnExport</span> = <span class="function">(<span class="params">dataSource: <span class="built_in">Array</span>&lt;<span class="built_in">object</span>&gt;, fileName: <span class="built_in">string</span>, title?: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//当传入的数组长度为0,直接退出  此处加[?]是因为防错,防止真有人乱传参数 </span></span><br><span class="line">    <span class="comment">//[!dataSource ]是防止传入undefined导致函数执行错误 --&gt;即使已经用TS限制了,但有时服务端给的值还真不一定对</span></span><br><span class="line">    <span class="keyword">if</span> (!dataSource || dataSource?.<span class="property">length</span> == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">let</span> data = dataSource;</span><br><span class="line">    <span class="keyword">let</span> head = <span class="title class_">Object</span>.<span class="title function_">keys</span>(data[<span class="number">0</span>]);</span><br><span class="line">    <span class="comment">//取出json格式数据中的[value]值</span></span><br><span class="line">    data = data.<span class="title function_">map</span>(<span class="function">(<span class="params">e</span>) =&gt;</span> <span class="title class_">Object</span>.<span class="title function_">values</span>(e));</span><br><span class="line">    <span class="comment">//如果不传入[title],则用keys当表头  </span></span><br><span class="line">    data.<span class="title function_">unshift</span>(title || head);</span><br><span class="line">    <span class="comment">//文件名</span></span><br><span class="line">    <span class="keyword">let</span> filename = <span class="string">`<span class="subst">$&#123;fileName&#125;</span>.xlsx`</span>;</span><br><span class="line">    <span class="comment">// let ws_name = &quot;xxx&quot;;</span></span><br><span class="line">    <span class="keyword">let</span> wb = <span class="variable constant_">XLSX</span>.<span class="property">utils</span>.<span class="title function_">book_new</span>();</span><br><span class="line">    <span class="keyword">let</span> ws = <span class="variable constant_">XLSX</span>.<span class="property">utils</span>.<span class="title function_">aoa_to_sheet</span>(data);</span><br><span class="line">    <span class="variable constant_">XLSX</span>.<span class="property">utils</span>.<span class="title function_">book_append_sheet</span>(wb, ws);</span><br><span class="line">    <span class="variable constant_">XLSX</span>.<span class="title function_">writeFile</span>(wb, filename);</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> tool = <span class="keyword">new</span> <span class="title class_">Tool</span>();</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Tool</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>调用</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导入工具包</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Tool</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;~/utils&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> tools = <span class="keyword">new</span> <span class="title class_">Tool</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">//[this.manage.date]是一个时间数据</span></span><br><span class="line"><span class="comment">//[this.datas]是要导出的数据  --&gt;通常是服务端给定的数据,经过我们处理后成为如[Ⅰ]中示例代码的那种格式</span></span><br><span class="line"></span><br><span class="line"> exportXlsx = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">//用于拼接月份</span></span><br><span class="line">   <span class="keyword">const</span> month = <span class="variable language_">this</span>.<span class="property">manage</span>.<span class="property">date</span>.<span class="title function_">format</span>(<span class="string">&#x27;MM&#x27;</span>);</span><br><span class="line">    <span class="comment">//没有数据能导出时给出提示  --&gt;此处调用的是封装好的[信息提示]组件,同学们可以忽略此行代码</span></span><br><span class="line">   <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">datas</span>?.<span class="property">length</span> == <span class="number">0</span>)  <span class="title class_">SuperNotification</span>.<span class="title function_">warning</span>(&#123;  <span class="attr">msg</span>: <span class="string">&#x27;无数据可导出&#x27;</span>&#125;);</span><br><span class="line">   <span class="comment">//调用工具函数</span></span><br><span class="line">   tools.<span class="title class_">OnExport</span>(<span class="title function_">toJS</span>(<span class="variable language_">this</span>.<span class="property">datas</span>), <span class="string">`<span class="subst">$&#123;month&#125;</span>月份的数据表`</span>);</span><br><span class="line"> &#125;;</span><br><span class="line"></span><br><span class="line">--------------- 将其绑定于点击事件上 ----------------------------------------</span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span>  <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> &#123; store.exportXlsx(); &#125;&#125; &gt;</span></span><br><span class="line"><span class="language-xml">   导出</span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>[<code>this.manage.date</code>]是一个时间数据<br>[<code>this.datas</code>]是要导出的数据  –&gt;通常是服务端给定的数据,经过我们处理后成为如[<code>Ⅰ</code>]中示例代码的假数据那种格式</p>
+<ol start="3">
+<li>成功截图xlsx文件查看<img src="/study73/JavaScirpt%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210721155153046.png" alt="image-20210721154626462"></li>
+</ol>
+</blockquote>
+<h2 id="2、筛选数据且列表头转换文字"><a href="#2、筛选数据且列表头转换文字" class="headerlink" title="2、筛选数据且列表头转换文字"></a>2、筛选数据且列表头转换文字</h2><blockquote>
+<ol>
+<li>定义:</li>
+</ol>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">import</span> <span class="variable constant_">XLSX</span> <span class="keyword">from</span> <span class="string">&#x27;xlsx&#x27;</span>;</span><br><span class="line">&gt;<span class="keyword">class</span> <span class="title class_">Tool</span> &#123;</span><br><span class="line">&gt;<span class="comment">/**</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> data 需要处理的数组</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> DICT 传入表头字段对应文字对象</span></span><br><span class="line"><span class="comment">  *       test:  CHANNELADMIN:&#123;name:&#x27;姓名&#x27;, username:&#x27;用户名&#x27;&#125;</span></span><br><span class="line"><span class="comment">  *       const &#123; dataSource, titles &#125; = tools.FilterDataSource(toJS(this.source.tableList), CHANNELADMIN)</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@returns</span> &#123;<span class="type"> dataSource, titles </span>&#125;</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line"> <span class="title class_">FilterDataSource</span> = (</span><br><span class="line">   <span class="attr">data</span>: <span class="title class_">Array</span>&lt;<span class="built_in">object</span>&gt;,</span><br><span class="line">   <span class="attr">DICT</span>: <span class="built_in">object</span></span><br><span class="line"> ): &#123; <span class="attr">dataSource</span>: <span class="title class_">Array</span>&lt;<span class="built_in">object</span>&gt;; <span class="attr">titles</span>: <span class="title class_">Array</span>&lt;<span class="built_in">string</span>&gt; &#125; =&gt; &#123;</span><br><span class="line">   <span class="comment">//当传入的数组长度为0或者传入的参数错误,直接退出</span></span><br><span class="line">   <span class="keyword">if</span> (!data || data?.<span class="property">length</span> == <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">   <span class="keyword">let</span> titles = <span class="keyword">new</span> <span class="title class_">Array</span>();</span><br><span class="line">   <span class="comment">//取出第一列表头,去除无用列且转换为中文</span></span><br><span class="line">   <span class="title class_">Object</span>.<span class="title function_">keys</span>(data[<span class="number">0</span>]).<span class="title function_">map</span>(<span class="function">(<span class="params">key</span>) =&gt;</span></span><br><span class="line">     !!<span class="variable constant_">DICT</span>[key] ? titles.<span class="title function_">push</span>(<span class="variable constant_">DICT</span>[key]) : <span class="literal">null</span></span><br><span class="line">   );</span><br><span class="line">   <span class="comment">//过滤数据中的无用列</span></span><br><span class="line">   <span class="keyword">const</span> dataSource = data.<span class="title function_">map</span>(<span class="function">(<span class="params">item</span>) =&gt;</span> &#123;</span><br><span class="line">     <span class="comment">// item =toJS(item) //Proxy不能直接删除,需要转为js对象,</span></span><br><span class="line">     <span class="title class_">Object</span>.<span class="title function_">keys</span>(item).<span class="title function_">map</span>(<span class="function">(<span class="params">key</span>) =&gt;</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (!<span class="variable constant_">DICT</span>[key]) <span class="keyword">delete</span> item[key];</span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="keyword">return</span> item;</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="keyword">return</span> &#123;</span><br><span class="line">     titles,</span><br><span class="line">     dataSource,</span><br><span class="line">   &#125;;</span><br><span class="line"> &#125;;</span><br><span class="line"> <span class="comment">/** 导出成XLSX文件*/</span></span><br><span class="line"> <span class="title class_">OnExport</span> = <span class="function">(<span class="params">dataSource: <span class="built_in">Array</span>&lt;<span class="built_in">object</span>&gt;, fileName: <span class="built_in">string</span>, title?: <span class="built_in">any</span></span>) =&gt;</span> &#123;</span><br><span class="line"> ...</span><br><span class="line"> &#125;;      </span><br><span class="line">    </span><br><span class="line">&gt;&#125; </span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">export</span> <span class="keyword">const</span> tool = <span class="keyword">new</span> <span class="title class_">Tool</span>();</span><br><span class="line">&gt;<span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Tool</span>;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>调用</li>
+</ol>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导入工具包</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Tool</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;~/utils&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> tools = <span class="keyword">new</span> <span class="title class_">Tool</span>();</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">CONSTS</span>=&#123;  <span class="comment">//需要自己写好一个与字段对应的对象  key:字段名 value:自定义文字</span></span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;努力学习的汪&#x27;</span>,</span><br><span class="line">    <span class="attr">type</span>:<span class="string">&#x27;永远的学生&#x27;</span>,</span><br><span class="line">    <span class="attr">id</span>:<span class="string">&#x27;学号&#x27;</span></span><br><span class="line">&#125;	</span><br><span class="line">  </span><br><span class="line">exportXlsx = <span class="function">() =&gt;</span> &#123;</span><br><span class="line"><span class="comment">//注意,需要传入的数组不能是Proxy类型的!!!</span></span><br><span class="line">   <span class="keyword">const</span> &#123; dataSource, titles &#125; = tools.<span class="title class_">FilterDataSource</span>(arr, <span class="variable constant_">CONSTS</span>);</span><br><span class="line">     <span class="comment">//调用导出XLSX文件函数</span></span><br><span class="line">   tools.<span class="title class_">OnExport</span>(dataSource, <span class="string">`表格数据`</span>, titles);</span><br><span class="line"> &#125;;</span><br><span class="line">  </span><br><span class="line">--------------- 将其绑定于点击事件上 ----------------------------------------</span><br><span class="line"> <span class="language-xml"><span class="tag">&lt;<span class="name">Button</span> <span class="attr">type</span>=<span class="string">&quot;primary&quot;</span>  <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> &#123; store.exportXlsx(); &#125;&#125; &gt;</span></span><br><span class="line"><span class="language-xml">   导出</span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">Button</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>成功示例</li>
+</ol>
+<p>  <img src="/study73/JavaScirpt%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210728185703085.png" alt="image-20210728185703085"> </p>
+</blockquote>
+<h1 id="Ⅲ-导出成功"><a href="#Ⅲ-导出成功" class="headerlink" title="Ⅲ-导出成功"></a>Ⅲ-导出成功</h1><blockquote>
+<ol>
+<li>点击导出下载成功</li>
+</ol>
+<p><img src="/study73/JavaScirpt%E5%B7%A5%E5%85%B7%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210721154328134.png" alt="image-20210721154328134">  </p>
+<p>当然,有的浏览器是直接下载不会给出下载提示</p>
+<ol start="3">
+<li>OK了,其实不止在<code>React</code>中能使用,在<code>Vue</code>甚至原生js都可以调用这个函数</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85-%E5%B0%86json%E6%95%B0%E6%8D%AE%E5%AF%BC%E5%87%BA%E4%B8%BAexcel%E6%96%87%E4%BB%B6/" title="JSON数据导出为excel文件" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/封装JavaScript工具包-将json数据导出为excel文件/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85-%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E5%B0%81%E8%A3%85/" title="邮件操作相关工具"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85-%E5%B8%B8%E9%87%8F%E6%93%8D%E4%BD%9C%E7%9B%B8%E5%85%B3%E5%B0%81%E8%A3%85/" title="收录常量操作相关工具"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

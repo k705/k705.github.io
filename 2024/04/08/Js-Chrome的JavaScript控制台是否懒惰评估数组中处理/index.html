@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>console在chrome控制台输出的顺序 | Hexo</title>
+  <meta name="description" content="#说明 console.log() 对于我们程序员来说是一个非常常用的函数,特别是对于我这种初入前端的程序员来说更常用,而在某次打印输出时,发现console在chrome控制台输出的顺序似乎不符合自己评估的预期,有点颠覆自己的认知,所以认真的去查阅了一下资料.分享出来,有错误或者有不同见解欢迎指出 查阅参考的资料:console.log() shows the changed value of">
+<meta property="og:type" content="article">
+<meta property="og:title" content="console在chrome控制台输出的顺序">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Js-Chrome%E7%9A%84JavaScript%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%98%AF%E5%90%A6%E6%87%92%E6%83%B0%E8%AF%84%E4%BC%B0%E6%95%B0%E7%BB%84%E4%B8%AD%E5%A4%84%E7%90%86/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 console.log() 对于我们程序员来说是一个非常常用的函数,特别是对于我这种初入前端的程序员来说更常用,而在某次打印输出时,发现console在chrome控制台输出的顺序似乎不符合自己评估的预期,有点颠覆自己的认知,所以认真的去查阅了一下资料.分享出来,有错误或者有不同见解欢迎指出 查阅参考的资料:console.log() shows the changed value of">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/%E6%A2%B3%E7%90%86_%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E5%8F%8A%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86%E7%AC%94%E8%AE%B0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210910185337657.png">
+<meta property="og:image" content="https://gitee.com/%E6%A2%B3%E7%90%86_%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E5%8F%8A%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86%E7%AC%94%E8%AE%B0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210910190905653.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:00:19.049Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/%E6%A2%B3%E7%90%86_%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E5%8F%8A%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86%E7%AC%94%E8%AE%B0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210910185337657.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Js-Chrome%E7%9A%84JavaScript%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%98%AF%E5%90%A6%E6%87%92%E6%83%B0%E8%AF%84%E4%BC%B0%E6%95%B0%E7%BB%84%E4%B8%AD%E5%A4%84%E7%90%86/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Js-Chrome的JavaScript控制台是否懒惰评估数组中处理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      console在chrome控制台输出的顺序
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Js-Chrome%E7%9A%84JavaScript%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%98%AF%E5%90%A6%E6%87%92%E6%83%B0%E8%AF%84%E4%BC%B0%E6%95%B0%E7%BB%84%E4%B8%AD%E5%A4%84%E7%90%86/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/JS/" rel="tag">JS</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Js-Chrome%E7%9A%84JavaScript%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%98%AF%E5%90%A6%E6%87%92%E6%83%B0%E8%AF%84%E4%BC%B0%E6%95%B0%E7%BB%84%E4%B8%AD%E5%A4%84%E7%90%86/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h1><blockquote>
+<p><strong>console.log()</strong> 对于我们程序员来说是一个非常常用的函数,特别是对于我这种初入前端的程序员来说更常用,而在某次打印输出时,发现console在chrome控制台输出的顺序似乎不符合自己评估的预期,有点颠覆自己的认知,所以认真的去查阅了一下资料.分享出来,有错误或者有不同见解欢迎指出</p>
+<p>查阅参考的资料:<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/11284663/console-log-shows-the-changed-value-of-a-variable-before-the-value-actually-ch">console.log() shows the changed value of a variable before the value actually changes</a>、<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/23392111/console-log-async-or-sync">console.log() async or sync?</a>、<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/7389069/how-can-i-make-console-log-show-the-current-state-of-an-object">How can I make console.log show the current state of an object?</a>、  <a target="_blank" rel="noopener" href="https://stackoverflow.com/q/7389069/1048572">如何更改 Safari 中 console.log 的默认行为</a></p>
+</blockquote>
+<h1 id="一、问题场景复现与分析"><a href="#一、问题场景复现与分析" class="headerlink" title="一、问题场景复现与分析"></a>一、问题场景复现与分析</h1><h3 id="Ⅰ-场景复现"><a href="#Ⅰ-场景复现" class="headerlink" title="Ⅰ- 场景复现"></a>Ⅰ- 场景复现</h3><blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;id1&quot;</span>&gt;</span>xxx<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="keyword">let</span> el = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&#x27;#id1&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(el)</span></span><br><span class="line"><span class="language-javascript">&gt;el.<span class="property">id</span> = <span class="string">&#x27;id2&#x27;</span></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(el)</span></span><br><span class="line"><span class="language-javascript">&gt;el.<span class="property">id</span> = <span class="string">&#x27;id4&#x27;</span></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(el)</span></span><br><span class="line"><span class="language-javascript">&gt;<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">&gt;el.<span class="property">id</span> = <span class="string">&#x27;id3&#x27;</span></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(el)</span></span><br><span class="line"><span class="language-javascript">&gt;&#125;, <span class="number">1000</span>)</span></span><br><span class="line"><span class="language-javascript">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>按照我们的猜想,正确的打印结果应该是 id1 、 id2 、 id4 、 id3 ,但实际上打印结果却如下:</p>
+<p><img src="/study73/../../../%E6%A2%B3%E7%90%86_%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E5%8F%8A%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86%E7%AC%94%E8%AE%B0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210910185337657.png" alt="image-20210910185337657">  </p>
+<p>这是为什么呢?</p>
+</blockquote>
+<h3 id="Ⅱ-出现问题的场景分析"><a href="#Ⅱ-出现问题的场景分析" class="headerlink" title="Ⅱ -出现问题的场景分析"></a>Ⅱ -出现问题的场景分析</h3><blockquote>
+<p>通过多次测试,对于控制台打印 <strong>复杂的对象</strong> 都可能会出现这个问题,在以前版本连简单对象都会出现,似乎现在已经修复大多数情况,但仍会有部分情况会出现上述场景的问题</p>
+</blockquote>
+<h3 id="Ⅲ-提出可能的猜想"><a href="#Ⅲ-提出可能的猜想" class="headerlink" title="Ⅲ- 提出可能的猜想"></a>Ⅲ- 提出可能的猜想</h3><blockquote>
+<ul>
+<li>console.log是同步还是异步的?</li>
+<li>是否因为打印的内容是引用对象,导致 <strong>console.log</strong> 进行了惰性求值,等到最后一起打印?</li>
+<li>示例中,放置在延时器的打印并没有影响,这与JS的宏任务微任务机制有关系吗? –&gt; <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/HTML+CSS+JS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0#%E2%85%A2-%E5%AE%8F%E4%BB%BB%E5%8A%A1macro-task%E4%B8%8E%E5%BE%AE%E4%BB%BB%E5%8A%A1micro-task">Ⅲ-宏任务macro-task与微任务micro-task</a></strong></li>
+</ul>
+</blockquote>
+<h1 id="二、尝试剖析"><a href="#二、尝试剖析" class="headerlink" title="二、尝试剖析"></a>二、尝试剖析</h1><h3 id="Ⅰ-整理的网上对于console-log的描述"><a href="#Ⅰ-整理的网上对于console-log的描述" class="headerlink" title="Ⅰ- 整理的网上对于console.log的描述"></a>Ⅰ- 整理的网上对于console.log的描述</h3><blockquote>
+<ol>
+<li>首先:<code>console.log</code>没有标准化，所以行为是相当未定义的，并且可以很容易地随开发人员工具的发布而改变。</li>
+<li>对于我们的代码，<code>console.log</code> <strong>异步与否没有任何区别</strong>，它不提供任何类型的回调等；并且您传递的值始终在您调用函数时被引用和计算。</li>
+<li>我们真的不知道会发生什么（好吧，我们可以，因为 Firebug、Chrome Devtools 和 Opera Dragonfly 都是开源的）。</li>
+</ol>
+<ul>
+<li>控制台需要将记录的值存储在某处，并将它们显示在屏幕上。渲染肯定会异步发生（受到速率限制更新的限制），未来与控制台中记录的对象的交互也会如此（例如扩展对象属性）。</li>
+<li>因此，控制台可能会克隆（序列化）您记录的可变对象，或者存储对它们的引用。第一个不适用于深&#x2F;大对象。此外，至少控制台中的初始渲染可能会显示对象的 “ <strong>当前</strong> ” 状态，即在上述示例中出现的问题</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-console-log是同步还是异步的"><a href="#Ⅱ-console-log是同步还是异步的" class="headerlink" title="Ⅱ -  console.log是同步还是异步的?"></a>Ⅱ -  console.log是同步还是异步的?</h3><blockquote>
+<p>我已经看到它发生在 Chrome 中。如果您 console.log 一个简单的对象，然后立即更改对象中的某些内容，<code>console.log()</code>则不会始终显示前一个值。如果发生这种情况，解决方法是将您尝试转换的任何内容转换<code>console.log()</code>为不可变的字符串，因此不受此问题的影响。因此，根据经验，<code>console.log()</code>有一些异步问题可能与跨进程边界封送数据有关。这不是预期的行为，而是<code>console.log()</code>内部工作方式的一些副作用（我个人认为这是一个错误）</p>
+<p>另请参见<a target="_blank" rel="noopener" href="http://stackoverflow.com/q/11284663/1048572">console.log() 在值实际更改之前显示变量的更改值</a> </p>
+</blockquote>
+<h3 id="Ⅲ-示例中-放置在延时器的打印并没有影响-这与JS的宏任务微任务机制有关系吗"><a href="#Ⅲ-示例中-放置在延时器的打印并没有影响-这与JS的宏任务微任务机制有关系吗" class="headerlink" title="Ⅲ - 示例中,放置在延时器的打印并没有影响,这与JS的宏任务微任务机制有关系吗?"></a>Ⅲ - 示例中,放置在延时器的打印并没有影响,这与JS的宏任务微任务机制有关系吗?</h3><blockquote>
+<p>实际上,打印结果不同主要是,定时器里面代码确实是推入了宏任务,所以前面三个打印结果都运行结束了,又过了一会儿才执行,这时候修改了打印的变量,但是已经打印出来的内容并不会重新打印(JS同步单线程)</p>
+<p>但是上述情况是你刷新页面重新执行后会出现的情况,如果你直接打开网页,就可能会出现全部都变成 <strong>id3</strong>,很有意思.你也别觉得怎么这么多错误情况,别慌,下面有解决方案</p>
+</blockquote>
+<h3 id="Ⅳ-是否因为打印的内容是引用对象-导致-console-log-进行了惰性求值-等到最后一起打印"><a href="#Ⅳ-是否因为打印的内容是引用对象-导致-console-log-进行了惰性求值-等到最后一起打印" class="headerlink" title="Ⅳ- 是否因为打印的内容是引用对象,导致 console.log 进行了惰性求值,等到最后一起打印?"></a>Ⅳ- 是否因为打印的内容是引用对象,导致 <strong>console.log</strong> 进行了惰性求值,等到最后一起打印?</h3><blockquote>
+<p>当您展开对象以进一步检查其属性时，控制台可能只会存储对您的对象及其属性的引用，现在显示它们将显示其当前（已发生变异）的状态。如果单击<code>+</code>，您应该能够<code>bar</code>在示例中看到该属性。</p>
+<ul>
+<li>因此，某些值可能会在它们被记录后很久才被引用，并且对这些值的评估相当<em>懒惰</em>（“需要时”）。这种差异最著名的例子是在问题<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/4057440/is-chromes-javascript-console-lazy-about-evaluating-arrays">Chrome 的 JavaScript 控制台是否懒惰评估数组中处理的？</a></li>
+</ul>
+</blockquote>
+<h1 id="三、解决方案"><a href="#三、解决方案" class="headerlink" title="三、解决方案"></a>三、解决方案</h1><blockquote>
+<p>实际上这并不算是JS的缺陷,而是开发者工具console的缺陷</p>
+</blockquote>
+<h3 id="Ⅰ-console-log-JSON-stringify-obj"><a href="#Ⅰ-console-log-JSON-stringify-obj" class="headerlink" title="Ⅰ-  console.log(JSON.stringify(obj))"></a>Ⅰ-  console.log(JSON.stringify(obj))</h3><blockquote>
+<p>一种解决方法是确保始终记录对象的序列化快照，例如通过执行<code>console.log(JSON.stringify(obj))</code>. 不过，这仅适用于非圆形和相当小的物体。另请参阅 <a target="_blank" rel="noopener" href="https://stackoverflow.com/q/7389069/1048572">如何更改 Safari 中 console.log 的默认行为</a></p>
+</blockquote>
+<h3 id="Ⅱ-断点调试"><a href="#Ⅱ-断点调试" class="headerlink" title="Ⅱ - 断点调试"></a>Ⅱ - 断点调试</h3><blockquote>
+<p>更好的解决方案是使用断点进行调试，在那里执行完全停止，您可以检查每个点的当前值。仅对可序列化和不可变数据使用日志记录</p>
+<p><img src="/study73/../../../%E6%A2%B3%E7%90%86_%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E5%8F%8A%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86%E7%AC%94%E8%AE%B0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210910190905653.png" alt="image-20210910190905653"></p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Js-Chrome%E7%9A%84JavaScript%E6%8E%A7%E5%88%B6%E5%8F%B0%E6%98%AF%E5%90%A6%E6%87%92%E6%83%B0%E8%AF%84%E4%BC%B0%E6%95%B0%E7%BB%84%E4%B8%AD%E5%A4%84%E7%90%86/" title="console在chrome控制台输出的顺序" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Js-Chrome的JavaScript控制台是否懒惰评估数组中处理/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0/" title="JavaScript专项练习"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%20!!%20%EF%BC%9F/" title="JavaScript中为什么需要 `!!`"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

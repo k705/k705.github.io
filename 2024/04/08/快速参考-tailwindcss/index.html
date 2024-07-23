@@ -1,0 +1,3691 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Tailwind CSS 备忘清单 | Hexo</title>
+  <meta name="description" content="Tailwind CSS 备忘清单使用此交互式备忘单快速查找所有类名和 CSS 属性 LayoutAspect Ratio用于控制元素纵横比的实用程序    :– –    aspect-auto aspect-ratio: auto;   aspect-square aspect-ratio: 1 &#x2F; 1;   aspect-video aspect-ratio: 16 &#x2F;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tailwind CSS 备忘清单">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-tailwindcss/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="Tailwind CSS 备忘清单使用此交互式备忘单快速查找所有类名和 CSS 属性 LayoutAspect Ratio用于控制元素纵横比的实用程序    :– –    aspect-auto aspect-ratio: auto;   aspect-square aspect-ratio: 1 &#x2F; 1;   aspect-video aspect-ratio: 16 &#x2F;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-11T02:06:19.236Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="快速参考备忘清单">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-tailwindcss/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-快速参考-tailwindcss" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Tailwind CSS 备忘清单
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-tailwindcss/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-tailwindcss/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="Tailwind-CSS-备忘清单"><a href="#Tailwind-CSS-备忘清单" class="headerlink" title="Tailwind CSS 备忘清单"></a>Tailwind CSS 备忘清单</h1><p>使用此交互式备忘单快速查找所有类名和 CSS 属性</p>
+<h2 id="Layout"><a href="#Layout" class="headerlink" title="Layout"></a>Layout</h2><h3 id="Aspect-Ratio"><a href="#Aspect-Ratio" class="headerlink" title="Aspect Ratio"></a>Aspect Ratio</h3><p>用于控制元素纵横比的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>aspect-auto</code></td>
+<td><pur>aspect-ratio: auto;<pur></td>
+</tr>
+<tr>
+<td align="left"><code>aspect-square</code></td>
+<td><pur>aspect-ratio: 1 &#x2F; 1;<pur></td>
+</tr>
+<tr>
+<td align="left"><code>aspect-video</code></td>
+<td><pur>aspect-ratio: 16 &#x2F; 9;<pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<hr>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span></span></span><br><span class="line"><span class="tag">  <span class="attr">class</span>=<span class="string">&quot;w-full aspect-video ...&quot;</span></span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">&quot;https://www.youtube.com/...&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Container"><a href="#Container" class="headerlink" title="Container"></a>Container</h3><p>设置最大宽度以匹配当前断点的最小宽度</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">container</td>
+<td>none</td>
+<td><pur>width: 100%</pur></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>sm (640px)</td>
+<td><pur>max-width: 640px;</pur></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>md (768px)</td>
+<td><pur>max-width: 768px;</pur></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>lg (1024px)</td>
+<td><pur>max-width: 1024px;</pur></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>xl (1280px)</td>
+<td><pur>max-width: 1280px;</pur></td>
+</tr>
+<tr>
+<td align="left"></td>
+<td>2xl (1536px)</td>
+<td><pur>max-width: 1536px;</pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<hr>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;md:container md:mx-auto&quot;</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- ... --&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Columns"><a href="#Columns" class="headerlink" title="Columns"></a>Columns</h3><!--rehype:wrap-class=row-span-4-->
+
+<p>用于控制元素中列数的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>columns-1</code></td>
+<td><pur>columns: 1;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-2</code></td>
+<td><pur>columns: 2;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-3</code></td>
+<td><pur>columns: 3;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-4</code></td>
+<td><pur>columns: 4;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-5</code></td>
+<td><pur>columns: 5;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-6</code></td>
+<td><pur>columns: 6;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-7</code></td>
+<td><pur>columns: 7;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-8</code></td>
+<td><pur>columns: 8;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-9</code></td>
+<td><pur>columns: 9;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-10</code></td>
+<td><pur>columns: 10;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-11</code></td>
+<td><pur>columns: 11;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-12</code></td>
+<td><pur>columns: 12;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-auto</code></td>
+<td><pur>columns: auto;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>columns-3xs</code></td>
+<td><pur>columns: 16rem;</pur> &#x2F;<em>256px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-2xs</code></td>
+<td><pur>columns: 18rem;</pur> &#x2F;<em>288px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-xs</code></td>
+<td><pur>columns: 20rem;</pur> &#x2F;<em>320px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-sm</code></td>
+<td><pur>columns: 24rem;</pur> &#x2F;<em>384px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-md</code></td>
+<td><pur>columns: 28rem;</pur> &#x2F;<em>448px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-lg</code></td>
+<td><pur>columns: 32rem;</pur> &#x2F;<em>512px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-xl</code></td>
+<td><pur>columns: 36rem;</pur> &#x2F;<em>576px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-2xl</code></td>
+<td><pur>columns: 42rem;</pur> &#x2F;<em>672px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-3xl</code></td>
+<td><pur>columns: 48rem;</pur> &#x2F;<em>768px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-4xl</code></td>
+<td><pur>columns: 56rem;</pur> &#x2F;<em>896px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-5xl</code></td>
+<td><pur>columns: 64rem;</pur> &#x2F;<em>1024px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-6xl</code></td>
+<td><pur>columns: 72rem;</pur> &#x2F;<em>1152px</em>&#x2F;</td>
+</tr>
+<tr>
+<td align="left"><code>columns-7xl</code></td>
+<td><pur>columns: 80rem;</pur> &#x2F;<em>1280px</em>&#x2F;</td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="Break-After"><a href="#Break-After" class="headerlink" title="Break After"></a>Break After</h3><p>用于控制列或页面应如何在元素后断开的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>break-after-auto</code></td>
+<td><pur>break-after: auto;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-after-avoid</code></td>
+<td><pur>break-after: avoid;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-after-all</code></td>
+<td><pur>break-after: all;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-after-avoid-page</code></td>
+<td><pur>break-after: avoid-page;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-after-page</code></td>
+<td><pur>break-after: page;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-after-left</code></td>
+<td><pur>break-after: left;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-after-right</code></td>
+<td><pur>break-after: right;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-after-column</code></td>
+<td><pur>break-after: column;</pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="Break-Before"><a href="#Break-Before" class="headerlink" title="Break Before"></a>Break Before</h3><p>用于控制列或页面在元素之前应如何中断的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>break-before-auto</code></td>
+<td><pur>break-before: auto;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-before-avoid</code></td>
+<td><pur>break-before: avoid;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-before-all</code></td>
+<td><pur>break-before: all;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-before-avoid-page</code></td>
+<td><pur> break-before: avoid-page;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-before-page</code></td>
+<td><pur>break-before: page;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-before-left</code></td>
+<td><pur>break-before: left;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-before-right</code></td>
+<td><pur>break-before: right;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-before-column</code></td>
+<td><pur>break-before: column;</pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="Break-Inside"><a href="#Break-Inside" class="headerlink" title="Break Inside"></a>Break Inside</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制列或页面在元素内的拆分方式的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>break-inside-auto</code></td>
+<td><pur>break-inside: auto;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-inside-avoid</code></td>
+<td><pur>break-inside: avoid;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-inside-avoid-page</code></td>
+<td><pur>break-inside: avoid-page;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>break-inside-avoid-column</code></td>
+<td><pur>break-inside: avoid-column;</pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="Box-Decoration-Break"><a href="#Box-Decoration-Break" class="headerlink" title="Box Decoration Break"></a>Box Decoration Break</h3><p>用于控制应如何跨多行、多列或多页呈现元素片段的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>box-decoration-clone</code></td>
+<td><pur>box-decoration-break: clone;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>box-decoration-slice</code></td>
+<td><pur>box-decoration-break: slice;</pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="Box-Sizing"><a href="#Box-Sizing" class="headerlink" title="Box Sizing"></a>Box Sizing</h3><p>用于控制浏览器应如何计算元素总大小的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>box-border</code></td>
+<td><pur>box-sizing: border-box;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>box-content</code></td>
+<td><pur>box-sizing: content-box;</pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="Display"><a href="#Display" class="headerlink" title="Display"></a>Display</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>用于控制元素显示框类型的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>block</code></td>
+<td><pur>display: block;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>inline-block</code></td>
+<td><pur>display: inline-block;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>inline</code></td>
+<td><pur>display: inline;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>flex</code></td>
+<td><pur>display: flex;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>inline-flex</code></td>
+<td><pur>display: inline-flex;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table</code></td>
+<td><pur>display: table;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>inline-table</code></td>
+<td><pur>display: inline-table;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-caption</code></td>
+<td><pur>display: table-caption;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-cell</code></td>
+<td><pur>display: table-cell;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-column</code></td>
+<td><pur>display: table-column;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-column-group</code></td>
+<td><pur>display: table-column-group;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-footer-group</code></td>
+<td><pur>display: table-footer-group;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-header-group</code></td>
+<td><pur>display: table-header-group;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-row-group</code></td>
+<td><pur>display: table-row-group;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>table-row</code></td>
+<td><pur>display: table-row;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>flow-root</code></td>
+<td><pur>display: flow-root;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>grid</code></td>
+<td><pur>display: grid;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>inline-grid</code></td>
+<td><pur>display: inline-grid;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>contents</code></td>
+<td><pur>display: contents;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>list-item</code></td>
+<td><pur>display: list-item;</pur></td>
+</tr>
+<tr>
+<td align="left"><code>hidden</code></td>
+<td><pur>display: none;</pur></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="Float"><a href="#Float" class="headerlink" title="Float"></a>Float</h3><p>用于控制元素周围内容包装的实用程序</p>
+<ul>
+<li>float-right</li>
+<li>float-left</li>
+<li>float-none<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Clear"><a href="#Clear" class="headerlink" title="Clear"></a>Clear</h3><p>用于控制元素周围内容包装的实用程序</p>
+<ul>
+<li>clear-left</li>
+<li>clear-right</li>
+<li>clear-both</li>
+<li>clear-none<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Isolation"><a href="#Isolation" class="headerlink" title="Isolation"></a>Isolation</h3><p>用于控制元素是否应显式创建新的堆叠上下文的实用程序</p>
+<table>
+<thead>
+<tr>
+<th align="left">:–</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">isolate</td>
+<td>isolation: isolate;</td>
+</tr>
+<tr>
+<td align="left">isolation-auto</td>
+<td>isolation: auto;</td>
+</tr>
+</tbody></table>
+<h3 id="Object-Fit"><a href="#Object-Fit" class="headerlink" title="Object Fit"></a>Object Fit</h3><p>用于控制如何调整替换元素内容大小的实用程序</p>
+<ul>
+<li>object-contain</li>
+<li>object-cover</li>
+<li>object-fill</li>
+<li>object-none</li>
+<li>object-scale-down<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Top-Right-Bottom-Left"><a href="#Top-Right-Bottom-Left" class="headerlink" title="Top&#x2F;Right&#x2F;Bottom&#x2F;Left"></a>Top&#x2F;Right&#x2F;Bottom&#x2F;Left</h3><!--rehype:wrap-class=col-span-2 row-span-7-->
+
+<p>用于控制定位元素放置的实用程序</p>
+<ul>
+<li>inset-0</li>
+<li>inset-x-0</li>
+<li>inset-y-0</li>
+<li>top-0</li>
+<li>right-0</li>
+<li>bottom-0</li>
+<li>left-0</li>
+<li>inset-px</li>
+<li>inset-x-px</li>
+<li>inset-y-px</li>
+<li>top-px</li>
+<li>right-px</li>
+<li>bottom-px</li>
+<li>left-px</li>
+<li>inset-0.5</li>
+<li>inset-x-0.5</li>
+<li>inset-y-0.5</li>
+<li>top-0.5</li>
+<li>right-0.5</li>
+<li>bottom-0.5</li>
+<li>left-0.5</li>
+<li>inset-1</li>
+<li>inset-x-1</li>
+<li>inset-y-1</li>
+<li>top-1</li>
+<li>right-1</li>
+<li>bottom-1</li>
+<li>left-1</li>
+<li>inset-1.5</li>
+<li>inset-x-1.5</li>
+<li>inset-y-1.5</li>
+<li>top-1.5</li>
+<li>right-1.5</li>
+<li>bottom-1.5</li>
+<li>left-1.5</li>
+<li>inset-2</li>
+<li>inset-x-2</li>
+<li>inset-y-2</li>
+<li>top-2</li>
+<li>right-2</li>
+<li>bottom-2</li>
+<li>left-2</li>
+<li>inset-2.5</li>
+<li>inset-x-2.5</li>
+<li>inset-y-2.5</li>
+<li>top-2.5</li>
+<li>right-2.5</li>
+<li>bottom-2.5</li>
+<li>left-2.5</li>
+<li>inset-3</li>
+<li>inset-x-3</li>
+<li>inset-y-3</li>
+<li>top-3</li>
+<li>right-3</li>
+<li>bottom-3</li>
+<li>left-3</li>
+<li>inset-3.5</li>
+<li>inset-x-3.5</li>
+<li>inset-y-3.5</li>
+<li>top-3.5</li>
+<li>right-3.5</li>
+<li>bottom-3.5</li>
+<li>left-3.5</li>
+<li>inset-4</li>
+<li>inset-x-4</li>
+<li>inset-y-4</li>
+<li>top-4</li>
+<li>right-4</li>
+<li>bottom-4</li>
+<li>left-4</li>
+<li>inset-5</li>
+<li>inset-x-5</li>
+<li>inset-y-5</li>
+<li>top-5</li>
+<li>right-5</li>
+<li>bottom-5</li>
+<li>left-5</li>
+<li>inset-6</li>
+<li>inset-x-6</li>
+<li>inset-y-6</li>
+<li>top-6</li>
+<li>right-6</li>
+<li>bottom-6</li>
+<li>left-6</li>
+<li>inset-7</li>
+<li>inset-x-7</li>
+<li>inset-y-7</li>
+<li>top-7</li>
+<li>right-7</li>
+<li>bottom-7</li>
+<li>left-7</li>
+<li>inset-8</li>
+<li>inset-x-8</li>
+<li>inset-y-8</li>
+<li>top-8</li>
+<li>right-8</li>
+<li>bottom-8</li>
+<li>left-8</li>
+<li>inset-9</li>
+<li>inset-x-9</li>
+<li>inset-y-9</li>
+<li>top-9</li>
+<li>right-9</li>
+<li>bottom-9</li>
+<li>left-9</li>
+<li>inset-10</li>
+<li>inset-x-10</li>
+<li>inset-y-10</li>
+<li>top-10</li>
+<li>right-10</li>
+<li>bottom-10</li>
+<li>left-10</li>
+<li>inset-11</li>
+<li>inset-x-11</li>
+<li>inset-y-11</li>
+<li>top-11</li>
+<li>right-11</li>
+<li>bottom-11</li>
+<li>left-11</li>
+<li>inset-12</li>
+<li>inset-x-12</li>
+<li>inset-y-12</li>
+<li>top-12</li>
+<li>right-12</li>
+<li>bottom-12</li>
+<li>left-12</li>
+<li>inset-14</li>
+<li>inset-x-14</li>
+<li>inset-y-14</li>
+<li>top-14</li>
+<li>right-14</li>
+<li>bottom-14</li>
+<li>left-14</li>
+<li>inset-16</li>
+<li>inset-x-16</li>
+<li>inset-y-16</li>
+<li>top-16</li>
+<li>right-16</li>
+<li>bottom-16</li>
+<li>left-16</li>
+<li>inset-20</li>
+<li>inset-x-20</li>
+<li>inset-y-20</li>
+<li>top-20</li>
+<li>right-20</li>
+<li>bottom-20</li>
+<li>left-20</li>
+<li>inset-24</li>
+<li>inset-x-24</li>
+<li>inset-y-24</li>
+<li>top-24</li>
+<li>right-24</li>
+<li>bottom-24</li>
+<li>left-24</li>
+<li>inset-28</li>
+<li>inset-x-28</li>
+<li>inset-y-28</li>
+<li>top-28</li>
+<li>right-28</li>
+<li>bottom-28</li>
+<li>left-28</li>
+<li>inset-32</li>
+<li>inset-x-32</li>
+<li>inset-y-32</li>
+<li>top-32</li>
+<li>right-32</li>
+<li>bottom-32</li>
+<li>left-32</li>
+<li>inset-36</li>
+<li>inset-x-36</li>
+<li>inset-y-36</li>
+<li>top-36</li>
+<li>right-36</li>
+<li>bottom-36</li>
+<li>left-36</li>
+<li>inset-40</li>
+<li>inset-x-40</li>
+<li>inset-y-40</li>
+<li>top-40</li>
+<li>right-40</li>
+<li>bottom-40</li>
+<li>left-40</li>
+<li>inset-44</li>
+<li>inset-x-44</li>
+<li>inset-y-44</li>
+<li>top-44</li>
+<li>right-44</li>
+<li>bottom-44</li>
+<li>left-44</li>
+<li>inset-48</li>
+<li>inset-x-48</li>
+<li>inset-y-48</li>
+<li>top-48</li>
+<li>right-48</li>
+<li>bottom-48</li>
+<li>left-48</li>
+<li>inset-52</li>
+<li>inset-x-52</li>
+<li>inset-y-52</li>
+<li>top-52</li>
+<li>right-52</li>
+<li>bottom-52</li>
+<li>left-52</li>
+<li>inset-56</li>
+<li>inset-x-56</li>
+<li>inset-y-56</li>
+<li>top-56</li>
+<li>right-56</li>
+<li>bottom-56</li>
+<li>left-56</li>
+<li>inset-60</li>
+<li>inset-x-60</li>
+<li>inset-y-60</li>
+<li>top-60</li>
+<li>right-60</li>
+<li>bottom-60</li>
+<li>left-60</li>
+<li>inset-64</li>
+<li>inset-x-64</li>
+<li>inset-y-64</li>
+<li>top-64</li>
+<li>right-64</li>
+<li>bottom-64</li>
+<li>left-64</li>
+<li>inset-72</li>
+<li>inset-x-72</li>
+<li>inset-y-72</li>
+<li>top-72</li>
+<li>right-72</li>
+<li>bottom-72</li>
+<li>left-72</li>
+<li>inset-80</li>
+<li>inset-x-80</li>
+<li>inset-y-80</li>
+<li>top-80</li>
+<li>right-80</li>
+<li>bottom-80</li>
+<li>left-80</li>
+<li>inset-96</li>
+<li>inset-x-96</li>
+<li>inset-y-96</li>
+<li>top-96</li>
+<li>right-96</li>
+<li>bottom-96</li>
+<li>left-96</li>
+<li>inset-auto</li>
+<li>inset-1&#x2F;2</li>
+<li>inset-1&#x2F;3</li>
+<li>inset-2&#x2F;3</li>
+<li>inset-1&#x2F;4</li>
+<li>inset-2&#x2F;4</li>
+<li>inset-3&#x2F;4</li>
+<li>inset-full</li>
+<li>inset-x-auto</li>
+<li>inset-x-1&#x2F;2</li>
+<li>inset-x-1&#x2F;3</li>
+<li>inset-x-2&#x2F;3</li>
+<li>inset-x-1&#x2F;4</li>
+<li>inset-x-2&#x2F;4</li>
+<li>inset-x-3&#x2F;4</li>
+<li>inset-x-full</li>
+<li>inset-y-auto</li>
+<li>inset-y-1&#x2F;2</li>
+<li>inset-y-1&#x2F;3</li>
+<li>inset-y-2&#x2F;3</li>
+<li>inset-y-1&#x2F;4</li>
+<li>inset-y-2&#x2F;4</li>
+<li>inset-y-3&#x2F;4</li>
+<li>inset-y-full</li>
+<li>top-auto</li>
+<li>top-1&#x2F;2</li>
+<li>top-1&#x2F;3</li>
+<li>top-2&#x2F;3</li>
+<li>top-1&#x2F;4</li>
+<li>top-2&#x2F;4</li>
+<li>top-3&#x2F;4</li>
+<li>top-full</li>
+<li>right-auto</li>
+<li>right-1&#x2F;2</li>
+<li>right-1&#x2F;3</li>
+<li>right-2&#x2F;3</li>
+<li>right-1&#x2F;4</li>
+<li>right-2&#x2F;4</li>
+<li>right-3&#x2F;4</li>
+<li>right-full</li>
+<li>bottom-auto</li>
+<li>bottom-1&#x2F;2</li>
+<li>bottom-1&#x2F;3</li>
+<li>bottom-2&#x2F;3</li>
+<li>bottom-1&#x2F;4</li>
+<li>bottom-2&#x2F;4</li>
+<li>bottom-3&#x2F;4</li>
+<li>bottom-full</li>
+<li>left-auto</li>
+<li>left-1&#x2F;2</li>
+<li>left-1&#x2F;3</li>
+<li>left-2&#x2F;3</li>
+<li>left-1&#x2F;4</li>
+<li>left-2&#x2F;4</li>
+<li>left-3&#x2F;4</li>
+<li>left-full<!--rehype:className=style-none cols-5--></li>
+</ul>
+<h3 id="Object-Position"><a href="#Object-Position" class="headerlink" title="Object Position"></a>Object Position</h3><p>用于控制替换元素的内容在其容器中的定位方式的实用程序</p>
+<ul>
+<li>object-bottom</li>
+<li>object-center</li>
+<li>object-left</li>
+<li>object-left-bottom</li>
+<li>object-left-top</li>
+<li>object-right</li>
+<li>object-right-bottom</li>
+<li>object-right-top</li>
+<li>object-top<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Overflow"><a href="#Overflow" class="headerlink" title="Overflow"></a>Overflow</h3><p>用于控制元素如何处理对于容器来说太大的内容的实用程序</p>
+<ul>
+<li>overflow-auto</li>
+<li>overflow-hidden</li>
+<li>overflow-clip</li>
+<li>overflow-visible</li>
+<li>overflow-scroll</li>
+<li>overflow-x-auto</li>
+<li>overflow-y-auto</li>
+<li>overflow-x-hidden</li>
+<li>overflow-y-hidden</li>
+<li>overflow-x-clip</li>
+<li>overflow-y-clip</li>
+<li>overflow-x-visible</li>
+<li>overflow-y-visible</li>
+<li>overflow-x-scroll</li>
+<li>overflow-y-scroll<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Visibility"><a href="#Visibility" class="headerlink" title="Visibility"></a>Visibility</h3><p>用于控制元素可见性的实用程序</p>
+<ul>
+<li>visible</li>
+<li>invisible</li>
+<li>collapse<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Z-index"><a href="#Z-index" class="headerlink" title="Z-index"></a>Z-index</h3><p>用于控制元素堆叠顺序的实用程序</p>
+<ul>
+<li>z-0</li>
+<li>z-10</li>
+<li>z-20</li>
+<li>z-30</li>
+<li>z-40</li>
+<li>z-50</li>
+<li>z-auto<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Overscroll-Behavior"><a href="#Overscroll-Behavior" class="headerlink" title="Overscroll Behavior"></a>Overscroll Behavior</h3><p>用于控制浏览器到达滚动区域边界时的行为方式的实用程序</p>
+<ul>
+<li>overscroll-auto</li>
+<li>overscroll-contain</li>
+<li>overscroll-none</li>
+<li>overscroll-y-auto</li>
+<li>overscroll-y-contain</li>
+<li>overscroll-y-none</li>
+<li>overscroll-x-auto</li>
+<li>overscroll-x-contain</li>
+<li>overscroll-x-none<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Position"><a href="#Position" class="headerlink" title="Position"></a>Position</h3><p>用于控制元素在 DOM 中的定位方式的实用程序</p>
+<ul>
+<li>static</li>
+<li>fixed</li>
+<li>absolute</li>
+<li>relative</li>
+<li>sticky<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h2 id="Sizing"><a href="#Sizing" class="headerlink" title="Sizing"></a>Sizing</h2><h3 id="Width"><a href="#Width" class="headerlink" title="Width"></a>Width</h3><!--rehype:wrap-class=row-span-4-->
+
+<p>用于设置元素宽度的实用程序</p>
+<ul>
+<li>w-0</li>
+<li>w-px</li>
+<li>w-0.5</li>
+<li>w-1</li>
+<li>w-1.5</li>
+<li>w-2</li>
+<li>w-2.5</li>
+<li>w-3</li>
+<li>w-3.5</li>
+<li>w-4</li>
+<li>w-5</li>
+<li>w-6</li>
+<li>w-7</li>
+<li>w-8</li>
+<li>w-9</li>
+<li>w-10</li>
+<li>w-11</li>
+<li>w-12</li>
+<li>w-14</li>
+<li>w-16</li>
+<li>w-20</li>
+<li>w-24</li>
+<li>w-28</li>
+<li>w-32</li>
+<li>w-36</li>
+<li>w-40</li>
+<li>w-44</li>
+<li>w-48</li>
+<li>w-52</li>
+<li>w-56</li>
+<li>w-60</li>
+<li>w-64</li>
+<li>w-72</li>
+<li>w-80</li>
+<li>w-96</li>
+<li>w-auto</li>
+<li>w-1&#x2F;2</li>
+<li>w-1&#x2F;3</li>
+<li>w-2&#x2F;3</li>
+<li>w-1&#x2F;4</li>
+<li>w-2&#x2F;4</li>
+<li>w-3&#x2F;4</li>
+<li>w-1&#x2F;5</li>
+<li>w-2&#x2F;5</li>
+<li>w-3&#x2F;5</li>
+<li>w-4&#x2F;5</li>
+<li>w-1&#x2F;6</li>
+<li>w-2&#x2F;6</li>
+<li>w-3&#x2F;6</li>
+<li>w-4&#x2F;6</li>
+<li>w-5&#x2F;6</li>
+<li>w-1&#x2F;12</li>
+<li>w-2&#x2F;12</li>
+<li>w-3&#x2F;12</li>
+<li>w-4&#x2F;12</li>
+<li>w-5&#x2F;12</li>
+<li>w-6&#x2F;12</li>
+<li>w-7&#x2F;12</li>
+<li>w-8&#x2F;12</li>
+<li>w-9&#x2F;12</li>
+<li>w-10&#x2F;12</li>
+<li>w-11&#x2F;12</li>
+<li>w-full</li>
+<li>w-screen</li>
+<li>w-min</li>
+<li>w-max</li>
+<li>w-fit<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Min-Width"><a href="#Min-Width" class="headerlink" title="Min-Width"></a>Min-Width</h3><p>用于设置元素的最小宽度的实用程序</p>
+<ul>
+<li>min-w-0</li>
+<li>min-w-full</li>
+<li>min-w-min</li>
+<li>min-w-max</li>
+<li>min-w-fit<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Max-Width"><a href="#Max-Width" class="headerlink" title="Max-Width"></a>Max-Width</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于设置元素最大宽度的实用程序</p>
+<ul>
+<li>max-w-0</li>
+<li>max-w-none</li>
+<li>max-w-xs</li>
+<li>max-w-sm</li>
+<li>max-w-md</li>
+<li>max-w-lg</li>
+<li>max-w-xl</li>
+<li>max-w-2xl</li>
+<li>max-w-3xl</li>
+<li>max-w-4xl</li>
+<li>max-w-5xl</li>
+<li>max-w-6xl</li>
+<li>max-w-7xl</li>
+<li>max-w-full</li>
+<li>max-w-min</li>
+<li>max-w-max</li>
+<li>max-w-fit</li>
+<li>max-w-prose</li>
+<li>max-w-screen-sm</li>
+<li>max-w-screen-md</li>
+<li>max-w-screen-lg</li>
+<li>max-w-screen-xl</li>
+<li>max-w-screen-2xl<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Height"><a href="#Height" class="headerlink" title="Height"></a>Height</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于设置元素高度的实用程序</p>
+<ul>
+<li>h-0</li>
+<li>h-px</li>
+<li>h-0.5</li>
+<li>h-1</li>
+<li>h-1.5</li>
+<li>h-2</li>
+<li>h-2.5</li>
+<li>h-3</li>
+<li>h-3.5</li>
+<li>h-4</li>
+<li>h-5</li>
+<li>h-6</li>
+<li>h-7</li>
+<li>h-8</li>
+<li>h-9</li>
+<li>h-10</li>
+<li>h-11</li>
+<li>h-12</li>
+<li>h-14</li>
+<li>h-16</li>
+<li>h-20</li>
+<li>h-24</li>
+<li>h-28</li>
+<li>h-32</li>
+<li>h-36</li>
+<li>h-40</li>
+<li>h-44</li>
+<li>h-48</li>
+<li>h-52</li>
+<li>h-56</li>
+<li>h-60</li>
+<li>h-64</li>
+<li>h-72</li>
+<li>h-80</li>
+<li>h-96</li>
+<li>h-auto</li>
+<li>h-1&#x2F;2</li>
+<li>h-1&#x2F;3</li>
+<li>h-2&#x2F;3</li>
+<li>h-1&#x2F;4</li>
+<li>h-2&#x2F;4</li>
+<li>h-3&#x2F;4</li>
+<li>h-1&#x2F;5</li>
+<li>h-2&#x2F;5</li>
+<li>h-3&#x2F;5</li>
+<li>h-4&#x2F;5</li>
+<li>h-1&#x2F;6</li>
+<li>h-2&#x2F;6</li>
+<li>h-3&#x2F;6</li>
+<li>h-4&#x2F;6</li>
+<li>h-5&#x2F;6</li>
+<li>h-full</li>
+<li>h-screen</li>
+<li>h-min</li>
+<li>h-max</li>
+<li>h-fit<!--rehype:className=style-none cols-4--></li>
+</ul>
+<h3 id="Min-Height"><a href="#Min-Height" class="headerlink" title="Min-Height"></a>Min-Height</h3><p>用于设置元素的最小高度的实用程序</p>
+<ul>
+<li>min-h-0</li>
+<li>min-h-full</li>
+<li>min-h-screen</li>
+<li>min-h-min</li>
+<li>min-h-max</li>
+<li>min-h-fit<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Max-Height"><a href="#Max-Height" class="headerlink" title="Max-Height"></a>Max-Height</h3><!--rehype:wrap-class=col-span-2-->
+
+<p>用于设置元素最大高度的实用程序</p>
+<ul>
+<li>max-h-0</li>
+<li>max-h-px</li>
+<li>max-h-0.5</li>
+<li>max-h-1</li>
+<li>max-h-1.5</li>
+<li>max-h-2</li>
+<li>max-h-2.5</li>
+<li>max-h-3</li>
+<li>max-h-3.5</li>
+<li>max-h-4</li>
+<li>max-h-5</li>
+<li>max-h-6</li>
+<li>max-h-7</li>
+<li>max-h-8</li>
+<li>max-h-9</li>
+<li>max-h-10</li>
+<li>max-h-11</li>
+<li>max-h-12</li>
+<li>max-h-14</li>
+<li>max-h-16</li>
+<li>max-h-20</li>
+<li>max-h-24</li>
+<li>max-h-28</li>
+<li>max-h-32</li>
+<li>max-h-36</li>
+<li>max-h-40</li>
+<li>max-h-44</li>
+<li>max-h-48</li>
+<li>max-h-52</li>
+<li>max-h-56</li>
+<li>max-h-60</li>
+<li>max-h-64</li>
+<li>max-h-72</li>
+<li>max-h-80</li>
+<li>max-h-96</li>
+<li>max-h-full</li>
+<li>max-h-screen</li>
+<li>max-h-min</li>
+<li>max-h-max</li>
+<li>max-h-fit<!--rehype:className=style-none cols-6--></li>
+</ul>
+<h2 id="Borders"><a href="#Borders" class="headerlink" title="Borders"></a>Borders</h2><h3 id="Border-Radius"><a href="#Border-Radius" class="headerlink" title="Border Radius"></a>Border Radius</h3><!--rehype:wrap-class=row-span-4-->
+
+<p>用于控制元素边界半径的实用程序</p>
+<ul>
+<li>rounded-none</li>
+<li>rounded-sm</li>
+<li>rounded</li>
+<li>rounded-md</li>
+<li>rounded-lg</li>
+<li>rounded-xl</li>
+<li>rounded-2xl</li>
+<li>rounded-3xl</li>
+<li>rounded-full</li>
+<li>rounded-t-none</li>
+<li>rounded-t-sm</li>
+<li>rounded-t</li>
+<li>rounded-t-md</li>
+<li>rounded-t-lg</li>
+<li>rounded-t-xl</li>
+<li>rounded-t-2xl</li>
+<li>rounded-t-3xl</li>
+<li>rounded-t-full</li>
+<li>rounded-r-none</li>
+<li>rounded-r-sm</li>
+<li>rounded-r</li>
+<li>rounded-r-md</li>
+<li>rounded-r-lg</li>
+<li>rounded-r-xl</li>
+<li>rounded-r-2xl</li>
+<li>rounded-r-3xl</li>
+<li>rounded-r-full</li>
+<li>rounded-b-none</li>
+<li>rounded-b-sm</li>
+<li>rounded-b</li>
+<li>rounded-b-md</li>
+<li>rounded-b-lg</li>
+<li>rounded-b-xl</li>
+<li>rounded-b-2xl</li>
+<li>rounded-b-3xl</li>
+<li>rounded-b-full</li>
+<li>rounded-l-none</li>
+<li>rounded-l-sm</li>
+<li>rounded-l</li>
+<li>rounded-l-md</li>
+<li>rounded-l-lg</li>
+<li>rounded-l-xl</li>
+<li>rounded-l-2xl</li>
+<li>rounded-l-3xl</li>
+<li>rounded-l-full</li>
+<li>rounded-tl-none</li>
+<li>rounded-tl-sm</li>
+<li>rounded-tl</li>
+<li>rounded-tl-md</li>
+<li>rounded-tl-lg</li>
+<li>rounded-tl-xl</li>
+<li>rounded-tl-2xl</li>
+<li>rounded-tl-3xl</li>
+<li>rounded-tl-full</li>
+<li>rounded-tr-none</li>
+<li>rounded-tr-sm</li>
+<li>rounded-tr</li>
+<li>rounded-tr-md</li>
+<li>rounded-tr-lg</li>
+<li>rounded-tr-xl</li>
+<li>rounded-tr-2xl</li>
+<li>rounded-tr-3xl</li>
+<li>rounded-tr-full</li>
+<li>rounded-br-none</li>
+<li>rounded-br-sm</li>
+<li>rounded-br</li>
+<li>rounded-br-md</li>
+<li>rounded-br-lg</li>
+<li>rounded-br-xl</li>
+<li>rounded-br-2xl</li>
+<li>rounded-br-3xl</li>
+<li>rounded-br-full</li>
+<li>rounded-bl-none</li>
+<li>rounded-bl-sm</li>
+<li>rounded-bl</li>
+<li>rounded-bl-md</li>
+<li>rounded-bl-lg</li>
+<li>rounded-bl-xl</li>
+<li>rounded-bl-2xl</li>
+<li>rounded-bl-3xl</li>
+<li>rounded-bl-full<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Border-Width"><a href="#Border-Width" class="headerlink" title="Border Width"></a>Border Width</h3><p>用于控制元素边框宽度的实用程序</p>
+<ul>
+<li>border-0</li>
+<li>border-2</li>
+<li>border-4</li>
+<li>border-8</li>
+<li>border</li>
+<li>border-x-0</li>
+<li>border-x-2</li>
+<li>border-x-4</li>
+<li>border-x-8</li>
+<li>border-x</li>
+<li>border-y-0</li>
+<li>border-y-2</li>
+<li>border-y-4</li>
+<li>border-y-8</li>
+<li>border-y</li>
+<li>border-t-0</li>
+<li>border-t-2</li>
+<li>border-t-4</li>
+<li>border-t-8</li>
+<li>border-t</li>
+<li>border-r-0</li>
+<li>border-r-2</li>
+<li>border-r-4</li>
+<li>border-r-8</li>
+<li>border-r</li>
+<li>border-b-0</li>
+<li>border-b-2</li>
+<li>border-b-4</li>
+<li>border-b-8</li>
+<li>border-b</li>
+<li>border-l-0</li>
+<li>border-l-2</li>
+<li>border-l-4</li>
+<li>border-l-8</li>
+<li>border-l<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Border-Color"><a href="#Border-Color" class="headerlink" title="Border Color"></a>Border Color</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>用于控制元素边框颜色的实用程序</p>
+<ul>
+<li>border-inherit</li>
+<li>border-current</li>
+<li>border-transparent</li>
+<li>border-black</li>
+<li>border-white</li>
+<li>border-slate-50</li>
+<li>border-slate-100</li>
+<li>border-slate-200</li>
+<li>border-slate-300</li>
+<li>border-slate-400</li>
+<li>border-slate-500</li>
+<li>border-slate-600</li>
+<li>border-slate-700</li>
+<li>border-slate-800</li>
+<li>border-slate-900</li>
+<li>border-gray-50</li>
+<li>border-gray-100</li>
+<li>border-gray-200</li>
+<li>border-gray-300</li>
+<li>border-gray-400</li>
+<li>border-gray-500</li>
+<li>border-gray-600</li>
+<li>border-gray-700</li>
+<li>border-gray-800</li>
+<li>border-gray-900</li>
+<li>border-zinc-50</li>
+<li>border-zinc-100</li>
+<li>border-zinc-200</li>
+<li>border-zinc-300</li>
+<li>border-zinc-400</li>
+<li>border-zinc-500</li>
+<li>border-zinc-600</li>
+<li>border-zinc-700</li>
+<li>border-zinc-800</li>
+<li>border-zinc-900</li>
+<li>border-neutral-50</li>
+<li>border-neutral-100</li>
+<li>border-neutral-200</li>
+<li>border-neutral-300</li>
+<li>border-neutral-400</li>
+<li>border-neutral-500</li>
+<li>border-neutral-600</li>
+<li>border-neutral-700</li>
+<li>border-neutral-800</li>
+<li>border-neutral-900</li>
+<li>border-stone-50</li>
+<li>border-stone-100</li>
+<li>border-stone-200</li>
+<li>border-stone-300</li>
+<li>border-stone-400</li>
+<li>border-stone-500</li>
+<li>border-stone-600</li>
+<li>border-stone-700</li>
+<li>border-stone-800</li>
+<li>border-stone-900</li>
+<li>border-red-50</li>
+<li>border-red-100</li>
+<li>border-red-200</li>
+<li>border-red-300</li>
+<li>border-red-400</li>
+<li>border-red-500</li>
+<li>border-red-600</li>
+<li>border-red-700</li>
+<li>border-red-800</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/border-color">…</a><!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Border-Style"><a href="#Border-Style" class="headerlink" title="Border Style"></a>Border Style</h3><p>用于控制元素边框样式的实用程序</p>
+<ul>
+<li>border-solid</li>
+<li>border-dashed</li>
+<li>border-dotted</li>
+<li>border-double</li>
+<li>border-hidden</li>
+<li>border-none<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Divide-Width"><a href="#Divide-Width" class="headerlink" title="Divide Width"></a>Divide Width</h3><p>用于控制元素之间的边框宽度的实用程序</p>
+<ul>
+<li>divide-x-0 &gt; * + *</li>
+<li>divide-x-2 &gt; * + *</li>
+<li>divide-x-4 &gt; * + *</li>
+<li>divide-x-8 &gt; * + *</li>
+<li>divide-x &gt; * + *</li>
+<li>divide-y-0 &gt; * + *</li>
+<li>divide-y-2 &gt; * + *</li>
+<li>divide-y-4 &gt; * + *</li>
+<li>divide-y-8 &gt; * + *</li>
+<li>divide-y &gt; * + *</li>
+<li>divide-y-reverse &gt; * + *</li>
+<li>divide-x-reverse &gt; * + *<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Divide-Color"><a href="#Divide-Color" class="headerlink" title="Divide Color"></a>Divide Color</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<p>用于控制元素之间的边框颜色的实用程序</p>
+<ul>
+<li>divide-inherit &gt; * + *</li>
+<li>divide-current &gt; * + *</li>
+<li>divide-transparent &gt; * + *</li>
+<li>divide-black &gt; * + *</li>
+<li>divide-white &gt; * + *</li>
+<li>divide-slate-50 &gt; * + *</li>
+<li>divide-slate-100 &gt; * + *</li>
+<li>divide-slate-200 &gt; * + *</li>
+<li>divide-slate-300 &gt; * + *</li>
+<li>divide-slate-400 &gt; * + *</li>
+<li>divide-slate-500 &gt; * + *</li>
+<li>divide-slate-600 &gt; * + *</li>
+<li>divide-slate-700 &gt; * + *</li>
+<li>divide-slate-800 &gt; * + *</li>
+<li>divide-slate-900 &gt; * + *</li>
+<li>divide-gray-50 &gt; * + *</li>
+<li>divide-gray-100 &gt; * + *</li>
+<li>divide-gray-200 &gt; * + *</li>
+<li>divide-gray-300 &gt; * + *</li>
+<li>divide-gray-400 &gt; * + *</li>
+<li>divide-gray-500 &gt; * + *</li>
+<li>divide-gray-600 &gt; * + *</li>
+<li>divide-gray-700 &gt; * + *</li>
+<li>divide-gray-800 &gt; * + *</li>
+<li>divide-gray-900 &gt; * + *</li>
+<li>divide-zinc-50 &gt; * + *</li>
+<li>divide-zinc-100 &gt; * + *</li>
+<li>divide-zinc-200 &gt; * + *</li>
+<li>divide-zinc-300 &gt; * + *</li>
+<li>divide-zinc-400 &gt; * + *</li>
+<li>divide-zinc-500 &gt; * + *</li>
+<li>divide-zinc-600 &gt; * + *</li>
+<li>divide-zinc-700 &gt; * + *</li>
+<li>divide-zinc-800 &gt; * + *</li>
+<li>divide-zinc-900 &gt; * + *</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/divide-color"><kbd>...</kbd></a><!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Divide-Style"><a href="#Divide-Style" class="headerlink" title="Divide Style"></a>Divide Style</h3><p>用于控制元素之间的边框样式的实用程序</p>
+<ul>
+<li>divide-solid &gt; * + *</li>
+<li>divide-dashed &gt; * + *</li>
+<li>divide-dotted &gt; * + *</li>
+<li>divide-double &gt; * + *</li>
+<li>divide-none &gt; * + *<!--rehype:className=style-none cols-2--></li>
+</ul>
+<h3 id="Outline-Width"><a href="#Outline-Width" class="headerlink" title="Outline Width"></a>Outline Width</h3><p>用于控制元素轮廓宽度的实用程序</p>
+<ul>
+<li>outline-0</li>
+<li>outline-1</li>
+<li>outline-2</li>
+<li>outline-4</li>
+<li>outline-8<!--rehype:className=style-none cols-3--></li>
+</ul>
+<h3 id="Outline-Color"><a href="#Outline-Color" class="headerlink" title="Outline Color"></a>Outline Color</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制元素轮廓颜色的实用程序</p>
+<ul>
+<li>outline-inherit</li>
+<li>outline-current</li>
+<li>outline-transparent</li>
+<li>outline-black</li>
+<li>outline-white</li>
+<li>outline-slate-50</li>
+<li>outline-slate-100</li>
+<li>outline-slate-200</li>
+<li>outline-slate-300</li>
+<li>outline-slate-400</li>
+<li>outline-slate-500</li>
+<li>outline-slate-600</li>
+<li>outline-slate-700</li>
+<li>outline-slate-800</li>
+<li>outline-slate-900</li>
+<li>outline-gray-50</li>
+<li>outline-gray-100</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/outline-color"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Outline-Style"><a href="#Outline-Style" class="headerlink" title="Outline Style"></a>Outline Style</h3><p>用于控制元素轮廓样式的实用程序</p>
+<ul>
+<li>outline-none</li>
+<li>outline</li>
+<li>outline-dashed</li>
+<li>outline-dotted</li>
+<li>outline-double<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Outline-Offset"><a href="#Outline-Offset" class="headerlink" title="Outline Offset"></a>Outline Offset</h3><p>用于控制元素轮廓偏移的实用程序</p>
+<ul>
+<li>outline-offset-0</li>
+<li>outline-offset-1</li>
+<li>outline-offset-2</li>
+<li>outline-offset-4</li>
+<li>outline-offset-8<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Ring-Width"><a href="#Ring-Width" class="headerlink" title="Ring Width"></a>Ring Width</h3><p>用于创建带有框阴影的轮廓环的实用程序</p>
+<ul>
+<li>ring-0</li>
+<li>ring-1</li>
+<li>ring-2</li>
+<li>ring</li>
+<li>ring-4</li>
+<li>ring-8</li>
+<li>ring-inset<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Ring-Color"><a href="#Ring-Color" class="headerlink" title="Ring Color"></a>Ring Color</h3><p>用于设置轮廓环颜色的实用程序</p>
+<ul>
+<li>ring-inherit</li>
+<li>ring-current</li>
+<li>ring-transparent</li>
+<li>ring-black</li>
+<li>ring-white</li>
+<li>ring-slate-50</li>
+<li>ring-slate-100</li>
+<li>ring-slate-200</li>
+<li>ring-slate-300</li>
+<li>ring-slate-400</li>
+<li>ring-slate-500</li>
+<li>ring-slate-600</li>
+<li>ring-slate-700</li>
+<li>ring-slate-800</li>
+<li>ring-slate-900</li>
+<li>ring-gray-50</li>
+<li>ring-gray-100</li>
+<li>ring-gray-200</li>
+<li>ring-gray-300</li>
+<li>ring-gray-400</li>
+<li>ring-gray-500</li>
+<li>ring-gray-600</li>
+<li>ring-gray-700</li>
+<li>ring-gray-800</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/ring-color"><kbd>...</kbd></a><!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Ring-Offset-Width"><a href="#Ring-Offset-Width" class="headerlink" title="Ring Offset Width"></a>Ring Offset Width</h3><p>添加轮廓环时模拟偏移的实用程序</p>
+<ul>
+<li>ring-offset-0</li>
+<li>ring-offset-1</li>
+<li>ring-offset-2</li>
+<li>ring-offset-4</li>
+<li>ring-offset-8<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Ring-Offset-Color"><a href="#Ring-Offset-Color" class="headerlink" title="Ring Offset Color"></a>Ring Offset Color</h3><p>用于设置轮廓环偏移颜色的实用程序</p>
+<ul>
+<li>ring-offset-inherit</li>
+<li>ring-offset-current</li>
+<li>ring-offset-transparent</li>
+<li>ring-offset-black</li>
+<li>ring-offset-white</li>
+<li>ring-offset-slate-50</li>
+<li>ring-offset-slate-100</li>
+<li>ring-offset-slate-200</li>
+<li>ring-offset-slate-300</li>
+<li>ring-offset-slate-400</li>
+<li>ring-offset-slate-500</li>
+<li>ring-offset-slate-600</li>
+<li>ring-offset-slate-700</li>
+<li>ring-offset-slate-800</li>
+<li>ring-offset-slate-900</li>
+<li>ring-offset-gray-50</li>
+<li>ring-offset-gray-100</li>
+<li>ring-offset-gray-200</li>
+<li>ring-offset-gray-300</li>
+<li>ring-offset-gray-400</li>
+<li>ring-offset-gray-500</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/ring-offset-color"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Transitions-Animation"><a href="#Transitions-Animation" class="headerlink" title="Transitions &amp; Animation"></a>Transitions &amp; Animation</h2><h3 id="Transition-Property"><a href="#Transition-Property" class="headerlink" title="Transition Property"></a>Transition Property</h3><p>用于控制哪些 CSS 属性转换的实用程序</p>
+<ul>
+<li>transition-none</li>
+<li>transition-all</li>
+<li>transition</li>
+<li>transition-colors</li>
+<li>transition-opacity</li>
+<li>transition-shadow</li>
+<li>transition-transform<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Transition-Duration"><a href="#Transition-Duration" class="headerlink" title="Transition Duration"></a>Transition Duration</h3><p>用于控制 CSS 过渡持续时间的实用程序</p>
+<ul>
+<li>duration-75</li>
+<li>duration-100</li>
+<li>duration-150</li>
+<li>duration-200</li>
+<li>duration-300</li>
+<li>duration-500</li>
+<li>duration-700</li>
+<li>duration-1000<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Transition-Timing-Function"><a href="#Transition-Timing-Function" class="headerlink" title="Transition Timing Function"></a>Transition Timing Function</h3><p>用于控制 CSS 过渡缓动的实用程序</p>
+<ul>
+<li>ease-linear</li>
+<li>ease-in</li>
+<li>ease-out</li>
+<li>ease-in-out<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Transition-Delay"><a href="#Transition-Delay" class="headerlink" title="Transition Delay"></a>Transition Delay</h3><p>用于控制 CSS 转换延迟的实用程序</p>
+<ul>
+<li>delay-75</li>
+<li>delay-100</li>
+<li>delay-150</li>
+<li>delay-200</li>
+<li>delay-300</li>
+<li>delay-500</li>
+<li>delay-700</li>
+<li>delay-1000<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Animation"><a href="#Animation" class="headerlink" title="Animation"></a>Animation</h3><p>使用 CSS 动画对元素进行动画处理的实用程序</p>
+<ul>
+<li>animate-none</li>
+<li>animate-spin</li>
+<li>animate-ping</li>
+<li>animate-pulse</li>
+<li>animate-bounce<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Tables"><a href="#Tables" class="headerlink" title="Tables"></a>Tables</h2><h3 id="Border-Collapse"><a href="#Border-Collapse" class="headerlink" title="Border Collapse"></a>Border Collapse</h3><ul>
+<li>border-collapse</li>
+<li>border-separate<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<p>用于控制表格边框是折叠还是分开的实用程序</p>
+<h3 id="Border-Spacing"><a href="#Border-Spacing" class="headerlink" title="Border Spacing"></a>Border Spacing</h3><!--rehype:wrap-class=row-span-2 col-span-2-->
+
+<p>用于控制表格边框间距的实用程序</p>
+<ul>
+<li>border-spacing-0</li>
+<li>border-spacing-x-0</li>
+<li>border-spacing-y-0</li>
+<li>border-spacing-px</li>
+<li>border-spacing-x-px</li>
+<li>border-spacing-y-px</li>
+<li>border-spacing-0.5</li>
+<li>border-spacing-x-0.5</li>
+<li>border-spacing-y-0.5</li>
+<li>border-spacing-1</li>
+<li>border-spacing-x-1</li>
+<li>border-spacing-y-1</li>
+<li>border-spacing-1.5</li>
+<li>border-spacing-x-1.5</li>
+<li>border-spacing-y-1.5</li>
+<li>border-spacing-2</li>
+<li>border-spacing-x-2</li>
+<li>border-spacing-y-2</li>
+<li>border-spacing-2.5</li>
+<li>border-spacing-x-2.5</li>
+<li>border-spacing-y-2.5</li>
+<li>border-spacing-3</li>
+<li>border-spacing-x-3</li>
+<li>border-spacing-y-3</li>
+<li>border-spacing-3.5</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/border-spacing"><kbd>...</kbd></a><!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Table-Layout"><a href="#Table-Layout" class="headerlink" title="Table Layout"></a>Table Layout</h3><ul>
+<li>table-auto</li>
+<li>table-fixed<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<p>用于控制表布局算法的实用程序</p>
+<h2 id="Backgrounds"><a href="#Backgrounds" class="headerlink" title="Backgrounds"></a>Backgrounds</h2><h3 id="Background-Attachment"><a href="#Background-Attachment" class="headerlink" title="Background Attachment"></a>Background Attachment</h3><p>用于控制背景图像在滚动时的行为方式的实用程序</p>
+<ul>
+<li>bg-fixed</li>
+<li>bg-local</li>
+<li>bg-scroll<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Background-Color"><a href="#Background-Color" class="headerlink" title="Background Color"></a>Background Color</h3><!--rehype:wrap-class=row-span-2 col-span-2-->
+
+<p>用于控制元素背景颜色的实用程序</p>
+<ul>
+<li>bg-inherit</li>
+<li>bg-current</li>
+<li>bg-transparent</li>
+<li>bg-black</li>
+<li>bg-white</li>
+<li>bg-slate-50</li>
+<li>bg-slate-100</li>
+<li>bg-slate-200</li>
+<li>bg-slate-300</li>
+<li>bg-slate-400</li>
+<li>bg-slate-500</li>
+<li>bg-slate-600</li>
+<li>bg-slate-700</li>
+<li>bg-slate-800</li>
+<li>bg-slate-900</li>
+<li>bg-gray-50</li>
+<li>bg-gray-100</li>
+<li>bg-gray-200</li>
+<li>bg-gray-300</li>
+<li>bg-gray-400</li>
+<li>bg-gray-500</li>
+<li>bg-gray-600</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/background-color"><kbd>...</kbd></a><!--rehype:className=cols-4 style-none--></li>
+</ul>
+<h3 id="Background-Clip"><a href="#Background-Clip" class="headerlink" title="Background Clip"></a>Background Clip</h3><p>用于控制元素背景边界框的实用程序</p>
+<ul>
+<li>bg-clip-border</li>
+<li>bg-clip-padding</li>
+<li>bg-clip-content</li>
+<li>bg-clip-text<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Background-Origin"><a href="#Background-Origin" class="headerlink" title="Background Origin"></a>Background Origin</h3><p>用于控制元素背景相对于边框、填充和内容的定位方式的实用程序</p>
+<ul>
+<li>bg-origin-border</li>
+<li>bg-origin-padding</li>
+<li>bg-origin-content<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Background-Position"><a href="#Background-Position" class="headerlink" title="Background Position"></a>Background Position</h3><p>用于控制元素背景图像位置的实用程序</p>
+<ul>
+<li>bg-bottom</li>
+<li>bg-center</li>
+<li>bg-left</li>
+<li>bg-left-bottom</li>
+<li>bg-left-top</li>
+<li>bg-right</li>
+<li>bg-right-bottom</li>
+<li>bg-right-top</li>
+<li>bg-top<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Background-Repeat"><a href="#Background-Repeat" class="headerlink" title="Background Repeat"></a>Background Repeat</h3><p>用于控制元素背景图像重复的实用程序</p>
+<ul>
+<li>bg-repeat</li>
+<li>bg-no-repeat</li>
+<li>bg-repeat-x</li>
+<li>bg-repeat-y</li>
+<li>bg-repeat-round</li>
+<li>bg-repeat-space<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Background-Size"><a href="#Background-Size" class="headerlink" title="Background Size"></a>Background Size</h3><p>用于控制元素背景图像的背景大小的实用程序</p>
+<ul>
+<li>bg-auto</li>
+<li>bg-cover</li>
+<li>bg-contain<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Gradient-Color-Stops"><a href="#Gradient-Color-Stops" class="headerlink" title="Gradient Color Stops"></a>Gradient Color Stops</h3><!--rehype:wrap-class=row-span-2 col-span-2-->
+
+<p>用于控制背景渐变色标的实用程序</p>
+<ul>
+<li>from-inherit</li>
+<li>from-current</li>
+<li>from-transparent</li>
+<li>from-black</li>
+<li>from-white</li>
+<li>from-slate-50</li>
+<li>from-slate-100</li>
+<li>from-slate-200</li>
+<li>from-slate-300</li>
+<li>from-slate-400</li>
+<li>from-slate-500</li>
+<li>from-slate-600</li>
+<li>from-slate-700</li>
+<li>from-slate-800</li>
+<li>from-slate-900</li>
+<li>from-gray-50</li>
+<li>from-gray-100</li>
+<li>from-gray-200</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/gradient-color-stops"><kbd>...</kbd></a><!--rehype:className=cols-4 style-none--></li>
+</ul>
+<h3 id="Background-Image"><a href="#Background-Image" class="headerlink" title="Background Image"></a>Background Image</h3><p>用于控制元素背景图像的实用程序</p>
+<ul>
+<li>bg-none</li>
+<li>bg-gradient-to-t</li>
+<li>bg-gradient-to-tr</li>
+<li>bg-gradient-to-r</li>
+<li>bg-gradient-to-br</li>
+<li>bg-gradient-to-b</li>
+<li>bg-gradient-to-bl</li>
+<li>bg-gradient-to-l</li>
+<li>bg-gradient-to-tl<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Spacing"><a href="#Spacing" class="headerlink" title="Spacing"></a>Spacing</h2><h3 id="Padding"><a href="#Padding" class="headerlink" title="Padding"></a>Padding</h3><p>用于控制元素填充的实用程序</p>
+<ul>
+<li>p-0</li>
+<li>px-0</li>
+<li>py-0</li>
+<li>pt-0</li>
+<li>pr-0</li>
+<li>pb-0</li>
+<li>pl-0</li>
+<li>p-px</li>
+<li>px-px</li>
+<li>py-px</li>
+<li>pt-px</li>
+<li>pr-px</li>
+<li>pb-px</li>
+<li>pl-px</li>
+<li>p-0.5</li>
+<li>px-0.5</li>
+<li>py-0.5</li>
+<li>pt-0.5</li>
+<li>pr-0.5</li>
+<li>pb-0.5</li>
+<li>pl-0.5</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/padding"><kbd>...</kbd></a><!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Margin"><a href="#Margin" class="headerlink" title="Margin"></a>Margin</h3><p>用于控制元素边距的实用程序</p>
+<ul>
+<li>m-0</li>
+<li>mx-0</li>
+<li>my-0</li>
+<li>mt-0</li>
+<li>mr-0</li>
+<li>mb-0</li>
+<li>ml-0</li>
+<li>m-px</li>
+<li>mx-px</li>
+<li>my-px</li>
+<li>mt-px</li>
+<li>mr-px</li>
+<li>mb-px</li>
+<li>ml-px</li>
+<li>m-0.5</li>
+<li>mx-0.5</li>
+<li>my-0.5</li>
+<li>mt-0.5</li>
+<li>mr-0.5</li>
+<li>mb-0.5</li>
+<li>ml-0.5</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/margin"><kbd>...</kbd></a><!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Space-Between"><a href="#Space-Between" class="headerlink" title="Space Between"></a>Space Between</h3><p>用于控制子元素之间空间的实用程序</p>
+<ul>
+<li>space-x-0 &gt; * + *</li>
+<li>space-y-0 &gt; * + *</li>
+<li>space-x-0.5 &gt; * + *</li>
+<li>space-y-0.5 &gt; * + *</li>
+<li>space-x-1 &gt; * + *</li>
+<li>space-y-1 &gt; * + *</li>
+<li>space-x-1.5 &gt; * + *</li>
+<li>space-y-1.5 &gt; * + *</li>
+<li>space-x-2 &gt; * + *</li>
+<li>space-y-2 &gt; * + *</li>
+<li>space-x-2.5 &gt; * + *</li>
+<li>space-y-2.5 &gt; * + *</li>
+<li>space-x-3 &gt; * + *</li>
+<li>space-y-3 &gt; * + *</li>
+<li>space-x-3.5 &gt; * + *</li>
+<li>space-y-3.5 &gt; * + *</li>
+<li>space-x-4 &gt; * + *</li>
+<li>space-y-4 &gt; * + *</li>
+<li>space-x-5 &gt; * + *</li>
+<li>space-y-5 &gt; * + *</li>
+<li>space-x-6 &gt; * + *</li>
+<li>space-y-6 &gt; * + *</li>
+<li>space-x-7 &gt; * + *</li>
+<li>space-y-7 &gt; * + *</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/space"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="SVG"><a href="#SVG" class="headerlink" title="SVG"></a>SVG</h2><h3 id="Fill"><a href="#Fill" class="headerlink" title="Fill"></a>Fill</h3><p>用于样式化 SVG 元素填充的实用程序</p>
+<ul>
+<li>fill-none</li>
+<li>fill-inherit</li>
+<li>fill-current</li>
+<li>fill-transparent</li>
+<li>fill-black</li>
+<li>fill-white</li>
+<li>fill-slate-50</li>
+<li>fill-slate-100</li>
+<li>fill-slate-200</li>
+<li>fill-slate-300</li>
+<li>fill-slate-400</li>
+<li>fill-slate-500</li>
+<li>fill-slate-600</li>
+<li>fill-slate-700</li>
+<li>fill-slate-800</li>
+<li>fill-slate-900</li>
+<li>fill-gray-50</li>
+<li>fill-gray-100</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/fill"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Stroke"><a href="#Stroke" class="headerlink" title="Stroke"></a>Stroke</h3><p>用于设置 SVG 元素笔划样式的实用程序</p>
+<ul>
+<li>stroke-none</li>
+<li>stroke-inherit</li>
+<li>stroke-current</li>
+<li>stroke-transparent</li>
+<li>stroke-black</li>
+<li>stroke-white</li>
+<li>stroke-slate-50</li>
+<li>stroke-slate-100</li>
+<li>stroke-slate-200</li>
+<li>stroke-slate-300</li>
+<li>stroke-slate-400</li>
+<li>stroke-slate-500</li>
+<li>stroke-slate-600</li>
+<li>stroke-slate-700</li>
+<li>stroke-slate-800</li>
+<li>stroke-slate-900</li>
+<li>stroke-gray-50</li>
+<li>stroke-gray-100</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/fill"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Stroke-Width"><a href="#Stroke-Width" class="headerlink" title="Stroke Width"></a>Stroke Width</h3><p>用于设置 SVG 元素笔划宽度样式的实用程序</p>
+<ul>
+<li>stroke-0</li>
+<li>stroke-1</li>
+<li>stroke-2</li>
+</ul>
+<h2 id="Typography"><a href="#Typography" class="headerlink" title="Typography"></a>Typography</h2><h3 id="Font-Family"><a href="#Font-Family" class="headerlink" title="Font Family"></a>Font Family</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制元素字体系列的实用程序</p>
+<ul>
+<li>font-sans</li>
+<li>font-serif</li>
+<li>font-mono<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Font-Size"><a href="#Font-Size" class="headerlink" title="Font Size"></a>Font Size</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制元素字体大小的实用程序</p>
+<ul>
+<li>text-xs</li>
+<li>text-sm</li>
+<li>text-base</li>
+<li>text-lg</li>
+<li>text-xl</li>
+<li>text-2xl</li>
+<li>text-3xl</li>
+<li>text-4xl</li>
+<li>text-5xl</li>
+<li>text-6xl</li>
+<li>text-7xl</li>
+<li>text-8xl</li>
+<li>text-9xl<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Font-Smoothing"><a href="#Font-Smoothing" class="headerlink" title="Font Smoothing"></a>Font Smoothing</h3><p>用于控制元素字体平滑的实用程序</p>
+<ul>
+<li>antialiased</li>
+<li>subpixel-antialiased<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Font-Style"><a href="#Font-Style" class="headerlink" title="Font Style"></a>Font Style</h3><p>用于控制文本样式的实用程序</p>
+<ul>
+<li>italic</li>
+<li>not-italic<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Font-Weight"><a href="#Font-Weight" class="headerlink" title="Font Weight"></a>Font Weight</h3><p>用于控制元素字体粗细的实用程序</p>
+<ul>
+<li>font-thin</li>
+<li>font-extralight</li>
+<li>font-light</li>
+<li>font-normal</li>
+<li>font-medium</li>
+<li>font-semibold</li>
+<li>font-bold</li>
+<li>font-extrabold</li>
+<li>font-black<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Font-Variant-Numeric"><a href="#Font-Variant-Numeric" class="headerlink" title="Font Variant Numeric"></a>Font Variant Numeric</h3><p>用于控制数字变体的实用程序</p>
+<ul>
+<li>normal-nums</li>
+<li>ordinal</li>
+<li>slashed-zero</li>
+<li>lining-nums</li>
+<li>oldstyle-nums</li>
+<li>proportional-nums</li>
+<li>tabular-nums</li>
+<li>diagonal-fractions</li>
+<li>stacked-fractions<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Letter-Spacing"><a href="#Letter-Spacing" class="headerlink" title="Letter Spacing"></a>Letter Spacing</h3><p>用于控制元素的跟踪（字母间距）的实用程序</p>
+<ul>
+<li>tracking-tighter</li>
+<li>tracking-tight</li>
+<li>tracking-normal</li>
+<li>tracking-wide</li>
+<li>tracking-wider</li>
+<li>tracking-widest<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Line-Height"><a href="#Line-Height" class="headerlink" title="Line Height"></a>Line Height</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制元素行距（行高）的实用程序</p>
+<ul>
+<li>leading-3</li>
+<li>leading-4</li>
+<li>leading-5</li>
+<li>leading-6</li>
+<li>leading-7</li>
+<li>leading-8</li>
+<li>leading-9</li>
+<li>leading-10</li>
+<li>leading-none</li>
+<li>leading-tight</li>
+<li>leading-snug</li>
+<li>leading-normal</li>
+<li>leading-relaxed</li>
+<li>leading-loose<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="List-Style-Type"><a href="#List-Style-Type" class="headerlink" title="List Style Type"></a>List Style Type</h3><p>用于控制列表的项目符号&#x2F;编号样式的实用程序</p>
+<ul>
+<li>list-none</li>
+<li>list-disc</li>
+<li>list-decimal<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="List-Style-Position"><a href="#List-Style-Position" class="headerlink" title="List Style Position"></a>List Style Position</h3><p>用于控制列表中项目符号&#x2F;编号位置的实用程序</p>
+<ul>
+<li>list-inside</li>
+<li>list-outside<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Align"><a href="#Text-Align" class="headerlink" title="Text Align"></a>Text Align</h3><p>用于控制文本对齐的实用程序</p>
+<ul>
+<li>text-left</li>
+<li>text-center</li>
+<li>text-right</li>
+<li>text-justify</li>
+<li>text-start</li>
+<li>text-end<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Text-Decoration"><a href="#Text-Decoration" class="headerlink" title="Text Decoration"></a>Text Decoration</h3><p>用于控制文本装饰的实用程序</p>
+<ul>
+<li>underline</li>
+<li>overline</li>
+<li>line-through</li>
+<li>no-underline<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Color"><a href="#Text-Color" class="headerlink" title="Text Color"></a>Text Color</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制元素文本颜色的实用程序</p>
+<ul>
+<li>text-inherit</li>
+<li>text-current</li>
+<li>text-transparent</li>
+<li>text-black</li>
+<li>text-white</li>
+<li>text-slate-50</li>
+<li>text-slate-100</li>
+<li>text-slate-200</li>
+<li>text-slate-300</li>
+<li>text-slate-400</li>
+<li>text-slate-500</li>
+<li>text-slate-600</li>
+<li>text-slate-700</li>
+<li>text-slate-800</li>
+<li>text-slate-900</li>
+<li>text-gray-50</li>
+<li>text-gray-100</li>
+<li>text-gray-200</li>
+<li>text-gray-300</li>
+<li>text-gray-400</li>
+<li>text-gray-500</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/text-color"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Decoration-Color"><a href="#Text-Decoration-Color" class="headerlink" title="Text Decoration Color"></a>Text Decoration Color</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制文本装饰颜色的实用程序</p>
+<ul>
+<li>decoration-inherit</li>
+<li>decoration-current</li>
+<li>decoration-transparent</li>
+<li>decoration-black</li>
+<li>decoration-white</li>
+<li>decoration-slate-50</li>
+<li>decoration-slate-100</li>
+<li>decoration-slate-200</li>
+<li>decoration-slate-300</li>
+<li>decoration-slate-400</li>
+<li>decoration-slate-500</li>
+<li>decoration-slate-600</li>
+<li>decoration-slate-700</li>
+<li>decoration-slate-800</li>
+<li>decoration-slate-900</li>
+<li>decoration-gray-50</li>
+<li>decoration-gray-100</li>
+<li>decoration-gray-200</li>
+<li>decoration-gray-300</li>
+<li>decoration-gray-400</li>
+<li>decoration-gray-500</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/text-decoration-color"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Decoration-Style"><a href="#Text-Decoration-Style" class="headerlink" title="Text Decoration Style"></a>Text Decoration Style</h3><p>用于控制文本装饰样式的实用程序</p>
+<ul>
+<li>decoration-solid</li>
+<li>decoration-double</li>
+<li>decoration-dotted</li>
+<li>decoration-dashed</li>
+<li>decoration-wavy<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Decoration-Thickness"><a href="#Text-Decoration-Thickness" class="headerlink" title="Text Decoration Thickness"></a>Text Decoration Thickness</h3><p>用于控制文本装饰厚度的实用程序</p>
+<ul>
+<li>decoration-auto</li>
+<li>decoration-from-font</li>
+<li>decoration-0</li>
+<li>decoration-1</li>
+<li>decoration-2</li>
+<li>decoration-4</li>
+<li>decoration-8<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Underline-Offset"><a href="#Text-Underline-Offset" class="headerlink" title="Text Underline Offset"></a>Text Underline Offset</h3><p>用于控制文本下划线偏移量的实用程序</p>
+<ul>
+<li>underline-offset-auto</li>
+<li>underline-offset-0</li>
+<li>underline-offset-1</li>
+<li>underline-offset-2</li>
+<li>underline-offset-4</li>
+<li>underline-offset-8<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Transform"><a href="#Text-Transform" class="headerlink" title="Text Transform"></a>Text Transform</h3><p>用于控制文本转换的实用程序</p>
+<ul>
+<li>uppercase</li>
+<li>lowercase</li>
+<li>capitalize</li>
+<li>normal-case<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Overflow"><a href="#Text-Overflow" class="headerlink" title="Text Overflow"></a>Text Overflow</h3><p>用于控制元素中文本溢出的实用程序</p>
+<ul>
+<li>truncate</li>
+<li>text-ellipsis</li>
+<li>text-clip<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Text-Indent"><a href="#Text-Indent" class="headerlink" title="Text Indent"></a>Text Indent</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于控制块中文本前显示的空白空间量的实用程序</p>
+<ul>
+<li>indent-0</li>
+<li>indent-px</li>
+<li>indent-0.5</li>
+<li>indent-1</li>
+<li>indent-1.5</li>
+<li>indent-2</li>
+<li>indent-2.5</li>
+<li>indent-3</li>
+<li>indent-3.5</li>
+<li>indent-4</li>
+<li>indent-5</li>
+<li>indent-6</li>
+<li>indent-7</li>
+<li>indent-8</li>
+<li>indent-9</li>
+<li>indent-10</li>
+<li>indent-11</li>
+<li>indent-12</li>
+<li>indent-14</li>
+<li>indent-16</li>
+<li>indent-20</li>
+<li>indent-24</li>
+<li>indent-28</li>
+<li>indent-32</li>
+<li>indent-36</li>
+<li>indent-40</li>
+<li>indent-44</li>
+<li>indent-48</li>
+<li>indent-52</li>
+<li>indent-56</li>
+<li>indent-60</li>
+<li>indent-64</li>
+<li>indent-72</li>
+<li>indent-80</li>
+<li>indent-96<!--rehype:className=cols-4 style-none--></li>
+</ul>
+<h3 id="Vertical-Align"><a href="#Vertical-Align" class="headerlink" title="Vertical Align"></a>Vertical Align</h3><p>用于控制内联或表格单元格框的垂直对齐的实用程序</p>
+<ul>
+<li>align-baseline</li>
+<li>align-top</li>
+<li>align-middle</li>
+<li>align-bottom</li>
+<li>align-text-top</li>
+<li>align-text-bottom</li>
+<li>align-sub</li>
+<li>align-super<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Whitespace"><a href="#Whitespace" class="headerlink" title="Whitespace"></a>Whitespace</h3><p>用于控制元素的空白属性的实用程序</p>
+<ul>
+<li>whitespace-normal</li>
+<li>whitespace-nowrap</li>
+<li>whitespace-pre</li>
+<li>whitespace-pre-line</li>
+<li>whitespace-pre-wrap<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Word-Break"><a href="#Word-Break" class="headerlink" title="Word Break"></a>Word Break</h3><p>用于控制元素中的分词的实用程序</p>
+<ul>
+<li>break-normal</li>
+<li>break-words</li>
+<li>break-all</li>
+<li>break-keep<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Content"><a href="#Content" class="headerlink" title="Content"></a>Content</h3><p>用于控制前后伪元素内容的实用程序</p>
+<ul>
+<li>content-none<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Transforms"><a href="#Transforms" class="headerlink" title="Transforms"></a>Transforms</h2><h3 id="Scale"><a href="#Scale" class="headerlink" title="Scale"></a>Scale</h3><p>使用变换缩放元素的实用程序</p>
+<ul>
+<li>scale-0</li>
+<li>scale-x-0</li>
+<li>scale-y-0</li>
+<li>scale-50</li>
+<li>scale-x-50</li>
+<li>scale-y-50</li>
+<li>scale-75</li>
+<li>scale-x-75</li>
+<li>scale-y-75</li>
+<li>scale-90</li>
+<li>scale-x-90</li>
+<li>scale-y-90</li>
+<li>scale-95</li>
+<li>scale-x-95</li>
+<li>scale-y-95</li>
+<li>scale-100</li>
+<li>scale-x-100</li>
+<li>scale-y-100</li>
+<li>scale-105</li>
+<li>scale-x-105</li>
+<li>scale-y-105</li>
+<li>scale-110</li>
+<li>scale-x-110</li>
+<li>scale-y-110</li>
+<li>scale-125</li>
+<li>scale-x-125</li>
+<li>scale-y-125</li>
+<li>scale-150</li>
+<li>scale-x-150</li>
+<li>scale-y-150<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Rotate"><a href="#Rotate" class="headerlink" title="Rotate"></a>Rotate</h3><p>使用变换旋转元素的实用程序</p>
+<ul>
+<li>rotate-0</li>
+<li>rotate-1</li>
+<li>rotate-2</li>
+<li>rotate-3</li>
+<li>rotate-6</li>
+<li>rotate-12</li>
+<li>rotate-45</li>
+<li>rotate-90</li>
+<li>rotate-180<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Translate"><a href="#Translate" class="headerlink" title="Translate"></a>Translate</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>使用 transform 翻译元素的实用程序</p>
+<ul>
+<li>translate-x-0</li>
+<li>translate-y-0</li>
+<li>translate-x-px</li>
+<li>translate-y-px</li>
+<li>translate-x-0.5</li>
+<li>translate-y-0.5</li>
+<li>translate-x-1</li>
+<li>translate-y-1</li>
+<li>translate-x-1.5</li>
+<li>translate-y-1.5</li>
+<li>translate-x-2</li>
+<li>translate-y-2</li>
+<li>translate-x-2.5</li>
+<li>translate-y-2.5</li>
+<li>translate-x-3</li>
+<li>translate-y-3</li>
+<li>translate-x-3.5</li>
+<li>translate-y-3.5</li>
+<li>translate-x-4</li>
+<li>translate-y-4</li>
+<li>translate-x-5</li>
+<li>translate-y-5</li>
+<li>translate-x-6</li>
+<li>translate-y-6</li>
+<li>translate-x-7</li>
+<li>translate-y-7</li>
+<li>translate-x-8</li>
+<li>translate-y-8</li>
+<li>translate-x-9</li>
+<li>translate-y-9</li>
+<li>translate-x-10</li>
+<li>translate-y-10</li>
+<li>translate-x-11</li>
+<li>translate-y-11</li>
+<li>translate-x-12</li>
+<li>translate-y-12</li>
+<li>translate-x-14</li>
+<li>translate-y-14</li>
+<li>translate-x-16</li>
+<li>translate-y-16</li>
+<li>translate-x-20</li>
+<li>translate-y-20</li>
+<li>translate-x-24</li>
+<li>translate-y-24</li>
+<li>translate-x-28</li>
+<li>translate-y-28</li>
+<li>translate-x-32</li>
+<li>translate-y-32</li>
+<li>translate-x-36</li>
+<li>translate-y-36</li>
+<li>translate-x-40</li>
+<li>translate-y-40</li>
+<li>translate-x-44</li>
+<li>translate-y-44</li>
+<li>translate-x-48</li>
+<li>translate-y-48</li>
+<li>translate-x-52</li>
+<li>translate-y-52</li>
+<li>translate-x-56</li>
+<li>translate-y-56</li>
+<li>translate-x-60</li>
+<li>translate-y-60</li>
+<li>translate-x-64</li>
+<li>translate-y-64</li>
+<li>translate-x-72</li>
+<li>translate-y-72</li>
+<li>translate-x-80</li>
+<li>translate-y-80</li>
+<li>translate-x-96</li>
+<li>translate-y-96</li>
+<li>translate-x-1&#x2F;2</li>
+<li>translate-x-1&#x2F;3</li>
+<li>translate-x-2&#x2F;3</li>
+<li>translate-x-1&#x2F;4</li>
+<li>translate-x-2&#x2F;4</li>
+<li>translate-x-3&#x2F;4</li>
+<li>translate-x-full</li>
+<li>translate-y-1&#x2F;2</li>
+<li>translate-y-1&#x2F;3</li>
+<li>translate-y-2&#x2F;3</li>
+<li>translate-y-1&#x2F;4</li>
+<li>translate-y-2&#x2F;4</li>
+<li>translate-y-3&#x2F;4</li>
+<li>translate-y-full<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Skew"><a href="#Skew" class="headerlink" title="Skew"></a>Skew</h3><p>使用变换倾斜元素的实用程序</p>
+<ul>
+<li>skew-x-0</li>
+<li>skew-y-0</li>
+<li>skew-x-1</li>
+<li>skew-y-1</li>
+<li>skew-x-2</li>
+<li>skew-y-2</li>
+<li>skew-x-3</li>
+<li>skew-y-3</li>
+<li>skew-x-6</li>
+<li>skew-y-6</li>
+<li>skew-x-12</li>
+<li>skew-y-12<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Transform-Origin"><a href="#Transform-Origin" class="headerlink" title="Transform Origin"></a>Transform Origin</h3><p>用于指定元素转换原点的实用程序</p>
+<ul>
+<li>origin-center</li>
+<li>origin-top</li>
+<li>origin-top-right</li>
+<li>origin-right</li>
+<li>origin-bottom-right</li>
+<li>origin-bottom</li>
+<li>origin-bottom-left</li>
+<li>origin-left</li>
+<li>origin-top-left<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Interactivity"><a href="#Interactivity" class="headerlink" title="Interactivity"></a>Interactivity</h2><h3 id="Accent-Color"><a href="#Accent-Color" class="headerlink" title="Accent Color"></a>Accent Color</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<p>用于控制表单控件强调色的实用程序</p>
+<ul>
+<li>accent-inherit</li>
+<li>accent-current</li>
+<li>accent-transparent</li>
+<li>accent-black</li>
+<li>accent-white</li>
+<li>accent-slate-50</li>
+<li>accent-slate-100</li>
+<li>accent-slate-200</li>
+<li>accent-slate-300</li>
+<li>accent-slate-400</li>
+<li>accent-slate-500</li>
+<li>accent-slate-600</li>
+<li>accent-slate-700</li>
+<li>accent-slate-800</li>
+<li>accent-slate-900</li>
+<li>accent-gray-50</li>
+<li>accent-gray-100</li>
+<li>accent-gray-200</li>
+<li>accent-gray-300</li>
+<li>accent-gray-400</li>
+<li>accent-gray-500</li>
+<li>accent-gray-600</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/text-decoration-color"><kbd>...</kbd></a><!--rehype:className=cols-4 style-none--></li>
+</ul>
+<h3 id="Appearance"><a href="#Appearance" class="headerlink" title="Appearance"></a>Appearance</h3><p>用于抑制本机表单控件样式的实用程序</p>
+<ul>
+<li>appearance-none</li>
+</ul>
+<h3 id="Pointer-Events"><a href="#Pointer-Events" class="headerlink" title="Pointer Events"></a>Pointer Events</h3><p>用于控制元素是否响应指针事件的实用程序</p>
+<ul>
+<li>pointer-events-none</li>
+<li>pointer-events-auto<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Cursor"><a href="#Cursor" class="headerlink" title="Cursor"></a>Cursor</h3><!--rehype:wrap-class=row-span-5-->
+
+<p>将鼠标悬停在元素上时控制光标样式的实用程序</p>
+<ul>
+<li>cursor-auto</li>
+<li>cursor-default</li>
+<li>cursor-pointer</li>
+<li>cursor-wait</li>
+<li>cursor-text</li>
+<li>cursor-move</li>
+<li>cursor-help</li>
+<li>cursor-not-allowed</li>
+<li>cursor-none</li>
+<li>cursor-context-menu</li>
+<li>cursor-progress</li>
+<li>cursor-cell</li>
+<li>cursor-crosshair</li>
+<li>cursor-vertical-text</li>
+<li>cursor-alias</li>
+<li>cursor-copy</li>
+<li>cursor-no-drop</li>
+<li>cursor-grab</li>
+<li>cursor-grabbing</li>
+<li>cursor-all-scroll</li>
+<li>cursor-col-resize</li>
+<li>cursor-row-resize</li>
+<li>cursor-n-resize</li>
+<li>cursor-e-resize</li>
+<li>cursor-s-resize</li>
+<li>cursor-w-resize</li>
+<li>cursor-ne-resize</li>
+<li>cursor-nw-resize</li>
+<li>cursor-se-resize</li>
+<li>cursor-sw-resize</li>
+<li>cursor-ew-resize</li>
+<li>cursor-ns-resize</li>
+<li>cursor-nesw-resize</li>
+<li>cursor-nwse-resize</li>
+<li>cursor-zoom-in</li>
+<li>cursor-zoom-out<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Caret-Color"><a href="#Caret-Color" class="headerlink" title="Caret Color"></a>Caret Color</h3><!--rehype:wrap-class=row-span-5-->
+
+<p>用于控制文本输入光标颜色的实用程序</p>
+<ul>
+<li>caret-inherit</li>
+<li>caret-current</li>
+<li>caret-transparent</li>
+<li>caret-black</li>
+<li>caret-white</li>
+<li>caret-slate-50</li>
+<li>caret-slate-100</li>
+<li>caret-slate-200</li>
+<li>caret-slate-300</li>
+<li>caret-slate-400</li>
+<li>caret-slate-500</li>
+<li>caret-slate-600</li>
+<li>caret-slate-700</li>
+<li>caret-slate-800</li>
+<li>caret-slate-900</li>
+<li>caret-gray-50</li>
+<li>caret-gray-100</li>
+<li>caret-gray-200</li>
+<li>caret-gray-300</li>
+<li>caret-gray-400</li>
+<li>caret-gray-500</li>
+<li>caret-gray-600</li>
+<li>caret-gray-700</li>
+<li>caret-gray-800</li>
+<li>caret-gray-900</li>
+<li>caret-zinc-50</li>
+<li>caret-zinc-100</li>
+<li>caret-zinc-200</li>
+<li>caret-zinc-300</li>
+<li>caret-zinc-400</li>
+<li>caret-zinc-500</li>
+<li>caret-zinc-600</li>
+<li>caret-zinc-700</li>
+<li>caret-zinc-800</li>
+<li>caret-zinc-900</li>
+<li>caret-neutral-50</li>
+<li>caret-neutral-100</li>
+<li>caret-neutral-200</li>
+<li>caret-neutral-300</li>
+<li>caret-neutral-400</li>
+<li>caret-neutral-500</li>
+<li>caret-neutral-600</li>
+<li>caret-neutral-700</li>
+<li>caret-neutral-800</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/caret-color"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Resize"><a href="#Resize" class="headerlink" title="Resize"></a>Resize</h3><p>用于控制如何调整元素大小的实用程序</p>
+<ul>
+<li>resize-none</li>
+<li>resize-y</li>
+<li>resize-x</li>
+<li>resize<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Scroll-Behavior"><a href="#Scroll-Behavior" class="headerlink" title="Scroll Behavior"></a>Scroll Behavior</h3><p>用于控制元素滚动行为的实用程序</p>
+<ul>
+<li>scroll-auto</li>
+<li>scroll-smooth<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Scroll-Snap-Align"><a href="#Scroll-Snap-Align" class="headerlink" title="Scroll Snap Align"></a>Scroll Snap Align</h3><p>用于控制元素的滚动对齐对齐的实用程序</p>
+<ul>
+<li>snap-start</li>
+<li>snap-end</li>
+<li>snap-center</li>
+<li>snap-align-none<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Scroll-Snap-Stop"><a href="#Scroll-Snap-Stop" class="headerlink" title="Scroll Snap Stop"></a>Scroll Snap Stop</h3><p>用于控制您是否可以跳过可能的对齐位置的实用程序</p>
+<ul>
+<li>snap-normal</li>
+<li>snap-always<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Scroll-Snap-Type"><a href="#Scroll-Snap-Type" class="headerlink" title="Scroll Snap Type"></a>Scroll Snap Type</h3><p>用于控制在捕捉容器中强制执行捕捉点的严格程度的实用程序</p>
+<ul>
+<li>snap-none</li>
+<li>snap-x</li>
+<li>snap-y</li>
+<li>snap-both</li>
+<li>snap-mandatory</li>
+<li>snap-proximity<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Scroll-Margin"><a href="#Scroll-Margin" class="headerlink" title="Scroll Margin"></a>Scroll Margin</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>用于控制快照容器中项目周围滚动偏移的实用程序</p>
+<ul>
+<li>scroll-m-0</li>
+<li>scroll-mx-0</li>
+<li>scroll-my-0</li>
+<li>scroll-mt-0</li>
+<li>scroll-mr-0</li>
+<li>scroll-mb-0</li>
+<li>scroll-ml-0</li>
+<li>scroll-m-px</li>
+<li>scroll-mx-px</li>
+<li>scroll-my-px</li>
+<li>scroll-mt-px</li>
+<li>scroll-mr-px</li>
+<li>scroll-mb-px</li>
+<li>scroll-ml-px</li>
+<li>scroll-m-0.5</li>
+<li>scroll-mx-0.5</li>
+<li>scroll-my-0.5</li>
+<li>scroll-mt-0.5</li>
+<li>scroll-mr-0.5</li>
+<li>scroll-mb-0.5</li>
+<li>scroll-ml-0.5</li>
+<li>scroll-m-1</li>
+<li>scroll-mx-1</li>
+<li>scroll-my-1</li>
+<li>scroll-mt-1</li>
+<li>scroll-mr-1</li>
+<li>scroll-mb-1</li>
+<li>scroll-ml-1</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/scroll-margin"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Scroll-Padding"><a href="#Scroll-Padding" class="headerlink" title="Scroll Padding"></a>Scroll Padding</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>用于控制元素在 snap 容器中的滚动偏移的实用程序</p>
+<ul>
+<li>scroll-p-0</li>
+<li>scroll-px-0</li>
+<li>scroll-py-0</li>
+<li>scroll-pt-0</li>
+<li>scroll-pr-0</li>
+<li>scroll-pb-0</li>
+<li>scroll-pl-0</li>
+<li>scroll-p-px</li>
+<li>scroll-px-px</li>
+<li>scroll-py-px</li>
+<li>scroll-pt-px</li>
+<li>scroll-pr-px</li>
+<li>scroll-pb-px</li>
+<li>scroll-pl-px</li>
+<li>scroll-p-0.5</li>
+<li>scroll-px-0.5</li>
+<li>scroll-py-0.5</li>
+<li>scroll-pt-0.5</li>
+<li>scroll-pr-0.5</li>
+<li>scroll-pb-0.5</li>
+<li>scroll-pl-0.5</li>
+<li>scroll-p-1</li>
+<li>scroll-px-1</li>
+<li>scroll-py-1</li>
+<li>scroll-pt-1</li>
+<li>scroll-pr-1</li>
+<li>scroll-pb-1</li>
+<li>scroll-pl-1</li>
+<li><a target="_blank" rel="noopener" href="https://tailwindcss.com/docs/scroll-padding"><kbd>...</kbd></a><!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Touch-Action"><a href="#Touch-Action" class="headerlink" title="Touch Action"></a>Touch Action</h3><p>用于控制元素如何在触摸屏上滚动和缩放的实用程序</p>
+<ul>
+<li>touch-auto</li>
+<li>touch-none</li>
+<li>touch-pan-x</li>
+<li>touch-pan-left</li>
+<li>touch-pan-right</li>
+<li>touch-pan-y</li>
+<li>touch-pan-up</li>
+<li>touch-pan-down</li>
+<li>touch-pinch-zoom</li>
+<li>touch-manipulation<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="User-Select"><a href="#User-Select" class="headerlink" title="User Select"></a>User Select</h3><p>用于控制用户是否可以选择元素中的文本的实用程序</p>
+<ul>
+<li>select-none</li>
+<li>select-text</li>
+<li>select-all</li>
+<li>select-auto<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Will-Change"><a href="#Will-Change" class="headerlink" title="Will Change"></a>Will Change</h3><p>用于优化即将发生变化的元素动画的实用程序</p>
+<ul>
+<li>will-change-auto</li>
+<li>will-change-scroll</li>
+<li>will-change-contents</li>
+<li>will-change-transform<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Filters"><a href="#Filters" class="headerlink" title="Filters"></a>Filters</h2><h3 id="Blur"><a href="#Blur" class="headerlink" title="Blur"></a>Blur</h3><p>将模糊滤镜应用于元素的实用程序</p>
+<ul>
+<li>blur-none</li>
+<li>blur-sm</li>
+<li>blur</li>
+<li>blur-md</li>
+<li>blur-lg</li>
+<li>blur-xl</li>
+<li>blur-2xl</li>
+<li>blur-3xl<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Brightness"><a href="#Brightness" class="headerlink" title="Brightness"></a>Brightness</h3><p>将亮度过滤器应用于元素的实用程序</p>
+<ul>
+<li>brightness-0</li>
+<li>brightness-50</li>
+<li>brightness-75</li>
+<li>brightness-90</li>
+<li>brightness-95</li>
+<li>brightness-100</li>
+<li>brightness-105</li>
+<li>brightness-110</li>
+<li>brightness-125</li>
+<li>brightness-150</li>
+<li>brightness-200<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Contrast"><a href="#Contrast" class="headerlink" title="Contrast"></a>Contrast</h3><p>用于将对比滤镜应用于元素的实用程序</p>
+<ul>
+<li>contrast-0</li>
+<li>contrast-50</li>
+<li>contrast-75</li>
+<li>contrast-100</li>
+<li>contrast-125</li>
+<li>contrast-150</li>
+<li>contrast-200<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Drop-Shadow"><a href="#Drop-Shadow" class="headerlink" title="Drop Shadow"></a>Drop Shadow</h3><p>用于将阴影滤镜应用于元素的实用程序</p>
+<ul>
+<li>drop-shadow-sm</li>
+<li>drop-shadow</li>
+<li>drop-shadow-md</li>
+<li>drop-shadow-lg</li>
+<li>drop-shadow-xl</li>
+<li>drop-shadow-2xl</li>
+<li>drop-shadow-none<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Grayscale"><a href="#Grayscale" class="headerlink" title="Grayscale"></a>Grayscale</h3><p>用于将灰度滤镜应用于元素的实用程序</p>
+<ul>
+<li>grayscale-0</li>
+<li>grayscale<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Hue-Rotate"><a href="#Hue-Rotate" class="headerlink" title="Hue Rotate"></a>Hue Rotate</h3><p>用于将色调旋转滤镜应用于元素的实用程序</p>
+<ul>
+<li>hue-rotate-0</li>
+<li>hue-rotate-15</li>
+<li>hue-rotate-30</li>
+<li>hue-rotate-60</li>
+<li>hue-rotate-90</li>
+<li>hue-rotate-180<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Invert"><a href="#Invert" class="headerlink" title="Invert"></a>Invert</h3><p>用于将反转过滤器应用于元素的实用程序</p>
+<ul>
+<li>invert-0</li>
+<li>invert<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Saturate"><a href="#Saturate" class="headerlink" title="Saturate"></a>Saturate</h3><p>用于将饱和过滤器应用于元素的实用程序</p>
+<ul>
+<li>saturate-0</li>
+<li>saturate-50</li>
+<li>saturate-100</li>
+<li>saturate-150</li>
+<li>saturate-200<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Sepia"><a href="#Sepia" class="headerlink" title="Sepia"></a>Sepia</h3><p>将棕褐色滤镜应用于元素的实用程序</p>
+<ul>
+<li>sepia-0</li>
+<li>sepia<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Blur"><a href="#Backdrop-Blur" class="headerlink" title="Backdrop Blur"></a>Backdrop Blur</h3><p>将背景模糊滤镜应用于元素的实用程序</p>
+<ul>
+<li>backdrop-blur-none</li>
+<li>backdrop-blur-sm</li>
+<li>backdrop-blur</li>
+<li>backdrop-blur-md</li>
+<li>backdrop-blur-lg</li>
+<li>backdrop-blur-xl</li>
+<li>backdrop-blur-2xl</li>
+<li>backdrop-blur-3xl<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Brightness"><a href="#Backdrop-Brightness" class="headerlink" title="Backdrop Brightness"></a>Backdrop Brightness</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>将背景亮度滤镜应用于元素的实用程序</p>
+<ul>
+<li>backdrop-brightness-0</li>
+<li>backdrop-brightness-50</li>
+<li>backdrop-brightness-75</li>
+<li>backdrop-brightness-90</li>
+<li>backdrop-brightness-95</li>
+<li>backdrop-brightness-100</li>
+<li>backdrop-brightness-105</li>
+<li>backdrop-brightness-110</li>
+<li>backdrop-brightness-125</li>
+<li>backdrop-brightness-150</li>
+<li>backdrop-brightness-200</li>
+</ul>
+<h3 id="Backdrop-Contrast"><a href="#Backdrop-Contrast" class="headerlink" title="Backdrop Contrast"></a>Backdrop Contrast</h3><p>用于将背景对比度滤镜应用于元素的实用程序</p>
+<ul>
+<li>backdrop-contrast-0</li>
+<li>backdrop-contrast-50</li>
+<li>backdrop-contrast-75</li>
+<li>backdrop-contrast-100</li>
+<li>backdrop-contrast-125</li>
+<li>backdrop-contrast-150</li>
+<li>backdrop-contrast-200<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Grayscale"><a href="#Backdrop-Grayscale" class="headerlink" title="Backdrop Grayscale"></a>Backdrop Grayscale</h3><p>用于将背景灰度滤镜应用于元素的实用程序</p>
+<ul>
+<li>backdrop-grayscale-0</li>
+<li>backdrop-grayscale<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Hue-Rotate"><a href="#Backdrop-Hue-Rotate" class="headerlink" title="Backdrop Hue Rotate"></a>Backdrop Hue Rotate</h3><p>将背景色调旋转滤镜应用于元素的实用程序</p>
+<ul>
+<li>backdrop-hue-rotate-0</li>
+<li>backdrop-hue-rotate-15</li>
+<li>backdrop-hue-rotate-30</li>
+<li>backdrop-hue-rotate-60</li>
+<li>backdrop-hue-rotate-90</li>
+<li>backdrop-hue-rotate-180<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Invert"><a href="#Backdrop-Invert" class="headerlink" title="Backdrop Invert"></a>Backdrop Invert</h3><p>将背景反转滤镜应用于元素的实用程序</p>
+<ul>
+<li>backdrop-invert-0</li>
+<li>backdrop-invert<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Opacity"><a href="#Backdrop-Opacity" class="headerlink" title="Backdrop Opacity"></a>Backdrop Opacity</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>用于将背景不透明度过滤器应用于元素的实用程序</p>
+<ul>
+<li>backdrop-opacity-0</li>
+<li>backdrop-opacity-5</li>
+<li>backdrop-opacity-10</li>
+<li>backdrop-opacity-20</li>
+<li>backdrop-opacity-25</li>
+<li>backdrop-opacity-30</li>
+<li>backdrop-opacity-40</li>
+<li>backdrop-opacity-50</li>
+<li>backdrop-opacity-60</li>
+<li>backdrop-opacity-70</li>
+<li>backdrop-opacity-75</li>
+<li>backdrop-opacity-80</li>
+<li>backdrop-opacity-90</li>
+<li>backdrop-opacity-95</li>
+<li>backdrop-opacity-100<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Saturate"><a href="#Backdrop-Saturate" class="headerlink" title="Backdrop Saturate"></a>Backdrop Saturate</h3><p>用于将背景饱和度滤镜应用于元素的实用程序</p>
+<ul>
+<li>backdrop-saturate-0</li>
+<li>backdrop-saturate-50</li>
+<li>backdrop-saturate-100</li>
+<li>backdrop-saturate-150</li>
+<li>backdrop-saturate-200<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Backdrop-Sepia"><a href="#Backdrop-Sepia" class="headerlink" title="Backdrop Sepia"></a>Backdrop Sepia</h3><p>将背景棕褐色过滤器应用于元素的实用程序</p>
+<ul>
+<li>backdrop-sepia-0</li>
+<li>backdrop-sepia<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Flexbox-Grid"><a href="#Flexbox-Grid" class="headerlink" title="Flexbox &amp; Grid"></a>Flexbox &amp; Grid</h2><h3 id="Flex-Basis"><a href="#Flex-Basis" class="headerlink" title="Flex Basis"></a>Flex Basis</h3><!--rehype:wrap-class=col-span-2 row-span-4-->
+
+<p>用于控制弹性项目初始大小的实用程序</p>
+<ul>
+<li>basis-0</li>
+<li>basis-1</li>
+<li>basis-2</li>
+<li>basis-3</li>
+<li>basis-4</li>
+<li>basis-5</li>
+<li>basis-6</li>
+<li>basis-7</li>
+<li>basis-8</li>
+<li>basis-9</li>
+<li>basis-10</li>
+<li>basis-11</li>
+<li>basis-12</li>
+<li>basis-14</li>
+<li>basis-16</li>
+<li>basis-20</li>
+<li>basis-24</li>
+<li>basis-28</li>
+<li>basis-32</li>
+<li>basis-36</li>
+<li>basis-40</li>
+<li>basis-44</li>
+<li>basis-48</li>
+<li>basis-52</li>
+<li>basis-56</li>
+<li>basis-60</li>
+<li>basis-64</li>
+<li>basis-72</li>
+<li>basis-80</li>
+<li>basis-96</li>
+<li>basis-auto</li>
+<li>basis-px</li>
+<li>basis-0.5</li>
+<li>basis-1.5</li>
+<li>basis-2.5</li>
+<li>basis-3.5</li>
+<li>basis-1&#x2F;2</li>
+<li>basis-1&#x2F;3</li>
+<li>basis-2&#x2F;3</li>
+<li>basis-1&#x2F;4</li>
+<li>basis-2&#x2F;4</li>
+<li>basis-3&#x2F;4</li>
+<li>basis-1&#x2F;5</li>
+<li>basis-2&#x2F;5</li>
+<li>basis-3&#x2F;5</li>
+<li>basis-4&#x2F;5</li>
+<li>basis-1&#x2F;6</li>
+<li>basis-2&#x2F;6</li>
+<li>basis-3&#x2F;6</li>
+<li>basis-4&#x2F;6</li>
+<li>basis-5&#x2F;6</li>
+<li>basis-1&#x2F;12</li>
+<li>basis-2&#x2F;12</li>
+<li>basis-3&#x2F;12</li>
+<li>basis-4&#x2F;12</li>
+<li>basis-5&#x2F;12</li>
+<li>basis-6&#x2F;12</li>
+<li>basis-7&#x2F;12</li>
+<li>basis-8&#x2F;12</li>
+<li>basis-9&#x2F;12</li>
+<li>basis-10&#x2F;12</li>
+<li>basis-11&#x2F;12</li>
+<li>basis-full<!--rehype:className=cols-5 style-none--></li>
+</ul>
+<h3 id="Flex-Direction"><a href="#Flex-Direction" class="headerlink" title="Flex Direction"></a>Flex Direction</h3><p>用于控制弹性项目方向的实用程序</p>
+<ul>
+<li>flex-row</li>
+<li>flex-row-reverse</li>
+<li>flex-col</li>
+<li>flex-col-reverse<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Flex-Wrap"><a href="#Flex-Wrap" class="headerlink" title="Flex Wrap"></a>Flex Wrap</h3><p>用于控制弹性项目包装方式的实用程序</p>
+<ul>
+<li>flex-wrap</li>
+<li>flex-wrap-reverse</li>
+<li>flex-nowrap<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Flex"><a href="#Flex" class="headerlink" title="Flex"></a>Flex</h3><p>用于控制弹性项目如何增长和收缩的实用程序</p>
+<ul>
+<li>flex-1</li>
+<li>flex-auto</li>
+<li>flex-initial</li>
+<li>flex-none<!--rehype:className=cols-4 style-none--></li>
+</ul>
+<h3 id="Flex-Grow"><a href="#Flex-Grow" class="headerlink" title="Flex Grow"></a>Flex Grow</h3><p>用于控制弹性项目增长方式的实用程序</p>
+<ul>
+<li>grow</li>
+<li>grow-0<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Flex-Shrink"><a href="#Flex-Shrink" class="headerlink" title="Flex Shrink"></a>Flex Shrink</h3><p>用于控制弹性项目收缩方式的实用程序</p>
+<ul>
+<li>shrink</li>
+<li>shrink-0<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Order"><a href="#Order" class="headerlink" title="Order"></a>Order</h3><p>用于控制弹性和网格项目顺序的实用程序</p>
+<ul>
+<li>order-1</li>
+<li>order-2</li>
+<li>order-3</li>
+<li>order-4</li>
+<li>order-5</li>
+<li>order-6</li>
+<li>order-7</li>
+<li>order-8</li>
+<li>order-9</li>
+<li>order-10</li>
+<li>order-11</li>
+<li>order-12</li>
+<li>order-first</li>
+<li>order-last</li>
+<li>order-none<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Grid-Template-Columns"><a href="#Grid-Template-Columns" class="headerlink" title="Grid Template Columns"></a>Grid Template Columns</h3><p>用于指定网格布局中的列的实用程序</p>
+<ul>
+<li>grid-cols-1</li>
+<li>grid-cols-2</li>
+<li>grid-cols-3</li>
+<li>grid-cols-4</li>
+<li>grid-cols-5</li>
+<li>grid-cols-6</li>
+<li>grid-cols-7</li>
+<li>grid-cols-8</li>
+<li>grid-cols-9</li>
+<li>grid-cols-10</li>
+<li>grid-cols-11</li>
+<li>grid-cols-12</li>
+<li>grid-cols-none<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Grid-Column-Start-End"><a href="#Grid-Column-Start-End" class="headerlink" title="Grid Column Start&#x2F;End"></a>Grid Column Start&#x2F;End</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>用于控制元素如何调整大小和跨网格列放置的实用程序</p>
+<ul>
+<li>col-auto</li>
+<li>col-span-1</li>
+<li>col-span-2</li>
+<li>col-span-3</li>
+<li>col-span-4</li>
+<li>col-span-5</li>
+<li>col-span-6</li>
+<li>col-span-7</li>
+<li>col-span-8</li>
+<li>col-span-9</li>
+<li>col-span-10</li>
+<li>col-span-11</li>
+<li>col-span-12</li>
+<li>col-span-full</li>
+<li>col-start-1</li>
+<li>col-start-2</li>
+<li>col-start-3</li>
+<li>col-start-4</li>
+<li>col-start-5</li>
+<li>col-start-6</li>
+<li>col-start-7</li>
+<li>col-start-8</li>
+<li>col-start-9</li>
+<li>col-start-10</li>
+<li>col-start-11</li>
+<li>col-start-12</li>
+<li>col-start-13</li>
+<li>col-start-auto</li>
+<li>col-end-1</li>
+<li>col-end-2</li>
+<li>col-end-3</li>
+<li>col-end-4</li>
+<li>col-end-5</li>
+<li>col-end-6</li>
+<li>col-end-7</li>
+<li>col-end-8</li>
+<li>col-end-9</li>
+<li>col-end-10</li>
+<li>col-end-11</li>
+<li>col-end-12</li>
+<li>col-end-13</li>
+<li>col-end-auto<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Grid-Template-Rows"><a href="#Grid-Template-Rows" class="headerlink" title="Grid Template Rows"></a>Grid Template Rows</h3><p>用于指定网格布局中的行的实用程序</p>
+<ul>
+<li>grid-rows-1</li>
+<li>grid-rows-2</li>
+<li>grid-rows-3</li>
+<li>grid-rows-4</li>
+<li>grid-rows-5</li>
+<li>grid-rows-6</li>
+<li>grid-rows-none<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Grid-Row-Start-End"><a href="#Grid-Row-Start-End" class="headerlink" title="Grid Row Start&#x2F;End"></a>Grid Row Start&#x2F;End</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>用于控制元素如何调整大小和跨网格行放置的实用程序</p>
+<ul>
+<li>row-auto</li>
+<li>row-span-1</li>
+<li>row-span-2</li>
+<li>row-span-3</li>
+<li>row-span-4</li>
+<li>row-span-5</li>
+<li>row-span-6</li>
+<li>row-span-full</li>
+<li>row-start-1</li>
+<li>row-start-2</li>
+<li>row-start-3</li>
+<li>row-start-4</li>
+<li>row-start-5</li>
+<li>row-start-6</li>
+<li>row-start-7</li>
+<li>row-start-auto</li>
+<li>row-end-1</li>
+<li>row-end-2</li>
+<li>row-end-3</li>
+<li>row-end-4</li>
+<li>row-end-5</li>
+<li>row-end-6</li>
+<li>row-end-7</li>
+<li>row-end-auto<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Grid-Auto-Flow"><a href="#Grid-Auto-Flow" class="headerlink" title="Grid Auto Flow"></a>Grid Auto Flow</h3><p>用于控制网格中元素如何自动放置的实用程序</p>
+<ul>
+<li>grid-flow-row</li>
+<li>grid-flow-col</li>
+<li>grid-flow-dense</li>
+<li>grid-flow-row-dense</li>
+<li>grid-flow-col-dense<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Grid-Auto-Columns"><a href="#Grid-Auto-Columns" class="headerlink" title="Grid Auto Columns"></a>Grid Auto Columns</h3><p>用于控制隐式创建的网格列大小的实用程序</p>
+<ul>
+<li>auto-cols-auto</li>
+<li>auto-cols-min</li>
+<li>auto-cols-max</li>
+<li>auto-cols-fr<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Grid-Auto-Rows"><a href="#Grid-Auto-Rows" class="headerlink" title="Grid Auto Rows"></a>Grid Auto Rows</h3><p>用于控制隐式创建的网格行大小的实用程序</p>
+<ul>
+<li>auto-rows-auto</li>
+<li>auto-rows-min</li>
+<li>auto-rows-max</li>
+<li>auto-rows-fr<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Gap"><a href="#Gap" class="headerlink" title="Gap"></a>Gap</h3><!--rehype:wrap-class=row-span-5-->
+
+<p>用于控制网格和 flexbox 项目之间的间距的实用程序</p>
+<ul>
+<li>gap-x-0</li>
+<li>gap-y-0</li>
+<li>gap-px</li>
+<li>gap-x-px</li>
+<li>gap-y-px</li>
+<li>gap-0.5</li>
+<li>gap-x-0.5</li>
+<li>gap-y-0.5</li>
+<li>gap-1</li>
+<li>gap-x-1</li>
+<li>gap-y-1</li>
+<li>gap-1.5</li>
+<li>gap-x-1.5</li>
+<li>gap-y-1.5</li>
+<li>gap-2</li>
+<li>gap-x-2</li>
+<li>gap-y-2</li>
+<li>gap-2.5</li>
+<li>gap-x-2.5</li>
+<li>gap-y-2.5</li>
+<li>gap-3</li>
+<li>gap-x-3</li>
+<li>gap-y-3</li>
+<li>gap-3.5</li>
+<li>gap-x-3.5</li>
+<li>gap-y-3.5</li>
+<li>gap-4</li>
+<li>gap-x-4</li>
+<li>gap-y-4</li>
+<li>gap-5</li>
+<li>gap-x-5</li>
+<li>gap-y-5</li>
+<li>gap-6</li>
+<li>gap-x-6</li>
+<li>gap-y-6</li>
+<li>gap-7</li>
+<li>gap-x-7</li>
+<li>gap-y-7</li>
+<li>gap-8</li>
+<li>gap-x-8</li>
+<li>gap-y-8</li>
+<li>gap-9</li>
+<li>gap-x-9</li>
+<li>gap-y-9</li>
+<li>gap-10</li>
+<li>gap-x-10</li>
+<li>gap-y-10</li>
+<li>gap-11</li>
+<li>gap-x-11</li>
+<li>gap-y-11</li>
+<li>gap-12</li>
+<li>gap-x-12</li>
+<li>gap-y-12</li>
+<li>gap-14</li>
+<li>gap-x-14</li>
+<li>gap-y-14</li>
+<li>gap-16</li>
+<li>gap-x-16</li>
+<li>gap-y-16</li>
+<li>gap-20</li>
+<li>gap-x-20</li>
+<li>gap-y-20</li>
+<li>gap-24</li>
+<li>gap-x-24</li>
+<li>gap-y-24</li>
+<li>gap-28</li>
+<li>gap-x-28</li>
+<li>gap-y-28</li>
+<li>gap-32</li>
+<li>gap-x-32</li>
+<li>gap-y-32</li>
+<li>gap-36</li>
+<li>gap-x-36</li>
+<li>gap-y-36</li>
+<li>gap-40</li>
+<li>gap-x-40</li>
+<li>gap-y-40</li>
+<li>gap-44</li>
+<li>gap-x-44</li>
+<li>gap-y-44</li>
+<li>gap-48</li>
+<li>gap-x-48</li>
+<li>gap-y-48</li>
+<li>gap-52</li>
+<li>gap-x-52</li>
+<li>gap-y-52</li>
+<li>gap-56</li>
+<li>gap-x-56</li>
+<li>gap-y-56</li>
+<li>gap-60</li>
+<li>gap-x-60</li>
+<li>gap-y-60</li>
+<li>gap-64</li>
+<li>gap-x-64</li>
+<li>gap-y-64</li>
+<li>gap-72</li>
+<li>gap-x-72</li>
+<li>gap-y-72</li>
+<li>gap-80</li>
+<li>gap-x-80</li>
+<li>gap-y-80</li>
+<li>gap-96</li>
+<li>gap-x-96</li>
+<li>gap-y-96<!--rehype:className=cols-3 style-none--></li>
+</ul>
+<h3 id="Justify-Content"><a href="#Justify-Content" class="headerlink" title="Justify Content"></a>Justify Content</h3><p>用于控制 flex 和 grid 项目如何沿容器的主轴定位的实用程序</p>
+<ul>
+<li>justify-start</li>
+<li>justify-end</li>
+<li>justify-center</li>
+<li>justify-between</li>
+<li>justify-around</li>
+<li>justify-evenly<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Justify-Items"><a href="#Justify-Items" class="headerlink" title="Justify Items"></a>Justify Items</h3><p>用于控制网格项目如何沿其内联轴对齐的实用程序</p>
+<ul>
+<li>justify-items-start</li>
+<li>justify-items-end</li>
+<li>justify-items-center</li>
+<li>justify-items-stretch<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Justify-Self"><a href="#Justify-Self" class="headerlink" title="Justify Self"></a>Justify Self</h3><p>用于控制单个网格项目如何沿其内联轴对齐的实用程序</p>
+<ul>
+<li>justify-self-auto</li>
+<li>justify-self-start</li>
+<li>justify-self-end</li>
+<li>justify-self-center</li>
+<li>justify-self-stretch<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Align-Content"><a href="#Align-Content" class="headerlink" title="Align Content"></a>Align Content</h3><p>用于控制行在多行 flex 和网格容器中的定位方式的实用程序</p>
+<ul>
+<li>content-center</li>
+<li>content-start</li>
+<li>content-end</li>
+<li>content-between</li>
+<li>content-around</li>
+<li>content-evenly</li>
+<li>content-baseline<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Align-Items"><a href="#Align-Items" class="headerlink" title="Align Items"></a>Align Items</h3><p>用于控制 flex 和 grid 项目如何沿容器的横轴定位的实用程序</p>
+<ul>
+<li>items-start</li>
+<li>items-end</li>
+<li>items-center</li>
+<li>items-baseline</li>
+<li>items-stretch<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Align-Self"><a href="#Align-Self" class="headerlink" title="Align Self"></a>Align Self</h3><p>用于控制单个弹性或网格项目如何沿其容器的横轴定位的实用程序</p>
+<ul>
+<li>self-auto</li>
+<li>self-start</li>
+<li>self-end</li>
+<li>self-center</li>
+<li>self-stretch</li>
+<li>self-baseline<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Place-Content"><a href="#Place-Content" class="headerlink" title="Place Content"></a>Place Content</h3><p>用于控制内容如何同时对齐和对齐的实用程序</p>
+<ul>
+<li>place-content-center</li>
+<li>place-content-start</li>
+<li>place-content-end</li>
+<li>place-content-between</li>
+<li>place-content-around</li>
+<li>place-content-evenly</li>
+<li>place-content-baseline</li>
+<li>place-content-stretch<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Place-Items"><a href="#Place-Items" class="headerlink" title="Place Items"></a>Place Items</h3><p>用于控制项目如何同时对齐和对齐的实用程序</p>
+<ul>
+<li>place-items-start</li>
+<li>place-items-end</li>
+<li>place-items-center</li>
+<li>place-items-baseline</li>
+<li>place-items-stretch<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h3 id="Place-Self"><a href="#Place-Self" class="headerlink" title="Place Self"></a>Place Self</h3><p>用于控制单个项目如何同时对齐和对齐的实用程序</p>
+<ul>
+<li>place-self-auto</li>
+<li>place-self-start</li>
+<li>place-self-end</li>
+<li>place-self-center</li>
+<li>place-self-stretch<!--rehype:className=cols-2 style-none--></li>
+</ul>
+<h2 id="Accessibility"><a href="#Accessibility" class="headerlink" title="Accessibility"></a>Accessibility</h2><h3 id="Screen-Readers"><a href="#Screen-Readers" class="headerlink" title="Screen Readers"></a>Screen Readers</h3><p>用于提高屏幕阅读器可访问性的实用程序</p>
+<ul>
+<li>sr-only</li>
+<li>not-sr-only<!--rehype:className=cols-2 style-none--></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-tailwindcss/" title="Tailwind CSS 备忘清单" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/快速参考-tailwindcss/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-vscode/" title="VSCode 备忘清单"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-typescript/" title="TypeScript 备忘清单"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

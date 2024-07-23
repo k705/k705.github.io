@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>逻辑运算符 | Hexo</title>
+  <meta name="description" content="遇到此类问题可以尝试百度关键词 JS Operators logical ,能比较准确地定位到相关知识点网站  一、JS中的逻辑或 || 、逻辑与 &amp;&amp; 首先如果第一项的值不是Boolean值的话，会转为Boolean类型的 在数值上，0和-0在转为Boolean时为false，其余为true  Ⅰ- 问题提出 我在平时写js代码时，一般也就使用&amp;&amp;和||判断tr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="逻辑运算符">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="遇到此类问题可以尝试百度关键词 JS Operators logical ,能比较准确地定位到相关知识点网站  一、JS中的逻辑或 || 、逻辑与 &amp;&amp; 首先如果第一项的值不是Boolean值的话，会转为Boolean类型的 在数值上，0和-0在转为Boolean时为false，其余为true  Ⅰ- 问题提出 我在平时写js代码时，一般也就使用&amp;&amp;和||判断tr">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:58:38.242Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Js-JS中的逻辑运算符详解笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      逻辑运算符
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/JS/" rel="tag">JS</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>遇到此类问题可以尝试百度关键词 <strong>JS Operators logical</strong> ,能比较准确地定位到相关知识点网站</p>
+</blockquote>
+<h1 id="一、JS中的逻辑或-、逻辑与"><a href="#一、JS中的逻辑或-、逻辑与" class="headerlink" title="一、JS中的逻辑或 || 、逻辑与 &amp;&amp;"></a>一、JS中的逻辑或 || 、逻辑与 &amp;&amp;</h1><blockquote>
+<p>首先<strong>如果第一项的值不是Boolean值的话，会转为Boolean类型的</strong></p>
+<p>在数值上，<strong>0和-0在转为Boolean时为false</strong>，其余为true</p>
+</blockquote>
+<h2 id="Ⅰ-问题提出"><a href="#Ⅰ-问题提出" class="headerlink" title="Ⅰ- 问题提出"></a>Ⅰ- 问题提出</h2><blockquote>
+<p>我在平时写js代码时，一般也就使用&amp;&amp;和||判断true和false</p>
+<p>但是最近在看其他人代码与源码时,发现出现了大量逻辑或 || 、逻辑与 &amp;&amp; 的其他用法,于是在此记录梳理一下</p>
+</blockquote>
+<h2 id="Ⅱ-逻辑或"><a href="#Ⅱ-逻辑或" class="headerlink" title="Ⅱ - 逻辑或 ||"></a>Ⅱ - 逻辑或 ||</h2><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> || <span class="number">2</span>);  <span class="comment">//真或真   1</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> || <span class="number">0</span>); <span class="comment">//真或假   1</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span> || <span class="number">2</span>); <span class="comment">//假或真   2</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">1</span> || <span class="number">2</span>); <span class="comment">// 注意:只有0代表假,负数不为假,所以仍是真或真  -1</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span> || <span class="literal">false</span>); <span class="comment">//假或假  false</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">false</span> || <span class="number">0</span>); <span class="comment">//假或假  0</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> || <span class="literal">false</span>); <span class="comment">//布尔值的真或假  true</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">false</span> || <span class="literal">true</span>); <span class="comment">//布尔值的假或假  true</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>逻辑或 ||</strong> 规律总结: </p>
+<ul>
+<li>若 <strong>||</strong> 前方为<strong>true</strong>: 则返回运算符<code>前方</code>内容或运算结果;</li>
+<li>若 <strong>||</strong> 前方为 <strong>false</strong>: 则返回运算符<code>后方</code>的内容或运算结果</li>
+<li><strong>||</strong> 当第一位判断到为真,结果就已经是<strong>真</strong>,所以不用再走到运算符后方,只要将前方内容返回即可(true),反之相反</li>
+</ul>
+</blockquote>
+<h2 id="Ⅲ-逻辑与"><a href="#Ⅲ-逻辑与" class="headerlink" title="Ⅲ - 逻辑与 &amp;&amp;"></a>Ⅲ - 逻辑与 &amp;&amp;</h2><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &amp;&amp; <span class="number">2</span>);  <span class="comment">//真并真   2</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span> &amp;&amp; <span class="number">0</span>); <span class="comment">//真并假    0</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span> &amp;&amp; <span class="number">2</span>); <span class="comment">//假并真    0</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(-<span class="number">1</span> &amp;&amp; <span class="number">2</span>); <span class="comment">// 注意:只有0代表假,负数不为假,所以仍是真或真   2</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">0</span> &amp;&amp; <span class="literal">false</span>); <span class="comment">//假并假  0</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">false</span> &amp;&amp; <span class="number">0</span>); <span class="comment">//假并假  false</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">true</span> &amp;&amp; <span class="literal">false</span>); <span class="comment">//布尔值的真或假   false</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="literal">false</span> &amp;&amp; <span class="literal">true</span>); <span class="comment">//布尔值的假或假   false</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>逻辑与 &amp;&amp;</strong> 规律总结: </p>
+<ul>
+<li>若 <strong>&amp;&amp;</strong> 前方为 <strong>true</strong>: 则返回运算符<code>后方</code>内容或运算结果;</li>
+<li>若 <strong>&amp;&amp;</strong> 前方为 <strong>false</strong>: 则返回运算符<code>前方</code>的内容或运算结果</li>
+<li>因为 <strong>true &amp;&amp; false 为 true</strong>,所以当运算符前方为 <strong>true</strong> 时,就靠的后方内容真假为最终结果,所以可以直接返回后方的内容作为运算结果,反之相反</li>
+</ul>
+</blockquote>
+<h2 id="Ⅳ-应用场景举例"><a href="#Ⅳ-应用场景举例" class="headerlink" title="Ⅳ - 应用场景举例"></a>Ⅳ - 应用场景举例</h2><blockquote>
+<h5 id="转换成数组时根据特定条件去重"><a href="#转换成数组时根据特定条件去重" class="headerlink" title="转换成数组时根据特定条件去重"></a>转换成数组时根据特定条件去重</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">let</span> andObj = &#123;&#125;</span><br><span class="line">&gt;<span class="keyword">let</span> orObj = &#123;&#125;</span><br><span class="line">&gt;<span class="keyword">let</span> arr = [<span class="string">&#x27;努力学习的汪&#x27;</span>,<span class="string">&#x27;努力学习的汪&#x27;</span>,<span class="string">&#x27;hongjilin&#x27;</span>,<span class="string">&#x27;努力学习的汪&#x27;</span>] </span><br><span class="line">&gt;<span class="comment">//使用&amp;&amp; 运算符</span></span><br><span class="line">&gt;arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">   !andObj[item] &amp;&amp; (andObj[item]=index)  <span class="comment">//当此属性名第一次出现时,赋予obj</span></span><br><span class="line">&gt;&#125;)</span><br><span class="line">&gt;<span class="comment">//使用 || 运算符,其实判断就恰好与&amp;&amp;相反</span></span><br><span class="line">&gt;arr.<span class="title function_">map</span>(<span class="function">(<span class="params">item,index</span>)=&gt;</span>&#123;</span><br><span class="line">   andObj[item] || (andObj[item]=index)  <span class="comment">//当此属性名第一次出现时,赋予obj</span></span><br><span class="line">&gt;&#125;)</span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(andObj) <span class="comment">// &#123;努力学习的汪: 1, hongjilin: 2&#125;</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(orObj) <span class="comment">// &#123;努力学习的汪: 1, hongjilin: 2&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>这里只是举个偏例,实际上可以变换成很多适用场景</p>
+</blockquote>
+<h1 id="二、运算优先级"><a href="#二、运算优先级" class="headerlink" title="二、运算优先级"></a>二、运算优先级</h1><h2 id="Ⅰ-以题入手"><a href="#Ⅰ-以题入手" class="headerlink" title="Ⅰ- 以题入手"></a>Ⅰ- 以题入手</h2><blockquote>
+<p>此部分我觉得仍是从各种题目入手,通过分析题目对此部分知识点进行梳理整合</p>
+<p>如果要看更多JS面试题目可以点这里  –&gt; <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E9%9D%A2%E8%AF%95_%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86/JavaScript%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0">JavaScript专项练习</a></strong></p>
+</blockquote>
+<h3 id="1、求下方打印结果"><a href="#1、求下方打印结果" class="headerlink" title="1、求下方打印结果"></a>1、求下方打印结果</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">var</span> a = <span class="number">18</span>;</span><br><span class="line">&gt;<span class="keyword">var</span> b = <span class="string">&quot;努力学习的汪&quot;</span>;</span><br><span class="line">&gt;<span class="keyword">var</span> c = <span class="literal">false</span>;</span><br><span class="line">&gt;<span class="keyword">var</span> d = a &amp;&amp; b || c ? c || b ? a : c &amp;&amp; b : a ;</span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(d)</span><br></pre></td></tr></table></figure>
+
+<h5 id="知识点梳理以及答案解析"><a href="#知识点梳理以及答案解析" class="headerlink" title="知识点梳理以及答案解析"></a>知识点梳理以及答案解析</h5><ol>
+<li><strong>&amp;&amp; 运算符的优先级高于 ||，而 || 的优先级又高于?</strong> :</li>
+</ol>
+<ul>
+<li>所以我们对它进行第一次分解：**<code>((a &amp;&amp; b) || c) ? (c || b) ? a : (c &amp;&amp; b) : a</code>**</li>
+</ul>
+<ol start="2">
+<li><strong>? : 是右关联</strong></li>
+</ol>
+<ul>
+<li>例如: a ? b : c ? d : e  –&gt; a ? b : (c ? d : e)</li>
+<li>所以进一步对上方进行分解 : <strong><code>((a &amp;&amp; b) || c) ? ((c || b) ? a : (c &amp;&amp; b)) : a</code></strong></li>
+</ul>
+<ol start="3">
+<li><strong>对于&amp;&amp;来说，如果条件判断结果为true就会返回第二个操作数的值，如果为false就会返回第一个操作数的值</strong></li>
+</ol>
+<ul>
+<li>此知识点在本人笔记 [一、JS中的逻辑或 || 、逻辑与 &amp;&amp;](#**一、JS中的逻辑或 || 、逻辑与 &amp;&amp; **) 部分已经给出了详细解释</li>
+<li>所以对上方式子进行初步运算后可以得出: <strong><code>c ? ((c || b) ? a : c) : a</code></strong></li>
+</ul>
+<ol start="4">
+<li><strong>对于 || 来说，如果条件判断结果为true就会返回第一个操作数的值，如果为false就会返回第二个操作数的值；</strong></li>
+</ol>
+<ul>
+<li>此知识点在本人笔记 [一、JS中的逻辑或 || 、逻辑与 &amp;&amp;](#**一、JS中的逻辑或 || 、逻辑与 &amp;&amp; **) 部分已经给出了详细解释</li>
+<li>所以对上方式子进行初步运算后可以得出: <strong><code>c ? (b ? a : c) : a</code></strong></li>
+</ul>
+<ol start="5">
+<li>此时结果就非常明了了,下面给出结果变化</li>
+</ol>
+<ul>
+<li><strong><code>c ? (b ? a : c) : a</code></strong> &#x3D;&#x3D;&gt; false ? ( “努力学习的汪” ? 18 : false) : 18</li>
+<li>经过隐式转换后 : <strong>false ? (true ? 18: false) : 18</strong></li>
+<li>三元运算符可知,当**?<strong>前为</strong>false**,返回**:**后方的值 所以结果为<code>18</code></li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="逻辑运算符" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Js-JS中的逻辑运算符详解笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E4%B8%8E%E4%B8%8D%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB/" title="声明变量"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BF%90%E7%AE%97%E7%9A%84%E5%9D%91%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="JS中浮点型运算"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

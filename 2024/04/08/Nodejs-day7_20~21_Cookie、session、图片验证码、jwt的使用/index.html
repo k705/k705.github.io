@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Cookie、session、图片验证码、jwt的使用、跨域设置 | Hexo</title>
+  <meta name="description" content="———————–&#x3D;&#x3D;(NODE叁)&#x3D;&#x3D;————————-Cookie、session、图片验证码、jwt的使用、跨域设置&#x3D;&gt;Day7_20~21一.response.cookie和request.cookie的区别1.范围特点使用语法各不相同1response.cookie：   操作过的Cookie，所有方法获取到的都是被更新过的值，也就是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cookie、session、图片验证码、jwt的使用、跨域设置">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Nodejs-day7_20~21_Cookie%E3%80%81session%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81%E3%80%81jwt%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="———————–&#x3D;&#x3D;(NODE叁)&#x3D;&#x3D;————————-Cookie、session、图片验证码、jwt的使用、跨域设置&#x3D;&gt;Day7_20~21一.response.cookie和request.cookie的区别1.范围特点使用语法各不相同1response.cookie：   操作过的Cookie，所有方法获取到的都是被更新过的值，也就是">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:50:09.405Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Nodejs-day7_20~21_Cookie%E3%80%81session%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81%E3%80%81jwt%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Nodejs-day7_20~21_Cookie、session、图片验证码、jwt的使用" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Cookie、session、图片验证码、jwt的使用、跨域设置
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Nodejs-day7_20~21_Cookie%E3%80%81session%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81%E3%80%81jwt%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Nodejs-day7_20~21_Cookie%E3%80%81session%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81%E3%80%81jwt%E7%9A%84%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="———————–-NODE叁-————————"><a href="#———————–-NODE叁-————————" class="headerlink" title="———————–&#x3D;&#x3D;(NODE叁)&#x3D;&#x3D;————————-"></a>———————–&#x3D;&#x3D;(NODE叁)&#x3D;&#x3D;————————-</h1><h1 id="Cookie、session、图片验证码、jwt的使用、跨域设置-Day7-20-21"><a href="#Cookie、session、图片验证码、jwt的使用、跨域设置-Day7-20-21" class="headerlink" title="Cookie、session、图片验证码、jwt的使用、跨域设置&#x3D;&gt;Day7_20~21"></a>Cookie、session、图片验证码、jwt的使用、跨域设置&#x3D;&gt;Day7_20~21</h1><h2 id="一-response-cookie和request-cookie的区别"><a href="#一-response-cookie和request-cookie的区别" class="headerlink" title="一.response.cookie和request.cookie的区别"></a>一.response.cookie和request.cookie的区别</h2><h5 id="1-范围特点使用语法各不相同"><a href="#1-范围特点使用语法各不相同" class="headerlink" title="1.范围特点使用语法各不相同"></a>1.范围特点使用语法各不相同</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.cookie：</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>操作过的Cookie，所有方法获取到的都是被更新过的值，也就是说Response.Cookies是修改所有容器中的Cookie的值。   </p>
+</li>
+<li><p>用于在客户端写入cookie值。若指定的cookie不存在，则创建它。若存在，则将自动进行更新。结果返回给客户端浏览器。   </p>
+</li>
+<li><p>Response.Cookies(CookieName)[(key)|.attribute]&#x3D;value。这里的CookiesName是指定的Cookie的名称，如果指定了Key，则该Cookie就是一个字典，Attribute属性包括Domain，Expires，HasKeys，Path，Secure。</p>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">request.cookie：</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>创建的Cookie只能用于后台不能用于HTML的前台。</li>
+<li>设置cookie的最大有效期为30天，然后通过Response回送cookie到浏览器。</li>
+<li>Request.Cookies使用语法：Request.Cookies(cookie)[(key)|.attribute]。</li>
+</ol>
+<h2 id="二-Cookie代码示范"><a href="#二-Cookie代码示范" class="headerlink" title="二.Cookie代码示范"></a>二.Cookie代码示范</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置cookie</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">setCookie</span>(<span class="params">name, value, seconds</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;进入setCookie逻辑函数&#x27;</span>)</span><br><span class="line">    seconds = seconds || <span class="number">0</span>;   <span class="comment">//conds有值就直接赋值，没有为0，这个根php不一样。</span></span><br><span class="line">    <span class="keyword">var</span> expires = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="comment">// cookies随浏览器关闭而失效的方法:</span></span><br><span class="line">    <span class="comment">//     如果不设置Expires的属性那么Cookie的存活时间就是在关闭浏览器的时候。</span></span><br><span class="line">    <span class="keyword">if</span> (seconds != <span class="number">0</span> ) &#123;      <span class="comment">//设置cookie生存时间</span></span><br><span class="line">        <span class="keyword">var</span> date = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line">        date.<span class="title function_">setTime</span>(date.<span class="title function_">getTime</span>()+(seconds*<span class="number">1000</span>));</span><br><span class="line">        expires = <span class="string">&quot;; expires=&quot;</span>+date.<span class="title function_">toGMTString</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">document</span>.<span class="property">cookie</span> = name+<span class="string">&quot;=&quot;</span>+<span class="built_in">escape</span>(value)+expires+<span class="string">&quot;; path=/&quot;</span>;   <span class="comment">//转码并赋值</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 读取cookie</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getCookie</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;进入getCookie逻辑函数&#x27;</span>);</span><br><span class="line">    <span class="keyword">var</span> nameEQ = name + <span class="string">&#x27;=&#x27;</span></span><br><span class="line">    <span class="keyword">var</span> ca = <span class="variable language_">document</span>.<span class="property">cookie</span>.<span class="title function_">split</span>(<span class="string">&#x27;;&#x27;</span>) <span class="comment">// 把cookie分割成组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; ca.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">var</span> c = ca[i] <span class="comment">// 取得字符串</span></span><br><span class="line">        <span class="keyword">while</span> (c.<span class="title function_">charAt</span>(<span class="number">0</span>) == <span class="string">&#x27; &#x27;</span>) &#123; <span class="comment">// 判断一下字符串有没有前导空格</span></span><br><span class="line">            c = c.<span class="title function_">substring</span>(<span class="number">1</span>, c.<span class="property">length</span>) <span class="comment">// 有的话，从第二位开始取</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (c.<span class="title function_">indexOf</span>(nameEQ) == <span class="number">0</span>) &#123; <span class="comment">// 如果含有我们要的name</span></span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">unescape</span>(c.<span class="title function_">substring</span>(nameEQ.<span class="property">length</span>, c.<span class="property">length</span>)) <span class="comment">// 解码并截取我们要值</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 检查cookie</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> <span class="variable">c_name</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">boolean</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">checkCookie</span>(<span class="params">c_name</span>) &#123;</span><br><span class="line">    username = <span class="title function_">getCookie</span>(c_name);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(username);</span><br><span class="line">    <span class="keyword">if</span> (username != <span class="literal">null</span> &amp;&amp; username != <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除cookie</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> <span class="variable">name</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearCookie</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="title function_">setCookie</span>(name, <span class="string">&quot;&quot;</span>, -<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="三-Cookie生命周期"><a href="#三-Cookie生命周期" class="headerlink" title="三.Cookie生命周期"></a>三.Cookie生命周期</h2><p>如果要立马失效时间要设置为-1,设置为0为本次浏览器关闭结束生命周期</p>
+<p>  如果不设置Expires的属性那么Cookie的存活时间就是在关闭浏览器的时候。</p>
+<h2 id="四-session使用"><a href="#四-session使用" class="headerlink" title="四.session使用"></a>四.session使用</h2><h6 id="1-session的概念"><a href="#1-session的概念" class="headerlink" title="1.session的概念&#x3D;&gt;"></a>1.session的概念&#x3D;&gt;</h6><p>​			会话（生命周期：通常是浏览器关了，session就没了，不同的浏览器有不同的session，永久不冲突）</p>
+<h6 id="2-session的应用–》"><a href="#2-session的应用–》" class="headerlink" title="2.session的应用–》"></a>2.session的应用–》</h6><p>​			用来存储会话级别的变量：令牌的解密秘钥等，当前登录的用户的信息（可以给数据拾释压）</p>
+<h6 id="3-session的使用–》区别于之前我们使用cookie的用法"><a href="#3-session的使用–》区别于之前我们使用cookie的用法" class="headerlink" title="3.session的使用–》区别于之前我们使用cookie的用法:"></a>3.session的使用–》区别于之前我们使用cookie的用法:</h6><ol>
+<li><h6 id="cookie的用法：前后端共享的变量区域"><a href="#cookie的用法：前后端共享的变量区域" class="headerlink" title="cookie的用法：前后端共享的变量区域"></a>cookie的用法：前后端共享的变量区域</h6></li>
+</ol>
+<pre><code>   				1. 获取cookie:由请求对象来实现
+                                                				2.  操作cookie：包括增删改 由响应对象来实现
+
+            2. ###### session的用法：只能服务端操作，仅仅是存在在服务端
+        
+                1.  获取由请求对象来获取
+                2.  操作由请求对象来操作
+</code></pre>
+<h6 id="4-原理解答"><a href="#4-原理解答" class="headerlink" title="4.原理解答&#x3D;&gt;"></a>4.原理解答&#x3D;&gt;</h6><p>就是当访问一个页面的时候给浏览器创建一个独一无二的号码，也给同时创建的session赋予同样的号码。这样就可以在打开同一个网站的第二个页面时获取到第一个页面中session保留下来的对应信息（理解：当访问第二个页面时将号码同时传递到第二个页面。找到对应的session。）。这个号码也叫sessionID，session的ID号码，session的独一无二号码。</p>
+<h6 id="5-session安装语句"><a href="#5-session安装语句" class="headerlink" title="5.session安装语句"></a>5.session安装语句</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install express-session</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-配置中间件-app-js"><a href="#6-配置中间件-app-js" class="headerlink" title="6.配置中间件&#x3D;&gt;app.js"></a>6.配置中间件&#x3D;&gt;app.js</h6><p>注意 :设置在var app &#x3D; express();之后,路由之前</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//设置在var app = express();之后</span></span><br><span class="line"><span class="comment">//引入session</span></span><br><span class="line"><span class="keyword">const</span> session=<span class="built_in">require</span>(<span class="string">&#x27;express-session&#x27;</span>)</span><br><span class="line"><span class="comment">//配置中间件 maxAge单位为ms</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="title function_">session</span>(&#123;</span><br><span class="line">    <span class="attr">secret</span>: <span class="string">&quot;keyboard cat&quot;</span>,</span><br><span class="line">    <span class="attr">resave</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">saveUninitialized</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//maxAge:最多可以存活多久</span></span><br><span class="line">    <span class="attr">cookie</span>: (<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;value&#x27;</span>,&#123;<span class="attr">maxAge</span>:  <span class="number">5</span>*<span class="number">60</span>*<span class="number">1000</span>,<span class="attr">secure</span>: <span class="literal">false</span>&#125;)</span><br><span class="line">&#125;));</span><br></pre></td></tr></table></figure>
+
+<h6 id="7-express-session使用"><a href="#7-express-session使用" class="headerlink" title="7.express-session使用"></a>7.express-session使用</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 设置session</span></span><br><span class="line">req.<span class="property">session</span>.<span class="property">username</span>=<span class="string">&quot;张三&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//获取session</span></span><br><span class="line">req.<span class="property">session</span>.<span class="property">username</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//重新设置cookie的过期时间为1s</span></span><br><span class="line">req.<span class="property">session</span>.<span class="property">cookie</span>.<span class="property">maxAge</span>=<span class="number">1000</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//销毁session</span></span><br><span class="line">req.<span class="property">session</span>.<span class="title function_">destroy</span>(<span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="五-图片验证码实现"><a href="#五-图片验证码实现" class="headerlink" title="五.图片验证码实现"></a>五.图片验证码实现</h2><h6 id="1-svg安装"><a href="#1-svg安装" class="headerlink" title="1.svg安装"></a>1.svg安装</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install svg-captcha</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-图片验证码代码"><a href="#2-图片验证码代码" class="headerlink" title="2.图片验证码代码"></a>2.图片验证码代码</h6><p>①前端页面代码</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">fieldset</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">legend</span>&gt;</span>验证码</span><br><span class="line">    <span class="tag">&lt;/<span class="name">legend</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://localhost:3000/users/getCaptcha&quot;</span> <span class="attr">alt</span>=<span class="string">&quot;&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span>  <span class="attr">id</span>=<span class="string">&quot;capText&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;captachaValid()&quot;</span>&gt;</span>验证<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">fieldset</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>②运行函数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">captachaValid</span>(<span class="params"></span>)&#123;</span><br><span class="line">    future.<span class="title function_">ajax</span>(&#123;</span><br><span class="line">        <span class="attr">url</span>:<span class="string">&#x27;/users/captachaValid&#x27;</span>,</span><br><span class="line">        <span class="attr">type</span>:<span class="string">&#x27;get&#x27;</span>,</span><br><span class="line">        <span class="attr">data</span>:&#123;</span><br><span class="line">            <span class="attr">captcha</span>:$(<span class="string">&#x27;#capText&#x27;</span>).<span class="title function_">val</span>()</span><br><span class="line">        &#125;,<span class="attr">success</span>:<span class="keyword">function</span> (<span class="params">result</span>) &#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&#x27;验证成功&#x27;</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>③路由文件中(routes&#x2F;users)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> svgCaptcha = <span class="built_in">require</span>(<span class="string">&#x27;svg-captcha&#x27;</span>);</span><br><span class="line">router.<span class="title function_">get</span>(<span class="string">&#x27;/getCaptcha&#x27;</span>, <span class="keyword">function</span>(<span class="params">req, res, next</span>) &#123;</span><br><span class="line">  <span class="keyword">var</span> captcha = svgCaptcha.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="comment">// 翻转颜色</span></span><br><span class="line">    <span class="attr">inverse</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="comment">// 字体大小</span></span><br><span class="line">    <span class="attr">fontSize</span>: <span class="number">36</span>,</span><br><span class="line">    <span class="comment">// 噪声线条数</span></span><br><span class="line">    <span class="attr">noise</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="comment">// 宽度</span></span><br><span class="line">    <span class="attr">width</span>: <span class="number">80</span>,</span><br><span class="line">    <span class="comment">// 高度</span></span><br><span class="line">    <span class="attr">height</span>: <span class="number">30</span>,</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">// 保存到session,忽略大小写</span></span><br><span class="line">  req.<span class="property">session</span>.<span class="property">captcha</span> = captcha.<span class="property">text</span>.<span class="title function_">toLowerCase</span>();</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(req.<span class="property">session</span>.<span class="property">captcha</span>); <span class="comment">//0xtg 生成的验证码</span></span><br><span class="line">  <span class="comment">//设置什么格式返回前端,默认text格式</span></span><br><span class="line">  res.<span class="title function_">setHeader</span>(<span class="string">&#x27;Content-Type&#x27;</span>, <span class="string">&#x27;image/svg+xml&#x27;</span>);</span><br><span class="line">  <span class="comment">//将此数据转成字符串写入传到前端,并且.write并不会结束请求可以多次调用</span></span><br><span class="line">  res.<span class="title function_">write</span>(<span class="title class_">String</span>(captcha.<span class="property">data</span>));</span><br><span class="line">  res.<span class="title function_">end</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-验证码使用实操"><a href="#3-验证码使用实操" class="headerlink" title="3.验证码使用实操"></a>3.验证码使用实操</h6><ol>
+<li><p>安装npm install svg-captcha</p>
+</li>
+<li><p>直接使用captcha的api</p>
+</li>
+<li><p>直接根据captcha生成的对象做解析</p>
+</li>
+<li><p>幅度段返回验证码之前需要缓存验证码的内容(共后续验证用)</p>
+</li>
+<li><p>完成验证码的点击刷新功能</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;http://192.168.0.151:3000/users/getCaptcha&quot;</span> <span class="attr">onclick</span>=<span class="string">&quot;javascript:this.setAttribute(&#x27;src&#x27;,&#x27;http://192.168.0.151:3000/users/getCaptcha?v=&#x27;+new Date().getTime())&quot;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据token不同生成不同验证码</span></span><br><span class="line">obj.<span class="title function_">setAttribute</span>(<span class="string">&#x27;src&#x27;</span>,<span class="string">&#x27;http://localhost:3000/users/getCaptcha?v=&#x27;</span>+<span class="keyword">new</span> <span class="title class_">Date</span>().<span class="title function_">getTime</span>()+<span class="string">&quot;&amp;token=&quot;</span>+<span class="variable language_">window</span>.<span class="property">localStorage</span>.<span class="property">token</span>)</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="六-拦截器-jwt"><a href="#六-拦截器-jwt" class="headerlink" title="六.拦截器&#x3D;&gt;jwt"></a>六.拦截器&#x3D;&gt;jwt</h2><h5 id="1-jwt安装"><a href="#1-jwt安装" class="headerlink" title="1.jwt安装"></a>1.jwt安装</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jsonwebtoken</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-jwt的相关api"><a href="#2-jwt的相关api" class="headerlink" title="2.jwt的相关api&#x3D;&gt;"></a>2.jwt的相关api&#x3D;&gt;</h5><h6 id="a-jwtUtils"><a href="#a-jwtUtils" class="headerlink" title="a.jwtUtils"></a>a.jwtUtils</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 安全拦截器</span></span><br><span class="line"><span class="keyword">const</span> jwt = <span class="built_in">require</span>(<span class="string">&quot;jsonwebtoken&quot;</span>);</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 验证权限</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> <span class="variable">token</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> secretkey 秘钥</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> <span class="variable">success</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> <span class="variable">error</span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">verify</span> (token,secretkey,success,error)&#123;</span><br><span class="line">    jwt.<span class="title function_">verify</span>(token,secretkey,<span class="keyword">function</span>(<span class="params">err,decode</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(err)&#123;</span><br><span class="line">            <span class="keyword">if</span> (error) &#123;</span><br><span class="line">                <span class="title function_">error</span>(err);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (success) &#123;</span><br><span class="line">                <span class="title function_">success</span>(decode);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 签名</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> load 载荷 json对象 存储存在</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> secretkey 秘钥</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> expiresIn 过期时间 秒</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> &#123;<span class="type">number | PromiseLike&lt;ArrayBuffer&gt;</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">sign</span> (load,secretkey,expiresIn) &#123;</span><br><span class="line">    <span class="keyword">var</span> token = jwt.<span class="title function_">sign</span>(load,secretkey,&#123;<span class="attr">expiresIn</span>: expiresIn&#125;);</span><br><span class="line">    <span class="keyword">return</span> token;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**异步转同步</span></span><br><span class="line"><span class="comment"> * 这个再app.js路由调用中已经转换过一次,所以不用重复转换</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> <span class="variable">token</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> <span class="variable">secretkey</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> &#123;<span class="type">Promise&lt;any&gt;</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">function</span>   <span class="title function_">verifysync</span> (token,secretkey)&#123;</span><br><span class="line">    <span class="keyword">return</span>   <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>&#123;</span><br><span class="line">        jwt.<span class="title function_">verify</span>(token,secretkey,<span class="keyword">function</span>(<span class="params">err,decode</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span> (err) &#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(err.<span class="property">message</span>);</span><br><span class="line">                <span class="title function_">resolve</span>(&#123;<span class="attr">err</span>:<span class="string">&#x27;error&#x27;</span>,<span class="attr">msg</span>:<span class="string">&#x27;会话已过期&#x27;</span>&#125;)</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;解密成功&quot;</span>)</span><br><span class="line">                <span class="title function_">resolve</span>(decode)</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;)</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;verify,sign,verifysync&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*//使用解密</span></span><br><span class="line"><span class="comment">let user=&#123;id:111,name:&#x27;user&#x27;,password:123456&#125;;</span></span><br><span class="line"><span class="comment">/!*</span></span><br><span class="line"><span class="comment">//q清空密码</span></span><br><span class="line"><span class="comment">delete user.password;</span></span><br><span class="line"><span class="comment">let token=sign(user,&#x27;123456&#x27;,10);*!/</span></span><br><span class="line"><span class="comment">//解密</span></span><br><span class="line"><span class="comment">let token=sign(user,&#x27;123456&#x27;,10);</span></span><br><span class="line"><span class="comment">verify(token,&quot;123456&quot;,function (user) &#123;</span></span><br><span class="line"><span class="comment">    console.log(user);</span></span><br><span class="line"><span class="comment">&#125;,function (err) &#123;</span></span><br><span class="line"><span class="comment">    console.error(err)</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">console.log(token);*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*verify(token,&#x27;123456&#x27;,function (user) &#123;</span></span><br><span class="line"><span class="comment">    console.log(user)</span></span><br><span class="line"><span class="comment">&#125;,function (err) &#123;</span></span><br><span class="line"><span class="comment">    console.error(err);</span></span><br><span class="line"><span class="comment">&#125;)*/</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="b-拦截器中间件"><a href="#b-拦截器中间件" class="headerlink" title="b.拦截器中间件&#x3D;&gt;"></a>b.拦截器中间件&#x3D;&gt;</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//拦截器中间件,原本</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="keyword">function</span>(<span class="params">req,resp,next</span>)&#123;</span><br><span class="line">    log.<span class="title function_">debug</span>(req.<span class="property">path</span>);</span><br><span class="line">    <span class="keyword">if</span>(req.<span class="property">path</span> !=<span class="string">&#x27;/mine.html&#x27;</span> &amp;&amp; req.<span class="property">path</span> !=<span class="string">&#x27;/user/login&#x27;</span> &amp;&amp; req.<span class="property">path</span> !=<span class="string">&#x27;/user/register&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">let</span> token = req.<span class="property">headers</span>.<span class="property">token</span>;</span><br><span class="line">        safeInterceptor.<span class="title function_">verify</span>(token,<span class="variable language_">global</span>.<span class="property">secretKey</span>,<span class="keyword">function</span>(<span class="params">user</span>)&#123;</span><br><span class="line">            req.<span class="property">headers</span>.<span class="property">sessionData</span> = user;</span><br><span class="line">            <span class="title function_">next</span>();</span><br><span class="line">        &#125;,<span class="keyword">function</span>(<span class="params">err</span>)&#123;</span><br><span class="line">            <span class="title function_">next</span>();</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="title function_">next</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 全系统允许跨域处理 这段配置要再new出express实例的时候就要设置了，放在所有的api前面，不然没有效果</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">app.<span class="title function_">all</span>(<span class="string">&quot;*&quot;</span>,<span class="keyword">function</span>(<span class="params">req,res,next</span>)&#123;</span><br><span class="line">    <span class="comment">//设置允许跨域的域名，*代表允许任意域名跨域</span></span><br><span class="line">    res.<span class="title function_">header</span>(<span class="string">&quot;Access-Control-Allow-Origin&quot;</span>,<span class="string">&quot;*&quot;</span>);</span><br><span class="line">    <span class="comment">//允许的header类型</span></span><br><span class="line">    res.<span class="title function_">header</span>(<span class="string">&quot;Access-Control-Allow-Headers&quot;</span>,<span class="string">&quot;*&quot;</span>);</span><br><span class="line">    <span class="comment">//跨域允许的请求方式</span></span><br><span class="line">    res.<span class="title function_">header</span>(<span class="string">&quot;Access-Control-Allow-Methods&quot;</span>,<span class="string">&quot;*&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span> (req.<span class="property">method</span>.<span class="title function_">toLowerCase</span>() == <span class="string">&#x27;options&#x27;</span>)</span><br><span class="line">        res.<span class="title function_">send</span>(<span class="number">200</span>);  <span class="comment">//让options尝试请求快速结束</span></span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        <span class="title function_">next</span>();</span><br><span class="line">&#125;);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 拦截器中间件,登陆功能时修改使用的</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 拦截器中间件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">app.<span class="title function_">use</span>(<span class="keyword">async</span> <span class="keyword">function</span>(<span class="params">req,resp,next</span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> path = req.<span class="property">path</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(path)</span><br><span class="line">    <span class="keyword">if</span> (path.<span class="title function_">startsWith</span>(<span class="string">&quot;/users&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.<span class="title function_">startsWith</span>(<span class="string">&quot;/users/login&quot;</span>) || path.<span class="title function_">startsWith</span>(<span class="string">&quot;/users/regist&quot;</span>) || path.<span class="title function_">startsWith</span>(<span class="string">&quot;/users/getCaptcha&quot;</span>)|| path.<span class="title function_">startsWith</span>(<span class="string">&quot;/users/captchaValid&quot;</span>)) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;放行users&quot;</span>)</span><br><span class="line">            <span class="title function_">next</span>()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;拦截&quot;</span>)</span><br><span class="line">        <span class="keyword">let</span> token= <span class="keyword">await</span> redisUtils.<span class="title function_">get</span>(<span class="string">&quot;jwt_token&quot;</span>)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(token)</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> jwtUtil.<span class="title function_">verifysync</span>(token, <span class="variable language_">global</span>.<span class="property">globalKey</span>)</span><br><span class="line">        <span class="keyword">if</span> (result.<span class="property">err</span>) &#123;</span><br><span class="line">            <span class="title function_">jwtAtert</span>(resp)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            req.<span class="property">headers</span>.<span class="property">session</span> = result</span><br><span class="line">            <span class="title function_">next</span>();</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (path.<span class="title function_">startsWith</span>(<span class="string">&quot;/article&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.<span class="title function_">startsWith</span>(<span class="string">&quot;/article/img&quot;</span>) || path.<span class="title function_">startsWith</span>(<span class="string">&quot;/article/getDetails&quot;</span>)) &#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;放行文章&quot;</span>)</span><br><span class="line">            <span class="title function_">next</span>()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;拦截&quot;</span>)</span><br><span class="line">        <span class="keyword">let</span> token= <span class="keyword">await</span> redisUtils.<span class="title function_">get</span>(<span class="string">&quot;jwt_token&quot;</span>)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(token)</span><br><span class="line">        <span class="keyword">let</span> result = <span class="keyword">await</span> jwtUtil.<span class="title function_">verifysync</span>(token, <span class="variable language_">global</span>.<span class="property">globalKey</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (result.<span class="property">err</span>) &#123;</span><br><span class="line">            <span class="title function_">jwtAtert</span>(resp)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            req.<span class="property">headers</span>.<span class="property">session</span> = result</span><br><span class="line">            <span class="title function_">next</span>();</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (path.<span class="title function_">startsWith</span>(<span class="string">&quot;/&quot;</span>)) &#123;</span><br><span class="line">        <span class="keyword">if</span> (path.<span class="title function_">startsWith</span>(<span class="string">&quot;/setEM&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">let</span> token= <span class="keyword">await</span> redisUtils.<span class="title function_">get</span>(<span class="string">&quot;jwt_token&quot;</span>)</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(token)</span><br><span class="line">            <span class="keyword">let</span> result = <span class="keyword">await</span> jwtUtil.<span class="title function_">verifysync</span>(token, <span class="variable language_">global</span>.<span class="property">globalKey</span>)</span><br><span class="line">            <span class="keyword">if</span> (result.<span class="property">err</span>) &#123;</span><br><span class="line">                <span class="title function_">jwtAtert</span>(resp)</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                req.<span class="property">headers</span>.<span class="property">session</span> = result</span><br><span class="line">                <span class="title function_">next</span>();</span><br><span class="line">                <span class="keyword">return</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;放行根目录&quot;</span>)</span><br><span class="line">            <span class="title function_">next</span>()</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">next</span>();</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">jwtAtert</span>(<span class="params">resp</span>)&#123;</span><br><span class="line">    resp.<span class="title function_">status</span>(<span class="number">500</span>).<span class="title function_">send</span>(<span class="string">&#x27;您未登录,将跳转登陆页面&#x27;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="3-前后端分离的场景"><a href="#3-前后端分离的场景" class="headerlink" title="3.前后端分离的场景&#x3D;&gt;"></a>3.前后端分离的场景&#x3D;&gt;</h5><p>当前用户的身份如果以明文传输,很容易故意被模仿,所以 需要对用户的身份进行加密传输<br>          加密传输的方式:<br>                        1)https<br>                        2)rsa 非对称加密<br>                        3)aes 对称密钥<br>                        4)jwt json web token: 目前比较流行的</p>
+<h5 id="4-jwt的作用"><a href="#4-jwt的作用" class="headerlink" title="4.jwt的作用&#x3D;&gt;"></a>4.jwt的作用&#x3D;&gt;</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">用来加密门票用的.</span><br><span class="line">加密:1)被加密 2)用什么加密(加盐)</span><br><span class="line">简单版的:密钥共用,但是被加密的东西不一样</span><br></pre></td></tr></table></figure>
+
+<h5 id="5-实际操作"><a href="#5-实际操作" class="headerlink" title="5.实际操作&#x3D;&gt;"></a>5.实际操作&#x3D;&gt;</h5><ol>
+<li>在用户登录成功之后使用jwt对用户的基本信息进行加密(注意要提出密码属性)</li>
+<li>加密之后,将token返回到前端,存储到localStorage</li>
+<li>每次请求,在请求发送之前,将localStorage里头的令牌,当作请求头一起发送</li>
+<li>服务端针对需要验权(鉴权)的api进行定制化拦截(前置拦截器)</li>
+<li>将拦截下来的req里头的令牌取出来,并做解密错做<ol>
+<li><pre><code> 解密成功:将解密出来的对象,即用户的基本信息对象,并将该基本信息对象存到请求头里去(单线程变量-用时间换空间)
+</code></pre>
+</li>
+<li>解密失败:请求结束并报错(会话已经过期,请重新登录,前端的表现通常时直接重定向到登录页面)</li>
+</ol>
+</li>
+<li>执行业务代码,如果执行的过程需要用到用户信息,那么不要再从数据库里头去查询数据,直接从请求捞就行了</li>
+</ol>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题:"></a>问题:</h2><h5 id="1-为何在字符串中转义不出变量"><a href="#1-为何在字符串中转义不出变量" class="headerlink" title="1.为何在字符串中转义不出变量"></a>1.为何在字符串中转义不出变量</h5><p>​	问题代码位置&#x3D;&gt;console.log(‘会话ID:${req.sessionID}’);&#x3D;&gt;test&#x2F;users.js&#x3D;&gt;26  </p>
+<p>​	问题分析&#x3D;&gt;用错符号,应用模板符号</p>
+<p>​	问题解决&#x3D;&gt;使用&#96;&#96;而不能用’’</p>
+<h5 id="2-为什么在后台代码test-users中调用不了public中的自定义-CookieUti-js-js包中的函数"><a href="#2-为什么在后台代码test-users中调用不了public中的自定义-CookieUti-js-js包中的函数" class="headerlink" title="2.为什么在后台代码test&#x2F;users中调用不了public中的自定义(CookieUti.js)js包中的函数?"></a>2.为什么在后台代码test&#x2F;users中调用不了public中的自定义(CookieUti.js)js包中的函数?</h5><p>​	问题代码位置&#x3D;&gt;test&#x2F;users.js&#x3D;&gt;35</p>
+<p>​	问题分析&#x3D;&gt;在后台代码test&#x2F;users中调用静态资源中的文件,导致调用错误</p>
+<p>​    原理剖析&#x3D;&gt;本质上node是后台代码,其中包括bin&#x2F;www , routes&#x2F;users.js||index.js ,node_modules  ,app.js , </p>
+<p>​						package.json都是后台文件, 而public其实是单独的静态文件,它与后台文件是通过共享port端口进行数								据传输,而不能相互调用</p>
+<p>​						</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Nodejs-day7_20~21_Cookie%E3%80%81session%E3%80%81%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81%E3%80%81jwt%E7%9A%84%E4%BD%BF%E7%94%A8/" title="Cookie、session、图片验证码、jwt的使用、跨域设置" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Nodejs-day7_20~21_Cookie、session、图片验证码、jwt的使用/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Nodejs-day7_23_Promise+await+async%E6%A6%82%E5%BF%B5%E5%8F%8A%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/" title="Promise+await+async概念及简单应用"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Nodejs-day7_25_Redis+Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/" title="Redis+Mysql数据库安装以及使用"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

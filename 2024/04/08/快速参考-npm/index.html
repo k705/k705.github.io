@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>npm 备忘清单 | Hexo</title>
+  <meta name="description" content="npm 备忘清单这个 npm 快速参考备忘单显示了它的常用命令使用清单 常用命令  包管理   命令 描述    npm init -y 创建 package.json 文件   npm install 或 npm i 安装 package.json 中的所有内容   npm install --production 安装 package.json 中的所有内容  (除了 devDependeci">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm 备忘清单">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-npm/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="npm 备忘清单这个 npm 快速参考备忘单显示了它的常用命令使用清单 常用命令  包管理   命令 描述    npm init -y 创建 package.json 文件   npm install 或 npm i 安装 package.json 中的所有内容   npm install --production 安装 package.json 中的所有内容  (除了 devDependeci">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-11T02:07:16.018Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="快速参考备忘清单">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-npm/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-快速参考-npm" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      npm 备忘清单
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-npm/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-npm/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="npm-备忘清单"><a href="#npm-备忘清单" class="headerlink" title="npm 备忘清单"></a>npm 备忘清单</h1><p>这个 <a target="_blank" rel="noopener" href="https://www.npmjs.com/">npm</a> 快速参考备忘单显示了它的常用命令使用清单</p>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><!--rehype:body-class=cols-2-->
+
+<h3 id="包管理"><a href="#包管理" class="headerlink" title="包管理"></a>包管理</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>npm init -y</code></td>
+<td align="left">创建 <code>package.json</code> 文件</td>
+</tr>
+<tr>
+<td align="left"><code>npm install</code> 或 <code>npm i</code></td>
+<td align="left">安装 <code>package.json</code> 中的所有内容</td>
+</tr>
+<tr>
+<td align="left"><code>npm install --production</code></td>
+<td align="left">安装 <code>package.json</code> 中的所有内容 <br /> <em>(除了 <code>devDependecies</code>)</em></td>
+</tr>
+<tr>
+<td align="left"><code>npm install lodash</code></td>
+<td align="left">安装一个包</td>
+</tr>
+<tr>
+<td align="left"><code>npm install --save-dev lodash</code></td>
+<td align="left">安装为 <code>devDependency</code></td>
+</tr>
+<tr>
+<td align="left"><code>npm install --save-exact lodash</code></td>
+<td align="left">准确安装</td>
+</tr>
+<tr>
+<td align="left"><code>npm install @scope/package-name</code></td>
+<td align="left">安装一个作用域的公共包</td>
+</tr>
+<tr>
+<td align="left"><code>npm install &lt;package_name&gt;@&lt;tag&gt;</code></td>
+<td align="left">使用 <code>dist-tags</code> 安装包</td>
+</tr>
+<tr>
+<td align="left"><code>npm install -g &lt;package_name&gt;</code></td>
+<td align="left">全局安装包</td>
+</tr>
+<tr>
+<td align="left"><code>npm uninstall &lt;package_name&gt;</code></td>
+<td align="left">卸载包</td>
+</tr>
+<tr>
+<td align="left"><code>npm uninstall -g &lt;package_name&gt;</code></td>
+<td align="left">全局卸载包</td>
+</tr>
+</tbody></table>
+<!--rehype:class=auto-wrap-->
+
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><!--rehype:wrap-class=row-span-3-->
+
+<table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>npm i sax</code></td>
+<td align="left"><code>NPM</code> 包</td>
+</tr>
+<tr>
+<td align="left"><code>npm i sax@latest</code></td>
+<td align="left">指定标签 <code>最新</code></td>
+</tr>
+<tr>
+<td align="left"><code>npm i sax@3.0.0</code></td>
+<td align="left">指定版本 <code>3.0.0</code></td>
+</tr>
+<tr>
+<td align="left"><code>npm i sax@&quot;&gt;=1 &lt;2.0&quot;</code></td>
+<td align="left">指定版本范围</td>
+</tr>
+<tr>
+<td align="left"><code>npm i @org/sax</code></td>
+<td align="left">范围内的 <code>NPM</code> 包</td>
+</tr>
+<tr>
+<td align="left"><code>npm i user/repo</code></td>
+<td align="left">GitHub</td>
+</tr>
+<tr>
+<td align="left"><code>npm i user/repo#master</code></td>
+<td align="left">GitHub</td>
+</tr>
+<tr>
+<td align="left"><code>npm i github:user/repo</code></td>
+<td align="left">GitHub</td>
+</tr>
+<tr>
+<td align="left"><code>npm i gitlab:user/repo</code></td>
+<td align="left">GitLab</td>
+</tr>
+<tr>
+<td align="left"><code>npm i /path/to/repo</code></td>
+<td align="left">绝对路径</td>
+</tr>
+<tr>
+<td align="left"><code>npm i ./archive.tgz</code></td>
+<td align="left">压缩包</td>
+</tr>
+<tr>
+<td align="left"><code>npm i https://site.com/archive.tgz</code></td>
+<td align="left">通过 <code>HTTP</code> 压缩包</td>
+</tr>
+</tbody></table>
+<!--rehype:class=auto-wrap-->
+
+<p>安装依赖的可用参数</p>
+<ul>
+<li><code>-P</code>, <code>--save-prod</code> 包将出现在您的依赖项中，这是默认值(npm v8)，除非存在 <code>-D</code> 或 <code>-O</code></li>
+<li><code>-D</code>, <code>--save-dev</code> 包会出现在你的 <code>devDependencies</code> 中</li>
+<li><code>-O</code>, <code>--save-optional</code> 包将出现在您的 <code>optionalDependencies</code> 中</li>
+<li><code>--no-save</code> 防止保存到依赖项</li>
+<li><code>-E</code>, <code>--save-exact</code> 依赖项将使用精确的版本进行配置，而不是使用 <code>npm</code> 的默认 <a href="./semver.md"><code>semver</code></a> 范围运算符</li>
+<li><code>-B</code>, <code>--save-bundle</code> 依赖项也将添加到您的 <a href="./package.json.md#bundleddependencies"><code>bundleDependencies</code></a> 列表中<!--rehype:className=style-arrow--></li>
+</ul>
+<p>命令 <code>npm i</code> 是 <code>npm install</code> 的别名</p>
+<h3 id="清单"><a href="#清单" class="headerlink" title="清单"></a>清单</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>npm list</code></td>
+<td align="left">列出此软件中所有依赖项的已安装版本</td>
+</tr>
+<tr>
+<td align="left"><code>npm list -g --depth 0</code></td>
+<td align="left">列出所有全局安装包的安装版本</td>
+</tr>
+<tr>
+<td align="left"><code>npm view</code></td>
+<td align="left">列出此软件中所有依赖项的最新版本</td>
+</tr>
+<tr>
+<td align="left"><code>npm outdated</code></td>
+<td align="left">仅列出此软件中已过时的依赖项</td>
+</tr>
+</tbody></table>
+<!--rehype:class=auto-wrap-->
+
+<h3 id="缓存-cache"><a href="#缓存-cache" class="headerlink" title="缓存 cache"></a>缓存 cache</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm cache add &lt;package-spec&gt;    <span class="comment"># 将指定的包添加到本地缓存</span></span><br><span class="line">$ npm cache clean [&lt;key&gt;]         <span class="comment"># 删除缓存文件夹中的所有数据</span></span><br><span class="line">$ npm cache <span class="built_in">ls</span> [&lt;name&gt;@&lt;version&gt;]</span><br><span class="line">$ npm cache verify <span class="comment"># 验证缓存文件夹的内容，垃圾收集任何不需要的数据，</span></span><br><span class="line">                 <span class="comment"># 并验证缓存索引和所有缓存数据的完整性</span></span><br></pre></td></tr></table></figure>
+
+<p>用于添加、列出或清理 <a target="_blank" rel="noopener" href="https://www.npmjs.com/">npm</a> 缓存文件夹</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><table>
+<thead>
+<tr>
+<th align="left">命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>npm version &lt;version&gt;</code></td>
+<td>要更改 <code>package.json</code> 中的版本号</td>
+</tr>
+<tr>
+<td align="left"><code>npm update</code></td>
+<td>更新生产包</td>
+</tr>
+<tr>
+<td align="left"><code>npm update --dev</code></td>
+<td>更新开发包</td>
+</tr>
+<tr>
+<td align="left"><code>npm update -g</code></td>
+<td>更新全局包</td>
+</tr>
+<tr>
+<td align="left"><code>npm update lodash</code></td>
+<td>更新 <code>lodash</code> 包</td>
+</tr>
+</tbody></table>
+<h3 id="杂项功能"><a href="#杂项功能" class="headerlink" title="杂项功能"></a>杂项功能</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将某人添加为所有者</span></span><br><span class="line">$ npm owner add USERNAME PACKAGENAME</span><br><span class="line"><span class="comment"># 列出包</span></span><br><span class="line">$ npm <span class="built_in">ls</span></span><br><span class="line"><span class="comment"># 向安装旧版本软件包的用户添加警告(弃用)</span></span><br><span class="line">$ npm deprecate PACKAGE@<span class="string">&quot;&lt; 0.2.0&quot;</span> <span class="string">&quot;critical bug fixed in v0.2.0&quot;</span></span><br><span class="line"><span class="comment"># 更新所有包或选定的包</span></span><br><span class="line">$ npm update [-g] PACKAGE</span><br><span class="line"><span class="comment"># 检查过时的包</span></span><br><span class="line">$ npm outdated [PACKAGE]</span><br></pre></td></tr></table></figure>
+
+<h3 id="取消发布包"><a href="#取消发布包" class="headerlink" title="取消发布包"></a>取消发布包</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm unpublish &lt;package-name&gt; -f</span><br><span class="line"><span class="comment"># 取消指定版本</span></span><br><span class="line">$ npm unpublish &lt;package-name&gt;@&lt;version&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果您取消发布整个包，则必须在 24 小时后才能发布该包的任何新版本</p>
+<h3 id="更改包裹可见性"><a href="#更改包裹可见性" class="headerlink" title="更改包裹可见性"></a>更改包裹可见性</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将公共包设为私有</span></span><br><span class="line">$ npm access restricted &lt;package-name&gt;</span><br><span class="line"><span class="comment"># 公开私有包</span></span><br><span class="line">$ npm access public &lt;package-name&gt;</span><br><span class="line"><span class="comment"># 授予私有包访问权限</span></span><br><span class="line">$ npm owner add &lt;user&gt; &lt;your-package-name&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="要将包转移到-npm-用户帐户"><a href="#要将包转移到-npm-用户帐户" class="headerlink" title="要将包转移到 npm 用户帐户"></a>要将包转移到 npm 用户帐户</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 新维护者接受邀请</span></span><br><span class="line">$ npm owner add &lt;their-username&gt; &lt;package-name&gt;</span><br><span class="line"><span class="comment"># 删除维护者</span></span><br><span class="line">$ npm owner <span class="built_in">rm</span> &lt;your-username&gt; &lt;package-name&gt;</span><br><span class="line"><span class="comment"># 写入启用了双因素身份验证</span></span><br><span class="line">$ npm owner add &lt;their-username&gt; &lt;package-name&gt; --otp=123456</span><br></pre></td></tr></table></figure>
+
+<h3 id="发布包-npmjs-org"><a href="#发布包-npmjs-org" class="headerlink" title="发布包 npmjs.org"></a>发布包 npmjs.org</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm publish</span><br><span class="line"><span class="comment"># 第一次需要指定公开参数</span></span><br><span class="line">$ npm publish --access public</span><br><span class="line">$ npm publish --access public --tag previous</span><br></pre></td></tr></table></figure>
+
+<p>发布公开包，到 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/">npmjs.org</a></p>
+<h3 id="使用-nrm-切换-registry"><a href="#使用-nrm-切换-registry" class="headerlink" title="使用 nrm 切换 registry"></a>使用 nrm 切换 registry</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g nrm <span class="comment"># 安装 nrm 包</span></span><br><span class="line"><span class="comment"># 查看 registry 列表</span></span><br><span class="line">$ nrm <span class="built_in">ls</span>             </span><br><span class="line"><span class="comment"># 将注册表切换到 cnpm</span></span><br><span class="line">$ nrm use cnpm       </span><br></pre></td></tr></table></figure>
+
+<h3 id="init"><a href="#init" class="headerlink" title="init"></a>init</h3><p>用于设置新的或现有的 <code>npm</code> 包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm init &lt;package-spec&gt; <span class="comment"># (如同 `npx &lt;package-spec&gt;)</span></span><br><span class="line">$ npm init &lt;@scope&gt;       <span class="comment"># (如同 `npx &lt;@scope&gt;/create`)</span></span><br></pre></td></tr></table></figure>
+
+<p>别名: <code>create</code>, <code>innit</code></p>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>npm init foo</code></td>
+<td><code>npm exec create-foo</code></td>
+</tr>
+<tr>
+<td align="left"><code>npm init @usr/foo</code></td>
+<td><code>npm exec @usr/create-foo</code></td>
+</tr>
+<tr>
+<td align="left"><code>npm init @usr</code></td>
+<td><code>npm exec @usr/create</code></td>
+</tr>
+<tr>
+<td align="left"><code>npm init @usr@2.0.0</code></td>
+<td><code>npm exec @usr/create@2.0.0</code></td>
+</tr>
+<tr>
+<td align="left"><code>npm init @usr/foo@2.0.0</code></td>
+<td><code>npm exec @usr/create-foo@2.0.0</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=left-align-->
+
+<h3 id="exec"><a href="#exec" class="headerlink" title="exec"></a>exec</h3><p>命令允许您在与通过 <code>npm run</code> 运行它类似的上下文中从 npm 包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="built_in">exec</span> -- &lt;pkg&gt;[@&lt;version&gt;] [args...]</span><br><span class="line">$ npm <span class="built_in">exec</span> --package=&lt;pkg&gt;[@&lt;version&gt;] -- &lt;cmd&gt; [args...]</span><br><span class="line">$ npm <span class="built_in">exec</span> -c <span class="string">&#x27;&lt;cmd&gt; [args...]&#x27;</span></span><br><span class="line">$ npm <span class="built_in">exec</span> --package=foo -c <span class="string">&#x27;&lt;cmd&gt; [args...]&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>别名: x</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="built_in">exec</span> --package yo --package generator-node --call <span class="string">&quot;yo node&quot;</span></span><br><span class="line"></span><br><span class="line">$ npm <span class="built_in">exec</span> --package=foo -- bar --bar-argument</span><br><span class="line"><span class="comment"># ~ or ~</span></span><br><span class="line">$ npx --package=foo bar --bar-argument</span><br></pre></td></tr></table></figure>
+
+<h2 id="npx"><a href="#npx" class="headerlink" title="npx"></a>npx</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>从本地或远程 npm 包运行命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">npx -- &lt;pkg&gt;[@&lt;version&gt;] [args...]</span><br><span class="line">npx --package=&lt;pkg&gt;[@&lt;version&gt;] -- &lt;cmd&gt; [args...]</span><br><span class="line">npx -c <span class="string">&#x27;&lt;cmd&gt; [args...]&#x27;</span></span><br><span class="line">npx --package=foo -c <span class="string">&#x27;&lt;cmd&gt; [args...]&#x27;</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p><code>npx</code> 二进制文件在 <code>npm v7.0.0</code> 中被重写，并且当时不推荐使用独立的 <code>npx</code> 包</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm install eslint</span><br><span class="line"><span class="comment"># 运行：</span></span><br><span class="line">$ ./node_modules/.bin/eslint</span><br></pre></td></tr></table></figure>
+
+<p>上面命令简化，直接运行下面👇命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npx eslint</span><br></pre></td></tr></table></figure>
+
+<p>命令 <code>npx</code> 将自动安装并运行 <code>eslint</code></p>
+<h3 id="npx-VS-npm-exec"><a href="#npx-VS-npm-exec" class="headerlink" title="npx VS npm exec"></a>npx VS npm exec</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npx foo@latest bar --package=@npmcli/foo</span><br><span class="line"><span class="comment"># npm 将解析 foo 包名，并运行以下命令：</span></span><br><span class="line">$ foo bar --package=@npmcli/foo</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>由于 npm 的参数解析逻辑，运行这个命令是不同的:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="built_in">exec</span> foo@latest bar --package=@npmcli/foo</span><br><span class="line"><span class="comment"># npm 将首先解析 --package 选项</span></span><br><span class="line"><span class="comment"># 解析 @npmcli/foo 包</span></span><br><span class="line"><span class="comment"># 然后，它将在该上下文中执行以下命令：</span></span><br><span class="line">$ foo@latest bar</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>下面命令是与 <code>npx</code> 等效的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="built_in">exec</span> -- foo@latest bar --package=@npmcli/foo</span><br><span class="line"><span class="comment"># 等效的</span></span><br><span class="line">$ npx foo@latest bar --package=@npmcli/foo</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="npx-VS-npm-exec-示例"><a href="#npx-VS-npm-exec-示例" class="headerlink" title="npx VS npm exec 示例"></a>npx VS npm exec 示例</h3><p>使用提供的参数在本地依赖项中运行 <code>tap</code> 版本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="built_in">exec</span> -- tap --bail <span class="built_in">test</span>/foo.js</span><br><span class="line">$ npx tap --bail <span class="built_in">test</span>/foo.js</span><br></pre></td></tr></table></figure>
+
+<p>通过指定 <code>--package</code> 选项运行名称与包名称匹配的命令以外的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ npm <span class="built_in">exec</span> --package=foo -- bar --bar-argument</span><br><span class="line"><span class="comment"># ~ or ~</span></span><br><span class="line">$ npx --package=foo bar --bar-argument</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>在当前项目的上下文中运行任意 <code>shell</code> 脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npm x -c <span class="string">&#x27;eslint &amp;&amp; say &quot;hooray, lint passed&quot;&#x27;</span></span><br><span class="line">$ npx -c <span class="string">&#x27;eslint &amp;&amp; say &quot;hooray, lint passed&quot;&#x27;</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<h3 id="创建一个-React-Naive-项目"><a href="#创建一个-React-Naive-项目" class="headerlink" title="创建一个 React Naive 项目"></a>创建一个 React Naive 项目</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npx react-native init AwesomeProject</span><br><span class="line">$ npx react-native init AwesomeTSProject --template react-native-template-typescript</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用 <code>npx</code> 直接创建一个  <a target="_blank" rel="noopener" href="https://reactnative.dev/docs/environment-setup#creating-a-new-application">React Native</a> 应用</p>
+<h3 id="创建一个-React-应用"><a href="#创建一个-React-应用" class="headerlink" title="创建一个 React 应用"></a>创建一个 React 应用</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ npx create-react-app my-app</span><br><span class="line">$ npx create-react-app my-app --template typescript</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>使用 <code>npx</code> 跳过安装 <a target="_blank" rel="noopener" href="https://reactnative.dev/docs/environment-setup#creating-a-new-application">CRA</a>，直接创建一个 <a href="./react.md">React</a> 应用</p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h2><h3 id="npmrc"><a href="#npmrc" class="headerlink" title=".npmrc"></a>.npmrc</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>/path/to/project/.npmrc</code></td>
+<td align="left">每个项目的配置文件</td>
+</tr>
+<tr>
+<td align="left"><code>~/.npmrc</code></td>
+<td align="left">每个用户的配置文件</td>
+</tr>
+<tr>
+<td align="left"><code>$PREFIX/etc/npmrc</code></td>
+<td align="left">全局配置文件</td>
+</tr>
+<tr>
+<td align="left"><code>/path/to/npm/npmrc</code></td>
+<td align="left">npm 内置配置文件</td>
+</tr>
+</tbody></table>
+<h3 id="配置内容"><a href="#配置内容" class="headerlink" title="配置内容"></a>配置内容</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># last modified: 01 Jan 2016</span></span><br><span class="line"><span class="comment">; Set a new registry for a scoped package</span></span><br><span class="line">@myscope:<span class="attr">registry</span>=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<p>注释使用 <code>#</code>, <code>;</code> 放置到一行的开头， <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/configuring-npm/npmrc"><code>.npmrc</code></a> 文件由指定此注释语法的 <a target="_blank" rel="noopener" href="https://github.com/npm/ini"><code>npm/ini</code></a> 解析</p>
+<h3 id="registry"><a href="#registry" class="headerlink" title="registry"></a>registry</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>npm</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://registry.npmjs.org/">https://registry.npmjs.org/</a></td>
+</tr>
+<tr>
+<td align="left"><code>yarn</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://registry.yarnpkg.com/">https://registry.yarnpkg.com/</a></td>
+</tr>
+<tr>
+<td align="left"><code>tencent</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://mirrors.cloud.tencent.com/npm/">https://mirrors.cloud.tencent.com/npm/</a></td>
+</tr>
+<tr>
+<td align="left"><code>cnpm</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://r.cnpmjs.org/">https://r.cnpmjs.org/</a></td>
+</tr>
+<tr>
+<td align="left"><code>taobao</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://registry.npmmirror.com/">https://registry.npmmirror.com/</a></td>
+</tr>
+<tr>
+<td align="left"><code>npmMirror</code></td>
+<td align="left"><a target="_blank" rel="noopener" href="https://skimdb.npmjs.com/registry/">https://skimdb.npmjs.com/registry/</a></td>
+</tr>
+</tbody></table>
+<h3 id="npmignore"><a href="#npmignore" class="headerlink" title=".npmignore"></a><code>.npmignore</code></h3><p>将下面内容存放到 <code>.npmignore</code> 文件中，放置在项目的根目录中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.git</span><br><span class="line">.svn</span><br><span class="line"># 忽略 .swp 后缀的文件</span><br><span class="line">.*.swp</span><br><span class="line">/logs/*</span><br><span class="line"></span><br><span class="line"># “！” 意思是不要忽视</span><br><span class="line">!logs/.gitkeep</span><br></pre></td></tr></table></figure>
+
+<p><code>.npmignore</code> 文件就像 <a href="./git.md#%E5%BF%BD%E7%95%A5%E6%96%87%E4%BB%B6"><code>.gitignore</code></a> 一样工作。它不能覆盖 <code>package.json#files</code> 字段。</p>
+<h3 id="中国镜像站安装"><a href="#中国镜像站安装" class="headerlink" title="中国镜像站安装"></a>中国镜像站安装</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 临时使用</span></span><br><span class="line">$ npm install -g &lt;package-name&gt; --registry=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+
+<p>将配置放置在 <a target="_blank" rel="noopener" href="https://docs.npmjs.com/cli/v8/configuring-npm/npmrc"><code>.npmrc</code></a> 全局配置文件中，或者在项目的根目录中。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">; registry=https://registry.npmjs.org/</span></span><br><span class="line"><span class="attr">registry</span>=https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+
+<p>或者配置到 <a href="./package.json.md#publishconfig"><code>package.json#publishConfig</code></a> 字段上</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;publishConfig&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;registry&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://registry.npmmirror.com&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>替换 npm 仓库地址为 npmmirror(淘宝) 镜像地址</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm config <span class="built_in">set</span> registry https://registry.npmmirror.com</span><br></pre></td></tr></table></figure>
+
+<p>请参阅：<a target="_blank" rel="noopener" href="https://npmmirror.com/">npmmirror 中国镜像站</a></p>
+<h4 id="electronjs-镜像和缓存"><a href="#electronjs-镜像和缓存" class="headerlink" title="electronjs 镜像和缓存"></a>electronjs 镜像和缓存</h4><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ELECTRON_MIRROR</span>=<span class="string">&quot;https://npmmirror.com/mirrors/electron/&quot;</span></span><br><span class="line"><span class="attr">ELECTRON_BUILDER_BINARIES_MIRROR</span>=https://npmmirror.com/mirrors/electron-builder-binaries/</span><br><span class="line"><span class="comment">; ELECTRON_CUSTOM_DIR=&quot;&#123;&#123; version &#125;&#125;&quot;</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<h3 id="身份验证相关配置"><a href="#身份验证相关配置" class="headerlink" title="身份验证相关配置"></a>身份验证相关配置</h3><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//registry.npmjs.org/:<span class="attr">_authToken</span>=MYTOKEN</span><br><span class="line"><span class="comment">; 将适用于 @myorg 和 @another</span></span><br><span class="line">//somewhere.com/:<span class="attr">_authToken</span>=MYTOKEN</span><br><span class="line"><span class="comment">; 将适用于 @myorg</span></span><br><span class="line">//somewhere.com/myorg/:<span class="attr">_authToken</span>=MYTOKEN1</span><br><span class="line"><span class="comment">; 将适用于 @another</span></span><br><span class="line">//somewhere.com/another/:<span class="attr">_authToken</span>=MYTOKEN2</span><br></pre></td></tr></table></figure>
+
+<h2 id="纯-ESM-包"><a href="#纯-ESM-包" class="headerlink" title="纯 ESM 包"></a>纯 ESM 包</h2><h3 id="CommonJS-项目移动到-ESM"><a href="#CommonJS-项目移动到-ESM" class="headerlink" title="CommonJS 项目移动到 ESM"></a>CommonJS 项目移动到 ESM</h3><!--rehype:wrap-class=col-span-3-->
+
+<ul>
+<li>将 <code>&quot;type&quot;: &quot;module&quot;</code> 添加到您的 <a href="./package.json.md">package.json</a></li>
+<li>将 <a href="./package.json.md">package.json</a> 中的 <code>&quot;main&quot;: &quot;index.js&quot;</code> 替换为 <code>&quot;exports&quot;: &quot;./index.js&quot;</code>。</li>
+<li>将 <a href="./package.json.md">package.json</a> 中的 <code>&quot;engines&quot;</code> 字段更新为 Node.js 14: <code>&quot;node&quot;: &quot;&gt;=14.16&quot;</code>。(不包括 <red><del>Node.js 12</del></red>，因为它不再受支持)</li>
+<li>删除 <code>&quot;use strict&quot;</code>；来自所有 JavaScript 文件</li>
+<li>将所有 <code>require()</code> &#x2F; <code>module.export</code> 替换为 <code>import</code> &#x2F; <code>export</code></li>
+<li>仅使用完整的相对文件路径进行导入：<code>import x from &#39;.&#39;;</code> → <code>import x from &#39;./index.js&#39;;</code></li>
+<li>如果您有 <code>TypeScript</code> 类型定义（例如 <code>index.d.ts</code>），请将其更新为使用 ESM 导入&#x2F;导出</li>
+<li>可选但推荐使用 <code>node:</code> 导入<a target="_blank" rel="noopener" href="https://nodejs.org/api/esm.html#esm_node_imports">协议</a></li>
+</ul>
+<h3 id="TypeScript-项目输出-ESM"><a href="#TypeScript-项目输出-ESM" class="headerlink" title="TypeScript 项目输出 ESM"></a>TypeScript 项目输出 ESM</h3><!--rehype:wrap-class=col-span-3-->
+
+<ul>
+<li>确保您使用的是 TypeScript 4.7 或更高版本</li>
+<li>将 <code>&quot;type&quot;: &quot;module&quot;</code> 添加到您的 <a href="./package.json.md">package.json</a></li>
+<li>将 <a href="./package.json.md">package.json</a> 中的 <code>&quot;main&quot;: &quot;index.js&quot;</code> 替换为 <code>&quot;exports&quot;: &quot;./index.js&quot;</code></li>
+<li>将 <a href="./package.json.md">package.json</a> 中的 <code>&quot;engines&quot;</code> 字段更新为 Node.js 14: <code>&quot;node&quot;: &quot;&gt;=14.16&quot;</code>。 （不包括 <red><del>Node.js 12</del></red>，因为它不再受支持）</li>
+<li>将 <code>&quot;module&quot;: &quot;node16&quot;</code>, <code>&quot;moduleResolution&quot;: &quot;node16&quot;</code> 添加到您的 <a href="./typescript.md">tsconfig.json</a> (<a target="_blank" rel="noopener" href="https://github.com/sindresorhus/tsconfig/blob/main/tsconfig.json">列子</a>)</li>
+<li>仅使用完整的相对文件路径进行导入：<code>import x from &#39;.&#39;;</code> → <code>import x from &#39;./index.js&#39;;</code></li>
+<li>删除 <code>namespace</code> 使用并改用 <code>export</code></li>
+<li>可选但推荐使用 <code>node:</code> 导入<a target="_blank" rel="noopener" href="https://nodejs.org/api/esm.html#esm_node_imports">协议</a></li>
+<li><strong>即使您正在导入 <code>.ts</code> 文件，也必须在相对导入中使用 <code>.js</code> 扩展名</strong></li>
+</ul>
+<p>阅读<a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/esm-node.html">官方 ESM 指南</a></p>
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.npmjs.com/">npm 仓库、网站和命令行界面的文档</a> <em>(npmjs.com)</em></li>
+<li><a target="_blank" rel="noopener" href="https://npmmirror.com/">npmmirror 中国镜像站</a> <em>(npmmirror.com)</em></li>
+<li><a target="_blank" rel="noopener" href="https://michaelcurrin.github.io/dev-cheatsheets/cheatsheets/package-managers/javascript/npm/commands/npx.html">Dev Cheatsheets npx</a> <em>(michaelcurrin.github.io)</em></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-npm/" title="npm 备忘清单" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/快速参考-npm/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-nginx/" title="NGINX 备忘清单"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-package.json/" title="package.json 备忘清单"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

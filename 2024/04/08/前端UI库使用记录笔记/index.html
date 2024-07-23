@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>AntDesign使用笔记 | Hexo</title>
+  <meta name="description" content="#此文件为方便gitee网站观阅使用专门创建 此笔记文件于某一时间截取复制至此,容易存在更新不及时问题,建议观看同级目录下的笔记文件 此处只截取了AntDesign使用笔记中的小部分笔记至此,方便网站阅读 其他框架如Echart以及后续的uni-app等等都会放在此目录,需要者自行查阅 除此笔记外大家可以看我其他笔记 :全栈笔记、数据结构与算法、编程_前端开发学习笔记、编程_后台服务端学习笔记 、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AntDesign使用笔记">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#此文件为方便gitee网站观阅使用专门创建 此笔记文件于某一时间截取复制至此,容易存在更新不及时问题,建议观看同级目录下的笔记文件 此处只截取了AntDesign使用笔记中的小部分笔记至此,方便网站阅读 其他框架如Echart以及后续的uni-app等等都会放在此目录,需要者自行查阅 除此笔记外大家可以看我其他笔记 :全栈笔记、数据结构与算法、编程_前端开发学习笔记、编程_后台服务端学习笔记 、">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210519174400852.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210705164549793.png">
+<meta property="og:image" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210519180836289.png">
+<meta property="og:image" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210519180215667.png">
+<meta property="og:image" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210520160244113.png">
+<meta property="og:image" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210520161131163.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210617185457284.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210617185606230.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210708114340551.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210712162540686.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210712163609695.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210630115858466.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715153029004.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210714140338803.png">
+<meta property="og:image" content="https://gitee.com/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Tree%E9%80%89%E4%B8%AD%E6%95%88%E6%9E%9C.gif">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:51:34.303Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="前端UI库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210519174400852.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-前端UI库使用记录笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      AntDesign使用笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="此文件为方便gitee网站观阅使用专门创建"><a href="#此文件为方便gitee网站观阅使用专门创建" class="headerlink" title="#此文件为方便gitee网站观阅使用专门创建"></a>#此文件为方便gitee网站观阅使用专门创建</h1><blockquote>
+<p>此笔记文件于某一时间截取复制至此,容易存在更新不及时问题,建议观看同级目录下的笔记文件</p>
+<p>此处只截取了<code>AntDesign使用笔记</code>中的小部分笔记至此,方便网站阅读</p>
+<p>其他框架如<code>Echart</code>以及后续的<code>uni-app</code>等等都会放在此目录,需要者自行查阅</p>
+<p>除此笔记外大家可以看我其他笔记 :<strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master">全栈笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据结构与算法</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_前端开发学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_后台服务端学习笔记</a></strong> 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java">Java</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Nodejs">Nodejs</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/HTML+CSS+JS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0">JavaScript笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6及后续版本学习笔记</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Vue%E7%AC%94%E8%AE%B0%E6%95%B4%E5%90%88">Vue笔记整合</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0">React笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">微信小程序学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Chrome开发使用及学习笔记</a>** 以及许多其他笔记就不一一例举了</p>
+</blockquote>
+<h1 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h1><blockquote>
+<p><code>antd</code> 是基于 Ant Design 设计体系的 React UI 组件库，主要用于研发企业级中后台产品。也是是本人目前实习公司所用框架技术之一</p>
+<p>本笔记主要记录工作中项目中遇到的<code>与官方文档有差异化的</code> 的使用方式、或者是自己对于文档记录的组件的使用,方便自己查阅</p>
+<p>此笔记持续更新</p>
+<p>本人笔记地址分享:<a href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a></p>
+</blockquote>
+<h1 id="Ant-Design-of-React-文档"><a href="#Ant-Design-of-React-文档" class="headerlink" title="Ant Design of React 文档"></a>Ant Design of React 文档</h1><blockquote>
+<ol>
+<li><p><a target="_blank" rel="noopener" href="https://ant.design/docs/react/introduce-cn">官方文档地址</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://ant.design/components/overview-cn/">组件</a></p>
+</li>
+</ol>
+</blockquote>
+<h1 id="一、数据录入"><a href="#一、数据录入" class="headerlink" title="一、数据录入"></a>一、数据录入</h1><h2 id="1、From表单"><a href="#1、From表单" class="headerlink" title="1、From表单"></a>1、From表单</h2><h3 id="Ⅰ-限制表单中输入框不能为空以及中文"><a href="#Ⅰ-限制表单中输入框不能为空以及中文" class="headerlink" title="Ⅰ-限制表单中输入框不能为空以及中文"></a>Ⅰ-限制表单中输入框不能为空以及中文</h3><blockquote>
+<ol>
+<li><p>通过<a target="_blank" rel="noopener" href="https://ant.design/components/form-cn/#Form.Item"><code>From.Item</code></a> 中的 <code>normalize</code>属性进行处理对value的处理:组件获取值后进行转换，再放入 Form 中。不支持异步</p>
+</li>
+<li><p>通过正则替换,将键入的空格以及中文替换为空字符串</p>
+</li>
+<li><p>代码示例</p>
+</li>
+</ol>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Form</span> form=&#123;form&#125; onFinish=&#123;handleFinish&#125;&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Item</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    <span class="attr">label</span>=<span class="string">&quot;密码&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">     <span class="attr">name</span>=<span class="string">&quot;password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">     <span class="attr">rules</span>=<span class="string">&#123;[&#123;</span> <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">message:</span> &#x27;<span class="attr">密码不能为空</span>&#x27; &#125;]&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">     //<span class="attr">密码框不允许为空格</span>,<span class="attr">且不允许输入中文</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">     <span class="attr">normalize</span>=<span class="string">&#123;(value)</span> =&gt;</span> value.replace(/\s/g, &#x27;&#x27;).replace(/[\u4E00-\u9FA5]|[\uFE30-\uFFA0]/gi, &#x27;&#x27;)</span></span><br><span class="line"><span class="language-xml">     &#125;</span></span><br><span class="line"><span class="language-xml">   &gt;</span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">Input.Password</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">       <span class="attr">placeholder</span>=<span class="string">&quot;请输入密码&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">       <span class="attr">autoComplete</span>=<span class="string">&quot;new-password&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">     /&gt;</span></span></span><br><span class="line"><span class="language-xml">   <span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span></span><br><span class="line"> &lt;/<span class="title class_">From</span>&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-自定义校验"><a href="#Ⅱ-自定义校验" class="headerlink" title="Ⅱ-自定义校验"></a>Ⅱ-自定义校验</h3><blockquote>
+<ol>
+<li><p>详见<a target="_blank" rel="noopener" href="https://ant.design/components/form-cn/#Rule"><code>Rule</code></a>属性中自定义<code>validator</code></p>
+</li>
+<li><p>通常用作用户名等校验</p>
+</li>
+</ol>
+ <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Form</span> form=&#123;form&#125; onFinish=&#123;handleFinish&#125;&gt;</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Item</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">label</span>=<span class="string">&quot;用户名&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">name</span>=<span class="string">&quot;username&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">validateTrigger</span>=<span class="string">&quot;onBlur&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">normalize</span>=<span class="string">&#123;(value)</span> =&gt;</span> value.replace(/\s/g, &#x27;&#x27;)&#125;</span></span><br><span class="line"><span class="language-xml">      rules=&#123;[</span></span><br><span class="line"><span class="language-xml">       //此处message为空字符串是为了防止下方自定义校验返回的字符串重叠    </span></span><br><span class="line"><span class="language-xml">       &#123; required: true, message: &#x27;&#x27; &#125;,</span></span><br><span class="line"><span class="language-xml">        &#123;</span></span><br><span class="line"><span class="language-xml">          validator: async (_, value) =&gt; &#123;</span></span><br><span class="line"><span class="language-xml">              //如果是修改时,可以用这句话,当你内容没改变时,不进行校验</span></span><br><span class="line"><span class="language-xml">              if (editData.name === value) return; </span></span><br><span class="line"><span class="language-xml">              //判断空以及输入空字符串的报错</span></span><br><span class="line"><span class="language-xml">              if (value == null || value.trim() == &#x27;&#x27;) return Promise.reject(&quot;用户名不能为空&quot;);</span></span><br><span class="line"><span class="language-xml">              //请求接口,查询通过上述两个校验后的字符串是否与数据库中重复,如果重复,则提示用户名已存在</span></span><br><span class="line"><span class="language-xml">              const res: IResult<span class="tag">&lt;<span class="name">IExist</span>&gt;</span> = await ChannelApi.isUserExist( value );</span></span><br><span class="line"><span class="language-xml">              if (res?.data.status) return Promise.reject(&#x27;用户名已存在&#x27;);</span></span><br><span class="line"><span class="language-xml">              else  return Promise.resolve(); </span></span><br><span class="line"><span class="language-xml">          &#125;,</span></span><br><span class="line"><span class="language-xml">        &#125;,</span></span><br><span class="line"><span class="language-xml">      ]&#125;</span></span><br><span class="line"><span class="language-xml">    &gt;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入用户名&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">From</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>通常用作必须字段校验(不进行数据库查询)</li>
+</ol>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Item</span></span><br><span class="line">  label=<span class="string">&quot;必填项&quot;</span></span><br><span class="line">  name=<span class="string">&quot;incomeType&quot;</span></span><br><span class="line">  rules=&#123;[</span><br><span class="line">    &#123; <span class="attr">required</span>: <span class="literal">true</span>, <span class="attr">message</span>: <span class="string">&#x27;&#x27;</span> &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">validator</span>: <span class="keyword">async</span> (_, value) =&gt; &#123;</span><br><span class="line">        <span class="keyword">if</span> (value == <span class="literal">null</span> || value.<span class="title function_">trim</span>() == <span class="string">&#x27;&#x27;</span>) </span><br><span class="line">          <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(<span class="string">&#x27;必填项不能为空&#x27;</span>);</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">  ]&#125;</span><br><span class="line">&gt;</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">Input.TextArea</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入必填项信息&quot;</span> /&gt;</span></span></span><br><span class="line">&lt;/<span class="title class_">Item</span>&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅲ-表单中动态修改数字输入框的value"><a href="#Ⅲ-表单中动态修改数字输入框的value" class="headerlink" title="Ⅲ-表单中动态修改数字输入框的value"></a>Ⅲ-表单中动态修改数字输入框的value</h3><blockquote>
+<ol>
+<li><p>出现场景:在 第一次对<a target="_blank" rel="noopener" href="https://ant.design/components/input-number-cn/#API"><code>InputNumber</code></a>组件输入0时，就自动填充为设置的<code>min</code>了，这时我的需求是改成输入框失去焦点时再自动填充为min</p>
+</li>
+<li><p>用到的组件:<code>From</code>、<a target="_blank" rel="noopener" href="https://ant.design/components/input-number-cn/#API"><code>InputNumber</code></a></p>
+</li>
+<li><p>代码示例</p>
+</li>
+</ol>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//最小折扣,用于动态改变最小折扣</span></span><br><span class="line">  <span class="keyword">const</span> [min, setMin] = <span class="title function_">useState</span>(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Form</span> <span class="attr">form</span>=<span class="string">&#123;form&#125;</span> <span class="attr">onFinish</span>=<span class="string">&#123;handleFinish&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Item</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">label</span>=<span class="string">&quot;折扣数&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">name</span>=<span class="string">&quot;discount&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">rules</span>=<span class="string">&#123;[&#123;</span> <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">message:</span> &#x27;<span class="attr">推荐码折扣不能为空</span>&#x27; &#125;]&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">InputNumber</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">width:</span> &#x27;<span class="attr">100</span>%&#x27; &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">placeholder</span>=<span class="string">&#123;DISCOUNT_TIP&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        // <span class="attr">min</span>=<span class="string">&#123;0.9&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">min</span>=<span class="string">&#123;min&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">       <span class="attr">max</span>=<span class="string">&#123;1&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">step</span>=<span class="string">&#123;0.01&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">precision</span>=<span class="string">&#123;2&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        // <span class="attr">第一次输入推荐码折扣</span>，<span class="attr">输入0</span>，<span class="attr">就自动填充为0.9了</span>，<span class="attr">建议改成输入框失去焦点时再自动填充为0.9</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        //<span class="attr">所以取消默认min</span>,<span class="attr">通过动态添加min实现第一次不会自动填充</span>,<span class="attr">唯有失去焦点时才会执行</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">onBlur</span>=<span class="string">&#123;(e)</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">          if (Number(e.target.value) &lt; 0.9) form.setFieldsValue(&#123; discount: 0.9 &#125;)</span></span><br><span class="line"><span class="language-xml">          setMin(0.9)</span></span><br><span class="line"><span class="language-xml">        &#125;&#125;</span></span><br><span class="line"><span class="language-xml">      /&gt;</span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">From</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅳ-限制表单中输入框-不能只输入纯空格以及为空-保留value中间空格"><a href="#Ⅳ-限制表单中输入框-不能只输入纯空格以及为空-保留value中间空格" class="headerlink" title="Ⅳ-限制表单中输入框-不能只输入纯空格以及为空(保留value中间空格)"></a>Ⅳ-限制表单中输入框-不能只输入纯空格以及为空(保留value中间空格)</h3><blockquote>
+<ol>
+<li>出现场景:详见截图</li>
+</ol>
+<img src="AntDesign使用笔记/AntDesign_ofReact使用笔记中的图片/image-20210519174400852.png" alt="image-20210519174400852" style="zoom:80%;" />
+
+<ol start="2">
+<li>代码示例:此处指举例第一个输入框,并在里面进行注释</li>
+</ol>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">  &lt;<span class="title class_">Form</span> &#123;...<span class="variable constant_">FORM_LAYOUT</span>&#125; form=&#123;form&#125; onFinish=&#123;handleFinish&#125;&gt;</span><br><span class="line">          <span class="language-xml"><span class="tag">&lt;<span class="name">Item</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">label</span>=<span class="string">&quot;xxx名&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">name</span>=<span class="string">&quot;name&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">validateTrigger</span>=<span class="string">&quot;onBlur&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            // <span class="attr">normalize</span>=<span class="string">&#123;(value)</span> =&gt;</span> value.replace(/\s/g, &#x27;&#x27;)&#125; //此行代码是直接限制无法输入空格,不符需求所以废弃</span></span><br><span class="line"><span class="language-xml">            rules=&#123;[</span></span><br><span class="line"><span class="language-xml">              //1. 此处message要置空,因为下方`value == null `就是为空提示,不置空会出现提示两遍的错误</span></span><br><span class="line"><span class="language-xml">              //2. 为何保留此处? 需要输入框前有*提示必填 如果不是必填项就不需要</span></span><br><span class="line"><span class="language-xml">              &#123; required: true, message: &#x27;&#x27; &#125;,</span></span><br><span class="line"><span class="language-xml">              &#123;</span></span><br><span class="line"><span class="language-xml">                validator: async (_, value) =&gt; &#123;</span></span><br><span class="line"><span class="language-xml">                  //此行是去除前后空格后为空字符串或者直接为空的话返回 不能为空提示</span></span><br><span class="line"><span class="language-xml">                  if (value == null ||value.trim() == &#x27;&#x27;) &#123; </span></span><br><span class="line"><span class="language-xml">                    return Promise.reject(&#x27;xxx名不能为空&#x27;);</span></span><br><span class="line"><span class="language-xml">                  &#125; else &#123;</span></span><br><span class="line"><span class="language-xml">                    const res: IResult<span class="tag">&lt;<span class="name">IExist</span>&gt;</span> = await ChannelApi.isChannelExist(</span></span><br><span class="line"><span class="language-xml">                      value</span></span><br><span class="line"><span class="language-xml">                    );</span></span><br><span class="line"><span class="language-xml">                    if (res?.data.status) &#123;</span></span><br><span class="line"><span class="language-xml">                      return Promise.reject(&#x27;xxx名已存在&#x27;);</span></span><br><span class="line"><span class="language-xml">                    &#125; else &#123;</span></span><br><span class="line"><span class="language-xml">                      return Promise.resolve();</span></span><br><span class="line"><span class="language-xml">                    &#125;</span></span><br><span class="line"><span class="language-xml">                  &#125;</span></span><br><span class="line"><span class="language-xml">                &#125;,</span></span><br><span class="line"><span class="language-xml">              &#125;,</span></span><br><span class="line"><span class="language-xml">            ]&#125;</span></span><br><span class="line"><span class="language-xml">          &gt;</span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入渠道商名&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    	 //不是必须项的对比</span></span><br><span class="line"><span class="language-xml">      	 <span class="tag">&lt;<span class="name">Item</span> <span class="attr">label</span>=<span class="string">&quot;联系人&quot;</span> <span class="attr">name</span>=<span class="string">&quot;contactName&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">Input</span> <span class="attr">placeholder</span>=<span class="string">&quot;请输入联系人&quot;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">Item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">Form</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><p>解析</p>
+<ol>
+<li><p><code>rules</code>中<code>message</code>为什么要置空?</p>
+<p>因为下方<code>value == null </code>就是为空提示,不置空会出现提示两遍的错误</p>
+</li>
+<li><p>为什么下方<code>validator</code>中已经给出为空提示,为何还要保留<code>  &#123; required: true, message: &#39;&#39; &#125;</code>?</p>
+<p>因为需要输入框前有*提示必填 如果不是必填项就不需要,此项会给你增加<code>*</code>号标识</p>
+</li>
+<li><p>为何不直接给输入内容<code>.trim()</code>去除前后空格?</p>
+<p>因为输入监听导师value是单次输入,需要你在后面提交时将参数进行一次trim()去除前后空格</p>
+</li>
+</ol>
+</li>
+</ol>
+</blockquote>
+<h3 id="Ⅴ-实现嵌套结构-多类型输入效果"><a href="#Ⅴ-实现嵌套结构-多类型输入效果" class="headerlink" title="Ⅴ- 实现嵌套结构-多类型输入效果"></a>Ⅴ- 实现嵌套结构-多类型输入效果</h3><blockquote>
+<ol>
+<li><p>需求场景:当要求通过下拉框切换后面输入框类别,同时后面的输入框绑定的值不同(与文档中给出的不同:文档中后续输入框时同一个,只是简单时输入框组合)</p>
+</li>
+<li><p>需求示例截图</p>
+</li>
+</ol>
+<p>  <img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210705164549793.png" alt="image-20210705164549793"></p>
+<ol start="3">
+<li>实现思路:</li>
+</ol>
+<ul>
+<li><code>Form.Item</code>中再嵌套<code>Form.Item</code>,然后将各自规则分开写(不能写在<code>父item</code>中).分别绑定不同变量名,通过选择的类型切换渲染后面的<code>Form.Item</code></li>
+<li>在取数据时,可以判断其中一个变量为空时进行对另一个变量的数据(如果不渲染Form.Item,其绑定的变量为undefined),如此就能实现此需求</li>
+<li>此处记录主要起到借鉴作用,我感觉应有更好的写法,但是暂时没想出,同学们如果有好写法希望可以提出交流</li>
+</ul>
+<ol start="4">
+<li>解决代码:</li>
+</ol>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"> &lt;<span class="title class_">Form</span>.<span class="property">Item</span> &#123;...formItemLayout&#125; label=<span class="string">&quot;公司&quot;</span>&gt;</span><br><span class="line">       <span class="language-xml"><span class="tag">&lt;<span class="name">Select</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">defaultValue</span>=<span class="string">&quot;0&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">style</span>=<span class="string">&#123;&#123;</span> <span class="attr">width:</span> <span class="attr">120</span> &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         <span class="attr">onChange</span>=<span class="string">&#123;(v)</span> =&gt;</span> setinputType(v)&#125;</span></span><br><span class="line"><span class="language-xml">       &gt;</span></span><br><span class="line"><span class="language-xml">         <span class="tag">&lt;<span class="name">Option</span> <span class="attr">value</span>=<span class="string">&quot;0&quot;</span>&gt;</span>公司名<span class="tag">&lt;/<span class="name">Option</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">         <span class="tag">&lt;<span class="name">Option</span> <span class="attr">value</span>=<span class="string">&quot;1&quot;</span>&gt;</span>公司ID<span class="tag">&lt;/<span class="name">Option</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;/<span class="name">Select</span>&gt;</span></span></span><br><span class="line">       &#123;<span class="comment">/* 当前方选择框选择公司ID输入时,渲染输入公司ID</span></span><br><span class="line"><span class="comment">           当前方选择框选择公司名输入时,渲染请选择可见公司 */</span>&#125;</span><br><span class="line">       &#123;inputType != <span class="string">&#x27;0&#x27;</span> ? (</span><br><span class="line">         <span class="language-xml"><span class="tag">&lt;<span class="name">Form.Item</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           &#123;<span class="attr">...formItemLayout</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           //<span class="attr">此处name需要绑定不同变量名</span>,<span class="attr">否则会导致与下方</span>`<span class="attr">选择可见公司</span>`<span class="attr">选择框变量互相污染</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           <span class="attr">name</span>=<span class="string">&quot;company_inputIds&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           <span class="attr">noStyle</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           <span class="attr">rules</span>=<span class="string">&#123;[&#123;</span> <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">message:</span> &#x27;<span class="attr">输入公司ID</span>&#x27; &#125;]&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         &gt;</span></span></span><br><span class="line"><span class="language-xml">           &#123;/*  此处使用antd自带下拉框   */&#125;</span></span><br><span class="line"><span class="language-xml">           <span class="tag">&lt;<span class="name">Select</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">mode</span>=<span class="string">&quot;tags&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">value</span>=<span class="string">&#123;showCompanyIDList&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">onChange</span>=<span class="string">&#123;(val)</span> =&gt;</span> changeCompanyIds(val)&#125;</span></span><br><span class="line"><span class="language-xml">             showArrow=&#123;true&#125;</span></span><br><span class="line"><span class="language-xml">             placeholder=&quot;输入公司ID&quot;</span></span><br><span class="line"><span class="language-xml">             style=&#123;&#123; minWidth: 250, maxWidth: 350 &#125;&#125;</span></span><br><span class="line"><span class="language-xml">             tokenSeparators=&#123;[&#x27;,&#x27;]&#125;</span></span><br><span class="line"><span class="language-xml">           /&gt;</span></span><br><span class="line"><span class="language-xml">         <span class="tag">&lt;/<span class="name">Form.Item</span>&gt;</span></span></span><br><span class="line">       ) : (</span><br><span class="line">         <span class="comment">//此处调用公用组件</span></span><br><span class="line">         <span class="language-xml"><span class="tag">&lt;<span class="name">Form.Item</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           &#123;<span class="attr">...formItemLayout</span>&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           <span class="attr">name</span>=<span class="string">&quot;company_ids&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           <span class="attr">noStyle</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">           <span class="attr">rules</span>=<span class="string">&#123;[&#123;</span> <span class="attr">required:</span> <span class="attr">true</span>, <span class="attr">message:</span> &#x27;<span class="attr">请选择指定公司</span>&#x27; &#125;]&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">         &gt;</span></span></span><br><span class="line"><span class="language-xml">           <span class="tag">&lt;<span class="name">SuperSelect</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">value</span>=<span class="string">&#123;showCompanyList&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">placeholder</span>=<span class="string">&quot;请选择可见公司&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">loading</span>=<span class="string">&#123;companyLoading&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">options</span>=<span class="string">&#123;companyList&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">showArrow</span>=<span class="string">&#123;true&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">             <span class="attr">onChange</span>=<span class="string">&#123;(val)</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">               companyListChange(val);</span></span><br><span class="line"><span class="language-xml">             &#125;&#125;</span></span><br><span class="line"><span class="language-xml">             getData=&#123;() =&gt; &#123;</span></span><br><span class="line"><span class="language-xml">               getCompanyList();</span></span><br><span class="line"><span class="language-xml">             &#125;&#125;</span></span><br><span class="line"><span class="language-xml">             onSearch=&#123;onSearchCompany&#125;</span></span><br><span class="line"><span class="language-xml">           /&gt;&#123;&#x27; &#x27;&#125;</span></span><br><span class="line"><span class="language-xml">         <span class="tag">&lt;/<span class="name">Form.Item</span>&gt;</span></span></span><br><span class="line">       )&#125;</span><br><span class="line">     &lt;/<span class="title class_">Form</span>.<span class="property">Item</span>&gt;</span><br><span class="line">---------------------------------  数据处理 ----------------------------------------------------  </span><br><span class="line">  <span class="keyword">const</span> params = &#123;</span><br><span class="line">     <span class="comment">//当 `company_ids`为空时,取`company_inputIds`的值(反之相反),然后将值转为字符串形式(以,隔开)</span></span><br><span class="line">     <span class="attr">company_ids</span>:</span><br><span class="line">       data?.<span class="property">company_ids</span>?.<span class="property">length</span> &gt; <span class="number">0</span></span><br><span class="line">         ? data?.<span class="property">company_ids</span>?.<span class="title function_">map</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> value.<span class="property">key</span>).<span class="title function_">join</span>(<span class="string">&#x27;,&#x27;</span>)</span><br><span class="line">         : !<span class="title function_">toJS</span>(data?.<span class="property">company_inputIds</span>)</span><br><span class="line">           ? <span class="literal">undefined</span></span><br><span class="line">           : data?.<span class="property">company_inputIds</span>?.<span class="title function_">toString</span>(),</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="二、数据展示"><a href="#二、数据展示" class="headerlink" title="二、数据展示"></a>二、数据展示</h1><h2 id="1、Table表格"><a href="#1、Table表格" class="headerlink" title="1、Table表格"></a>1、<a target="_blank" rel="noopener" href="https://ant.design/components/table-cn/">Table表格</a></h2><h3 id="Ⅰ-列表渲染映射文字"><a href="#Ⅰ-列表渲染映射文字" class="headerlink" title="Ⅰ-列表渲染映射文字"></a>Ⅰ-列表渲染映射文字</h3><blockquote>
+<ol>
+<li><p>场景:当你对下列表渲染时,服务端传送过来的<code>值是数字</code>(0,1,2),而你要<code>显示成相对应的文字时</code></p>
+</li>
+<li><p>代码示例1:</p>
+</li>
+</ol>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">Table</span>&gt;</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">Column</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">title</span>=<span class="string">&quot;状态&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">dataIndex</span>=<span class="string">&quot;status&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">render</span>=<span class="string">&#123;(data)</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">          const text = &#123;</span></span><br><span class="line"><span class="language-xml">            0: &#x27;已绑定&#x27;,</span></span><br><span class="line"><span class="language-xml">            1: &#x27;未绑定&#x27;,</span></span><br><span class="line"><span class="language-xml">            2: &#x27;已删除&#x27;,</span></span><br><span class="line"><span class="language-xml">          &#125;;</span></span><br><span class="line"><span class="language-xml">          return text[data];</span></span><br><span class="line"><span class="language-xml">        &#125;&#125;</span></span><br><span class="line"><span class="language-xml">      /&gt;</span></span><br><span class="line">&lt;/<span class="title class_">Table</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>代码示例2,写法不同效果相同,下面是本人喜欢的写法:</li>
+</ol>
+  <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**       数据字典 company-const.ts   **/</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">SHOPSTATUSDICT</span> = &#123;</span><br><span class="line">  <span class="number">0</span>: <span class="string">&#x27;已删除&#x27;</span>,</span><br><span class="line">  <span class="number">1</span>: <span class="string">&#x27;正常&#x27;</span>,</span><br><span class="line">  <span class="number">2</span>: <span class="string">&#x27;未绑定IP&#x27;</span>,</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">export</span>&#123; <span class="variable constant_">SHOPSTATUSDICT</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**      页面调用出        */</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">SHOPSTATUSDICT</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;../common/company-const&#x27;</span><span class="comment">//导入数据字典</span></span><br><span class="line"><span class="keyword">const</span> columns = [ &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;状态&#x27;</span>,</span><br><span class="line">      <span class="attr">dataIndex</span>: <span class="string">&#x27;status&#x27;</span>,</span><br><span class="line">      <span class="attr">ellipsis</span>: <span class="literal">true</span>,  </span><br><span class="line">      <span class="attr">render</span>: <span class="function"><span class="params">text</span>=&gt;</span><span class="variable constant_">SHOPSTATUSDICT</span>[text]<span class="comment">//进行状态数据映射</span></span><br><span class="line">    &#125;,]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Fragment</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Table</span> <span class="attr">columns</span>=<span class="string">&#123;columns&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">Fragment</span>&gt;</span></span></span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-列表渲染映射-小数转百分比"><a href="#Ⅱ-列表渲染映射-小数转百分比" class="headerlink" title="Ⅱ-列表渲染映射-小数转百分比"></a>Ⅱ-列表渲染映射-小数转百分比</h3><blockquote>
+<ol>
+<li><p>当服务端给你的数据是小数,而你需要将其渲染成百分比进行展示   0.25–&gt;25%</p>
+</li>
+<li><p>解析:应用的是<code>render</code>相关知识点</p>
+</li>
+<li><p>代码示例:</p>
+</li>
+<li><p>转换函数代码</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 将小数转化为百分比</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> point </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@returns</span> </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">toPercent=<span class="function">(<span class="params">point:number</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="comment">//判断是否为空,如果为空不做处理 --&gt;此处如果为空要转换成0,将此行代码下移一位即可</span></span><br><span class="line"> 	<span class="keyword">if</span>(!!!point) <span class="keyword">return</span> point</span><br><span class="line">    <span class="comment">//服务端可能传来的数据是字符串,转换一下</span></span><br><span class="line">     point=<span class="title class_">Number</span>(point)</span><br><span class="line">    <span class="keyword">if</span> (point==<span class="number">0</span>)   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> str=<span class="title class_">Number</span>(point*<span class="number">100</span>).<span class="title function_">toFixed</span>()+<span class="string">&quot;%&quot;</span>;</span><br><span class="line">    <span class="keyword">return</span> str;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>列表table组件代码 </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写法一</span></span><br><span class="line">&lt;<span class="title class_">Table</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Column</span> <span class="attr">title</span>=<span class="string">&quot;抽成比例&quot;</span> <span class="attr">dataIndex</span>=<span class="string">&quot;rate&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      //<span class="attr">将小数转换成百分比</span>,<span class="attr">当为数字时</span>,<span class="attr">进行转换</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">       <span class="attr">render</span>=<span class="string">&#123;(data)</span> =&gt;</span> (typeof data ==&#x27;number&#x27;)?  tool.toPercent(data):data &#125;</span></span><br><span class="line"><span class="language-xml"> /&gt;</span></span><br><span class="line">&lt;/<span class="title class_">Table</span>&gt;</span><br><span class="line">     </span><br><span class="line"><span class="comment">//写法二</span></span><br><span class="line"> <span class="keyword">const</span> columns = [ &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;抽成比例&#x27;</span>,</span><br><span class="line">      <span class="attr">dataIndex</span>: <span class="string">&#x27;rate&#x27;</span>,</span><br><span class="line">      <span class="attr">width</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attr">ellipsis</span>: <span class="literal">true</span>,</span><br><span class="line">      <span class="comment">//将小数转换成百分比</span></span><br><span class="line">      <span class="attr">render</span>: <span class="function"><span class="params">data</span> =&gt;</span> tool.<span class="title function_">toPercent</span>(data) </span><br><span class="line">     </span><br><span class="line"> &#125;,];</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Table</span> <span class="attr">columns</span>=<span class="string">&#123;columns&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Table</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果对于<code>if(!!!point) </code>此行代码不懂的同学可以看本人在js笔记中的<a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/(html+css+js)%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0,%E5%BE%85%E6%A2%B3%E7%90%86/JavaScript%E7%AC%94%E8%AE%B0(%E9%9B%B6%E6%95%A3%E5%BE%85%E6%A2%B3%E7%90%86)/js%E4%B8%AD%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81!!%EF%BC%9F.md"><code>js中为什么需要!!?</code></a>部分</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="Ⅲ-表格列固定"><a href="#Ⅲ-表格列固定" class="headerlink" title="Ⅲ-表格列固定"></a>Ⅲ-表格列固定</h3><blockquote>
+<ol>
+<li><p>需求场景:当你的列表过长时,使用滚轮进行拖动会导致用户体验感较差,这时就需要进行表格列固定</p>
+</li>
+<li><p>未使用时效果</p>
+<img src="AntDesign使用笔记/AntDesign_ofReact使用笔记中的图片/image-20210519180836289.png" alt="image-20210519180836289" style="zoom:80%;" />
+
+<ol start="2">
+<li>使用后效果</li>
+</ol>
+<img src="AntDesign使用笔记/AntDesign_ofReact使用笔记中的图片/image-20210519180215667.png" alt="image-20210519180215667" style="zoom:80%;" />
+
+<p>  <code>ps</code>:截图中展示的都是开发中的<code>测试假数据</code></p>
+</li>
+<li><p>代码示例:只给出必要部分</p>
+<ol>
+<li><p>css样式代码(需要给定<code>width</code>,否则无法生效,给定高度,防止超出)</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.tableWidth</span>&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">1600px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">48px</span>);</span><br><span class="line">  :global &#123;</span><br><span class="line">    <span class="selector-class">.ant-table-wrapper</span>,</span><br><span class="line">    <span class="selector-class">.ant-spin-nested-loading</span>,</span><br><span class="line">    <span class="selector-class">.ant-spin-container</span>,</span><br><span class="line">    <span class="selector-class">.ant-table-container</span> &#123;</span><br><span class="line">      <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.ant-table</span> &#123;</span><br><span class="line">      <span class="attribute">height</span>: <span class="built_in">calc</span>(<span class="number">100%</span> - <span class="number">48px</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="selector-class">.ant-table-pagination</span><span class="selector-class">.ant-pagination</span>,</span><br><span class="line">    <span class="selector-tag">div</span><span class="selector-class">.ant-typography</span>,</span><br><span class="line">    <span class="selector-class">.ant-typography</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">      <span class="attribute">margin-bottom</span>: <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+</li>
+<li><p>js调用代码示例1</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> columns = [</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;公司ID&#x27;</span>,  </span><br><span class="line">      <span class="attr">fixed</span>: <span class="string">&#x27;left&#x27;</span>,  <span class="comment">//这就是固定在左边写法</span></span><br><span class="line">      <span class="attr">dataIndex</span>: <span class="string">&#x27;companyId&#x27;</span>,</span><br><span class="line">      <span class="attr">width</span>: <span class="number">150</span>,</span><br><span class="line">      <span class="attr">ellipsis</span>: <span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line"> ]</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Table</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">className</span>=<span class="string">&#123;</span>` $&#123;<span class="attr">style.tableWidth</span>&#125;`&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">columns</span>=<span class="string">&#123;columns&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">scroll</span>=<span class="string">&#123;&#123;</span> <span class="attr">x:</span> <span class="attr">600</span> &#125;&#125;  </span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    /&gt;</span></span></span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>js调用2:(都可实现,效果一样)</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">const</span> columns = [</span><br><span class="line">    &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;名称&#x27;</span>,</span><br><span class="line">    <span class="attr">dataIndex</span>: <span class="string">&#x27;name&#x27;</span>,</span><br><span class="line">    <span class="attr">width</span>: <span class="number">150</span>,</span><br><span class="line">    <span class="attr">fixed</span>: <span class="string">&#x27;left&#x27;</span> <span class="keyword">as</span> <span class="keyword">const</span>,</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">title</span>: <span class="string">&#x27;操作&#x27;</span>,</span><br><span class="line">    <span class="attr">dataIndex</span>: <span class="string">&#x27;agentId&#x27;</span>,</span><br><span class="line">    <span class="attr">width</span>: <span class="number">400</span>,</span><br><span class="line">    <span class="attr">fixed</span>: <span class="string">&#x27;right&#x27;</span> <span class="keyword">as</span> <span class="keyword">const</span>,</span><br><span class="line">  &#125;</span><br><span class="line"> ]</span><br><span class="line"><span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;style.tableWidth&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Table</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">scroll</span>=<span class="string">&#123;&#123;</span> <span class="attr">x:</span> <span class="attr">600</span>, <span class="attr">y:</span> &#x27;<span class="attr">calc</span>(<span class="attr">100</span>% <span class="attr">-</span> <span class="attr">48px</span>)&#x27; &#125;&#125;</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">        <span class="attr">columns</span>=<span class="string">&#123;columns&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      /&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  );</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意:需要给定宽度,不然不会生效</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="Ⅳ-列表内容超出隐藏且悬停显示全"><a href="#Ⅳ-列表内容超出隐藏且悬停显示全" class="headerlink" title="Ⅳ-列表内容超出隐藏且悬停显示全"></a>Ⅳ-列表内容超出隐藏且悬停显示全</h3><blockquote>
+<p>这属于<code>超长连续字段（长数字和长单词）破坏表格布局的问题</code>（即使你指定了列的宽度也会被挤开），组件之前默认内加过<code>word-break: break-word;</code>去纠正此类布局,又会引起<a target="_blank" rel="noopener" href="https://github.com/ant-design/ant-design/issues/13624">＃13624</a>的问题–列高也会被撑开(此处给的例子于其不一样,但原理相似)</p>
+<ol>
+<li>需求场景:当我的列表内容过多使得表格撑开,导致整个表格样式与希望效果不符合时,我希望能将其超出隐藏,并能悬停显示全部信息</li>
+</ol>
+ <img src="AntDesign使用笔记/AntDesign_ofReact使用笔记中的图片/image-20210520160244113.png" alt="image-20210520160244113" style="zoom: 67%;" />
+
+<ol start="2">
+<li>代码实现</li>
+</ol>
+ <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Tooltip</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> columns=[</span><br><span class="line">  &#123; <span class="attr">title</span>: <span class="string">&#x27;渠道商账号&#x27;</span>, <span class="attr">dataIndex</span>: <span class="string">&#x27;username&#x27;</span>,</span><br><span class="line">  <span class="attr">width</span>: <span class="number">150</span>,</span><br><span class="line">  <span class="attr">onCell</span>: <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">style</span>: &#123;</span><br><span class="line">        <span class="attr">maxWidth</span>: <span class="number">180</span>,</span><br><span class="line">        <span class="attr">overflow</span>: <span class="string">&#x27;hidden&#x27;</span>,</span><br><span class="line">        <span class="attr">whiteSpace</span>: <span class="string">&#x27;nowrap&#x27;</span>,</span><br><span class="line">        <span class="attr">textOverflow</span>:<span class="string">&#x27;ellipsis&#x27;</span>,</span><br><span class="line">        <span class="attr">cursor</span>:<span class="string">&#x27;pointer&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">   <span class="comment">//此处引入用作悬停显示全</span></span><br><span class="line">  <span class="attr">render</span>: <span class="function">(<span class="params">text</span>) =&gt;</span> <span class="language-xml"><span class="tag">&lt;<span class="name">Tooltip</span> <span class="attr">placement</span>=<span class="string">&quot;topLeft&quot;</span> <span class="attr">title</span>=<span class="string">&#123;text&#125;</span>&gt;</span>&#123;text&#125;<span class="tag">&lt;/<span class="name">Tooltip</span>&gt;</span></span></span><br><span class="line">&#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>效果实现图</li>
+</ol>
+ <img src="AntDesign使用笔记/AntDesign_ofReact使用笔记中的图片/image-20210520161131163.png" alt="image-20210520161131163" style="zoom:67%;" />
+</blockquote>
+<h3 id="Ⅴ-Table表中使用气泡提示Tooltip"><a href="#Ⅴ-Table表中使用气泡提示Tooltip" class="headerlink" title="Ⅴ-Table表中使用气泡提示Tooltip"></a>Ⅴ-Table表中使用气泡提示Tooltip</h3><h4 id="①-AntD的Table表头title加Icon图标和气泡提示Tooltip"><a href="#①-AntD的Table表头title加Icon图标和气泡提示Tooltip" class="headerlink" title="① AntD的Table表头title加Icon图标和气泡提示Tooltip"></a>① <em>AntD的Table表头title加Icon图标和气泡提示Tooltip</em></h4><blockquote>
+<ol>
+<li>需求场景:当你的产品要你实现这个效果时</li>
+</ol>
+<p> <img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210617185457284.png" alt="image-20210617185457284"></p>
+<ol start="2">
+<li>代码实现:直接在title中写即可</li>
+</ol>
+ <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Table</span>, <span class="title class_">Button</span>, <span class="title class_">Modal</span>, <span class="title class_">Typography</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">QuestionCircleOutlined</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;@ant-design/icons&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Tooltip</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span>;</span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IProps</span> &#123;</span><br><span class="line">  <span class="attr">store</span>: <span class="title class_">Store</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">ManageTable</span> = (<span class="params">props: IProps</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; store &#125; = props;</span><br><span class="line">  <span class="keyword">const</span> columns = [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">dataIndex</span>: <span class="string">&#x27;monthCount&#x27;</span>,</span><br><span class="line">      <span class="attr">ellipsis</span>: <span class="literal">true</span>,</span><br><span class="line">     <span class="comment">//效果实现就在这行</span></span><br><span class="line">      <span class="attr">title</span>: </span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span> 本月新增付费IP数<span class="symbol">&amp;nbsp;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Tooltip</span> <span class="attr">placement</span>=<span class="string">&#x27;top&#x27;</span> <span class="attr">title</span>=<span class="string">&#x27;仅为当前月新增付费IP数&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">              <span class="tag">&lt;<span class="name">QuestionCircleOutlined</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">Tooltip</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>,</span><br><span class="line">    &#125;,</span><br><span class="line"></span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Table</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">rowKey</span>=<span class="string">&#123;(record,</span> <span class="attr">index</span>) =&gt;</span> record.id || index&#125;</span></span><br><span class="line"><span class="language-xml">      className=&quot;table-box&quot;</span></span><br><span class="line"><span class="language-xml">      columns=&#123;columns&#125;</span></span><br><span class="line"><span class="language-xml">    /&gt;</span></span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title function_">observer</span>(<span class="title class_">ManageTable</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>效果展示</li>
+</ol>
+<p> <img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210617185606230.png" alt="image-20210617185606230"></p>
+</blockquote>
+<h4 id="②列表中正常使用气泡提示Tooltip"><a href="#②列表中正常使用气泡提示Tooltip" class="headerlink" title="②列表中正常使用气泡提示Tooltip"></a>②<em>列表中正常使用气泡提示Tooltip</em></h4><blockquote>
+<ol>
+<li><p>正常列表中使用气泡提示</p>
+</li>
+<li><p>代码示例:—在<code>columns</code>的render中使用</p>
+</li>
+</ol>
+ <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> columns = [ &#123;</span><br><span class="line">     <span class="attr">title</span>: <span class="string">&#x27;列名&#x27;</span>,</span><br><span class="line">     <span class="attr">dataIndex</span>: <span class="string">&#x27;属性名&#x27;</span>,</span><br><span class="line">     <span class="attr">render</span>: <span class="function">(<span class="params">text, record</span>) =&gt;</span> (</span><br><span class="line">       <span class="language-xml"><span class="tag">&lt;<span class="name">Tooltip</span> <span class="attr">placement</span>=<span class="string">&quot;top&quot;</span> <span class="attr">title</span>=<span class="string">&#123;text&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">         <span class="tag">&lt;<span class="name">a</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> showModal(true, record.id, text)&#125;&gt;&#123;text&#125;<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">       <span class="tag">&lt;/<span class="name">Tooltip</span>&gt;</span></span></span><br><span class="line">     ),</span><br><span class="line">   &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>实现效果</li>
+</ol>
+<p> <img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210708114340551.png" alt="image-20210708114340551"> </p>
+</blockquote>
+<h4 id="③-列表中使用-Tooltip-组件却出现两个提示的问题解决"><a href="#③-列表中使用-Tooltip-组件却出现两个提示的问题解决" class="headerlink" title="③ 列表中使用[Tooltip]组件却出现两个提示的问题解决"></a>③ <em>列表中使用[Tooltip]组件却出现两个提示</em>的问题解决</h4><blockquote>
+<ol>
+<li>问题场景:当你想为表格中超出隐藏文字部分加气泡提示时却发现出现两个提示</li>
+</ol>
+<ul>
+<li><p>问题代码:</p>
+<ul>
+<li><pre><code class="tsx">&lt;Column
+  title=&quot;支付宝账户&quot;
+  dataIndex=&quot;zfb_account_name&quot;
+  ellipsis
+  width=&#123;120&#125;
+   render=&#123;text =&gt; (
+    &lt;Tooltip  placement=&quot;top&quot; title=&#123;text&#125;&gt;
+    &#123;/* &#123;text&#125; //此处直接将内容数据返回出去渲染 */&#125;
+     &#123;`这是返回出去列表渲染的:$&#123;text&#125;`&#125;
+     &lt;/Tooltip&gt;   
+  )&#125;
+/&gt;
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> - 问题截图与分析:</span><br><span class="line">   ![image-20210712161809111](AntDesign使用笔记/AntDesign_ofReact使用笔记中的图片/image-20210712161809111.png) .</span><br><span class="line"></span><br><span class="line">&gt;2. 问题分析:</span><br><span class="line"></span><br><span class="line"> - 在`render()`中返回如果是纯文本,会被[Table]自动渲染成白色气泡提示,但此提示不符合我们自己的需求(无法复制、不够美观)</span><br><span class="line"></span><br><span class="line"> - 所以我们返回给`render()`的可以是自己定义的`DOM`.但是此处也会引出一个新的问题,看下方--&gt;</span><br><span class="line"></span><br><span class="line">   - 初次改进代码:</span><br><span class="line"></span><br><span class="line">     ```jsx</span><br><span class="line">     -----------------------修改后出现问题的代码------------------------------------;</span><br><span class="line">     &lt;Column</span><br><span class="line">       title=&quot;支付宝账户&quot;</span><br><span class="line">       dataIndex=&quot;zfb_account_name&quot;</span><br><span class="line">       ellipsis</span><br><span class="line">       width=&#123;120&#125;</span><br><span class="line">        render=&#123;text =&gt; (</span><br><span class="line">         &lt;Tooltip  placement=&quot;top&quot; title=&#123;text&#125;&gt;</span><br><span class="line">         &#123;/* &#123;text&#125; //此处直接将内容数据返回出去渲染 */&#125;</span><br><span class="line">          &lt;div&gt;&#123;`这是返回出去列表渲染的:$&#123;text&#125;`&#125;&lt;/div&gt; </span><br><span class="line">          &lt;/Tooltip&gt;   </span><br><span class="line">       )&#125;</span><br><span class="line">     /&gt;</span><br></pre></td></tr></table></figure>
+</code></pre>
+</li>
+<li><p>初次改进效果:<br><img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210712162540686.png" alt="image-20210712162540686">.</p>
+</li>
+</ul>
+</li>
+<li><p>可以看出虽然解决了<code>双气泡提示</code>的问题,但也引出了一个新问题::返回的新的DOM它不受前方<code>ellipsis</code>属性影响,虽然气泡提示成功变为只有一个,但是下方文本仍然超出,怎么办?</p>
+</li>
+</ul>
+<ol start="3">
+<li>最正确写法(数组写法也一样,自行转换下即可):</li>
+</ol>
+<ul>
+<li><p>代码</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">-----------------------  正确写法<span class="number">1</span>:给dom加以下样式 -----------------------------------;</span><br><span class="line"><span class="comment">//tsx</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Column</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">title</span>=<span class="string">&quot;支付宝账户&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">dataIndex</span>=<span class="string">&quot;zfb_account_name&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"> // <span class="attr">ellipsis</span> <span class="attr">此属性无法影响到render返回出来的dom节点</span>,<span class="attr">无用了</span>,<span class="attr">去除</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">width</span>=<span class="string">&#123;120&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">   <span class="attr">render</span>=<span class="string">&#123;text</span> =&gt;</span> (</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Tooltip</span>  <span class="attr">placement</span>=<span class="string">&quot;top&quot;</span> <span class="attr">title</span>=<span class="string">&#123;text&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    &#123;/* &#123;text&#125; //此处直接将内容数据返回出去渲染 */&#125;</span></span><br><span class="line"><span class="language-xml">     <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#123;style.text&#125;</span>&gt;</span>&#123;`这是返回出去列表渲染的:$&#123;text&#125;`&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;/<span class="name">Tooltip</span>&gt;</span>   </span></span><br><span class="line"><span class="language-xml">  )&#125;</span></span><br><span class="line"><span class="language-xml">/&gt;</span></span><br><span class="line"><span class="comment">//scss</span></span><br><span class="line">  .<span class="property">text</span> &#123;</span><br><span class="line">    white-<span class="attr">space</span>: nowrap;</span><br><span class="line">    <span class="attr">overflow</span>: hidden;</span><br><span class="line">    text-<span class="attr">overflow</span>: ellipsis;</span><br><span class="line">  &#125;</span><br><span class="line">-----------------------  正确写法<span class="number">2</span>:直接将写成内联样式(不推荐) -----------------------------------;</span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">Column</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">title</span>=<span class="string">&quot;支付宝账户&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">dataIndex</span>=<span class="string">&quot;zfb_account_name&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml"> // <span class="attr">ellipsis</span> <span class="attr">此属性无法影响到render返回出来的dom节点</span>,<span class="attr">无用了</span>,<span class="attr">去除</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">  <span class="attr">width</span>=<span class="string">&#123;120&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">   <span class="attr">render</span>=<span class="string">&#123;text</span> =&gt;</span> (</span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">Tooltip</span>  <span class="attr">placement</span>=<span class="string">&quot;top&quot;</span> <span class="attr">title</span>=<span class="string">&#123;text&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&#123;&#123;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">overflow:</span> &#x27;<span class="attr">hidden</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">whiteSpace:</span> &#x27;<span class="attr">nowrap</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">      <span class="attr">textOverflow:</span> &#x27;<span class="attr">ellipsis</span>&#x27;,</span></span></span><br><span class="line"><span class="tag"><span class="language-xml">    &#125;&#125;&gt;</span>&#123;text&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"> <span class="tag">&lt;/<span class="name">Tooltip</span>&gt;</span> </span></span><br><span class="line"><span class="language-xml">  )&#125;</span></span><br><span class="line"><span class="language-xml">/&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>效果截图:</p>
+<p><img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210712163609695.png" alt="image-20210712163609695"></p>
+</li>
+</ul>
+<p> 于此问题完美解决了</p>
+</blockquote>
+<h3 id="Ⅵ-table排序对比大小相关"><a href="#Ⅵ-table排序对比大小相关" class="headerlink" title="Ⅵ-table排序对比大小相关"></a>Ⅵ-table排序对比大小相关</h3><blockquote>
+<p>antd列表排序<code>第一次点击逆序第二次正序第三次是恢复到默认</code>,依次循环.所以每第三次点击并不是无效,而是本身需要此效果</p>
+<p>其实可以直接写,只是如果不抽出,多处使用重复的代码,万一修改就很麻烦</p>
+</blockquote>
+<h4 id="①-table按时间排序"><a href="#①-table按时间排序" class="headerlink" title="①*table按时间排序*"></a>①*<code>table按时间排序</code>*</h4><blockquote>
+<ol>
+<li><p>需求场景分析:当你需要对列表中数据按照时间排序,但是antd默认排序方法无法认出根据你传入对象的何属性进行排序,此时你就需要自己写时间排序</p>
+</li>
+<li><p>代码实现与截图</p>
+</li>
+</ol>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">//此处贴士:antd第一次点击逆序第二次正序第三次是回复到默认,依次循环</span></span><br><span class="line">&gt;&#123;</span><br><span class="line">     <span class="attr">title</span>: <span class="string">&#x27;采集结束时间&#x27;</span>,</span><br><span class="line">     <span class="attr">dataIndex</span>: <span class="string">&#x27;end_time&#x27;</span>,</span><br><span class="line">     <span class="attr">key</span>: <span class="string">&#x27;end_time&#x27;</span>,</span><br><span class="line">     <span class="attr">sorter</span>: <span class="function">(<span class="params">a, b</span>) =&gt;</span> <span class="keyword">new</span> <span class="title class_">Date</span>(a.<span class="property">end_time</span>).<span class="title function_">getTime</span>() - <span class="keyword">new</span> <span class="title class_">Date</span>(b.<span class="property">end_time</span>).<span class="title function_">getTime</span>()</span><br><span class="line">&#125;,</span><br><span class="line">-----------------封装与调用--------------------------</span><br><span class="line">&gt;工具函数抽出:</span><br><span class="line">&gt;<span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 时间列表排序方法</span></span><br><span class="line"><span class="comment"> * 可以更换a,b顺序,做到初次为逆序还是正序排序</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> a 包含时间属性的对象a</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> b 包含时间属性的对象b</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> type 作为排序依据的时间属性名字</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@returns</span> number 利用正负数进行判断</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">timeSorter = (<span class="attr">a</span>:<span class="built_in">object</span>, <span class="attr">b</span>:<span class="built_in">object</span>):<span class="function"><span class="params">Function</span> =&gt;</span> (<span class="keyword">type</span>):<span class="function"><span class="params">number</span> =&gt;</span> <span class="keyword">new</span> <span class="title class_">Date</span>(a[<span class="keyword">type</span>]).<span class="title function_">getTime</span>() - <span class="keyword">new</span> <span class="title class_">Date</span>(b[<span class="keyword">type</span>]).<span class="title function_">getTime</span>()</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//此处b-a(看自己需求)原因为要符合服务端给定的数据,服务端给的数据默认越以前的时间在前面,防止第一次看上去无效</span></span><br><span class="line">&gt;调用: <span class="attr">sorter</span>: <span class="function">(<span class="params">a, b</span>) =&gt;</span> tool.<span class="title function_">timeSorter</span>(b, a)(<span class="string">&#x27;start_time&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210630115858466.png" alt="image-20210630115858466"></p>
+</blockquote>
+<h4 id="②-table通用对比大小"><a href="#②-table通用对比大小" class="headerlink" title="②*table通用对比大小*"></a>②*<code>table通用对比大小</code>*</h4><blockquote>
+<ol>
+<li><p>包括时间排序,你都能使用此封装函数</p>
+</li>
+<li><p>代码实现与截图</p>
+</li>
+</ol>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  -----------------封装与调用--------------------------</span><br><span class="line"> 工具函数抽出:</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 通用对比法</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> a 包含要对比属性的对象a</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> b 包含要对比属性的对象b</span></span><br><span class="line"><span class="comment">   *  <span class="doctag">@param</span> type 作为排序依据的属性名字</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@returns</span> <span class="variable">boolean</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  commonSorter = (<span class="attr">a</span>:<span class="built_in">object</span>, <span class="attr">b</span>:<span class="built_in">object</span>):<span class="function"><span class="params">Function</span>=&gt;</span> (<span class="keyword">type</span>):<span class="function"><span class="params">number</span>  =&gt;</span> a[<span class="keyword">type</span>] &gt; b[<span class="keyword">type</span>] ? <span class="number">1</span> : -<span class="number">1</span></span><br><span class="line"></span><br><span class="line">sorter=&#123;<span class="function">(<span class="params">a: <span class="built_in">object</span>, b: <span class="built_in">object</span></span>) =&gt;</span> tool.<span class="title function_">commonSorter</span>(a, b)(<span class="string">&#x27;url&#x27;</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715153029004.png" alt="image-20210715153029004"></p>
+<p><code>注意</code>:排序返回应为<code>正负数[如1、-1]</code>而不是<code>boolean</code>类型</p>
+</blockquote>
+<h2 id="2、Tree-树形控件"><a href="#2、Tree-树形控件" class="headerlink" title="2、Tree 树形控件"></a>2、Tree 树形控件</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://ant.design/components/tree-cn/">官方文档部分</a></p>
+<p>ps:下方解决代码只给出本效果所需必要代码,其余代码不展示出来–&gt;<code>必须代码上都有相应注释</code></p>
+</blockquote>
+<h3 id="Ⅰ-实现点击复选框后的文字也能进行选择的效果"><a href="#Ⅰ-实现点击复选框后的文字也能进行选择的效果" class="headerlink" title="Ⅰ- 实现点击复选框后的文字也能进行选择的效果"></a>Ⅰ- 实现点击复选框后的文字也能进行选择的效果</h3><blockquote>
+<ol>
+<li>需求场景:</li>
+</ol>
+<p>  <img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210714140338803.png" alt="image-20210714140338803"> </p>
+<ol start="2">
+<li>API概述:</li>
+</ol>
+<ul>
+<li>[<code>checkedKeys</code>]API是显示记录表单中选中的节点</li>
+<li>[<code>onCheck</code>]API是针对前面的复选框点击,点击时传<code>参数为所有选中的数组</code>,此处可以直接看官方文档就能实现</li>
+<li>[<code>onSelect</code>]API是针对后面文字树节点的点击,但是点击时传<code>参数为当前选中树节点</code>,且其选中与未选中与[<code>checkedKeys</code>]无关联</li>
+</ul>
+<ol start="3">
+<li>思路分析:</li>
+</ol>
+<ul>
+<li>首先,声明[<code>checkedKeys</code>]变量,然后从服务端获取已有选中项,进行初始化</li>
+<li>不论是[onCheck]还是[onSelect],都是对于<code>checkedKeys</code>变量进行拼装操作,再写入渲染</li>
+<li>只是说[onSelect]传来的参数需要经过加工,略显复杂,详情请看下方代码</li>
+</ul>
+<ol start="4">
+<li>代码:</li>
+</ol>
+  <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Button</span>, <span class="title class_">Form</span>, <span class="title class_">Input</span>, <span class="title class_">Tree</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;antd&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; inject, observer, useLocalStore &#125; <span class="keyword">from</span> <span class="string">&#x27;mobx-react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; useEffect, useMemo, useRef, useState &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> style <span class="keyword">from</span> <span class="string">&#x27;./style.scss&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">EditModal</span> = (<span class="params">props</span>) =&gt; &#123;</span><br><span class="line">   <span class="comment">//用来存 [checkedKeys]--&gt;已经选中的状态  通常需要从服务端先获取初始化原先已经选中的数据</span></span><br><span class="line">  <span class="keyword">const</span> [checkedKeys, setCheckedKeys] = <span class="title function_">useState</span>([]);</span><br><span class="line">  <span class="keyword">const</span> [form] = <span class="title class_">Form</span>.<span class="title function_">useForm</span>();</span><br><span class="line">    </span><br><span class="line"> <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 一 复选框选中函数</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> checked 传入当前勾选上的所有节点key</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleSearchTreeNode</span> = (<span class="params">checked</span>) =&gt; &#123;</span><br><span class="line">      <span class="title function_">setCheckedKeys</span>(checked);</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 二 树节点选中函数</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> checked 选中时传入当前树节点  --注意:当为未选中状态时传入为空,所以不能用作[权限选中判断]</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> e 点击树节点时传入整个树节点数据信息 --不论是否选中都会传入</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> <span class="variable">node</span></span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> <span class="variable">event</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="keyword">const</span> <span class="title function_">handleSelectTreeNode</span> = (<span class="params">checked, e, node, event</span>) =&gt; &#123;</span><br><span class="line">    <span class="comment">//将点击的树节点的[key]解构出来</span></span><br><span class="line">    <span class="keyword">const</span> &#123;</span><br><span class="line">      <span class="attr">node</span>: &#123; key &#125;,</span><br><span class="line">    &#125; = e;</span><br><span class="line">    <span class="comment">//声明一个SET数组,将key存入(以防万一同时防止重复赋值)</span></span><br><span class="line">    <span class="keyword">const</span> data = <span class="title class_">Array</span>.<span class="title function_">from</span>(<span class="keyword">new</span> <span class="title class_">Set</span>([...checkedKeys, key]));</span><br><span class="line">    <span class="comment">//首先判断原有[树数组:checkedKeys]中是否含有当前点击的[key],如果有则筛选掉,</span></span><br><span class="line">    <span class="keyword">if</span> (checkedKeys.<span class="title function_">includes</span>(key))</span><br><span class="line">    <span class="title function_">setCheckedKeys</span>(checkedKeys.<span class="title function_">filter</span>(<span class="function">(<span class="params">value</span>) =&gt;</span> value != key));</span><br><span class="line">    <span class="comment">//如果原有[树数组]中不含有,则直接将新增好的[data]写入替代掉[树数组:checkedKeys]</span></span><br><span class="line">    <span class="keyword">else</span> <span class="title function_">setCheckedKeys</span>(data);</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="language-xml"><span class="tag">&lt;<span class="name">Form</span> <span class="attr">onFinish</span>=<span class="string">&#123;submit&#125;</span> &#123;<span class="attr">...formItemLayout</span>&#125; <span class="attr">form</span>=<span class="string">&#123;form&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;<span class="name">Form.Item</span> <span class="attr">label</span>=<span class="string">&quot;权限&quot;</span> <span class="attr">required</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">Form.Item</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">name</span>=<span class="string">&quot;roles&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">noStyle</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">rules</span>=<span class="string">&#123;[</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            () =&gt;</span> (&#123;</span></span><br><span class="line"><span class="language-xml">              validator(rule: any, value: any) &#123;</span></span><br><span class="line"><span class="language-xml">                if (checkedKeys &amp;&amp; checkedKeys.length === 0)  return Promise.reject(&#x27;请选择角色对应的权限&#x27;);</span></span><br><span class="line"><span class="language-xml">                return Promise.resolve();</span></span><br><span class="line"><span class="language-xml">              &#125;,</span></span><br><span class="line"><span class="language-xml">            &#125;),</span></span><br><span class="line"><span class="language-xml">          ]&#125;</span></span><br><span class="line"><span class="language-xml">        &gt;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Tree</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">defaultCheckedKeys</span>=<span class="string">&#123;[]&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">checkable</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">expandedKeys</span>=<span class="string">&#123;expandedKeys&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">onExpand</span>=<span class="string">&#123;(keys)</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-xml">              setExpandedKeys(keys);</span></span><br><span class="line"><span class="language-xml">            &#125;&#125;</span></span><br><span class="line"><span class="language-xml">            //此处绑定所有Tree数据  </span></span><br><span class="line"><span class="language-xml">            treeData=&#123;menuTree&#125;</span></span><br><span class="line"><span class="language-xml">             //此处绑定选中的key</span></span><br><span class="line"><span class="language-xml">            checkedKeys=&#123;checkedKeys&#125;</span></span><br><span class="line"><span class="language-xml">              //此处为复选框点击触发API</span></span><br><span class="line"><span class="language-xml">            onCheck=&#123;handleSearchTreeNode&#125;</span></span><br><span class="line"><span class="language-xml">              //此处为后面的文字树节点点击触发API</span></span><br><span class="line"><span class="language-xml">            onSelect=&#123;handleSelectTreeNode&#125;</span></span><br><span class="line"><span class="language-xml">            height=&#123;300&#125;</span></span><br><span class="line"><span class="language-xml">          /&gt;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">Form.Item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">Form.Item</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    &lt;/<span class="title class_">Form</span>&gt;</span><br><span class="line">  );</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>效果展示:</li>
+</ol>
+<p>  <img src="/study73/AntDesign%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0/AntDesign_ofReact%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Tree%E9%80%89%E4%B8%AD%E6%95%88%E6%9E%9C.gif" alt="Tree选中效果"> </p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/" title="AntDesign使用笔记" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/前端UI库使用记录笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8-%E5%85%B3%E4%BA%8E%E6%97%A5%E6%9C%9F%E6%8E%A7%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0/" title="ElementUI日期控件"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="安全编码"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

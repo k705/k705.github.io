@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>JS命名空间 | Hexo</title>
+  <meta name="description" content="#说明 本人全部笔记地址 此部分查阅网上简书上的ifcode、博客园的一抹夏忧、博客园的digdeep、脚本之家的计算机-小白等包括但不限此的资料,结合自己理解以及实际代码示例整理而成  #目录 [TOC]  JS命名空间（namespace）  命名空间namespace（某些语言中叫package），是一个在静态语言中常见的概念。它可以帮助我们更好地整理代码，并可避免命名冲突。  如果使用ES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS命名空间">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 本人全部笔记地址 此部分查阅网上简书上的ifcode、博客园的一抹夏忧、博客园的digdeep、脚本之家的计算机-小白等包括但不限此的资料,结合自己理解以及实际代码示例整理而成  #目录 [TOC]  JS命名空间（namespace）  命名空间namespace（某些语言中叫package），是一个在静态语言中常见的概念。它可以帮助我们更好地整理代码，并可避免命名冲突。  如果使用ES">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210608112006677.png">
+<meta property="og:image" content="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210608120149921.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8(LocalStorage%E3%80%81Session)%E7%9B%B8%E5%85%B3%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8(LocalStorage%E3%80%81Session)%E7%9B%B8%E5%85%B3%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E6%A6%82%E8%A6%81.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:59:36.477Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210608112006677.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Js-JS中命名空间的相关知识笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS命名空间
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/JS/" rel="tag">JS</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h1><blockquote>
+<p>本人<a href="https://gitee.com/hongjilin/hongs-study-notes">全部笔记地址</a></p>
+<p>此部分查阅网上简书上的<code>ifcode</code>、博客园的<code>一抹夏忧</code>、博客园的<code>digdeep</code>、脚本之家的<code>计算机-小白</code>等包括但不限此的资料,结合自己理解以及实际代码示例整理而成</p>
+</blockquote>
+<h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
+<p>[TOC]</p>
+</blockquote>
+<h1 id="JS命名空间（namespace）"><a href="#JS命名空间（namespace）" class="headerlink" title="JS命名空间（namespace）"></a>JS命名空间（namespace）</h1><blockquote>
+<ol>
+<li><p>命名空间namespace（某些语言中叫package），是一个在静态语言中常见的概念。它可以帮助我们更好地整理代码，并可避免命名冲突。</p>
+</li>
+<li><p>如果使用<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E4%B8%8E%E7%AC%94%E8%AE%B0"><code>ES6的模块</code></a>相关知识，则大多数场景不需要名称空间。</p>
+</li>
+</ol>
+<ol>
+<li><p>命名空间的目的是防止定义相同名称的不同文件之间发生冲突。 </p>
+</li>
+<li><p>模块通过让callsite选择一个名称来为其提供所需的每个模块，从而完全消除了这个问题。 </p>
+</li>
+<li><p>您只需导出一个包含所需内容的简单对象，其他文件可以将其导入到他们选择的任何名称。</p>
+</li>
+<li><p>但是该知识在某些地方仍是有需求的,学会该知识点对于编程思维是有所提升的,不要成为<code>API战士啊,亲</code></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="Ⅰ-常见应用场景"><a href="#Ⅰ-常见应用场景" class="headerlink" title="Ⅰ-常见应用场景"></a>Ⅰ-常见应用场景</h2><blockquote>
+<ol>
+<li><p>在多人合作写脚本的时候，会发生方法名冲突的情况</p>
+</li>
+<li><p>在现代的大规模JS开发中，不采用命名空间会造成非常糟糕的命名方式，比如用<code>前缀命名函数和变量</code>，导致代码丑陋不可读。当引入第三方库后，更可能会发生<code>命名覆盖</code>的情况 </p>
+</li>
+<li><p>为了方便大家理解,下面代码举例:</p>
+</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>命名空间的用法<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;1.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;2.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;3.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">     </span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="comment">//如此调用岂不比专门去加前缀命名更明显</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="title function_">hello</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">	<span class="comment">//DocHello() 如果你要解决此问题,然后不用命名空间时 是否会使用类似方法</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">	<span class="comment">//HongHello() </span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="variable constant_">DOC</span>.<span class="title function_">hello</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="variable constant_">HONG</span>.<span class="title function_">hello</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="variable constant_">HONG</span>.<span class="title function_">getName</span>(<span class="string">&quot;HONG&quot;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;---------------- 如果有三个开发者,分别写三个js文件且定义方法名相同,同时又被同一个页面引用时,我使用命名空间的方式 --------------------&gt;</span><br><span class="line">   //1.js </span><br><span class="line"> const hello=()=&gt;&#123;  console.log(1)&#125;  </span><br><span class="line">   //2.js</span><br><span class="line"> const DOC= DOC || &#123;&#125;;</span><br><span class="line"> OC.hello = () =&gt;&#123;console.log(&quot;hello DOC&quot;)&#125;  </span><br><span class="line">   //3.js </span><br><span class="line"> const HONG = HONG || &#123;&#125;;</span><br><span class="line"> HONG.hello = ()=&gt; &#123; console.log(&quot;hello Hong&quot;)&#125;</span><br><span class="line"> HONG.getName=name =&gt; &#123; console.log(name)&#125;</span><br><span class="line"> </span><br><span class="line"> &lt;----------------不使用命名空间的方式,而是使用加前缀方式 --------------------&gt;</span><br><span class="line">  //1.js </span><br><span class="line"> const hello=()=&gt;&#123;  console.log(1)&#125;  </span><br><span class="line">   //2.js</span><br><span class="line"> const  DocHello = () =&gt;&#123;console.log(&quot;hello DOC&quot;)&#125;  </span><br><span class="line">  //3.js </span><br><span class="line"> const HongHello = ()=&gt; &#123; console.log(&quot;hello Hong&quot;)&#125;</span><br><span class="line"> const HongGetName=name =&gt; &#123; console.log(name)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  当然,上面这种情况只是简单的场景,举一反三能力要有</p>
+</blockquote>
+<h2 id="Ⅱ-使用简单对象字面量模拟命名空间"><a href="#Ⅱ-使用简单对象字面量模拟命名空间" class="headerlink" title="Ⅱ-使用简单对象字面量模拟命名空间"></a>Ⅱ-使用简单对象字面量模拟命名空间</h2><blockquote>
+<ol>
+<li>我们可以创建一个简单对象字面量来打包所有的相关函数和变量。这个简单对象字面量模拟了命名空间的作用。</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">MYNAMESPACE</span> = &#123;</span><br><span class="line">    <span class="attr">person</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="property">getName</span> = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>person对象被完整包含到MYNAMESPACE这个命名空间中了，使用方法也很简单：</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> H = <span class="keyword">new</span> <span class="variable constant_">MYNAMESPACE</span>.<span class="title function_">person</span>(<span class="string">&quot;hong&quot;</span>);</span><br><span class="line">H.<span class="title function_">getName</span>();    </span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">JL</span>=<span class="keyword">new</span> <span class="variable constant_">MYNAMESPACE</span>.<span class="title function_">person</span>(<span class="string">&quot;jilin&quot;</span>);</span><br><span class="line"><span class="variable constant_">JL</span>.<span class="title function_">getName</span>();   </span><br></pre></td></tr></table></figure>
+
+<p>  如此一来，通过命名空间我们就可以声明多个<code>person对象</code>了。</p>
+</blockquote>
+<h2 id="Ⅲ-嵌套命名空间"><a href="#Ⅲ-嵌套命名空间" class="headerlink" title="Ⅲ-嵌套命名空间"></a>Ⅲ-嵌套命名空间</h2><blockquote>
+<ol>
+<li>我们用嵌套命名空间可以更详细的归类对象：</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">MYNAMESPACE</span> = &#123;</span><br><span class="line">    <span class="attr">PEOPLE</span>: &#123;</span><br><span class="line">        <span class="attr">person</span>: <span class="keyword">function</span>(<span class="params">name</span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">name</span> = name;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">getName</span> = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">PET</span>: &#123;</span><br><span class="line">        <span class="attr">dog</span>: <span class="keyword">function</span>(<span class="params">petName</span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">petName</span> = petName;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">getPetName</span> = <span class="function">() =&gt;</span> <span class="variable language_">this</span>.<span class="property">petName</span>;  </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>上面这个模拟的命名空间代码好像看起来不错的亚子. 但这里还是有一个问题:在添加这个“命名空间”的时候，我们有可能覆盖全局空间中的同名对象。因此我们需要在声明命名空间前进行检查,声明的方法也需要作改动，保证全局空间的安全：</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">MYNAMESPACE</span> = <span class="variable constant_">MYNAMESPACE</span> || &#123;&#125;;</span><br><span class="line"></span><br><span class="line"><span class="variable constant_">MYNAMESPACE</span>.<span class="property">person</span> = <span class="function"><span class="params">name</span> =&gt;</span>&#123;  <span class="variable language_">this</span>.<span class="property">name</span> = name&#125;;</span><br><span class="line"><span class="variable constant_">MYNAMESPACE</span>.<span class="property">person</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">getName</span> = <span class="function">()=&gt;</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用方法</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="variable constant_">MYNAMESPACE</span>.<span class="title function_">person</span>(<span class="string">&quot;hong&quot;</span>);</span><br><span class="line">p.<span class="title function_">getName</span>();        <span class="comment">// hong</span></span><br></pre></td></tr></table></figure>
+
+<p>  若全局空间中已有同名对象，则不覆盖该对象；否则创建一个新的命名空间。</p>
+<ol start="3">
+<li><code>注意</code>在定义命名空间构造函数时，需要将其定义在<code>prototype</code>上，否则新建的实例无法访问对象的方法。</li>
+</ol>
+</blockquote>
+<h2 id="Ⅳ-自执行函数-伪命名空间封装法"><a href="#Ⅳ-自执行函数-伪命名空间封装法" class="headerlink" title="Ⅳ-自执行函数 - 伪命名空间封装法"></a>Ⅳ-自执行函数 - 伪命名空间封装法</h2><h3 id="1、什么是自执行函数"><a href="#1、什么是自执行函数" class="headerlink" title="1、什么是自执行函数"></a>1、什么是自执行函数</h3><blockquote>
+<ol>
+<li>自执行函数就是为了不污染全局变量命名空间的一中匿名函数，相当于自己创建了一个作用域，下面我来说一下它的原理：</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"></span>) &#123;...&#125;   <span class="comment">// 这是定义，Declaration；定义只是让解释器知道其存在，但是不会运行。</span></span><br><span class="line"><span class="title function_">foo</span>();          <span class="comment">// 这是语句，Statement；解释器遇到语句是会运行它的。</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>上面的函数就是传统的函数，它写起来有点啰嗦，而且会污染全局命名空间，这样对我们来说并不友好，所以自执行函数就出现了，写法如下：</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">(<span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"><span class="string">&quot;参数&quot;</span></span>) &#123;<span class="string">&quot; 函数方法&quot;</span>&#125;)(<span class="string">&quot; 给参数传的值或者不传&quot;</span>);</span><br><span class="line">(<span class="keyword">function</span> <span class="title function_">foo</span>(<span class="params"><span class="string">&quot;参数&quot;</span></span>) &#123;<span class="string">&quot; 函数方法&quot;</span>&#125;(<span class="string">&quot; 给参数传的值或者不传&quot;</span>));<span class="comment">//推荐使用这种形式</span></span><br><span class="line">!<span class="keyword">function</span>(<span class="params"><span class="string">&quot;参数&quot;</span></span>)&#123;<span class="string">&quot; 函数方法&quot;</span>&#125;(<span class="string">&quot; 给参数传的值或者不传&quot;</span>) <span class="comment">//此处的`!`可以换做其他运算符或者void</span></span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li><code>自执行函数是自私的</code>:它的内部可以访问全局变量。但是除了自执行函数自身内部，是无法访问它的</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">aaa</span>=(<span class="params">a1,b1</span>)=&gt; sum1 = a1 + b1 <span class="comment">//普通函数</span></span><br><span class="line">(<span class="keyword">const</span> <span class="title function_">bbb</span>=(<span class="params">a2,b2</span>)=&gt;&#123;<span class="keyword">return</span> sum2 = a2 + b2&#125;() <span class="comment">//自执行函数</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(aaa)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(bbb) <span class="comment">//报错,找不到该变量</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>如何简单理解自执行函数?</li>
+</ol>
+<p>  自执行函数相当于一个瓶口朝下的杯子，当定义它的时候，它会倾斜，把杯口露出来，吸收外面的新鲜空气；当它执行完毕，杯口不再外露，紧闭起来，与外界再无关联。</p>
+</blockquote>
+<h3 id="2、使用自执行函数模拟命名空间"><a href="#2、使用自执行函数模拟命名空间" class="headerlink" title="2、使用自执行函数模拟命名空间"></a>2、使用自执行函数模拟命名空间</h3><blockquote>
+<ol>
+<li>为何使用自执行函数这种方式进行封装?</li>
+</ol>
+<p>  当然就是保护了自执行函数内的方法、变量、属性等。这样代码更加安全了。</p>
+<ol start="2">
+<li>自执行函数模拟命名空间代码:</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/********* 使用自执行函数模拟命名空间 ****************/</span></span><br><span class="line">(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="comment">//根据id获取对象</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">$</span>(<span class="params">id</span>) &#123; <span class="keyword">return</span> <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(id); &#125;</span><br><span class="line"><span class="comment">//内部函数，在外层是不可以调用的</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">_setStyle</span>(<span class="params">id, styleName, styleValue</span>) &#123;</span><br><span class="line">$(id).<span class="property">style</span>[styleName] = styleValue;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建伪命名空间</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span> = &#123;&#125;;</span><br><span class="line"><span class="comment">//将内部函数_setStyle封装在mySpace命名空间内</span></span><br><span class="line"><span class="comment">//调用时，使用window.mySpace.setStyle(id, styleName, styleValue)</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span>.<span class="property">setStyle</span> = _setStyle;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="comment">//下面是测试代码</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="comment">//将id为test的对象的文字颜色设置为红色</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span>.<span class="title function_">setStyle</span>(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;color&quot;</span>, <span class="string">&quot;#f00&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*********与下方代码效果等同,外部能访问其所有属性,相对来说缺少安全性****************/</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span> = &#123;&#125;;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span>.<span class="property">$</span> = <span class="keyword">function</span>(<span class="params">id</span>) &#123; <span class="keyword">return</span> <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(id); &#125;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span>.<span class="property">setStyle</span> = <span class="keyword">function</span>(<span class="params">id, styleName, styleValue</span>) &#123;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span>.$(<span class="string">&quot;test&quot;</span>).<span class="property">style</span>[styleName] = styleValue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//下面是测试代码</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span>.<span class="title function_">setStyle</span>(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;backgroundColor&quot;</span>, <span class="string">&quot;#f00&quot;</span>);</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">mySpace</span>.<span class="title function_">setStyle</span>(<span class="string">&quot;test&quot;</span>, <span class="string">&quot;color&quot;</span>, <span class="string">&quot;#fff&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>比较之后我们可以发现<code>，第二方法更加的直观</code>，易于理解。<code>但是少了封装过程，代码完全裸露在外</code></li>
+</ol>
+<p>  <code>ps</code>:不一定使用<code>window</code>,也可以自己声明全局变量进行使用,此处是为了更明显展示</p>
+</blockquote>
+<h2 id="Ⅴ-通过druid源码部分剖析js命名空间"><a href="#Ⅴ-通过druid源码部分剖析js命名空间" class="headerlink" title="Ⅴ-通过druid源码部分剖析js命名空间"></a>Ⅴ-通过druid源码部分剖析js命名空间</h2><blockquote>
+<p>这是在看阿里员工写的开源数据库连接池的druid的源代码时，发现了其中在jquery的原代码中又定义了一个命名空间的函数:<code>$.namespace()</code></p>
+</blockquote>
+<h3 id="1、源码截图与使用方式举例"><a href="#1、源码截图与使用方式举例" class="headerlink" title="1、源码截图与使用方式举例"></a>1、源码截图与使用方式举例</h3><blockquote>
+<ol>
+<li>代码截图</li>
+</ol>
+  <img src="JavaScript笔记中的图片/image-20210608112006677.png" alt="image-20210608112006677" style="zoom:67%;" />
+
+<ol start="2">
+<li>使用代码举例:</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//注意,因为此处人家直接在`jquery-1.11.1.min.js`中加的方法,所以导入后可以直接使用</span></span><br><span class="line">&lt;script type=<span class="string">&quot;text/javascript&quot;</span> src=<span class="string">&quot;js/jquery-1.11.1.min.js&quot;</span>&gt;&lt;/script&gt; </span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">$.<span class="title function_">namespace</span>(<span class="string">&quot;druid.index&quot;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="comment">//注意:此处用子调用函数,否则你下面调用不能`druid.index.login();` 而是要 `druid.index().login();`的方式</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">druid.<span class="property">index</span>=(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    <span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">login</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;  方法的实现 &#125;,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">        <span class="attr">submit</span>:<span class="keyword">function</span>(<span class="params"></span>)&#123;  方法的实现 &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">    &#125;;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;());</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="comment">//使用命名空间的函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">druid.<span class="property">index</span>.<span class="title function_">login</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">druid.<span class="property">index</span>.<span class="title function_">submit</span>();</span></span></span><br></pre></td></tr></table></figure>
+
+<p>   这样的话，就不会在全局变量区，引入很多的函数，将所有要使用的函数已经变量都放入了命名空间druid.index中，避免了不同js库中的函数名的冲突</p>
+<ol start="3">
+<li><p>控制台使用效果截图<img src="JavaScript笔记中的图片/image-20210608120149921.png" alt="image-20210608120149921" style="zoom:67%;" /></p>
+</li>
+<li><p>想看人家源码的同学点这里:<a target="_blank" rel="noopener" href="https://github.com/alibaba/druid/blob/master/src/main/resources/support/http/resources/js/jquery.min.js">源码地址</a></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="2、如何理解源代码"><a href="#2、如何理解源代码" class="headerlink" title="2、如何理解源代码?"></a>2、如何理解源代码?</h3><blockquote>
+<ol>
+<li>代码加自己注释</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$.namespace = <span class="keyword">function</span>(<span class="params"></span>) &#123; </span><br><span class="line">    	<span class="comment">//arguments-&gt;是默认的传入参数</span></span><br><span class="line">       <span class="keyword">var</span> a=<span class="variable language_">arguments</span>, o=<span class="literal">null</span>, i, j, d; </span><br><span class="line">       <span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;a.<span class="property">length</span>; i=i+<span class="number">1</span>) &#123; </span><br><span class="line">        <span class="comment">//将传入参数分割成数组 标识是`.` --&gt;druid.index  就会变成 [&#x27;druid&#x27;,&#x27;index&#x27;]</span></span><br><span class="line">          d=a[i].<span class="title function_">split</span>(<span class="string">&quot;.&quot;</span>); </span><br><span class="line">        <span class="comment">//将全局的window浅拷贝到O对象上  --&gt;此步作用应为用来判断window全局上是否有传入参数的属性-&gt; 例如[&#x27;druid&#x27;,&#x27;index&#x27;]</span></span><br><span class="line">          o=<span class="variable language_">window</span>; </span><br><span class="line">          <span class="keyword">for</span> (j=<span class="number">0</span>; j&lt;d.<span class="property">length</span>; j=j+<span class="number">1</span>) &#123; </span><br><span class="line">        <span class="comment">//判断全局中是否有该属性,有则不覆盖,没有则创建   --&gt;注意:此时O并不是代表window,而只是浅拷贝了window上的数据   </span></span><br><span class="line">             o[d[j]]=o[d[j]] || &#123;&#125;; </span><br><span class="line">        <span class="comment">//将o[d[j]]保存下来,用作出循环后返回使用</span></span><br><span class="line">             o=o[d[j]]; </span><br><span class="line">          &#125; </span><br><span class="line">       &#125; </span><br><span class="line">    <span class="keyword">return</span> o; </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>代码理解–&gt;</li>
+</ol>
+<p>  1)<code>o[d[j]]=o[d[j]] || &#123;&#125;;</code>: 可以看上述代码中,我先将<code>o</code>指向了<code>window</code>,所以如o.index&#x3D;{}就等同于window.index&#x3D;{};就相当于在window上定义了一个名叫index的对象</p>
+<p>  2)在上一句后接<code> o=o[d[j]];</code>:上面的代码中：o &#x3D; o.druid; 之后，因为 o 是指向 window，为什么console.log(o); 打印 Object {}；而 console.log(window); 打印输出Window呢？这里的原因是，没有理解引用的含义。o 和 window 都是stack上的一个变量，他们都指向heap上的全局window对象，我们修改 o 这个引用，让它指向另外的一个空对象，而这并不会同时修改stack上的window这个引用的指向。也就是就像两条绳子 a, b 都指向一条船，我让其中的一条绳子b指向第二条船，并不会影响绳子a还指向第一条船。</p>
+<p>  o &#x3D; o.druid; 执行之后，o 不再执行window对象了，而是指向了window.druid对象，那么最后的console.log(o.druid);为什么打印输出 undefined 呢？很简单，因为 o 已经指向了 window.druid; 而window.druid是个空对象，其下并没有个druid的属性，所以自然就打印输出 undefined 了。也就是说最后的console.log(o.druid); 就相当于 console.log(window.druid.druid);</p>
+<ol start="3">
+<li>我们看到了已经形成了我们需要的命名空间：window.druid.index ，其实命名空间是使用对象链条来实现的。因为 o &#x3D; o.druid; 之后，o 已经指向了 window.druid ，那么 o.index &#x3D; {}; 就相当于 window.druid.index &#x3D; {};而 后面的 o &#x3D; o.index; 又将 o 对象变成了一个空对象，不再指向 window.druid，打印一个空对象的 index 属性自然就输出 undefined.</li>
+</ol>
+</blockquote>
+<h3 id="3、核心知识点"><a href="#3、核心知识点" class="headerlink" title="3、核心知识点"></a>3、核心知识点</h3><blockquote>
+<p>1）利用了 window 这个特殊引用的不可覆盖性，不可修改；</p>
+<p>2）命名空间其实是对象链条来模拟的；</p>
+<p>3）理解引用的含义：引用是个在stack上的变量，可以修改它指向不同的对象，要访问或者说修改他指向的对象，必须使用 “.” 点操作符，比如 o.index &#x3D;{}; 而单纯的修改 o ，比如 o &#x3D; {}; 并不会修改他指向的对象，因为 没有访问到他指向的对象，怎么能修改到他指向的对象呢？</p>
+</blockquote>
+<h3 id="4、设计封装理念"><a href="#4、设计封装理念" class="headerlink" title="4、设计封装理念"></a>4、设计封装理念</h3><blockquote>
+<ol>
+<li>首先 $.namespace(“druid.index”); 定义了一个命名空间：druid.index，它其实是 window.druid.index , 然后下面将一个<strong>匿名函数的调用</strong>的返回值赋值给window.druid.index</li>
+<li>然后这个函数返回的是： return {} ，这是什么？显然<strong>我们在js中可以这样定义一个对象： var obj &#x3D; {}; 所以这里返回的是一个js对象</strong>，那么这个js对象的内容是什么呢：{login:xxx, submit:xxx} 这是什么？？<strong>显然这和我们的 json 格式是一模一样的，所以返回的对象是一个json对象</strong>，当然也是一个js对象，只不过，<strong>该json对象的属性的值，不是普通的字符串或者json对象，而是一个函数</strong>，仅此而已。</li>
+</ol>
+</blockquote>
+<hr>
+<h2 id="Ⅵ-应用实例举例1-自封装命名空间函数"><a href="#Ⅵ-应用实例举例1-自封装命名空间函数" class="headerlink" title="Ⅵ-应用实例举例1-自封装命名空间函数"></a>Ⅵ-应用实例举例1-自封装命名空间函数</h2><blockquote>
+<p>此处是本人利用命名空间进行对<code>localStorage</code>与<code>sessionStorage</code>存取方法的封装,此处就应用到上述几个知识点</p>
+<p>且不要论本人编码能力(毕竟本人还没毕业,编码能力肯定没多年大佬强),此处举例出来是为的让大伙知道有此写法</p>
+</blockquote>
+<h3 id="1、需求场景分析"><a href="#1、需求场景分析" class="headerlink" title="1、需求场景分析"></a>1、需求场景分析</h3><blockquote>
+<p>举个栗子:当我们同一项目有两个客户端,登录后我们要分别将其登录数据存入本地,如:token userData等,但明明都属于登录时的数据,为了方便归类也为了防止本地变量混乱,就可以使用此方法,这样我们可以有效区分本地存储数据,并且使用方便</p>
+</blockquote>
+<h3 id="2、功能实现"><a href="#2、功能实现" class="headerlink" title="2、功能实现"></a>2、功能实现</h3><blockquote>
+<p>本地存储的增删改查,并且通过命名空间,闭包的相关知识,可以很轻松的将不同常量直接添加到一个对象变量中并存到本地</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8(LocalStorage%E3%80%81Session)%E7%9B%B8%E5%85%B3%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87.png" alt="image-20210521202047347"></p>
+</blockquote>
+<h3 id="3、封装代码实现"><a href="#3、封装代码实现" class="headerlink" title="3、封装代码实现"></a>3、封装代码实现</h3><blockquote>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">import</span> &#123;</span><br><span class="line">&gt;<span class="comment">//检查 value 是否是普通对象.也就是说该对象由 Object 构造函数创建，或者 [[Prototype]] 为 null 。</span></span><br><span class="line">&gt;isPlainObject,</span><br><span class="line">&gt;<span class="comment">//检查 value 是否是 Array 类对象。</span></span><br><span class="line">&gt;isArray,</span><br><span class="line">&gt;<span class="comment">//创建一个 debounced（防抖动）函数</span></span><br><span class="line">&gt;debounce</span><br><span class="line">&gt;&#125; <span class="keyword">from</span> <span class="string">&#x27;lodash/fp&#x27;</span>;</span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">interface</span> <span class="title class_">Params</span> &#123;</span><br><span class="line">&gt;<span class="attr">key</span>: <span class="built_in">any</span>;</span><br><span class="line">&gt;value?: <span class="built_in">any</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">interface</span> <span class="title class_">StorageOperate</span> &#123;</span><br><span class="line">&gt;add?: <span class="function">(<span class="params">&#123; key, value &#125;: Params</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&gt;remove?: <span class="function">(<span class="params">&#123; key &#125;: Params</span>) =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&gt;get?: <span class="function">(<span class="params">&#123; key &#125;: Params</span>) =&gt;</span> <span class="built_in">any</span>;</span><br><span class="line">&gt;clear?: <span class="function">() =&gt;</span> <span class="built_in">void</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="comment">//LocalStorage 类型</span></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="variable constant_">LOCALSTORAGE</span> = <span class="string">&#x27;LOCALSTORAGE&#x27;</span>;</span><br><span class="line">&gt;<span class="comment">//Session Storage类型</span></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="variable constant_">SESSIONSTORAGE</span> = <span class="string">&#x27;SESSIONSTORAGE&#x27;</span>;</span><br><span class="line">&gt;<span class="comment">//对象类型</span></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="variable constant_">OBJECTSTORAGE</span> = <span class="string">&#x27;OBJECTSTORAGE&#x27;</span>;</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//LocalStorage存储类型的操作函数重写</span></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="attr">_localStorage</span>: <span class="title class_">StorageOperate</span> = (<span class="function">() =&gt;</span> &#123;</span><br><span class="line">&gt;<span class="comment">//将window的localStorage赋值到_db上</span></span><br><span class="line">&gt;<span class="keyword">const</span> _db = <span class="variable language_">window</span>.<span class="property">localStorage</span>;</span><br><span class="line">&gt;<span class="keyword">return</span> &#123;</span><br><span class="line">&gt;<span class="comment">//实际上只是二次封装,统一调用方式</span></span><br><span class="line">&gt;<span class="title function_">add</span>(<span class="params">&#123; key, value &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="comment">// 当调用其add方法函数时,实际上是去调用其`setItem方法`</span></span><br><span class="line">&gt;_db?.<span class="title function_">setItem</span>(key, value);</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">remove</span>(<span class="params">&#123; key &#125;</span>) &#123;</span><br><span class="line">&gt;_db?.<span class="title function_">removeItem</span>(key);</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">get</span>(<span class="params">&#123; key &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="keyword">return</span> _db?.<span class="title function_">getItem</span>(key) || <span class="literal">null</span>;</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">clear</span>(<span class="params"></span>) &#123;</span><br><span class="line">&gt;_db?.<span class="title function_">clear</span>();</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;&#125;)();</span><br><span class="line">&gt;<span class="comment">//SessionStorage存储类型的操作函数重写</span></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="attr">_sessionStorage</span>: <span class="title class_">StorageOperate</span> = (<span class="function">() =&gt;</span> &#123;</span><br><span class="line">&gt;<span class="keyword">const</span> _db = <span class="variable language_">window</span>.<span class="property">sessionStorage</span>;</span><br><span class="line">&gt;<span class="keyword">return</span> &#123;</span><br><span class="line">&gt;<span class="title function_">add</span>(<span class="params">&#123; key, value &#125;</span>) &#123;</span><br><span class="line">&gt;_db?.<span class="title function_">setItem</span>(key, value);</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">remove</span>(<span class="params">&#123; key &#125;</span>) &#123;</span><br><span class="line">&gt;_db?.<span class="title function_">removeItem</span>(key);</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">get</span>(<span class="params">&#123; key &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="keyword">return</span> _db?.<span class="title function_">getItem</span>(key) || <span class="literal">null</span>;</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">clear</span>(<span class="params"></span>) &#123;</span><br><span class="line">&gt;_db?.<span class="title function_">clear</span>();</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;&#125;)();</span><br><span class="line">&gt;<span class="comment">//对象存储类型操作函数</span></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="attr">_objectStorage</span>: <span class="title class_">StorageOperate</span> = (<span class="function">() =&gt;</span> &#123;</span><br><span class="line">&gt;<span class="keyword">let</span> _db = &#123;&#125;;</span><br><span class="line">&gt;<span class="keyword">return</span> &#123;</span><br><span class="line">&gt;<span class="title function_">add</span>(<span class="params">&#123; key, value &#125;</span>) &#123;</span><br><span class="line">&gt;_db[key] = value;</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">remove</span>(<span class="params">&#123; key &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="keyword">delete</span> _db[key];</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">get</span>(<span class="params">&#123; key &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="keyword">return</span> _db[key];</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="title function_">clear</span>(<span class="params"></span>) &#123;</span><br><span class="line">&gt;_db = &#123;&#125;;</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;&#125;)();</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//声明私有变量_DB对象  此处`db`在构造函数中已经经过判断,转换为特定类型的存储对象了</span></span><br><span class="line">&gt;<span class="keyword">const</span> _DB = &#123;</span><br><span class="line">&gt;<span class="title function_">_get</span>(<span class="params">&#123; db, domain, <span class="keyword">type</span> &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="comment">//根据传入的已经转换的`db`对象调用其获取方法获取本地存储数据</span></span><br><span class="line">&gt;<span class="keyword">let</span> _val = db.<span class="title function_">get</span>(&#123; <span class="attr">key</span>: domain &#125;);</span><br><span class="line">&gt;<span class="keyword">let</span> _obj;</span><br><span class="line">&gt;<span class="keyword">try</span> &#123;</span><br><span class="line">&gt;<span class="comment">//如果取得的_val数据是空的,或者获取的类别是对象存储,则赋予`_val(如果_val为空则赋予空对象)`</span></span><br><span class="line">&gt;<span class="comment">//如果不为空,将得到的`_val`数据格式转换为json对象</span></span><br><span class="line">&gt;_obj = !_val || <span class="keyword">type</span> === <span class="variable constant_">OBJECTSTORAGE</span> ? _val || &#123;&#125; : <span class="title class_">JSON</span>.<span class="title function_">parse</span>(_val);</span><br><span class="line">&gt;&#125; <span class="keyword">catch</span> ($$) &#123;<span class="comment">//此处$$只是一个占位,无作用</span></span><br><span class="line">&gt;<span class="comment">//如果发生异常,则直接赋予空对象</span></span><br><span class="line">&gt;_obj = &#123;&#125;;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="keyword">return</span> _obj;<span class="comment">//最后将处理好的json对象数据返回</span></span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="comment">//set写入方法</span></span><br><span class="line">&gt;<span class="title function_">_set</span>(<span class="params">obj: <span class="built_in">any</span>, &#123; db, domain, <span class="keyword">type</span> &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="comment">//如果传入为空,则返回错误</span></span><br><span class="line">&gt;<span class="keyword">if</span> (!obj) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&gt;<span class="comment">//如果传入的是一个对象或者 是一个数组且类型不为对象存储时,就进行类型转换</span></span><br><span class="line">&gt;<span class="keyword">if</span> (<span class="title function_">isPlainObject</span>(obj) || (<span class="title function_">isArray</span>(obj) &amp;&amp; <span class="keyword">type</span> !== <span class="variable constant_">OBJECTSTORAGE</span>)) obj = <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(obj);</span><br><span class="line">&gt;<span class="comment">//根据传入的已经转换的`db`对象调用其写入方法写入本地存储数据</span></span><br><span class="line">&gt;db.<span class="title function_">add</span>(&#123; <span class="attr">key</span>: domain, <span class="attr">value</span>: obj &#125;);</span><br><span class="line">&gt;<span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;<span class="comment">//删除方法</span></span><br><span class="line">&gt;<span class="title function_">_remove</span>(<span class="params">&#123; db, domain &#125;</span>) &#123;</span><br><span class="line">&gt;<span class="comment">//根据传入的已经转换的`db`对象调用其删除方法删除本地存储数据</span></span><br><span class="line">&gt;db.<span class="title function_">remove</span>(&#123; <span class="attr">key</span>: domain &#125;);</span><br><span class="line">&gt;&#125;,</span><br><span class="line">&gt;&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//定义DB类,这里是对于_DB的调用</span></span><br><span class="line">&gt;<span class="keyword">class</span> <span class="title class_">DB</span> &#123;</span><br><span class="line">&gt;<span class="attr">source</span>: <span class="built_in">any</span> = &#123;&#125;;</span><br><span class="line">&gt;option = <span class="literal">null</span>;</span><br><span class="line">&gt;backup = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">&gt;setOrigin = <span class="title function_">debounce</span>(<span class="number">10</span>)(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">&gt;_DB.<span class="title function_">_set</span>(<span class="variable language_">this</span>.<span class="property">source</span>, <span class="variable language_">this</span>.<span class="property">option</span>);</span><br><span class="line">&gt;&#125;);</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">/**构造函数</span></span><br><span class="line"><span class="comment">&gt;*调用示例 const loginDB = new DB(&#x27;LOGIN&#x27;, DB.LOCALSTORAGE);</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@param</span> param0 &#123;用作存储的key名 , 存储类型 &#125;</span></span><br><span class="line"><span class="comment">&gt;*/</span></span><br><span class="line">&gt;<span class="title function_">constructor</span>(<span class="params">&#123; domain, storageType = OBJECTSTORAGE &#125;</span>) &#123;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">option</span> = &#123;</span><br><span class="line">  <span class="comment">//用作后续存储的key名,可以省略后续输入</span></span><br><span class="line">  domain,</span><br><span class="line">  <span class="comment">//存储类型</span></span><br><span class="line">  <span class="attr">type</span>: storageType,</span><br><span class="line">  <span class="comment">//通过存储类型判断决定db使用上述什么类型的存储操作函数</span></span><br><span class="line">  <span class="comment">//以达到同一函数根据不同参数做出不同反应的效果</span></span><br><span class="line">  <span class="attr">db</span>:</span><br><span class="line">    storageType === <span class="variable constant_">LOCALSTORAGE</span></span><br><span class="line">      ? _localStorage <span class="comment">//如果是LocalStorage类型</span></span><br><span class="line">      : storageType === <span class="variable constant_">SESSIONSTORAGE</span></span><br><span class="line">        ? _sessionStorage<span class="comment">//如果SessionStorage类型</span></span><br><span class="line">        : _objectStorage,<span class="comment">//如果是其他类型,则用对象存储</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//此处是`flag`作用--&gt;当传入的存储类型不是对象存储时为`true`</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">backup</span> = storageType !== <span class="variable constant_">OBJECTSTORAGE</span>;</span><br><span class="line"><span class="comment">//当类别不为对象存储时 this.source以该配置信息获取数据,此处得到的数据应是json格式对象或者空对象</span></span><br><span class="line"><span class="comment">//此处将其提前存储,后续在构造函数get方法中可以直接调用,节省性能</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">backup</span>) <span class="variable language_">this</span>.<span class="property">source</span> = _DB.<span class="title function_">_get</span>(<span class="variable language_">this</span>.<span class="property">option</span>);</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">/** 重新初始化函数</span></span><br><span class="line"><span class="comment"> * 针对特殊场景防错方法:</span></span><br><span class="line"><span class="comment">   1. 因为上面_update中调用的`setOrigin()`方法是防抖功能,延迟设置storage来达到防止频繁操作storage(异步操作)</span></span><br><span class="line"><span class="comment">   2. 但也因为如此,在某些特定场景下导致初始化拿不到数据,举个栗子:</span></span><br><span class="line"><span class="comment"> 		1) 当你同一浏览器开两个本项目页面,当我将storage所有数据清空后或者第一次使用时,先登录一个页面账户,在登陆另一个页面账户</span></span><br><span class="line"><span class="comment">	2) 登录账户的token是存在storage,那么我在登录第二个账户时,第一个账户的token就会被删除,导致不同账号却能挤下线</span></span><br><span class="line"><span class="comment">* 原因:</span></span><br><span class="line"><span class="comment"> 1. 当你打开两个页面时,其实两个页面都初始化了,这时`this.source`都为undefined,但我在其中一个页面登录后写入,另外一个页面却不会监听到,</span></span><br><span class="line"><span class="comment"> 2. 导致另一个页面按照storage为空处理,直接覆盖,导致上述情况发生</span></span><br><span class="line"><span class="comment">* 解决:</span></span><br><span class="line"><span class="comment">    调用时在重新初始化`this.source`即可	</span></span><br><span class="line"><span class="comment">* 该函数调用:如上述特殊情况时调用此方法(初始化使用),通常就是这种登录初始化渲染的极端情况</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">&gt;<span class="title function_">syncSource</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">backup</span>)  <span class="variable language_">this</span>.<span class="property">source</span> = _DB.<span class="title function_">_get</span>(<span class="variable language_">this</span>.<span class="property">option</span>);</span><br><span class="line">&#125;  </span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">/**</span></span><br><span class="line"><span class="comment">&gt;* 外部调用的获取函数</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@param</span> key  获取数据的KEY</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@param</span> getOriginal 是否强制重新获取 --&gt;因为有可能在构造时传入的是对象存储类型,导致`this.source`为空</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@returns</span> </span></span><br><span class="line"><span class="comment">&gt;*/</span></span><br><span class="line">&gt;<span class="title function_">get</span>(<span class="params">key: <span class="built_in">string</span>, getOriginal?: <span class="built_in">boolean</span> </span>) &#123;</span><br><span class="line"><span class="comment">//如果`getOriginal`为true时根据构造函数时传入的option获取该类型的Storage 否则直接用调用构造函数时取得的数据</span></span><br><span class="line"><span class="comment">//此处是必要的,因为删除后将其置空了,所以置空后再次get就需要此步,否则取不到值</span></span><br><span class="line"><span class="keyword">const</span> source = getOriginal ? _DB.<span class="title function_">_get</span>(<span class="variable language_">this</span>.<span class="property">option</span>) : <span class="variable language_">this</span>.<span class="property">source</span></span><br><span class="line"><span class="comment">//这时候拿到的source其实是一个对象,里面存了多个json对象,这时候根据key获取其中具体的属性,详见运行示例截图</span></span><br><span class="line"><span class="keyword">return</span> key !== <span class="literal">undefined</span> ? source[key] : <span class="variable language_">this</span>.<span class="property">source</span>;<span class="comment">//如果key传入空,则直接返回所有</span></span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">/**</span></span><br><span class="line"><span class="comment">&gt;* 私有--更新方法,即重新写入this.source</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@param</span> imd 是否进行防抖更新</span></span><br><span class="line"><span class="comment">&gt;*/</span></span><br><span class="line">&gt;<span class="title function_">_update</span>(<span class="params">imd?: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (!imd)  <span class="variable language_">this</span>.<span class="title function_">setOrigin</span>(); <span class="comment">//如果为false,则防抖</span></span><br><span class="line"><span class="keyword">else</span>  _DB.<span class="title function_">_set</span>(<span class="variable language_">this</span>.<span class="property">source</span>, <span class="variable language_">this</span>.<span class="property">option</span>);<span class="comment">//为true则不防抖</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="comment">/**</span></span><br><span class="line"><span class="comment">&gt;* 外部调用的写入函数</span></span><br><span class="line"><span class="comment">&gt;* 此处是给实例化后的该json对象写入特定key于value</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@param</span> key  写入的key</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@param</span> val  要写入的value</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@param</span> imd  是否防抖 默认false</span></span><br><span class="line"><span class="comment">&gt;* <span class="doctag">@returns</span> </span></span><br><span class="line"><span class="comment">&gt;*/</span></span><br><span class="line">&gt;<span class="title function_">set</span>(<span class="params">key: <span class="built_in">any</span>, val: <span class="built_in">any</span>, imd = <span class="literal">false</span></span>) &#123;</span><br><span class="line"><span class="comment">//如果传入的key是空的,返回空字符串,并且不写入</span></span><br><span class="line"><span class="keyword">if</span> (key === <span class="literal">undefined</span>) <span class="keyword">return</span> <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">source</span>[key] = val; <span class="comment">//将source对象中新创一个[key]属性并赋值val</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="title function_">_update</span>(imd); <span class="comment">//调用更新,即将this.source重新写入到本地中</span></span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="comment">//复制,将传入的对象直接复制到 this.source上,随后直接写入</span></span><br><span class="line">&gt;<span class="title function_">assign</span>(<span class="params">obj: <span class="built_in">any</span>, imd?: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_">isPlainObject</span>(obj) &amp;&amp; !<span class="title function_">isArray</span>(obj)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;value 必须是 object 或 array 类型&#x27;</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">this</span>.<span class="property">source</span> = obj;</span><br><span class="line"><span class="variable language_">this</span>.<span class="title function_">_update</span>(imd);</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="comment">//删除本地存储</span></span><br><span class="line">&gt;<span class="title function_">remove</span>(<span class="params">key?: <span class="built_in">any</span>, imd?: <span class="built_in">boolean</span></span>) &#123;</span><br><span class="line"><span class="comment">//如果删除不传入key,则删除当前实例下的数据,然后通过调用` _DB._remove`进行删除</span></span><br><span class="line"><span class="keyword">if</span> (key === <span class="literal">undefined</span>) &#123;</span><br><span class="line">  <span class="variable language_">this</span>.<span class="property">source</span> = &#123;&#125;;         <span class="comment">//将 this.source置空</span></span><br><span class="line">  _DB.<span class="title function_">_remove</span>(<span class="variable language_">this</span>.<span class="property">option</span>); <span class="comment">//删除本地存储</span></span><br><span class="line">  <span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果当前删除特定属性的不为空</span></span><br><span class="line"><span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">source</span>[key] !== <span class="literal">undefined</span>) &#123;</span><br><span class="line">  <span class="comment">//如果为数组,且key为下标的话 使用`splice`删除</span></span><br><span class="line">  <span class="keyword">if</span> (<span class="title function_">isArray</span>(<span class="variable language_">this</span>.<span class="property">source</span>) &amp;&amp; <span class="regexp">/^([1-9]\d*)|0$/</span>.<span class="title function_">test</span>(key))  <span class="variable language_">this</span>.<span class="property">source</span>?.<span class="title function_">splice</span>(key, <span class="number">1</span>);</span><br><span class="line">  <span class="keyword">else</span>  <span class="keyword">delete</span> <span class="variable language_">this</span>.<span class="property">source</span>[key];</span><br><span class="line">  <span class="comment">//删除完后再写入本地</span></span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">_update</span>(imd);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="title function_">clear</span>(<span class="params"></span>) &#123;</span><br><span class="line"><span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">remove</span>(); <span class="comment">//调用上面的remove,不传值即使置空</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//导出  且此处使用一个自运行函数形成闭包,即命名空间</span></span><br><span class="line">&gt;<span class="keyword">export</span> <span class="keyword">default</span> (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">&gt;<span class="comment">//此处是利用闭包的原理,每次调用该实例操作的都是此数,可以理解为此数是盛放所有new DB() 类型的容器</span></span><br><span class="line">&gt;<span class="keyword">let</span> store = &#123;&#125;;</span><br><span class="line">&gt;<span class="keyword">let</span> index = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="title class_">Storage</span> = <span class="keyword">function</span> (<span class="params">domain?: <span class="built_in">string</span>, storageType?: <span class="built_in">string</span></span>): <span class="built_in">void</span> &#123;</span><br><span class="line"><span class="comment">//如果不传入key 则默认随机生成key且不重复</span></span><br><span class="line"><span class="keyword">if</span> (!domain) &#123;</span><br><span class="line">  domain = +<span class="keyword">new</span> <span class="title class_">Date</span>() + <span class="string">&#x27;-&#x27;</span> + index;</span><br><span class="line">  index++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果不存在该属性,则进行子实例创建,并挂载到store对象上</span></span><br><span class="line"><span class="keyword">if</span> (!store[domain])  store[domain] = <span class="keyword">new</span> <span class="title function_">DB</span>(&#123; domain, storageType &#125;);</span><br><span class="line"><span class="keyword">return</span> store[domain];</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="comment">//清理函数</span></span><br><span class="line">&gt;<span class="title class_">Storage</span>.<span class="property">clear</span> = <span class="keyword">function</span> (<span class="params">domain?: <span class="built_in">string</span></span>) &#123;</span><br><span class="line"><span class="comment">//如果不传入参数,就将所有类型的全删除</span></span><br><span class="line"><span class="keyword">if</span> (!domain) &#123;</span><br><span class="line">  _localStorage.<span class="title function_">clear</span>();</span><br><span class="line">  _sessionStorage.<span class="title function_">clear</span>();</span><br><span class="line">  _objectStorage.<span class="title function_">clear</span>();</span><br><span class="line">  store = &#123;&#125;;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">  <span class="keyword">if</span> (store[domain]) &#123;</span><br><span class="line">    store[domain].<span class="title function_">clear</span>();</span><br><span class="line">    store[domain] = <span class="literal">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line"></span><br><span class="line">&gt;<span class="title class_">Storage</span>.<span class="property">LOCALSTORAGE</span> = <span class="variable constant_">LOCALSTORAGE</span>;</span><br><span class="line">&gt;<span class="title class_">Storage</span>.<span class="property">SESSIONSTORAGE</span> = <span class="variable constant_">SESSIONSTORAGE</span>;</span><br><span class="line">&gt;<span class="title class_">Storage</span>.<span class="property">OBJECTSTORAGE</span> = <span class="variable constant_">OBJECTSTORAGE</span>;</span><br><span class="line">&gt;<span class="comment">//此处是环境变量配置,不需要</span></span><br><span class="line">&gt;<span class="comment">// const __DEV__ = process.env.NODE_ENV == &#x27;development&#x27;;</span></span><br><span class="line">&gt;<span class="comment">// if (__DEV__) &#123;</span></span><br><span class="line">&gt;<span class="comment">//   window[&#x27;abs&#x27;] = store;</span></span><br><span class="line">&gt;<span class="comment">// &#125;</span></span><br><span class="line">&gt;<span class="keyword">return</span> <span class="title class_">Storage</span>;</span><br><span class="line">&gt;&#125;)();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="4、调用与使用"><a href="#4、调用与使用" class="headerlink" title="4、调用与使用"></a>4、调用与使用</h3><blockquote>
+<ol>
+<li>声明创建实例</li>
+</ol>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">import</span> <span class="variable constant_">DB</span> <span class="keyword">from</span> <span class="string">&#x27;~/utils/DB&#x27;</span>;</span><br><span class="line">&gt;<span class="comment">//此处可以直接调用到内部的常量是因为有做返回处理</span></span><br><span class="line">&gt;<span class="comment">//此处可以 `new DB(&#x27;PLATFORM&#x27;, &quot;常量名&quot;);`这样调用是因为命名空间的原因</span></span><br><span class="line">&gt;<span class="keyword">export</span> <span class="keyword">const</span> platformDB = <span class="keyword">new</span> <span class="title function_">DB</span>(<span class="string">&#x27;PLATFORM&#x27;</span>,<span class="string">&quot;常量名&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>此处可以 <code>new DB(&#39;PLATFORM&#39;, DB.SESSIONSTORAGE);</code>这样调用是因为命名空间的原因</p>
+<ol start="2">
+<li>调用–&gt;此间大写都是常量</li>
+</ol>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//取</span></span><br><span class="line">&gt;<span class="keyword">const</span> tabPanes = platformDB.<span class="title function_">get</span>(<span class="string">&quot;常量名&quot;</span>);</span><br><span class="line">&gt;<span class="keyword">const</span> activeKey = platformDB.<span class="title function_">get</span>(<span class="string">&quot;常量名&quot;</span>);</span><br><span class="line">&gt;<span class="comment">//存</span></span><br><span class="line">&gt;platformDB.<span class="title function_">set</span>(<span class="string">&quot;常量名&quot;</span>, <span class="variable language_">this</span>.<span class="property">tabPanes</span>);</span><br><span class="line">&gt;<span class="comment">//删</span></span><br><span class="line">&gt;platformDB.<span class="title function_">remove</span>(<span class="string">&quot;常量名&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>重新初始化函数调用  –<code>针对特殊场景检查</code></li>
+</ol>
+ <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**此处有一个BUG :</span></span><br><span class="line"><span class="comment">     1. 使用同一浏览器,同时打开两个页面,清空LicalStrage后 </span></span><br><span class="line"><span class="comment">     2. 先后登录 用户端后台和 运维端后台,先登录的那个用户的LicalStrage会被覆盖</span></span><br><span class="line"><span class="comment">     3. 但是随后继续重新登录后就都不会出问题</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">       <span class="keyword">if</span> (<span class="title function_">isEmpty</span>(loginDB.<span class="title function_">get</span>())) &#123;</span><br><span class="line">       <span class="comment">// 因为loginDB使用对象保存key/value延迟设置storage来达到防止频繁操作storage，</span></span><br><span class="line">      <span class="comment">//因此在另一个页面清空storage，另一个页面对象在不刷新情况无法初始化感知，针对特殊场景检查。</span></span><br><span class="line">       loginDB.<span class="title function_">syncSource</span>();</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="5、函数概要截图"><a href="#5、函数概要截图" class="headerlink" title="5、函数概要截图"></a>5、函数概要截图</h3><blockquote>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E6%9C%AC%E5%9C%B0%E5%AD%98%E5%82%A8(LocalStorage%E3%80%81Session)%E7%9B%B8%E5%85%B3%E5%B0%81%E8%A3%85%E4%B8%AD%E7%9A%84%E6%A6%82%E8%A6%81.png" alt="image-20210521202903681"></p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/" title="JS命名空间" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Js-JS中命名空间的相关知识笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/ES%E5%85%A8%E7%B3%BB%E5%88%97%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="ES全系统详细学习笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E4%B8%8E%E4%B8%8D%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB/" title="声明变量"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

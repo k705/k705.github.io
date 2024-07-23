@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>MySQL 备忘清单 | Hexo</title>
+  <meta name="description" content="MySQL 备忘清单本备忘单旨在快速理解 MySQL 所涉及的主要概念，提供了最常用的SQL语句，供您参考。 入门介绍  MySQL 为关系型数据库(Relational Database Management System)，一个关系型数据库由一个或数个表格组成，如下所示的一个表格  123456789    name ▼ 键            ▼ 列(col)┌┈┈┈┈┬┈┈┈┈┈┈┈┈┬">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 备忘清单">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-mysql/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="MySQL 备忘清单本备忘单旨在快速理解 MySQL 所涉及的主要概念，提供了最常用的SQL语句，供您参考。 入门介绍  MySQL 为关系型数据库(Relational Database Management System)，一个关系型数据库由一个或数个表格组成，如下所示的一个表格  123456789    name ▼ 键            ▼ 列(col)┌┈┈┈┈┬┈┈┈┈┈┈┈┈┬">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-11T02:07:35.835Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="快速参考备忘清单">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-mysql/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-快速参考-mysql" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL 备忘清单
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-mysql/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-mysql/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="MySQL-备忘清单"><a href="#MySQL-备忘清单" class="headerlink" title="MySQL 备忘清单"></a>MySQL 备忘清单</h1><p>本备忘单旨在快速理解 <a target="_blank" rel="noopener" href="https://mysql.com/">MySQL</a> 所涉及的主要概念，提供了最常用的SQL语句，供您参考。</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>MySQL 为关系型数据库(Relational Database Management System)，一个关系型数据库由一个或数个表格组成，如下所示的一个表格</p>
+<hr>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    name ▼ 键            ▼ 列(col)</span><br><span class="line">┌┈┈┈┈┬┈┈┈┈┈┈┈┈┬┈┈┈┈┈┈┬┈┈┈┈┈┈┈┐</span><br><span class="line">┆ <span class="built_in">id</span> ┆ name   ┆ uid  ┆ level ┆  ◀ 表头header</span><br><span class="line">├┈┈┈┈┼┈┈┈┈┈┈┈┈┤┈┈┈┈┈┈┤┈┈┈┈┈┈┈┤</span><br><span class="line">┆  1 ┆ mysql  ┆ 0    ┆ 3     ┆</span><br><span class="line">├┈┈┈┈┼┈┈┈┈┈┈┈┈┤┈┈┈┈┈┈┤┈┈┈┈┈┈┈┤</span><br><span class="line">┆  2 ┆ redis  ┆ 12   ┆ 1     ┆  ◀ 行 row</span><br><span class="line">└┈┈┈┈┴┈┈┈┈┈┈┈┈┴┈┈┈┈┈┈┴┈┈┈┈┈┈┈┘</span><br><span class="line">    redis ▲ 值</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><code>表头(header)</code> 每一列的名称</li>
+<li><code>列(col)</code> 具有相同数据类型的数据的集合</li>
+<li><code>行(row)</code> 每一行用来描述某个人&#x2F;物的具体信息</li>
+<li><code>值(value)</code> 行的具体信息，每个值与该列数据类型相同</li>
+<li><code>键(key)</code> 用来识别某个特定的人&#x2F;物的方法，有唯一性</li>
+</ul>
+<h3 id="登录MySQL"><a href="#登录MySQL" class="headerlink" title="登录MySQL"></a>登录MySQL</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认用户名&lt;root&gt;，-p 是密码，</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">⚠️参数后面不需要空格</span></span><br><span class="line">mysql -h 127.0.0.1 -u &lt;用户名&gt; -p&lt;密码&gt;</span><br><span class="line">mysql -D 数据库名 -h 主机名 -u 用户名 -p</span><br><span class="line">mysql -h &lt;host&gt; -P &lt;端口号&gt; -u &lt;user&gt; -p [db_name]</span><br><span class="line">mysql -h &lt;host&gt; -u &lt;user&gt; -p [db_name]</span><br></pre></td></tr></table></figure>
+
+<h3 id="常用的"><a href="#常用的" class="headerlink" title="常用的"></a>常用的</h3><!--rehype:wrap-class=row-span-3-->
+
+<h4 id="数据库-Database"><a href="#数据库-Database" class="headerlink" title="数据库 Database"></a>数据库 Database</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>CREATE DATABASE</code> db <code>;</code></td>
+<td align="left"><code>创建</code>数据库</td>
+</tr>
+<tr>
+<td align="left"><code>SHOW DATABASES;</code></td>
+<td align="left"><code>列出</code>数据库</td>
+</tr>
+<tr>
+<td align="left"><code>USE</code> db<code>;</code></td>
+<td align="left"><code>切换</code>到数据库</td>
+</tr>
+<tr>
+<td align="left"><code>CONNECT</code> db <code>;</code></td>
+<td align="left"><code>切换</code>到数据库</td>
+</tr>
+<tr>
+<td align="left"><code>DROP DATABASE</code> db<code>;</code></td>
+<td align="left"><code>删除</code>数据库</td>
+</tr>
+</tbody></table>
+<h4 id="表-Table"><a href="#表-Table" class="headerlink" title="表 Table"></a>表 Table</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>SHOW TABLES;</code></td>
+<td align="left">列出当前数据库的表</td>
+</tr>
+<tr>
+<td align="left"><code>SHOW FIELDS FROM</code> t<code>;</code></td>
+<td align="left">表的列表字段</td>
+</tr>
+<tr>
+<td align="left"><code>DESC</code> t<code>;</code></td>
+<td align="left">显示表格结构</td>
+</tr>
+<tr>
+<td align="left"><code>SHOW CREATE TABLE</code>t<code>;</code></td>
+<td align="left">显示创建表sql</td>
+</tr>
+<tr>
+<td align="left"><code>TRUNCATE TABLE</code>t<code>;</code></td>
+<td align="left">删除表中的所有数据</td>
+</tr>
+<tr>
+<td align="left"><code>DROP TABLE</code>t<code>;</code></td>
+<td align="left">删除表格</td>
+</tr>
+</tbody></table>
+<h4 id="Proccess"><a href="#Proccess" class="headerlink" title="Proccess"></a>Proccess</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>show processlist;</code></td>
+<td align="left">列出进程</td>
+</tr>
+<tr>
+<td align="left"><code>kill</code> pid<code>;</code></td>
+<td align="left">杀死进程</td>
+</tr>
+</tbody></table>
+<h3 id="查看-MySQL-信息"><a href="#查看-MySQL-信息" class="headerlink" title="查看 MySQL 信息"></a>查看 MySQL 信息</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示当前mysql的version的各种信息</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">status;</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">显示当前mysql的version信息</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash"><span class="keyword">select</span> version();</span> </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看 MySQL 端口号</span></span><br><span class="line"><span class="meta prompt_">mysql&gt; </span><span class="language-bash">show global variables like <span class="string">&#x27;port&#x27;</span>;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="退出MySQL会话"><a href="#退出MySQL会话" class="headerlink" title="退出MySQL会话"></a>退出MySQL会话</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; <span class="built_in">exit</span> </span><br></pre></td></tr></table></figure>
+
+<p>退出 <code>quit;</code> 或 <code>\q;</code> 一样的效果</p>
+<h3 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h3><p>创建备份</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump <span class="operator">-</span>u <span class="keyword">user</span> <span class="operator">-</span>p db_name <span class="operator">&gt;</span> db.sql</span><br></pre></td></tr></table></figure>
+
+<p>导出不带架构的数据库</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u user -p db_name --no-data=true --add-drop-table=false &gt; db.sql</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<p>恢复备份</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u user -p db_name &lt; db.sql</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL-示例"><a href="#MySQL-示例" class="headerlink" title="MySQL 示例"></a>MySQL 示例</h2><h3 id="管理表格"><a href="#管理表格" class="headerlink" title="管理表格"></a>管理表格</h3><p>创建一个包含三列的新表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t (</span><br><span class="line">    id    <span class="type">INT</span>,</span><br><span class="line">    name  <span class="type">VARCHAR</span> <span class="keyword">DEFAULT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    price <span class="type">INT</span> <span class="keyword">DEFAULT</span> <span class="number">0</span></span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>从数据库中删除表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> t ;</span><br></pre></td></tr></table></figure>
+
+<p>向表中添加新列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t <span class="keyword">ADD</span> <span class="keyword">column</span>;</span><br></pre></td></tr></table></figure>
+
+<p>从表中删除列c</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t <span class="keyword">DROP</span> <span class="keyword">COLUMN</span> c ;</span><br></pre></td></tr></table></figure>
+
+<p>添加约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t <span class="keyword">ADD</span> <span class="keyword">constraint</span>;</span><br></pre></td></tr></table></figure>
+
+<p>删除约束</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t <span class="keyword">DROP</span> <span class="keyword">constraint</span>;</span><br></pre></td></tr></table></figure>
+
+<p>将表从t1重命名为t2</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 RENAME <span class="keyword">TO</span> t2;</span><br></pre></td></tr></table></figure>
+
+<p>将列c1重命名为c2</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 RENAME c1 <span class="keyword">TO</span> c2 ;</span><br></pre></td></tr></table></figure>
+
+<p>将列c1的数据类型改为datatype</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> t1 MODIFY c1 datatype;</span><br></pre></td></tr></table></figure>
+
+<p>删除表中的所有数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> t;</span><br></pre></td></tr></table></figure>
+
+<h3 id="从表中查询数据"><a href="#从表中查询数据" class="headerlink" title="从表中查询数据"></a>从表中查询数据</h3><p>从表中查询列c1、c2中的数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t</span><br></pre></td></tr></table></figure>
+
+<p>查询表中的所有行和列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> t</span><br></pre></td></tr></table></figure>
+
+<p>查询数据并使用条件筛选行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<p>查询表中的不同行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> c1 <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<p>按升序或降序对结果集排序</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> c1 <span class="keyword">ASC</span> [<span class="keyword">DESC</span>]</span><br></pre></td></tr></table></figure>
+
+<p>跳过行的偏移并返回下n行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> c1 </span><br><span class="line">LIMIT n <span class="keyword">OFFSET</span> <span class="keyword">offset</span></span><br></pre></td></tr></table></figure>
+
+<p>使用聚合函数对行进行分组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, aggregate(c2)</span><br><span class="line"><span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> c1</span><br></pre></td></tr></table></figure>
+
+<p>使用HAVING子句筛选组</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, aggregate(c2)</span><br><span class="line"><span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> c1</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="从多个表查询"><a href="#从多个表查询" class="headerlink" title="从多个表查询"></a>从多个表查询</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>内部连接 t1 和 t2</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 </span><br><span class="line"><span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> t2 <span class="keyword">ON</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<p>左连接t1和t1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 </span><br><span class="line"><span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> t2 <span class="keyword">ON</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<p>右连接t1和t2</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 </span><br><span class="line"><span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">RIGHT</span> <span class="keyword">JOIN</span> t2 <span class="keyword">ON</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<p>执行完全外部连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 </span><br><span class="line"><span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> t2 <span class="keyword">ON</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<p>生成表中行的笛卡尔积</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 </span><br><span class="line"><span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">CROSS</span> <span class="keyword">JOIN</span> t2</span><br></pre></td></tr></table></figure>
+
+<p>执行交叉连接的另一种方法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 </span><br><span class="line"><span class="keyword">FROM</span> t1, t2</span><br></pre></td></tr></table></figure>
+
+<p>使用INNER Join子句将t1连接到自身</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2</span><br><span class="line"><span class="keyword">FROM</span> t1 A</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> t1 B <span class="keyword">ON</span> <span class="keyword">condition</span></span><br></pre></td></tr></table></figure>
+
+<p>使用SQL运算符，合并两个查询中的行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">UNION</span> [<span class="keyword">ALL</span>]</span><br><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t2</span><br></pre></td></tr></table></figure>
+
+<p>返回两个查询的交集</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">INTERSECT</span></span><br><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t2</span><br></pre></td></tr></table></figure>
+
+<p>从另一个结果集中减去一个结果集</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t1</span><br><span class="line">MINUS</span><br><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t2</span><br></pre></td></tr></table></figure>
+
+<p>使用模式匹配%查询行_</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t1</span><br><span class="line"><span class="keyword">WHERE</span> c1 [<span class="keyword">NOT</span>] <span class="keyword">LIKE</span> <span class="keyword">pattern</span></span><br></pre></td></tr></table></figure>
+
+<p>查询列表中的行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">WHERE</span> c1 [<span class="keyword">NOT</span>] <span class="keyword">IN</span> value_list</span><br></pre></td></tr></table></figure>
+
+<p>查询两个值之间的行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">WHERE</span>  c1 <span class="keyword">BETWEEN</span> low <span class="keyword">AND</span> high</span><br></pre></td></tr></table></figure>
+
+<p>检查表中的值是否为NULL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c1, c2 <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">WHERE</span>  c1 <span class="keyword">IS</span> [<span class="keyword">NOT</span>] <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="使用-SQL-约束"><a href="#使用-SQL-约束" class="headerlink" title="使用 SQL 约束"></a>使用 SQL 约束</h3><p>将c1和c2设置为主键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t(</span><br><span class="line">    c1 <span class="type">INT</span>, c2 <span class="type">INT</span>, c3 <span class="type">VARCHAR</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (c1,c2)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>将c2列设置为外键</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t1(</span><br><span class="line">    c1 <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,  </span><br><span class="line">    c2 <span class="type">INT</span>,</span><br><span class="line">    <span class="keyword">FOREIGN</span> KEY (c2) <span class="keyword">REFERENCES</span> t2(c2)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>使c1和c2中的值唯一</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t(</span><br><span class="line">    c1 <span class="type">INT</span>, c1 <span class="type">INT</span>,</span><br><span class="line">    <span class="keyword">UNIQUE</span>(c2,c3)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>确保c1&gt;0和c1&gt;&#x3D;c2中的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t(</span><br><span class="line">  c1 <span class="type">INT</span>, c2 <span class="type">INT</span>,</span><br><span class="line">  <span class="keyword">CHECK</span>(c1<span class="operator">&gt;</span> <span class="number">0</span> <span class="keyword">AND</span> c1 <span class="operator">&gt;=</span> c2)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>c2列中的设置值不为NULL</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> t(</span><br><span class="line">     c1 <span class="type">INT</span> <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">     c2 <span class="type">VARCHAR</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<h3 id="修改数据"><a href="#修改数据" class="headerlink" title="修改数据"></a>修改数据</h3><p>在表格中插入一行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t(column_list)</span><br><span class="line"><span class="keyword">VALUES</span>(value_list);</span><br></pre></td></tr></table></figure>
+
+<p>在表格中插入多行</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t(column_list)</span><br><span class="line"><span class="keyword">VALUES</span> (value_list), </span><br><span class="line">       (value_list), …;</span><br></pre></td></tr></table></figure>
+
+<p>将行从t2插入t1</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> t1(column_list)</span><br><span class="line"><span class="keyword">SELECT</span> column_list</span><br><span class="line"><span class="keyword">FROM</span> t2;</span><br></pre></td></tr></table></figure>
+
+<p>更新列c1中所有行的新值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> t</span><br><span class="line"><span class="keyword">SET</span> c1 <span class="operator">=</span> new_value;</span><br></pre></td></tr></table></figure>
+
+<p>更新列c1、c2中与条件匹配的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> t</span><br><span class="line"><span class="keyword">SET</span> c1 <span class="operator">=</span> new_value, </span><br><span class="line">        c2 <span class="operator">=</span> new_value</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">condition</span>;</span><br></pre></td></tr></table></figure>
+
+<p>删除表中的所有数据</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> t;</span><br></pre></td></tr></table></figure>
+
+<p>删除表中的行子集</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DELETE</span> <span class="keyword">FROM</span> t</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">condition</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="管理视图"><a href="#管理视图" class="headerlink" title="管理视图"></a>管理视图</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>创建由c1和c2组成的新视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> v(c1,c2) </span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> c1, c2</span><br><span class="line"><span class="keyword">FROM</span> t;</span><br></pre></td></tr></table></figure>
+
+<p>使用选中选项创建新视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">VIEW</span> v(c1,c2) </span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> c1, c2</span><br><span class="line"><span class="keyword">FROM</span> t;</span><br><span class="line"><span class="keyword">WITH</span> [<span class="keyword">CASCADED</span> <span class="operator">|</span> <span class="keyword">LOCAL</span>] <span class="keyword">CHECK</span> OPTION;</span><br></pre></td></tr></table></figure>
+
+<p>创建递归视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">RECURSIVE</span> <span class="keyword">VIEW</span> v </span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">select</span><span class="operator">-</span>statement <span class="comment">-- anchor part</span></span><br><span class="line"><span class="keyword">UNION</span> [<span class="keyword">ALL</span>]</span><br><span class="line"><span class="keyword">select</span><span class="operator">-</span>statement; <span class="comment">-- recursive part</span></span><br></pre></td></tr></table></figure>
+
+<p>创建临时视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> TEMPORARY <span class="keyword">VIEW</span> v </span><br><span class="line"><span class="keyword">AS</span></span><br><span class="line"><span class="keyword">SELECT</span> c1, c2</span><br><span class="line"><span class="keyword">FROM</span> t;</span><br></pre></td></tr></table></figure>
+
+<p>删除视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">VIEW</span> view_name;</span><br></pre></td></tr></table></figure>
+
+<h3 id="管理触发器"><a href="#管理触发器" class="headerlink" title="管理触发器"></a>管理触发器</h3><p>创建或修改触发器</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">OR</span> MODIFY <span class="keyword">TRIGGER</span> trigger_name</span><br><span class="line"><span class="keyword">WHEN</span> EVENT</span><br><span class="line"><span class="keyword">ON</span> table_name TRIGGER_TYPE</span><br><span class="line"><span class="keyword">EXECUTE</span> stored_procedure;</span><br></pre></td></tr></table></figure>
+
+<h4 id="WHEN"><a href="#WHEN" class="headerlink" title="WHEN"></a>WHEN</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>BEFORE</code></td>
+<td align="left">在事件发生前调用</td>
+</tr>
+<tr>
+<td align="left"><code>AFTER</code></td>
+<td align="left">事件发生后调用</td>
+</tr>
+</tbody></table>
+<h4 id="EVENT"><a href="#EVENT" class="headerlink" title="EVENT"></a>EVENT</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>INSERT</code></td>
+<td align="left">为INSERT调用</td>
+</tr>
+<tr>
+<td align="left"><code>UPDATE</code></td>
+<td align="left">调用UPDATE</td>
+</tr>
+<tr>
+<td align="left"><code>DELETE</code></td>
+<td align="left">调用DELETE</td>
+</tr>
+</tbody></table>
+<h4 id="TRIGGER-TYPE"><a href="#TRIGGER-TYPE" class="headerlink" title="TRIGGER_TYPE"></a>TRIGGER_TYPE</h4><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>FOR EACH ROW</code></td>
+<td align="left">-</td>
+</tr>
+<tr>
+<td align="left"><code>FOR EACH STATEMENT</code></td>
+<td align="left">-</td>
+</tr>
+</tbody></table>
+<h3 id="管理索引"><a href="#管理索引" class="headerlink" title="管理索引"></a>管理索引</h3><p>在t表的c1和c2上创建索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX idx_name </span><br><span class="line"><span class="keyword">ON</span> t(c1,c2);</span><br></pre></td></tr></table></figure>
+
+<p>在t表的c3、c4上创建唯一索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">UNIQUE</span> INDEX idx_name</span><br><span class="line"><span class="keyword">ON</span> t(c3,c4)</span><br></pre></td></tr></table></figure>
+
+<p>删除索引</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX idx_name;</span><br></pre></td></tr></table></figure>
+
+<h2 id="MySQL-数据类型"><a href="#MySQL-数据类型" class="headerlink" title="MySQL 数据类型"></a>MySQL 数据类型</h2><h3 id="Strings"><a href="#Strings" class="headerlink" title="Strings"></a>Strings</h3><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CHAR</code></td>
+<td>String (0 - 255)</td>
+</tr>
+<tr>
+<td><code>VARCHAR</code></td>
+<td>String (0 - 255)</td>
+</tr>
+<tr>
+<td><code>TINYTEXT</code></td>
+<td>String (0 - 255)</td>
+</tr>
+<tr>
+<td><code>TEXT</code></td>
+<td>String (0 - 65535)</td>
+</tr>
+<tr>
+<td><code>BLOB</code></td>
+<td>String (0 - 65535)</td>
+</tr>
+<tr>
+<td><code>MEDIUMTEXT</code></td>
+<td>String (0 - 16777215)</td>
+</tr>
+<tr>
+<td><code>MEDIUMBLOB</code></td>
+<td>String (0 - 16777215)</td>
+</tr>
+<tr>
+<td><code>LONGTEXT</code></td>
+<td>String (0 - 429496­7295)</td>
+</tr>
+<tr>
+<td><code>LONGBLOB</code></td>
+<td>String (0 - 429496­7295)</td>
+</tr>
+<tr>
+<td><code>ENUM</code></td>
+<td>One of preset options</td>
+</tr>
+<tr>
+<td><code>SET</code></td>
+<td>Selection of preset options</td>
+</tr>
+</tbody></table>
+<h3 id="Date-time"><a href="#Date-time" class="headerlink" title="Date &amp; time"></a>Date &amp; time</h3><table>
+<thead>
+<tr>
+<th>Data Type</th>
+<th>Format</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>DATE</code></td>
+<td>yyyy-MM-dd</td>
+</tr>
+<tr>
+<td><code>TIME</code></td>
+<td>hh:mm:ss</td>
+</tr>
+<tr>
+<td><code>DATETIME</code></td>
+<td>yyyy-MM-dd hh:mm:ss</td>
+</tr>
+<tr>
+<td><code>TIMESTAMP</code></td>
+<td>yyyy-MM-dd hh:mm:ss</td>
+</tr>
+<tr>
+<td><code>YEAR</code></td>
+<td>yyyy</td>
+</tr>
+</tbody></table>
+<h3 id="Numeric"><a href="#Numeric" class="headerlink" title="Numeric"></a>Numeric</h3><table>
+<thead>
+<tr>
+<th>-</th>
+<th>-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>TINYINT x</code></td>
+<td>Integer (-128 to 127)</td>
+</tr>
+<tr>
+<td><code>SMALLINT x</code></td>
+<td>Integer (-32768 to 32767)</td>
+</tr>
+<tr>
+<td><code>MEDIUMINT x</code></td>
+<td>Integer (-8388608 to 8388607)</td>
+</tr>
+<tr>
+<td><code>INT x</code></td>
+<td>Integer (-2147­483648 to 214748­3647)</td>
+</tr>
+<tr>
+<td><code>BIGINT x</code></td>
+<td>Integer (-9223­372­036­854­775808 to 922337­203­685­477­5807)</td>
+</tr>
+<tr>
+<td><code>FLOAT</code></td>
+<td>Decimal (precise to 23 digits)</td>
+</tr>
+<tr>
+<td><code>DOUBLE</code></td>
+<td>Decimal (24 to 53 digits)</td>
+</tr>
+<tr>
+<td><code>DECIMAL</code></td>
+<td>“­DOU­BLE­” stored as string</td>
+</tr>
+</tbody></table>
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="http://www.w3school.com.cn/sql/index.asp">SQL 基础教程</a> <em>(w3school.com.cn)</em></li>
+<li><a target="_blank" rel="noopener" href="http://www.1keydata.com/cn/sql/sql-count.php">SQL 语句教程</a> <em>(1keydata.com)</em></li>
+<li><a target="_blank" rel="noopener" href="https://jaywcjlove.github.io/mysql-tutorial/21-minutes-MySQL-basic-entry.html">21分钟 MySQL 基础入门</a> <em>(jaywcjlove.github.io)</em></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-mysql/" title="MySQL 备忘清单" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/快速参考-mysql/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-jquery/" title="jQuery 备忘清单"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-nginx/" title="NGINX 备忘清单"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

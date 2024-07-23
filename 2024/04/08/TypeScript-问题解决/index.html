@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>TypeScrpit问题 | Hexo</title>
+  <meta name="description" content="本人笔记地址分享:全部笔记、TypeScript所有学习笔记https:&#x2F;&#x2F;gitee.com&#x2F;hongjilin&#x2F;hongs-study-notes)  #目录 [TOC]  TypeScrpit问题1、vsCode报错函数重复 我正在开始使用TypeScript，并且我正在遵循TypeScript in 5 minutes指南,而当我写了一个函数(如下面代码),并且确定没错问题时候报错 Du">
+<meta property="og:type" content="article">
+<meta property="og:title" content="TypeScrpit问题">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/TypeScript-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="本人笔记地址分享:全部笔记、TypeScript所有学习笔记https:&#x2F;&#x2F;gitee.com&#x2F;hongjilin&#x2F;hongs-study-notes)  #目录 [TOC]  TypeScrpit问题1、vsCode报错函数重复 我正在开始使用TypeScript，并且我正在遵循TypeScript in 5 minutes指南,而当我写了一个函数(如下面代码),并且确定没错问题时候报错 Du">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png">
+<meta property="og:image" content="https://gitee.com/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%901.png">
+<meta property="og:image" content="https://gitee.com/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%902.png">
+<meta property="og:image" content="https://gitee.com/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210422115825841.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:52:34.854Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="TS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/TypeScript-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-TypeScript-问题解决" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      TypeScrpit问题
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/TypeScript-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/TS/" rel="tag">TS</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/TypeScript-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>本人笔记地址分享:<a href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a>、<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/TypeScrip%E7%AC%94%E8%AE%B0"><code>TypeScript所有学习笔记</code></a><a href="https://gitee.com/hongjilin/hongs-study-notes">https://gitee.com/hongjilin/hongs-study-notes</a>)</p>
+</blockquote>
+<h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
+<p>[TOC]</p>
+</blockquote>
+<h1 id="TypeScrpit问题"><a href="#TypeScrpit问题" class="headerlink" title="TypeScrpit问题"></a>TypeScrpit问题</h1><h2 id="1、vsCode报错函数重复"><a href="#1、vsCode报错函数重复" class="headerlink" title="1、vsCode报错函数重复"></a>1、vsCode报错函数重复</h2><blockquote>
+<p>我正在开始使用TypeScript，并且我正在遵循<a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes.html">TypeScript in 5 minutes</a>指南,而当我写了一个函数(如下面代码),并且确定没错问题时候报错</p>
+<p><code>Duplicate function implementation.</code></p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">jspang</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> web : <span class="built_in">string</span> =<span class="string">&quot;hello World&quot;</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(web)</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/*  */</span></span><br><span class="line"><span class="title function_">jspang</span>()</span><br><span class="line"><span class="comment">//`Duplicate function implementation.`函数重复</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h5><blockquote>
+<p>看起来像这是Visual Studio代码中的一个错误。 GitHub对此有几个问题，如<a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/issues/10804">here</a>和<a target="_blank" rel="noopener" href="https://github.com/Microsoft/vscode/issues/1773">here</a>。对这些问题的评论意味着它是一个问题，然后被修复，并在v1.12.1中再次成为问题。</p>
+<p>解决方案是运行<code>tsc --init</code>来初始化文件夹中的<code>tsconfig.json</code>。</p>
+</blockquote>
+<h2 id="2、在不同ts文件中声明同一个name时报错："><a href="#2、在不同ts文件中声明同一个name时报错：" class="headerlink" title="2、在不同ts文件中声明同一个name时报错："></a>2、在不同ts文件中声明同一个name时报错：</h2><blockquote>
+<p>主要错误信息：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;无法重新声明块范围变量“name”</span><br></pre></td></tr></table></figure>
+
+<p>我们前面明明（明明说管我什么事）没有声明name，但是却说我们重复声明了</p>
+<ul>
+<li>这次是因为我们的<code>typescript</code> 将 <code>DOM typings</code> 作为全局的运行环境；</li>
+<li>所以当我们声明 <code>name</code>时， 与 <code>DOM</code> 中的全局  <code>name</code> 属性出现了重名；</li>
+</ul>
+</blockquote>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Demo1.ts</span></span><br><span class="line"><span class="keyword">let</span> count :<span class="built_in">number</span>=<span class="number">1</span></span><br><span class="line"><span class="comment">//Demo2.ts</span></span><br><span class="line"><span class="keyword">let</span> count :<span class="built_in">number</span>=<span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="解决-1"><a href="#解决-1" class="headerlink" title="解决:"></a>解决:</h5><blockquote>
+<p>如何解决这个问题呢？</p>
+<ul>
+<li>有两种方案：去掉 DOM typings 的环境和声明模块</li>
+</ul>
+<p><strong>方式一：删除DOM typings的环境</strong></p>
+<p>但是这种办法对于我们来说并不合适，因为我们依然希望在DOM下编译我们的TypeScript代码</p>
+<p><strong>方式二：声明我们的ts文件为一个模块</strong>(<code>推荐</code>)</p>
+<p>既然与全局的变量出现重名，那我们将脚本封装到模块（module）中，因为模块有属于自己的作用域，就不会和全局的产生冲突：</p>
+<ul>
+<li>在 Typescript 中，我们可以使用ES6的export来导出一个对象，并且该文件被视为 module</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">let</span> name = <span class="string">&quot;coderwhy&quot;</span>;</span><br><span class="line">&gt;<span class="keyword">export</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="3、模块类的导入与导出"><a href="#3、模块类的导入与导出" class="headerlink" title="3、模块类的导入与导出"></a>3、模块类的导入与导出</h2><blockquote>
+<p>当我尝试从一个ts文件中声明一个类或者一个对象或者一个变量 然后import到另外一个ts文件中,我发现我拿过来的值是<code>undefined</code></p>
+</blockquote>
+<h5 id="解决-2"><a href="#解决-2" class="headerlink" title="解决"></a>解决</h5><blockquote>
+<p>1、由于我用的是ts-node直接运行,我发现将之前编译的js文件删除,在运行就可以了</p>
+<p>2、类的导入需要new进行实例化</p>
+</blockquote>
+<h5 id="代码示例"><a href="#代码示例" class="headerlink" title="代码示例"></a>代码示例</h5><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">demox.<span class="property">ts</span>导出</span><br><span class="line"><span class="comment">//声明一个类  </span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Animal</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="built_in">string</span> =<span class="string">&quot;xx&quot;</span>;</span><br><span class="line">    <span class="title function_">show</span>(): <span class="built_in">string</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">show1</span>():<span class="built_in">void</span>&#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">name</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//声明一个变量</span></span><br><span class="line"> <span class="keyword">let</span> <span class="attr">test</span>:<span class="built_in">string</span>=<span class="string">&quot;洪吉林&quot;</span></span><br><span class="line"><span class="comment">//导出方式</span></span><br><span class="line"> <span class="keyword">export</span>&#123; <span class="title class_">Animal</span>,test &#125;</span><br><span class="line"><span class="comment">//声明一个对象</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> xiaohong = &#123;</span><br><span class="line">    <span class="attr">uname</span>: <span class="string">&quot;小洪&quot;</span>,</span><br><span class="line">    <span class="attr">age</span>: <span class="number">18</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">demox1.<span class="property">ts</span>导入</span><br><span class="line"><span class="keyword">import</span>  &#123;<span class="title class_">Animal</span>,xiaohong,test&#125; <span class="keyword">from</span> <span class="string">&quot;./demox&quot;</span></span><br><span class="line"><span class="keyword">let</span> a=<span class="keyword">new</span> <span class="title class_">Animal</span>()</span><br><span class="line">a.<span class="title function_">show1</span>()</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a.<span class="title function_">show</span>())</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(test)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(xiaohong)</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(xiaohong.<span class="property">uname</span>)</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">xx</span></span><br><span class="line"><span class="comment">xx</span></span><br><span class="line"><span class="comment">洪吉林</span></span><br><span class="line"><span class="comment">&#123; uname: &#x27;小洪&#x27;, age: 18 &#125;</span></span><br><span class="line"><span class="comment">小洪</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4、React-类型“Readonly”上不存在属性"><a href="#4、React-类型“Readonly”上不存在属性" class="headerlink" title="4、React - 类型“Readonly&lt;{}&gt;”上不存在属性"></a>4、React - 类型“Readonly&lt;{}&gt;”上不存在属性</h2><blockquote>
+<p>问题定位在了 TypeScript 上。<br>解决方案如下:<br>将 <code>props 和 state 的类型定位成 any</code> 就可以解决这个问题了!</p>
+</blockquote>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Login</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &lt;<span class="built_in">any</span>,<span class="built_in">any</span>&gt;&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="5、继承state类型接口后使用setState修改报错缺少类型"><a href="#5、继承state类型接口后使用setState修改报错缺少类型" class="headerlink" title="5、继承state类型接口后使用setState修改报错缺少类型"></a>5、继承state类型接口后使用<code>setState</code>修改报错<code>缺少类型</code></h2><blockquote>
+<p>类型“{ [x: string]: string; }”的参数不能赋给类型“IState | ((prevState: Readonly<IState>, props: Readonly<any>) &#x3D;&gt; IState | Pick&lt;IState, “username” | “password”&gt; | null) | Pick&lt;…&gt; | null”的参数。<br>类型“{ [x: string]: string; }”缺少类型“Pick&lt;IState, “username” | “password”&gt;”中的以下属性: username, password</p>
+</blockquote>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 定义state类型接口 */</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">IState</span> &#123;</span><br><span class="line">    <span class="attr">username</span>: <span class="built_in">string</span>,</span><br><span class="line">    <span class="attr">password</span>: <span class="built_in">string</span>,</span><br><span class="line">&#125;</span><br><span class="line">    <span class="comment">//方法一:输入框改变事件,双向绑定数据</span></span><br><span class="line">    <span class="attr">handleChange</span>: <span class="function">(<span class="params">value: <span class="built_in">string</span>, name: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">void</span> = <span class="function">(<span class="params">value, name</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">            [name]: value</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其实是定义接口时没有写缺省,导致赋值时候只赋值一个报错</p>
+</blockquote>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">IState</span> &#123;</span><br><span class="line">    username?: <span class="built_in">string</span>,</span><br><span class="line">    password?: <span class="built_in">string</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>对象定义也可以用这个方法</p>
+</blockquote>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">JWTInf</span>&#123;</span><br><span class="line">  verify?:<span class="built_in">any</span>,</span><br><span class="line">  sign?:<span class="built_in">any</span>,</span><br><span class="line">  verifysync?:<span class="built_in">any</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> <span class="attr">JWT</span>:<span class="title class_">JWTInf</span> =&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6、TS引用json文件报错"><a href="#6、TS引用json文件报错" class="headerlink" title="6、TS引用json文件报错"></a>6、TS引用json文件报错</h2><blockquote>
+<p>Module ‘@&#x2F;pages&#x2F;components&#x2F;util&#x2F;list.json’ was resolved to ‘c:&#x2F;Users&#x2F;ZG&#x2F;WebstormProjects&#x2F;VsCodeProjects&#x2F;yapi_system&#x2F;src&#x2F;pages&#x2F;components&#x2F;util&#x2F;list.json’, but ‘–<code>resolveJsonModule&#39; is not used</code>.</p>
+<p>当我引用json时报错,这也是我一下子魔愣了没想到,我应该在typings.d.ts文件中这样声明,ts中引用json文件才不会报错</p>
+</blockquote>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//path: typings.d.ts</span></span><br><span class="line"><span class="keyword">declare</span> <span class="variable language_">module</span> <span class="string">&quot;*.json&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="7、TS报错具有隐式any"><a href="#7、TS报错具有隐式any" class="headerlink" title="7、TS报错具有隐式any"></a>7、TS报错具有隐式any</h2><blockquote>
+<p>Parameter ‘item’ implicitly has an ‘any’ type.</p>
+<p><code>noImplicitAny 当表达式和申明 类型为any时，是否需要发出警告，设置true，则不警告</code></p>
+</blockquote>
+<h2 id="8、Ts报错-不能自定义属性标签"><a href="#8、Ts报错-不能自定义属性标签" class="headerlink" title="8、Ts报错,不能自定义属性标签"></a>8、Ts报错,不能自定义属性标签</h2><blockquote>
+<p>Type ‘{ children: Element[]; key: any; tag: any; onClick: (e: MouseEvent&lt;HTMLLIElement, MouseEvent&gt;) &#x3D;&gt; void; }’ is not assignable to type ‘DetailedHTMLProps&lt;LiHTMLAttributes<HTMLLIElement>, HTMLLIElement&gt;’.<br>Property ‘tag’ does not exist on type ‘DetailedHTMLProps&lt;LiHTMLAttributes<HTMLLIElement>, HTMLLIElement&gt;’.</p>
+</blockquote>
+<p>解决</p>
+<blockquote>
+<p>HTML支持自定义属性的data- <em>属性类型.你可以阅读更多 here.<br>Definition and Usage The data-</em> attributes is used to store custom<br>data private to the page or application.</p>
+<p>The data-* attributes gives us the ability to embed custom data<br>attributes on all HTML elements.</p>
+<p>The stored (custom) data can then be used in the page’s JavaScript to<br>create a more engaging user experience (without any Ajax calls or<br>server-side database queries).</p>
+<p>The data-* attributes consist of two parts:</p>
+<p>The attribute name should not contain any uppercase letters,and must<br>be at least one character long after the prefix “data-”<br>The attribute value can be any string<br>Note: Custom attributes prefixed with “data-” will be completely ignored by the user agent.</p>
+<p><code>而不是只使用size =“A4”,你可以使用data-size =“A4”</code></p>
+</blockquote>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;page className=<span class="string">&quot;page&quot;</span> tag=&#123;item.<span class="property">id</span>&#125;&gt;<span class="comment">//报错</span></span><br><span class="line">&lt;/page&gt;</span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;page&quot;</span> <span class="attr">data-tag</span>=<span class="string">&#123;item.id&#125;</span>&gt;</span>//正确</span></span><br><span class="line"><span class="language-xml">  // ....</span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="9、Ts报错-当操作dom节点操作"><a href="#9、Ts报错-当操作dom节点操作" class="headerlink" title="9、Ts报错,当操作dom节点操作"></a>9、Ts报错,当操作dom节点操作</h2><blockquote>
+<p>Property ‘className’ does not exist on type ‘Element | Text’.<br>Property ‘className’ does not exist on type ‘Text’.</p>
+</blockquote>
+<p>原因:这是typescript的类型检查导致的，需要在querySelector或者其他查询语句方法前面加个类型断言。</p>
+<figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> icon =  <span class="title class_">ReactDom</span>.<span class="title function_">findDOMNode</span>(<span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;collect&#x27;</span>)) <span class="keyword">as</span> <span class="title class_">HTMLElement</span>;</span><br><span class="line"> icon.<span class="property">className</span>=<span class="title class_">IconStyles</span>.<span class="property">iconfont</span>+<span class="string">&quot; &quot;</span>+<span class="title class_">IconStyles</span>.<span class="property">icon_shoucang1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="10、关于时间格式问题"><a href="#10、关于时间格式问题" class="headerlink" title="10、关于时间格式问题"></a>10、关于时间格式问题</h2><h3 id="Ⅰ-赋值时间格式报错"><a href="#Ⅰ-赋值时间格式报错" class="headerlink" title="Ⅰ-赋值时间格式报错"></a>Ⅰ-赋值时间格式报错</h3><blockquote>
+<ol>
+<li>Type <code>&#39;any[]&#39; is not assignable to type &#39;[Moment, Moment]&#39;</code>.Target requires 2 element(s) but source may have fewer.</li>
+</ol>
+<p>  <img src="/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png" alt="image-20210412191035956"></p>
+<ol start="2">
+<li>解决</li>
+</ol>
+  <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> <span class="title class_">ISearchParams</span> &#123;</span><br><span class="line"><span class="attr">keyword</span>:<span class="built_in">any</span>,</span><br><span class="line"><span class="attr">customerId</span>:<span class="built_in">any</span>,</span><br><span class="line"><span class="attr">resDate</span>: [<span class="title class_">Moment</span>, <span class="title class_">Moment</span>],</span><br><span class="line"><span class="attr">buyDate</span>:[<span class="title class_">Moment</span>, <span class="title class_">Moment</span>],</span><br><span class="line"><span class="attr">format</span>:<span class="built_in">string</span>,</span><br><span class="line"><span class="attr">loading</span>:<span class="built_in">boolean</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Store</span> &#123;</span><br><span class="line"><span class="meta">@observable</span> datas = [];</span><br><span class="line"><span class="meta">@observable</span> <span class="attr">searchParams</span>:<span class="title class_">ISearchParams</span> = &#123;</span><br><span class="line"><span class="attr">keyword</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line"><span class="attr">customerId</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line"><span class="attr">resDate</span>:[<span class="literal">undefined</span>, <span class="literal">undefined</span>],</span><br><span class="line"><span class="attr">buyDate</span>: [<span class="literal">undefined</span>, <span class="literal">undefined</span>],</span><br><span class="line"><span class="attr">format</span>: <span class="string">&#x27;YYYY-MM-DD&#x27;</span>,  </span><br><span class="line"><span class="attr">loading</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-取出Moment格式中的具体时间报错"><a href="#Ⅱ-取出Moment格式中的具体时间报错" class="headerlink" title="Ⅱ-取出Moment格式中的具体时间报错"></a>Ⅱ-取出Moment格式中的具体时间报错</h3><blockquote>
+<ol>
+<li>报错:<code>property &#39;_d&#39; does not exist on type &#39;moment&#39;.</code></li>
+<li>出现错误原因分析:<img src="/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%901.png" alt="image-20210422115014706"></li>
+</ol>
+<p>​	<img src="/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%902.png" alt="image-20210422115208905"></p>
+<ol start="3">
+<li><p>解决</p>
+</li>
+<li><p>其实不用<code>_d</code>去取出来,Moment格式有相应的取出方法</p>
+<p><img src="/study73/TypeScrpit%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210422115825841.png" alt="image-20210422115825841"></p>
+</li>
+</ol>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/TypeScript-%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3/" title="TypeScrpit问题" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/TypeScript-问题解决/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Sass-Scss%E7%AC%94%E8%AE%B0/" title="Scss"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Typora%E4%BD%BF%E7%94%A8%E5%88%86%E4%BA%AB/" title="Typora"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>前端调试技巧 | Hexo</title>
+  <meta name="description" content="#说明 此笔记为截取上方ChromeDevTools使用详解笔记的 [ 前端调试技巧 ] 部分笔记的部分知识点至此,方便阅读  更多笔记看上方 ChromeDevTools 使用详解笔记 除此笔记外大家可以看我其他笔记 :全栈笔记、数据结构与算法、编程_前端开发学习笔记、编程_后台服务端学习笔记 、**Java** 、**Nodejs** 、**JavaScript笔记、编程工具使用笔记** 、*">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端调试技巧">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95-%E2%85%A2-%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 此笔记为截取上方ChromeDevTools使用详解笔记的 [ 前端调试技巧 ] 部分笔记的部分知识点至此,方便阅读  更多笔记看上方 ChromeDevTools 使用详解笔记 除此笔记外大家可以看我其他笔记 :全栈笔记、数据结构与算法、编程_前端开发学习笔记、编程_后台服务端学习笔记 、**Java** 、**Nodejs** 、**JavaScript笔记、编程工具使用笔记** 、*">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome_DevTools%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/ChromeDevTools%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210616154005161.png">
+<meta property="og:image" content="https://gitee.com/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome_DevTools%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/ChromeDevTools%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210616153809768.png">
+<meta property="og:image" content="https://gitee.com/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome_DevTools%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/ChromeDevTools%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/debugger.gif">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:46:58.160Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="软件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome_DevTools%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/ChromeDevTools%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210616154005161.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95-%E2%85%A2-%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-开发调试-Ⅲ-前端调试技巧" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      前端调试技巧
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95-%E2%85%A2-%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95-%E2%85%A2-%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h2><blockquote>
+<p>此笔记为截取上方<code>ChromeDevTools使用详解笔记</code>的 [ 前端调试技巧 ] 部分笔记的部分知识点至此,方便阅读</p>
+<blockquote>
+<h6 id="更多笔记看上方-ChromeDevTools-使用详解笔记"><a href="#更多笔记看上方-ChromeDevTools-使用详解笔记" class="headerlink" title="更多笔记看上方 ChromeDevTools 使用详解笔记"></a>更多笔记看上方 ChromeDevTools 使用详解笔记</h6></blockquote>
+<p>除此笔记外大家可以看我其他笔记 :<strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master">全栈笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据结构与算法</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_前端开发学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_后台服务端学习笔记</a></strong> 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java">Java</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Nodejs">Nodejs</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/HTML+CSS+JS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0">JavaScript笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/A_%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0">编程工具使用笔记</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6及后续版本学习笔记</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Vue%E7%AC%94%E8%AE%B0%E6%95%B4%E5%90%88">Vue笔记整合</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0">React笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">微信小程序学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Chrome开发使用及学习笔记</a>** 以及许多其他笔记就不一一例举了</p>
+<p>更多Chrome开发笔记: <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Chrome开发使用及学习笔记</a></strong> </p>
+</blockquote>
+<h2 id="三、前端调试技巧"><a href="#三、前端调试技巧" class="headerlink" title="三、前端调试技巧"></a>三、前端调试技巧</h2><blockquote>
+<p>编写代码其实只是开发者的一小部分工作。为了让工作更有效率，我们还必须精通 debug。我发现，花一些时间学习新的调试技巧，往往能让我能更快地完成工作，对我的团队做出更大的贡献  –&gt;我也是因为想学调试,结果找不到很全的博客,却找了这么几十篇资料全学了然后整理,只为了学这个调试啊啊啊啊啊啊</p>
+<p>前端调试中最少你要看前面九大面板中的 JS调试:[<code>Console 面板</code>](#2、Console 面板)、[<code>Sources 面板</code>](#3、Sources 面板);网络调试: [<code>Network 面板</code>](#4、Network 面板); 样式调试: [<code>Elements 面板</code>](#1、Elements 面板);  至于性能调优:哥,都到能调优的水准了,那不得都会啊? –&gt; <a href="#%E4%B8%80%E3%80%81%E4%B9%9D%E5%A4%A7%E5%8A%9F%E8%83%BD%E6%A8%A1%E5%9D%97%E9%9D%A2%E6%9D%BF%E8%AF%A6%E8%A7%A3"><code>九大功能模块面板详解</code></a></p>
+<p>查阅参考的资料:<a target="_blank" rel="noopener" href="https://css-tricks.com/debugging-tips-tricks/">Debugging Tips and Tricks</a>、腾讯云中腾讯技术工程官方号的<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1711214?from=article.detail.1471757">大型前端项目的断点调试共享化和复用化实践</a></p>
+</blockquote>
+<h3 id="1、主要概念"><a href="#1、主要概念" class="headerlink" title="1、主要概念"></a>1、主要概念</h3><h4 id="Ⅰ-隔离问题"><a href="#Ⅰ-隔离问题" class="headerlink" title="Ⅰ- 隔离问题"></a>Ⅰ- 隔离问题</h4><blockquote>
+<p>隔离问题大概是 debug 中最重要的核心概念。我们的代码库是由不同的类库、框架组成的，它们有着许多的贡献者，甚至还有一些不再参与项目的人，因此我们的代码库是杂乱无章的。隔离问题可以帮助我们逐步剥离与问题无关的部分以便我们可以把注意力放在解决方案上。</p>
+<p>例如我们古老，好用的 <code>console.log</code> 是就是一种隔离的方法,至于为何请看下方详解</p>
+</blockquote>
+<h5 id="1-隔离问题的好处"><a href="#1-隔离问题的好处" class="headerlink" title="1)  隔离问题的好处"></a>1)  隔离问题的好处</h5><blockquote>
+<p>隔离问题的好处包括但不限于以下几条：</p>
+<ul>
+<li>能够弄清楚问题的根本原因是否是我们想的那样，还是存在其它的冲突。</li>
+<li>对于时序任务，能判断是否存在时序紊乱。</li>
+<li>严格审查我们的代码是否还能够更加精简，这样既能帮助我们写代码也能帮助我们维护代码。</li>
+<li>解开纠缠在一起的代码，以观察到底是只有一个问题还是存在更多的问题。</li>
+<li>让BUG更容易复现查到问题所在</li>
+</ul>
+</blockquote>
+<h5 id="2-对问题进行隔离的方法"><a href="#2-对问题进行隔离的方法" class="headerlink" title="2) 对问题进行隔离的方法"></a>2) 对问题进行隔离的方法</h5><h6 id="①-在代码中写入-debugger"><a href="#①-在代码中写入-debugger" class="headerlink" title="① 在代码中写入*debugger*"></a>① 在代码中写入*<code>debugger</code>*</h6><blockquote>
+<ul>
+<li>你可以在你代码中写上 <code>debugger;</code>，这样你可以看到当时这一小块代码做了什么</li>
+<li>你还可以在 Chrome 开发者工具中进一步进行调试，单步跟踪事件的发生。你也可以用它选择性地观察指定的事件监听器。–&gt;[详情看前面九大功能面板中的Sources](#Ⅰ- Sources 面板图解)</li>
+</ul>
+</blockquote>
+<h6 id="②-console-log"><a href="#②-console-log" class="headerlink" title="②  console.log"></a>②  <code>console.log</code></h6><blockquote>
+<p>建议看上面[<code>Console 面板</code>](#2、Console 面板)</p>
+<p>古老，好用的 <code>console.log</code> 是另一种隔离的方法。（nodejs中也是<code>console</code>,java 中是 <code>printf</code>…）。你可以一小片一小片地执行代码并对你的假设进行测试，或者检查看有什么东西发生了变化。这可能是最耗费时间的测试方式了。但是无论你的水平如何高，你还是得乖乖用它。ES6 的箭头函数也可以加速我们的 debug 游戏，它让我们可以在控制台中更方便地写单行代码。</p>
+<p><code>console.table</code> 函数也是我最喜欢的工具之一。当你有大量的数据（例如很长的数组、巨大的对象等等）需要展示的时候，它特别有用。</p>
+<p><img src="/study73/../Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome_DevTools%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/ChromeDevTools%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210616154005161.png" alt="image-20210616154005161"> </p>
+<p><code>console.dir</code> 函数也是个不错的选择。它可以把一个对象的属性以可交互的形式展示出来。</p>
+<p><img src="/study73/../Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome_DevTools%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/ChromeDevTools%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210616153809768.png" alt="image-20210616153809768"> </p>
+</blockquote>
+<h4 id="Ⅱ-保持条理清晰"><a href="#Ⅱ-保持条理清晰" class="headerlink" title="Ⅱ- 保持条理清晰"></a>Ⅱ- 保持条理清晰</h4><blockquote>
+<ol>
+<li>编写(或改写)代码时如果一次性改动大量代码后再去调试—然后出了某些问题，我们不知道到底是改的哪一部分导致了问题的出现。接着为了 debug，我们又一次改很多代码，<code>最后迷失在寻找哪里能正常运行、哪里不能正常运行中</code>(如果你没有用分支工具,相信我,你此时最大的奢求就是能复原到修改前的样子)</li>
+<li>其实我们或多或少都在这么做。当我们对一个工具越来越熟练时，我们会在没有对设想的情况进行测试的情况下写越来越多的代码。但是当你刚开始用一个语法或技术时，你需要放慢速度并且非常谨慎。你将能越来越快地处理自己无意间造成的错误。其实，当你弄出了一个问题的时候，一次调试一个问题可能会看起来慢一些，但其实要找出哪里发生了变化以及问题的所在是没法快速解决的。我说以上这些话是想告诉你：<code>欲速则不达</code>(特别是前端要有耐心)。</li>
+<li><strong>你还记得小时候父母告诉你的话吗？“如果你迷路了，待在原地别动(很有道理!!)“</strong> 至少我的父母这么说了。这么说的原因是如果他们在到处找我，而我也在到处跑着找他们的话，我们将更难碰到一起。代码也是这样的。你每次动的代码越少就越好，你返回一致的结果越多，就越容易找到问题所在。所以当你在调试时，请尽量不要安装任何东西或者添加新的依赖。<code>如果本应该返回一个静态结果的地方每次都出现不同的错误</code>，你就得特别注意了！</li>
+</ol>
+</blockquote>
+<h3 id="2、辅助工具"><a href="#2、辅助工具" class="headerlink" title="2、辅助工具"></a>2、辅助工具</h3><blockquote>
+<p>人们开发了无数的工具用于解决各种各样的问题。下面部分会放我接触到的觉得可的工具,此部分可能是慢慢补充的那种</p>
+</blockquote>
+<h4 id="Ⅰ-React-DevTools"><a href="#Ⅰ-React-DevTools" class="headerlink" title="Ⅰ- React DevTools"></a>Ⅰ- <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi">React DevTools</a></h4><blockquote>
+<p>如果你工作中使用 React，<a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi">React DevTools</a> 是你必不可少的工具，你可以通过它观察虚拟 DOM。</p>
+</blockquote>
+<h4 id="Ⅱ-Vue-DevTools"><a href="#Ⅱ-Vue-DevTools" class="headerlink" title="Ⅱ- Vue DevTools"></a>Ⅱ- <a target="_blank" rel="noopener" href="https://chrome.google.com/webstore/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd">Vue DevTools</a></h4><blockquote>
+<p>当你使用 Vue 时，同上。</p>
+</blockquote>
+<h4 id="Ⅲ-开发者工具"><a href="#Ⅲ-开发者工具" class="headerlink" title="Ⅲ- 开发者工具"></a>Ⅲ- 开发者工具</h4><blockquote>
+<p>这就不必说了,把上面整理的笔记看完就差不多了</p>
+</blockquote>
+<h3 id="3、各种调试小技巧"><a href="#3、各种调试小技巧" class="headerlink" title="3、各种调试小技巧"></a>3、各种调试小技巧</h3><blockquote>
+<p>这是我看他人博客(如<a target="_blank" rel="noopener" href="https://css-tricks.com/debugging-tips-tricks/">Debugging Tips and Tricks</a>)觉得好的就摘录下来或者自己觉得OK的分享出来</p>
+</blockquote>
+<h4 id="Ⅰ-调试css"><a href="#Ⅰ-调试css" class="headerlink" title="Ⅰ- 调试css"></a>Ⅰ- 调试css</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/sarah_edo">@sarah_edo</a>：对于 CSS，我通常会给有问题的元素加上一个 .debug 的 class，这个 class 定义了红色的 border。</p>
+<p>— Jeremy Wagner (@malchata) <a target="_blank" rel="noopener" href="https://twitter.com/malchata/status/842029469246324736">2017年3月15日</a></p>
+</blockquote>
+<h4 id="Ⅱ-检测-React-的-State"><a href="#Ⅱ-检测-React-的-State" class="headerlink" title="Ⅱ- 检测 React 的 State"></a>Ⅱ- 检测 React 的 State</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/sarah_edo">@sarah_edo</a>：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&#123;<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(<span class="variable language_">this</span>.<span class="property">state</span>, <span class="literal">null</span>, <span class="number">2</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>— MICHAEL JACKSON (@mjackson) <a target="_blank" rel="noopener" href="https://twitter.com/mjackson/status/842041642760646657">2017年3月15日</a></p>
+</blockquote>
+<h4 id="Ⅲ-动画"><a href="#Ⅲ-动画" class="headerlink" title="Ⅲ- 动画"></a>Ⅲ- 动画</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://twitter.com/sarah_edo">@sarah_edo</a><a target="_blank" rel="noopener" href="https://twitter.com/Real_CSS_Tricks">@Real_CSS_Tricks</a>： 会在调试时减慢动画速度：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;&#123; <span class="attribute">animation-duration</span>: <span class="number">10s</span> <span class="meta">!important</span>; &#125;</span><br></pre></td></tr></table></figure>
+
+<p>— Thomas Fuchs (@thomasfuchs) <a target="_blank" rel="noopener" href="https://twitter.com/thomasfuchs/status/842029720820695040">2017年3月15日</a></p>
+</blockquote>
+<h4 id="Ⅳ-设置定时-Debugger"><a href="#Ⅳ-设置定时-Debugger" class="headerlink" title="Ⅳ- 设置定时 Debugger"></a>Ⅳ- 设置定时 Debugger</h4><blockquote>
+<p>这一条是 Chris 提供的。详情–&gt;<a target="_blank" rel="noopener" href="https://css-tricks.com/set-timed-debugger-web-inspect-hard-grab-elements/">点我传送</a></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;setTimeout(function() &#123;</span><br><span class="line">&gt;debugger;</span><br><span class="line">&gt;&#125;, <span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>它与我之前提到的 <code>debugger;</code> 工具很类似，不过你可以把它放在 setTimeout 函数中，得到更多详细的信息。</p>
+<p>此方法可以用在很多地方而不仅仅是调试样式,包括js都可以</p>
+<p><img src="/study73/../Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome_DevTools%E8%B0%83%E8%AF%95%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/ChromeDevTools%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/debugger.gif" alt="debugger"> </p>
+<p><code>ps</code>:该动图来自<a target="_blank" rel="noopener" href="https://css-tricks.com/set-timed-debugger-web-inspect-hard-grab-elements/">Chris Coyier的Set a Timed Debugger To Web Inspect Hard-To-Grab Elements文章中</a> </p>
+</blockquote>
+<h3 id="4、打断点的几种方式"><a href="#4、打断点的几种方式" class="headerlink" title="4、打断点的几种方式"></a>4、打断点的几种方式</h3><h4 id="Ⅰ-使用Sources面板打断点"><a href="#Ⅰ-使用Sources面板打断点" class="headerlink" title="Ⅰ- 使用Sources面板打断点"></a>Ⅰ- 使用Sources面板打断点</h4><blockquote>
+<p>这种方式是比较常用的方式，在浏览器开发工具找到对应源码，在script脚本节点里面的代码行断点</p>
+<p>具体打断点方法在此部分有详细叙述,便不赘述  –&gt; [点我传送](#Ⅲ- 中间代码展示面板详解)</p>
+</blockquote>
+<h4 id="Ⅱ-在需要调试的地方加debugger关键字"><a href="#Ⅱ-在需要调试的地方加debugger关键字" class="headerlink" title="Ⅱ- 在需要调试的地方加debugger关键字"></a>Ⅱ- 在需要调试的地方加debugger关键字</h4><blockquote>
+<ul>
+<li>这种方式很粗暴，在需要调试的地方加debugger关键字，代码运行到的时候会自动停下，进入调试模式。</li>
+<li>此方法不需要手动断点，但是麻烦的是可能你调试一次就不用再调试了，但是每次运行到那里都会停下，必须移除这个代码才行。</li>
+<li>这玩意我在不少网站也见到有人用，不想让人家方便的查看到网站源码，一打开控制台就自动debugger。</li>
+</ul>
+</blockquote>
+<h3 id="5、大型前端项目的断点调试共享化和复用化实践"><a href="#5、大型前端项目的断点调试共享化和复用化实践" class="headerlink" title="5、大型前端项目的断点调试共享化和复用化实践"></a>5、大型前端项目的断点调试共享化和复用化实践</h3><blockquote>
+<p>发现的一篇很好的文章,是腾讯工程师enoyao写的.此处直接给出链接  –&gt;<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1711214?from=article.detail.1471757">点我传送</a></p>
+<p>下面给出文章简述:</p>
+<p>随着我们项目越来越大，我们有可能需要维护很多的模块，我们腾讯文档 Excel 项目大模块有 10 几个，而每个大模块分别有 N 个小模块，每个大模块下的小模块都有主要的负责人在跟进模块问题。这就会导致一个很大的问题是，模块负责人大部分情况只会关注自己模块的问题，而不甚了解其他负责人手上模块的具体问题。</p>
+<p>然后博主针对此问题进行了方案的提出与总结</p>
+</blockquote>
+<hr>
+<h1 id="更多知识点看上方具体笔记"><a href="#更多知识点看上方具体笔记" class="headerlink" title="更多知识点看上方具体笔记"></a><code>更多知识点看上方具体笔记</code></h1>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95-%E2%85%A2-%E5%89%8D%E7%AB%AF%E8%B0%83%E8%AF%95%E6%8A%80%E5%B7%A7/" title="前端调试技巧" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/开发调试-Ⅲ-前端调试技巧/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95-%E2%85%A1-Chrome%E5%86%85%E5%AD%98%E6%B3%84%E6%BC%8F%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7/" title="Chrome内存泄漏分析工具"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%BC%80%E5%8F%91%E8%B0%83%E8%AF%95-%E2%85%A3-%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E5%8F%8A%E5%BF%AB%E6%8D%B7%E9%94%AE/" title="常用操作及快捷键"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

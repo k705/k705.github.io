@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Monent.js | Hexo</title>
+  <meta name="description" content="本笔记摘录及整理Monent.js相关知识点笔记  本人全部笔记地址分享 –&gt;点我跳转  #目录 [TOC]  一、moment常用方法 moment获取天的23时59分59秒可以用moment().endOf(String)，以及获取天的0时0分0秒可以用moment().startOf(‘day’)  1、获取时间Ⅰ-获取开始(Start of Time)时间  获取今天0时0分0秒">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Monent.js">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Js-%E6%97%B6%E9%97%B4moment%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="本笔记摘录及整理Monent.js相关知识点笔记  本人全部笔记地址分享 –&gt;点我跳转  #目录 [TOC]  一、moment常用方法 moment获取天的23时59分59秒可以用moment().endOf(String)，以及获取天的0时0分0秒可以用moment().startOf(‘day’)  1、获取时间Ⅰ-获取开始(Start of Time)时间  获取今天0时0分0秒">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%901.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%902.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210422115825841.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:55:11.288Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%901.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Js-%E6%97%B6%E9%97%B4moment%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Js-时间moment相关笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Monent.js
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Js-%E6%97%B6%E9%97%B4moment%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/JS/" rel="tag">JS</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Js-%E6%97%B6%E9%97%B4moment%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>本笔记摘录及整理Monent.js相关知识点笔记</p>
+<blockquote>
+<p>本人全部笔记地址分享 –&gt;<a href="https://gitee.com/hongjilin/hongs-study-notes">点我跳转</a></p>
+</blockquote>
+<h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
+<p>[TOC]</p>
+</blockquote>
+<h1 id="一、moment常用方法"><a href="#一、moment常用方法" class="headerlink" title="一、moment常用方法"></a>一、moment常用方法</h1><blockquote>
+<p>moment获取天的23时59分59秒可以用moment().endOf(String)，以及获取天的0时0分0秒可以用moment().startOf(‘day’)</p>
+</blockquote>
+<h2 id="1、获取时间"><a href="#1、获取时间" class="headerlink" title="1、获取时间"></a>1、获取时间</h2><h3 id="Ⅰ-获取开始-Start-of-Time-时间"><a href="#Ⅰ-获取开始-Start-of-Time-时间" class="headerlink" title="Ⅰ-获取开始(Start of Time)时间"></a>Ⅰ-获取开始(Start of Time)时间</h3><blockquote>
+<ul>
+<li><h5 id="获取今天0时0分0秒"><a href="#获取今天0时0分0秒" class="headerlink" title="获取今天0时0分0秒"></a>获取今天0时0分0秒</h5></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">startOf</span>(<span class="string">&#x27;day&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="获取本周第一天-周日-0时0分0秒"><a href="#获取本周第一天-周日-0时0分0秒" class="headerlink" title="获取本周第一天(周日)0时0分0秒"></a>获取本周第一天(周日)0时0分0秒</h5></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">startOf</span>(<span class="string">&#x27;week&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="获取本周周一0时0分0秒"><a href="#获取本周周一0时0分0秒" class="headerlink" title="获取本周周一0时0分0秒"></a>获取本周周一0时0分0秒</h5></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">startOf</span>(<span class="string">&#x27;isoWeek&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="获取当前月第一天0时0分0秒"><a href="#获取当前月第一天0时0分0秒" class="headerlink" title="获取当前月第一天0时0分0秒"></a>获取当前月第一天0时0分0秒</h5></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">startOf</span>(<span class="string">&#x27;month&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>-<br> 当前季度的开始时间：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">startOf</span>(<span class="string">&#x27;quarter&#x27;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指定年指定季度的开始时间：（某年某季度的开始时间）</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>(<span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;YYYY-02-01&quot;</span>)).<span class="title function_">startOf</span>(<span class="string">&#x27;quarter&#x27;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-获取结束-End-of-Time-时间"><a href="#Ⅱ-获取结束-End-of-Time-时间" class="headerlink" title="Ⅱ-获取结束(End of Time)时间"></a>Ⅱ-获取结束(End of Time)时间</h3><blockquote>
+<p>格式<code>moment().endOf(String)</code></p>
+<ul>
+<li><h5 id="获取今天23时59分59秒"><a href="#获取今天23时59分59秒" class="headerlink" title="获取今天23时59分59秒"></a>获取今天23时59分59秒</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">endOf</span>(<span class="string">&#x27;day&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="获取本周最后一天-周六-23时59分59秒"><a href="#获取本周最后一天-周六-23时59分59秒" class="headerlink" title="获取本周最后一天(周六)23时59分59秒"></a>获取本周最后一天(周六)23时59分59秒</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">endOf</span>(<span class="string">&#x27;week&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="获取本周周日23时59分59秒"><a href="#获取本周周日23时59分59秒" class="headerlink" title="获取本周周日23时59分59秒"></a>获取本周周日23时59分59秒</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">endOf</span>(<span class="string">&#x27;isoWeek&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="获取当前月最后一天23时59分59秒"><a href="#获取当前月最后一天23时59分59秒" class="headerlink" title="获取当前月最后一天23时59分59秒"></a>获取当前月最后一天23时59分59秒</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">endOf</span>(<span class="string">&#x27;month&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+</li>
+<li><p>当前季度的结束时间：</p>
+</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">endOf</span>(<span class="string">&#x27;quarter&#x27;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>指定年指定季度的结束时间：（某年某季度的结束时间）</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>(<span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;YYYY-02-01&quot;</span>)).<span class="title function_">endOf</span>(<span class="string">&#x27;quarter&#x27;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅲ-获取当前月的总天数-Days-in-Month"><a href="#Ⅲ-获取当前月的总天数-Days-in-Month" class="headerlink" title="Ⅲ-获取当前月的总天数(Days in Month)"></a>Ⅲ-获取当前月的总天数(Days in Month)</h3><blockquote>
+<ul>
+<li>获取当前月的总天数</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">daysInMonth</span>()</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅳ-获取时间戳-以秒为单位"><a href="#Ⅳ-获取时间戳-以秒为单位" class="headerlink" title="Ⅳ- 获取时间戳(以秒为单位)"></a>Ⅳ- 获取时间戳(以秒为单位)</h3><blockquote>
+<ol>
+<li>获取时间戳(以秒为单位)</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// 获取当前时间的时间戳 (秒)  大写的X 返回值为字符串类型</span></span><br><span class="line"><span class="keyword">const</span> miao = <span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;X&quot;</span>)  </span><br><span class="line"> <span class="comment">// 获取当前时间的时间戳 (毫秒)  小写的x</span></span><br><span class="line"><span class="keyword">const</span> haomiao <span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;x&quot;</span>)  </span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">unix</span>() <span class="comment">// 返回值为数值型</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>moment时间戳与时间的转换</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前时间</span></span><br><span class="line">   <span class="keyword">const</span> currentTime = <span class="title function_">moment</span>()</span><br><span class="line">   <span class="comment">// 获取当前时间的时间戳 (秒)  大写的X</span></span><br><span class="line">   <span class="keyword">const</span> miao = <span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;X&quot;</span>)  </span><br><span class="line">   <span class="comment">// 获取当前时间的时间戳 (毫秒)  小写的x</span></span><br><span class="line">   <span class="keyword">const</span> haomiao <span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;x&quot;</span>)  </span><br><span class="line">   </span><br><span class="line">   <span class="comment">//秒时间戳转换为北京时间</span></span><br><span class="line">   moment.<span class="title function_">unix</span>(miao).<span class="title function_">format</span>(<span class="string">&#x27;YYYY-MM-DD HH:mm:ss&#x27;</span>) 	<span class="comment">// format 用来设置你想展示的时间格式</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//毫秒时间戳转换为北京时间</span></span><br><span class="line"><span class="title function_">moment</span>(haomiao).<span class="title function_">format</span>(<span class="string">&#x27;YYYY-MM-DD HH:mm:ss&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅴ-获取具体时间-Get-Time"><a href="#Ⅴ-获取具体时间-Get-Time" class="headerlink" title="Ⅴ- 获取具体时间(Get Time)"></a>Ⅴ- 获取具体时间(Get Time)</h3><blockquote>
+<ol>
+<li>获取年份</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">year</span>()</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;year&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>获取月份</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">month</span>() (<span class="number">0</span>~<span class="number">11</span>, <span class="number">0</span>: <span class="title class_">January</span>, <span class="number">11</span>: <span class="title class_">December</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;month&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>获取一个月中的某一天</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">date</span>()</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;date&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>获取一个星期中的某一天</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">day</span>() (<span class="number">0</span>~<span class="number">6</span>, <span class="number">0</span>: <span class="title class_">Sunday</span>, <span class="number">6</span>: <span class="title class_">Saturday</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">weekday</span>() (<span class="number">0</span>~<span class="number">6</span>, <span class="number">0</span>: <span class="title class_">Sunday</span>, <span class="number">6</span>: <span class="title class_">Saturday</span>) <span class="title function_">moment</span>().<span class="title function_">isoWeekday</span>() (<span class="number">1</span>~<span class="number">7</span>, <span class="number">1</span>: <span class="title class_">Monday</span>, <span class="number">7</span>: <span class="title class_">Sunday</span>) <span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;day&#x27;</span>) <span class="title function_">mment</span>().<span class="title function_">get</span>(<span class="string">&#x27;weekday&#x27;</span>) <span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;isoWeekday&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>获取小时</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">hours</span>()</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;hours&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>获取分钟</li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">minutes</span>()</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;minutes&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><h5 id="获取秒数"><a href="#获取秒数" class="headerlink" title="获取秒数"></a>获取秒数</h5></li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">seconds</span>()</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">get</span>(<span class="string">&#x27;seconds&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li><h5 id="获取当前的年月日时分秒"><a href="#获取当前的年月日时分秒" class="headerlink" title="获取当前的年月日时分秒"></a>获取当前的年月日时分秒</h5></li>
+</ol>
+  <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">toArray</span>() <span class="comment">// [years, months, date, hours, minutes, seconds, milliseconds]</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">toObject</span>() <span class="comment">// &#123;years: xxxx, months: x, date: xx ...&#125;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅵ-获取当前时间往前的时间"><a href="#Ⅵ-获取当前时间往前的时间" class="headerlink" title="Ⅵ- 获取当前时间往前的时间"></a>Ⅵ- 获取当前时间往前的时间</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD HH:mm:ss&quot;</span>); <span class="comment">//当前时间</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&quot;days&quot;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>); <span class="comment">//当前时间的前1天时间</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&quot;years&quot;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>); <span class="comment">//当前时间的前1年时间</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&quot;months&quot;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>); <span class="comment">//当前时间的前1个月时间</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&quot;weeks&quot;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>); <span class="comment">//当前时间的前一个星期时间</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//如果不设置格式的去掉后面的format()即可</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">let</span>  date = <span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&quot;months&quot;</span>);  <span class="comment">//设置时间为当前时间的前一个月</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅷ-上-下-获取-年-季-月"><a href="#Ⅷ-上-下-获取-年-季-月" class="headerlink" title="Ⅷ-(上&#x2F;下)获取(年&#x2F;季&#x2F;月)"></a>Ⅷ-(上&#x2F;下)获取(年&#x2F;季&#x2F;月)</h3><blockquote>
+<p>上一年&#x2F;下一年</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;上一年：<span class="title function_">moment</span>().<span class="title function_">add</span>(-<span class="number">1</span>, <span class="string">&#x27;y&#x27;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY&quot;</span>)</span><br><span class="line">&gt;下一年：<span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;y&#x27;</span>).<span class="title function_">format</span>(<span class="string">&quot;YYYY&quot;</span>)</span><br><span class="line">&gt;上几年和下几年同理，做momment日期加减，月季度亦同理</span><br></pre></td></tr></table></figure>
+
+<p>上一季度&#x2F;下一季度</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;上一季度：<span class="title function_">moment</span>().<span class="title function_">add</span>(-<span class="number">1</span>, <span class="string">&#x27;Q&#x27;</span>).<span class="title function_">quarter</span>()</span><br><span class="line">&gt;下一季度：<span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;Q&#x27;</span>).<span class="title function_">quarter</span>()</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅸ-获取当前日期是当年的第几周"><a href="#Ⅸ-获取当前日期是当年的第几周" class="headerlink" title="Ⅸ- 获取当前日期是当年的第几周"></a>Ⅸ- 获取当前日期是当年的第几周</h3><blockquote>
+<p>此函数是网上查阅资料,摘录整理进来</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span></span><br><span class="line"><span class="comment">    * 实现当前日期是当年的第几周,再向前和向后推几周</span></span><br><span class="line"><span class="comment">    * js数组保存当前日期的前后两周(共五周的数据)</span></span><br><span class="line"><span class="comment">    * */</span></span><br><span class="line">   <span class="keyword">let</span> initSearchMajorChanges = <span class="keyword">function</span>(<span class="params">vv</span>)&#123;</span><br><span class="line">       <span class="comment">//实现当前日期是当年的第几周,再向前和向后推几周,js数组保存当前日期的前后两周(共五周的数据)</span></span><br><span class="line">       <span class="keyword">let</span> vNowDate=<span class="title function_">moment</span>(<span class="keyword">new</span> <span class="title function_">moment</span>(vv).<span class="title function_">format</span>(<span class="string">&quot;YYYY-MM-DD&quot;</span>));<span class="comment">//.add(&#x27;month&#x27;,0).add(&#x27;days&#x27;,-1);</span></span><br><span class="line">       <span class="keyword">let</span> vWeekOfDay=<span class="title function_">moment</span>(vNowDate).<span class="title function_">format</span>(<span class="string">&quot;E&quot;</span>);<span class="comment">//算出这周的周几</span></span><br><span class="line">       <span class="keyword">let</span> vWeekOfDays=<span class="number">7</span>-vWeekOfDay-<span class="number">1</span>;</span><br><span class="line">       <span class="keyword">let</span> vStartDate=<span class="title function_">moment</span>(vNowDate).<span class="title function_">add</span>(<span class="string">&#x27;days&#x27;</span>,vWeekOfDays);</span><br><span class="line">       <span class="keyword">let</span> vEndDate=<span class="title function_">moment</span>(vNowDate).<span class="title function_">add</span>(<span class="string">&#x27;days&#x27;</span>,-vWeekOfDay);</span><br><span class="line">       <span class="keyword">let</span> vStartDateNew=<span class="title function_">moment</span>(vStartDate).<span class="title function_">add</span>(<span class="string">&#x27;days&#x27;</span>,<span class="number">7</span>*$scope.<span class="property">gWeeks</span>);</span><br><span class="line">       <span class="keyword">let</span> vEndDateNew=<span class="title function_">moment</span>(vEndDate).<span class="title function_">add</span>(<span class="string">&#x27;days&#x27;</span>,-(<span class="number">7</span>*$scope.<span class="property">gWeeks</span>));</span><br><span class="line">       <span class="title function_">searchMajorChanges</span>(vStartDateNew,vEndDateNew);</span><br><span class="line">   &#125;</span><br><span class="line">   </span><br><span class="line">   <span class="title function_">initSearchMajorChanges</span>(<span class="string">&#x27;2021-06-06&#x27;</span>)</span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="2、设置时间"><a href="#2、设置时间" class="headerlink" title="2、设置时间"></a>2、设置时间</h2><blockquote>
+<p><code>常被用做获取某一特定时间的moment</code></p>
+</blockquote>
+<h3 id="Ⅰ-Set-Time"><a href="#Ⅰ-Set-Time" class="headerlink" title="Ⅰ- Set Time"></a>Ⅰ- Set Time</h3><blockquote>
+<p><strong><code>常用格式</code></strong>  –直接设置时间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">year</span>(<span class="title class_">Number</span>), <span class="title function_">moment</span>().<span class="title function_">month</span>(<span class="title class_">Number</span>)</span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="title class_">String</span>, <span class="title class_">Int</span>)</span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="title class_">Object</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置年份"><a href="#设置年份" class="headerlink" title="设置年份"></a>设置年份</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">year</span>(<span class="number">2019</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;year&#x27;</span>, <span class="number">2019</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">set</span>(&#123;<span class="attr">year</span>: <span class="number">2019</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置月份"><a href="#设置月份" class="headerlink" title="设置月份"></a>设置月份</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">month</span>(<span class="number">11</span>) (<span class="number">0</span>~<span class="number">11</span>, <span class="number">0</span>: <span class="title class_">January</span>, <span class="number">11</span>: <span class="title class_">December</span>) <span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;month&#x27;</span>, <span class="number">11</span>) </span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置某个月中的某一天"><a href="#设置某个月中的某一天" class="headerlink" title="设置某个月中的某一天"></a>设置某个月中的某一天</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">date</span>(<span class="number">15</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;date&#x27;</span>, <span class="number">15</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置某个星期中的某一天"><a href="#设置某个星期中的某一天" class="headerlink" title="设置某个星期中的某一天"></a>设置某个星期中的某一天</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">weekday</span>(<span class="number">0</span>) <span class="comment">// 设置日期为本周第一天（周日）</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">isoWeekday</span>(<span class="number">1</span>) <span class="comment">// 设置日期为本周周一</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;weekday&#x27;</span>, <span class="number">0</span>) <span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;isoWeekday&#x27;</span>, <span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置小时"><a href="#设置小时" class="headerlink" title="设置小时"></a>设置小时</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">hours</span>(<span class="number">12</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;hours&#x27;</span>, <span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置分钟"><a href="#设置分钟" class="headerlink" title="设置分钟"></a>设置分钟</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">minutes</span>(<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;minutes&#x27;</span>, <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置秒数"><a href="#设置秒数" class="headerlink" title="设置秒数"></a>设置秒数</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">seconds</span>(<span class="number">30</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">set</span>(<span class="string">&#x27;seconds&#x27;</span>, <span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-Add-Time"><a href="#Ⅱ-Add-Time" class="headerlink" title="Ⅱ- Add Time"></a>Ⅱ- Add Time</h3><blockquote>
+<p> <strong><code>常用格式</code></strong> –增加(符号时为减少) 时间</p>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="title class_">Number</span>, <span class="title class_">String</span>)</span><br><span class="line">   <span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="title class_">Object</span>)</span><br></pre></td></tr></table></figure>
+<pre><code> - ##### 设置年份
+</code></pre>
+   <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;years&#x27;</span>)</span><br><span class="line">   </span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(&#123;<span class="attr">years</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><h5 id="设置月份-1"><a href="#设置月份-1" class="headerlink" title="设置月份"></a>设置月份</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;months&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="设置日期"><a href="#设置日期" class="headerlink" title="设置日期"></a>设置日期</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;days&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="设置星期"><a href="#设置星期" class="headerlink" title="设置星期"></a>设置星期</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;weeks&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="设置小时-1"><a href="#设置小时-1" class="headerlink" title="设置小时"></a>设置小时</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;hours&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="设置分钟-1"><a href="#设置分钟-1" class="headerlink" title="设置分钟"></a>设置分钟</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;minutes&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><h5 id="设置秒数-1"><a href="#设置秒数-1" class="headerlink" title="设置秒数"></a>设置秒数</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">add</span>(<span class="number">1</span>, <span class="string">&#x27;seconds&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h3 id="Ⅲ-Subtract-Time"><a href="#Ⅲ-Subtract-Time" class="headerlink" title="Ⅲ- Subtract Time"></a>Ⅲ- Subtract Time</h3><blockquote>
+<p><strong><code>常用格式</code></strong> –往前多少的 时间</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="title class_">Number</span>, <span class="title class_">String</span>)</span><br><span class="line"></span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="title class_">Object</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置年份-1"><a href="#设置年份-1" class="headerlink" title="设置年份"></a>设置年份</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;years&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(&#123;<span class="attr">years</span>: <span class="number">1</span>&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置月份-2"><a href="#设置月份-2" class="headerlink" title="设置月份"></a>设置月份</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;months&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置日期-1"><a href="#设置日期-1" class="headerlink" title="设置日期"></a>设置日期</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;days&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置星期-1"><a href="#设置星期-1" class="headerlink" title="设置星期"></a>设置星期</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;weeks&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置小时-2"><a href="#设置小时-2" class="headerlink" title="设置小时"></a>设置小时</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;hours&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置分钟-2"><a href="#设置分钟-2" class="headerlink" title="设置分钟"></a>设置分钟</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;minutes&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="设置秒数-2"><a href="#设置秒数-2" class="headerlink" title="设置秒数"></a>设置秒数</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;seconds&#x27;</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="3、格式化时间"><a href="#3、格式化时间" class="headerlink" title="3、格式化时间"></a>3、格式化时间</h2><blockquote>
+<h4 id="格式-Format-Time"><a href="#格式-Format-Time" class="headerlink" title="格式:Format Time"></a>格式:Format Time</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">format</span>()</span><br><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="title class_">String</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="格式化年月日：-‘xxxx年xx月xx日’"><a href="#格式化年月日：-‘xxxx年xx月xx日’" class="headerlink" title="格式化年月日： ‘xxxx年xx月xx日’"></a>格式化年月日： ‘xxxx年xx月xx日’</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&#x27;YYYY年MM月DD日&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="格式化年月日：-‘xxxx-xx-xx’"><a href="#格式化年月日：-‘xxxx-xx-xx’" class="headerlink" title="格式化年月日： ‘xxxx-xx-xx’"></a>格式化年月日： ‘xxxx-xx-xx’</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&#x27;YYYY-MM-DD&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="格式化时分秒-24小时制-：-‘xx时xx分xx秒’"><a href="#格式化时分秒-24小时制-：-‘xx时xx分xx秒’" class="headerlink" title="格式化时分秒(24小时制)： ‘xx时xx分xx秒’"></a>格式化时分秒(24小时制)： ‘xx时xx分xx秒’</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&#x27;HH时mm分ss秒&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="格式化时分秒-12小时制-：’xx-xx-xx-am-pm’"><a href="#格式化时分秒-12小时制-：’xx-xx-xx-am-pm’" class="headerlink" title="格式化时分秒(12小时制)：’xx:xx:xx am&#x2F;pm’"></a>格式化时分秒(12小时制)：’xx:xx:xx am&#x2F;pm’</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&#x27;hh:mm:ss a&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="格式化时间戳-以秒为单位"><a href="#格式化时间戳-以秒为单位" class="headerlink" title="格式化时间戳(以秒为单位)"></a>格式化时间戳(以秒为单位)</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&#x27;X&#x27;</span>) <span class="comment">// 返回值为字符串类型</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="格式化时间戳-以毫秒为单位"><a href="#格式化时间戳-以毫秒为单位" class="headerlink" title="格式化时间戳(以毫秒为单位)"></a>格式化时间戳(以毫秒为单位)</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">moment</span>().<span class="title function_">format</span>(<span class="string">&#x27;x&#x27;</span>) <span class="comment">// 返回值为字符串类型</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="4、比较时间"><a href="#4、比较时间" class="headerlink" title="4、比较时间"></a>4、比较时间</h2><blockquote>
+<h4 id="Difference"><a href="#Difference" class="headerlink" title="Difference"></a>Difference</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">diff</span>(<span class="title class_">Moment</span>|<span class="title class_">String</span>|<span class="title class_">Number</span>|<span class="title class_">Date</span>|<span class="title class_">Array</span>)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><h5 id="获取两个日期之间的时间差"><a href="#获取两个日期之间的时间差" class="headerlink" title="获取两个日期之间的时间差"></a>获取两个日期之间的时间差</h5></li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> start_date = <span class="title function_">moment</span>().<span class="title function_">subtract</span>(<span class="number">1</span>, <span class="string">&#x27;weeks&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> end_date = <span class="title function_">moment</span>()</span><br><span class="line"></span><br><span class="line">end_date.<span class="title function_">diff</span>(start_date) <span class="comment">// 返回毫秒数 end_date.diff(start_date, &#x27;months&#x27;) // 0 end_date.diff(start_date, &#x27;weeks&#x27;) // 1 end_date.diff(start_date, &#x27;days&#x27;) // 7 start_date.diff(end_date, &#x27;days&#x27;) // -7</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="5、转化为JavaScript原生Date对象"><a href="#5、转化为JavaScript原生Date对象" class="headerlink" title="5、转化为JavaScript原生Date对象"></a>5、转化为JavaScript原生Date对象</h2><blockquote>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="title function_">moment</span>().<span class="title function_">toDate</span>()</span><br><span class="line">&gt;<span class="keyword">new</span> <span class="title class_">Date</span>(<span class="title function_">moment</span>())</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>将Moment时间转换为JavaScript原生Date对象</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> m = <span class="title function_">moment</span>()</span><br><span class="line">        </span><br><span class="line"><span class="keyword">let</span> nativeDate1 = m.<span class="title function_">toDate</span>()</span><br><span class="line">        </span><br><span class="line"><span class="keyword">let</span> nativeDate2 = <span class="keyword">new</span> <span class="title class_">Date</span>(m) <span class="title class_">String</span>(nativeDate1) === <span class="title class_">String</span>(nativeDate2) <span class="comment">// true</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h2 id="6、引入moment时使用中文"><a href="#6、引入moment时使用中文" class="headerlink" title="6、引入moment时使用中文"></a>6、引入moment时使用中文</h2><blockquote>
+<p>在入口文件处引用即可显示中文</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">import</span> moment <span class="keyword">from</span> <span class="string">&#x27;moment&#x27;</span>;</span><br><span class="line"></span><br><span class="line">&gt;moment.<span class="title function_">locale</span>(<span class="string">&#x27;zh-cn&#x27;</span>);或者moment.<span class="title function_">lang</span>(<span class="string">&#x27;zh-cn&#x27;</span>);即可显示中文</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="二、moment问题与解决"><a href="#二、moment问题与解决" class="headerlink" title="二、moment问题与解决"></a>二、moment问题与解决</h1><h3 id="Ⅰ-取出Moment格式中的具体时间报错-TS报错"><a href="#Ⅰ-取出Moment格式中的具体时间报错-TS报错" class="headerlink" title="Ⅰ-取出Moment格式中的具体时间报错(TS报错)"></a>Ⅰ-取出Moment格式中的具体时间报错(<code>TS报错</code>)</h3><blockquote>
+<ol>
+<li>报错:<code>property &#39;_d&#39; does not exist on type &#39;moment&#39;.</code></li>
+<li>出现错误原因分析:<img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%901.png" alt="image-20210422115014706"></li>
+</ol>
+<p>​	<img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%902.png" alt="image-20210422115208905"></p>
+<ol start="3">
+<li><p>解决</p>
+</li>
+<li><p>其实不用<code>_d</code>去取出来,Moment格式有相应的取出方法</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210422115825841.png" alt="image-20210422115825841"></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="Ⅱ-TS定义时间格式"><a href="#Ⅱ-TS定义时间格式" class="headerlink" title="Ⅱ- TS定义时间格式"></a>Ⅱ- TS定义时间格式</h3><blockquote>
+<ol>
+<li><p>应用场景:当我使用Antd的时间选择框时需要给其绑定的时间限制Ts格式(不设置的时候会报红),这时候就可以用monent自带的格式</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png" alt="image-20210412191035956"> </p>
+</li>
+<li><p>应用代码</p>
+</li>
+</ol>
+  <figure class="highlight tsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1. 导入</span></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Moment</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;moment&#x27;</span>;</span><br><span class="line"><span class="comment">//2. 定义类型接口</span></span><br><span class="line"><span class="keyword">interface</span> <span class="title class_">ISearchParams</span> &#123;</span><br><span class="line">  <span class="attr">storeId</span>: <span class="built_in">any</span>;</span><br><span class="line">  <span class="attr">agentId</span>: <span class="built_in">any</span>;</span><br><span class="line">  <span class="attr">status</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">regDate</span>: [<span class="title class_">Moment</span>, <span class="title class_">Moment</span>];</span><br><span class="line">  <span class="attr">creDate</span>: [<span class="title class_">Moment</span>, <span class="title class_">Moment</span>];</span><br><span class="line">  <span class="attr">format</span>: <span class="built_in">string</span>;</span><br><span class="line">  <span class="attr">loading</span>: <span class="built_in">boolean</span>;</span><br><span class="line">  <span class="attr">listLoading</span>: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//3. 将定义好的ts格式赋进去</span></span><br><span class="line"> <span class="attr">searchParams</span>: <span class="title class_">ISearchParams</span> = &#123;</span><br><span class="line">    <span class="attr">storeId</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">agentId</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">status</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">regDate</span>: <span class="literal">undefined</span>,</span><br><span class="line">    <span class="attr">creDate</span>: <span class="literal">undefined</span>,</span><br><span class="line">    <span class="attr">format</span>: <span class="string">&#x27;YYYY-MM-DD&#x27;</span>,</span><br><span class="line">    <span class="attr">loading</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">listLoading</span>: <span class="literal">false</span>,</span><br><span class="line">  &#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Js-%E6%97%B6%E9%97%B4moment%E7%9B%B8%E5%85%B3%E7%AC%94%E8%AE%B0/" title="Monent.js" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Js-时间moment相关笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Git-A_Git%E8%AF%A6%E7%BB%86%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="Git详细学习笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Js-%E7%BB%86%E8%AF%B4addEventListener%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%86%92%E6%B3%A1%E5%8F%8A%E6%8D%95%E8%8E%B7/" title="冒泡和事件捕获"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

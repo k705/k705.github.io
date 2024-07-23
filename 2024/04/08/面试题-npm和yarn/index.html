@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>npm和yarn | Hexo</title>
+  <meta name="description" content="对于这个问题,我突然被问到的时候,会有一点很不知所措的感觉;虽然我看过一些相关的文章,但是在我的小脑壳中却没有一点印象。 今天，我会从npm和yarn的出现，版本的变化和优化，安装原理和在实践的一些建议等方面，慢慢的来唠唠它们之间的这些事。 早期的npm其实在最早期的npm版本(npm v2)，npm的设计可以说是非常的简单,在安装依赖的时候会将依赖放到 node_modules文件中; 同时,如">
+<meta property="og:type" content="article">
+<meta property="og:title" content="npm和yarn">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-npm%E5%92%8Cyarn/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="对于这个问题,我突然被问到的时候,会有一点很不知所措的感觉;虽然我看过一些相关的文章,但是在我的小脑壳中却没有一点印象。 今天，我会从npm和yarn的出现，版本的变化和优化，安装原理和在实践的一些建议等方面，慢慢的来唠唠它们之间的这些事。 早期的npm其实在最早期的npm版本(npm v2)，npm的设计可以说是非常的简单,在安装依赖的时候会将依赖放到 node_modules文件中; 同时,如">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4fbc0e4e27c14500a2a9e4fcf4757fae~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a25fa69736e4f0aacee1372476ece5c~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dc863afc75f84c4784627a8e4f7cbd71~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0b43405f73284e37a23c59b725ea1f9c~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/825e548b1f9d41059efa5f2080d0c155~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7516838fcf2c42639f6bd2cfd77e9617~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4b2ab2ca967c4c4fa2d26a534c0bf09a~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5585e524462c415cbaebc26595fc7878~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2b22e36004c14999a7242c2cd4ba83e1~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be31ba842d6e451383a78e531664b401~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/68b5fd8a42aa4d26b6dc9f4ca064efdb~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/51732648a8224aa48ffca18540911f22~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="og:image" content="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/729870ff041e4f36ae2965dbd481d076~tplv-k3u1fbpfcp-watermark.awebp">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T02:11:29.922Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4fbc0e4e27c14500a2a9e4fcf4757fae~tplv-k3u1fbpfcp-watermark.awebp">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-npm%E5%92%8Cyarn/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-面试题-npm和yarn" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      npm和yarn
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-npm%E5%92%8Cyarn/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-npm%E5%92%8Cyarn/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>对于这个问题,我突然被问到的时候,会有一点很不知所措的感觉;虽然我看过一些相关的文章,但是在我的小脑壳中却没有一点印象。</p>
+<p>今天，我会从<code>npm</code>和<code>yarn</code>的出现，版本的变化和优化，安装原理和在实践的一些建议等方面，慢慢的来唠唠它们之间的这些事。</p>
+<h5 id="早期的npm"><a href="#早期的npm" class="headerlink" title="早期的npm"></a>早期的npm</h5><p>其实在最早期的<code>npm</code>版本(npm v2)，<code>npm</code>的设计可以说是非常的简单,在安装依赖的时候会将依赖放到<code> node_modules</code>文件中; 同时,如果某个直接依赖A依赖于其他的依赖包B,那么依赖B会作为间接依赖,安装到依赖A的文件夹<code>node_modules</code>中,然后可能多个包之间也会有出现同样的依赖递归的,如果项目一旦过大,那么必然会形成一棵巨大的依赖树，依赖包会出现重复,形成<code>嵌套地狱</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">那么我们如何去理解&quot;嵌套地狱&quot;呢？</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>首先,项目的依赖树的层级过于深，如果有问题不利于排查和调试</li>
+<li>在依赖的分支中,可能会出现同样版本的相互依赖的问题</li>
+</ul>
+<p>那么这样的重复问题会带来什么后果呢？</p>
+<ul>
+<li>首先,会使得安装的结果占据了大量的空间资源,造成了资源的浪费</li>
+<li>同时,因为安装的依赖重复,会造成在安装依赖时,安装时间过长</li>
+<li>甚至是,因为目录层级过深,导致文件路径过长,会在<code>windows</code>系统下删除<code>node_modules</code>文件,出现删除不掉的情况</li>
+</ul>
+<p>那么, 后面的版本是如何一步步进行优化的呢？后面会陆续的揭晓。</p>
+<h5 id="npm-or-yarn-开发中的一点疑惑"><a href="#npm-or-yarn-开发中的一点疑惑" class="headerlink" title="npm or yarn 开发中的一点疑惑"></a>npm or yarn 开发中的一点疑惑</h5><p>你在实际的开发会不会出现这样的一些情况</p>
+<ol>
+<li>当你项目依赖出现问题的时候, 我们会不会是直接删除<code>      node_modules 和 lockfiles</code>依赖, 再重新 <code>npm install</code>,删除大法是否真的好用?这样的使用方案会不会带来什么问题？</li>
+<li>把所有的依赖包都安装到<code>dependencies</code>中,对<code>devDependencies</code> 不区分会不会有问题?</li>
+<li>一个项目中, 你使用 <code>yarn</code>, 我使用<code>npm</code>，会不会有问题呢？</li>
+<li>还有一个问题, <code>lockfiles 文件</code> 我们提交代码的时候需不需要提交到仓库中呢？</li>
+</ol>
+<p>其实,我对于上面提出的问题也是出于一种一知半解的状态。</p>
+<p>所以,世界这么大, 我想去看看这两个兄弟之间到底是有什么关系呢？</p>
+<h5 id="npm的安装机制和核心原理"><a href="#npm的安装机制和核心原理" class="headerlink" title="npm的安装机制和核心原理"></a>npm的安装机制和核心原理</h5><p>我们可以先来看看 npm 的核心目标</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Bring the best of open source to you, your team and your company.</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>意思是 给你和你的团队、你的公司带来最好的开源库和依赖。 通过这句话,我们可以了解到 npm 最重要的一点就是安装和维护依赖。那么，让我们先来看一看<code>npm</code>的安装机制是怎样的呢？</p>
+<h6 id="npm的安装机制"><a href="#npm的安装机制" class="headerlink" title="npm的安装机制"></a>npm的安装机制</h6><p>下面我们会通过一个流程图来具体学习<code>npm install</code>的安装机制</p>
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4fbc0e4e27c14500a2a9e4fcf4757fae~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p><code>npm install</code>执行之后, 首先会检查和获取 <code>npm的配置</code>,这里的优先级为:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">项目级的.npmrc文件 &gt; 用户级的 .npmrc文件 &gt; 全局级的 .npmrc &gt; npm内置的 .npmrc 文件</span><br></pre></td></tr></table></figure>
+
+<p>然后检查项目中是否有 <code>package-lock.json</code>文件</p>
+<ul>
+<li>如果有, 检查 <code>package-lock.json</code>和 <code>package.json</code>声明的依赖是否一致：<ul>
+<li>一致, 直接使用<code>package-lock.json</code>中的信息,从网络或者缓存中加载依赖</li>
+<li>不一致, 根据上述流程中的不同版本进行处理</li>
+</ul>
+</li>
+<li>如果没有, 那么会根据<code>package.json</code>递归构建依赖树,然后就会根据构建好的依赖去下载完整的依赖资源,在下载的时候,会检查有没有相关的资源缓存:<ul>
+<li>存在, 直接解压到<code>node_modules</code>文件中</li>
+<li>不存在, 从npm远端仓库下载包,校验包的完整性,同时添加到缓存中,解压到 <code>node_modules</code>中</li>
+</ul>
+</li>
+</ul>
+<p>最后, 生成 <code>package-lock.json</code> 文件</p>
+<p>其实, 在我们实际的项目开发中，使用npm作为团队的最佳实践: <code>同一个项目团队,应该保持npm 版本的一致性</code>。</p>
+<p>从上面的安装流程,不知道大家注意到了一点没有,在实际的项目开发中,如果每次都去安装对应依赖时,如果相关的依赖包体积过大或者是依赖于网络,无疑会增加安装的时间成本;那么,缓存在这里的就是一个解决问题的好办法,后面我们会做具体的介绍。</p>
+<h5 id="yarn的出现"><a href="#yarn的出现" class="headerlink" title="yarn的出现"></a>yarn的出现</h5><p>yarn 是一个由<code>Facebook</code>、<code>Google</code>、<code>Exponent</code>和<code>Tilde</code>构建的新的JavaScript包管理器。它的出现是为了解决历史上<code>npm</code>的某些不足(比如npm对于依赖的完整性和一致性的保证,以及npm安装过程中速度很慢的问题)</p>
+<p>当npm还处于<code>v3</code>时期的时候,一个叫<code>yarn</code>的包管理工具横空出世.在2016年, npm还没有package-lock.json文件,安装的时候速度很慢,稳定性很差,<code>yarn</code>的出现很好的解决了一下的一些问题:</p>
+<ul>
+<li><strong>确定性:</strong> 通过yarn.lock等机制,即使是不同的安装顺序,相同的依赖关系在任何的环境和容器中,都可以以相同的方式安装。(那么,此时的npm v5之前,并没有package-lock.json机制,只有默认并不会使用 <a href="https://link.juejin.cn/?target=https://docs.npmjs.com/cli/v8/commands/npm-shrinkwrap">npm-shrinkwrap.json</a>)</li>
+<li><strong>采用模块扁平化的安装模式:</strong> 将不同版本的依赖包,按照一定的策略，归结为单个版本;以避免创建多个版本造成工程的冗余(目前版本的npm也有相同的优化)</li>
+<li><strong>网络性能更好:</strong> <code>yarn</code>采用了请求排队的理念,类似于并发池连接,能够更好的利用网络资源;同时也引入了一种安装失败的重试机制</li>
+<li><strong>采用缓存机制,实现了离线模式</strong> (目前的npm也有类似的实现)</li>
+</ul>
+<p>我们可以来看一下 <code>yarn.lock</code>的结构:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&quot;@babel/cli@^7.1.6&quot;, &quot;@babel/cli@^7.5.5&quot;:</span><br><span class="line">  version &quot;7.8.4&quot;</span><br><span class="line">  resolved &quot;http://npm.in.zhihu.com/@babel%2fcli/-/cli-7.8.4.tgz#505fb053721a98777b2b175323ea4f090b7d3c1c&quot;</span><br><span class="line">  integrity sha1-UF+wU3IamHd7KxdTI+pPCQt9PBw=</span><br><span class="line">  dependencies:</span><br><span class="line">    commander &quot;^4.0.1&quot;</span><br><span class="line">    convert-source-map &quot;^1.1.0&quot;</span><br><span class="line">    fs-readdir-recursive &quot;^1.1.0&quot;</span><br><span class="line">    glob &quot;^7.0.0&quot;</span><br><span class="line">    lodash &quot;^4.17.13&quot;</span><br><span class="line">    make-dir &quot;^2.1.0&quot;</span><br><span class="line">    slash &quot;^2.0.0&quot;</span><br><span class="line">    source-map &quot;^0.5.0&quot;</span><br><span class="line">  optionalDependencies:</span><br><span class="line">    chokidar &quot;^2.1.8&quot;</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p>熟悉npm的<code>package-lock.json</code>文件的朋友,可能一眼就看到了一些不同; <code>package-lock.json</code>采用的是<code>JSON</code>的结构,而<code>yarn</code>并没有采用这种结构,而是一种自定义的标记方式;我们可以看出新的自定义的方式,也同样保持了高度的可读性。</p>
+<p><strong>相比于npm,Yarn另一个显著的区别就是yarn.lock的子依赖的版本不是固定的版本</strong>。这其实就说明了一个问题: 一个单独的<code>yarn.lock</code>的问题并不能确定✅<code>node-modules</code>的文件结构,还需要<code>package.json</code>的配合。</p>
+<p>其实到了这里,我会有一个问题,如何实现 <code>npm 到 yarn 的切换呢？</code></p>
+<p>这里 我了解到有一个专门的工具<a href="https://link.juejin.cn/?target=https://github.com/imsnif/synp">synp</a>,它可以将<code>yarn.lock</code>转换为<code>package-lock.json</code>，反之亦然。</p>
+<p>这里可以顺带提一嘴,<code>yarn</code>默认采用的是<code>perfer-online</code>模式,即优先使用网络资源。如果网络资源请求失败,再去请求缓存数据。</p>
+<p>到这里我们应该对<code>yarn</code>有了初步的了解,那我们继续去看一下它的安装机制</p>
+<h6 id="yarn的安装机制"><a href="#yarn的安装机制" class="headerlink" title="yarn的安装机制"></a>yarn的安装机制</h6><p>上面一小节我们对npm的安装机制有了一些基本的了解,现在让我们先来简单的看一下<code>Yarn</code>的安装理念。</p>
+<p>简单来说, <code>Yarn</code>的安装大致分为5个步骤:</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a25fa69736e4f0aacee1372476ece5c~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p>检测(checking) —&gt; 解析包(Resolving Packages) —&gt; 获取包(Fetching) —&gt; 链接包(Linking Packages) —&gt; 构建包(Building Packages)</p>
+<p>那么接下来我们要开始具体分析这些过程中都做了哪些事情:</p>
+<p><strong>检测包</strong></p>
+<p>这一步，最主要的目的就是检测我们的项目中是否存在npm相关的文件,比如<code>package-lock.json</code>等;如果有,就会有相关的提示用户注意：这些文件可能会存在冲突。在这一步骤中 也会检测系统OS, CPU等信息。</p>
+<p><strong>解析包</strong></p>
+<p>这一步会解析依赖树中的每一个包的信息:</p>
+<p>首先呢,获取到<code>首层依赖</code>: 也就是我们当前所处的项目中的<code>package.json</code>定义的<code>dependencies</code>、<code>devDependencies</code>、<code>optionalDependencies</code>的内容。</p>
+<p>紧接着<strong>会采用遍历首层依赖的方式来获取包的依赖信息</strong>,以及递归查找每个依赖下嵌套依赖的版本信息，并将解析过的包和正在进行解析包呢<code>用Set数据结构进行存储</code>,这样就可以保证<code>同一版本范围内的包</code>不会进行重复的解析:</p>
+<p>举个例子</p>
+<ul>
+<li>对于没有解析过的包A, 首次尝试从 <code>yarn.lock</code>中获取版本信息,并且标记为已解析</li>
+<li>如果在<code>yarn.lock</code>中没有找到包A， 则向<code>Registry</code>发起请求获取满足版本范围内的已知的最高版本的包信息,获取之后将该包标记为已解析。</li>
+</ul>
+<p>总之，经过解析包这一步之后呢,我们就已经确定了解析包的具体版本信息和包的下载地址。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dc863afc75f84c4784627a8e4f7cbd71~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p><strong>获取包</strong></p>
+<p>这一步首先我们会检查缓存中是否有当前依赖的包,同时呢将缓存中不存在的包下载到缓存的目录中。但是这里有一个小问题需要大家思考一下:</p>
+<p>比如: 如何去判断缓存中有当前的依赖包呢？</p>
+<p><strong>其实呢,在Yarn中会根据 cacheFolder+<a href="https://link.juejin.cn/?target=https://github.com/Trott/slug">slug</a>+node_modules+pkg.name 生成一个路径;判断系统中是否存在该path,如果存在证明已经有缓存,不用重新下载。这个path也就是依赖包缓存的具体路径。</strong></p>
+<p>那么对于没有命中的缓存包呢？在 <code>Yarn</code> 中存在一个Fetch队列,按照具体的规则进行网络请求。如果下载的包是一个file协议,或者是相对路径,就说明指向一个本地目录,此时会调用Fetch From Local从离线缓存中获取包;否则调用 Fetch From External 获取包,最终获取的结果使用 fs.createWriteStream 写入到缓存目录。</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/0b43405f73284e37a23c59b725ea1f9c~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p><strong>链接包</strong></p>
+<p>我们上一步已经把依赖放到了缓存目录,那么下一步,我们应该要做什么事情呢？是不是应该把项目中的依赖复制到<code>node_modules</code>目录下呢,没错;只不过此时需要遵循一个扁平化的原则。复制依赖之前, <code>Yarn</code>会先解析 <code>peerDepdencies</code>，如果找不到符合要求的<code>peerDepdencies</code>的包,会有 <code>warning</code>提示，并最终拷贝依赖到项目中。</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/825e548b1f9d41059efa5f2080d0c155~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"> <strong>构建包</strong></p>
+<p>如果依赖包中存在二进制包需要进行编译，那么会在这一步进行。</p>
+<p><code>千呼万唤始出来</code>,这里要插一句话,感谢大家的捧场。 <code>为伊消得人憔悴</code>,最近想的事情比较多,一直拖着实在是不好意思。那我们大家继续来一起整理:</p>
+<p>其实, 从大家的评论中我去认真讨论和学到了一些新的东西<a href="https://link.juejin.cn/?target=https://www.pnpm.cn/">pnmp</a>和<a href="https://link.juejin.cn/?target=https://www.lernajs.cn/">Lerna</a>;之后如果时间充裕的话,我也会去研究研究和大伙一起讨论的,感谢大家伙的支持 💗。</p>
+<h6 id="npm的缓存机制"><a href="#npm的缓存机制" class="headerlink" title="npm的缓存机制"></a>npm的缓存机制</h6><p>回归正题,接下来让我们看来一下 <code>npm</code>的对于<strong>同一个版本的依赖包是如何进行本地化缓存的</strong></p>
+<p>这是npm查看本地缓存的命令:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm config get cache</span><br><span class="line">复制代码</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7516838fcf2c42639f6bd2cfd77e9617~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p>从图中我们可以看出npm配置缓存的位置在 <code>/Users/zhaoxxxx/.npm</code>（mac os 的默认的缓存的位置）当中。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4b2ab2ca967c4c4fa2d26a534c0bf09a~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p>其实你也看到了<code>_cacache</code>的目录有三个文件:</p>
+<ul>
+<li>content-v2</li>
+<li>index-v5</li>
+<li>tmp</li>
+</ul>
+<p>其中, content-v2里面存放的是一些二进制的文件。为了使二进制的文件可读,我把文件做了压缩和解压缩处理。</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5585e524462c415cbaebc26595fc7878~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p>然后把下面的文件进行解压处理就可以得到我们想要的npm的具体的资源:</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2b22e36004c14999a7242c2cd4ba83e1~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p><strong>压缩结果</strong></p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/be31ba842d6e451383a78e531664b401~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p>这里推荐一个 <code>the unarchiver</code> 解压缩工具,支持更多的格式,强力推荐。</p>
+<p>而在 index-v5文件中呢, 我们使用和刚才一样的操作可以得到一些描述性的文件。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/68b5fd8a42aa4d26b6dc9f4ca064efdb~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p>事实上这些内容就是 content-v2 文件的索引。</p>
+<p><strong>那么这里我也有一个问题这里的缓存是如何存储并且被利用的呢？</strong></p>
+<p>这里就要提一下 <code>npm install</code>的安装机制, 当 npm 执行的时候,通过 <a href="https://link.juejin.cn/?target=https://www.npmjs.com/package/pacote">pacote</a> 把相应的包解压到对应的 <code>node_modules</code>下面。(这里顺嘴提一句 <a href="https://link.juejin.cn/?target=https://github.com/npm/pacote/blob/2ddf67f7c4/lib/index.js">pacote</a>感兴趣的可以来一起研究一下细节,我目前有点不太能看懂; 大概的思路是结合网络请求和文件读写配置进行本地的缓存写入和生成对应的压缩文件,<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903785018425351#heading-4">这里通过对一位大佬文章学习有所得</a>)</p>
+<p>npm主要有会有三个地方用到 <code>pacote</code>:</p>
+<ul>
+<li>当你执行 npm install xxx (这时候会通过 <code>pacote.extract</code> 把对应的包解压到对应的<code>node_modules</code> 下面, <code>pacote</code>源码地址: <a href="https://link.juejin.cn/?target=https://github.com/zkat/pacote/blob/latest/extract.js%23L19">extract.js</a>)</li>
+<li>当你执行 npm cache add xxx (这时候会通过 <code>pacote.tarball 下的 tarballStream</code>往我们之前看到的 <code>_cacache</code>文件下去添加缓存, <code>pacote</code>源码地址: <a href="https://link.juejin.cn/?target=https://github.com/npm/pacote/blob/2ddf67f7c4e084ffec315f94e30bb24f944403e3/lib/fetcher.js%23L292">tarballStream</a>）</li>
+<li>当你执行 <a href="https://link.juejin.cn/?target=https://docs.npmjs.com/cli/v8/commands/npm-pack">npm pack xxx</a> 通过 <code>pacote.tarball 下的 _toFile</code>在当前路径生成对应的压缩文件, 源码地址:<a href="https://link.juejin.cn/?target=https://github.com/npm/pacote/blob/2ddf67f7c4e084ffec315f94e30bb24f944403e3/lib/fetcher.js%23L383">_toFile</a> )</li>
+</ul>
+<p>当<code>npm</code>下载依赖的时候, 先下载到缓存当中,再解压到我们的项目的 <code>node_modules</code>中。 其实 <code>pacote</code>是依赖<a href="https://link.juejin.cn/?target=https://github.com/npm/npm-registry-fetch%23npm-registry-fetch"> npm-registry-fetch</a>来下载包, npm-registry-fetch 可以通过设置 cache 字段进行相关的缓存工作。</p>
+<p><img src="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/51732648a8224aa48ffca18540911f22~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p>紧接着呢, 我们在每次去安装资源的时候,会根据<code>package-lock.json</code>中的</p>
+<ul>
+<li>integrity</li>
+<li>verison</li>
+<li>name</li>
+</ul>
+<p>integrity、verison、name 相关信息会生成一个唯一的key;这个key 就能够对应上 index-v5 目录下的缓存记录; 如果发现有缓存资源,就会去找到 tar 包对应的<code>hash</code>值. 根据 <code>hash</code>再去找缓存中的<code>tar</code>包,然后再次通过 <code>pacote</code>将二进制文件解压缩进我们项目的 <code>node_modules</code>目录中，这样就省去了资源下载的网络开销。</p>
+<p><img src="https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/729870ff041e4f36ae2965dbd481d076~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+<p><strong>这里需要注意的是, 这里的缓存策略是在 npm v5开始的,那么在 v5之前呢, 每个缓存模块是在我们之前提到的 ~.&#x2F;npmrc 文件中以模块名的格式直接存储的</strong></p>
+<p><strong>存储的格式:</strong><code>&#123;cache&#125;&#123;name&#125;&#123;version&#125;</code>。</p>
+<p>今天可能坐久了,肚子有点不消化,暂时更新到这里, 谢谢大家的支持与厚爱，🌹🌹🌹。</p>
+<p>参考资料:</p>
+<p><a href="https://link.juejin.cn/?target=https://yarn.bootcss.com/">yarn官网</a></p>
+<p><a href="https://link.juejin.cn/?target=https://docs.npmjs.com/about-npm">npm-about</a></p>
+<p><a href="https://link.juejin.cn/?target=https://kaiwu.lagou.com/course/courseInfo.htm?courseId=584%23/detail/pc?id=5905">前端基础建设与架构 30 讲</a></p>
+<p><a href="https://link.juejin.cn/?target=https://cloud.tencent.com/developer/article/1555982">npm install 原理分析</a></p>
+<p><a href="https://link.juejin.cn/?target=https://wxsm.space/2021/npm-history/">Node.js 包管理器发展史</a></p>
+<p><a href="https://link.juejin.cn/?target=https://blog.csdn.net/weixin_43459866/article/details/112392975">dependencies devDependencies peerDependencies三者的区别</a></p>
+<p><a href="https://link.juejin.cn/?target=https://segmentfault.com/a/1190000022435060">一文搞懂peerDependencies</a></p>
+<p>[<a href="https://link.juejin.cn/?target=https://segmentfault.com/a/1190000017075256">package-lock.json和yarn.lock的包依赖区别</a>]</p>
+<p><a href="https://link.juejin.cn/?target=https://segmentfault.com/a/1190000009709213">npm 和 yarn 缓存策略对比</a></p>
+<p><a href="https://link.juejin.cn/?target=https://zhuanlan.zhihu.com/p/128625669">作为前端工程师你真的知道 npm install 原理么？</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903785018425351"># 记一次排错经历——npm缓存浅析</a></p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-npm%E5%92%8Cyarn/" title="npm和yarn" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/面试题-npm和yarn/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-nodejs%E9%9D%A2%E8%AF%95/" title="nodejs面试题"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-React/" title="React"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

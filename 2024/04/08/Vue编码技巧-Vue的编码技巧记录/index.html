@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Vue编码技巧 | Hexo</title>
+  <meta name="description" content="#说明 此笔记将记录一些Vue框架使用技巧,可以帮助我们更快更好的构建Vue应用  一、开发技巧写法1、使用$parent子组件访问父组件数据或方法Ⅰ - 子组件访问父组件数据 一般我从子组件访问父组件数据,是通过props传入,但如果你不想经历传递props的麻烦,或需要传给子组件的数据多,那么我们可以尝试用$parent这个API直接从父组件快速获取一个值 12345678910&gt;&#x2F;&#x2F;父">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue编码技巧">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E7%9A%84%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 此笔记将记录一些Vue框架使用技巧,可以帮助我们更快更好的构建Vue应用  一、开发技巧写法1、使用$parent子组件访问父组件数据或方法Ⅰ - 子组件访问父组件数据 一般我从子组件访问父组件数据,是通过props传入,但如果你不想经历传递props的麻烦,或需要传给子组件的数据多,那么我们可以尝试用$parent这个API直接从父组件快速获取一个值 12345678910&gt;&#x2F;&#x2F;父">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:55:39.052Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E7%9A%84%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Vue编码技巧-Vue的编码技巧记录" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Vue编码技巧
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E7%9A%84%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/Vue/" rel="tag">Vue</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E7%9A%84%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h3><blockquote>
+<p>此笔记将记录一些Vue框架使用技巧,可以帮助我们更快更好的构建Vue应用</p>
+</blockquote>
+<h1 id="一、开发技巧写法"><a href="#一、开发技巧写法" class="headerlink" title="一、开发技巧写法"></a>一、开发技巧写法</h1><h2 id="1、使用-parent子组件访问父组件数据或方法"><a href="#1、使用-parent子组件访问父组件数据或方法" class="headerlink" title="1、使用$parent子组件访问父组件数据或方法"></a>1、<strong>使用<code>$parent</code>子组件访问父组件数据</strong>或方法</h2><h3 id="Ⅰ-子组件访问父组件数据"><a href="#Ⅰ-子组件访问父组件数据" class="headerlink" title="Ⅰ - 子组件访问父组件数据"></a>Ⅰ - 子组件访问父组件数据</h3><blockquote>
+<p>一般我从子组件访问父组件数据,是通过<code>props</code>传入,但如果你不想经历传递props的麻烦,或需要传给子组件的数据多,那么我们可以尝试用<code>$parent</code>这个API直接从父组件快速获取一个值</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//父组件</span></span><br><span class="line">&gt;<span class="title function_">data</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="keyword">return</span>&#123;</span><br><span class="line">       <span class="attr">msg</span>:<span class="string">&#x27;这是父组件的值&#x27;</span></span><br><span class="line">   &#125;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="comment">//子组件中调用</span></span><br><span class="line">&gt;<span class="title function_">test</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="variable language_">this</span>.<span class="property">$parent</span>.<span class="property">msg</span>)<span class="comment">//这是父组件的值</span></span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-用-parent调用父组件的自定义方法"><a href="#Ⅱ-用-parent调用父组件的自定义方法" class="headerlink" title="Ⅱ - 用$parent调用父组件的自定义方法"></a>Ⅱ - 用<code>$parent</code>调用父组件的自定义方法</h3><blockquote>
+<p>如果你用<code>$parent</code>调用父组件的自定义方法也是可以的,但是在使用UI组件时可能会出现无法使用<code>this.$parent</code>直接调用父组件方法的问题。例如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&gt;//父组件</span><br><span class="line">&gt;&lt;Tabs value=&quot;name&quot;&gt;</span><br><span class="line">   &lt;TabPane label=&quot;名字&quot; name=&quot;name&quot;&gt;                    </span><br><span class="line">       &lt;TextTag  @setText=&quot;setText&quot;/&gt;                    </span><br><span class="line">   &lt;/TabPane&gt;</span><br><span class="line">&gt;&lt;/Tabs&gt;</span><br><span class="line"></span><br><span class="line">&gt;//子组件TextTag中</span><br><span class="line">&gt;methids:&#123;</span><br><span class="line">test()&#123;</span><br><span class="line">	this.$parent.setText() //报错,提示方法未定义</span><br><span class="line">&#125;</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以一般这种子组件调用父组件的还是可以是用<code>$emit</code></p>
+</blockquote>
+<h2 id="2、在模板语法中多使用JS的高级功能"><a href="#2、在模板语法中多使用JS的高级功能" class="headerlink" title="2、在模板语法中多使用JS的高级功能"></a>2、在模板语法中多使用JS的高级功能</h2><blockquote>
+<p>我们在指令<code>v-directives</code>中很容易忘记我们仍可以在我们的模板中访问纯JS的高级功能,实际上我们可以在里面尽可能地引用上ES系列知识点简化代码</p>
+</blockquote>
+<h3 id="Ⅰ-问题举例-简化你的-class-和-v-if"><a href="#Ⅰ-问题举例-简化你的-class-和-v-if" class="headerlink" title="Ⅰ - 问题举例:简化你的 :class 和 v-if"></a>Ⅰ - 问题举例:简化你的 :class 和 v-if</h3><blockquote>
+<p>当我们有一个需求,当我们满足某几个条件时,我们的<code>class</code>或者<code>显隐v-if</code>要进行切换:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;!-- 当名字等于这三个时,我们要进行类名的切换 --&gt;</span><br><span class="line">&gt;&lt;div </span><br><span class="line">  :class=&quot; name===&#x27;hong&#x27; || name===&#x27;jelyn&#x27; || name===&#x27;努力学习的汪&#x27; ? &#x27;show-class&#x27;:&#x27;&#x27; &quot;</span><br><span class="line">&gt;&gt;                               </span><br><span class="line">&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+
+<h6 id="然后你可能会这样简化它-但这样绝对不是最好的写法"><a href="#然后你可能会这样简化它-但这样绝对不是最好的写法" class="headerlink" title="然后你可能会这样简化它,但这样绝对不是最好的写法:"></a>然后你可能会这样简化它,但这样绝对不是最好的写法:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;!-- 当名字等于这三个时,我们要进行类名的切换 --&gt;</span><br><span class="line">&gt;&lt;div </span><br><span class="line"> :class=&quot;&#123; </span><br><span class="line">    &#x27;show-class&#x27;:</span><br><span class="line">    name===&#x27;hong&#x27;</span><br><span class="line">    || name===&#x27;jelyn&#x27; </span><br><span class="line">    || name===&#x27;努力学习的汪&#x27; </span><br><span class="line">    &#125;&quot;</span><br><span class="line">&gt;&gt;                               </span><br><span class="line">&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-简化"><a href="#Ⅱ-简化" class="headerlink" title="Ⅱ- 简化"></a>Ⅱ- 简化</h3><blockquote>
+<p>可以利用<code>includes</code>方法:用来判断一个数组是否包含一个指定的值，如果是返回 true，否则false</p>
+<h6 id="这不仅更具可读性，而且以后也更容易扩展"><a href="#这不仅更具可读性，而且以后也更容易扩展" class="headerlink" title="这不仅更具可读性，而且以后也更容易扩展"></a>这不仅更具可读性，而且以后也更容易扩展</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;!-- 当名字等于这三个时,我们要进行类名的切换 --&gt;</span><br><span class="line">&gt;&lt;div </span><br><span class="line"> :class=&quot;&#123; </span><br><span class="line">    &#x27;show-class&#x27;:[&#x27;hong&#x27;,&#x27;jelyn&#x27;,&#x27;努力学习的汪&#x27;].includes(name)</span><br><span class="line">       &#125;&quot;</span><br><span class="line">&gt;&gt;                               </span><br><span class="line">&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="3、-路由-页面-更改时滚动到顶部"><a href="#3、-路由-页面-更改时滚动到顶部" class="headerlink" title="3、**[路由&#x2F;页面]更改时滚动到顶部**"></a>3、**[路由&#x2F;页面]更改时滚动到顶部**</h2><blockquote>
+<p>当我们页面更改时(如路由跳转),Vue会保持在页面的当前位置,这有时会很有用,但也有些问题:</p>
+<blockquote>
+<p>如果我们向下滚动一个长的列表页,然后转到另外一个页面,滚动条将位于新页面的底部,而不是期望的顶部,这个问题该怎么解决呢?</p>
+</blockquote>
+<p>解决这个问题很简单。只需在 <code>app.js</code> 文件中添加一个 <code>watch</code>–&gt; 在每次路由更改后触发滚动到顶部</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// App.vue</span></span><br><span class="line">&gt;<span class="attr">watch</span>: &#123;</span><br><span class="line">   $route() &#123;</span><br><span class="line">     <span class="variable language_">window</span>.<span class="title function_">scrollTo</span>(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="4、对-DRY-代码使用全局实用方法"><a href="#4、对-DRY-代码使用全局实用方法" class="headerlink" title="4、对 DRY 代码使用全局实用方法"></a>4、<strong>对 DRY 代码使用全局实用方法</strong></h2><h3 id="Ⅰ-什么是-DRY"><a href="#Ⅰ-什么是-DRY" class="headerlink" title="Ⅰ - 什么是 DRY?"></a>Ⅰ - 什么是 <code>DRY</code>?</h3><blockquote>
+<p>DRY 原则来自于《Pragmatic Programmer》即《务实的程序员》这本书。DRY 是英文 Don’t Repeat Yourself 的缩写，从字面上理解就是不要重复你的代码，但是作者其实说的是知识，更准确的定义是”每一份知识都必须在系统中拥有单一的，无歧义的，权威的代表“</p>
+<p>代码原则中的 DRY 原则，要求程序员挤干代码的水分，每一份知识都在系统中只有单一的，无歧义的，权威的代表，方法 (method) 不要过长，分割业务逻辑，尽量重用我们的代码片段。</p>
+</blockquote>
+<h3 id="Ⅱ-可以尝试创建utils-js"><a href="#Ⅱ-可以尝试创建utils-js" class="headerlink" title="Ⅱ- 可以尝试创建utils.js"></a>Ⅱ- 可以尝试创建<code>utils.js</code></h3><blockquote>
+<p>几乎每个Vue项目中都会有一些在多个地方复用的逻辑,例如一个字段的映射渲染(0-&gt;’男’,1–&gt;’女’)这样.为了保持我们代码的<code>DRY</code>和<code>可管理</code></p>
+<ul>
+<li>我们应该创建一个单独的<code>utils.js</code>文件来保存这个经常复用的逻辑并能从任何地方访问</li>
+<li>你可能会觉得用<code>Vuex</code>很合适这种情况,但除非你需要将方法的结果存在<code>state</code>中,否则它真的不适合这种情况</li>
+<li>一般来说现在基本都会有这个概念</li>
+</ul>
+</blockquote>
+<h2 id="5、检测用户是在桌面还是移动设备上"><a href="#5、检测用户是在桌面还是移动设备上" class="headerlink" title="5、检测用户是在桌面还是移动设备上"></a>5、<strong>检测用户是在桌面还是移动设备上</strong></h2><blockquote>
+<p>这里曾看到一篇文章,觉得很不错,便记录下来</p>
+<ul>
+<li>他推荐使用 <code>npm i vue-mobile-detection --save</code> 安装 <code>vue-mobile-detection</code></li>
+<li>随后在<code>App.vue</code>文件中添加一个<code>mounted()</code>钩子,钩子中可以往<code>Vuex</code>或者<code>localstorage</code>中存储该用户使用的平台值</li>
+<li>之后就可以在所有需要用到这个数据的地方引用即可</li>
+</ul>
+</blockquote>
+<h3 id="Ⅰ-Vuex示例"><a href="#Ⅰ-Vuex示例" class="headerlink" title="Ⅰ - Vuex示例"></a>Ⅰ - Vuex示例</h3><blockquote>
+<p>如果你使用的是Vuex,你可以为上面的 <code>$store.commit</code> 创建一个mutation，将值设置为 state，然后使用 getter 访问应用程序中任何地方的平台值。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//app.vue </span></span><br><span class="line">&gt;<span class="title function_">mounted</span>(<span class="params"></span>) &#123;</span><br><span class="line">   <span class="variable language_">this</span>.$isMobile()</span><br><span class="line">     ? <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">commit</span>(<span class="string">&#x27;setPlatform&#x27;</span>, <span class="string">&#x27;mobile&#x27;</span>)</span><br><span class="line">     : <span class="variable language_">this</span>.<span class="property">$store</span>.<span class="title function_">commit</span>(<span class="string">&#x27;setPlatform&#x27;</span>, <span class="string">&#x27;desktop&#x27;</span>)</span><br><span class="line"> &#125;,</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-localStorage示例"><a href="#Ⅱ-localStorage示例" class="headerlink" title="Ⅱ - localStorage示例"></a>Ⅱ - localStorage示例</h3><blockquote>
+<p>如果你使用<code>localStorage</code>进行存储,可以按照下面的代码示例</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//app.vue</span></span><br><span class="line">&gt;<span class="keyword">const</span> currentPlatform = <span class="variable language_">this</span>.$isMobile() ? ‘mobile’ : ‘desktop’</span><br><span class="line">&gt;<span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;platform&#x27;</span>, currentPlatform)</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//在需要使用的组件处</span></span><br><span class="line">&gt;<span class="keyword">const</span> currentPlatform = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(‘platform’)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="6、当用户按下-回车-ENTER-时关注下一个表单输入"><a href="#6、当用户按下-回车-ENTER-时关注下一个表单输入" class="headerlink" title="6、当用户按下 回车(ENTER) 时关注下一个表单输入"></a>6、<strong>当用户按下 回车(ENTER) 时关注下一个表单输入</strong></h2><blockquote>
+<p>使用下面代码:用户在关注此输入框时按下 Enter 键，则会将光标焦点设置到以下输入框</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;input </span><br><span class="line">type=&quot;text&quot;</span><br><span class="line">@keyup.enter=&quot;$event.target.nextElementSibling.focus()&quot;</span><br><span class="line">&gt;/&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="7、动态刷新（重新加载）特定组件"><a href="#7、动态刷新（重新加载）特定组件" class="headerlink" title="7、动态刷新（重新加载）特定组件"></a>7、<strong>动态刷新（重新加载）特定组件</strong></h2><h3 id="Ⅰ-刷新特定组件"><a href="#Ⅰ-刷新特定组件" class="headerlink" title="Ⅰ - 刷新特定组件"></a>Ⅰ - 刷新特定组件</h3><blockquote>
+<p>有许多边缘情况需要重新加载组件而不影响它所在页面的其余部分。</p>
+<p>你有时需要强制它使用新属性刷新，或者因为你使用的包在传递新属性时没有按预期更新</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;template&gt;</span><br><span class="line"> &lt;component-to-re-render :key=&quot;reloadMe&quot; /&gt;</span><br><span class="line">&gt;&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&gt;&lt;script&gt;</span><br><span class="line">&gt;export default &#123; </span><br><span class="line"> data() &#123; </span><br><span class="line">   return &#123; </span><br><span class="line">     reloadMe: 0, </span><br><span class="line">   &#125;</span><br><span class="line"> &#125;; </span><br><span class="line"></span><br><span class="line"> methods: &#123; </span><br><span class="line">   forceRerender() &#123; this.reloadMe += 1; &#125; </span><br><span class="line"> &#125; </span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-重新加载某个页面"><a href="#Ⅱ-重新加载某个页面" class="headerlink" title="Ⅱ - 重新加载某个页面"></a>Ⅱ - 重新加载某个页面</h3><blockquote>
+<p>但是也有点弊端,可能会造成短时间’白屏’</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">// 直接刷新页面,相当于直接按 `F5`</span></span><br><span class="line">&gt;<span class="variable language_">window</span>.<span class="property">location</span>.<span class="title function_">reload</span>()</span><br><span class="line">&gt;<span class="comment">// 重新进入此路由</span></span><br><span class="line">&gt;<span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">go</span>(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅲ-不刷新页面情况下刷新数据"><a href="#Ⅲ-不刷新页面情况下刷新数据" class="headerlink" title="Ⅲ - 不刷新页面情况下刷新数据"></a>Ⅲ - 不刷新页面情况下刷新数据</h3><blockquote>
+<p>如果你不想要直接调用<code>window.location.reload()</code>,因为它会造成白屏现象(因为模拟我们的f5),重新加载资源</p>
+<p>那么你可以看我单独写的另外一篇文章,篇幅较长,此处给出链接,可以实现不刷新页面直接刷新数据的效果(不会产生白屏)</p>
+<p><a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Vue%E7%AC%94%E8%AE%B0%E6%95%B4%E5%90%88/vue%E5%AE%9E%E7%8E%B0%E4%B8%8D%E5%88%B7%E6%96%B0%E9%A1%B5%E9%9D%A2%E6%83%85%E5%86%B5%E4%B8%8B%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE.md">vue实现不刷新页面情况下刷新数据实现方案笔记</a></p>
+</blockquote>
+<h2 id="8、限制输入框键入内容"><a href="#8、限制输入框键入内容" class="headerlink" title="8、限制输入框键入内容"></a>8、限制输入框键入内容</h2><blockquote>
+<p>在Vue输入框中我们想要从输入的时候直接限制用户输入的格式，比如不允许用户输入中文，可以使用<code>oninput</code>配合正则实现效果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt;//限制不可输入中文，主要检测到输入中文就用空字符串替换</span><br><span class="line">&gt;&lt;el-input </span><br><span class="line">   oninput=&quot;value=value.replace(/[\u4E00-\u9FA5]/g, &#x27;&#x27;)&quot;</span><br><span class="line">   v-model=&quot;form.parentUnicode&quot;&gt;</span><br><span class="line">&gt;&lt;/el-input&gt;</span><br></pre></td></tr></table></figure>
+
+</blockquote>
+<h1 id="二、代码优化"><a href="#二、代码优化" class="headerlink" title="二、代码优化"></a>二、代码优化</h1><h2 id="1、Key的使用"><a href="#1、Key的使用" class="headerlink" title="1、Key的使用"></a>1、Key的使用</h2><blockquote>
+<p>使用 <code>v-for</code> 更新已渲染的元素列表时，默认用就地复用策略；列表数据修改的时候，他会根据 <code>key</code> 值去判断某个值是否修改，如果修改，则重新渲染这一项，否则复用之前的元素；</p>
+</blockquote>
+<h3 id="Ⅰ-使用key的注意事项"><a href="#Ⅰ-使用key的注意事项" class="headerlink" title="Ⅰ - 使用key的注意事项"></a>Ⅰ - 使用key的注意事项</h3><blockquote>
+<ul>
+<li>不要使用可能重复的或者可能变化 <code>key</code> 值（控制台也会给出提醒）</li>
+<li>如果数组中的数据有状态需要维持时（例如输入框），不要使用数组的 <code>index</code> 作为 <code>key</code> 值，因为如果在数组中插入或者移除一个元素时，其后面的元素 index 将会变化，这回让vue进行原地复用时错误的绑定状态。</li>
+<li>如果数组中没有唯一的 key值可用，且数组更新时不是全量更新而是采用类似push，splice来插入或者移除数据时，可以考虑对其添加一个 key 字段，值为 Symbol() 即可保证唯一。</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-何时使用何种key"><a href="#Ⅱ-何时使用何种key" class="headerlink" title="Ⅱ - 何时使用何种key?"></a>Ⅱ - 何时使用何种key?</h3><blockquote>
+<p>这是一个非常有考究的问题，首先你要知道 vue 中的 <code>原地复用</code> （大概就是 <code>虚拟dom</code> 变化时，两个 <code>虚拟dom节点</code> 的 <code>key</code> 如果一样就不会重新创建节点，而是修改原来的节点）</p>
+</blockquote>
+<h4 id="①-哪何时使用-index-作为-key-呢？"><a href="#①-哪何时使用-index-作为-key-呢？" class="headerlink" title="① 哪何时使用 index 作为 key 呢？"></a>① 哪何时使用 index 作为 key 呢？</h4><blockquote>
+<p>当我们渲染的数据不需要保持状态时，例如常见的单纯的表格分页渲染（不包含输入，只是展示）、下拉加载更多等场景，那么使用 <code>index</code> 作为 <code>key</code> 再好不过，因为进入下一页或者上一页时就会原地复用之前的节点，而不是重新创建，如果使用唯一的 <code>id</code> 作为 <code>key</code> 反而会重新创建dom，性能相对较低。</p>
+<p>此外使用 <code>index</code> 作为 <code>key</code> 我还应该要尽量避免对数组的中间进行 增加&#x2F;删除 等会影响后面元素key变化的操作。这会让 vue 认为后面所有元素都发生了变化，导致多余的对比和原地复用。</p>
+<p>所以使用 index 作为 key 需要满足：</p>
+<ol>
+<li>数据没有独立的状态</li>
+<li>数据不会进行 增加&#x2F;删除 等会影响后面元素key变化的操作</li>
+</ol>
+</blockquote>
+<h4 id="②-哪何时使用-id-作为-key-呢？"><a href="#②-哪何时使用-id-作为-key-呢？" class="headerlink" title="② 哪何时使用 id 作为 key 呢？"></a>② 哪何时使用 id 作为 key 呢？</h4><blockquote>
+<p>对于大多数数据的 <code>id</code> 都是唯一的，这无疑的一个 <code>key</code> 的优选答案。对于任何大多数情况使用 <code>id</code> 作为 <code>key</code> 都不会出现上面 <code>bug</code>。但是如果你需要考虑性能问题，那就就要思考是否应该使用原地复用了。</p>
+<p>同样是上面的分页数据展示，如果使用 <code>id</code> 作为 <code>key</code> ，可想而知每一页的每一条数据 <code>id</code> 都是不一样的，所以当换页时两颗 <code>虚拟DOM树</code> 的节点的 <code>key</code> 完全不一致，<code>vue</code> 就会移除原来的节点然后创建新的节点。可想而知效率会更加低下。但是他也有它的优点。唯一的 <code>key</code> 可以帮助 <code>diff</code> 更加精确的为我们绑定状态，这尤其适合数据有独立的状态的场景，例如带输入框或者单选框的列表数据。</p>
+<p>所以何时使用 <code>id</code> 作为 <code>key</code>？只有一点：</p>
+<ul>
+<li>无法使用 <code>index</code> 作为 <code>key</code> 的时候</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E7%9A%84%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/" title="Vue编码技巧" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Vue编码技巧-Vue的编码技巧记录/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E4%BD%BF%E7%94%A8PrintJS%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8D%B0%E5%8A%9F%E8%83%BD/" title="PrintJS"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Vue2.x-A_Vue%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BA%B2/" title="Vue2笔记总纲"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

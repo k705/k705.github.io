@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>路由 | Hexo</title>
+  <meta name="description" content="———————–&#x3D;&#x3D;(VUE柒)&#x3D;&#x3D;————————-路由&#x3D;&gt;day8_15一、回顾与技术栈梳理  1.node-路由  ​    指向当前应用的某个具体资源的路径  2.express 两层路由   ​    app.js 具体的某个router文件  sequelize orm的框架   ​      持久层 特别容易特别方便  ​">
+<meta property="og:type" content="article">
+<meta property="og:title" content="路由">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Vue2.x-7_(%E6%9F%92)_%E8%B7%AF%E7%94%B1=day8_15/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="———————–&#x3D;&#x3D;(VUE柒)&#x3D;&#x3D;————————-路由&#x3D;&gt;day8_15一、回顾与技术栈梳理  1.node-路由  ​    指向当前应用的某个具体资源的路径  2.express 两层路由   ​    app.js 具体的某个router文件  sequelize orm的框架   ​      持久层 特别容易特别方便  ​">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/route%E5%AF%B9%E8%B1%A1.webp">
+<meta property="og:image" content="https://gitee.com/study73/router.webp">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:32:17.748Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="Vue2">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/route%E5%AF%B9%E8%B1%A1.webp">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Vue2.x-7_(%E6%9F%92)_%E8%B7%AF%E7%94%B1=day8_15/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Vue2.x-7_(柒)_路由=day8_15" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      路由
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Vue2.x-7_(%E6%9F%92)_%E8%B7%AF%E7%94%B1=day8_15/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Vue2.x-7_(%E6%9F%92)_%E8%B7%AF%E7%94%B1=day8_15/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="———————–-VUE柒-————————"><a href="#———————–-VUE柒-————————" class="headerlink" title="———————–&#x3D;&#x3D;(VUE柒)&#x3D;&#x3D;————————-"></a>———————–&#x3D;&#x3D;(VUE柒)&#x3D;&#x3D;————————-</h1><h1 id="路由-day8-15"><a href="#路由-day8-15" class="headerlink" title="路由&#x3D;&gt;day8_15"></a>路由&#x3D;&gt;day8_15</h1><h2 id="一、回顾与技术栈梳理"><a href="#一、回顾与技术栈梳理" class="headerlink" title="一、回顾与技术栈梳理"></a>一、回顾与技术栈梳理</h2><blockquote>
+<p> 1.node-路由</p>
+<p> ​    指向当前应用的某个具体资源的路径</p>
+<p> 2.express</p>
+<pre><code>两层路由
+</code></pre>
+<p> ​    app.js 具体的某个router文件</p>
+<ol start="3">
+<li>sequelize orm的框架</li>
+</ol>
+<p> ​      持久层 特别容易特别方便</p>
+<p> ​      model 创建是手动的</p>
+<p> ​      sequelize-auto 快捷工具 model全自动生成</p>
+<p> ​        持久层只剩下调用api</p>
+<ol start="4">
+<li>升级pxpress成koa2</li>
+</ol>
+<p> ​      ctx </p>
+<p> ​      单层路由,允许在单层路由里定义多级路由</p>
+<p> ​	5.一阶段a标签定位到页面的某个位置</p>
+<p> ​      Bootstrap</p>
+</blockquote>
+<h2 id="二、前端路由的概念"><a href="#二、前端路由的概念" class="headerlink" title="二、前端路由的概念"></a>二、前端路由的概念</h2><blockquote>
+<p>​    vue 当作是页面显示的工具</p>
+<ol>
+<li>锚点</li>
+</ol>
+<p>​      #xxxx –&gt;称为hash值</p>
+<ol start="2">
+<li>服务端的路由</li>
+</ol>
+<p>​      定位服务端的唯一的资源</p>
+<ol start="3">
+<li>前端的路由</li>
+</ol>
+<p>​      页面并没有跳转也不会刷新.知识基于url+#hash</p>
+<p>​        定位到页面上的唯一的一个资源</p>
+<p>​        &#x3D;&#x3D;&gt;vue里头其实就是定位到某个具体的组件</p>
+<p>​        &#x3D;&#x3D;&gt;vue-router</p>
+<p> (3.1)  hash值不一样,只会定义到页面上某个具体的内容(a标签)</p>
+<p>  (3.2) 大前提: vue环境下,hash值变了,会让某个具体的组件显示出来,而且</p>
+<p>​        同时会隐藏掉当前的组件</p>
+</blockquote>
+<h2 id="三、vue中router与router与route区别"><a href="#三、vue中router与router与route区别" class="headerlink" title="三、vue中router与router与route区别"></a>三、vue中router与router与route区别</h2><h3 id="1-route对象"><a href="#1-route对象" class="headerlink" title="1.$route对象"></a>1.$route对象</h3><p>$route对象表示当前的路由信息，包含了当前 URL 解析得到的信息。包含当前的路径，参数，query对象等。</p>
+<blockquote>
+<p>1.$route.path**   字符串，对应当前路由的路径，总是解析为绝对路径，如”&#x2F;foo&#x2F;bar”。</p>
+<p>2.$route.params**   一个 key&#x2F;value 对象，包含了 动态片段 和 全匹配片段，   如果没有路由参数，就是一个空对象。</p>
+<p>3.$route.query**   一个 key&#x2F;value 对象，表示 URL 查询参数。   例如，对于路径 &#x2F;foo?user&#x3D;1，则有$route.query.user &#x3D;&#x3D; 1，   如果没有查询参数，则是个空对象。</p>
+<p>4.$route.hash**   当前路由的hash值 (不带#) ，如果没有 hash 值，则为空字符串。锚点*</p>
+<p>5.$route.fullPath**   完成解析后的 URL，包含查询参数和hash的完整路径。</p>
+<p>6.$route.matched**   数组，包含当前匹配的路径中所包含的所有片段所对应的配置参数对象。</p>
+<p>7.$route.name  当前路径名字</p>
+<p>8.$route.meta 路由元信息</p>
+<p>`&#96;&#96;</p>
+<p>route object 出现在多个地方:</p>
+<p>组件内的 this.route和route和route watcher 回调（监测变化处理）;</p>
+<p>router.match(location) 的返回值</p>
+<p>scrollBehavior 方法的参数</p>
+<p>导航钩子的参数：</p>
+<p>router.beforeEach((to,from, next)&#x3D;&gt;{&#x2F;&#x2F;to 和from都是 路由信息对象,后面使用路由的钩子函数就容易理解了})</p>
+</blockquote>
+<p><img src="/study73/route%E5%AF%B9%E8%B1%A1.webp"></p>
+<h3 id="2-router对象"><a href="#2-router对象" class="headerlink" title="2.$router对象"></a>2.$router对象</h3><blockquote>
+<p>$router对象是全局路由的实例，是router构造方法的实例。</p>
+</blockquote>
+<h5 id="2-1-push"><a href="#2-1-push" class="headerlink" title="(2.1)push"></a>(2.1)push</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>字符串<span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(<span class="string">&#x27;home&#x27;</span>)</span><br><span class="line"></span><br><span class="line">\<span class="number">2.</span> 对象<span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">path</span>:<span class="string">&#x27;home&#x27;</span>&#125;)</span><br><span class="line"></span><br><span class="line">\<span class="number">3.</span> 命名的路由<span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">name</span>:<span class="string">&#x27;user&#x27;</span>,<span class="attr">params</span>:&#123;<span class="attr">userId</span>:<span class="number">123</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line"><span class="number">4.</span>带查询参数，变成 /register?plan=123<span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">path</span>:<span class="string">&#x27;register&#x27;</span>,<span class="attr">query</span>:&#123;<span class="attr">plan</span>:<span class="string">&#x27;123&#x27;</span>&#125;&#125;)</span><br><span class="line"></span><br><span class="line">push方法其实和&lt;router-link :to=<span class="string">&quot;...&quot;</span>&gt;是等同的。</span><br><span class="line">注意：push方法的跳转会向 history 栈添加一个新的记录，当我们点击浏览器的返回按钮时可以看到之前的页面。</span><br></pre></td></tr></table></figure>
+
+<h5 id="2-2-go"><a href="#2-2-go" class="headerlink" title="(2.2)go"></a>(2.2)go</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> 页面路由跳转 </span><br><span class="line">前进或者后退<span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">go</span>(-<span class="number">1</span>) <span class="comment">// 后退</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-3-replace"><a href="#2-3-replace" class="headerlink" title="(2.3)replace"></a>(2.3)replace</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">push方法会向 history 栈添加一个新的记录，而replace方法是替换当前的页面，</span><br><span class="line">不会向 history 栈添加一个新的记录</span><br><span class="line"><span class="comment">// 一般使用replace来做404页面</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">replace</span>(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">配置路由时path有时候会加 <span class="string">&#x27;/&#x27;</span> 有时候不加,以<span class="string">&#x27;/&#x27;</span>开头的会被当作根路径，就不会一直嵌套之前的路径。</span><br></pre></td></tr></table></figure>
+
+<p><img src="/study73/router.webp"></p>
+<h3 id="3-区别"><a href="#3-区别" class="headerlink" title="3.区别"></a>3.区别</h3><blockquote>
+<h4 id="router"><a href="#router" class="headerlink" title="$router"></a>$router</h4><p>$router是去全局的一个路由实例(全局变量),</p>
+<ol>
+<li><code>this.$router.push(&#123;path: &#39;/login&#39;&#125;); // 路由跳转, 向 history 中增加一条记录</code></li>
+<li><code>this.$router.go(-1); // 路由前进(正数)或者后退(负数), 0刷新当前页面</code></li>
+<li><code>this.$router.replace(&#123;path: &#39;/login&#39;&#125;); // 在 history记录中替换当前路径, 不记录.</code></li>
+</ol>
+<h4 id="route"><a href="#route" class="headerlink" title="$route"></a>$route</h4><p>$router是一个跳转的路由对象(局部变量), 每一个路由都有自己的route, route中记录了当前路由的跳转的name, path, params, query;<br>获取的时候, <code>this.$route.path, this.$route.query</code>$router</p>
+</blockquote>
+<h2 id="四、路由-vue-router-使用"><a href="#四、路由-vue-router-使用" class="headerlink" title="四、路由(vue-router)使用"></a>四、路由(vue-router)使用</h2><h5 id="4-1-引包并使用"><a href="#4-1-引包并使用" class="headerlink" title="(4.1)引包并使用"></a>(4.1)引包并使用</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">引包 <span class="keyword">import</span> <span class="title class_">VueRouter</span> <span class="keyword">from</span> <span class="string">&#x27;../lib/vue-router-3.0.1&#x27;</span> </span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueRouter</span>)</span><br></pre></td></tr></table></figure>
+
+<h5 id="4-2-配置routes"><a href="#4-2-配置routes" class="headerlink" title="(4.2)配置routes"></a>(4.2)配置routes</h5><blockquote>
+<ol>
+<li>path  2.component 3.redirect 4.挂载路由 5.创建组件占位符(html) router-view</li>
+<li>代码示例见后面</li>
+</ol>
+</blockquote>
+<h2 id="五、router-link的使用"><a href="#五、router-link的使用" class="headerlink" title="五、router-link的使用"></a>五、router-link的使用</h2><blockquote>
+<ol>
+<li>默认会被渲染成a标签的锚点形式:可以更改路由-hash</li>
+</ol>
+<p> 可以通过指定tag属性,更改router-link渲染城的标签的格式</p>
+<p> 此时router-link可以更改hash,是基于编程式导航(js)</p>
+<p>2.编程式导航:</p>
+<p>​     是比router-link更常用的一种改变路由地址的方式</p>
+<ol start="3">
+<li><p>$router 路由对象</p>
+</li>
+<li><p>前进 forward(n)  2.后退 back(n)  3.go(n) 4.n&gt;0后退  5. 跳转</p>
+</li>
+<li><p>$route hash对象</p>
+</li>
+</ol>
+</blockquote>
+<h5 id="5-1-代码示例"><a href="#5-1-代码示例" class="headerlink" title="(5.1)代码示例"></a>(5.1)代码示例</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span>&gt;</span>  <span class="comment">&lt;!-- 使用路由 tag可以渲染成变得标签格式,实际上是帮我们绑定事件 --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">tag</span>=<span class="string">&quot;div&quot;</span> <span class="attr">to</span>=<span class="string">&quot;/login&quot;</span> &gt;</span>登录<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/res&quot;</span> &gt;</span>注册<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/xxx&quot;</span> &gt;</span>异常演示<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">       <span class="comment">&lt;!-- 直接使用a标签要加#  --&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#/login&quot;</span>&gt;</span> 是<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="六、路由带参"><a href="#六、路由带参" class="headerlink" title="六、路由带参"></a>六、路由带参</h2><h4 id="6-1-怎么传"><a href="#6-1-怎么传" class="headerlink" title="(6.1)怎么传?"></a>(6.1)怎么传?</h4><h5 id="a-restful风格-以占位符的形式"><a href="#a-restful风格-以占位符的形式" class="headerlink" title="a.restful风格 以占位符的形式"></a>a.restful风格 以占位符的形式</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">  当路由变为xxx的时候要显示的式xx组件,同时要给这个组件传n个参数</span><br><span class="line">​    <span class="number">1</span>)restful风格 以占位符的形式,但是每个占位符参与路由筛选的过程</span><br><span class="line">​       <span class="attr">http</span>:<span class="comment">//localhost/#/1/2/3  </span></span><br><span class="line">​       /<span class="number">1</span>/<span class="number">2</span>/<span class="number">3</span>  即是参数也是路由规则</span><br><span class="line">​       <span class="attr">path</span>:<span class="string">&quot;/:a/:b&quot;</span> 就必须完全匹配才能找到的</span><br></pre></td></tr></table></figure>
+
+<h5 id="b-查询字符串的方式"><a href="#b-查询字符串的方式" class="headerlink" title="b.查询字符串的方式"></a>b.查询字符串的方式</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">  <span class="number">2</span>)查询字符串的方式,跟传统的url地址传参的形式一样,参数包括</span><br><span class="line">​      问号在内的字符串式不参与路由筛选的过程</span><br><span class="line">​    <span class="attr">http</span>:<span class="comment">//localhost/login?x=1</span></span><br><span class="line">​    其中?x=<span class="number">1</span>不属于路由配置path ,只有login是path要筛选的</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-2-怎么取"><a href="#6-2-怎么取" class="headerlink" title="(6.2)怎么取?"></a>(6.2)怎么取?</h4><h5 id="a-route-–-以-开头的组件与实例通用"><a href="#a-route-–-以-开头的组件与实例通用" class="headerlink" title="a.$route –&gt; 以$开头的组件与实例通用"></a>a.$route –&gt; 以$开头的组件与实例通用</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">   查询字符串 </span><br><span class="line">       <span class="attr">http</span>:<span class="comment">//localhost/hongjilin.html?a=11#/login/1/2?a=111</span></span><br><span class="line">        <span class="attr">fullPath</span>: <span class="string">&quot;/login/1/2?a=111&quot;</span></span><br><span class="line">        <span class="attr">hash</span>: <span class="string">&quot;&quot;</span></span><br><span class="line">        <span class="attr">matched</span>: [&#123;…&#125;]</span><br><span class="line">        <span class="attr">meta</span>: &#123;&#125;</span><br><span class="line">        <span class="attr">name</span>: <span class="literal">undefined</span></span><br><span class="line">        <span class="attr">params</span>: &#123;<span class="number">0</span>: <span class="string">&quot;/login/1/2&quot;</span>&#125;</span><br><span class="line">         <span class="attr">path</span>: <span class="string">&quot;/login/1/2&quot;</span></span><br><span class="line">        <span class="attr">query</span>: &#123;<span class="attr">a</span>: <span class="string">&quot;111&quot;</span>&#125;</span><br><span class="line"><span class="comment">//vm.$route.query....</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="6-3-具体代码示例"><a href="#6-3-具体代码示例" class="headerlink" title="(6.3)具体代码示例"></a>(6.3)具体代码示例</h5><h6 id="1-query方式传参数"><a href="#1-query方式传参数" class="headerlink" title="1.query方式传参数"></a>1.query方式传参数</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">path</span>: <span class="string">&#x27;/user&#x27;</span>, <span class="attr">query</span>: &#123;<span class="attr">id</span>: <span class="string">&#x27;27001&#x27;</span>&#125;&#125;);</span><br><span class="line"><span class="comment">// 获取参数方式:</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">is</span> = <span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">query</span>.<span class="property">id</span>;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h6 id="2-params-方式传递参数"><a href="#2-params-方式传递参数" class="headerlink" title="2.params 方式传递参数"></a>2.params 方式传递参数</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">this</span>.<span class="property">$router</span>.<span class="title function_">push</span>(&#123;<span class="attr">name</span>: <span class="string">&#x27;user&#x27;</span>, <span class="attr">params</span>: &#123;<span class="attr">id</span>: <span class="string">&#x27;27001&#x27;</span>&#125;&#125;);</span><br><span class="line"><span class="comment">// 获取参数方式</span></span><br><span class="line"><span class="variable language_">this</span>.<span class="property">id</span> = <span class="variable language_">this</span>.<span class="property">$route</span>.<span class="property">params</span>.<span class="property">id</span>;</span><br><span class="line">-------------------------------------------------------------------------------------------------</span><br><span class="line">需要注意的是使用params传参的时候, 路由配置必须按照以下方式来配置, name属性必须有, path后面必须写上传递的参数名, 这样才能保证刷新页面的时候, 参数不会被丢失.</span><br><span class="line">&#123;</span><br><span class="line">	<span class="attr">path</span>:<span class="string">&#x27;/user/:id&#x27;</span>,</span><br><span class="line">	<span class="attr">name</span>: <span class="string">&#x27;user&#x27;</span>,</span><br><span class="line">	<span class="attr">component</span>: <span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123; <span class="built_in">require</span>([<span class="string">&#x27;../components/user/index.vue&#x27;</span>], resolve)&#125;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="七、路由器嵌套"><a href="#七、路由器嵌套" class="headerlink" title="七、路由器嵌套"></a>七、路由器嵌套</h2><h5 id="1-前端template代码示例"><a href="#1-前端template代码示例" class="headerlink" title="1.前端template代码示例"></a>1.前端template代码示例</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> <span class="tag">&lt;<span class="name">transition</span> <span class="attr">mode</span>=<span class="string">&#x27;out-in&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">router-view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">        <span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line">---------------------------------------------------------------------</span><br><span class="line"><span class="comment">&lt;!-- template最好不要在容器里面 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color: aquamarine;&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">h1</span>&gt;</span>我是父亲<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span>   </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="2-js端代码示例以及注意事项"><a href="#2-js端代码示例以及注意事项" class="headerlink" title="2.js端代码示例以及注意事项"></a>2.js端代码示例以及注意事项</h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">         <span class="attr">path</span>:<span class="string">&#x27;/father&#x27;</span>,</span><br><span class="line">         <span class="attr">component</span>:fater,</span><br><span class="line">         <span class="attr">children</span>:[</span><br><span class="line">             &#123;<span class="comment">//如果加了/ 代表不能是father/regist 而是直接根目录到regist</span></span><br><span class="line">                 <span class="attr">path</span>:<span class="string">&#x27;regist&#x27;</span>, <span class="comment">//father(只显示父亲) //father/regist(在显示父亲的之后再显示儿子)</span></span><br><span class="line">                 <span class="comment">//定义的组件</span></span><br><span class="line">                 <span class="attr">component</span>:res,</span><br><span class="line">             &#125;</span><br><span class="line">         ]</span><br><span class="line">     &#125;,</span><br></pre></td></tr></table></figure>
+
+<h2 id="八、全部代码示例"><a href="#八、全部代码示例" class="headerlink" title="八、全部代码示例"></a>八、全部代码示例</h2><h3 id="1-前端html"><a href="#1-前端html" class="headerlink" title="1.前端html"></a>1.前端html</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">transition</span> <span class="attr">mode</span>=<span class="string">&#x27;out-in&#x27;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">router-view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 使用路由 --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">tag</span>=<span class="string">&quot;div&quot;</span> <span class="attr">to</span>=<span class="string">&quot;/login&quot;</span> &gt;</span>登录<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/res&quot;</span> &gt;</span>注册<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">&quot;/xxx&quot;</span> &gt;</span>异常演示<span class="tag">&lt;/<span class="name">router-link</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 直接使用a标签要加#  --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;#/login&quot;</span>&gt;</span> 是<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span>&gt;</span>--------------------------------------------------------<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- template最好不要在容器里面 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;father&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color: aquamarine;&quot;</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">h1</span>&gt;</span>我是父亲<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">           <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span>   </span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;login&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- 绑定 --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;hong&#x27;,1,2,3,4)&quot;</span>&gt;</span>login<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;dier&#x27;,1,2,3,4)&quot;</span>&gt;</span>惦记我调用第二份父亲方法<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;login1&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;hong&#x27;,1,2,3,4)&quot;</span>&gt;</span>login<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span> @<span class="attr">click</span>=<span class="string">&quot;$emit(&#x27;dier&#x27;,1,2,3,4)&quot;</span>&gt;</span>sss<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;regist&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span>&gt;</span>注册<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span>&gt;</span>zzz<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!-- template最好不要在容器里面 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">id</span>=<span class="string">&quot;error&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--template的根容器只能有一个  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">          <span class="comment">&lt;!-- &lt;h1 v-text=&quot;msg&quot; @click=&quot;say()&quot;&gt;&lt;/h1&gt; --&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span>&gt;</span>错误找不到<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">h1</span>&gt;</span>zzz<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="2-路由代码示例"><a href="#2-路由代码示例" class="headerlink" title="2.路由代码示例"></a>2.路由代码示例</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">Vue</span> <span class="keyword">from</span> <span class="string">&#x27;../lib/vue-2.4.0&#x27;</span> </span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.scss&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">VueRouter</span> <span class="keyword">from</span> <span class="string">&#x27;../lib/vue-router-3.0.1&#x27;</span> </span><br><span class="line"><span class="comment">//通过import需要通过use进行挂载</span></span><br><span class="line"><span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">VueRouter</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> login=&#123;</span><br><span class="line">    <span class="attr">template</span>:<span class="string">&#x27;#login&#x27;</span>,</span><br><span class="line">    <span class="title function_">data</span>(<span class="params"></span>) &#123;  <span class="keyword">return</span> &#123;   <span class="attr">msg</span>:<span class="number">222</span>  &#125; &#125;,</span><br><span class="line">    <span class="attr">methods</span>:&#123; <span class="title function_">say</span>(<span class="params"></span>)&#123;<span class="title function_">alert</span>(<span class="string">&quot;我是xxx&quot;</span>) &#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> res=&#123;</span><br><span class="line">        <span class="attr">template</span>:<span class="string">&#x27;#regist&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> fater=&#123;</span><br><span class="line">        <span class="attr">template</span>:<span class="string">&#x27;#father&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> error=&#123;</span><br><span class="line">    <span class="attr">template</span>:<span class="string">&quot;#error&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用路由的时候将所有组件注册放出来定义</span></span><br><span class="line"><span class="comment">//必须在实例的作用域内</span></span><br><span class="line"><span class="keyword">const</span>  router = <span class="keyword">new</span> <span class="title class_">VueRouter</span>(&#123;</span><br><span class="line">    <span class="comment">//路由匹配从上到下,匹配到一个不匹配</span></span><br><span class="line">    <span class="attr">routes</span>:[</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">path</span>:<span class="string">&#x27;/&#x27;</span>,</span><br><span class="line">            <span class="comment">//重定向到/login</span></span><br><span class="line">            <span class="attr">redirect</span>:<span class="string">&#x27;/login&#x27;</span></span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">path</span>:<span class="string">&#x27;/login&#x27;</span>,</span><br><span class="line">            <span class="comment">//定义的组件</span></span><br><span class="line">            <span class="attr">component</span>:login,</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;<span class="comment">//这是嵌套组件</span></span><br><span class="line">            <span class="attr">path</span>:<span class="string">&#x27;/father&#x27;</span>,</span><br><span class="line">            <span class="attr">component</span>:fater,</span><br><span class="line">            <span class="attr">children</span>:[</span><br><span class="line">                &#123;<span class="comment">//如果加了/ 代表不能是father/regist 而是直接根目录到regist</span></span><br><span class="line">                    <span class="attr">path</span>:<span class="string">&#x27;regist&#x27;</span>, <span class="comment">//father(只显示父亲) //father/regist(在显示父亲的之后再显示儿子)</span></span><br><span class="line">                    <span class="comment">//定义的组件</span></span><br><span class="line">                    <span class="attr">component</span>:res,</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;,</span><br><span class="line">        </span><br><span class="line">        &#123;   <span class="comment">//最后找不到的</span></span><br><span class="line">            <span class="attr">path</span>:<span class="string">&#x27;*&#x27;</span>,</span><br><span class="line">            <span class="attr">component</span>:error</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">vm</span>=<span class="keyword">new</span> <span class="title class_">Vue</span>(&#123;</span><br><span class="line">    <span class="attr">el</span>:<span class="string">&#x27;#app&#x27;</span>,</span><br><span class="line">    <span class="attr">data</span>:&#123;</span><br><span class="line">        <span class="attr">msg</span>:<span class="string">&quot;hello world&quot;</span>,</span><br><span class="line">        <span class="attr">list</span>:[</span><br><span class="line">            <span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span></span><br><span class="line">        ],</span><br><span class="line">        <span class="attr">flag</span>:<span class="literal">false</span>,</span><br><span class="line">        <span class="attr">jilin</span>:<span class="string">&#x27;login&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//将定义的路由挂载上来,key与value相同可以缺省</span></span><br><span class="line">    router,</span><br><span class="line">    <span class="attr">methods</span>: &#123;</span><br><span class="line">        <span class="title function_">del</span>(<span class="params">index</span>)&#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">list</span>.<span class="title function_">splice</span>(index,<span class="number">1</span>)</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">fater</span>(<span class="params">...son</span>)&#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&quot;我是父亲&quot;</span>+son);</span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="title function_">fater2</span>(<span class="params">...son</span>)&#123;</span><br><span class="line">            <span class="title function_">alert</span>(<span class="string">&quot;我是第二份父亲&quot;</span>+son);</span><br><span class="line">        &#125;,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">components</span>:&#123;</span><br><span class="line">        <span class="comment">// res</span></span><br><span class="line">      <span class="comment">//再外面定义后可以直接引入</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Vue2.x-7_(%E6%9F%92)_%E8%B7%AF%E7%94%B1=day8_15/" title="路由" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Vue2.x-7_(柒)_路由=day8_15/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Vue2.x-6_(%E9%99%86)_%E7%88%B6%E5%AD%90%E7%BB%84%E4%BB%B6%E3%80%81%E7%BB%84%E4%BB%B6=day8_14/" title="组件"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Vue2.x-8.1_(%E6%8D%8C_2)_Vue-cli%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%A1%B9%E7%9B%AE%E5%88%9B%E5%BB%BA=day8_16/" title="Vue-cli的安装与使用"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

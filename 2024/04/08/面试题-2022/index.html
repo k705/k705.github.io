@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>2022最新 | Hexo</title>
+  <meta name="description" content="目录   | 前端基础 11  | HTTP&#x2F;HTML&#x2F;浏览器 11 说一下 http 和 https11  tcp 三次握手，一句话概括12  TCP 和 UDP 的区别 12  WebSocket 的实现和应用12  HTTP 请求的方式，HEAD 方式13  一个图片 url访问后直接下载怎样实现？14  说一下 web Quality（无障碍）14  几个很实用的 B">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022最新">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-2022/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="目录   | 前端基础 11  | HTTP&#x2F;HTML&#x2F;浏览器 11 说一下 http 和 https11  tcp 三次握手，一句话概括12  TCP 和 UDP 的区别 12  WebSocket 的实现和应用12  HTTP 请求的方式，HEAD 方式13  一个图片 url访问后直接下载怎样实现？14  说一下 web Quality（无障碍）14  几个很实用的 B">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-16T08:09:53.441Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-2022/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-面试题-2022" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2022最新
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-2022/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-2022/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p><strong>目录</strong></p>
+</blockquote>
+<ol>
+<li><a href="#%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80"><strong>| 前端基础</strong></a> <a href="#%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80">11</a></li>
+</ol>
+<h4 id="HTTP-HTML-浏览器-11"><a href="#HTTP-HTML-浏览器-11" class="headerlink" title="| HTTP&#x2F;HTML&#x2F;浏览器 11"></a><a href="#httphtml%E6%B5%8F%E8%A7%88%E5%99%A8">| HTTP&#x2F;HTML&#x2F;浏览器</a> <a href="#httphtml%E6%B5%8F%E8%A7%88%E5%99%A8">11</a></h4><ul>
+<li><p><strong><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-http-%E5%92%8C-https">说一下 http 和 https</a></strong><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-http-%E5%92%8C-https">11</a></p>
+</li>
+<li><p><a href="#tcp-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%A6%82%E6%8B%AC"><strong>tcp 三次握手，一句话概括</strong></a><br><a href="#tcp-%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%A6%82%E6%8B%AC">12</a></p>
+</li>
+<li><p><a href="#tcp-%E5%92%8C-udp-%E7%9A%84%E5%8C%BA%E5%88%AB"><strong>TCP 和 UDP 的区别</strong></a> <a href="#tcp-%E5%92%8C-udp-%E7%9A%84%E5%8C%BA%E5%88%AB">12</a></p>
+</li>
+<li><p><a href="#websocket-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%BA%94%E7%94%A8"><strong>WebSocket 的实现和应用</strong></a><br><a href="#websocket-%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%92%8C%E5%BA%94%E7%94%A8">12</a></p>
+</li>
+<li><p><a href="#http-%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8Fhead-%E6%96%B9%E5%BC%8F"><strong>HTTP 请求的方式，HEAD 方式</strong></a><br><a href="#http-%E8%AF%B7%E6%B1%82%E7%9A%84%E6%96%B9%E5%BC%8Fhead-%E6%96%B9%E5%BC%8F">13</a></p>
+</li>
+<li><p><a href="#%E4%B8%80%E4%B8%AA%E5%9B%BE%E7%89%87-url-%E8%AE%BF%E9%97%AE%E5%90%8E%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E6%80%8E%E6%A0%B7%E5%AE%9E%E7%8E%B0"><strong>一个图片 url<br>访问后直接下载怎样实现？</strong></a><br><a href="#%E4%B8%80%E4%B8%AA%E5%9B%BE%E7%89%87-url-%E8%AE%BF%E9%97%AE%E5%90%8E%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E6%80%8E%E6%A0%B7%E5%AE%9E%E7%8E%B0">14</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-web-quality%E6%97%A0%E9%9A%9C%E7%A2%8D"><strong>说一下 web Quality（无障碍）</strong></a><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-web-quality%E6%97%A0%E9%9A%9C%E7%A2%8D">14</a></p>
+</li>
+<li><p><strong><a href="#%E5%87%A0%E4%B8%AA%E5%BE%88%E5%AE%9E%E7%94%A8%E7%9A%84-bom-%E5%B1%9E%E6%80%A7%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95">几个很实用的 BOM 属性对象方法?</a></strong><br><a href="#%E5%87%A0%E4%B8%AA%E5%BE%88%E5%AE%9E%E7%94%A8%E7%9A%84-bom-%E5%B1%9E%E6%80%A7%E5%AF%B9%E8%B1%A1%E6%96%B9%E6%B3%95">14</a></p>
+</li>
+<li><p><strong><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-html5-drag-api">说一下 HTML5 drag api</a></strong><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-html5-drag-api">15</a></p>
+</li>
+<li><p><strong><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-http2.0">说一下 http2.0</a></strong> <a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-http2.0">15</a></p>
+</li>
+<li><p><a href="#%E8%A1%A5%E5%85%85-400-%E5%92%8C-401403-%E7%8A%B6%E6%80%81%E7%A0%81"><strong>补充 400 和 401、403 状态码</strong></a><br><a href="#%E8%A1%A5%E5%85%85-400-%E5%92%8C-401403-%E7%8A%B6%E6%80%81%E7%A0%81">15</a></p>
+</li>
+<li><p><a href="#fetch-%E5%8F%91%E9%80%81-2-%E6%AC%A1%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8E%9F%E5%9B%A0"><strong>fetch 发送 2 次请求的原因</strong></a><br><a href="#fetch-%E5%8F%91%E9%80%81-2-%E6%AC%A1%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8E%9F%E5%9B%A0">16</a></p>
+</li>
+<li><p><a href="#cookiesessionstoragelocalstorage-%E7%9A%84%E5%8C%BA%E5%88%AB"><strong>Cookie、sessionStorage、localStorage<br>的区别</strong></a><br><a href="#cookiesessionstoragelocalstorage-%E7%9A%84%E5%8C%BA%E5%88%AB">16</a></p>
+</li>
+<li><p><strong><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-web-worker">说一下 web worker</a></strong> <a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-web-worker">17</a></p>
+</li>
+<li><p><a href="#%E5%AF%B9-html-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE%E7%9A%84%E7%90%86%E8%A7%A3"><strong>对 HTML 语义化标签的理解</strong></a><br><a href="#%E5%AF%B9-html-%E8%AF%AD%E4%B9%89%E5%8C%96%E6%A0%87%E7%AD%BE%E7%9A%84%E7%90%86%E8%A7%A3">17</a></p>
+</li>
+<li><p><a href="#iframe-%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9"><strong>iframe 是什么？有什么缺点？</strong></a><br><a href="#iframe-%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9">17</a></p>
+</li>
+<li><p><strong><a href="#doctype-%E4%BD%9C%E7%94%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E5%AE%83%E4%BB%AC%E6%9C%89%E4%BD%95%E6%84%8F%E4%B9%89">Doctype<br>作用?严格模式与混杂模式如何区分？它们有何意义?</a></strong><br><a href="#doctype-%E4%BD%9C%E7%94%A8%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%B7%B7%E6%9D%82%E6%A8%A1%E5%BC%8F%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E5%AE%83%E4%BB%AC%E6%9C%89%E4%BD%95%E6%84%8F%E4%B9%89">17</a></p>
+</li>
+<li><p><a href="#cookie-%E5%A6%82%E4%BD%95%E9%98%B2%E8%8C%83-xss-%E6%94%BB%E5%87%BB"><strong>Cookie 如何防范 XSS 攻击</strong></a><br><a href="#cookie-%E5%A6%82%E4%BD%95%E9%98%B2%E8%8C%83-xss-%E6%94%BB%E5%87%BB">18</a></p>
+</li>
+<li><p><a href="#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB"><strong>Cookie 和 session 的区别</strong></a><br><a href="#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB">18</a></p>
+</li>
+<li><p><strong><a href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%A6%82%E6%8B%AC-restful">一句话概括 RESTFUL</a></strong><br><a href="#%E4%B8%80%E5%8F%A5%E8%AF%9D%E6%A6%82%E6%8B%AC-restful">18</a></p>
+</li>
+<li><p><a href="#%E8%AE%B2%E8%AE%B2-viewport-%E5%92%8C%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%83%E5%B1%80"><strong>讲讲 viewport 和移动端布局</strong></a><br><a href="#%E8%AE%B2%E8%AE%B2-viewport-%E5%92%8C%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%B8%83%E5%B1%80">18</a></p>
+</li>
+<li><p><a href="#click-%E5%9C%A8-ios-%E4%B8%8A%E6%9C%89-300ms-%E5%BB%B6%E8%BF%9F%E5%8E%9F%E5%9B%A0%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3"><strong>click 在 ios 上有 300ms<br>延迟，原因及如何解决？</strong></a><br><a href="#click-%E5%9C%A8-ios-%E4%B8%8A%E6%9C%89-300ms-%E5%BB%B6%E8%BF%9F%E5%8E%9F%E5%9B%A0%E5%8F%8A%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3">18</a></p>
+</li>
+<li><p><a href="#addeventlistener-%E5%8F%82%E6%95%B0"><strong>addEventListener 参数</strong></a><br><a href="#addeventlistener-%E5%8F%82%E6%95%B0">19</a></p>
+</li>
+<li><p><a href="#cookie-sessionstorage-localstorage-%E5%8C%BA%E5%88%AB"><strong>cookie sessionStorage localStorage<br>区别</strong></a><br><a href="#cookie-sessionstorage-localstorage-%E5%8C%BA%E5%88%AB">19</a></p>
+</li>
+<li><p><a href="#cookie-session-%E5%8C%BA%E5%88%AB"><strong>cookie session 区别</strong></a><br><a href="#cookie-session-%E5%8C%BA%E5%88%AB">19</a></p>
+</li>
+<li><p><a href="#%E4%BB%8B%E7%BB%8D%E7%9F%A5%E9%81%93%E7%9A%84-http-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81"><strong>介绍知道的 http 返回的状态码</strong></a><br><a href="#%E4%BB%8B%E7%BB%8D%E7%9F%A5%E9%81%93%E7%9A%84-http-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">19</a></p>
+</li>
+<li><p><a href="#http-%E5%B8%B8%E7%94%A8%E8%AF%B7%E6%B1%82%E5%A4%B4"><strong>http 常用请求头</strong></a> <a href="#http-%E5%B8%B8%E7%94%A8%E8%AF%B7%E6%B1%82%E5%A4%B4">21</a></p>
+</li>
+<li><p><a href="#%E5%BC%BA%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><strong>强，协商缓存</strong></a> <a href="#%E5%BC%BA%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98">24</a></p>
+</li>
+<li><p><strong><a href="#%E8%AE%B2%E8%AE%B2-304">讲讲 304</a></strong> <a href="#%E8%AE%B2%E8%AE%B2-304">25</a></p>
+</li>
+<li><p><a href="#%E5%BC%BA%E7%BC%93%E5%AD%98%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%93%AA%E4%B8%AA"><strong>强缓存、协商缓存什么时候用哪个</strong></a><br><a href="#%E5%BC%BA%E7%BC%93%E5%AD%98%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8%E5%93%AA%E4%B8%AA">25</a></p>
+</li>
+<li><p><a href="#%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96"><strong>前端优化</strong></a> <a href="#%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96">26</a></p>
+</li>
+<li><p><a href="#get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB"><strong>GET 和 POST 的区别</strong></a><br><a href="#get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB">26</a></p>
+</li>
+<li><p><a href="#%E5%92%8C-302-%E7%9A%84%E5%8C%BA%E5%88%AB"><strong>301 和 302 的区别</strong></a> <a href="#%E5%92%8C-302-%E7%9A%84%E5%8C%BA%E5%88%AB">27</a></p>
+</li>
+<li><p><a href="#http-%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%B9%E6%B3%95"><strong>HTTP 支持的方法</strong></a> <a href="#http-%E6%94%AF%E6%8C%81%E7%9A%84%E6%96%B9%E6%B3%95">27</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E7%94%BB%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2">如何画一个三角形</a> <a href="#%E5%A6%82%E4%BD%95%E7%94%BB%E4%B8%80%E4%B8%AA%E4%B8%89%E8%A7%92%E5%BD%A2">27</a></p>
+</li>
+<li><p><a href="#%E7%8A%B6%E6%80%81%E7%A0%81-304-%E5%92%8C-200">状态码 304 和 200</a> <a href="#%E7%8A%B6%E6%80%81%E7%A0%81-304-%E5%92%8C-200">27</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98">说一下浏览器缓存</a> <a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98">28</a></p>
+</li>
+<li><p><a href="#html5-%E6%96%B0%E5%A2%9E%E7%9A%84%E5%85%83%E7%B4%A0">HTML5 新增的元素</a> <a href="#html5-%E6%96%B0%E5%A2%9E%E7%9A%84%E5%85%83%E7%B4%A0">28</a></p>
+</li>
+<li><p><a href="#%E5%9C%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E9%87%8C%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA-url%E5%88%B0%E8%BF%99%E4%B8%AA%E9%A1%B5%E9%9D%A2%E5%91%88%E7%8E%B0%E5%87%BA%E6%9D%A5%E4%B8%AD%E9%97%B4%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88">在地址栏里输入一个<br>URL,到这个页面呈现出来，中间会发生什么？</a><br><a href="#%E5%9C%A8%E5%9C%B0%E5%9D%80%E6%A0%8F%E9%87%8C%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AA-url%E5%88%B0%E8%BF%99%E4%B8%AA%E9%A1%B5%E9%9D%A2%E5%91%88%E7%8E%B0%E5%87%BA%E6%9D%A5%E4%B8%AD%E9%97%B4%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88">28</a></p>
+</li>
+<li><p><a href="#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%ABlocalstorage-%E5%92%8C-sessionstorage-%E7%9A%84%E5%8C%BA%E5%88%AB">cookie 和 session 的区别，localstorage 和 sessionstorage<br>的区别</a><br><a href="#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%ABlocalstorage-%E5%92%8C-sessionstorage-%E7%9A%84%E5%8C%BA%E5%88%AB">29</a></p>
+</li>
+<li><p><a href="#%E5%B8%B8%E8%A7%81%E7%9A%84-http-%E7%9A%84%E5%A4%B4%E9%83%A8">常见的 HTTP 的头部</a> <a href="#%E5%B8%B8%E8%A7%81%E7%9A%84-http-%E7%9A%84%E5%A4%B4%E9%83%A8">29</a></p>
+</li>
+<li><p><a href="#http2.0-%E7%9A%84%E7%89%B9%E6%80%A7">HTTP2.0 的特性</a> <a href="#http2.0-%E7%9A%84%E7%89%B9%E6%80%A7">30</a></p>
+</li>
+<li><p><a href="#cache-control-%E7%9A%84%E5%80%BC%E6%9C%89%E5%93%AA%E4%BA%9B">cache-control 的值有哪些</a><br><a href="#cache-control-%E7%9A%84%E5%80%BC%E6%9C%89%E5%93%AA%E4%BA%9B">30</a></p>
+</li>
+<li><p><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%A8%E7%94%9F%E6%88%90%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%97%B6%E5%80%99%E4%BC%9A%E7%94%9F%E6%88%90%E9%82%A3%E4%B8%A4%E9%A2%97%E6%A0%91">浏览器在生成页面的时候，会生成那两颗树？</a><br><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%9C%A8%E7%94%9F%E6%88%90%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%97%B6%E5%80%99%E4%BC%9A%E7%94%9F%E6%88%90%E9%82%A3%E4%B8%A4%E9%A2%97%E6%A0%91">30</a></p>
+</li>
+<li><p><a href="#csrf-%E5%92%8C-xss-%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E8%8C%83">csrf 和 xss 的网络攻击及防范</a><br><a href="#csrf-%E5%92%8C-xss-%E7%9A%84%E7%BD%91%E7%BB%9C%E6%94%BB%E5%87%BB%E5%8F%8A%E9%98%B2%E8%8C%83">30</a></p>
+</li>
+<li><p><a href="#%E6%80%8E%E4%B9%88%E7%9C%8B%E7%BD%91%E7%AB%99%E7%9A%84%E6%80%A7%E8%83%BD%E5%A6%82%E4%BD%95">怎么看网站的性能如何</a><br><a href="#%E6%80%8E%E4%B9%88%E7%9C%8B%E7%BD%91%E7%AB%99%E7%9A%84%E6%80%A7%E8%83%BD%E5%A6%82%E4%BD%95">31</a></p>
+</li>
+<li><p><a href="#%E4%BB%8B%E7%BB%8D-http-%E5%8D%8F%E8%AE%AE%E7%89%B9%E5%BE%81">介绍 HTTP 协议(特征)</a><br><a href="#%E4%BB%8B%E7%BB%8D-http-%E5%8D%8F%E8%AE%AE%E7%89%B9%E5%BE%81">31</a></p>
+</li>
+<li><p><a href="#%E8%BE%93%E5%85%A5-url-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%88%90%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88">输入 URL<br>到页面加载显示完成发生了什么?</a><br><a href="#%E8%BE%93%E5%85%A5-url-%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%8A%A0%E8%BD%BD%E6%98%BE%E7%A4%BA%E5%AE%8C%E6%88%90%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88">31</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%AF%B9-cookie-%E5%92%8C-session-%E7%9A%84%E8%AE%A4%E7%9F%A5cookie-%E6%9C%89%E5%93%AA%E4%BA%9B%E9%99%90%E5%88%B6">说一下对 Cookie 和 Session 的认知，Cookie<br>有哪些限制？</a><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%AF%B9-cookie-%E5%92%8C-session-%E7%9A%84%E8%AE%A4%E7%9F%A5cookie-%E6%9C%89%E5%93%AA%E4%BA%9B%E9%99%90%E5%88%B6">31</a></p>
+</li>
+<li><p><a href="#%E6%8F%8F%E8%BF%B0%E4%B8%80%E4%B8%8B-xss-%E5%92%8C-crsf-%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1%E6%96%B9%E6%B3%95">描述一下 XSS 和 CRSF<br>攻击？防御方法？</a><br><a href="#%E6%8F%8F%E8%BF%B0%E4%B8%80%E4%B8%8B-xss-%E5%92%8C-crsf-%E6%94%BB%E5%87%BB%E9%98%B2%E5%BE%A1%E6%96%B9%E6%B3%95">32</a></p>
+</li>
+<li><p><a href="#%E7%9F%A5%E9%81%93-304-%E5%90%97%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8-304">知道 304 吗，什么时候用 304？</a><br><a href="#%E7%9F%A5%E9%81%93-304-%E5%90%97%E4%BB%80%E4%B9%88%E6%97%B6%E5%80%99%E7%94%A8-304">32</a></p>
+</li>
+<li><p><a href="#%E5%85%B7%E4%BD%93%E6%9C%89%E5%93%AA%E4%BA%9B%E8%AF%B7%E6%B1%82%E5%A4%B4%E6%98%AF%E8%B7%9F%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84">具体有哪些请求头是跟缓存相关的</a><br><a href="#%E5%85%B7%E4%BD%93%E6%9C%89%E5%93%AA%E4%BA%9B%E8%AF%B7%E6%B1%82%E5%A4%B4%E6%98%AF%E8%B7%9F%E7%BC%93%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84">32</a></p>
+</li>
+<li><p><a href="#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB-1">cookie 和 session 的区别</a><br><a href="#cookie-%E5%92%8C-session-%E7%9A%84%E5%8C%BA%E5%88%AB-1">33</a></p>
+</li>
+<li><p><a href="#cookie-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%AD%97%E6%AE%B5%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE">cookie 有哪些字段可以设置</a><br><a href="#cookie-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%AD%97%E6%AE%B5%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE">33</a></p>
+</li>
+<li><p><a href="#cookie-%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F">cookie 有哪些编码方式？</a><br><a href="#cookie-%E6%9C%89%E5%93%AA%E4%BA%9B%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F">34</a></p>
+</li>
+<li><p><a href="#%E9%99%A4%E4%BA%86-cookie%E8%BF%98%E6%9C%89%E4%BB%80%E4%B9%88%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E8%AF%B4%E8%AF%B4-cookie-%E5%92%8C-localstorage-%E7%9A%84%E5%8C%BA%E5%88%AB">除了 cookie，还有什么存储方式。说说 cookie 和<br>localStorage</a><br><a href="#%E9%99%A4%E4%BA%86-cookie%E8%BF%98%E6%9C%89%E4%BB%80%E4%B9%88%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E8%AF%B4%E8%AF%B4-cookie-%E5%92%8C-localstorage-%E7%9A%84%E5%8C%BA%E5%88%AB">的区别</a></p>
+</li>
+</ul>
+<p><a href="#%E9%99%A4%E4%BA%86-cookie%E8%BF%98%E6%9C%89%E4%BB%80%E4%B9%88%E5%AD%98%E5%82%A8%E6%96%B9%E5%BC%8F%E8%AF%B4%E8%AF%B4-cookie-%E5%92%8C-localstorage-%E7%9A%84%E5%8C%BA%E5%88%AB">34</a></p>
+<ul>
+<li><p><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E5%85%A8%E8%BF%87%E7%A8%8B">浏览器输入网址到页面渲染全过程</a><br><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E8%BE%93%E5%85%A5%E7%BD%91%E5%9D%80%E5%88%B0%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E5%85%A8%E8%BF%87%E7%A8%8B">34</a></p>
+</li>
+<li><p><a href="#html5-%E5%92%8C-css3-%E7%94%A8%E7%9A%84%E5%A4%9A%E5%90%97%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%AE%83%E4%BB%AC%E7%9A%84%E6%96%B0%E5%B1%9E%E6%80%A7%E5%90%97%E6%9C%89%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%94%A8%E8%BF%87%E5%90%97">HTML5 和<br>CSS3</a><br><a href="#html5-%E5%92%8C-css3-%E7%94%A8%E7%9A%84%E5%A4%9A%E5%90%97%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%AE%83%E4%BB%AC%E7%9A%84%E6%96%B0%E5%B1%9E%E6%80%A7%E5%90%97%E6%9C%89%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%94%A8%E8%BF%87%E5%90%97">用的多吗？你了解它们的新属性吗？有在项目中用过吗？</a></p>
+</li>
+</ul>
+<p><a href="#html5-%E5%92%8C-css3-%E7%94%A8%E7%9A%84%E5%A4%9A%E5%90%97%E4%BD%A0%E4%BA%86%E8%A7%A3%E5%AE%83%E4%BB%AC%E7%9A%84%E6%96%B0%E5%B1%9E%E6%80%A7%E5%90%97%E6%9C%89%E5%9C%A8%E9%A1%B9%E7%9B%AE%E4%B8%AD%E7%94%A8%E8%BF%87%E5%90%97">34</a></p>
+<ul>
+<li><p><a href="#http-%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">http 常见的请求方法</a><br><a href="#http-%E5%B8%B8%E8%A7%81%E7%9A%84%E8%AF%B7%E6%B1%82%E6%96%B9%E6%B3%95">35</a></p>
+</li>
+<li><p><a href="#get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB-1">get 和 post 的区别</a><br><a href="#get-%E5%92%8C-post-%E7%9A%84%E5%8C%BA%E5%88%AB-1">35</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E8%AF%B4-302301304-%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">说说 302，301，304 的状态码</a><br><a href="#%E8%AF%B4%E8%AF%B4-302301304-%E7%9A%84%E7%8A%B6%E6%80%81%E7%A0%81">35</a></p>
+</li>
+<li><p><a href="#web-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">web 性能优化</a> <a href="#web-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">35</a></p>
+</li>
+<li><p><a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6">浏览器缓存机制</a> <a href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6">36</a></p>
+</li>
+<li><p><a href="#post-%E5%92%8C-get-%E5%8C%BA%E5%88%AB">post 和 get 区别</a> <a href="#post-%E5%92%8C-get-%E5%8C%BA%E5%88%AB">36</a></p>
+</li>
+</ul>
+<ol>
+<li><p><a href="#css">| CSS</a> <a href="#css">36</a></p>
+<ul>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-css-%E7%9B%92%E6%A8%A1%E5%9E%8B">说一下 css 盒模型</a> <a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-css-%E7%9B%92%E6%A8%A1%E5%9E%8B">36</a></p>
+</li>
+<li><p><a href="#%E7%94%BB%E4%B8%80%E6%9D%A1-0.5px-%E7%9A%84%E7%BA%BF">画一条 0.5px 的线</a> <a href="#%E7%94%BB%E4%B8%80%E6%9D%A1-0.5px-%E7%9A%84%E7%BA%BF">38</a></p>
+</li>
+<li><p><a href="#link-%E6%A0%87%E7%AD%BE%E5%92%8C-import-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%8C%BA%E5%88%AB">link 标签和 import 标签的区别</a><br><a href="#link-%E6%A0%87%E7%AD%BE%E5%92%8C-import-%E6%A0%87%E7%AD%BE%E7%9A%84%E5%8C%BA%E5%88%AB">38</a></p>
+</li>
+<li><p><a href="#transition-%E5%92%8C-animation-%E7%9A%84%E5%8C%BA%E5%88%AB">transition 和 animation<br>的区别</a><br><a href="#transition-%E5%92%8C-animation-%E7%9A%84%E5%8C%BA%E5%88%AB">38</a></p>
+</li>
+<li><p><a href="#flex-%E5%B8%83%E5%B1%80">Flex 布局</a> <a href="#flex-%E5%B8%83%E5%B1%80">38</a></p>
+</li>
+<li><p><a href="#bfc%E5%9D%97%E7%BA%A7%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%E7%94%A8%E4%BA%8E%E6%B8%85%E6%A5%9A%E6%B5%AE%E5%8A%A8%E9%98%B2%E6%AD%A2-margin-%E9%87%8D%E5%8F%A0%E7%AD%89">BFC（块级格式化上下文，用于清楚浮动，防止 margin<br>重叠等）</a><br><a href="#bfc%E5%9D%97%E7%BA%A7%E6%A0%BC%E5%BC%8F%E5%8C%96%E4%B8%8A%E4%B8%8B%E6%96%87%E7%94%A8%E4%BA%8E%E6%B8%85%E6%A5%9A%E6%B5%AE%E5%8A%A8%E9%98%B2%E6%AD%A2-margin-%E9%87%8D%E5%8F%A0%E7%AD%89">39</a></p>
+</li>
+<li><p><a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95">垂直居中的方法</a> <a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD%E7%9A%84%E6%96%B9%E6%B3%95">40</a></p>
+</li>
+<li><p><a href="#%E5%85%B3%E4%BA%8E-js-%E5%8A%A8%E7%94%BB%E5%92%8C-css3-%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B7%AE%E5%BC%82%E6%80%A7">关于 JS 动画和 css3<br>动画的差异性</a><br><a href="#%E5%85%B3%E4%BA%8E-js-%E5%8A%A8%E7%94%BB%E5%92%8C-css3-%E5%8A%A8%E7%94%BB%E7%9A%84%E5%B7%AE%E5%BC%82%E6%80%A7">41</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%9D%97%E5%85%83%E7%B4%A0%E5%92%8C%E8%A1%8C%E5%85%83%E7%B4%A0">说一下块元素和行元素</a><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%9D%97%E5%85%83%E7%B4%A0%E5%92%8C%E8%A1%8C%E5%85%83%E7%B4%A0">42</a></p>
+</li>
+<li><p><a href="#%E5%A4%9A%E8%A1%8C%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%87%E6%9C%AC%E7%9C%81%E7%95%A5%E5%8F%B7">多行元素的文本省略号</a><br><a href="#%E5%A4%9A%E8%A1%8C%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%87%E6%9C%AC%E7%9C%81%E7%95%A5%E5%8F%B7">42</a></p>
+</li>
+<li><p><a href="#visibilityhidden-opacity0displaynone">visibility&#x3D;hidden,<br>opacity&#x3D;0，display:none</a><br><a href="#visibilityhidden-opacity0displaynone">42</a></p>
+</li>
+<li><p><a href="#%E5%8F%8C%E8%BE%B9%E8%B7%9D%E9%87%8D%E5%8F%A0%E9%97%AE%E9%A2%98%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0">双边距重叠问题（外边距折叠）</a><br><a href="#%E5%8F%8C%E8%BE%B9%E8%B7%9D%E9%87%8D%E5%8F%A0%E9%97%AE%E9%A2%98%E5%A4%96%E8%BE%B9%E8%B7%9D%E6%8A%98%E5%8F%A0">42</a></p>
+</li>
+<li><p><a href="#position-%E5%B1%9E%E6%80%A7-%E6%AF%94%E8%BE%83">position 属性 比较</a><br><a href="#position-%E5%B1%9E%E6%80%A7-%E6%AF%94%E8%BE%83">43</a></p>
+</li>
+<li><p><a href="#%E6%B5%AE%E5%8A%A8%E6%B8%85%E9%99%A4">浮动清除</a> <a href="#%E6%B5%AE%E5%8A%A8%E6%B8%85%E9%99%A4">43</a></p>
+</li>
+<li><p><a href="#css3-%E6%96%B0%E7%89%B9%E6%80%A7">css3 新特性</a> <a href="#css3-%E6%96%B0%E7%89%B9%E6%80%A7">44</a></p>
+</li>
+<li><p><a href="#css-%E9%80%89%E6%8B%A9%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E5%85%88%E7%BA%A7%E5%91%A2">CSS 选择器有哪些，优先级呢</a><br><a href="#css-%E9%80%89%E6%8B%A9%E5%99%A8%E6%9C%89%E5%93%AA%E4%BA%9B%E4%BC%98%E5%85%88%E7%BA%A7%E5%91%A2">44</a></p>
+</li>
+<li><p><a href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E8%83%BD%E8%AE%B2%E8%AE%B2%E5%90%97">清除浮动的方法，能讲讲吗</a><br><a href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95%E8%83%BD%E8%AE%B2%E8%AE%B2%E5%90%97">44</a></p>
+</li>
+<li><p><a href="#%E6%80%8E%E4%B9%88%E6%A0%B7%E8%AE%A9%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B6%88%E5%A4%B1%E8%AE%B2%E8%AE%B2">怎么样让一个元素消失，讲讲</a><br><a href="#%E6%80%8E%E4%B9%88%E6%A0%B7%E8%AE%A9%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E6%B6%88%E5%A4%B1%E8%AE%B2%E8%AE%B2">45</a></p>
+</li>
+<li><p><a href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E7%9B%92%E6%A8%A1%E5%9E%8B">介绍一下盒模型</a> <a href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B%E7%9B%92%E6%A8%A1%E5%9E%8B">45</a></p>
+</li>
+<li><p><a href="#position-%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7">position 相关属性</a> <a href="#position-%E7%9B%B8%E5%85%B3%E5%B1%9E%E6%80%A7">45</a></p>
+</li>
+<li><p><a href="#css-%E5%8A%A8%E7%94%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0">css 动画如何实现</a> <a href="#css-%E5%8A%A8%E7%94%BB%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0">46</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%B1%85%E4%B8%AD%E7%9A%84">如何实现图片在某个容器中居中的？</a><br><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E5%9C%A8%E6%9F%90%E4%B8%AA%E5%AE%B9%E5%99%A8%E4%B8%AD%E5%B1%85%E4%B8%AD%E7%9A%84">46</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%85%83%E7%B4%A0%E7%9A%84%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">如何实现元素的垂直居中</a><br><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%85%83%E7%B4%A0%E7%9A%84%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">46</a></p>
+</li>
+<li><p><a href="#css3-%E4%B8%AD%E5%AF%B9%E6%BA%A2%E5%87%BA%E7%9A%84%E5%A4%84%E7%90%86">CSS3 中对溢出的处理</a><br><a href="#css3-%E4%B8%AD%E5%AF%B9%E6%BA%A2%E5%87%BA%E7%9A%84%E5%A4%84%E7%90%86">47</a></p>
+</li>
+<li><p><a href="#float-%E7%9A%84%E5%85%83%E7%B4%A0display-%E6%98%AF%E4%BB%80%E4%B9%88">float 的元素，display 是什么</a><br><a href="#float-%E7%9A%84%E5%85%83%E7%B4%A0display-%E6%98%AF%E4%BB%80%E4%B9%88">47</a></p>
+</li>
+<li><p><a href="#%E9%9A%90%E8%97%8F%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95">隐藏页面中某个元素的方法</a><br><a href="#%E9%9A%90%E8%97%8F%E9%A1%B5%E9%9D%A2%E4%B8%AD%E6%9F%90%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E6%96%B9%E6%B3%95">47</a></p>
+</li>
+<li><p><a href="#%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%B0%BD%E5%8F%AF%E8%83%BD%E5%A4%9A%E5%86%99%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80%E6%97%B6%E4%B8%89%E4%B8%AA-div-%E7%9A%84%E7%94%9F%E6%88%90%E9%A1%BA%E5%BA%8F%E6%9C%89%E6%B2%A1%E6%9C%89%E5%BD%B1%E5%93%8D">三栏布局的实现方式，尽可能多写，浮动布局时，三个<br>div</a><br><a href="#%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%B0%BD%E5%8F%AF%E8%83%BD%E5%A4%9A%E5%86%99%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80%E6%97%B6%E4%B8%89%E4%B8%AA-div-%E7%9A%84%E7%94%9F%E6%88%90%E9%A1%BA%E5%BA%8F%E6%9C%89%E6%B2%A1%E6%9C%89%E5%BD%B1%E5%93%8D">的生成顺序有没有影响</a><br><a href="#%E4%B8%89%E6%A0%8F%E5%B8%83%E5%B1%80%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F%E5%B0%BD%E5%8F%AF%E8%83%BD%E5%A4%9A%E5%86%99%E6%B5%AE%E5%8A%A8%E5%B8%83%E5%B1%80%E6%97%B6%E4%B8%89%E4%B8%AA-div-%E7%9A%84%E7%94%9F%E6%88%90%E9%A1%BA%E5%BA%8F%E6%9C%89%E6%B2%A1%E6%9C%89%E5%BD%B1%E5%93%8D">47</a></p>
+</li>
+<li><p><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-bfc">什么是 BFC</a> <a href="#%E4%BB%80%E4%B9%88%E6%98%AF-bfc">48</a></p>
+</li>
+<li><p><a href="#calc-%E5%B1%9E%E6%80%A7">calc 属性</a> <a href="#calc-%E5%B1%9E%E6%80%A7">48</a></p>
+</li>
+<li><p><a href="#%E6%9C%89%E4%B8%80%E4%B8%AA-width300height300%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E5%9E%82%E7%9B%B4%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD">有一个<br>width300，height300，怎么实现在屏幕上垂直水平居中</a><br><a href="#%E6%9C%89%E4%B8%80%E4%B8%AA-width300height300%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E5%9C%A8%E5%B1%8F%E5%B9%95%E4%B8%8A%E5%9E%82%E7%9B%B4%E6%B0%B4%E5%B9%B3%E5%B1%85%E4%B8%AD">48</a></p>
+</li>
+<li><p><a href="#displaytable-%E5%92%8C%E6%9C%AC%E8%BA%AB%E7%9A%84-table-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">display：table 和本身的 table<br>有什么区别</a><br><a href="#displaytable-%E5%92%8C%E6%9C%AC%E8%BA%AB%E7%9A%84-table-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">49</a></p>
+</li>
+<li><p><a href="#position-%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB">position<br>属性的值有哪些及其区别</a><br><a href="#position-%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8F%8A%E5%85%B6%E5%8C%BA%E5%88%AB">49</a></p>
+</li>
+<li><p><a href="#z-index-%E7%9A%84%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95">z-index 的定位方法</a><br><a href="#z-index-%E7%9A%84%E5%AE%9A%E4%BD%8D%E6%96%B9%E6%B3%95">49</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E6%9E%9C%E6%83%B3%E8%A6%81%E6%94%B9%E5%8F%98%E4%B8%80%E4%B8%AA-dom-%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E4%B8%8D%E5%9C%A8%E5%AE%83%E6%9C%AC%E8%BA%AB%E4%B8%8A%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C">如果想要改变一个 DOM<br>元素的字体颜色，不在它本身上进行操作？</a><br><a href="#%E5%A6%82%E6%9E%9C%E6%83%B3%E8%A6%81%E6%94%B9%E5%8F%98%E4%B8%80%E4%B8%AA-dom-%E5%85%83%E7%B4%A0%E7%9A%84%E5%AD%97%E4%BD%93%E9%A2%9C%E8%89%B2%E4%B8%8D%E5%9C%A8%E5%AE%83%E6%9C%AC%E8%BA%AB%E4%B8%8A%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C">49</a></p>
+</li>
+<li><p><a href="#%E5%AF%B9-css-%E7%9A%84%E6%96%B0%E5%B1%9E%E6%80%A7%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87%E7%9A%84%E5%90%97">对 CSS 的新属性有了解过的吗？</a><br><a href="#%E5%AF%B9-css-%E7%9A%84%E6%96%B0%E5%B1%9E%E6%80%A7%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87%E7%9A%84%E5%90%97">49</a></p>
+</li>
+<li><p><a href="#%E7%94%A8%E7%9A%84%E6%9C%80%E5%A4%9A%E7%9A%84-css-%E5%B1%9E%E6%80%A7%E6%98%AF%E5%95%A5">用的最多的 css 属性是啥？</a><br><a href="#%E7%94%A8%E7%9A%84%E6%9C%80%E5%A4%9A%E7%9A%84-css-%E5%B1%9E%E6%80%A7%E6%98%AF%E5%95%A5">50</a></p>
+</li>
+<li><p><a href="#line-height-%E5%92%8C-height-%E7%9A%84%E5%8C%BA%E5%88%AB">line-height 和 height 的区别</a><br><a href="#line-height-%E5%92%8C-height-%E7%9A%84%E5%8C%BA%E5%88%AB">50</a></p>
+</li>
+<li><p><a href="#%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E4%BC%9A%E5%A1%AB%E5%85%85%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%9F%9F">设置一个元素的背景颜色，背景颜色会填充哪些区域？</a><br><a href="#%E8%AE%BE%E7%BD%AE%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E8%83%8C%E6%99%AF%E9%A2%9C%E8%89%B2%E4%BC%9A%E5%A1%AB%E5%85%85%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%9F%9F">50</a></p>
+</li>
+<li><p><a href="#%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8%E5%92%8C%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E5%90%97">知道属性选择器和伪类选择器的优先级吗</a><br><a href="#%E7%9F%A5%E9%81%93%E5%B1%9E%E6%80%A7%E9%80%89%E6%8B%A9%E5%99%A8%E5%92%8C%E4%BC%AA%E7%B1%BB%E9%80%89%E6%8B%A9%E5%99%A8%E7%9A%84%E4%BC%98%E5%85%88%E7%BA%A7%E5%90%97">50</a></p>
+</li>
+<li><p><a href="#inline-blockinline-%E5%92%8C-block-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%BA%E4%BB%80%E4%B9%88-img-%E6%98%AF-inline-%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E5%AE%BD%E9%AB%98">inline-block、inline 和 block 的区别；为什么 img 是<br>inline</a><br><a href="#inline-blockinline-%E5%92%8C-block-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%BA%E4%BB%80%E4%B9%88-img-%E6%98%AF-inline-%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E5%AE%BD%E9%AB%98">还可以设置宽高</a><br><a href="#inline-blockinline-%E5%92%8C-block-%E7%9A%84%E5%8C%BA%E5%88%AB%E4%B8%BA%E4%BB%80%E4%B9%88-img-%E6%98%AF-inline-%E8%BF%98%E5%8F%AF%E4%BB%A5%E8%AE%BE%E7%BD%AE%E5%AE%BD%E9%AB%98">50</a></p>
+</li>
+<li><p><a href="#%E7%94%A8-css-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%A1%AC%E5%B8%81%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%88%E6%9E%9C">用 css 实现一个硬币旋转的效果</a><br><a href="#%E7%94%A8-css-%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%A1%AC%E5%B8%81%E6%97%8B%E8%BD%AC%E7%9A%84%E6%95%88%E6%9E%9C">50</a></p>
+</li>
+<li><p><a href="#%E4%BA%86%E8%A7%A3%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%E5%90%97%E7%9F%A5%E9%81%93%E6%80%8E%E4%B9%88%E5%8E%BB%E5%87%8F%E5%B0%91%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%E5%90%97%E8%AE%A9%E6%96%87%E6%A1%A3%E8%84%B1%E7%A6%BB%E6%96%87%E6%A1%A3%E6%B5%81%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95">了解重绘和重排吗，知道怎么去减少重绘和重排吗，让文档脱离文档流有哪些方法</a><br><a href="#%E4%BA%86%E8%A7%A3%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%E5%90%97%E7%9F%A5%E9%81%93%E6%80%8E%E4%B9%88%E5%8E%BB%E5%87%8F%E5%B0%91%E9%87%8D%E7%BB%98%E5%92%8C%E9%87%8D%E6%8E%92%E5%90%97%E8%AE%A9%E6%96%87%E6%A1%A3%E8%84%B1%E7%A6%BB%E6%96%87%E6%A1%A3%E6%B5%81%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95">52</a></p>
+</li>
+<li><p><a href="#css-%E7%94%BB%E6%AD%A3%E6%96%B9%E4%BD%93%E4%B8%89%E8%A7%92%E5%BD%A2">CSS 画正方体，三角形</a><br><a href="#css-%E7%94%BB%E6%AD%A3%E6%96%B9%E4%BD%93%E4%B8%89%E8%A7%92%E5%BD%A2">52</a></p>
+</li>
+<li><p><a href="#overflow-%E7%9A%84%E5%8E%9F%E7%90%86">overflow 的原理</a> <a href="#overflow-%E7%9A%84%E5%8E%9F%E7%90%86">54</a></p>
+</li>
+<li><p><a href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95">清除浮动的方法</a> <a href="#%E6%B8%85%E9%99%A4%E6%B5%AE%E5%8A%A8%E7%9A%84%E6%96%B9%E6%B3%95">54</a></p>
+</li>
+<li><p><a href="#box-sizing-%E7%9A%84%E8%AF%AD%E6%B3%95%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%94%A8%E5%A4%84">box-sizing 的语法和基本用处</a><br><a href="#box-sizing-%E7%9A%84%E8%AF%AD%E6%B3%95%E5%92%8C%E5%9F%BA%E6%9C%AC%E7%94%A8%E5%A4%84">54</a></p>
+</li>
+<li><p><a href="#%E4%BD%BF%E5%85%83%E7%B4%A0%E6%B6%88%E5%A4%B1%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B">使元素消失的方法有哪些？</a><br><a href="#%E4%BD%BF%E5%85%83%E7%B4%A0%E6%B6%88%E5%A4%B1%E7%9A%84%E6%96%B9%E6%B3%95%E6%9C%89%E5%93%AA%E4%BA%9B">55</a></p>
+</li>
+<li><p><a href="#%E4%B8%A4%E4%B8%AA%E5%B5%8C%E5%A5%97%E7%9A%84-divposition-%E9%83%BD%E6%98%AF-absolute%E5%AD%90-div-%E8%AE%BE%E7%BD%AE-top-%E5%B1%9E%E6%80%A7%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AA-top-%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E5%93%AA%E4%B8%AA%E4%BD%8D%E7%BD%AE%E5%AE%9A%E4%BD%8D%E7%9A%84">两个嵌套的 div，position 都是 absolute，子 div 设置<br>top</a><br><a href="#%E4%B8%A4%E4%B8%AA%E5%B5%8C%E5%A5%97%E7%9A%84-divposition-%E9%83%BD%E6%98%AF-absolute%E5%AD%90-div-%E8%AE%BE%E7%BD%AE-top-%E5%B1%9E%E6%80%A7%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AA-top-%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E5%93%AA%E4%B8%AA%E4%BD%8D%E7%BD%AE%E5%AE%9A%E4%BD%8D%E7%9A%84">属性，那么这个</a><br><a href="#%E4%B8%A4%E4%B8%AA%E5%B5%8C%E5%A5%97%E7%9A%84-divposition-%E9%83%BD%E6%98%AF-absolute%E5%AD%90-div-%E8%AE%BE%E7%BD%AE-top-%E5%B1%9E%E6%80%A7%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AA-top-%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E5%93%AA%E4%B8%AA%E4%BD%8D%E7%BD%AE%E5%AE%9A%E4%BD%8D%E7%9A%84">top<br>是相对于父元素的哪个位置定位的。</a><br><a href="#%E4%B8%A4%E4%B8%AA%E5%B5%8C%E5%A5%97%E7%9A%84-divposition-%E9%83%BD%E6%98%AF-absolute%E5%AD%90-div-%E8%AE%BE%E7%BD%AE-top-%E5%B1%9E%E6%80%A7%E9%82%A3%E4%B9%88%E8%BF%99%E4%B8%AA-top-%E6%98%AF%E7%9B%B8%E5%AF%B9%E4%BA%8E%E7%88%B6%E5%85%83%E7%B4%A0%E7%9A%84%E5%93%AA%E4%B8%AA%E4%BD%8D%E7%BD%AE%E5%AE%9A%E4%BD%8D%E7%9A%84">55</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E8%AF%B4%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B">说说盒子模型</a> <a href="#%E8%AF%B4%E8%AF%B4%E7%9B%92%E5%AD%90%E6%A8%A1%E5%9E%8B">55</a></p>
+</li>
+<li><p><a href="#display">display</a> <a href="#display">55</a></p>
+</li>
+<li><p><a href="#%E6%80%8E%E4%B9%88%E9%9A%90%E8%97%8F%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0">怎么隐藏一个元素</a> <a href="#%E6%80%8E%E4%B9%88%E9%9A%90%E8%97%8F%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0">55</a></p>
+</li>
+<li><p><a href="#displaynone-%E5%92%8C-visibiltyhidden-%E7%9A%84%E5%8C%BA%E5%88%AB">display:none 和 visibilty:hidden<br>的区别</a><br><a href="#displaynone-%E5%92%8C-visibiltyhidden-%E7%9A%84%E5%8C%BA%E5%88%AB">56</a></p>
+</li>
+<li><p><a href="#%E7%9B%B8%E5%AF%B9%E5%B8%83%E5%B1%80%E5%92%8C%E7%BB%9D%E5%AF%B9%E5%B8%83%E5%B1%80positionrelative-%E5%92%8C-obsolute">相对布局和绝对布局，position:relative 和<br>obsolute。</a><br><a href="#%E7%9B%B8%E5%AF%B9%E5%B8%83%E5%B1%80%E5%92%8C%E7%BB%9D%E5%AF%B9%E5%B8%83%E5%B1%80positionrelative-%E5%92%8C-obsolute">56</a></p>
+</li>
+<li><p><a href="#flex-%E5%B8%83%E5%B1%80-1">flex 布局</a> <a href="#flex-%E5%B8%83%E5%B1%80-1">56</a></p>
+</li>
+<li><p><a href="#blockinlineinline-block-%E7%9A%84%E5%8C%BA%E5%88%AB">block、inline、inline-block<br>的区别。</a><br><a href="#blockinlineinline-block-%E7%9A%84%E5%8C%BA%E5%88%AB">57</a></p>
+</li>
+<li><p><a href="#css-%E7%9A%84%E5%B8%B8%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8">css 的常用选择器</a> <a href="#css-%E7%9A%84%E5%B8%B8%E7%94%A8%E9%80%89%E6%8B%A9%E5%99%A8">57</a></p>
+</li>
+<li><p><a href="#css-%E5%B8%83%E5%B1%80">css 布局</a> <a href="#css-%E5%B8%83%E5%B1%80">57</a></p>
+</li>
+<li><p><a href="#css-%E5%AE%9A%E4%BD%8D">css 定位</a> <a href="#css-%E5%AE%9A%E4%BD%8D">58</a></p>
+</li>
+<li><p><a href="#relative-%E5%AE%9A%E4%BD%8D%E8%A7%84%E5%88%99">relative 定位规则</a> <a href="#relative-%E5%AE%9A%E4%BD%8D%E8%A7%84%E5%88%99">58</a></p>
+</li>
+<li><p><a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">垂直居中</a> <a href="#%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD">59</a></p>
+</li>
+<li><p><a href="#css-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E6%9C%89%E4%BB%80%E4%B9%88">css 预处理器有什么</a><br><a href="#css-%E9%A2%84%E5%A4%84%E7%90%86%E5%99%A8%E6%9C%89%E4%BB%80%E4%B9%88">59</a></p>
+</li>
+</ul>
+</li>
+<li><p><a href="#javascript">| JavaScript</a> <a href="#javascript">59</a></p>
+<ul>
+<li><p><a href="#get-%E8%AF%B7%E6%B1%82%E4%BC%A0%E5%8F%82%E9%95%BF%E5%BA%A6%E7%9A%84%E8%AF%AF%E5%8C%BA">get 请求传参长度的误区</a><br><a href="#get-%E8%AF%B7%E6%B1%82%E4%BC%A0%E5%8F%82%E9%95%BF%E5%BA%A6%E7%9A%84%E8%AF%AF%E5%8C%BA">59</a></p>
+</li>
+<li><p><a href="#%E8%A1%A5%E5%85%85-get-%E5%92%8C-post-%E8%AF%B7%E6%B1%82%E5%9C%A8%E7%BC%93%E5%AD%98%E6%96%B9%E9%9D%A2%E7%9A%84%E5%8C%BA%E5%88%AB">补充 get 和 post<br>请求在缓存方面的区别</a><br><a href="#%E8%A1%A5%E5%85%85-get-%E5%92%8C-post-%E8%AF%B7%E6%B1%82%E5%9C%A8%E7%BC%93%E5%AD%98%E6%96%B9%E9%9D%A2%E7%9A%84%E5%8C%BA%E5%88%AB">59</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E9%97%AD%E5%8C%85">说一下闭包</a> <a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E9%97%AD%E5%8C%85">60</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E7%B1%BB%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%A7%E6%89%BF">说一下类的创建和继承</a><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E7%B1%BB%E7%9A%84%E5%88%9B%E5%BB%BA%E5%92%8C%E7%BB%A7%E6%89%BF">60</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1">如何解决异步回调地狱</a><br><a href="#%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%E5%BC%82%E6%AD%A5%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1">62</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E8%AF%B4%E5%89%8D%E7%AB%AF%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%B5%81">说说前端中的事件流</a><br><a href="#%E8%AF%B4%E8%AF%B4%E5%89%8D%E7%AB%AF%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E6%B5%81">62</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BA%8B%E4%BB%B6%E5%85%88%E5%86%92%E6%B3%A1%E5%90%8E%E6%8D%95%E8%8E%B7">如何让事件先冒泡后捕获</a><br><a href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BA%8B%E4%BB%B6%E5%85%88%E5%86%92%E6%B3%A1%E5%90%8E%E6%8D%95%E8%8E%B7">62</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98">说一下事件委托</a> <a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98">63</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%9B%BE%E7%89%87%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD">说一下图片的懒加载和预加载</a><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E5%9B%BE%E7%89%87%E7%9A%84%E6%87%92%E5%8A%A0%E8%BD%BD%E5%92%8C%E9%A2%84%E5%8A%A0%E8%BD%BD">63</a></p>
+</li>
+<li><p><a href="#mouseover-%E5%92%8C-mouseenter-%E7%9A%84%E5%8C%BA%E5%88%AB">mouseover 和 mouseenter<br>的区别</a><br><a href="#mouseover-%E5%92%8C-mouseenter-%E7%9A%84%E5%8C%BA%E5%88%AB">63</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84-new-%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BA%8B%E6%83%85">JS 的 new 操作符做了哪些事情</a><br><a href="#js-%E7%9A%84-new-%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%81%9A%E4%BA%86%E5%93%AA%E4%BA%9B%E4%BA%8B%E6%83%85">63</a></p>
+</li>
+<li><p><a href="#%E6%94%B9%E5%8F%98%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8-this-%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E5%90%91%E5%87%BD%E6%95%B0bindapplycall-%E7%9A%84%E5%8C%BA%E5%88%AB">改变函数内部 this 指针的指向函数（bind，apply，call<br>的区别）</a><br><a href="#%E6%94%B9%E5%8F%98%E5%87%BD%E6%95%B0%E5%86%85%E9%83%A8-this-%E6%8C%87%E9%92%88%E7%9A%84%E6%8C%87%E5%90%91%E5%87%BD%E6%95%B0bindapplycall-%E7%9A%84%E5%8C%BA%E5%88%AB">63</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84%E5%90%84%E7%A7%8D%E4%BD%8D%E7%BD%AE%E6%AF%94%E5%A6%82-clientheightscrollheightoffsetheight-%E4%BB%A5%E5%8F%8A-scrolltop-offsettopclienttop-%E7%9A%84%E5%8C%BA%E5%88%AB">JS 的各种位置，比如 clientHeight,scrollHeight,offsetHeight<br>,以及</a><br><a href="#js-%E7%9A%84%E5%90%84%E7%A7%8D%E4%BD%8D%E7%BD%AE%E6%AF%94%E5%A6%82-clientheightscrollheightoffsetheight-%E4%BB%A5%E5%8F%8A-scrolltop-offsettopclienttop-%E7%9A%84%E5%8C%BA%E5%88%AB">scrollTop, offsetTop,clientTop<br>的区别？</a><br><a href="#js-%E7%9A%84%E5%90%84%E7%A7%8D%E4%BD%8D%E7%BD%AE%E6%AF%94%E5%A6%82-clientheightscrollheightoffsetheight-%E4%BB%A5%E5%8F%8A-scrolltop-offsettopclienttop-%E7%9A%84%E5%8C%BA%E5%88%AB">64</a></p>
+</li>
+<li><p><a href="#js-%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0">JS 拖拽功能的实现</a> <a href="#js-%E6%8B%96%E6%8B%BD%E5%8A%9F%E8%83%BD%E7%9A%84%E5%AE%9E%E7%8E%B0">64</a></p>
+</li>
+<li><p><a href="#%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD-js-%E7%9A%84%E6%96%B9%E6%B3%95">异步加载 JS 的方法</a><br><a href="#%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD-js-%E7%9A%84%E6%96%B9%E6%B3%95">64</a></p>
+</li>
+<li><p><a href="#ajax-%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98">Ajax 解决浏览器缓存问题</a><br><a href="#ajax-%E8%A7%A3%E5%86%B3%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E9%97%AE%E9%A2%98">65</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96">JS 的节流和防抖</a> <a href="#js-%E7%9A%84%E8%8A%82%E6%B5%81%E5%92%8C%E9%98%B2%E6%8A%96">65</a></p>
+</li>
+<li><p><a href="#js-%E4%B8%AD%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6">JS 中的垃圾回收机制</a><br><a href="#js-%E4%B8%AD%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6">65</a></p>
+</li>
+<li><p><a href="#eval-%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84">eval 是做什么的</a> <a href="#eval-%E6%98%AF%E5%81%9A%E4%BB%80%E4%B9%88%E7%9A%84">67</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96">如何理解前端模块化</a><br><a href="#%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3%E5%89%8D%E7%AB%AF%E6%A8%A1%E5%9D%97%E5%8C%96">67</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-commonjsamd-%E5%92%8C-cmd">说一下 CommonJS、AMD 和 CMD</a><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B-commonjsamd-%E5%92%8C-cmd">67</a></p>
+</li>
+<li><p><a href="#%E5%AF%B9%E8%B1%A1%E6%B7%B1%E5%BA%A6%E5%85%8B%E9%9A%86%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0">对象深度克隆的简单实现</a><br><a href="#%E5%AF%B9%E8%B1%A1%E6%B7%B1%E5%BA%A6%E5%85%8B%E9%9A%86%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0">68</a></p>
+</li>
+<li><p><a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-once-%E5%87%BD%E6%95%B0%E4%BC%A0%E5%85%A5%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E5%8F%AA%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1">实现一个 once<br>函数，传入函数参数只执行一次</a><br><a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-once-%E5%87%BD%E6%95%B0%E4%BC%A0%E5%85%A5%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E5%8F%AA%E6%89%A7%E8%A1%8C%E4%B8%80%E6%AC%A1">68</a></p>
+</li>
+<li><p><a href="#%E5%B0%86%E5%8E%9F%E7%94%9F%E7%9A%84-ajax-%E5%B0%81%E8%A3%85%E6%88%90-promise">将原生的 ajax 封装成 promise</a><br><a href="#%E5%B0%86%E5%8E%9F%E7%94%9F%E7%9A%84-ajax-%E5%B0%81%E8%A3%85%E6%88%90-promise">68</a></p>
+</li>
+<li><p><a href="#js-%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98">JS 监听对象属性的改变</a><br><a href="#js-%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E6%94%B9%E5%8F%98">69</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F%E7%94%A8-getname-%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE">如何实现一个私有变量，用 getName<br>方法可以访问，不能直接访问</a><br><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E7%A7%81%E6%9C%89%E5%8F%98%E9%87%8F%E7%94%A8-getname-%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E4%B8%8D%E8%83%BD%E7%9B%B4%E6%8E%A5%E8%AE%BF%E9%97%AE">69</a></p>
+</li>
+</ul>
+</li>
+</ol>
+<p><a href="#%E5%92%8C%E4%BB%A5%E5%8F%8A-object.is-%E7%9A%84%E5%8C%BA%E5%88%AB">• &#x3D;&#x3D;和&#x3D;&#x3D;&#x3D;、以及 Object.is 的区别</a><br><a href="#%E5%92%8C%E4%BB%A5%E5%8F%8A-object.is-%E7%9A%84%E5%8C%BA%E5%88%AB">70</a></p>
+<ul>
+<li><p><a href="#settimeoutsetinterval-%E5%92%8C-requestanimationframe-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB">setTimeout、setInterval 和 requestAnimationFrame<br>之间的区别</a><br><a href="#settimeoutsetinterval-%E5%92%8C-requestanimationframe-%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB">70</a></p>
+</li>
+<li><p><a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%B8%A4%E5%88%97%E7%AD%89%E9%AB%98%E5%B8%83%E5%B1%80%E8%AE%B2%E8%AE%B2%E6%80%9D%E8%B7%AF">实现一个两列等高布局，讲讲思路</a><br><a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E4%B8%A4%E5%88%97%E7%AD%89%E9%AB%98%E5%B8%83%E5%B1%80%E8%AE%B2%E8%AE%B2%E6%80%9D%E8%B7%AF">71</a></p>
+</li>
+<li><p><a href="#%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-bind-%E5%87%BD%E6%95%B0">自己实现一个 bind 函数</a><br><a href="#%E8%87%AA%E5%B7%B1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-bind-%E5%87%BD%E6%95%B0">71</a></p>
+</li>
+<li><p><a href="#%E7%94%A8-settimeout-%E6%9D%A5%E5%AE%9E%E7%8E%B0-setinterval">用 setTimeout 来实现<br>setInterval</a><br><a href="#%E7%94%A8-settimeout-%E6%9D%A5%E5%AE%9E%E7%8E%B0-setinterval">71</a></p>
+</li>
+<li><p><a href="#js-%E6%80%8E%E4%B9%88%E6%8E%A7%E5%88%B6%E4%B8%80%E6%AC%A1%E5%8A%A0%E8%BD%BD%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%AE%8C%E5%90%8E%E5%86%8D%E5%8A%A0%E8%BD%BD%E4%B8%8B%E4%B8%80%E5%BC%A0">JS<br>怎么控制一次加载一张图片，加载完后再加载下一张</a><br><a href="#js-%E6%80%8E%E4%B9%88%E6%8E%A7%E5%88%B6%E4%B8%80%E6%AC%A1%E5%8A%A0%E8%BD%BD%E4%B8%80%E5%BC%A0%E5%9B%BE%E7%89%87%E5%8A%A0%E8%BD%BD%E5%AE%8C%E5%90%8E%E5%86%8D%E5%8A%A0%E8%BD%BD%E4%B8%8B%E4%B8%80%E5%BC%A0">72</a></p>
+</li>
+<li><p><a href="#%E4%BB%A3%E7%A0%81%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F">代码的执行顺序</a> <a href="#%E4%BB%A3%E7%A0%81%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F">73</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-sleep-%E7%9A%84%E6%95%88%E6%9E%9Ces5-%E6%88%96%E8%80%85-es6">如何实现 sleep 的效果（es5 或者<br>es6）</a><br><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-sleep-%E7%9A%84%E6%95%88%E6%9E%9Ces5-%E6%88%96%E8%80%85-es6">73</a></p>
+</li>
+<li><p><a href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-promise">简单的实现一个 promise</a><br><a href="#%E7%AE%80%E5%8D%95%E7%9A%84%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-promise">74</a></p>
+</li>
+<li><p><a href="#function._proto_getprototypeof%E6%98%AF%E4%BB%80%E4%B9%88">Function._proto_(getPrototypeOf)是什么？</a><br><a href="#function._proto_getprototypeof%E6%98%AF%E4%BB%80%E4%B9%88">75</a></p>
+</li>
+<li><p><a href="#%E5%AE%9E%E7%8E%B0-js-%E4%B8%AD%E6%89%80%E6%9C%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%85%8B%E9%9A%86%E5%8C%85%E8%A3%85%E5%AF%B9%E8%B1%A1date-%E5%AF%B9%E8%B1%A1%E6%AD%A3%E5%88%99%E5%AF%B9%E8%B1%A1">实现 JS 中所有对象的深度克隆（包装对象，Date 对象，正则对象）<br>.</a><br><a href="#%E5%AE%9E%E7%8E%B0-js-%E4%B8%AD%E6%89%80%E6%9C%89%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%B7%B1%E5%BA%A6%E5%85%8B%E9%9A%86%E5%8C%85%E8%A3%85%E5%AF%B9%E8%B1%A1date-%E5%AF%B9%E8%B1%A1%E6%AD%A3%E5%88%99%E5%AF%B9%E8%B1%A1">75</a></p>
+</li>
+<li><p><a href="#%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0-node-%E7%9A%84-events-%E6%A8%A1%E5%9D%97">简单实现 Node 的 Events 模块</a><br><a href="#%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0-node-%E7%9A%84-events-%E6%A8%A1%E5%9D%97">77</a></p>
+</li>
+<li><p><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%AD-this-%E6%8C%87%E5%90%91%E4%B8%BE%E4%BE%8B">箭头函数中 this 指向举例</a><br><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E4%B8%AD-this-%E6%8C%87%E5%90%91%E4%B8%BE%E4%BE%8B">78</a></p>
+</li>
+<li><p><a href="#js-%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B">JS 判断类型</a> <a href="#js-%E5%88%A4%E6%96%AD%E7%B1%BB%E5%9E%8B">79</a></p>
+</li>
+<li><p><a href="#%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95">数组常用方法</a> <a href="#%E6%95%B0%E7%BB%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95">79</a></p>
+</li>
+<li><p><a href="#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D">数组去重</a> <a href="#%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D">79</a></p>
+</li>
+<li><p><a href="#%E9%97%AD%E5%8C%85-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8">闭包 有什么用</a> <a href="#%E9%97%AD%E5%8C%85-%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8">79</a></p>
+</li>
+<li><p><a href="#%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%9C%A8%E6%8D%95%E8%8E%B7%E9%98%B6%E6%AE%B5%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8">事件代理在捕获阶段的实际应用</a><br><a href="#%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%9C%A8%E6%8D%95%E8%8E%B7%E9%98%B6%E6%AE%B5%E7%9A%84%E5%AE%9E%E9%99%85%E5%BA%94%E7%94%A8">80</a></p>
+</li>
+<li><p><a href="#%E5%8E%BB%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A6%96%E5%B0%BE%E7%A9%BA%E6%A0%BC">去除字符串首尾空格</a> <a href="#%E5%8E%BB%E9%99%A4%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%A6%96%E5%B0%BE%E7%A9%BA%E6%A0%BC">80</a></p>
+</li>
+<li><p><a href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">性能优化</a> <a href="#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96">80</a></p>
+</li>
+<li><p><a href="#%E6%9D%A5%E8%AE%B2%E8%AE%B2-js-%E7%9A%84%E9%97%AD%E5%8C%85%E5%90%A7">来讲讲 JS 的闭包吧</a> <a href="#%E6%9D%A5%E8%AE%B2%E8%AE%B2-js-%E7%9A%84%E9%97%AD%E5%8C%85%E5%90%A7">80</a></p>
+</li>
+<li><p><a href="#%E8%83%BD%E6%9D%A5%E8%AE%B2%E8%AE%B2-js-%E7%9A%84%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7%E5%90%97">能来讲讲 JS 的语言特性吗</a><br><a href="#%E8%83%BD%E6%9D%A5%E8%AE%B2%E8%AE%B2-js-%E7%9A%84%E8%AF%AD%E8%A8%80%E7%89%B9%E6%80%A7%E5%90%97">81</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E8%AE%B2%E5%88%B0-typeof-%E5%B7%AE%E7%82%B9%E6%8E%89%E5%9D%91%E9%87%8C">如何判断一个数组(讲到 typeof<br>差点掉坑里)</a><br><a href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84%E8%AE%B2%E5%88%B0-typeof-%E5%B7%AE%E7%82%B9%E6%8E%89%E5%9D%91%E9%87%8C">81</a></p>
+</li>
+<li><p><a href="#%E4%BD%A0%E8%AF%B4%E5%88%B0-typeof%E8%83%BD%E4%B8%8D%E8%83%BD%E5%8A%A0%E4%B8%80%E4%B8%AA%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B6%E8%BE%BE%E5%88%B0%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6">你说到<br>typeof，能不能加一个限制条件达到判断条件</a><br><a href="#%E4%BD%A0%E8%AF%B4%E5%88%B0-typeof%E8%83%BD%E4%B8%8D%E8%83%BD%E5%8A%A0%E4%B8%80%E4%B8%AA%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B6%E8%BE%BE%E5%88%B0%E5%88%A4%E6%96%AD%E6%9D%A1%E4%BB%B6">81</a></p>
+</li>
+<li><p><a href="#js-%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F">JS 实现跨域</a> <a href="#js-%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F">81</a></p>
+</li>
+<li><p><a href="#js-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">JS 基本数据类型</a> <a href="#js-%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">82</a></p>
+</li>
+<li><p><a href="#js-%E6%B7%B1%E5%BA%A6%E6%8B%B7%E8%B4%9D%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0">JS 深度拷贝一个元素的具体实现</a><br><a href="#js-%E6%B7%B1%E5%BA%A6%E6%8B%B7%E8%B4%9D%E4%B8%80%E4%B8%AA%E5%85%83%E7%B4%A0%E7%9A%84%E5%85%B7%E4%BD%93%E5%AE%9E%E7%8E%B0">82</a></p>
+</li>
+<li><p><a href="#%E4%B9%8B%E5%89%8D%E8%AF%B4%E4%BA%86-es6set-%E5%8F%AF%E4%BB%A5%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E6%98%AF%E5%90%A6%E8%BF%98%E6%9C%89%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95">之前说了 ES6set<br>可以数组去重，是否还有数组去重的方法</a><br><a href="#%E4%B9%8B%E5%89%8D%E8%AF%B4%E4%BA%86-es6set-%E5%8F%AF%E4%BB%A5%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E6%98%AF%E5%90%A6%E8%BF%98%E6%9C%89%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D%E7%9A%84%E6%96%B9%E6%B3%95">82</a></p>
+</li>
+<li><p><a href="#%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98%E8%AE%B2%E8%AE%B2%E7%9C%8B">重排和重绘，讲讲看</a> <a href="#%E9%87%8D%E6%8E%92%E5%92%8C%E9%87%8D%E7%BB%98%E8%AE%B2%E8%AE%B2%E7%9C%8B">82</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84%E5%85%A8%E6%8E%92%E5%88%97">JS 的全排列</a> <a href="#js-%E7%9A%84%E5%85%A8%E6%8E%92%E5%88%97">83</a></p>
+</li>
+<li><p><a href="#%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%8E%9F%E7%90%86">跨域的原理</a> <a href="#%E8%B7%A8%E5%9F%9F%E7%9A%84%E5%8E%9F%E7%90%86">83</a></p>
+</li>
+<li><p><a href="#%E4%B8%8D%E5%90%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E6%98%AF%E6%80%8E%E4%B9%88%E8%BD%AC%E6%8D%A2%E7%9A%84%E6%9C%89%E4%BB%80%E4%B9%88%E8%A7%84%E5%88%99">不同数据类型的值的比较，是怎么转换的，有什么规则</a><br><a href="#%E4%B8%8D%E5%90%8C%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%80%BC%E7%9A%84%E6%AF%94%E8%BE%83%E6%98%AF%E6%80%8E%E4%B9%88%E8%BD%AC%E6%8D%A2%E7%9A%84%E6%9C%89%E4%BB%80%E4%B9%88%E8%A7%84%E5%88%99">83</a></p>
+</li>
+<li><p><a href="#null-undefined-%E4%B8%BA%E4%BB%80%E4%B9%88">null &#x3D;&#x3D; undefined 为什么</a><br><a href="#null-undefined-%E4%B8%BA%E4%BB%80%E4%B9%88">84</a></p>
+</li>
+<li><p><a href="#this-%E7%9A%84%E6%8C%87%E5%90%91-%E5%93%AA%E5%87%A0%E7%A7%8D">this 的指向 哪几种</a> <a href="#this-%E7%9A%84%E6%8C%87%E5%90%91-%E5%93%AA%E5%87%A0%E7%A7%8D">84</a></p>
+</li>
+<li><p><a href="#%E6%9A%82%E5%81%9C%E6%AD%BB%E5%8C%BA">暂停死区</a> <a href="#%E6%9A%82%E5%81%9C%E6%AD%BB%E5%8C%BA">85</a></p>
+</li>
+<li><p><a href="#angularjs-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86">AngularJS 双向绑定原理</a><br><a href="#angularjs-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86">85</a></p>
+</li>
+<li><p><a href="#%E5%86%99%E4%B8%80%E4%B8%AA%E6%B7%B1%E5%BA%A6%E6%8B%B7%E8%B4%9D">写一个深度拷贝</a> <a href="#%E5%86%99%E4%B8%80%E4%B8%AA%E6%B7%B1%E5%BA%A6%E6%8B%B7%E8%B4%9D">85</a></p>
+</li>
+<li><p><a href="#%E7%AE%80%E5%8E%86%E4%B8%AD%E6%8F%90%E5%88%B0%E4%BA%86-requestanimationframe%E8%AF%B7%E9%97%AE%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E7%9A%84">简历中提到了<br>requestAnimationFrame，请问是怎么使用的</a><br><a href="#%E7%AE%80%E5%8E%86%E4%B8%AD%E6%8F%90%E5%88%B0%E4%BA%86-requestanimationframe%E8%AF%B7%E9%97%AE%E6%98%AF%E6%80%8E%E4%B9%88%E4%BD%BF%E7%94%A8%E7%9A%84">86</a></p>
+</li>
+<li><p><a href="#%E6%9C%89%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%88%8F%E5%8F%AB%E5%81%9A-flappy-bird%E5%B0%B1%E6%98%AF%E4%B8%80%E5%8F%AA%E5%B0%8F%E9%B8%9F%E5%9C%A8%E9%A3%9E%E5%89%8D%E9%9D%A2%E6%98%AF%E6%97%A0%E5%B0%BD%E7%9A%84%E6%B2%99-%E6%BC%A0%E4%B8%8A%E4%B8%8B%E4%B8%8D%E6%96%AD%E6%9C%89%E9%92%A2%E7%AE%A1%E7%94%9F%E6%88%90%E4%BD%A0%E8%A6%81%E8%BA%B2%E9%81%BF%E9%92%A2%E7%AE%A1%E7%84%B6%E5%90%8E%E5%B0%8F%E6%98%8E%E5%9C%A8%E7%8E%A9%E8%BF%99%E4%B8%AA%E6%B8%B8%E6%88%8F%E6%97%B6%E5%80%99%E8%80%81%E6%98%AF%E5%8D%A1%E9%A1%BF%E7%94%9A%E8%87%B3%E5%B4%A9%E6%BA%83%E8%AF%B4%E5%87%BA%E5%8E%9F%E5%9B%A03-5-%E4%B8%AA%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%953-5-%E4%B8%AA">有一个游戏叫做 Flappy<br>Bird，就是一只小鸟在飞，前面是无尽的沙漠，上下不断有钢管生成，你要躲避钢管。然后小明在玩这个游戏时候老是卡顿甚至崩溃，说出原因（3-5<br>个）以及解决办法（3-5<br>个）</a><br><a href="#%E6%9C%89%E4%B8%80%E4%B8%AA%E6%B8%B8%E6%88%8F%E5%8F%AB%E5%81%9A-flappy-bird%E5%B0%B1%E6%98%AF%E4%B8%80%E5%8F%AA%E5%B0%8F%E9%B8%9F%E5%9C%A8%E9%A3%9E%E5%89%8D%E9%9D%A2%E6%98%AF%E6%97%A0%E5%B0%BD%E7%9A%84%E6%B2%99-%E6%BC%A0%E4%B8%8A%E4%B8%8B%E4%B8%8D%E6%96%AD%E6%9C%89%E9%92%A2%E7%AE%A1%E7%94%9F%E6%88%90%E4%BD%A0%E8%A6%81%E8%BA%B2%E9%81%BF%E9%92%A2%E7%AE%A1%E7%84%B6%E5%90%8E%E5%B0%8F%E6%98%8E%E5%9C%A8%E7%8E%A9%E8%BF%99%E4%B8%AA%E6%B8%B8%E6%88%8F%E6%97%B6%E5%80%99%E8%80%81%E6%98%AF%E5%8D%A1%E9%A1%BF%E7%94%9A%E8%87%B3%E5%B4%A9%E6%BA%83%E8%AF%B4%E5%87%BA%E5%8E%9F%E5%9B%A03-5-%E4%B8%AA%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%953-5-%E4%B8%AA">86</a></p>
+</li>
+<li><p><a href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E6%9D%A1%E4%BB%B6-1hero37er%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-2hero37er.kill1.recover30%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-kill-1-bug-recover-30-bloods-3-hero37er.sleep10.kill2%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-%E7%AD%89%E5%BE%85-10s-%E5%90%8E-kill-2-bugs-%E6%B3%A8%E6%84%8F%E4%B8%BA-bugs-%E5%8F%8C%E6%96%9C%E7%BA%BF%E5%90%8E%E7%9A%84%E4%B8%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0">编写代码，满足以下条件：<br>（1）Hero(&quot;37er&quot;);执行结果为</a><br><a href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E6%9D%A1%E4%BB%B6-1hero37er%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-2hero37er.kill1.recover30%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-kill-1-bug-recover-30-bloods-3-hero37er.sleep10.kill2%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-%E7%AD%89%E5%BE%85-10s-%E5%90%8E-kill-2-bugs-%E6%B3%A8%E6%84%8F%E4%B8%BA-bugs-%E5%8F%8C%E6%96%9C%E7%BA%BF%E5%90%8E%E7%9A%84%E4%B8%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0">Hi!</a><br><a href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E6%9D%A1%E4%BB%B6-1hero37er%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-2hero37er.kill1.recover30%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-kill-1-bug-recover-30-bloods-3-hero37er.sleep10.kill2%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-%E7%AD%89%E5%BE%85-10s-%E5%90%8E-kill-2-bugs-%E6%B3%A8%E6%84%8F%E4%B8%BA-bugs-%E5%8F%8C%E6%96%9C%E7%BA%BF%E5%90%8E%E7%9A%84%E4%B8%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0">This</a></p>
+</li>
+</ul>
+<p><a href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E6%9D%A1%E4%BB%B6-1hero37er%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-2hero37er.kill1.recover30%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-kill-1-bug-recover-30-bloods-3-hero37er.sleep10.kill2%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-%E7%AD%89%E5%BE%85-10s-%E5%90%8E-kill-2-bugs-%E6%B3%A8%E6%84%8F%E4%B8%BA-bugs-%E5%8F%8C%E6%96%9C%E7%BA%BF%E5%90%8E%E7%9A%84%E4%B8%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0">is 37er （2）Hero(&quot;37er&quot;).kill(1).recover(30);执行结果为 Hi! This<br>is</a><br><a href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E6%9D%A1%E4%BB%B6-1hero37er%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-2hero37er.kill1.recover30%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-kill-1-bug-recover-30-bloods-3-hero37er.sleep10.kill2%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-%E7%AD%89%E5%BE%85-10s-%E5%90%8E-kill-2-bugs-%E6%B3%A8%E6%84%8F%E4%B8%BA-bugs-%E5%8F%8C%E6%96%9C%E7%BA%BF%E5%90%8E%E7%9A%84%E4%B8%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0">37er Kill 1 bug Recover 30 bloods<br>（3）Hero(&quot;37er&quot;).sleep(10).kill(2)执行结果为 Hi! This is 37er &#x2F;&#x2F;等待<br>10s 后 Kill 2 bugs &#x2F;&#x2F;注意为<br>bugs</a></p>
+<p><a href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E6%9D%A1%E4%BB%B6-1hero37er%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-2hero37er.kill1.recover30%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-kill-1-bug-recover-30-bloods-3-hero37er.sleep10.kill2%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-%E7%AD%89%E5%BE%85-10s-%E5%90%8E-kill-2-bugs-%E6%B3%A8%E6%84%8F%E4%B8%BA-bugs-%E5%8F%8C%E6%96%9C%E7%BA%BF%E5%90%8E%E7%9A%84%E4%B8%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0">（双斜线后的为提示信息，不需要打印）</a><br><a href="#%E7%BC%96%E5%86%99%E4%BB%A3%E7%A0%81%E6%BB%A1%E8%B6%B3%E4%BB%A5%E4%B8%8B%E6%9D%A1%E4%BB%B6-1hero37er%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-2hero37er.kill1.recover30%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-kill-1-bug-recover-30-bloods-3-hero37er.sleep10.kill2%E6%89%A7%E8%A1%8C%E7%BB%93%E6%9E%9C%E4%B8%BA-hi-this-is-37er-%E7%AD%89%E5%BE%85-10s-%E5%90%8E-kill-2-bugs-%E6%B3%A8%E6%84%8F%E4%B8%BA-bugs-%E5%8F%8C%E6%96%9C%E7%BA%BF%E5%90%8E%E7%9A%84%E4%B8%BA%E6%8F%90%E7%A4%BA%E4%BF%A1%E6%81%AF%E4%B8%8D%E9%9C%80%E8%A6%81%E6%89%93%E5%8D%B0">87</a></p>
+<ul>
+<li><p><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD">什么是按需加载</a> <a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%8C%89%E9%9C%80%E5%8A%A0%E8%BD%BD">88</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF-virtual-dom">说一下什么是 virtual dom</a><br><a href="#%E8%AF%B4%E4%B8%80%E4%B8%8B%E4%BB%80%E4%B9%88%E6%98%AF-virtual-dom">88</a></p>
+</li>
+<li><p><a href="#webpack-%E7%94%A8%E6%9D%A5%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84">webpack 用来干什么的</a><br><a href="#webpack-%E7%94%A8%E6%9D%A5%E5%B9%B2%E4%BB%80%E4%B9%88%E7%9A%84">88</a></p>
+</li>
+<li><p><a href="#ant-design-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9">ant-design 优点和缺点</a><br><a href="#ant-design-%E4%BC%98%E7%82%B9%E5%92%8C%E7%BC%BA%E7%82%B9">88</a></p>
+</li>
+<li><p><a href="#js-%E4%B8%AD%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F">JS 中继承实现的几种方式，</a><br><a href="#js-%E4%B8%AD%E7%BB%A7%E6%89%BF%E5%AE%9E%E7%8E%B0%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F">88</a></p>
+</li>
+<li><p><a href="#%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%AC%AC%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B0-1%E7%AC%AC%E4%BA%8C%E7%A7%92%E6%89%93%E5%8D%B0-2">写一个函数，第一秒打印 1，第二秒打印<br>2</a><br><a href="#%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E7%AC%AC%E4%B8%80%E7%A7%92%E6%89%93%E5%8D%B0-1%E7%AC%AC%E4%BA%8C%E7%A7%92%E6%89%93%E5%8D%B0-2">89</a></p>
+</li>
+<li><p><a href="#vue-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">Vue 的生命周期</a> <a href="#vue-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F">89</a></p>
+</li>
+<li><p><a href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-symbol">简单介绍一下 symbol</a><br><a href="#%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-symbol">90</a></p>
+</li>
+<li><p><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC">什么是事件监听</a> <a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E7%9B%91%E5%90%AC">90</a></p>
+</li>
+<li><p><a href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-promise%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0">介绍一下<br>promise，及其底层如何实现</a><br><a href="#%E4%BB%8B%E7%BB%8D%E4%B8%80%E4%B8%8B-promise%E5%8F%8A%E5%85%B6%E5%BA%95%E5%B1%82%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0">91</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E8%AF%B4-cjavajavascript-%E8%BF%99%E4%B8%89%E7%A7%8D%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB">说说 C++,Java，JavaScript<br>这三种语言的区别</a><br><a href="#%E8%AF%B4%E8%AF%B4-cjavajavascript-%E8%BF%99%E4%B8%89%E7%A7%8D%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB">92</a></p>
+</li>
+<li><p><a href="#js-%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E9%A1%B6%E7%AB%AF%E6%98%AF%E4%BB%80%E4%B9%88object-%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88object-%E7%9A%84%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%9C%A8%E6%95%B0%E7%BB%84%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8A%E5%AE%9E%E7%8E%B0%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95">JS 原型链，原型链的顶端是什么？Object<br>的原型是什么？Object</a><br><a href="#js-%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E9%A1%B6%E7%AB%AF%E6%98%AF%E4%BB%80%E4%B9%88object-%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88object-%E7%9A%84%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%9C%A8%E6%95%B0%E7%BB%84%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8A%E5%AE%9E%E7%8E%B0%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95">的原型的原型是什么？在数组原型链上实现删除数组重复数据的方法</a><br><a href="#js-%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8E%9F%E5%9E%8B%E9%93%BE%E7%9A%84%E9%A1%B6%E7%AB%AF%E6%98%AF%E4%BB%80%E4%B9%88object-%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88object-%E7%9A%84%E5%8E%9F%E5%9E%8B%E7%9A%84%E5%8E%9F%E5%9E%8B%E6%98%AF%E4%BB%80%E4%B9%88%E5%9C%A8%E6%95%B0%E7%BB%84%E5%8E%9F%E5%9E%8B%E9%93%BE%E4%B8%8A%E5%AE%9E%E7%8E%B0%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E9%87%8D%E5%A4%8D%E6%95%B0%E6%8D%AE%E7%9A%84%E6%96%B9%E6%B3%95">93</a></p>
+</li>
+<li><p><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-js-%E7%9A%84%E9%97%AD%E5%8C%85%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%E7%94%A8%E9%97%AD%E5%8C%85%E5%86%99%E4%B8%AA%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F">什么是 js<br>的闭包？有什么作用，用闭包写个单例模式</a><br><a href="#%E4%BB%80%E4%B9%88%E6%98%AF-js-%E7%9A%84%E9%97%AD%E5%8C%85%E6%9C%89%E4%BB%80%E4%B9%88%E4%BD%9C%E7%94%A8%E7%94%A8%E9%97%AD%E5%8C%85%E5%86%99%E4%B8%AA%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F">96</a></p>
+</li>
+<li><p><a href="#promisegeneratorasync-%E7%9A%84%E4%BD%BF%E7%94%A8">promise+Generator+Async 的使用</a><br><a href="#promisegeneratorasync-%E7%9A%84%E4%BD%BF%E7%94%A8">96</a></p>
+</li>
+<li><p><a href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%E4%BB%A5%E5%8F%8A%E5%86%92%E6%B3%A1%E5%8E%9F%E7%90%86">事件委托以及冒泡原理。</a><br><a href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98%E4%BB%A5%E5%8F%8A%E5%86%92%E6%B3%A1%E5%8E%9F%E7%90%86">100</a></p>
+</li>
+<li><p><a href="#%E5%86%99%E4%B8%AA%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E8%BD%AC%E5%8C%96%E4%B8%8B%E5%88%92%E7%BA%BF%E5%91%BD%E5%90%8D%E5%88%B0%E9%A9%BC%E5%B3%B0%E5%91%BD%E5%90%8D">写个函数，可以转化下划线命名到驼峰命名</a><br><a href="#%E5%86%99%E4%B8%AA%E5%87%BD%E6%95%B0%E5%8F%AF%E4%BB%A5%E8%BD%AC%E5%8C%96%E4%B8%8B%E5%88%92%E7%BA%BF%E5%91%BD%E5%90%8D%E5%88%B0%E9%A9%BC%E5%B3%B0%E5%91%BD%E5%90%8D">101</a></p>
+</li>
+<li><p><a href="#%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%AE%9E%E7%8E%B0">深浅拷贝的区别和实现</a><br><a href="#%E6%B7%B1%E6%B5%85%E6%8B%B7%E8%B4%9D%E7%9A%84%E5%8C%BA%E5%88%AB%E5%92%8C%E5%AE%9E%E7%8E%B0">101</a></p>
+</li>
+<li><p><a href="#js-%E4%B8%AD-string-%E7%9A%84-startwith-%E5%92%8C-indexof-%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB">JS 中 string 的 startwith 和 indexof<br>两种方法的区别</a><br><a href="#js-%E4%B8%AD-string-%E7%9A%84-startwith-%E5%92%8C-indexof-%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB">102</a></p>
+</li>
+<li><p><a href="#js-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E5%AD%97%E7%9A%84%E6%96%B9%E6%B3%95">JS 字符串转数字的方法</a><br><a href="#js-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%95%B0%E5%AD%97%E7%9A%84%E6%96%B9%E6%B3%95">103</a></p>
+</li>
+<li><p><a href="#let-const-var-%E7%9A%84%E5%8C%BA%E5%88%AB-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%A6%82%E4%BD%95%E7%94%A8-es5-%E7%9A%84%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0es6-%E5%91%A2">let const var 的区别 ，什么是块级作用域，如何用<br>ES5</a><br><a href="#let-const-var-%E7%9A%84%E5%8C%BA%E5%88%AB-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%A6%82%E4%BD%95%E7%94%A8-es5-%E7%9A%84%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0es6-%E5%91%A2">的方法实现块级作用域（立即执行函数），ES6<br>呢</a><br><a href="#let-const-var-%E7%9A%84%E5%8C%BA%E5%88%AB-%E4%BB%80%E4%B9%88%E6%98%AF%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%A6%82%E4%BD%95%E7%94%A8-es5-%E7%9A%84%E6%96%B9%E6%B3%95%E5%AE%9E%E7%8E%B0%E5%9D%97%E7%BA%A7%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%AB%8B%E5%8D%B3%E6%89%A7%E8%A1%8C%E5%87%BD%E6%95%B0es6-%E5%91%A2">103</a></p>
+</li>
+<li><p><a href="#es6-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E6%80%A7">ES6 箭头函数的特性</a> <a href="#es6-%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E7%9A%84%E7%89%B9%E6%80%A7">103</a></p>
+</li>
+<li><p><a href="#settimeout-%E5%92%8C-promise-%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F">setTimeout 和 Promise<br>的执行顺序</a><br><a href="#settimeout-%E5%92%8C-promise-%E7%9A%84%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F">103</a></p>
+</li>
+<li><p><a href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B%E5%90%97dom0-%E7%BA%A7%E5%92%8C-dom2-%E7%BA%A7%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABdom-%E7%9A%84%E5%88%86%E7%BA%A7%E6%98%AF%E4%BB%80%E4%B9%88">有了解过事件模型吗，DOM0 级和 DOM2<br>级有什么区别，DOM</a><br><a href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B%E5%90%97dom0-%E7%BA%A7%E5%92%8C-dom2-%E7%BA%A7%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABdom-%E7%9A%84%E5%88%86%E7%BA%A7%E6%98%AF%E4%BB%80%E4%B9%88">的分级是什么</a></p>
+</li>
+</ul>
+<p><a href="#%E6%9C%89%E4%BA%86%E8%A7%A3%E8%BF%87%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B%E5%90%97dom0-%E7%BA%A7%E5%92%8C-dom2-%E7%BA%A7%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%ABdom-%E7%9A%84%E5%88%86%E7%BA%A7%E6%98%AF%E4%BB%80%E4%B9%88">104</a></p>
+<ul>
+<li><p><a href="#%E5%B9%B3%E6%97%B6%E6%98%AF%E6%80%8E%E4%B9%88%E8%B0%83%E8%AF%95-js-%E7%9A%84">平时是怎么调试 JS 的</a><br><a href="#%E5%B9%B3%E6%97%B6%E6%98%AF%E6%80%8E%E4%B9%88%E8%B0%83%E8%AF%95-js-%E7%9A%84">105</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%ABnan%E6%98%AF%E4%BB%80%E4%B9%88%E7%9A%84%E7%BC%A9%E5%86%99js-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%B1%BB%E5%9E%8Bundefinednull-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88undefined-%E4%B8%8E-null-%E7%9A%84%E5%8C%BA%E5%88%AB%E5%9C%A8%E5%93%AA%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B">JS<br>的基本数据类型有哪些，基本数据类型和引用数据类型的区别，NaN</a><br><a href="#js-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%ABnan%E6%98%AF%E4%BB%80%E4%B9%88%E7%9A%84%E7%BC%A9%E5%86%99js-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%B1%BB%E5%9E%8Bundefinednull-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88undefined-%E4%B8%8E-null-%E7%9A%84%E5%8C%BA%E5%88%AB%E5%9C%A8%E5%93%AA%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B">是什么的缩写， JS 的作用域类型， undefined&#x3D;&#x3D;null<br>返回的结果是什么，</a><br><a href="#js-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%ABnan%E6%98%AF%E4%BB%80%E4%B9%88%E7%9A%84%E7%BC%A9%E5%86%99js-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%B1%BB%E5%9E%8Bundefinednull-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88undefined-%E4%B8%8E-null-%E7%9A%84%E5%8C%BA%E5%88%AB%E5%9C%A8%E5%93%AA%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B">undefined</a><br><a href="#js-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%ABnan%E6%98%AF%E4%BB%80%E4%B9%88%E7%9A%84%E7%BC%A9%E5%86%99js-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%B1%BB%E5%9E%8Bundefinednull-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88undefined-%E4%B8%8E-null-%E7%9A%84%E5%8C%BA%E5%88%AB%E5%9C%A8%E5%93%AA%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B">与 null<br>的区别在哪，写一个函数判断变量类型</a><br><a href="#js-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%BC%95%E7%94%A8%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%ABnan%E6%98%AF%E4%BB%80%E4%B9%88%E7%9A%84%E7%BC%A9%E5%86%99js-%E7%9A%84%E4%BD%9C%E7%94%A8%E5%9F%9F%E7%B1%BB%E5%9E%8Bundefinednull-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88undefined-%E4%B8%8E-null-%E7%9A%84%E5%8C%BA%E5%88%AB%E5%9C%A8%E5%93%AA%E5%86%99%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0%E5%88%A4%E6%96%AD%E5%8F%98%E9%87%8F%E7%B1%BB%E5%9E%8B">105</a></p>
+</li>
+<li><p><a href="#settimeoutfn100100-%E6%AF%AB%E7%A7%92%E6%98%AF%E5%A6%82%E4%BD%95%E6%9D%83%E8%A1%A1%E7%9A%84">setTimeout(fn,100);100<br>毫秒是如何权衡的</a><br><a href="#settimeoutfn100100-%E6%AF%AB%E7%A7%92%E6%98%AF%E5%A6%82%E4%BD%95%E6%9D%83%E8%A1%A1%E7%9A%84">106</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6">JS 的垃圾回收机制</a> <a href="#js-%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6">106</a></p>
+</li>
+<li><p><a href="#%E5%86%99%E4%B8%80%E4%B8%AA-newbind-%E5%87%BD%E6%95%B0%E5%AE%8C%E6%88%90-bind-%E7%9A%84%E5%8A%9F%E8%83%BD">写一个 newBind 函数，完成 bind<br>的功能。</a><br><a href="#%E5%86%99%E4%B8%80%E4%B8%AA-newbind-%E5%87%BD%E6%95%B0%E5%AE%8C%E6%88%90-bind-%E7%9A%84%E5%8A%9F%E8%83%BD">107</a></p>
+</li>
+<li><p><a href="#%E6%80%8E%E4%B9%88%E8%8E%B7%E5%BE%97%E5%AF%B9%E8%B1%A1%E4%B8%8A%E7%9A%84%E5%B1%9E%E6%80%A7%E6%AF%94%E5%A6%82%E8%AF%B4%E9%80%9A%E8%BF%87-object.key">怎么获得对象上的属性：比如说通过<br>Object.key（）</a><br><a href="#%E6%80%8E%E4%B9%88%E8%8E%B7%E5%BE%97%E5%AF%B9%E8%B1%A1%E4%B8%8A%E7%9A%84%E5%B1%9E%E6%80%A7%E6%AF%94%E5%A6%82%E8%AF%B4%E9%80%9A%E8%BF%87-object.key">107</a></p>
+</li>
+<li><p><a href="#%E7%AE%80%E5%8D%95%E8%AE%B2%E4%B8%80%E8%AE%B2-es6-%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7">简单讲一讲 ES6 的一些新特性</a><br><a href="#%E7%AE%80%E5%8D%95%E8%AE%B2%E4%B8%80%E8%AE%B2-es6-%E7%9A%84%E4%B8%80%E4%BA%9B%E6%96%B0%E7%89%B9%E6%80%A7">107</a></p>
+</li>
+<li><p><a href="#call-%E5%92%8C-apply-%E6%98%AF%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88">call 和 apply 是用来做什么？</a><br><a href="#call-%E5%92%8C-apply-%E6%98%AF%E7%94%A8%E6%9D%A5%E5%81%9A%E4%BB%80%E4%B9%88">108</a></p>
+</li>
+<li><p><a href="#%E4%BA%86%E8%A7%A3%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%90%97%E8%BF%99%E6%A0%B7%E5%81%9A%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84">了解事件代理吗，这样做有什么好处</a><br><a href="#%E4%BA%86%E8%A7%A3%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86%E5%90%97%E8%BF%99%E6%A0%B7%E5%81%9A%E6%9C%89%E4%BB%80%E4%B9%88%E5%A5%BD%E5%A4%84">108</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E7%BB%A7%E6%89%BF">如何写一个继承？</a> <a href="#%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA%E7%BB%A7%E6%89%BF">108</a></p>
+</li>
+<li><p><a href="#%E7%BB%99%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E8%BE%93%E5%87%BA%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0-forvar-i0i5i">给出以下代码，输出的结果是什么？原因？</a><br><a href="#%E7%BB%99%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E8%BE%93%E5%87%BA%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0-forvar-i0i5i">for(var<br>i&#x3D;0;i&lt;5;i++)</a></p>
+</li>
+</ul>
+<p><a href="#%E7%BB%99%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E8%BE%93%E5%87%BA%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0-forvar-i0i5i">{ setTimeout(function(){ console.log(i); },1000); }<br>console.log(i)</a></p>
+<p><a href="#%E7%BB%99%E5%87%BA%E4%BB%A5%E4%B8%8B%E4%BB%A3%E7%A0%81%E8%BE%93%E5%87%BA%E7%9A%84%E7%BB%93%E6%9E%9C%E6%98%AF%E4%BB%80%E4%B9%88%E5%8E%9F%E5%9B%A0-forvar-i0i5i">110</a></p>
+<ul>
+<li><p><a href="#%E7%BB%99%E4%B8%A4%E4%B8%AA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-a-%E5%92%8C-b%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-a-%E7%BB%A7%E6%89%BF-b">给两个构造函数 A 和 B，如何实现 A 继承<br>B？</a><br><a href="#%E7%BB%99%E4%B8%A4%E4%B8%AA%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0-a-%E5%92%8C-b%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-a-%E7%BB%A7%E6%89%BF-b">110</a></p>
+</li>
+<li><p><a href="#%E9%97%AE%E8%83%BD%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%89%93%E5%8D%B0%E7%B4%A2%E5%BC%95">问能不能正常打印索引</a><br><a href="#%E9%97%AE%E8%83%BD%E4%B8%8D%E8%83%BD%E6%AD%A3%E5%B8%B8%E6%89%93%E5%8D%B0%E7%B4%A2%E5%BC%95">110</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E6%9E%9C%E5%B7%B2%E7%BB%8F%E6%9C%89%E4%B8%89%E4%B8%AA-promiseab-%E5%92%8C-c%E6%83%B3%E4%B8%B2%E8%A1%8C%E6%89%A7%E8%A1%8C%E8%AF%A5%E6%80%8E%E4%B9%88%E5%86%99">如果已经有三个 promise，A、B 和<br>C，想串行执行，该怎么写？</a><br><a href="#%E5%A6%82%E6%9E%9C%E5%B7%B2%E7%BB%8F%E6%9C%89%E4%B8%89%E4%B8%AA-promiseab-%E5%92%8C-c%E6%83%B3%E4%B8%B2%E8%A1%8C%E6%89%A7%E8%A1%8C%E8%AF%A5%E6%80%8E%E4%B9%88%E5%86%99">110</a></p>
+</li>
+<li><p><a href="#%E7%9F%A5%E9%81%93-private-%E5%92%8C-public-%E5%90%97">知道 private 和 public 吗</a><br><a href="#%E7%9F%A5%E9%81%93-private-%E5%92%8C-public-%E5%90%97">111</a></p>
+</li>
+<li><p><a href="#%E5%9F%BA%E7%A1%80%E7%9A%84-js">基础的 js</a> <a href="#%E5%9F%BA%E7%A1%80%E7%9A%84-js">111</a></p>
+</li>
+<li><p><a href="#async-%E5%92%8C-await-%E5%85%B7%E4%BD%93%E8%AF%A5%E6%80%8E%E4%B9%88%E7%94%A8">async 和 await 具体该怎么用？</a><br><a href="#async-%E5%92%8C-await-%E5%85%B7%E4%BD%93%E8%AF%A5%E6%80%8E%E4%B9%88%E7%94%A8">111</a></p>
+</li>
+<li><p><a href="#%E7%9F%A5%E9%81%93%E5%93%AA%E4%BA%9B-es6es7-%E7%9A%84%E8%AF%AD%E6%B3%95">知道哪些 ES6，ES7 的语法</a><br><a href="#%E7%9F%A5%E9%81%93%E5%93%AA%E4%BA%9B-es6es7-%E7%9A%84%E8%AF%AD%E6%B3%95">111</a></p>
+</li>
+<li><p><a href="#promise-%E5%92%8C-awaitasync-%E7%9A%84%E5%85%B3%E7%B3%BB">promise 和 await&#x2F;async 的关系</a><br><a href="#promise-%E5%92%8C-awaitasync-%E7%9A%84%E5%85%B3%E7%B3%BB">111</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">JS 的数据类型</a> <a href="#js-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B">112</a></p>
+</li>
+<li><p><a href="#js-%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E9%98%BB%E5%A1%9E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">JS 加载过程阻塞，解决方法。</a><br><a href="#js-%E5%8A%A0%E8%BD%BD%E8%BF%87%E7%A8%8B%E9%98%BB%E5%A1%9E%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95">112</a></p>
+</li>
+<li><p><a href="#js-%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB">JS<br>对象类型，基本对象类型以及引用对象类型的区别</a><br><a href="#js-%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E5%9F%BA%E6%9C%AC%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E4%BB%A5%E5%8F%8A%E5%BC%95%E7%94%A8%E5%AF%B9%E8%B1%A1%E7%B1%BB%E5%9E%8B%E7%9A%84%E5%8C%BA%E5%88%AB">112</a></p>
+</li>
+<li><p><a href="#javascript-%E4%B8%AD%E7%9A%84%E8%BD%AE%E6%92%AD%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%81%87%E5%A6%82%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%9C%89%E4%B8%A4%E4%B8%AA%E8%BD%AE%E6%92%AD%E4%BD%A0%E4%BC%9A%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0">JavaScript</a><br><a href="#javascript-%E4%B8%AD%E7%9A%84%E8%BD%AE%E6%92%AD%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%81%87%E5%A6%82%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%9C%89%E4%B8%A4%E4%B8%AA%E8%BD%AE%E6%92%AD%E4%BD%A0%E4%BC%9A%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0">中的轮播实现原理？假如一个页面上有两个轮播，你会怎么实现？</a><br><a href="#javascript-%E4%B8%AD%E7%9A%84%E8%BD%AE%E6%92%AD%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%81%87%E5%A6%82%E4%B8%80%E4%B8%AA%E9%A1%B5%E9%9D%A2%E4%B8%8A%E6%9C%89%E4%B8%A4%E4%B8%AA%E8%BD%AE%E6%92%AD%E4%BD%A0%E4%BC%9A%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0">112</a></p>
+</li>
+<li><p><a href="#%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97%E4%B8%80%E5%B9%B4%E4%B8%AD%E6%9C%89%E5%A4%9A%E5%B0%91%E5%91%A8">怎么实现一个计算一年中有多少周？</a><br><a href="#%E6%80%8E%E4%B9%88%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E8%AE%A1%E7%AE%97%E4%B8%80%E5%B9%B4%E4%B8%AD%E6%9C%89%E5%A4%9A%E5%B0%91%E5%91%A8">112</a></p>
+</li>
+<li><p><a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F">面向对象的继承方式</a> <a href="#%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%9A%84%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F">113</a></p>
+</li>
+<li><p><a href="#js-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-1">JS 的数据类型</a> <a href="#js-%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B-1">114</a></p>
+</li>
+<li><p><a href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AF%B9%E8%B1%A1">引用类型常见的对象</a> <a href="#%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%B8%B8%E8%A7%81%E7%9A%84%E5%AF%B9%E8%B1%A1">114</a></p>
+</li>
+<li><p><a href="#es6-%E7%9A%84%E5%B8%B8%E7%94%A8">es6 的常用</a> <a href="#es6-%E7%9A%84%E5%B8%B8%E7%94%A8">114</a></p>
+</li>
+<li><p><a href="#class">class</a> <a href="#class">114</a></p>
+</li>
+<li><p><a href="#%E5%8F%A3%E8%BF%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D">口述数组去重</a> <a href="#%E5%8F%A3%E8%BF%B0%E6%95%B0%E7%BB%84%E5%8E%BB%E9%87%8D">115</a></p>
+</li>
+<li><p><a href="#%E7%BB%A7%E6%89%BF">继承</a> <a href="#%E7%BB%A7%E6%89%BF">115</a></p>
+</li>
+<li><p><a href="#call-%E5%92%8C-apply-%E7%9A%84%E5%8C%BA%E5%88%AB">call 和 apply 的区别</a><br><a href="#call-%E5%92%8C-apply-%E7%9A%84%E5%8C%BA%E5%88%AB">116</a></p>
+</li>
+<li><p><a href="#es6-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%89%B9%E6%80%A7">es6 的常用特性</a> <a href="#es6-%E7%9A%84%E5%B8%B8%E7%94%A8%E7%89%B9%E6%80%A7">116</a></p>
+</li>
+<li><p><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C-function-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">箭头函数和 function 有什么区别</a><br><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C-function-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">116</a></p>
+</li>
+<li><p><a href="#new-%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8E%9F%E7%90%86">new 操作符原理</a> <a href="#new-%E6%93%8D%E4%BD%9C%E7%AC%A6%E5%8E%9F%E7%90%86">116</a></p>
+</li>
+<li><p><a href="#bindapplycall">bind,apply,call</a> <a href="#bindapplycall">117</a></p>
+</li>
+<li><p><a href="#bind-%E5%92%8C-apply-%E7%9A%84%E5%8C%BA%E5%88%AB">bind 和 apply 的区别</a><br><a href="#bind-%E5%92%8C-apply-%E7%9A%84%E5%8C%BA%E5%88%AB">117</a></p>
+</li>
+<li><p><a href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%8E%BB%E9%87%8D">数组的去重</a> <a href="#%E6%95%B0%E7%BB%84%E7%9A%84%E5%8E%BB%E9%87%8D">117</a></p>
+</li>
+<li><p><a href="#%E9%97%AD%E5%8C%85">闭包</a> <a href="#%E9%97%AD%E5%8C%85">117</a></p>
+</li>
+<li><p><a href="#promise-%E5%AE%9E%E7%8E%B0">promise 实现</a> <a href="#promise-%E5%AE%9E%E7%8E%B0">118</a></p>
+</li>
+<li><p><a href="#assign-%E7%9A%84%E6%B7%B1%E6%8B%B7%E8%B4%9D">assign 的深拷贝</a> <a href="#assign-%E7%9A%84%E6%B7%B1%E6%8B%B7%E8%B4%9D">119</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4-promise%E6%B2%A1%E6%9C%89-promise-%E6%80%8E%E4%B9%88%E5%8A%9E">说 promise，没有 promise 怎么办</a><br><a href="#%E8%AF%B4-promise%E6%B2%A1%E6%9C%89-promise-%E6%80%8E%E4%B9%88%E5%8A%9E">120</a></p>
+</li>
+<li><p><a href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98">事件委托</a> <a href="#%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98">120</a></p>
+</li>
+<li><p><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C-function-%E7%9A%84%E5%8C%BA%E5%88%AB">箭头函数和 function 的区别</a><br><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E5%92%8C-function-%E7%9A%84%E5%8C%BA%E5%88%AB">120</a></p>
+</li>
+<li><p><a href="#arguments">arguments</a> <a href="#arguments">121</a></p>
+</li>
+<li><p><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96-arguments">箭头函数获取 arguments</a><br><a href="#%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0%E8%8E%B7%E5%8F%96-arguments">121</a></p>
+</li>
+<li><p><a href="#promise">Promise</a> <a href="#promise">121</a></p>
+</li>
+<li><p><a href="#%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86">事件代理</a> <a href="#%E4%BA%8B%E4%BB%B6%E4%BB%A3%E7%90%86">121</a></p>
+</li>
+<li><p><a href="#eventloop">Eventloop</a> <a href="#eventloop">122</a></p>
+</li>
+</ul>
+<ol start="2">
+<li><p><a href="#%E5%89%8D%E7%AB%AF%E6%A0%B8%E5%BF%83">| 前端核心</a> <a href="#%E5%89%8D%E7%AB%AF%E6%A0%B8%E5%BF%83">122</a></p>
+<ol>
+<li><p><a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B">| 服务端编程</a> <a href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B">122</a></p>
+<ul>
+<li><p><a href="#jsonp-%E7%9A%84%E7%BC%BA%E7%82%B9">JSONP 的缺点</a> <a href="#jsonp-%E7%9A%84%E7%BC%BA%E7%82%B9">122</a></p>
+</li>
+<li><p><a href="#%E8%B7%A8%E5%9F%9Fjsonpajax">跨域（jsonp，ajax）</a> <a href="#%E8%B7%A8%E5%9F%9Fjsonpajax">122</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F">如何实现跨域</a> <a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E8%B7%A8%E5%9F%9F">122</a></p>
+</li>
+<li><p><a href="#dom-%E6%98%AF%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%90%86%E8%A7%A3">dom 是什么，你的理解？</a><br><a href="#dom-%E6%98%AF%E4%BB%80%E4%B9%88%E4%BD%A0%E7%9A%84%E7%90%86%E8%A7%A3">123</a></p>
+</li>
+<li><p><a href="#%E5%85%B3%E4%BA%8E-dom-%E7%9A%84-api-%E6%9C%89%E4%BB%80%E4%B9%88">关于 dom 的 api 有什么</a><br><a href="#%E5%85%B3%E4%BA%8E-dom-%E7%9A%84-api-%E6%9C%89%E4%BB%80%E4%B9%88">123</a></p>
+</li>
+</ul>
+</li>
+<li><p><a href="#ajax">| Ajax</a> <a href="#ajax">123</a></p>
+<ul>
+<li><p><a href="#ajax-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81">ajax 返回的状态</a> <a href="#ajax-%E8%BF%94%E5%9B%9E%E7%9A%84%E7%8A%B6%E6%80%81">123</a></p>
+</li>
+<li><p><a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-ajax">实现一个 Ajax</a> <a href="#%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-ajax">123</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-ajax-%E8%AF%B7%E6%B1%82%E5%81%87%E5%A6%82%E6%88%91%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%AF%B7%E6%B1%82%E6%88%91%E9%9C%80%E8%A6%81%E8%AE%A9%E8%BF%99%E4%BA%9B-ajax-%E8%AF%B7%E6%B1%82%E6%8C%89%E7%85%A7%E6%9F%90%E7%A7%8D%E9%A1%BA%E5%BA%8F%E4%B8%80%E6%AC%A1%E6%89%A7%E8%A1%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8A%9E%E6%B3%95%E5%91%A2%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86-ajax-%E8%B7%A8%E5%9F%9F">如何实现 ajax 请求，假如我有多个请求，我需要让这些<br>ajax</a><br><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-ajax-%E8%AF%B7%E6%B1%82%E5%81%87%E5%A6%82%E6%88%91%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%AF%B7%E6%B1%82%E6%88%91%E9%9C%80%E8%A6%81%E8%AE%A9%E8%BF%99%E4%BA%9B-ajax-%E8%AF%B7%E6%B1%82%E6%8C%89%E7%85%A7%E6%9F%90%E7%A7%8D%E9%A1%BA%E5%BA%8F%E4%B8%80%E6%AC%A1%E6%89%A7%E8%A1%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8A%9E%E6%B3%95%E5%91%A2%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86-ajax-%E8%B7%A8%E5%9F%9F">请求按照</a></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-ajax-%E8%AF%B7%E6%B1%82%E5%81%87%E5%A6%82%E6%88%91%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%AF%B7%E6%B1%82%E6%88%91%E9%9C%80%E8%A6%81%E8%AE%A9%E8%BF%99%E4%BA%9B-ajax-%E8%AF%B7%E6%B1%82%E6%8C%89%E7%85%A7%E6%9F%90%E7%A7%8D%E9%A1%BA%E5%BA%8F%E4%B8%80%E6%AC%A1%E6%89%A7%E8%A1%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8A%9E%E6%B3%95%E5%91%A2%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86-ajax-%E8%B7%A8%E5%9F%9F">某种顺序一次执行，有什么办法呢？如何处理 ajax<br>跨域</a><br><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0-ajax-%E8%AF%B7%E6%B1%82%E5%81%87%E5%A6%82%E6%88%91%E6%9C%89%E5%A4%9A%E4%B8%AA%E8%AF%B7%E6%B1%82%E6%88%91%E9%9C%80%E8%A6%81%E8%AE%A9%E8%BF%99%E4%BA%9B-ajax-%E8%AF%B7%E6%B1%82%E6%8C%89%E7%85%A7%E6%9F%90%E7%A7%8D%E9%A1%BA%E5%BA%8F%E4%B8%80%E6%AC%A1%E6%89%A7%E8%A1%8C%E6%9C%89%E4%BB%80%E4%B9%88%E5%8A%9E%E6%B3%95%E5%91%A2%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86-ajax-%E8%B7%A8%E5%9F%9F">124</a></p>
+<ul>
+<li><p><a href="#%E5%86%99%E5%87%BA%E5%8E%9F%E7%94%9F-ajax">写出原生 Ajax</a> <a href="#%E5%86%99%E5%87%BA%E5%8E%9F%E7%94%9F-ajax">126</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-ajax-%E8%AF%B7%E6%B1%82%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E5%8F%91%E5%87%BA%E4%B8%A4%E4%B8%AA%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84-ajax-%E9%9C%80%E8%A6%81%E6%80%8E%E4%B9%88%E5%81%9A">如何实现一个 ajax 请求？如果我想发出两个有顺序的<br>ajax</a><br><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-ajax-%E8%AF%B7%E6%B1%82%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E5%8F%91%E5%87%BA%E4%B8%A4%E4%B8%AA%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84-ajax-%E9%9C%80%E8%A6%81%E6%80%8E%E4%B9%88%E5%81%9A">需要怎么做？</a></p>
+</li>
+</ul>
+<p><a href="#%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA-ajax-%E8%AF%B7%E6%B1%82%E5%A6%82%E6%9E%9C%E6%88%91%E6%83%B3%E5%8F%91%E5%87%BA%E4%B8%A4%E4%B8%AA%E6%9C%89%E9%A1%BA%E5%BA%8F%E7%9A%84-ajax-%E9%9C%80%E8%A6%81%E6%80%8E%E4%B9%88%E5%81%9A">126</a></p>
+<ul>
+<li><p><a href="#fetch-%E5%92%8C-ajax-%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9">Fetch 和 Ajax 比有什么优缺点？</a><br><a href="#fetch-%E5%92%8C-ajax-%E6%AF%94%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E7%BC%BA%E7%82%B9">127</a></p>
+</li>
+<li><p><a href="#%E5%8E%9F%E7%94%9F-js-%E7%9A%84-ajax">原生 JS 的 ajax</a> <a href="#%E5%8E%9F%E7%94%9F-js-%E7%9A%84-ajax">127</a></p>
+</li>
+</ul>
+<ol start="3">
+<li><p><a href="#%E7%A7%BB%E5%8A%A8-web-%E5%BC%80%E5%8F%91">| 移动 web 开发</a> <a href="#%E7%A7%BB%E5%8A%A8-web-%E5%BC%80%E5%8F%91">127</a></p>
+<ul>
+<li><p><a href="#%E7%9F%A5%E9%81%93-pwa-%E5%90%97">知道 PWA 吗</a> <a href="#%E7%9F%A5%E9%81%93-pwa-%E5%90%97">127</a></p>
+</li>
+<li><p><a href="#%E7%A7%BB%E5%8A%A8%E5%B8%83%E5%B1%80%E6%96%B9%E6%A1%88">移动布局方案</a> <a href="#%E7%A7%BB%E5%8A%A8%E5%B8%83%E5%B1%80%E6%96%B9%E6%A1%88">127</a></p>
+</li>
+<li><p><a href="#rem-em">Rem, Em</a> <a href="#rem-em">128</a></p>
+</li>
+<li><p><a href="#flex-%E5%B8%83%E5%B1%80%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9">flex 布局及优缺点</a><br><a href="#flex-%E5%B8%83%E5%B1%80%E5%8F%8A%E4%BC%98%E7%BC%BA%E7%82%B9">129</a></p>
+</li>
+<li><p><a href="#rem-%E5%B8%83%E5%B1%80%E5%8F%8A%E5%85%B6%E4%BC%98%E7%BC%BA%E7%82%B9">Rem 布局及其优缺点</a><br><a href="#rem-%E5%B8%83%E5%B1%80%E5%8F%8A%E5%85%B6%E4%BC%98%E7%BC%BA%E7%82%B9">130</a></p>
+</li>
+<li><p><a href="#%E7%99%BE%E5%88%86%E6%AF%94%E5%B8%83%E5%B1%80">百分比布局</a> <a href="#%E7%99%BE%E5%88%86%E6%AF%94%E5%B8%83%E5%B1%80">131</a></p>
+</li>
+<li><p><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D-1px-%E7%9A%84%E9%97%AE%E9%A2%98">移动端适配 1px 的问题</a><br><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D-1px-%E7%9A%84%E9%97%AE%E9%A2%98">132</a></p>
+</li>
+<li><p><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C">移动端性能优化相关经验</a><br><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9B%B8%E5%85%B3%E7%BB%8F%E9%AA%8C">134</a></p>
+</li>
+<li><p><a href="#tob-%E5%92%8C-toc-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8C%BA%E5%88%AB">toB 和 toC 项目的区别</a><br><a href="#tob-%E5%92%8C-toc-%E9%A1%B9%E7%9B%AE%E7%9A%84%E5%8C%BA%E5%88%AB">134</a></p>
+</li>
+<li><p><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E5%AE%B9%E6%80%A7">移动端兼容性</a> <a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E5%85%BC%E5%AE%B9%E6%80%A7">134</a></p>
+</li>
+<li><p><a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F">小程序</a> <a href="#%E5%B0%8F%E7%A8%8B%E5%BA%8F">135</a></p>
+</li>
+<li><p><a href="#x-%E5%9B%BE-3x-%E5%9B%BE%E9%80%82%E9%85%8D">2X 图 3X 图适配</a> <a href="#x-%E5%9B%BE-3x-%E5%9B%BE%E9%80%82%E9%85%8D">135</a></p>
+</li>
+<li><p><a href="#%E5%9B%BE%E7%89%87%E5%9C%A8%E5%AE%89%E5%8D%93%E4%B8%8A%E6%9C%89%E4%BA%9B%E8%AE%BE%E5%A4%87%E6%A8%A1%E7%B3%8A%E9%97%AE%E9%A2%98">图片在安卓上，有些设备模糊问题</a><br><a href="#%E5%9B%BE%E7%89%87%E5%9C%A8%E5%AE%89%E5%8D%93%E4%B8%8A%E6%9C%89%E4%BA%9B%E8%AE%BE%E5%A4%87%E6%A8%A1%E7%B3%8A%E9%97%AE%E9%A2%98">136</a></p>
+</li>
+<li><p><a href="#%E5%9B%BA%E5%AE%9A%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80%E9%94%AE%E7%9B%98%E6%8C%A1%E4%BD%8F%E8%BE%93%E5%85%A5%E6%A1%86%E5%86%85%E5%AE%B9">固定定位布局键盘挡住输入框内容</a><br><a href="#%E5%9B%BA%E5%AE%9A%E5%AE%9A%E4%BD%8D%E5%B8%83%E5%B1%80%E9%94%AE%E7%9B%98%E6%8C%A1%E4%BD%8F%E8%BE%93%E5%85%A5%E6%A1%86%E5%86%85%E5%AE%B9">136</a></p>
+</li>
+<li><p><a href="#click-%E7%9A%84-300ms-%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98%E5%92%8C%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F%E9%97%AE%E9%A2%98">click 的 300ms<br>延迟问题和点击穿透问题</a><br><a href="#click-%E7%9A%84-300ms-%E5%BB%B6%E8%BF%9F%E9%97%AE%E9%A2%98%E5%92%8C%E7%82%B9%E5%87%BB%E7%A9%BF%E9%80%8F%E9%97%AE%E9%A2%98">136</a></p>
+</li>
+<li><p><a href="#phone-%E5%8F%8A-ipad-%E4%B8%8B%E8%BE%93%E5%85%A5%E6%A1%86%E9%BB%98%E8%AE%A4%E5%86%85%E9%98%B4%E5%BD%B1">phone 及 ipad<br>下输入框默认内阴影</a><br><a href="#phone-%E5%8F%8A-ipad-%E4%B8%8B%E8%BE%93%E5%85%A5%E6%A1%86%E9%BB%98%E8%AE%A4%E5%86%85%E9%98%B4%E5%BD%B1">137</a></p>
+</li>
+<li><p><a href="#%E9%98%B2%E6%AD%A2%E6%89%8B%E6%9C%BA%E4%B8%AD%E9%A1%B5%E9%9D%A2%E6%94%BE%E5%A4%A7%E5%92%8C%E7%BC%A9%E5%B0%8F">防止手机中页面放大和缩小</a><br><a href="#%E9%98%B2%E6%AD%A2%E6%89%8B%E6%9C%BA%E4%B8%AD%E9%A1%B5%E9%9D%A2%E6%94%BE%E5%A4%A7%E5%92%8C%E7%BC%A9%E5%B0%8F">137</a></p>
+</li>
+<li><p><a href="#pxemremvwvhvm-%E8%BF%99%E4%BA%9B%E5%8D%95%E4%BD%8D%E7%9A%84%E5%8C%BA%E5%88%AB">px、em、rem、%、vw、vh、vm<br>这些单位的区别</a><br><a href="#pxemremvwvhvm-%E8%BF%99%E4%BA%9B%E5%8D%95%E4%BD%8D%E7%9A%84%E5%8C%BA%E5%88%AB">138</a></p>
+</li>
+<li><p><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D--dpr-%E6%B5%85%E6%9E%90">移动端适配- dpr 浅析</a><br><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D--dpr-%E6%B5%85%E6%9E%90">138</a></p>
+</li>
+<li><p><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%A9%E5%B1%95%E7%82%B9%E5%87%BB%E5%8C%BA%E5%9F%9F">移动端扩展点击区域</a><br><a href="#%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%89%A9%E5%B1%95%E7%82%B9%E5%87%BB%E5%8C%BA%E5%9F%9F">138</a></p>
+</li>
+<li><p><a href="#%E4%B8%8A%E4%B8%8B%E6%8B%89%E5%8A%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%97%B6%E5%8D%A1%E9%A1%BF%E6%85%A2">上下拉动滚动条时卡顿、慢</a><br><a href="#%E4%B8%8A%E4%B8%8B%E6%8B%89%E5%8A%A8%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%97%B6%E5%8D%A1%E9%A1%BF%E6%85%A2">138</a></p>
+</li>
+<li><p><a href="#%E9%95%BF%E6%97%B6%E9%97%B4%E6%8C%89%E4%BD%8F%E9%A1%B5%E9%9D%A2%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80">长时间按住页面出现闪退</a><br><a href="#%E9%95%BF%E6%97%B6%E9%97%B4%E6%8C%89%E4%BD%8F%E9%A1%B5%E9%9D%A2%E5%87%BA%E7%8E%B0%E9%97%AA%E9%80%80">138</a></p>
+</li>
+<li><p><a href="#ios-%E5%92%8C-android-%E4%B8%8B%E8%A7%A6%E6%91%B8%E5%85%83%E7%B4%A0%E6%97%B6%E5%87%BA%E7%8E%B0%E5%8D%8A%E9%80%8F%E6%98%8E%E7%81%B0%E8%89%B2%E9%81%AE%E7%BD%A9">ios 和 android<br>下触摸元素时出现半透明灰色遮罩</a><br><a href="#ios-%E5%92%8C-android-%E4%B8%8B%E8%A7%A6%E6%91%B8%E5%85%83%E7%B4%A0%E6%97%B6%E5%87%BA%E7%8E%B0%E5%8D%8A%E9%80%8F%E6%98%8E%E7%81%B0%E8%89%B2%E9%81%AE%E7%BD%A9">139</a></p>
+</li>
+<li><p><a href="#active-%E5%85%BC%E5%AE%B9%E5%A4%84%E7%90%86-%E5%8D%B3-%E4%BC%AA%E7%B1%BBactive-%E5%A4%B1%E6%95%88">active 兼容处理 即 伪类：active<br>失效</a><br><a href="#active-%E5%85%BC%E5%AE%B9%E5%A4%84%E7%90%86-%E5%8D%B3-%E4%BC%AA%E7%B1%BBactive-%E5%A4%B1%E6%95%88">139</a></p>
+</li>
+<li><p><a href="#webkit-mask-%E5%85%BC%E5%AE%B9%E5%A4%84%E7%90%86">webkit mask 兼容处理</a><br><a href="#webkit-mask-%E5%85%BC%E5%AE%B9%E5%A4%84%E7%90%86">139</a></p>
+</li>
+<li><p><a href="#transiton-%E9%97%AA%E5%B1%8F">transiton 闪屏</a> <a href="#transiton-%E9%97%AA%E5%B1%8F">140</a></p>
+</li>
+<li><p><a href="#%E5%9C%86%E8%A7%92-bug">圆角 bug</a> <a href="#%E5%9C%86%E8%A7%92-bug">140</a></p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- --&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li><p><a href="#%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6">| 前端进阶</a> <a href="#%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6">141</a></p>
+<ol>
+<li><p><a href="#%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96">| 前端工程化</a> <a href="#%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96">141</a></p>
+<ul>
+<li><p><a href="#babel-%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88">Babel 的原理是什么?</a><br><a href="#babel-%E7%9A%84%E5%8E%9F%E7%90%86%E6%98%AF%E4%BB%80%E4%B9%88">141</a></p>
+</li>
+<li><p><a href="#%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA-babel-%E6%8F%92%E4%BB%B6">如何写一个 babel 插件?</a><br><a href="#%E5%A6%82%E4%BD%95%E5%86%99%E4%B8%80%E4%B8%AA-babel-%E6%8F%92%E4%BB%B6">141</a></p>
+</li>
+<li><p><a href="#%E4%BD%A0%E7%9A%84-git-%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84">你的 git 工作流是怎样的?</a><br><a href="#%E4%BD%A0%E7%9A%84-git-%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%98%AF%E6%80%8E%E6%A0%B7%E7%9A%84">145</a></p>
+</li>
+<li><p><a href="#rebase-%E4%B8%8E-merge-%E7%9A%84%E5%8C%BA%E5%88%AB">rebase 与 merge 的区别?</a><br><a href="#rebase-%E4%B8%8E-merge-%E7%9A%84%E5%8C%BA%E5%88%AB">150</a></p>
+</li>
+<li><p><a href="#git-resetgit-revert-%E5%92%8C-git-checkout-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">git reset、git revert 和 git checkout<br>有什么区别</a><br><a href="#git-resetgit-revert-%E5%92%8C-git-checkout-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">151</a></p>
+</li>
+<li><p><a href="#webpack-%E5%92%8C-gulp-%E5%8C%BA%E5%88%AB%E6%A8%A1%E5%9D%97%E5%8C%96%E4%B8%8E%E6%B5%81%E7%9A%84%E5%8C%BA%E5%88%AB">webpack 和 gulp<br>区别（模块化与流的区别）</a><br><a href="#webpack-%E5%92%8C-gulp-%E5%8C%BA%E5%88%AB%E6%A8%A1%E5%9D%97%E5%8C%96%E4%B8%8E%E6%B5%81%E7%9A%84%E5%8C%BA%E5%88%AB">153</a></p>
+</li>
+</ul>
+</li>
+<li><p><a href="#vue-%E6%A1%86%E6%9E%B6">| Vue 框架</a> <a href="#vue-%E6%A1%86%E6%9E%B6">153</a></p>
+<ul>
+<li><p><a href="#%E6%9C%89%E4%BD%BF%E7%94%A8%E8%BF%87-vue-%E5%90%97%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-vue-%E7%9A%84%E7%90%86%E8%A7%A3">有使用过 Vue 吗？说说你对 Vue<br>的理解</a><br><a href="#%E6%9C%89%E4%BD%BF%E7%94%A8%E8%BF%87-vue-%E5%90%97%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-vue-%E7%9A%84%E7%90%86%E8%A7%A3">153</a></p>
+</li>
+<li><p><a href="#%E8%AF%B4%E8%AF%B4-vue-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9">说说 Vue 的优缺点</a><br><a href="#%E8%AF%B4%E8%AF%B4-vue-%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9">153</a></p>
+</li>
+<li><p><a href="#vue-%E5%92%8C-react-%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">Vue 和 React<br>有什么不同？使用场景分别是什么？</a><br><a href="#vue-%E5%92%8C-react-%E6%9C%89%E4%BB%80%E4%B9%88%E4%B8%8D%E5%90%8C%E4%BD%BF%E7%94%A8%E5%9C%BA%E6%99%AF%E5%88%86%E5%88%AB%E6%98%AF%E4%BB%80%E4%B9%88">154</a></p>
+</li>
+<li><p><a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F-dom">什么是虚拟 DOM？</a> <a href="#%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9F-dom">154</a></p>
+</li>
+<li><p><a href="#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%B8%8B-vue-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%98%AF%E4%BB%80%E4%B9%88">请描述下 vue<br>的生命周期是什么？</a><br><a href="#%E8%AF%B7%E6%8F%8F%E8%BF%B0%E4%B8%8B-vue-%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E6%98%AF%E4%BB%80%E4%B9%88">154</a></p>
+</li>
+<li><p><a href="#vue-%E5%A6%82%E4%BD%95%E7%9B%91%E5%90%AC%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6">vue 如何监听键盘事件？</a><br><a href="#vue-%E5%A6%82%E4%BD%95%E7%9B%91%E5%90%AC%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6">157</a></p>
+</li>
+<li><p><a href="#watch-%E6%80%8E%E4%B9%88%E6%B7%B1%E5%BA%A6%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%8F%98%E5%8C%96">watch 怎么深度监听对象变化</a><br><a href="#watch-%E6%80%8E%E4%B9%88%E6%B7%B1%E5%BA%A6%E7%9B%91%E5%90%AC%E5%AF%B9%E8%B1%A1%E5%8F%98%E5%8C%96">158</a></p>
+</li>
+<li><p><a href="#%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E7%94%A8-delete-%E5%92%8C-vue.delete-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">删除数组用 delete 和 Vue.delete<br>有什么区别？</a><br><a href="#%E5%88%A0%E9%99%A4%E6%95%B0%E7%BB%84%E7%94%A8-delete-%E5%92%8C-vue.delete-%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">158</a></p>
+</li>
+<li><p><a href="#watch-%E5%92%8C%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">watch 和计算属性有什么区别？</a><br><a href="#watch-%E5%92%8C%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB">158</a></p>
+</li>
+<li><p><a href="#vue-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86">Vue 双向绑定原理</a><br><a href="#vue-%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86">159</a></p>
+</li>
+<li><p><a href="#v-model-%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%E5%91%A2">v-model 是什么？有什么用呢？</a><br><a href="#v-model-%E6%98%AF%E4%BB%80%E4%B9%88%E6%9C%89%E4%BB%80%E4%B9%88%E7%94%A8%E5%91%A2">159</a></p>
+</li>
+<li><p><a href="#axios-%E6%98%AF%E4%BB%80%E4%B9%88%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8%E5%AE%83%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E7%9A%84%E9%97%AE%E9%A2%98">axios<br>是什么？怎样使用它？怎么解决跨域的问题？</a><br><a href="#axios-%E6%98%AF%E4%BB%80%E4%B9%88%E6%80%8E%E6%A0%B7%E4%BD%BF%E7%94%A8%E5%AE%83%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E7%9A%84%E9%97%AE%E9%A2%98">159</a></p>
+</li>
+<li><p><a href="#%E5%9C%A8-vue-%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%A6%82%E4%BD%95%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E6%AF%94%E5%A6%82-jquery%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%88%B0">在 vue 项目中如何引入第三方库（比如<br>jQuery）？有哪些方法可以做到？</a></p>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<p><a href="#%E5%9C%A8-vue-%E9%A1%B9%E7%9B%AE%E4%B8%AD%E5%A6%82%E4%BD%95%E5%BC%95%E5%85%A5%E7%AC%AC%E4%B8%89%E6%96%B9%E5%BA%93%E6%AF%94%E5%A6%82-jquery%E6%9C%89%E5%93%AA%E4%BA%9B%E6%96%B9%E6%B3%95%E5%8F%AF%E4%BB%A5%E5%81%9A%E5%88%B0">159</a></p>
+<ul>
+<li><p><a href="#%E8%AF%B4%E8%AF%B4-vue-react-angularjs-jquery-%E7%9A%84%E5%8C%BA%E5%88%AB">说说 Vue React angularjs jquery<br>的区别</a><br><a href="#%E8%AF%B4%E8%AF%B4-vue-react-angularjs-jquery-%E7%9A%84%E5%8C%BA%E5%88%AB">160</a></p>
+</li>
+<li><p><a href="#vue3.0-%E9%87%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-proxy-api-%E6%9B%BF%E4%BB%A3-defineproperty-api%E5%8F%82%E8%80%83%E5%9B%9E%E7%AD%94">Vue3.0 里为什么要用 Proxy API 替代 defineProperty<br>API？</a><br><a href="#vue3.0-%E9%87%8C%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E7%94%A8-proxy-api-%E6%9B%BF%E4%BB%A3-defineproperty-api%E5%8F%82%E8%80%83%E5%9B%9E%E7%AD%94">160</a></p>
+</li>
+<li><p><a href="#_bookmark334">Vue3.0 编译做了哪些优化？ 160</a></p>
+</li>
+<li><p><a href="#_bookmark335">Vue3.0 新特性 —— Composition API 与 React.js 中<br>Hooks</a> <a href="#_bookmark335">的异同点</a></p>
+</li>
+</ul>
+<p><a href="#_bookmark335">161</a></p>
+<ul>
+<li><p><a href="#vue3.0-%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E5%BE%97%E6%9B%B4%E5%BF%AB%E7%9A%84%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81">Vue3.0<br>是如何变得更快的？（底层，源码）</a><br><a href="#vue3.0-%E6%98%AF%E5%A6%82%E4%BD%95%E5%8F%98%E5%BE%97%E6%9B%B4%E5%BF%AB%E7%9A%84%E5%BA%95%E5%B1%82%E6%BA%90%E7%A0%81">163</a></p>
+</li>
+<li><p><a href="#vue-%E8%A6%81%E5%81%9A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A%E5%A6%82%E6%9E%9C%E6%8E%A7%E5%88%B6%E5%88%B0%E6%8C%89%E9%92%AE%E7%BA%A7%E5%88%AB%E7%9A%84%E6%9D%83%E9%99%90%E6%80%8E%E4%B9%88%E5%81%9A">vue<br>要做权限管理该怎么做？如果控制到按钮级别的权限怎么做？</a><br><a href="#vue-%E8%A6%81%E5%81%9A%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%E8%AF%A5%E6%80%8E%E4%B9%88%E5%81%9A%E5%A6%82%E6%9E%9C%E6%8E%A7%E5%88%B6%E5%88%B0%E6%8C%89%E9%92%AE%E7%BA%A7%E5%88%AB%E7%9A%84%E6%9D%83%E9%99%90%E6%80%8E%E4%B9%88%E5%81%9A">164</a></p>
+</li>
+<li><p><a href="#vue-%E5%9C%A8-created-%E5%92%8C-mounted-%E8%BF%99%E4%B8%A4%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%91%A2">vue 在 created 和<br>mounted</a><br><a href="#vue-%E5%9C%A8-created-%E5%92%8C-mounted-%E8%BF%99%E4%B8%A4%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%91%A2">这两个生命周期中请求数据有什么区别呢？</a></p>
+</li>
+</ul>
+<p><a href="#vue-%E5%9C%A8-created-%E5%92%8C-mounted-%E8%BF%99%E4%B8%A4%E4%B8%AA%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%95%B0%E6%8D%AE%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%E5%91%A2">164</a></p>
+<ul>
+<li><a href="#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-proxy-%E7%9A%84%E7%90%86%E8%A7%A3">说说你对 proxy 的理解</a><br><a href="#%E8%AF%B4%E8%AF%B4%E4%BD%A0%E5%AF%B9-proxy-%E7%9A%84%E7%90%86%E8%A7%A3">164</a></li>
+</ul>
+<ol start="3">
+<li><p><a href="#react-%E6%A1%86%E6%9E%B6">| React 框架</a> <a href="#react-%E6%A1%86%E6%9E%B6">165</a></p>
+<ul>
+<li><p><a href="#angularjs-%E5%92%8C-react-%E5%8C%BA%E5%88%AB">angularJs 和 React 区别</a><br><a href="#angularjs-%E5%92%8C-react-%E5%8C%BA%E5%88%AB">165</a></p>
+</li>
+<li><p><a href="#redux-%E4%B8%AD%E9%97%B4%E4%BB%B6">redux 中间件</a> <a href="#redux-%E4%B8%AD%E9%97%B4%E4%BB%B6">165</a></p>
+</li>
+<li><p><a href="#redux-%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9">redux 有什么缺点</a> <a href="#redux-%E6%9C%89%E4%BB%80%E4%B9%88%E7%BC%BA%E7%82%B9">165</a></p>
+</li>
+<li><p><a href="#react-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%92%E5%88%86%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E6%8A%80%E6%9C%AF%E7%BB%84%E4%BB%B6">React<br>组件的划分业务组件技术组件？</a><br><a href="#react-%E7%BB%84%E4%BB%B6%E7%9A%84%E5%88%92%E5%88%86%E4%B8%9A%E5%8A%A1%E7%BB%84%E4%BB%B6%E6%8A%80%E6%9C%AF%E7%BB%84%E4%BB%B6">165</a></p>
+</li>
+<li><p><a href="#react-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0">React 生命周期函数</a><br><a href="#react-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0">165</a></p>
+</li>
+<li><p><a href="#react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%98%AF%E5%93%AA%E4%B8%AA%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0">React 性能优化是哪个周期函数？</a><br><a href="#react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%98%AF%E5%93%AA%E4%B8%AA%E5%91%A8%E6%9C%9F%E5%87%BD%E6%95%B0">166</a></p>
+</li>
+<li><p><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%99%9A%E6%8B%9F-dom-%E4%BC%9A%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD">为什么虚拟 dom 会提高性能?</a><br><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%99%9A%E6%8B%9F-dom-%E4%BC%9A%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD">166</a></p>
+</li>
+<li><p><a href="#diff-%E7%AE%97%E6%B3%95">diff 算法?</a> <a href="#diff-%E7%AE%97%E6%B3%95">167</a></p>
+</li>
+<li><p><a href="#react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88">React 性能优化方案</a><br><a href="#react-%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88">167</a></p>
+</li>
+<li><p><a href="#%E7%AE%80%E8%BF%B0-flux-%E6%80%9D%E6%83%B3">简述 flux 思想</a> <a href="#%E7%AE%80%E8%BF%B0-flux-%E6%80%9D%E6%83%B3">167</a></p>
+</li>
+<li><p><a href="#react-%E9%A1%B9%E7%9B%AE%E7%94%A8%E8%BF%87%E4%BB%80%E4%B9%88%E8%84%9A%E6%89%8B%E6%9E%B6mern-yeoman">React 项目用过什么脚手架？Mern?<br>Yeoman?</a><br><a href="#react-%E9%A1%B9%E7%9B%AE%E7%94%A8%E8%BF%87%E4%BB%80%E4%B9%88%E8%84%9A%E6%89%8B%E6%9E%B6mern-yeoman">168</a></p>
+</li>
+<li><p><a href="#%E4%BD%A0%E4%BA%86%E8%A7%A3-react-%E5%90%97">你了解 React 吗？</a> <a href="#%E4%BD%A0%E4%BA%86%E8%A7%A3-react-%E5%90%97">168</a></p>
+</li>
+<li><p><a href="#react-%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">React 解决了什么问题？</a><br><a href="#react-%E8%A7%A3%E5%86%B3%E4%BA%86%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98">168</a></p>
+</li>
+<li><p><a href="#react-%E7%9A%84%E5%8D%8F%E8%AE%AE">React 的协议？</a> <a href="#react-%E7%9A%84%E5%8D%8F%E8%AE%AE">168</a></p>
+</li>
+<li><p><a href="#%E4%BA%86%E8%A7%A3-shouldcomponentupdate-%E5%90%97">了解 shouldComponentUpdate<br>吗？</a><br><a href="#%E4%BA%86%E8%A7%A3-shouldcomponentupdate-%E5%90%97">168</a></p>
+</li>
+<li><p><a href="#react-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">React 的工作原理？</a> <a href="#react-%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86">168</a></p>
+</li>
+<li><p><a href="#%E4%BD%BF%E7%94%A8-react-%E6%9C%89%E4%BD%95%E4%BC%98%E7%82%B9">使用 React 有何优点？</a><br><a href="#%E4%BD%BF%E7%94%A8-react-%E6%9C%89%E4%BD%95%E4%BC%98%E7%82%B9">169</a></p>
+</li>
+<li><p><a href="#%E5%B1%95%E7%A4%BA%E7%BB%84%E4%BB%B6presentational-component%E5%92%8C%E5%AE%B9%E5%99%A8%E7%BB%84%E4%BB%B6container-component%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">展 示 组 件 (Presentational component) 和 容 器 组<br>件</a><br><a href="#%E5%B1%95%E7%A4%BA%E7%BB%84%E4%BB%B6presentational-component%E5%92%8C%E5%AE%B9%E5%99%A8%E7%BB%84%E4%BB%B6container-component%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">(Container</a><br><a href="#%E5%B1%95%E7%A4%BA%E7%BB%84%E4%BB%B6presentational-component%E5%92%8C%E5%AE%B9%E5%99%A8%E7%BB%84%E4%BB%B6container-component%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">component)之间有何不同？</a><br><a href="#%E5%B1%95%E7%A4%BA%E7%BB%84%E4%BB%B6presentational-component%E5%92%8C%E5%AE%B9%E5%99%A8%E7%BB%84%E4%BB%B6container-component%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">169</a></p>
+</li>
+<li><p><a href="#%E7%B1%BB%E7%BB%84%E4%BB%B6class-component%E5%92%8C%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6functional-component%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">类组件(Class component)和函数式组件(Functional<br>component)之间有何不同？</a><br><a href="#%E7%B1%BB%E7%BB%84%E4%BB%B6class-component%E5%92%8C%E5%87%BD%E6%95%B0%E5%BC%8F%E7%BB%84%E4%BB%B6functional-component%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">169</a></p>
+</li>
+<li><p><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81state%E5%92%8C%E5%B1%9E%E6%80%A7props%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">(组件的)状态(state)和属性(props)之间有何不同？</a><br><a href="#%E7%BB%84%E4%BB%B6%E7%9A%84%E7%8A%B6%E6%80%81state%E5%92%8C%E5%B1%9E%E6%80%A7props%E4%B9%8B%E9%97%B4%E6%9C%89%E4%BD%95%E4%B8%8D%E5%90%8C">170</a></p>
+</li>
+<li><p><a href="#%E5%BA%94%E8%AF%A5%E5%9C%A8-react-%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%95%E5%A4%84%E5%8F%91%E8%B5%B7-ajax-%E8%AF%B7%E6%B1%82">应该在 React 组件的何处发起 Ajax<br>请求？</a><br><a href="#%E5%BA%94%E8%AF%A5%E5%9C%A8-react-%E7%BB%84%E4%BB%B6%E7%9A%84%E4%BD%95%E5%A4%84%E5%8F%91%E8%B5%B7-ajax-%E8%AF%B7%E6%B1%82">170</a></p>
+</li>
+<li><p><a href="#%E5%9C%A8-react-%E4%B8%ADrefs-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88">在 React 中，refs<br>的作用是什么？</a><br><a href="#%E5%9C%A8-react-%E4%B8%ADrefs-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88">170</a></p>
+</li>
+<li><p><a href="#%E4%BD%95%E4%B8%BA%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6higher-order-component">何为高阶组件(higher order<br>component)？</a><br><a href="#%E4%BD%95%E4%B8%BA%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6higher-order-component">170</a></p>
+</li>
+<li><p><a href="#%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0arrow-functions%E7%9A%84%E4%BC%98%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88">使用箭头函数(arrow<br>functions)的优点是什么？</a><br><a href="#%E4%BD%BF%E7%94%A8%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0arrow-functions%E7%9A%84%E4%BC%98%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88">170</a></p>
+</li>
+<li><p><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%AE%AE%E4%BC%A0%E9%80%92%E7%BB%99-setstate-%E7%9A%84%E5%8F%82%E6%95%B0%E6%98%AF%E4%B8%80%E4%B8%AA-callback-%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1">为什么建议传递给 setState 的参数是一个<br>callback</a><br><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%AE%AE%E4%BC%A0%E9%80%92%E7%BB%99-setstate-%E7%9A%84%E5%8F%82%E6%95%B0%E6%98%AF%E4%B8%80%E4%B8%AA-callback-%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1">而不是一个对象？</a></p>
+</li>
+</ul>
+</li>
+</ol>
+<p><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E5%BB%BA%E8%AE%AE%E4%BC%A0%E9%80%92%E7%BB%99-setstate-%E7%9A%84%E5%8F%82%E6%95%B0%E6%98%AF%E4%B8%80%E4%B8%AA-callback-%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1">171</a></p>
+<ul>
+<li><p><a href="#%E9%99%A4%E4%BA%86%E5%9C%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E7%BB%91%E5%AE%9A-this%E8%BF%98%E6%9C%89%E5%85%B6%E5%AE%83%E6%96%B9%E5%BC%8F%E5%90%97">除了在构造函数中绑定<br>this，还有其它方式吗？</a><br><a href="#%E9%99%A4%E4%BA%86%E5%9C%A8%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E4%B8%AD%E7%BB%91%E5%AE%9A-this%E8%BF%98%E6%9C%89%E5%85%B6%E5%AE%83%E6%96%B9%E5%BC%8F%E5%90%97">171</a></p>
+</li>
+<li><p><a href="#%E6%80%8E%E4%B9%88%E9%98%BB%E6%AD%A2%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B8%B2%E6%9F%93">怎么阻止组件的渲染？</a><br><a href="#%E6%80%8E%E4%B9%88%E9%98%BB%E6%AD%A2%E7%BB%84%E4%BB%B6%E7%9A%84%E6%B8%B2%E6%9F%93">171</a></p>
+</li>
+<li><p><a href="#%E5%BD%93%E6%B8%B2%E6%9F%93%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E6%97%B6%E4%BD%95%E4%B8%BA-key%E8%AE%BE%E7%BD%AE-key-%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88">当渲染一个列表时，何为 key？设置 key<br>的目的是什么？</a><br><a href="#%E5%BD%93%E6%B8%B2%E6%9F%93%E4%B8%80%E4%B8%AA%E5%88%97%E8%A1%A8%E6%97%B6%E4%BD%95%E4%B8%BA-key%E8%AE%BE%E7%BD%AE-key-%E7%9A%84%E7%9B%AE%E7%9A%84%E6%98%AF%E4%BB%80%E4%B9%88">171</a></p>
+</li>
+<li><p><a href="#%E4%BD%95%E4%B8%BA-jsx">何为 JSX ？</a> <a href="#%E4%BD%95%E4%B8%BA-jsx">172</a></p>
+</li>
+</ul>
+<ol start="4">
+<li><p><a href="#angular-%E6%A1%86%E6%9E%B6">| Angular 框架</a> <a href="#angular-%E6%A1%86%E6%9E%B6">172</a></p>
+<ul>
+<li><p><a href="#_bookmark371">Angular 中组件之间通信的方式</a><br><a href="#_bookmark371">172</a></p>
+</li>
+<li><p><a href="#_bookmark372">Angualr 的八大组成部分并简单描述</a><br><a href="#_bookmark372">172</a></p>
+</li>
+<li><p><a href="#_bookmark373">Angular 中常见的生命周期的钩子函数?</a><br><a href="#_bookmark373">173</a></p>
+</li>
+<li><p><a href="#_bookmark374">Angular 中路由的工作原理</a> <a href="#_bookmark374">173</a></p>
+</li>
+<li><p><a href="#_bookmark375">解释 rjx 在 Angular 中的使用场景</a><br><a href="#_bookmark375">173</a></p>
+</li>
+</ul>
+</li>
+</ol>
+<h1 id="前端基础"><a href="#前端基础" class="headerlink" title="| 前端基础"></a>| 前端基础</h1><h2 id="HTTP-HTML-浏览器"><a href="#HTTP-HTML-浏览器" class="headerlink" title="| HTTP&#x2F;HTML&#x2F;浏览器"></a>| HTTP&#x2F;HTML&#x2F;浏览器</h2><h3 id="说一下-http-和-https"><a href="#说一下-http-和-https" class="headerlink" title="说一下 http 和 https"></a>说一下 http 和 https</h3><h4 id="参考回答："><a href="#参考回答：" class="headerlink" title="参考回答："></a>参考回答：</h4>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-2022/" title="2022最新" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/面试题-2022/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFJS%E5%B7%A5%E5%85%B7%E5%BA%93-%E6%80%BB%E7%BB%93/" title="Js工具库"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-hello-world/" title="Hello World"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>高频面试题2 | Hexo</title>
+  <meta name="description" content="1、浏览器安全xss 攻击：XSS 攻击是指黑客往 HTML 文件中或者 DOM 中注入恶意脚本，从而在用户浏览页面时利用注入的恶意脚本对用户实施攻击的一种手段，获取用户敏感信息。 存储型 XSS 攻击 存储型 XSS 攻击大致需要经过如下步骤： 1 首先黑客利用站点漏洞将一段恶意 JavaScript 代码提交到网站的数据库中； 2 然后用户向网站请求包含了恶意 JavaScript 脚本的页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高频面试题2">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%A7%8B%E6%8B%9B%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="1、浏览器安全xss 攻击：XSS 攻击是指黑客往 HTML 文件中或者 DOM 中注入恶意脚本，从而在用户浏览页面时利用注入的恶意脚本对用户实施攻击的一种手段，获取用户敏感信息。 存储型 XSS 攻击 存储型 XSS 攻击大致需要经过如下步骤： 1 首先黑客利用站点漏洞将一段恶意 JavaScript 代码提交到网站的数据库中； 2 然后用户向网站请求包含了恶意 JavaScript 脚本的页面">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="d:%5C%25E6%25A1%258C%25E9%259D%25A2%5C%25E7%25AE%2580%25E5%258E%2586%5C%25E7%25A7%258B%25E6%258B%259B%5Cupload%5Cimage-20220920115832906.png">
+<meta property="og:image" content="d:%5C%25E6%25A1%258C%25E9%259D%25A2%5C%25E7%25AE%2580%25E5%258E%2586%5C%25E7%25A7%258B%25E6%258B%259B%5Cupload%5Cimage-20220916153734858.png">
+<meta property="og:image" content="d:%5C%25E6%25A1%258C%25E9%259D%25A2%5C%25E7%25AE%2580%25E5%258E%2586%5C%25E7%25A7%258B%25E6%258B%259B%5Cupload%5Cimage-20220916154648309.png">
+<meta property="og:image" content="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210091945665.png">
+<meta property="og:image" content="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210141517905.png">
+<meta property="og:image" content="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210141521893.png">
+<meta property="og:image" content="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210181957359.png">
+<meta property="og:image" content="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210191100632.png">
+<meta property="og:image" content="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210231655890.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-10T02:55:34.297Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="面试">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="d:%5C%25E6%25A1%258C%25E9%259D%25A2%5C%25E7%25AE%2580%25E5%258E%2586%5C%25E7%25A7%258B%25E6%258B%259B%5Cupload%5Cimage-20220920115832906.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%A7%8B%E6%8B%9B%E6%80%BB%E7%BB%93/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-面试题-秋招总结" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      高频面试题2
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%A7%8B%E6%8B%9B%E6%80%BB%E7%BB%93/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%A7%8B%E6%8B%9B%E6%80%BB%E7%BB%93/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h3 id="1、浏览器安全"><a href="#1、浏览器安全" class="headerlink" title="1、浏览器安全"></a><a href="#1%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E5%AE%89%E5%85%A8" title="1、浏览器安全"></a>1、浏览器安全</h3><p>xss 攻击：XSS 攻击是指黑客往 HTML 文件中或者 DOM 中注入恶意脚本，从而在用户浏览页面时利用注入的恶意脚本对用户实施攻击的一种手段，获取用户敏感信息。</p>
+<h4 id="存储型-XSS-攻击"><a href="#存储型-XSS-攻击" class="headerlink" title="存储型 XSS 攻击"></a><a href="#%E5%AD%98%E5%82%A8%E5%9E%8B-XSS-%E6%94%BB%E5%87%BB" title="存储型 XSS 攻击"></a>存储型 XSS 攻击</h4><ul>
+<li>存储型 XSS 攻击大致需要经过如下步骤：</li>
+<li>1 首先黑客利用站点漏洞将一段恶意 JavaScript 代码提交到网站的数据库中；</li>
+<li>2 然后用户向网站请求包含了恶意 JavaScript 脚本的页面；</li>
+<li>3 当用户浏览该页面的时候，恶意脚本就会将用户的 Cookie 信息等数据上传到服务器。</li>
+<li>存储在数据库中</li>
+</ul>
+<h4 id="反射型-XSS-攻击"><a href="#反射型-XSS-攻击" class="headerlink" title="反射型 XSS 攻击"></a><a href="#%E5%8F%8D%E5%B0%84%E5%9E%8B-XSS-%E6%94%BB%E5%87%BB" title="反射型 XSS 攻击"></a>反射型 XSS 攻击</h4><ul>
+<li>攻击者构造出特殊的 url,其中包恶意代码，用户打开带有恶意代码的 url 时，向网站发起请求，随后网站又把恶意 js 脚本返回给用户，当恶意 JavaScript 脚本在用户页面中被执行时，黑客就可以利用该脚本做一些恶意操作。</li>
+<li>反射型 xss 攻击存储在 rul 中</li>
+</ul>
+<h4 id="基于-DOM-的-XSS-攻击"><a href="#基于-DOM-的-XSS-攻击" class="headerlink" title="基于 DOM 的 XSS 攻击"></a><a href="#%E5%9F%BA%E4%BA%8E-DOM-%E7%9A%84-XSS-%E6%94%BB%E5%87%BB" title="基于 DOM 的 XSS 攻击"></a>基于 DOM 的 XSS 攻击</h4><p>黑客通过各种手段将恶意脚本注入用户的页面中，比如通过网络劫持在页面传输过程中修改 HTML 页面的内容，这种劫持类型很多，有通过 WiFi 路由器劫持的，有通过本地恶意软件来劫持的，它们的共同点是在 Web 资源传输过程或者在用户使用页面的过程中修改 Web 页面的数据。</p>
+<h4 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a><a href="#%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95" title="解决办法"></a>解决办法</h4><ul>
+<li><p>不要相信用户的任何输入，<code>对用户输入内容进行检查、过滤和转义</code>。</p>
+</li>
+<li><p>HttpOnly HttpOnly 是服务器通过 HTTP 响应头来设置的，<code>使用 HttpOnly 标记的 Cookie 只能使用在 HTTP 请求过程中</code>，所以无法通过 JavaScript 来读取这段 Cookie。</p>
+</li>
+<li><p>secure,不是 https 请求无法携带 cookie。</p>
+</li>
+<li><p>可以采用 https 协议实现加密通信，避免页面资源的截取和篡改，有效避免 DOM 的 XSS 攻击。</p>
+</li>
+</ul>
+<h4 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a><a href="#CSRF" title="CSRF"></a>CSRF</h4><p>CSRF 攻击是攻击者借助受害者的 Cookie 骗取服务器的信任，可以在受害者毫不知情的情况下以受害者名义伪造请求发送给受攻击服务器，从而在并未授权的情况下执行在权限保护之下的操作。</p>
+<ul>
+<li>同源监测</li>
+<li><code>CSRF Token</code>: 需要服务端生成一个 Token，然后放在页面中，页面提交请求的时候，带上这个 Token。服务端把 Token 从 Session 中拿出，与请求中的 Token 进行比对验证。</li>
+<li>设置 SameSite：设置 Cookie 的 SameSite，可以让 Cookie 不随跨站请求发出。</li>
+</ul>
+<p>发起 csrf 攻击的方式</p>
+<p>get 请求的 csrf 攻击，接触 img 标签，在 img 标签中的 src 设置请求</p>
+<p>post 请求的 csrf 攻击，采用 onload 实现隐藏的表单提交</p>
+<p>使用 GET 请求时，攻击者只需让受害者访问一个带有所有必要信息的 URL。而使用 POST 请求时，必须将请求体附加到请求中。不过攻击者可以设计一个带有 JavaScript 的网站，只要加载该网页就使用户浏览器发送未经授权的 POST 请求。</p>
+<h3 id="2、浏览器的垃圾回收机制"><a href="#2、浏览器的垃圾回收机制" class="headerlink" title="2、浏览器的垃圾回收机制"></a><a href="#2%E3%80%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6" title="2、浏览器的垃圾回收机制"></a>2、浏览器的垃圾回收机制</h3><p>垃圾回收器的原理：垃圾回收器会在固定时间，周期性的检查程序中不在使用的变量释放其内存。</p>
+<p>什么内存泄漏？：由于疏忽和错误导致程序中不在使用的变量无法释放造成不必要的内存占用，进而造成系统崩溃。</p>
+<p>什么是不在使用的变量？：不再使用的变量是指生命周期结束的变量属于局部变量，局部变量只在函数运行时才会出现，当函数运行结束，没有其他引用，该变量会被标记清除。</p>
+<p>垃圾回收器常用的清除方法：标记清除，引用计数</p>
+<blockquote>
+<p>标记清除</p>
+</blockquote>
+<p>标记清除的策略：当变量进入环境时，标记为进入环境，当变量离开环境时标记为离开环境，标记为离开环境的就会被回收内存</p>
+<p>工作流程：</p>
+<ol>
+<li>垃圾收集器会在运行的时候会给存储在内存中的<strong>所有变量都加上标记</strong>。</li>
+<li><strong>去掉环境中的变量</strong>以及被环境中的变量引用的变量的标记。</li>
+<li>那些<strong>还存在标记的变量被视为准备删除的变量</strong>。</li>
+<li>最后垃圾收集器会执行最后一步内存清除的工作，<strong>销毁那些带标记的值并回收它们所占用的内存空间</strong>。</li>
+</ol>
+<p>缺点：</p>
+<p>标记回收存在的问题：效率问题：标记清除存在两个动作，标记和清除会随着对象的增加执行效率会降低。空间碎片的问题：标记清除后会产生大量的空间碎片，空间碎片太多会导致程序运行过程中需要分配大对象时找不到足够的空间，进而提前触发另一次垃圾回收</p>
+<p>优点：实现简单</p>
+<blockquote>
+<p>引用计数</p>
+</blockquote>
+<p>跟踪计数每个值的引用</p>
+<p>引用计数算法的优点，相比标记清除，首先引用计数在引用值为 0 时，也就是在变成垃圾的那一刻就会被回收，所以它可以立即回收垃圾，而标记清除算法需要每隔一段时间进行一次，那在应用程序（JS 脚本）运行过程中线程就必须要暂停去执行一段时间的垃圾回收。标记清除算法需要遍历堆里的活动以及非活动对象来清除，而引用计数则只需要在引用时计数就可以了</p>
+<p>缺点：需要一个计数器，需要占用内存，同时无法解决循环引用变量内存的释放</p>
+<blockquote>
+<p>V8 对垃圾回收的优化</p>
+</blockquote>
+<p>V8 的垃圾回收策略主要基于分代式垃圾回收机制，V8 中将堆内存分为新生代和老生代两区域，采用不同的垃圾回收器也就是不同的策略管理垃圾回收，将堆内存拆分成两个部分，分别是新生代和老生代</p>
+<p>新生代存放新小存活时间短的对象采用 Scavenge 算法进行垃圾回收，通常的存储空间为 1-8M，将新生代区划分为两部分，使用区和空闲区。将新创建的对象会存储在使用区中，当使用区写满时，会触发一次垃圾回收，遍历使用区的内存并将活动中的对象进行标记，标记完成将活动区的对象复制到空闲区并进行排序，随后进入垃圾回收清除非活动中的对象占用的内存，最后进行使用区和空闲区的身份互换。对象经过多次复制后依然存活，会将其移动到老生代区，采用老生代的回收机制，采用的就是标记清除</p>
+<p><img src="d:%5C%25E6%25A1%258C%25E9%259D%25A2%5C%25E7%25AE%2580%25E5%258E%2586%5C%25E7%25A7%258B%25E6%258B%259B%5Cupload%5Cimage-20220920115832906.png" alt="image-20220920115832906"></p>
+<h3 id="3、typeof-原理"><a href="#3、typeof-原理" class="headerlink" title="3、typeof 原理"></a><a href="#3%E3%80%81typeof%E5%8E%9F%E7%90%86" title="3、typeof原理"></a>3、typeof 原理</h3><p>js 底层将三位二进制数表示数据类型。</p>
+<ul>
+<li>000：对象</li>
+<li>010：浮点数</li>
+<li>100：字符串</li>
+<li>110：布尔</li>
+<li>1：整数</li>
+</ul>
+<p>对象前三位是 000，null 全部是零因此利用 typeof 是被判别为 object</p>
+<p><code>null</code>：所有机器码均为 0</p>
+<p><code>undefined</code>：用 −2^30 整数来表示</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">typeof "hello" // "string"</span><br><span class="line">typeof 123 // "number"</span><br><span class="line">typeof true // "boolean"</span><br><span class="line">typeof {} // "object"</span><br><span class="line">typeof [] // "object"</span><br><span class="line">typeof null // "object"</span><br><span class="line">typeof undefined // "undefined"</span><br><span class="line">typeof function() {} // "function"</span><br></pre></td></tr></tbody></table>
+
+<p>需要注意的是，<code>typeof null</code> 的结果是 “object”，这是一个历史遗留问题，因为在 JavaScript 的早期版本中，<code>null</code> 被错误地认为是一个对象。</p>
+<h3 id="4、Commonjs-和-ES6-区别"><a href="#4、Commonjs-和-ES6-区别" class="headerlink" title="4、Commonjs 和 ES6 区别"></a><a href="#4%E3%80%81Commonjs%E5%92%8CES6%E5%8C%BA%E5%88%AB" title="4、Commonjs和ES6区别"></a>4、Commonjs 和 ES6 区别</h3><p>1、使用方式上不同</p>
+<p>commonjs 暴露是采用 module.exports。引入采用 require</p>
+<p>es6 采用的是 export default 或者是 export。引入采用 import from</p>
+<p>2、<strong>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用</strong>。</p>
+<p>commonjs</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//commonjs_module.js</span></span><br><span class="line"><span class="keyword">let</span> num=<span class="number">2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>{</span><br><span class="line">    num++</span><br><span class="line">}</span><br><span class="line"><span class="built_in">module</span>.exports={</span><br><span class="line">    num,</span><br><span class="line">    add</span><br><span class="line">}</span><br><span class="line"><span class="comment">//commonjs</span></span><br><span class="line"><span class="keyword">const</span> {num,add}=<span class="built_in">require</span>(<span class="string">'./commonjs_module'</span>)</span><br><span class="line"><span class="built_in">console</span>.log(num) <span class="comment">//2</span></span><br><span class="line">add()</span><br><span class="line"><span class="built_in">console</span>.log(num) <span class="comment">//2</span></span><br></pre></td></tr></tbody></table>
+
+<p>es6 module</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span>{</span></span><br><span class="line"><span class="css">            <span class="attribute">position</span>: relative;</span></span><br><span class="line"><span class="css">        }</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span> <span class="selector-tag">span</span>{</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: aqua;</span></span><br><span class="line"><span class="css">            <span class="attribute">position</span>: absolute;</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">100</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">100</span>;</span></span><br><span class="line"><span class="css">        }</span></span><br><span class="line"><span class="css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">span</span>&gt;</span>adad<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      <span class="keyword">import</span> { num,add } <span class="keyword">from</span> <span class="string">"./es6_module.js"</span>;</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(num) <span class="comment">//3</span></span></span><br><span class="line"><span class="javascript">      add()</span></span><br><span class="line"><span class="javascript">      <span class="built_in">console</span>.log(num) <span class="comment">//4</span></span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table>
+
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> num = <span class="number">3</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">value</span>) </span>{</span><br><span class="line">    num++</span><br><span class="line">}</span><br><span class="line"><span class="keyword">export</span>  {</span><br><span class="line">    num,</span><br><span class="line">    add</span><br><span class="line">}</span><br></pre></td></tr></tbody></table>
+
+<p>4、<strong>ES6 模块是动态引用，并且不会缓存值，模块里面的变量绑定其所在的模块</strong>。</p>
+<p>5、CommonJS 是 require()同步加载模块，ES6 模块是 import 命令是异步加载。</p>
+<p>6、第二个差异是因为 CommonJS 加载的是一个对象（即 module.exports 属性），该对象只有在脚本运行完才会生成。而 ES6 模块不是对象，它的对外接口只是一种静态定义，在代码静态解析阶段就会生成。</p>
+<h3 id="5、重绘回流"><a href="#5、重绘回流" class="headerlink" title="5、重绘回流"></a><a href="#5%E3%80%81%E9%87%8D%E7%BB%98%E5%9B%9E%E6%B5%81" title="5、重绘回流"></a>5、重绘回流</h3><p>什么是重绘？</p>
+<p>字体颜色背景颜色背景样式发生改变，不会引起布局上的改变这种属于重绘</p>
+<p>什么是回流？</p>
+<p>字体样式大小、盒子大小发生改变，删除添加 dom 节点，视口大小发生改变，读取 offset 数据，会引起回流，回流必然产生重绘。</p>
+<p>如何减少回流：</p>
+<p>css：</p>
+<p>1、避免 css 多层样式嵌套 why? 浏览器的 css 解析 css 文件时，需要递归分析样式继承，这样会导致嵌套层数太多造成 CSS Tree 加载变慢。</p>
+<p>2、避免使用样式表达式</p>
+<p>3、避免使用 table 布局？为什么</p>
+<p>4、将动画效果应用到 position 属性为 absolute 或者 fixed 元素上</p>
+<p>JS：</p>
+<p>1、避免频繁操作样式，最好一次性重写 style 属性。</p>
+<p>2、避免频繁操作 Dom 节点，创建 documentFragment，在它上面进行 DOM 操作，最后将它添加到文档中。</p>
+<p>3、避免频繁获取 offest 数据，确实多次使用可以用变量缓存</p>
+<p>4、对复杂动画采用绝对定位，脱离文档流，否在会引起父元素的回流。</p>
+<h3 id="6、canvas-和-svg-区别"><a href="#6、canvas-和-svg-区别" class="headerlink" title="6、canvas 和 svg 区别"></a><a href="#6%E3%80%81canvas-%E5%92%8Csvg%E5%8C%BA%E5%88%AB" title="6、canvas 和svg区别"></a>6、canvas 和 svg 区别</h3><p>canvas 绘画出来的图形一般成为位图，也就是放大缩小的情况下会出现失真的情况，svg 绘制的图形是矢量图，不存在失真的情况</p>
+<p>canvas 绘制的图形不会出现在 DOM 结构中，svg 绘制的会存在于 DOM 结构</p>
+<p>canvas 类似于动画，每次图形的改变都是先清除原来的图形，然后把新的图形画上去，svg 则是可以直接通过 js 来进行某些操作</p>
+<p>canvas 依赖于分辨率，svg 不依赖分辨率</p>
+<p>canvas 最适合图像密集型的游戏，其中的许多对象会被频繁重绘，svg 不适合游戏应用</p>
+<h4 id="6-1、font-class-和-svg-的区别"><a href="#6-1、font-class-和-svg-的区别" class="headerlink" title="6.1、font-class 和 svg 的区别"></a><a href="#6-1%E3%80%81font-class%E5%92%8Csvg%E7%9A%84%E5%8C%BA%E5%88%AB" title="6.1、font-class和svg的区别"></a>6.1、font-class 和 svg 的区别</h4><p>font-class 的字体图标存在的问题</p>
+<ul>
+<li>iconfont.css 文件多人更新文件，容易导致 git 代码冲突</li>
+<li>无法增量更新</li>
+<li>不支持多色图标</li>
+<li>无法做到本地全图标预览</li>
+</ul>
+<p>微信小程序采用的 font-class 文件，每次更新图标都需要从 iconfont 库中下载文件解压抽取 iconfont.css 文件放入项目中，每次修改都要重复上面的过程，而且字体图标不支持多颜色的图标</p>
+<p>前端项目中采用的是 svg</p>
+<ul>
+<li>svg 图标的优点:支持 font-size,color 来调整样式矢量图形放大会失真</li>
+<li>利用 webpack 的 svg-sprite-loader 插件可以实现增量更新,可以利用该 loader 将多个 svg 图标打包成 sprite,创建一个文件夹专门管理 svg 文件,每次新增图标将其放入其中就可以实现</li>
+</ul>
+<h3 id="6、请求状态码"><a href="#6、请求状态码" class="headerlink" title="6、请求状态码"></a><a href="#6%E3%80%81%E8%AF%B7%E6%B1%82%E7%8A%B6%E6%80%81%E7%A0%81" title="6、请求状态码"></a>6、请求状态码</h3><p>1 信息响应</p>
+<p>100 continue 临时响应内容，表示可以继续发起请求</p>
+<p>101 switching protocols 表示服务器即将切换协议</p>
+<p>2 表示成功</p>
+<p>200 成功</p>
+<p>201 created 表示请求成功，正在创建新资源常用于 put 和 post 请求。</p>
+<p> 202 accepted 表示请求成功 还没有结果 预期另外的进程和服务去处理请求</p>
+<p>204 no content 表示该请求没有的内容可以返回</p>
+<p>205 Reset Content 表示请求成功，但是无实体内容，与 204 不同的是，需要请求重置内容</p>
+<p>3 表示重定向</p>
+<p>301 表示永久重定向</p>
+<p>302 表示临时重定向</p>
+<p>303 see other 表示资源存在着另一个 uRl,应使用 get 方法获取资源</p>
+<p>304 Not modified 表示内容未修改 协商缓存</p>
+<p>307 临时重定向，与 302 类似，但是期望客户端用同样的方式向新的地址发起请求</p>
+<p>4 表示客户端错误</p>
+<p>400 客户端错误服务器无法处理请求</p>
+<p>401 表示需要用户认证，不知道用户身份</p>
+<p>402 用于数字支付系统</p>
+<p>403 forbidden 禁止访问，服务器知道用户身份。</p>
+<p>404 未找到访问内容</p>
+<p>5 服务器端错误响应</p>
+<p>500 服务器遇到了不知道如何处理的情况。</p>
+<p><strong>501 服务器不支持请求方法。</strong></p>
+<p><strong>502 错误网关，服务器作为网关和代理无法从上游服务器收到响应</strong></p>
+<p><strong>503 服务器停机维护。</strong></p>
+<p><strong>504 网关超时，服务器作为网关或代理，但是没有及时从上游服务器收到请求</strong></p>
+<p><strong>505 服务器不支持请求中所用的 http 协议版本。</strong></p>
+<h3 id="7、diff-算法原理"><a href="#7、diff-算法原理" class="headerlink" title="7、diff 算法原理"></a><a href="#7%E3%80%81diff-%E7%AE%97%E6%B3%95%E5%8E%9F%E7%90%86" title="7、diff 算法原理"></a>7、diff 算法原理</h3><p>什么是虚拟 DOM?</p>
+<p>所谓的虚拟 DOM 是，通过对 template 标签解析将其转化为 js 对象，通过新旧虚拟 DOM 的比较找出变化的地方进而转化为真实ＤＯＭ的的操作，相比直接操作 DOM，减少了不必要的ＤＯＭ操作提高性能。</p>
+<p>真实 dom 更新采用的是 diff 算法。</p>
+<p>1、diff 算法又称为 patching 算法，他是从 Snabbdom 演变而来，虚拟 DOM 转化为真实 DOM 就需要通过 pathch 算法。</p>
+<p>2、diff 算法执行的时机，是组件内的数据发生变化会触发实例执行其更新函数，更新函数会再次执行 render 函数获取最新的虚拟 DOM,然后执行 patch 算法，将新旧虚拟 DOM 进行比对，通过比对找到变化的地方转化为 DOM 操作。</p>
+<p>4、patch 过程是一个递归的过程，深度优先同层比较的策略。</p>
+<p>5、patch 算法比对的过程</p>
+<p>首先通过虚拟 DOM 的唯一 key 和标签名判断两个节点是否为相同同类节点，不同则删除重新创建<br>如果双方都是文本则更新文本内容<br>如果双方都是元素节点则递归更新子元素，同时更新元素属性<br>更新子节点时又分了几种情况：<br>新的子节点是文本，老的子节点是数组则清空，并设置文本；<br>新的子节点是文本，老的子节点是文本则直接更新文本；<br>新的子节点是数组，老的子节点是文本则清空文本，并<strong>创建新子节点数组中的子元素</strong>；<br>新的子节点是数组，老的子节点也是数组，那么比较两组子节点。</p>
+<p>6、新前旧前 新后旧后 新后旧前 新前旧后，如何这四种匹配机制都没有命中就会采用 for 循环遍历。</p>
+<h4 id="vue3-快速-diff-算法过程"><a href="#vue3-快速-diff-算法过程" class="headerlink" title="vue3 快速 diff 算法过程"></a><a href="#vue3%E5%BF%AB%E9%80%9Fdiff%E7%AE%97%E6%B3%95%E8%BF%87%E7%A8%8B" title="vue3快速diff算法过程"></a>vue3 快速 diff 算法过程</h4><h3 id="8、什么是-vuex"><a href="#8、什么是-vuex" class="headerlink" title="8、什么是 vuex"></a><a href="#8%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AFvuex" title="8、什么是vuex"></a>8、什么是 vuex</h3><p>1、什么是？vuex 是 vue 专用的状态管理库，它以全局的方式集中管理应用状态，可以保证状态变更的可预测性</p>
+<p>2、解决了什么问题？主要解决的问题是多组件之间状态共享的问题，利用各种组件通信方式，我们虽然能够做到状态共享，但是往往需要在多个组件之间保持状态的一致性，这种模式很容易出现问题，也会使程序逻辑变得复杂。vuex 通过把组件的共享状态抽取出来，以全局单例模式管理，这样任何组件都能用一致的方式获取和修改状态，响应式的数据也能够保证简洁的单向数据流动，我们的代码将变得更结构化且易维护。</p>
+<p>3、什么情境下使用 vuex? vuex 并非必须使用的，他帮助我们实现全局状态管理，但是有更多的概念和框架，如果不是开发大型单页面应用，没必要使用 vuex, 我们可以在全局注册 eventbus，通过$emit 和$on,实现数据的发送和接受。<code>Vue.prototype.$EventBus = new Vue()</code>组件中通过<code>this.$EventBus.$emit(&#39;incident&#39;,data)</code></p>
+<p>4、如何使用？，将全局状态放入 state 对象中，组件中使用 store 实例的 state 访问这些状态；然后有配套的 mutation 方法修改这些状态，并且只能用 mutation 修改状态，在组件中调用 commit 方法提交 mutation；如果应用中有异步操作或者复杂逻辑组合，我们需要编写 action，执行结束如果有状态修改仍然需要提交 mutation，组件中调用这些 action 使用 dispatch 方法派发。最后是模块化，通过 modules 选项组织拆分出去的各个子模块，在访问状态时注意添加子模块的名称，<strong>如果子模块有设置 namespace，那么在提交和派发时还需要额外的命名空间前缀。</strong></p>
+<h3 id="9、聊聊-router"><a href="#9、聊聊-router" class="headerlink" title="9、聊聊 router"></a><a href="#9%E3%80%81%E8%81%8A%E8%81%8Arouter" title="9、聊聊router"></a>9、聊聊 router</h3><p>hash:<strong>路由的哈希模式其实是利用了 window.onhashchange 事件，也就是说你的 url 中的哈希值（#后面的值）如果有变化，就会自动调用 hashchange 的监听事件，在 hashchange 的监听事件内可以得到改变后的 url，这样能够找到对应页面进行加载</strong></p>
+<p>1、URL 中的 hash 值只是客户端的一种状态，向服务端发送请求的时候，hash 部分不会被发送。</p>
+<p>2、hash 值的改变会在浏览器的历史添加访问记录，所以可以通过浏览器的回退、前进控制 hash 值的改变。</p>
+<p>3、可以通过 a 标签设置 href 值或者通过 js 给 location.hash 赋值来改变 hash 值。</p>
+<p>4、可以通过 hashchang 事件来监听 hash 值的变化，从而对页面进行跳转（渲染）</p>
+<p>history:<strong>pushState 方法、replaceState 方法，只能导致 history 对象发生变化，从而改变当前地址栏的 URL，但浏览器不会向后端发送请求，也不会触发 popstate 事件的执行</strong> ,popstate 事件的执行是在点击浏览器的前进后退按钮的时候，才会被触发。</p>
+<p>1、通过 pushState 和 replaceState 两个 API 来操作实现 URL 的变化。</p>
+<p>2、可以通过 popstate 事件来监听 URL 的变化，从而对页面进行跳转（渲染）。</p>
+<p>3、history.pushState() 或 history.replaceState() 不会触发 popstate 事件，需要手动触发页面跳转</p>
+<p>注意点：</p>
+<p>如果采用 history 打包部署上线，再进行前进后退刷新按钮可能出现空白页，主要因为向后台发起请求，没有响应相关内容，需要后端考虑到所有的请求情况进行重定向。</p>
+<h4 id="肯定还会说到路由传参"><a href="#肯定还会说到路由传参" class="headerlink" title="肯定还会说到路由传参"></a><a href="#%E8%82%AF%E5%AE%9A%E8%BF%98%E4%BC%9A%E8%AF%B4%E5%88%B0%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82" title="肯定还会说到路由传参"></a>肯定还会说到路由传参</h4><p>vue 中 router 传参可以使用 params 和 query 两种方式。<br>1、使用 params 传参只能用 name 来引入路由，如果这里写成了 path，接收参数页面会是 undefined。</p>
+<ul>
+<li>params 传参跳转后，接收的参数不显示在路由上，如果用户刷新页面，参数消失。</li>
+<li>如果想刷新保留参数，需要配合路由使用，将 params 当成路由的一部分，在路由后面添加参数名，就可以保证 params 参数接收时，用户刷新页面参数就不会消失。</li>
+</ul>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//URL:http://localhost:8081/about/fang</span></span><br><span class="line"><span class="comment">//router.js</span></span><br><span class="line"> {</span><br><span class="line">    <span class="attr">path</span>: <span class="string">'/about/:name'</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">'About'</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "about" */</span> <span class="string">'../views/About.vue'</span>)</span><br><span class="line">  }</span><br><span class="line"><span class="comment">//路由跳转</span></span><br><span class="line"><span class="built_in">this</span>.$router.push({</span><br><span class="line">    <span class="attr">name</span>:<span class="string">'About'</span>,</span><br><span class="line">    <span class="attr">params</span>:{</span><br><span class="line">        <span class="attr">name</span>:<span class="string">'fang'</span></span><br><span class="line">    }</span><br><span class="line">})</span><br><span class="line"></span><br></pre></td></tr></tbody></table>
+
+<p>2、使用 query 传参，可以用 path 或者 name 来引入路由。 query 是拼接在 url 后面的参数，没有传参也可以正常显示页面。 二者还有点区别，直白的来说 query 相当于 get 请求，页面跳转的时候，可以在地址栏看到请求参数，而 params 相当于 post 请求，参数不会再地址栏中显示。</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">{</span><br><span class="line">    <span class="attr">path</span>: <span class="string">'/about'</span>,</span><br><span class="line">    <span class="attr">name</span>: <span class="string">'About'</span>,</span><br><span class="line">    <span class="attr">component</span>: <span class="function">() =&gt;</span> <span class="keyword">import</span>(<span class="comment">/* webpackChunkName: "about" */</span> <span class="string">'../views/About.vue'</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">this</span>.$router.push({</span><br><span class="line">    <span class="attr">name</span>:<span class="string">'About'</span>,</span><br><span class="line">    <span class="attr">query</span>:{</span><br><span class="line">        <span class="attr">name</span>:<span class="string">'fang'</span></span><br><span class="line">    }</span><br><span class="line">})</span><br></pre></td></tr></tbody></table>
+
+<h3 id="10、作用域和执行上下线文"><a href="#10、作用域和执行上下线文" class="headerlink" title="10、作用域和执行上下线文"></a><a href="#10%E3%80%81%E4%BD%9C%E7%94%A8%E5%9F%9F%E5%92%8C%E6%89%A7%E8%A1%8C%E4%B8%8A%E4%B8%8B%E7%BA%BF%E6%96%87" title="10、作用域和执行上下线文"></a>10、作用域和执行上下线文</h3><p>js 是解释型语言，执行过程包括解释和执行阶段，</p>
+<p>解释阶段：词法分析，语法分析，作用域确定。</p>
+<p>执行阶段：确定执行上下文，执行函数，垃圾回收。</p>
+<p>①、JavaScript 解释阶段便会确定作用域规则，因此作用域在函数定义时就已经确定了，而不是在函数调用时确定，但是执行上下文是函数执行之前创建的。<strong>执行上下文最明显的就是 this 的指向是执行时确定的。</strong></p>
+<p>②、<strong>执行上下文在运行时确定，随时可能改变；作用域在定义时就确定，并且不会改变</strong>。</p>
+<p>③、<strong>同一个作用域下，不同的调用会产生不同的执行上下文环境，继而产生不同的变量的值</strong>。</p>
+<p>参考文章和书籍</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo1</span></span><br><span class="line"><span class="keyword">let</span> a=<span class="number">2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test1</span>(<span class="params"></span>)</span>{</span><br><span class="line">    <span class="keyword">let</span> a=<span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{</span><br><span class="line">        <span class="built_in">console</span>.log(a)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> demo=test1()</span><br><span class="line">demo() <span class="comment">//1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//demo2</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a=<span class="number">2</span></span><br><span class="line">obj={</span><br><span class="line">    <span class="attr">a</span>:<span class="number">1</span>,</span><br><span class="line">    <span class="attr">show</span>:<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{</span><br><span class="line">        <span class="built_in">console</span>.log(a)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line">obj.show() <span class="comment">//2</span></span><br><span class="line"><span class="keyword">let</span> test=obj.show</span><br><span class="line">test()  <span class="comment">//2</span></span><br><span class="line"></span><br></pre></td></tr></tbody></table>
+
+<h3 id="11、闭包"><a href="#11、闭包" class="headerlink" title="11、闭包"></a><a href="#11%E3%80%81%E9%97%AD%E5%8C%85" title="11、闭包"></a>11、闭包</h3><p>闭包形成的条件：首先函数的嵌套，内部函数对外部函数变量的引用。</p>
+<p>闭包的作用：外部访问内部变量；对变量起到保护保存，延长变量的生命周期，实现 js 模块化。</p>
+<p>闭包用途：实现 js 模块化，实现块级作用域。</p>
+<p>闭包的缺陷是：会出现内存泄漏，<strong>函数执行会形成一个新的私有的作用域，当私有作用域中的代码执行完成后，我们当前作用域都会主动的进行释放和销毁。但当遇到函数执行返回了一个引用数据类型的值，并且在函数的外面被一个其他的东西给接收了，这种情况下一般形成的私有作用域都不会销毁</strong>。</p>
+<h3 id="12、柯里化"><a href="#12、柯里化" class="headerlink" title="12、柯里化"></a><a href="#12%E3%80%81%E6%9F%AF%E9%87%8C%E5%8C%96" title="12、柯里化"></a>12、柯里化</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方式1</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn</span>)</span>{</span><br><span class="line">    <span class="keyword">var</span> allArgs = [];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>)</span>{</span><br><span class="line">        <span class="keyword">var</span> args = [].slice.call(<span class="built_in">arguments</span>);</span><br><span class="line">        allArgs = allArgs.concat(args);</span><br><span class="line">        <span class="keyword">return</span> next;</span><br><span class="line">    }</span><br><span class="line">    <span class="comment">// 数值类型</span></span><br><span class="line">    next.valueOf = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line">        <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, allArgs);</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> next;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> add = currying(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>{</span><br><span class="line">    <span class="keyword">var</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="built_in">arguments</span>.length; i++){</span><br><span class="line">        sum += <span class="built_in">arguments</span>[i];</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">});</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ans=add(<span class="number">1</span>)(<span class="number">2</span>,<span class="number">3</span>)(<span class="number">4</span>)(<span class="number">5</span>).valueOf()</span><br><span class="line"></span><br><span class="line"><span class="comment">//方式2</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">currying</span>(<span class="params">fn</span>)</span>{</span><br><span class="line">    <span class="keyword">var</span> allArgs = []; <span class="comment">// 用来接收参数</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>)</span>{</span><br><span class="line">        <span class="keyword">var</span> args = <span class="built_in">Array</span>.from(<span class="built_in">arguments</span>);</span><br><span class="line">        <span class="comment">// 判断是否执行计算</span></span><br><span class="line">        <span class="keyword">if</span>(args.length &gt; <span class="number">0</span>){</span><br><span class="line">            allArgs = allArgs.concat(args); <span class="comment">// 收集传入的参数，进行缓存</span></span><br><span class="line">            <span class="keyword">return</span> next;</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">            <span class="keyword">return</span> fn.apply(<span class="literal">null</span>, allArgs); <span class="comment">// 符合执行条件，执行计算</span></span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> add=currying(<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{</span><br><span class="line">    <span class="keyword">let</span> sum=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;<span class="built_in">arguments</span>.length;i++){</span><br><span class="line">        sum+=<span class="built_in">arguments</span>[i]</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> sum</span><br><span class="line">})</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>,<span class="number">2</span>)());</span><br><span class="line"></span><br><span class="line"><span class="comment">//方式3，存在的缺陷是arr暴露外面不好暴露</span></span><br><span class="line"><span class="keyword">let</span> arr=[]</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">...args</span>)</span>{</span><br><span class="line">    <span class="keyword">if</span>(args.length&gt;<span class="number">0</span>){</span><br><span class="line">        arr.push(...args)</span><br><span class="line">        <span class="keyword">return</span> add</span><br><span class="line">    }<span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">pre,cur</span>)=&gt;</span>{</span><br><span class="line">            <span class="keyword">return</span> pre+cur</span><br><span class="line">        })</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>)(<span class="number">3</span>, <span class="number">4</span>)(<span class="number">5</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">//方式4</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">f</span>)</span>{</span><br><span class="line">    <span class="keyword">let</span> arr=[]</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">next</span>(<span class="params"></span>)</span>{</span><br><span class="line">        <span class="keyword">let</span> args=<span class="built_in">Array</span>.from(<span class="built_in">arguments</span>)</span><br><span class="line">        <span class="keyword">if</span>(args.length&gt;<span class="number">0</span>){</span><br><span class="line">            arr.push(...args)</span><br><span class="line">            <span class="keyword">return</span> next</span><br><span class="line">        }<span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">return</span> arr.reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>a+b)</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="keyword">const</span> add=fn()</span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>)(<span class="number">3</span>, <span class="number">4</span>)(<span class="number">5</span>)());</span><br></pre></td></tr></tbody></table>
+
+<h3 id="13、async、await-的优缺点"><a href="#13、async、await-的优缺点" class="headerlink" title="13、async、await 的优缺点"></a><a href="#13%E3%80%81async%E3%80%81await%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9" title="13、async、await的优缺点"></a>13、async、await 的优缺点</h3><p>async 和 await 相比直接使用 Promise 来说，优势在于处理 then 的调用链，能够更清晰准确的写出代码。缺点在于滥用 await，可能会导致性能问题，因为 await 会阻塞代码，也许之后的异步代码并不依赖于前者，但仍然需要等待前者完成，导致代码失去了并发性。如果 await 抛出错误后面的代码不会执行直接跳出当前函数（这里我们可以用一个 try catch 进行一个捕获）</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fn=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{</span><br><span class="line">    <span class="keyword">let</span> promise=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{</span><br><span class="line">        reject(<span class="string">'error'</span>)</span><br><span class="line">    })</span><br><span class="line">    <span class="keyword">return</span> promise</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> test=<span class="keyword">async</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"haha"</span>) <span class="comment">//输出haha</span></span><br><span class="line">    <span class="keyword">await</span> fn() <span class="comment">//跳出函数</span></span><br><span class="line">    <span class="comment">// try{</span></span><br><span class="line">    <span class="comment">//     let ans=await fn()</span></span><br><span class="line">    <span class="comment">// }catch (error){</span></span><br><span class="line">    <span class="comment">//     console.log(error)</span></span><br><span class="line">    <span class="comment">// }</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'666'</span>)</span><br><span class="line">}</span><br><span class="line">test()</span><br></pre></td></tr></tbody></table>
+
+<h3 id="14、盒子的显示和隐藏"><a href="#14、盒子的显示和隐藏" class="headerlink" title="14、盒子的显示和隐藏"></a><a href="#14%E3%80%81%E7%9B%92%E5%AD%90%E7%9A%84%E6%98%BE%E7%A4%BA%E5%92%8C%E9%9A%90%E8%97%8F" title="14、盒子的显示和隐藏"></a>14、盒子的显示和隐藏</h3><p>display:none; 会出现回流,dom 结构还在但是不占位，无继承性</p>
+<p>visibility:hidden;不会出现回流，占位，绑定事件无法触发。dom 结构存在，存在继承性</p>
+<p>opacity:0；不会出现回流，占位，绑定事件会触发，存在继承性</p>
+<h3 id="15、v-show-v-if"><a href="#15、v-show-v-if" class="headerlink" title="15、v-show v-if"></a><a href="#15%E3%80%81v-show-v-if" title="15、v-show  v-if"></a>15、v-show v-if</h3><p>①<code>v-show</code>隐藏则是为该元素添加<code>css--display:none</code>，<code>dom</code>元素依旧还在。<code>v-if</code>显示隐藏是将<code>dom</code>元素整个添加或删除</p>
+<p>②v-show 适用于平凡切换的组件，v-if 适用于渲染条件很少改变的场景</p>
+<p>③ 性能消耗：<code>v-if</code>有更高的切换消耗；<code>v-show</code>有更高的初始渲染消耗</p>
+<h3 id="16、transform-transition-和-animation-的区别"><a href="#16、transform-transition-和-animation-的区别" class="headerlink" title="16、transform, transition 和 animation 的区别"></a><a href="#16%E3%80%81transform-transition-%E5%92%8Canimation%E7%9A%84%E5%8C%BA%E5%88%AB" title="16、transform, transition 和animation的区别"></a>16、transform, transition 和 animation 的区别</h3><ul>
+<li>transform 本身是没有过渡效果的,它只是对元素做大小（scale）,旋转(rotate),倾斜(skew)等各种变换,通过和 transition 或者 animation 相结合,可以让这一变换过程具有动画的效果,它通常只有一个到达态,中间态的过渡可以通过和 transition 或者 animation 相结合实现,也可以通过 js 设置定时器来实现.<strong>transform 不会引起页面回流，重绘。创建自己的渲染层，拥有独立的图层。</strong></li>
+<li>transition 一般是定义单个或多个 css 属性发生变化时的过渡动画,比如 width,opacity 等.当定义的 css 属性发生变化的时候才会执行过渡动画,animation 动画一旦定义,就会在页面加载完成后自动执行.</li>
+<li>transition 定义的动画触发一次执行一次,想要再次执行想要再次触发.animation 定义的动画可以指定播放次数或者无限循环播放. transition: 需要用户操作,执行次数固定.</li>
+<li>transition 定义的动画只有两个状态,开始态和结束态,animation 可以定义多个动画中间态,且可以控制多个复杂动画的有序执行.</li>
+</ul>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"IE=edge"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">style</span>&gt;</span><span class="css"></span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span>{</span></span><br><span class="line"><span class="css">            <span class="attribute">width</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">height</span>: <span class="number">100px</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: pink;</span></span><br><span class="line"><span class="css">            <span class="comment">/* transition-property: all;</span></span></span><br><span class="line"><span class="comment"><span class="css">            transition-duration: 0.5s; */</span></span></span><br><span class="line"><span class="css">            <span class="attribute">transition</span>: all <span class="number">0.5s</span> linear;</span></span><br><span class="line"><span class="css">        }</span></span><br><span class="line"><span class="css">        <span class="selector-class">.box</span><span class="selector-pseudo">:hover</span>{</span></span><br><span class="line"><span class="css">            <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span></span><br><span class="line"><span class="css">            <span class="attribute">background-color</span>: black;</span></span><br><span class="line"><span class="css">        }</span></span><br><span class="line"><span class="css">    </span><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table>
+
+<h3 id="17、preload-prefetch-的区别"><a href="#17、preload-prefetch-的区别" class="headerlink" title="17、preload prefetch 的区别"></a><a href="#17%E3%80%81preload-prefetch-%E7%9A%84%E5%8C%BA%E5%88%AB" title="17、preload prefetch 的区别"></a>17、preload prefetch 的区别</h3><p><code>preload</code> 会按照和 <code>script</code> 出现的先后顺序，发出一个 <code>High</code> 优先级的请求；而 <code>prefetch</code> 会等待高级别优先级的请求发出后，发出一个 <code>Lowest</code> 的请求。</p>
+<p>两种预加载方式都是只请求不执行，需要等到 <code>script</code> 标签插入到页面之后再执行它。</p>
+<p>两种预加载方式在“还未加载完成时就被使用到”的情况下，会等待加载完成之后被使用。</p>
+<p>两种预加载方式，都不会阻塞 <code>DOMContentLoaded</code>（DOM 就绪）；而在 <code>load</code> 之前添加 <code>&lt;script&gt;</code>标签，会阻塞 <code>load</code> 事件发生。</p>
+<p><code>prefetch</code> 的资源在使用时还会发一次请求，这次请求走缓存。</p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/7140186469687099428">连接</a></p>
+<p>defer 与 async 的区别是：前者要等到整个页面正常渲染结束，才会执行；后者一旦下载完，渲染引擎就会中断渲染，执行这个脚本以后，再继续渲染。一句话，defer 是“渲染完再执行”，async 是“下载完就执行”。另外，如果有多个 defer 脚本，会按照它们在页面出现的顺序加载，而多个 async 脚本是不能保证加载顺序的。</p>
+<h3 id="18、get-请求和-post-请求的区别"><a href="#18、get-请求和-post-请求的区别" class="headerlink" title="18、get 请求和 post 请求的区别"></a><a href="#18%E3%80%81get-%E8%AF%B7%E6%B1%82%E5%92%8C-post-%E8%AF%B7%E6%B1%82%E7%9A%84%E5%8C%BA%E5%88%AB" title="18、get 请求和 post 请求的区别"></a>18、get 请求和 post 请求的区别</h3><p>1、get 请求具有安全幂等性，支持服务器缓存，RFC 规范向服务器获取数据。</p>
+<p>2、post 请求不支持缓存，不具有安全和幂等性，RFC 规范<strong>对指定的资源做出处理</strong>。</p>
+<p>3、get 请求，请求参数拼接在 url 中，传递参数的长度受限制，类型只支持 ASCII 字符</p>
+<p>4、post 请求请求参数在 body 中，支持各种编码类型，对传递参数类型无限制</p>
+<h3 id="19、http-请求头"><a href="#19、http-请求头" class="headerlink" title="19、http 请求头"></a><a href="#19%E3%80%81http%E8%AF%B7%E6%B1%82%E5%A4%B4" title="19、http请求头"></a>19、http 请求头</h3><h4 id="①-请求头信息"><a href="#①-请求头信息" class="headerlink" title="① 请求头信息"></a><a href="#%E2%91%A0%E8%AF%B7%E6%B1%82%E5%A4%B4%E4%BF%A1%E6%81%AF" title="①请求头信息"></a>① 请求头信息</h4><ul>
+<li>Accept:浏览器能够处理的内容类型</li>
+<li>Accept-Charset:浏览器能够显示的字符集</li>
+<li>Accept-Encoding：浏览器能够处理的压缩编码格式</li>
+<li>Accept-Language：浏览器当前设置的语言</li>
+<li>Connection：浏览器与服务器之间连接的类型</li>
+<li>Cookie：当前页面设置的任何 Cookie</li>
+<li>Host：服务器域名</li>
+<li>Referer：发出请求的页面的 URL</li>
+<li>if-modified-since 本地资源未修改返回 304 时间比较</li>
+<li>if-None-match 本地资源未修改返回 304 比较内容标记</li>
+<li>User-Agent 客户端信息</li>
+<li>Range 请求某个内容的一部分</li>
+<li>Authorization token 认证</li>
+<li>origin:跨域请求的时候携带的跨域域名</li>
+<li>withCredentials:true 支持跨域携带 cookie</li>
+</ul>
+<p>要想实现跨域携带 cookie 只设置 access-control-allow-credentials:true 仅仅只服务器那段同意跨域携带 cookie，但是浏览器也不会发送，需要请求头设置 withcredentials</p>
+<h4 id="②-响应头信息"><a href="#②-响应头信息" class="headerlink" title="② 响应头信息"></a><a href="#%E2%91%A1%E5%93%8D%E5%BA%94%E5%A4%B4%E4%BF%A1%E6%81%AF" title="②响应头信息"></a>② 响应头信息</h4><ul>
+<li>Date：表示消息发送的时间，时间的描述格式由 RFC822 定义</li>
+<li>server:服务器名字。</li>
+<li>Connection：浏览器与服务器之间连接的类型</li>
+<li>content-type:表示后面的文档类型</li>
+<li>content-location 返回数据的备用地址</li>
+<li>last-modified 内容的最后修订时间</li>
+<li>Cache-Control：控制 HTTP 缓存</li>
+<li>Expires 头部字段提供一个日期和时间，响应在该日期和时间后被认为失效</li>
+<li>Etag 资源标识符</li>
+<li>Location 客户端重定向到某个 URL</li>
+<li>allow 资源正确的请求方式</li>
+<li>vary：</li>
+<li>access-control-allow-credentials: true 跨域情况下允许携带 cookie</li>
+<li>access-control-allow-origin: 设置跨域资源共享</li>
+<li>Access-Control-Expose-Headers: FooBar, CORS 请求时，XMLHttpRequest 对象的 getResponseHeader()方法只能拿到 6 个基本字段:Cache-Control、Content-Language、Content-Type、Expires、Last-Modified、Pragma。如果想拿到其他字段，就必须在 Access-Control-Expose-Headers 里面指定。上面的例子指定，getResponseHeader(‘FooBar’)可以返回 FooBar 字段的值。</li>
+<li>Access-Control-Max-Age，该字段可选，用来指定本次预检请求的有效期，单位为秒。上面结果中，有效期是 20 天 91728000 秒),即允许缓存该条回应 1728000 秒(即 20 天),在此期间，不用发出另一条预检请求。</li>
+</ul>
+<h3 id="20、cros-跨域资源共享"><a href="#20、cros-跨域资源共享" class="headerlink" title="20、cros 跨域资源共享"></a><a href="#20%E3%80%81cros%E8%B7%A8%E5%9F%9F%E8%B5%84%E6%BA%90%E5%85%B1%E4%BA%AB" title="20、cros跨域资源共享"></a>20、cros 跨域资源共享</h3><p>简单请求：</p>
+<p>(1) 请求方法是以下三种方法之一:</p>
+<p> HEAD、GET、POST</p>
+<p>(2) HTTP 的头信息不超过以下几种字段:</p>
+<p> Accept、Accept-Language、Content-Language、Last-Event-ID、Content-Type:只限于三个值 application&#x2F;x-www-form-urlencoded，multipart&#x2F;form-data，text&#x2F;plain</p>
+<p>非简单请求：</p>
+<p>非简单请求是那种对服务器有特殊要求的请求，比如请求方法是 PUT 或 DELETE，或者 Content-Type 字段的类型是 application&#x2F;json.会在正式通信之前，增加一次 HTTP 查询请求，称为”预检”请求(preflight)</p>
+<h3 id="21、事件委托"><a href="#21、事件委托" class="headerlink" title="21、事件委托"></a><a href="#21%E3%80%81%E4%BA%8B%E4%BB%B6%E5%A7%94%E6%89%98" title="21、事件委托"></a>21、事件委托</h3><p>事件委托是什么？事件委托利用浏览器事件的冒泡机制，给元素的父元素绑定事件代替自己的事件绑定，比如说需要给每个 li 绑定事件，我们可以选择直接给我父级元素 ul 绑定事件。这样可以减少内存，减少事件注册。可以实现当新增对象时，无需对其进行事件绑定，动态绑定事件。缺点：事件代理滥用会出现事件误判。没有冒泡机制无法使用事件代理</p>
+<p>path 冒泡路径</p>
+<h3 id="22、keep-alive-组件缓存"><a href="#22、keep-alive-组件缓存" class="headerlink" title="22、keep-alive 组件缓存"></a><a href="#22%E3%80%81keep-alive%E7%BB%84%E4%BB%B6%E7%BC%93%E5%AD%98" title="22、keep-alive组件缓存"></a>22、keep-alive 组件缓存</h3><p>组件缓存有三个指令，max,include,exclude</p>
+<p>两个生命周期：activated 与 deactivated</p>
+<p>采用 RLU 的缓存机制，意思就是将在最大超出缓存最大数的情况下将长时间未用的组件剔除缓存，添加使用的缓存组件。</p>
+<p>Vue.js 内部将 DOM 节点抽象成了一个个的 VNode 节点，keep-alive 组件的缓存也是基于 VNode 节点的而不是直接存储 DOM 结构。它将满足条件的组件在 cache 对象中缓存起来，在需要重新渲染的时候再将 vnode 节点从 cache 对象中取出并渲染。</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">第一次访问缓存组件</span><br><span class="line">父级beforeCreate</span><br><span class="line">父级created</span><br><span class="line">父级beforeMount</span><br><span class="line">子级beforeCreate</span><br><span class="line">子级created</span><br><span class="line">子级beforeMount</span><br><span class="line">子级mounted</span><br><span class="line">子级activated</span><br><span class="line">父级mounted</span><br><span class="line"></span><br><span class="line">第二次访问缓存组件</span><br><span class="line">父级beforeUpdate</span><br><span class="line">子级activated</span><br><span class="line">父级updated</span><br></pre></td></tr></tbody></table>
+
+<h4 id="23、三次握手-四次挥手"><a href="#23、三次握手-四次挥手" class="headerlink" title="23、三次握手 四次挥手"></a><a href="#23%E3%80%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B-%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B" title="23、三次握手 四次挥手"></a>23、三次握手 四次挥手</h4><p><img src="d:%5C%25E6%25A1%258C%25E9%259D%25A2%5C%25E7%25AE%2580%25E5%258E%2586%5C%25E7%25A7%258B%25E6%258B%259B%5Cupload%5Cimage-20220916153734858.png" alt="image-20220916153734858"></p>
+<p><strong>三次握手</strong>：</p>
+<p>1、客户端会随机生成初始化序列号<code>client-isn</code>,将 syn 位置为 1,发起报文请求向服务器端建立连接。</p>
+<p>2、服务器端收到 syn 报文，服务器端随机初始化自己的序列号<code>server-isn</code>，应答序列号填入<code>client_isn</code>+1,接着把 SYN 和 ACK 位置 1。</p>
+<p>3、客户端收到服务器报文后，向服务器端回应应答报文，ACK 标置位置 1，其次应答序列号填入<code>server-isn</code>+1,并将报文发送服务器端，建立连接。</p>
+<p>为什么要进行三次握手：</p>
+<p>1、三次握手才可以阻止重复历史连接的初始化</p>
+<p>2、三次握手才可以同步双方的初始序列号</p>
+<p>3、三次握手才可以避免资源浪费（四次握手没必要浪费资源，可以将四次握手中的二三合并）</p>
+<p><img src="d:%5C%25E6%25A1%258C%25E9%259D%25A2%5C%25E7%25AE%2580%25E5%258E%2586%5C%25E7%25A7%258B%25E6%258B%259B%5Cupload%5Cimage-20220916154648309.png" alt="image-20220916154648309"></p>
+<p><strong>四次挥手</strong>：</p>
+<p>1、客户端打算关闭连接时，此时会发送一个 TCP 首部位标置位 FIN&#x3D;1 的报文</p>
+<p>2、服务器端收到报文后，就向客户端发送 ACK&#x3D;1 应答报文。</p>
+<p>3、服务器端将数据处理完毕后，向客户端发送 FIN 报文。</p>
+<p>4、客户端收到服务端的 <code>FIN</code> 报文后，回一个 <code>ACK</code> 应答报文</p>
+<ul>
+<li>服务器收到了 <code>ACK</code> 应答报文后，就进入了 <code>CLOSE</code> 状态，至此服务端已经完成连接的关闭。</li>
+<li>客户端在经过 <code>2MSL(报文最大生存时间)</code> 一段时间后，自动进入 <code>CLOSE</code> 状态，至此客户端也完成连接的关闭。</li>
+</ul>
+<h3 id="24、tcp-和-udp-区别"><a href="#24、tcp-和-udp-区别" class="headerlink" title="24、tcp 和 udp 区别"></a><a href="#24%E3%80%81tcp-%E5%92%8Cudp%E5%8C%BA%E5%88%AB" title="24、tcp 和udp区别"></a>24、tcp 和 udp 区别</h3><p><strong>tcp</strong>:面向连接可靠传输，利用超时重传，流量控制，拥塞控制等机制保证传输的可靠性，一对一的通信方式，基于字节流的传输方式。</p>
+<p><strong>udp</strong>:无连接不可靠传输，一多多，多对一，多对多的广播传输，头部字段小传输效率高，基于报文传输</p>
+<p><strong>字节流</strong>：用户消息通过 TCP 协议传输时，消息可能会被操作系统「分组」成多个的 TCP 报文，如果接收方的程序如果不知道「消息的边界」，是无法读出一个有效的用户消息的。并且 TCP 报文是「有序的」，当「前一个」TCP 报文没有收到的时候，即使它先收到了后面的 TCP 报文，那么也不能扔给应用层去处理，同时对「重复」的 TCP 报文会自动丢弃。</p>
+<h3 id="25、Content-Type-字段值"><a href="#25、Content-Type-字段值" class="headerlink" title="25、Content-Type 字段值"></a><a href="#25%E3%80%81Content-Type%E5%AD%97%E6%AE%B5%E5%80%BC" title="25、Content-Type字段值"></a>25、Content-Type 字段值</h3><p>1、<strong>application&#x2F;x-www-form-urlencoded</strong></p>
+<p>数据发送过程中会对数据进行<strong>序列化处理</strong>，以键值对形式?key1&#x3D;value1&amp;key2&#x3D;value2 的方式发送到服务器。 数据被编码成以 ‘&amp;’ 分隔的键-值对, 同时以 ‘&#x3D;’ 分隔键和值。ajax.send(“a&#x3D;’a’&amp;b&#x3D;’b’”)</p>
+<p>优势：所有浏览器都兼容</p>
+<p>问题：在数据结构及其复杂时，服务器端数据解析变的很困难</p>
+<p>2、<strong>application&#x2F;json</strong></p>
+<p>数据发送前会对数据进行序列化 JSON.stringify(),接收数据时利用反序列化 JSON.parse(),ajax.send(JSON.stringify(data));</p>
+<p>3、<strong>multipart&#x2F;form-data</strong></p>
+<p>主要用于<strong>文件上传</strong>，将文件转成二进制数据进行传输，不涉及转码。</p>
+<p>4、<strong>text&#x2F;plain</strong></p>
+<p>是使用纯文本进行传输，<strong>平时用的很少</strong></p>
+<h3 id="26、理解-async-await-以及对-Generator-的优势"><a href="#26、理解-async-await-以及对-Generator-的优势" class="headerlink" title="26、理解 async&#x2F;await 以及对 Generator 的优势"></a><a href="#26%E3%80%81%E7%90%86%E8%A7%A3async-await%E4%BB%A5%E5%8F%8A%E5%AF%B9Generator%E7%9A%84%E4%BC%98%E5%8A%BF" title="26、理解async/await以及对Generator的优势"></a>26、理解 async&#x2F;await 以及对 Generator 的优势</h3><p>async await 是用来解决异步的，async 函数是 Generator 函数的语法糖，使用关键字 async 来表示，在函数内部使用 await 来表示异步，async 函数返回一个 Promise 对象，可以使用 then 方法添加回调函数，当函数执行的时候，一旦遇到 await 就会先返回，等到异步操作完成，再接着执行函数体内后面的语句。</p>
+<p>async 较 Generator 的优势：</p>
+<p>1）内置执行器。Generator 函数的执行必须依靠执行器，而 Aysnc 函数自带执行器，调用方式跟普通函数的调用一样。</p>
+<p>2）更好的语义。async 和 await 相较于 * 和 yield 更加语义化。</p>
+<p>3）更广的适用性。yield 命令后面只能是 Thunk 函数或 Promise 对象，async 函数的 await 后面可以是 Promise 也可以是原始类型的值。</p>
+<p>4）返回值是 Promise，async 函数返回的是 Promise 对象，比 Generator 函数返回的 Iterator 对象方便，可以直接使用 then() 方法进行调用。</p>
+<h3 id="27、页面自适应"><a href="#27、页面自适应" class="headerlink" title="27、页面自适应"></a><a href="#27%E3%80%81%E9%A1%B5%E9%9D%A2%E8%87%AA%E9%80%82%E5%BA%94" title="27、页面自适应"></a>27、页面自适应</h3><p>1、采用的 scale\rem\em\vh-vw</p>
+<p>采用 innerwidth&#x2F;innerheight 初次进入页面获取可视窗口大小，根据设计稿计算出需要缩放比例，通过 transfrom:scale 对渲染结果进行放缩。还通过对 window 添加 resize 监听，动态调整放缩系数，在改变放缩系数之前添加了防抖拦截，避免频繁修改放缩系数，页面的频繁回流。</p>
+<ul>
+<li>防抖一段时间内只有最后一次触发有效</li>
+<li>节流一段时间内只能一次触发有效</li>
+</ul>
+<p>注数据大屏不能包含滚动条，采用的是<code>innerwidth</code> &#x2F; <code>innerheight</code></p>
+<h3 id="28、DNS-解析"><a href="#28、DNS-解析" class="headerlink" title="28、DNS 解析"></a><a href="#28%E3%80%81DNS%E8%A7%A3%E6%9E%90" title="28、DNS解析"></a>28、DNS 解析</h3><p>1、Chrom 为了加快服务器的连接速度，会存在 DNS 缓存，首先查找缓存。</p>
+<p>2、再去查找本地的 host 文件，是否存在 DNS 解析。</p>
+<p>3、向本地 DNS 服务器（也就是客户端的 TCP&#x2F;IP 设置中填写的 DNS 服务器地址）发起一个 DNS 请求。</p>
+<p>4、本地域名服务器收到客户端的请求后，如果缓存里的表格能找到 <a target="_blank" rel="noopener" href="http://www.server.com,则它直接返回/">www.server.com，则它直接返回</a> IP 地址。如果没有，本地 DNS 会去问它的根域名服务器。</p>
+<p>5、根 DNS 收到来自本地 DNS 的请求后，发现后置是 .com，交给顶级服务器。</p>
+<p>4、本地 DNS 收到顶级域名服务器的地址。向顶级服务器发起请求。从右到左一次查找。</p>
+<h3 id="29、https-实现原理："><a href="#29、https-实现原理：" class="headerlink" title="29、https 实现原理："></a><a href="#29%E3%80%81https%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%EF%BC%9A" title="29、https实现原理："></a>29、https 实现原理：</h3><p>http 属于明文传输，存在三个风险，窃听风险篡改风险冒充风险，https 采用 TLS 和 SSl 进行传输报文加密，在 http 和 tcp 之间添加了 SSL&#x2F;TLS 协议 ，在完成 TCP 三次握手之后还需要进行 TLS 握手。考虑的性能问题 https 采用对称加密的方式实现报文传输，但是对称密钥很重要不能被泄露，一旦泄露就会被攻击者解密，因此采用非对称加密协商完成对称密钥的交换，首先服务器端，向客户端发送数字证书，客户端完成数字证书的认证，随机生成一串数据利公钥进行加密，并发送给服务器端，服务器利用自己的私钥进行解密，双方就得到了相同的密钥。数字证书起到身份认证的机制。信息加密&#x2F;校验身份&#x2F;身份证书</p>
+<h3 id="30、进程线程"><a href="#30、进程线程" class="headerlink" title="30、进程线程"></a><a href="#30%E3%80%81%E8%BF%9B%E7%A8%8B%E7%BA%BF%E7%A8%8B" title="30、进程线程"></a>30、进程线程</h3><p>1.进程：进程是操作系统中资源分配的基本单位。</p>
+<p>2.线程：线程是操作系统中调度执行的基本单位。</p>
+<p>二.进程和线程之间的区别与联系</p>
+<ol>
+<li>一个进程可以包含多个线程，线程在进程的内部。</li>
+<li>进程之间的资源是独立的，线程之间的资源则是共享的。</li>
+</ol>
+<p>每个进程都有独立的虚拟地址空间，也有之间独立的文件描述符表，同一进程的多个线程之间则共用这一份虚拟地址空间和文件描述符表。</p>
+<ol start="4">
+<li>多个进程同时执行时，如果一个进程崩溃，一般不会影响其他进程，而同一进程内的多个线程之间，如果一个线程崩溃，很可能使得整个进程崩溃。</li>
+<li>进程的上下文切换速度比较慢，而线程的上下文切换速度比较快。</li>
+<li>进程的<strong>创建</strong>&#x2F;<strong>销毁</strong>&#x2F;<strong>调度</strong>开销大，线程的创建&#x2F;销毁&#x2F;调度开销相对少很多。</li>
+</ol>
+<h3 id="31、for-forEach"><a href="#31、for-forEach" class="headerlink" title="31、for forEach"></a><a href="#31%E3%80%81for-forEach" title="31、for forEach"></a>31、for forEach</h3><p>普通 for 是依靠遍历，增强 for 是依靠迭代器<br>foreach 只能用于遍历，不能更改循环目标，遍历速度快，执行效率高。<br>for 循环可以用于任何形式的重复行为，在循环体中可以进行任何操作，遍历速度慢，执行效率低。</p>
+<h3 id="32、原型上面添加方法"><a href="#32、原型上面添加方法" class="headerlink" title="32、原型上面添加方法"></a><a href="#32%E3%80%81%E5%8E%9F%E5%9E%8B%E4%B8%8A%E9%9D%A2%E6%B7%BB%E5%8A%A0%E6%96%B9%E6%B3%95" title="32、原型上面添加方法"></a>32、原型上面添加方法</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Array</span>.prototype.uniqe=<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">Array</span>.from(<span class="keyword">new</span> <span class="built_in">Set</span>(<span class="built_in">this</span>))</span><br><span class="line">}</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">4</span>]</span><br><span class="line"><span class="keyword">let</span> ans=arr.uniqe()</span><br><span class="line"><span class="built_in">console</span>.log(ans)</span><br></pre></td></tr></tbody></table>
+
+<h3 id="33、computed-和-watch-区别"><a href="#33、computed-和-watch-区别" class="headerlink" title="33、computed 和 watch 区别"></a><a href="#33%E3%80%81computed-%E5%92%8Cwatch%E5%8C%BA%E5%88%AB" title="33、computed 和watch区别"></a>33、computed 和 watch 区别</h3><p>computed:</p>
+<ul>
+<li>支持缓存，只有依赖的响应式数据发生变化，才会重新进行计算</li>
+<li>不支持异步，当 comput 内部有异步操作时无效，无法监听到数据的变化</li>
+<li>computed 属性值会默认走缓存，如果一个值有很多属性计算而来，用计算属性比较好</li>
+<li>computed 不能直接添加参数，想要传递传输 return 一个函数带参数</li>
+</ul>
+<p>watch:</p>
+<ul>
+<li>不支持缓存，数据变直接触发相应的操作</li>
+<li>watch 支持异步操作</li>
+<li>监听的函数接收两个参数，第一个值是得到的新值，第二个值是输入之前的旧值</li>
+<li>当一个属性发生变化时，需要执行对应的操作</li>
+<li>immediate：组件加载立即触发回调函数执行，deep: 深度监听</li>
+</ul>
+<h3 id="34、改写数组方法添加响应式"><a href="#34、改写数组方法添加响应式" class="headerlink" title="34、改写数组方法添加响应式"></a><a href="#34%E3%80%81%E6%94%B9%E5%86%99%E6%95%B0%E7%BB%84%E6%96%B9%E6%B3%95%E6%B7%BB%E5%8A%A0%E5%93%8D%E5%BA%94%E5%BC%8F" title="34、改写数组方法添加响应式"></a>34、改写数组方法添加响应式</h3><p>创建一个变量(oldArrprotopyte)保存 Array 的原型，创建一个空对象（newArrprotopyte），将空对象的 原型指向<code>oldArrprotopyte</code>，在空对象上添加 7 种方法（push、pop、shift、unshift、reverse、sort、splice）并将方法里面执行<code>oldArrprotopyte[push].apply(this,[...arguments])</code>将数组的原型指向<code>newArrprotopyte</code></p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> oldArrprotype = <span class="built_in">Array</span>.prototype;</span><br><span class="line"><span class="keyword">const</span> newArrprotype = <span class="built_in">Object</span>.create(oldArrprotype);</span><br><span class="line">[<span class="string">'push'</span>,<span class="string">'unshift'</span>,<span class="string">'shift'</span>,<span class="string">'pop'</span>,<span class="string">'reverse'</span>,<span class="string">'sort'</span>,<span class="string">'splice'</span>].forEach(<span class="function"><span class="params">methodName</span>=&gt;</span>{</span><br><span class="line">    newArrprotype[methodName]=<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`使用<span class="subst">${methodName}</span>`</span>)</span><br><span class="line">        oldArrprotype[methodName].apply(<span class="built_in">this</span>,[...arguments])</span><br><span class="line">    }</span><br><span class="line">})</span><br><span class="line"><span class="keyword">let</span> arr=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>]</span><br><span class="line"><span class="built_in">Object</span>.setpropyteof(arr,newArrprotype)</span><br><span class="line">arr.push(<span class="number">6</span>)</span><br><span class="line">arr.unshift()</span><br><span class="line">arr.sort()</span><br><span class="line"><span class="built_in">console</span>.log(arr)</span><br></pre></td></tr></tbody></table>
+
+<h3 id="35、css-文件放置在顶部的原理"><a href="#35、css-文件放置在顶部的原理" class="headerlink" title="35、css 文件放置在顶部的原理"></a><a href="#35%E3%80%81css%E6%96%87%E4%BB%B6%E6%94%BE%E7%BD%AE%E5%9C%A8%E9%A1%B6%E9%83%A8%E7%9A%84%E5%8E%9F%E7%90%86" title="35、css文件放置在顶部的原理"></a>35、css 文件放置在顶部的原理</h3><p><strong>css 不会阻塞 DOM 的解析但是会阻塞 DOM 的渲染</strong></p>
+<p>CSS 文件放在顶部一方面是因为放置顺序决定了下载的优先级，更关键的是浏览器的渲染机制。最理想的情况，我们希望浏览器逐渐的渲染下载好的 CSS，将页面逐渐的展现给用户。但是浏览器为了避免样式变化时重新渲染绘制页面元素，会阻塞内容逐步呈现，浏览器等待所有样式加载完成之后才一次性渲染呈现页面。</p>
+<p>如果 CSS 文件如果放置底部，浏览器阻止内容逐步呈现，浏览器在等待最后一个 css 文件下载完成的过程中，就出现了“白屏”（新打开连接时为白屏，尔后先出现文字，图片，样式最后出现）在网速非常慢的情况下，css 下载时间比较长，这样就给用户带来“白屏”的时间自然也就很长了，用户体验非常差。</p>
+<h3 id="36、js-放在底部"><a href="#36、js-放在底部" class="headerlink" title="36、js 放在底部"></a><a href="#36%E3%80%81js%E6%94%BE%E5%9C%A8%E5%BA%95%E9%83%A8" title="36、js放在底部"></a>36、js 放在底部</h3><ul>
+<li><p>如果是外部加载的 js, 也就是通过 src 加载的外部 js, 这种方式调用的 js 之所以要放到底部是因为浏览器渲染网页是从上往下,页面是用户能看到的也能直观感受到的,而 js 代码是用户看不到的,属于“幕后”的东西, 把“幕后”的东西放到最下面,那么用户能看得见的页面加载速度就会更快,让用户感觉页面打开速度很快,提高用户体验。</p>
+</li>
+<li><p>因为浏览器加载完 JS 文件就会去执行,这时候如果 JS 里面有对 DOM 的操作的话,DOM 可能还未加载完,就会出错。</p>
+</li>
+</ul>
+<h3 id="37、vue-的数据响应式原理"><a href="#37、vue-的数据响应式原理" class="headerlink" title="37、vue 的数据响应式原理"></a><a href="#37%E3%80%81vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86" title="37、vue的数据响应式原理"></a>37、vue 的数据响应式原理</h3><p>vue.js 是采用数据劫持结合发布者-订阅者模式的方式，通过 Object.defineProperty()来劫持各个属<br>性的 setter，getter，在数据变动时发布消息给订阅者，触发相应的监听回调。 针对数组对象通过改写源生的七种方法，实现数据的劫持和触发。</p>
+<p>具体步骤：</p>
+<p>第一步：需要 observe 的数据对象进行递归遍历，包括子属性对象的属性，都加上 setter 和<br>getter 这样的话，给这个对象的某个值赋值，就会触发 setter，那么就能监听到了数据变化<br>第二步：compile 解析模板指令，将模板中的变量替换成数据，然后初始化渲染页面视图，并将每<br>个指令对应的节点绑定更新函数，添加监听数据的订阅者，一旦数据有变动，收到通知，更新视图<br>第三步：Watcher 订阅者是 Observer 和 Compile 之间通信的桥梁 。</p>
+<h3 id="38、流量控制和拥塞控制的区别"><a href="#38、流量控制和拥塞控制的区别" class="headerlink" title="38、流量控制和拥塞控制的区别"></a><a href="#38%E3%80%81%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6%E5%92%8C%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%9A%84%E5%8C%BA%E5%88%AB" title="38、流量控制和拥塞控制的区别"></a>38、流量控制和拥塞控制的区别</h3><p>拥塞控制和流量控制的区别<br><code>拥塞控制</code>：是通过现有网络能负担的网络负荷来控制发送方发送数据。拥塞控制是一个<strong>全局性</strong>的过程，包括网络中的路由器和主机等<br><code>流量控制</code>：是点对点的控制，即接收方控制发送方(滑动窗口机制)<br>相同点：都是控制发送方发送数据</p>
+<h3 id="39、vue-nextTick-的实现原理"><a href="#39、vue-nextTick-的实现原理" class="headerlink" title="39、vue.nextTick 的实现原理"></a><a href="#39%E3%80%81vue-nextTick%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86" title="39、vue.nextTick的实现原理"></a>39、vue.nextTick 的实现原理</h3><p>vue 在进行 DOM 更新时采用的时异步执行的。只要侦听到数据变化，Vue 将开启一个队列（callbacks 队列），并缓冲在同一事件循环中发生的所有数据变更。 如果同一个 watcher 被多次触发，只会被推入到队列中一次。这种在缓冲时去除重复数据对于避免不必要的计算和 DOM 操作是非常重要的。将 nextTrick 的回调函数添加到 callbacks 对列的尾部，当试图更新完毕我们在执行 nextTrick 的回调函数。Vue 在内部对异步队列尝试使用原生的 Promise.then、MutationObserver 和 setImmediate， 如果执行环境不支持，则会采用 setTimeout(fn, 0) 代替。【<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000008589736%E3%80%91">https://segmentfault.com/a/1190000008589736】</a></p>
+<p><img src="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210091945665.png" alt="img"></p>
+<h3 id="40、图像懒加载"><a href="#40、图像懒加载" class="headerlink" title="40、图像懒加载"></a><a href="#40%E3%80%81%E5%9B%BE%E5%83%8F%E6%87%92%E5%8A%A0%E8%BD%BD" title="40、图像懒加载"></a>40、图像懒加载</h3><p>将图像真实的地址写在 src-data 中，合适的时机将 src-data 中的内容填写到 src 中发起 http 请求获取图像资源，所谓合适的时机就是 scrollTop 的高度和浏览器的高度之和和图像顶端的位置进行比较，当图像顶端的位置小于前两者之和，表明图像要显示。</p>
+<h3 id="41、position-的属性值"><a href="#41、position-的属性值" class="headerlink" title="41、position 的属性值"></a><a href="#41%E3%80%81position%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC" title="41、position的属性值"></a>41、position 的属性值</h3><p>1、relative 相对定位</p>
+<p>2、absoulte 绝对定位</p>
+<p>3、fixed 固定定位相对于浏览器的固定定位</p>
+<p>4、static 默认值没有定位</p>
+<p>5、sticky 粘性定位，相当于 relative+fixed，检测滚动条，当滚动条超出目标区域进行固定定位。</p>
+<p>6、inherit 继承父元素 position 属性的值</p>
+<h3 id="42、display-的属性值"><a href="#42、display-的属性值" class="headerlink" title="42、display 的属性值"></a><a href="#42%E3%80%81display%E7%9A%84%E5%B1%9E%E6%80%A7%E5%80%BC" title="42、display的属性值"></a>42、display 的属性值</h3><p>none</p>
+<p>block</p>
+<p>inline</p>
+<p>inline-block</p>
+<p>flex</p>
+<p>grid</p>
+<h3 id="43、vue-的数据响应式（完美的回答）"><a href="#43、vue-的数据响应式（完美的回答）" class="headerlink" title="43、vue 的数据响应式（完美的回答）"></a><a href="#43%E3%80%81vue%E7%9A%84%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94%E5%BC%8F%EF%BC%88%E5%AE%8C%E7%BE%8E%E7%9A%84%E5%9B%9E%E7%AD%94%EF%BC%89" title="43、vue的数据响应式（完美的回答）"></a>43、vue 的数据响应式（完美的回答）</h3><p>vue2 根据不同的数据类型做不同的判断，针对对象类型 vue 采用 observe 对对象的属性和子属性进行递归利用 object.definedproperty 对属性添加 set 和 get，在 get 中收集依赖在 set 中触发依赖（依赖收集的是 watcher 的实例，只有 watcher 触发的 getter 才会收集依赖，那个 watcher 触发了 getter,就把哪个 watcher 收集到 Dep 中）。虽然该方法实现了数据响应式但是针对新属性的添加和旧属性的删除，利用该方法是检测不到了，需要结合 vue 提供的 set 和 deleteAPI 实现响应式，针对 Array 数据类型，vue 采用的是改写源生的七种</p>
+<p>（push&#x2F;pop&#x2F;shift&#x2F;unshift&#x2F;sort&#x2F;splice&#x2F;reverse）方法实现数据响应式，如果通过下表修改数组也是无法检测到，只能利用这七种方法，针对 vue2 存在响应式的问题。vue3 采用了 proxy&#x2F;reflect 方法，实现数据响应式，proxy 是代理整个对象，而不是某个对象的特定属性，不需要通过递归的方式遍历添加 set 和 get, 并且添加新的属性也不再需要额外的 api,与此同时 vue3 还将响应式单独抽离出一个 reactivity 包，使用起来更加灵活，并且对新的数据类型也支持响应式比如 set&#x2F;map。</p>
+<p><img src="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210141517905.png" alt="image-20221014151727388"></p>
+<p><img src="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210141521893.png" alt="image-20221014152113397"></p>
+<p>Vue 数据响应式</p>
+<p>vue2 实现数据响应式根据不同的对象类型做了不同的处理</p>
+<p> 针对 object 对象，尤玉溪利用 Object.definedproperty 为每个对象的属性以及子属性添加 setter 和 getter,利用 Observer 类递归侦测对象的所有属性，并为每个属性添加<code>__ob__</code>属性为 Observer 的实例（<code>__ob__</code>一方面为了标记数据是否被侦测了变化，另一方面可以很方便地通过数据取到<code>__ob__</code>从而拿到 Observer 实例上保存的依赖），每个 Observer 实例上都有一个依赖收集的容器<code>dp</code>实例。在 getter 中收集依赖在 setter 中触发依赖，收集的是 watcher 的实例。由于访问数据的方式可以是 template 中也可能是用户写的一个 watch,这就需要抽象出来一个能够集中处理这些情况的类，只要我们通过 watcher 访问 value 就会触发相关属性的 getter,getter 就会收集当前触发的 watcher 的实例，实现依赖的收集。</p>
+<p> 针对数组(采用原型拦截，只能拦截原型的方法),改写原生的 Array 的七种方法，通过创建一个新的对象并新对象的原型指向 Array.protype,将 Array 实例的原型强行执行该新建对象，并在对象中添加这七种方法，遍历七种方法添加 getter 和 setter，在 getter 中触发依赖，在方法中触发依赖。</p>
+<p><img src="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210181957359.png" alt="image-20221018195729056"></p>
+<p>实现思路：</p>
+<p>1、利用 observer 类对 data 返回的对象添加监听并未每个属性添加一个<code>__ob__</code>。</p>
+<p>2、defineReactive 时为每一个 key 创建一个 Dep 实例。</p>
+<p>3、初始化视图时读取某个<code>key</code>，创建⼀个<code>watcher1</code></p>
+<p>4、由于触发<code>name1</code>的<code>getter</code>方法，便将<code>watcher1</code>添加到<code>name1</code>对应的 Dep 中</p>
+<p>5、当<code>name1</code>更新，<code>setter</code>触发时，便可通过对应<code>Dep</code>通知其管理所有<code>Watcher</code>更新</p>
+<p>·</p>
+<h3 id="收集-时期"><a href="#收集-时期" class="headerlink" title="收集-时期"></a><a href="#%E6%94%B6%E9%9B%86-%E6%97%B6%E6%9C%9F" title="收集-时期"></a>收集-时期</h3><p>（参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/gongye2019/article/details/119011390%EF%BC%89">https://blog.csdn.net/gongye2019/article/details/119011390）</a></p>
+<p>1、对于计算属性 Watcher，template 的解析：是在 beforeMount 之后 mount 之前进行依赖收集的。<br>2、对于侦听器 Watcher：是在 beforeCreate 之后 created 之前进行依赖收集的。(pros data methods computed watch)<br>3、当通过 vm.$set 动态添加响应式数据时，也会去收集依赖</p>
+<h3 id="44、缓存"><a href="#44、缓存" class="headerlink" title="44、缓存"></a><a href="#44%E3%80%81%E7%BC%93%E5%AD%98" title="44、缓存"></a>44、缓存</h3><p>强制缓存</p>
+<p>强制缓存的响应头部字段有两种，分别为 Expires 和 Cache-Control 两种，Expires 采用的是绝对时间 Cache-Control 是一个相对时间并且属性值的选项更多一些，且优先级更高。第一次请求服务器资源时，服务器会在返回这个资源的同时，在响应头部加上 cache-control 中设置过期时间大小，当再次发起请求时，会根据请求时间和 cache-control 设置的过期时间，计算出该资源是否过期，如果没有直接走缓存，否则请求服务器，更新 cache-control 的时间。</p>
+<p>协商缓存</p>
+<p>协商缓存的响应头部字段也有两种，分别是 last-modified 和 Etag，last-modified 表示文件最后修改时间，该字段存在一个弊端，在没有修改文件内容的情况下文件的最后修改时间也可能发生变化，这会导致客户端认为文件变动发起不必要的请求，Etag 表示资源的唯一标识，根据文件的内容生成 hash，并且优先级更高，<strong>协商缓存这两个字段都需要配合强制缓存中 Cache-control 字段来使用，只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求</strong>。客户端第一次发起请求时，服务器返回的 http 响应头部有 Etag 字段，再次发起请求会携带 Etag,服务器判断该资源是否改动如果改动返回最新资源状态码为 200,如果没有改变返回状态码 304,客户端使用缓存资源。</p>
+<h3 id="45、-HTTP-与-HTTPS-有哪些区别？"><a href="#45、-HTTP-与-HTTPS-有哪些区别？" class="headerlink" title="45、 HTTP 与 HTTPS 有哪些区别？"></a><a href="#45%E3%80%81-HTTP-%E4%B8%8E-HTTPS-%E6%9C%89%E5%93%AA%E4%BA%9B%E5%8C%BA%E5%88%AB%EF%BC%9F" title="45、 HTTP 与 HTTPS 有哪些区别？"></a>45、 HTTP 与 HTTPS 有哪些区别？</h3><ol>
+<li>HTTP 是超文本传输协议，信息是明文传输，存在安全风险的问题。HTTPS 则解决 HTTP 不安全的缺陷，在 TCP 和 HTTP 网络层之间加入了 SSL&#x2F;TLS 安全协议，使得报文能够加密传输。</li>
+<li>HTTP 连接建立相对简单， TCP 三次握手之后便可进行 HTTP 的报文传输。而 HTTPS 在 TCP 三次握手之后，还需进行 SSL&#x2F;TLS 的握手过程，才可进入加密报文传输。</li>
+<li>HTTP 的端口号是 80，HTTPS 的端口号是 443。</li>
+<li>HTTPS 协议需要向 CA 申请数字证书，来保证服务器的身份是可信的</li>
+</ol>
+<h3 id="46、堆和栈的区别"><a href="#46、堆和栈的区别" class="headerlink" title="46、堆和栈的区别"></a><a href="#46%E3%80%81%E5%A0%86%E5%92%8C%E6%A0%88%E7%9A%84%E5%8C%BA%E5%88%AB" title="46、堆和栈的区别"></a>46、堆和栈的区别</h3><p>1、栈和堆</p>
+<p><strong>栈</strong>是栈内存的简称，栈是自动分配相对固定大小的内存空间，遵循先进先出的原则，<strong>堆</strong>是堆内存的简称，堆是<strong>动态分配</strong>内存，<strong>内存大小不固定</strong>，也<strong>不会自动释放，</strong>堆<strong>数据结构</strong>是一种无序的树状结构。</p>
+<p>2、基本类型和引用类型</p>
+<p>基本数据类型都是直接存放在栈内存中，占用的内存空间大小确定，引用数据类型都是存放在堆中，堆的内存地址存储在栈中</p>
+<p>3、基本数据类型采用值传递，引用数据类型采用地址传递 。</p>
+<p>4、内存地址的分配和垃圾回收</p>
+<p><strong>（1）栈内存：</strong>线性有序存储，容量小，系统分配效率高。</p>
+<p><strong>（2）堆内存：</strong>首先要在堆内存新分配存储区域，之后又要把指针存储到栈内存中，效率相对就要低一些了。</p>
+<p><strong>2.垃圾回收</strong>：</p>
+<p><strong>（1）栈内存：</strong>变量基本上用完就回收了，相比于堆来说存取速度会快，并且栈内存中的数据是可以共享的。</p>
+<p><strong>（2）</strong> <strong>堆内存</strong>：堆内存中的对象不会随方法的结束而销毁，就算方法结束了，这个对象也可能会被其他引用变量所引用</p>
+<h3 id="47、0-1-0-2-精度不准确以及解决方案"><a href="#47、0-1-0-2-精度不准确以及解决方案" class="headerlink" title="47、0.1+0.2 精度不准确以及解决方案"></a><a href="#47%E3%80%810-1-0-2%E7%B2%BE%E5%BA%A6%E4%B8%8D%E5%87%86%E7%A1%AE%E4%BB%A5%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88" title="47、0.1+0.2精度不准确以及解决方案"></a>47、0.1+0.2 精度不准确以及解决方案</h3><p>原因：0.1 和 0.2 无法用浮点型二进制数精确表示，因此在计算结果上会出现误差。我们可以利用 toPrecision（参数好比有效数字的位数）转化为指定的精度返回该数值对象的字符串，再用 parseFloat 转化为浮点型，</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">strip</span>(<span class="params">num, precision = <span class="number">12</span></span>) </span>{</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseFloat</span>(num.toPrecision(precision));</span><br><span class="line">}</span><br><span class="line"><span class="built_in">console</span>.log(strip(<span class="number">0.1</span>+<span class="number">0.2</span>))</span><br></pre></td></tr></tbody></table>
+
+<h3 id="48、CSS-的性能优化"><a href="#48、CSS-的性能优化" class="headerlink" title="48、CSS 的性能优化"></a><a href="#48%E3%80%81CSS%E7%9A%84%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96" title="48、CSS的性能优化"></a>48、CSS 的性能优化</h3><ul>
+<li>内联首屏关键 CSS</li>
+<li>异步加载 CSS（外部引用的 css）</li>
+<li>资源压缩 （利用 webpack 将 css 代码进行压缩）</li>
+<li>合理使用选择器 （减少使用属性和通配符选择器效率低，减少样式的层级嵌套，熟悉样式继承减少样式的重复赋值）</li>
+<li>减少使用昂贵的属性(border-radius&#x2F;border-shadow)</li>
+<li>不要使用@import（会影响并行下载且兼容性差）</li>
+</ul>
+<h3 id="49、webpack-的生命周期"><a href="#49、webpack-的生命周期" class="headerlink" title="49、webpack 的生命周期"></a><a href="#49%E3%80%81webpack%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" title="49、webpack的生命周期"></a>49、webpack 的生命周期</h3><p>①<code>初始化参数</code> 从配置文件和 Shell 语句中读取与合并参数，得出最终的参数</p>
+<p>②<code>开始编译</code> 用上一步得到的参数初始化 Compiler 对象，加载所有配置的插件，执行对象的 run 方法开始执行编译</p>
+<p>③<code>确定入口</code> 根据配置中的 entry 找出所有的入口文件</p>
+<p>④<code>编译模块</code> 从入口文件出发，调用所有配置的 Loader 对模块进行编译，再找出该模块被编译后的最终内容以及它们之间的依赖关系</p>
+<p>⑤<code>完成模块编译</code> 在经过第 4 步使用 Loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系</p>
+<p>⑥<code>输出资源</code> 根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表，这步是可以修改输出内容的最后机会</p>
+<p>⑦<code>输出完成</code> 在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统</p>
+<h3 id="46、改写节流"><a href="#46、改写节流" class="headerlink" title="46、改写节流"></a><a href="#46%E3%80%81%E6%94%B9%E5%86%99%E8%8A%82%E6%B5%81" title="46、改写节流"></a>46、改写节流</h3><p>第一次立即触发之后的最后一次触发有效</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">fn, delay</span>) </span>{</span><br><span class="line">    <span class="keyword">let</span> timeID = <span class="literal">null</span>,flage=<span class="literal">false</span></span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>{</span><br><span class="line">        <span class="built_in">clearTimeout</span>(timeID)</span><br><span class="line">        <span class="keyword">if</span>(!flage){</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">'第一次触发'</span>)</span><br><span class="line">            fn.call(<span class="built_in">this</span>,<span class="number">666</span>)</span><br><span class="line">            flage=<span class="literal">true</span></span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        }</span><br><span class="line">        timeID = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> {</span><br><span class="line">            fn.call(<span class="built_in">this</span>,<span class="number">666</span>)</span><br><span class="line">        }, delay)</span><br><span class="line">    }</span><br><span class="line">}</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params">num</span>) </span>{</span><br><span class="line">    <span class="built_in">console</span>.log(num)</span><br><span class="line">}</span><br><span class="line"><span class="keyword">const</span> btn = <span class="built_in">document</span>.getElementsByClassName(<span class="string">'btn'</span>)</span><br><span class="line">btn[<span class="number">0</span>].addEventListener(<span class="string">'click'</span>, test(print,<span class="number">1000</span>))</span><br></pre></td></tr></tbody></table>
+
+<h3 id="47、发起一些请求，要求依次发送，当一个请求出现了错误支持重复发起-3-次，有一次请求成功表示本次请求成功，全部请求成功表示请求成功"><a href="#47、发起一些请求，要求依次发送，当一个请求出现了错误支持重复发起-3-次，有一次请求成功表示本次请求成功，全部请求成功表示请求成功" class="headerlink" title="47、发起一些请求，要求依次发送，当一个请求出现了错误支持重复发起 3 次，有一次请求成功表示本次请求成功，全部请求成功表示请求成功"></a><a href="#47%E3%80%81%E5%8F%91%E8%B5%B7%E4%B8%80%E4%BA%9B%E8%AF%B7%E6%B1%82%EF%BC%8C%E8%A6%81%E6%B1%82%E4%BE%9D%E6%AC%A1%E5%8F%91%E9%80%81%EF%BC%8C%E5%BD%93%E4%B8%80%E4%B8%AA%E8%AF%B7%E6%B1%82%E5%87%BA%E7%8E%B0%E4%BA%86%E9%94%99%E8%AF%AF%E6%94%AF%E6%8C%81%E9%87%8D%E5%A4%8D%E5%8F%91%E8%B5%B73%E6%AC%A1%EF%BC%8C%E6%9C%89%E4%B8%80%E6%AC%A1%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F%E8%A1%A8%E7%A4%BA%E6%9C%AC%E6%AC%A1%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F%EF%BC%8C%E5%85%A8%E9%83%A8%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F%E8%A1%A8%E7%A4%BA%E8%AF%B7%E6%B1%82%E6%88%90%E5%8A%9F" title="47、发起一些请求，要求依次发送，当一个请求出现了错误支持重复发起3次，有一次请求成功表示本次请求成功，全部请求成功表示请求成功"></a>47、发起一些请求，要求依次发送，当一个请求出现了错误支持重复发起 3 次，有一次请求成功表示本次请求成功，全部请求成功表示请求成功</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">promises</span>) </span>{</span><br><span class="line">    <span class="keyword">let</span> ans = []</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> {</span><br><span class="line">        promises.forEach(<span class="keyword">async</span> item =&gt; {</span><br><span class="line">            <span class="keyword">let</span> iter = <span class="number">3</span></span><br><span class="line">            <span class="keyword">while</span> (iter--) {</span><br><span class="line">                <span class="keyword">try</span> {</span><br><span class="line">                    <span class="keyword">let</span> res = <span class="keyword">await</span> item</span><br><span class="line">                    ans.push(res)</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                } <span class="keyword">catch</span> (e) {</span><br><span class="line">                    <span class="keyword">if</span> (iter === <span class="number">1</span>) {</span><br><span class="line">                        reject(<span class="string">'error'</span>)</span><br><span class="line">                    }</span><br><span class="line">                }</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span> (ans.length === promises.length) {</span><br><span class="line">                resolve(ans)</span><br><span class="line">            }</span><br><span class="line">        })</span><br><span class="line">    })</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> promises1=<span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve,reject</span>)=&gt;</span>{</span><br><span class="line">    <span class="keyword">let</span> num=<span class="built_in">Math</span>.random()*<span class="number">10</span></span><br><span class="line">    <span class="keyword">if</span>(num&lt;<span class="number">5</span>){</span><br><span class="line">        resolve(num)</span><br><span class="line">    }<span class="keyword">else</span> {</span><br><span class="line">        reject(<span class="string">'error'</span>)</span><br><span class="line">    }</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> promises = [<span class="built_in">Promise</span>.resolve(<span class="number">1</span>),promises1, <span class="built_in">Promise</span>.resolve(<span class="number">3</span>)]</span><br><span class="line"><span class="keyword">let</span> ans = test(promises)</span><br><span class="line">ans.then(<span class="function"><span class="params">res</span> =&gt;</span> {</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'xxx'</span>,value)</span><br><span class="line">},<span class="function"><span class="params">rej</span>=&gt;</span>{</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'xxx'</span>,rej)</span><br><span class="line">})</span><br></pre></td></tr></tbody></table>
+
+<h3 id="48、flex-布局总结"><a href="#48、flex-布局总结" class="headerlink" title="48、flex 布局总结"></a><a href="#48%E3%80%81flex%E5%B8%83%E5%B1%80%E6%80%BB%E7%BB%93" title="48、flex布局总结"></a>48、flex 布局总结</h3><p>分为父盒子属性和子盒子属性</p>
+<p>父盒子属性</p>
+<p>flex-direction 设置默认主线</p>
+<p>flex-warp 设置是否换行默认 no-warp</p>
+<p>flex-flow 设置子盒子流动的方向</p>
+<p>justify-content 设置主轴对齐方式 center flex-end flex-start space-between space-around</p>
+<p>algin-content 设置辅轴方向主轴线对其的方式，只有存在多个主轴时才会生效</p>
+<p>algin-items 设置单行中辅轴方向子盒子对齐方式</p>
+<p>子盒子属性</p>
+<p>order 改变默认盒子顺序小的在前</p>
+<p>flex-grow 放大系数</p>
+<p>flex-shrink 缩小系数</p>
+<p>flex-basis 基准值</p>
+<p>algin-self 属性 设置单个盒子辅助方向上的对齐方式</p>
+<p>注意点睛之笔</p>
+<p>flex 布局不像 grid 布局那么灵活，不支持 justify-self，MDN 给的解释是在主轴上的弹性元素是作为一个组进行处理的通过 justify-content 给一组元素分配剩余部分的空间， 而<code>justify-self</code> 是设置单个元素的对齐方式，这意味着在 Flexbox 中，<code>justify-self</code> 属性没有意义，</p>
+<h3 id="49、transfrom-的学习"><a href="#49、transfrom-的学习" class="headerlink" title="49、transfrom 的学习"></a><a href="#49%E3%80%81transfrom%E7%9A%84%E5%AD%A6%E4%B9%A0" title="49、transfrom的学习"></a>49、transfrom 的学习</h3><p>针对 2D 变换</p>
+<p>translate 移动 translateX&#x2F;translateY 方向移动</p>
+<p>scale 放缩</p>
+<p>rotate 旋转</p>
+<p>skew 倾斜</p>
+<h3 id="50、一些动画-transition-和-animation"><a href="#50、一些动画-transition-和-animation" class="headerlink" title="50、一些动画 transition 和 animation"></a><a href="#50%E3%80%81%E4%B8%80%E4%BA%9B%E5%8A%A8%E7%94%BBtransition%E5%92%8Canimation" title="50、一些动画transition和animation"></a>50、一些动画 transition 和 animation</h3><table>
+<thead>
+<tr>
+<th>transition-property</th>
+<th>指定 CSS 属性的 name，transition 效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>transition-duration</strong></td>
+<td>transition 效果需要指定多少秒或毫秒才能完成</td>
+</tr>
+<tr>
+<td><strong>transition-timing-function</strong></td>
+<td>指定 transition 效果的转速曲线</td>
+</tr>
+<tr>
+<td><strong>transition-delay</strong></td>
+<td>定义 transition 效果开始的时候</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>animation-name</th>
+<th>指定要绑定到选择器的关键帧的名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>animation-duration</strong></td>
+<td>动画指定需要多少秒或毫秒完成</td>
+</tr>
+<tr>
+<td><strong>animation-timing-function</strong></td>
+<td>设置动画将如何完成一个周期</td>
+</tr>
+<tr>
+<td><strong>animation-delay</strong></td>
+<td>设置动画在启动前的延迟间隔。</td>
+</tr>
+<tr>
+<td><strong>animation-iteration-count</strong></td>
+<td>定义动画的播放次数。</td>
+</tr>
+<tr>
+<td><strong>animation-direction</strong></td>
+<td>指定是否应该轮流反向播放动画。</td>
+</tr>
+</tbody></table>
+<h3 id="51、DOMContentLoaded-与-load-的区别"><a href="#51、DOMContentLoaded-与-load-的区别" class="headerlink" title="51、DOMContentLoaded 与 load 的区别 ?"></a><a href="#51%E3%80%81DOMContentLoaded-%E4%B8%8E-load-%E7%9A%84%E5%8C%BA%E5%88%AB" title="51、DOMContentLoaded 与 load 的区别 ?"></a>51、DOMContentLoaded 与 load 的区别 ?</h3><ul>
+<li>当 DOMContentLoaded 事件触发时,仅当 DOM 解析完成后,不包括样式表,图片。我们前面提到 <strong>CSS 加载会阻塞 DOM 的渲染和后面 js 的执行,js 会阻塞 DOM 解析</strong>,所以我们可以得到结论:<br>当文档中没有脚本时,浏览器解析完文档便能触发 DOMContentLoaded 事件。如果文档中包含脚本,则脚本会阻塞文档的解析,而脚本需要等 CSSOM 构建完成才能执行。在任何情况下,DOMContentLoaded 的触发不需要等待图片等其他资源加载完成。</li>
+<li>当 onload 事件触发时,页面上所有的 DOM,样式表,脚本,图片等资源已经加载完毕。</li>
+<li>DOMContentLoaded -&gt; load。</li>
+</ul>
+<h3 id="52、字符串的函数"><a href="#52、字符串的函数" class="headerlink" title="52、字符串的函数"></a><a href="#52%E3%80%81%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E5%87%BD%E6%95%B0" title="52、字符串的函数"></a>52、字符串的函数</h3><p> match()<br>​ 格式：字符串.match(正则)<br>​ 功能：在字符串匹配是否符合正则表达式<br>​ 返回值：匹配成功，返回装有匹配到字串的数组<br>​ 匹配失败，返回 null<br>replace()<br>​ 格式：字符串.replace(oldStr&#x2F;正则,newStr);<br>​ 功能：q 用 newStr 将 oldStr 替换<br>​ 返回值：替换成功的新字符串<br>split()<br>​ 格式：字符串.split(分割符&#x2F;正则);<br>​ 功能：用分割符将原字符串进行分割<br>​ 返回值：分割剩下的字串组成的数组<br>search()<br>​ 格式：字符串.search(字串&#x2F;正则)<br>​ 功能：找到符合条件的字串第一次出现的位置<br>​ 返回值：<br>​ 如果找到，返回&gt;&#x3D;0 的下标<br>​ 否则，返回</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//场景：分割一个数字的千分位</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">toThousands</span>(<span class="params">number</span>)</span>{</span><br><span class="line">	<span class="keyword">let</span> arr=<span class="built_in">String</span>(num).split(<span class="string">'.'</span>)</span><br><span class="line">    <span class="keyword">let</span> num=arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">let</span> len=<span class="built_in">Math</span>.ceil(num.length/<span class="number">3</span>)*<span class="number">3</span></span><br><span class="line">    <span class="keyword">let</span> result= num.padStart(len,<span class="string">'0'</span>).match(<span class="regexp">/\d{3}/g</span>).join(<span class="string">','</span>).replace(<span class="regexp">/^0*/g</span>,<span class="string">''</span>)</span><br><span class="line">    <span class="keyword">return</span> arr[<span class="number">1</span>]?reslut+<span class="string">'.'</span>+arr[<span class="number">1</span>]:result;</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//解析模板</span></span><br><span class="line"><span class="keyword">let</span> a=<span class="string">'我是，年{)({龄，性别。'</span></span><br><span class="line"><span class="keyword">let</span> data={</span><br><span class="line">    <span class="attr">name</span>:<span class="string">'wang'</span>,</span><br><span class="line">    <span class="attr">age</span>:<span class="number">66</span>,</span><br><span class="line">    <span class="attr">sex</span>:<span class="string">'男'</span></span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> ans=a.replace(<span class="regexp">/\{\{[a-zA-Z0-9]*\}\}/g</span>,<span class="function"><span class="params">item</span>=&gt;</span>{</span><br><span class="line">    <span class="built_in">console</span>.log(item)</span><br><span class="line">    <span class="keyword">return</span> data[item.slice(<span class="number">2</span>,-<span class="number">2</span>)]</span><br><span class="line">})</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'ans'</span>,ans)</span><br></pre></td></tr></tbody></table>
+
+<h3 id="53、url-解析"><a href="#53、url-解析" class="headerlink" title="53、url 解析"></a><a href="#53%E3%80%81url-%E8%A7%A3%E6%9E%90" title="53、url 解析"></a>53、url 解析</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> str=<span class="string">'https://www.genshuixue.com?user=gsx&amp;id=111&amp;name=%E5%BC%A0%E4%B8%89'</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">test</span>(<span class="params">str</span>)</span>{</span><br><span class="line">    <span class="keyword">let</span> obj={}</span><br><span class="line">    <span class="keyword">let</span> [_,...arr]=str.split(<span class="regexp">/[?=&amp;]/g</span>)</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length-<span class="number">1</span>;){</span><br><span class="line">        obj[arr[i]]=<span class="built_in">decodeURI</span>(arr[i+<span class="number">1</span>])</span><br><span class="line">        i+=<span class="number">2</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> obj</span><br><span class="line">}</span><br><span class="line"><span class="built_in">console</span>.log(test(str));</span><br></pre></td></tr></tbody></table>
+
+<h3 id="54、callback-promise-async-await"><a href="#54、callback-promise-async-await" class="headerlink" title="54、callback&#x2F;promise&#x2F;async-await"></a><a href="#54%E3%80%81callback-promise-async-await" title="54、callback/promise/async-await"></a>54、callback&#x2F;promise&#x2F;async-await</h3><p>相比 callback，promise 存在的优势，更好的定义异步逻辑控制流，解耦性，更好的错误处理，提升了代码的可读性。 每一个异步任务返回一个 Promise 对象，该对象有一个 then 方法，允许指定回调函数，利用链式调用的方式取代了回调嵌套。</p>
+<p>async-await 相比 promise 的优势，可以利用同步代码的方式写异步代码，解决了回调地狱的问题</p>
+<h3 id="55、nextTrick-的原理"><a href="#55、nextTrick-的原理" class="headerlink" title="55、nextTrick()的原理"></a><a href="#55%E3%80%81nextTrick-%E7%9A%84%E5%8E%9F%E7%90%86" title="55、nextTrick()的原理"></a>55、nextTrick()的原理</h3><p>vue 采用的是异步更新策略，当监听到数据发生变化的时候不会立即去更新 DOM,而是开启一个任务队列，并缓存在同一事件循环中所发生的所有数据变更，这样可以将多次数据更新合并成一次，减少操作 DOM 的次数 nextTick 接收一个回调函数作为参数，并将这个回调函数延迟到 DOM 更新后才执行，将传入的回调函数包装成异步任务为了尽快执行所以优先选择微任务，nextTick 采用降级的方式，判断当前环境优先支持 Promise.then、MutationObserver、setImmediate、setTimeout(fn,0)</p>
+<h3 id="56、样式继承"><a href="#56、样式继承" class="headerlink" title="56、样式继承"></a><a href="#56%E3%80%81%E6%A0%B7%E5%BC%8F%E7%BB%A7%E6%89%BF" title="56、样式继承"></a>56、样式继承</h3><p><img src="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210191100632.png" alt="image-20221019110019793"></p>
+<h3 id="57、手写编码题"><a href="#57、手写编码题" class="headerlink" title="57、手写编码题"></a><a href="#57%E3%80%81%E6%89%8B%E5%86%99%E7%BC%96%E7%A0%81%E9%A2%98" title="57、手写编码题"></a>57、手写编码题</h3><ul>
+<li>如果只出现一次，不编码数字，如 aaab -&gt; a3b</li>
+<li>如果只出现两次，不进行编码，如 aabbb -&gt; aab3</li>
+<li>如果进行解码数字冲突如何解决</li>
+</ul>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode</span>(<span class="params">str,iter</span>)</span>{</span><br><span class="line">    <span class="keyword">let</span> ans=<span class="string">''</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;str.length;){</span><br><span class="line">        <span class="keyword">if</span>(str[i]===str[i+<span class="number">1</span>]&amp;&amp;i&lt;str.length-<span class="number">1</span>){</span><br><span class="line">            <span class="keyword">let</span> num=<span class="number">0</span>,index=i</span><br><span class="line">            <span class="keyword">while</span> (str[i]===str[index]&amp;&amp;i&lt;str.length){</span><br><span class="line">                num++</span><br><span class="line">                i++</span><br><span class="line">            }</span><br><span class="line">            <span class="keyword">if</span>(num&lt;=iter){</span><br><span class="line">                ans+=str.substr(index,num)</span><br><span class="line">            }<span class="keyword">else</span> {</span><br><span class="line">                ans+=str[index]+<span class="built_in">String</span>(num)</span><br><span class="line">            }</span><br><span class="line">        }<span class="keyword">else</span> {</span><br><span class="line">            ans+=str[i]</span><br><span class="line">            i++</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> ans</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">encode</span>(<span class="params">str,iter</span>)</span>{</span><br><span class="line">    <span class="keyword">let</span> arr=[]</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> s <span class="keyword">of</span> str){</span><br><span class="line">        <span class="keyword">const</span> len=arr.length</span><br><span class="line">        <span class="keyword">const</span> char=len&gt;<span class="number">0</span>?arr[len-<span class="number">1</span>][<span class="number">0</span>]:<span class="literal">undefined</span></span><br><span class="line">        <span class="keyword">if</span>(s===char){</span><br><span class="line">            arr[len-<span class="number">1</span>][<span class="number">1</span>]++</span><br><span class="line">        }<span class="keyword">else</span> {</span><br><span class="line">            arr.push([s,<span class="number">1</span>])</span><br><span class="line">        }</span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">let</span> ans=arr.map(<span class="function">(<span class="params">x</span>)=&gt;</span>{</span><br><span class="line">        <span class="keyword">if</span>(x[<span class="number">1</span>]&lt;=iter){</span><br><span class="line">            <span class="keyword">return</span> x[<span class="number">0</span>].repeat(x[<span class="number">1</span>])</span><br><span class="line">        }<span class="keyword">else</span> {</span><br><span class="line">           <span class="keyword">return</span>  x.join(<span class="string">""</span>)</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line">    <span class="built_in">console</span>.log(ans)</span><br><span class="line">    <span class="keyword">return</span> ans.join(<span class="string">""</span>)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(encode(<span class="string">'aabbbcccd'</span>,<span class="number">2</span>));</span><br></pre></td></tr></tbody></table>
+
+<h3 id="58、once-函数的实现方式"><a href="#58、once-函数的实现方式" class="headerlink" title="58、once 函数的实现方式"></a><a href="#58%E3%80%81once%E5%87%BD%E6%95%B0%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F" title="58、once函数的实现方式"></a>58、once 函数的实现方式</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">once</span>(<span class="params">f</span>) </span>{</span><br><span class="line">    <span class="keyword">let</span> result;</span><br><span class="line">    <span class="keyword">let</span> revoked = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">...args</span>) =&gt;</span> {</span><br><span class="line">        <span class="keyword">if</span> (revoked) <span class="keyword">return</span> result;</span><br><span class="line">        <span class="keyword">const</span> r = f(...args);</span><br><span class="line">        revoked = <span class="literal">true</span>;</span><br><span class="line">        result = r;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    };</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> test=once(<span class="function">(<span class="params">...args</span>)=&gt;</span>{</span><br><span class="line">    <span class="keyword">return</span> args.reduce(<span class="function">(<span class="params">pre,cur</span>)=&gt;</span>pre+cur)</span><br><span class="line">})</span><br><span class="line"><span class="built_in">console</span>.log(test(<span class="number">1</span>, <span class="number">2</span>));</span><br><span class="line"><span class="built_in">console</span>.log(test(<span class="number">8</span>, <span class="number">7</span>));</span><br></pre></td></tr></tbody></table>
+
+<h3 id="59、前端性能优化的方式"><a href="#59、前端性能优化的方式" class="headerlink" title="59、前端性能优化的方式"></a><a href="#59%E3%80%81%E5%89%8D%E7%AB%AF%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E7%9A%84%E6%96%B9%E5%BC%8F" title="59、前端性能优化的方式"></a>59、前端性能优化的方式</h3><p>① 降低请求量：减少 http 请求、 图片懒加载、使用字体图标或 css 绘制代替图片<br>② 加快请求速度：预解析 DNS、使用 http2.0、并行加载、CDN 分发、压缩图片、gzip 压缩<br>③ 缓存：http 协议缓存请求、离线缓存 manifest、本地缓存 localStorage<br>（GET 请求可以缓存，POST 请求不能缓存。GET 请求后退&#x2F;刷新无害，POST 后退&#x2F;刷新则会致使重新提交数据）<br>④ 渲染：<br>JS 优化（防抖、节流、事件委托、减少重排重绘）<br>CSS 优化（提取公共样式、减少选择器嵌套、精灵图）<br>服务器端渲染<br>（客户端渲染：获取 HTML 文件，根据需要下载 JavaScript 文件，运行文件，生成 DOM，再渲染<br>服务端渲染：服务端返回 HTML 文件，客户端只需解析 HTML，使首屏渲染快，SEO（搜索引擎优化）<br>CSS 写在头部，JS 写在底部</p>
+<h3 id="60、set-和-map-的区别"><a href="#60、set-和-map-的区别" class="headerlink" title="60、set 和 map 的区别"></a><a href="#60%E3%80%81set%E5%92%8Cmap%E7%9A%84%E5%8C%BA%E5%88%AB" title="60、set和map的区别"></a>60、set 和 map 的区别</h3><p>①Map 是键值对，Set 是值的集合，键和值可以是任何的值；<br>②Map 可以通过 get 方法获取值，set 不能；<br>③ 都能通过迭代器进行 for…of 遍历；<br>④Set 的值是唯一的可以做数组去重，Map 由于没有格式限制，可以做数据存储；<br>⑤map 和 set 都是 stl 中的关联容器，map 以键值对的形式存储，key&#x3D;value 组成 pair，是一组映射关系；set 只有值，可以认为只有一个数据，并且 set 中元素不可以重复且自动排序。</p>
+<h3 id="61、map-和-object-的区别"><a href="#61、map-和-object-的区别" class="headerlink" title="61、map 和 object 的区别"></a><a href="#61%E3%80%81map%E5%92%8Cobject%E7%9A%84%E5%8C%BA%E5%88%AB" title="61、map和object的区别"></a>61、map 和 object 的区别</h3><p>②object 键的类型必须是 String 或者 Symbol、map 键的类型可以是任意类型<br>③object 中 key 是无序的，map 中可以是有序的，按照插入的顺序返回<br>④object 只能通过 Object.key()方法或 for in 统计数量，map 有 map.size<br>⑤object 可以通过点或中括号访问属性，map 用 map.get()<br>⑥object 不具备 Iterator 特性，不能 for of 遍历，map 的 keys()、values()、entries()都具有迭代器<br>⑦object 可以用 JSON.stringify()进行序列化，map 只能转化成 JSON，不能被 parse 解析<br>⑧ 应用场景：object 做数据存储，需要序列化时使用；map 频繁更新键值对，key 类型未知时使用</p>
+<h3 id="62、输入-url-的过程"><a href="#62、输入-url-的过程" class="headerlink" title="62、输入 url 的过程"></a><a href="#62%E3%80%81%E8%BE%93%E5%85%A5url%E7%9A%84%E8%BF%87%E7%A8%8B" title="62、输入url的过程"></a>62、输入 url 的过程</h3><p>① 针对 chrom 浏览器，输入地址栏内容，浏览器会判断输入内容是 URL 还是搜索关键词。</p>
+<p>② 如果是 URL，浏览器会将 URL 发送给网络进程，然后网络进程要查询浏览器缓存，如果有缓存并且缓存没有过期，直接取消请求使用缓存并解析渲染。</p>
+<p>③ 如果缓存过期或者没有缓存，再进行 URL 解析，解析出要请求的服务器的 IP 地址，把请求需要的协议、域名端口路径等信息解析出来。</p>
+<p>④、根据解析出来的域名进行 DNS,解析首先操作系统查询本地 DNS 缓存，如果没有向本地 DNS 解析服务器发起请求进行 DNS 解析，找到请求的服务器 IP 地址。</p>
+<p>⑤ 拿到 IP 地址后，三次握手建立 TCP 连接，HTTPS 协议的话还要进行 TLS、SSL 加密协议的握手过程。</p>
+<p>⑥ 建立连接后，浏览器会构建请求，cookie 等数据附加到请求头中，发给服务器，服务器接受请求并解析，如果没有对应的资源就 404；否则检查 HTTP 请求头有没有包含协商缓存信息（前面命中强缓存且已过期的话就会走这个步骤），如果验证缓存没有更新，过期的缓存依然可以使用，就返回 304 和空响应体；如果没有缓存或者资源更新了，就读取完整请求并准备 http 响应，进行查询数据库等操作，返回 200 和查询到的资源。</p>
+<p>⑦ 浏览器接收到响应<a target="_blank" rel="noopener" href="https://www.nowcoder.com/jump/super-jump/word?word=%E6%95%B0%E6%8D%AE">数据</a>之后，如果是 http1.1 以下则直接关闭连接，否则双方都可以根据情况选择关闭 TCP 连接或者保留重用，现在浏览器默认都会保持连接(<a target="_blank" rel="noopener" href="https://www.nowcoder.com/jump/super-jump/word?word=keep">keep</a>-alive)</p>
+<p>⑧ 浏览器拿到资源后根据资源类型(Content-Type)决定如何处理，如果浏览器判断是下载文件，那么请求会被提交给浏览器的下载管理器，同时 URL 请求流程就结束了，否则网络进程会通知创建一个渲染器进程来准备渲染页面</p>
+<p>⑨ 通过解析 html 文件构建 DOM,解析 css 注册样式表，将样式表和 DOM 结合创建 render Tree，计算并定位元素相对于可视化窗口的位置和大小生成 layoutTree,由于 css 具有样式重叠性，渲染引擎还需要为特定的节点生成专用的图层，并生成一颗对应的图层树，将图层树合并绘制。</p>
+<h3 id="63、SPA-单页面应用和-MPA-多页面应用"><a href="#63、SPA-单页面应用和-MPA-多页面应用" class="headerlink" title="63、SPA 单页面应用和 MPA 多页面应用"></a><a href="#63%E3%80%81SPA%E5%8D%95%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8%E5%92%8CMPA%E5%A4%9A%E9%A1%B5%E9%9D%A2%E5%BA%94%E7%94%A8" title="63、SPA单页面应用和MPA多页面应用"></a>63、SPA 单页面应用和 MPA 多页面应用</h3><p>单页面应用的优点：服务器压力小，通过组件切换的方式进行页面跳转，用户体验好流畅，代码复用率高，有利于前后端分离，维护成本低。</p>
+<p>缺点：平台复杂度高，开发难度大，不利于 SEO 优化，首次加载的时候时间较长</p>
+<p>多页面的应用优点：有利于 SEO 优化，首屏加载速度快，获取 html、css、js 直接解析渲染，页面的复杂度不高。</p>
+<p>缺点：网站的后期维护难度大，代码重复度高，对服务器压力大，页面跳转受网络和设备的影响，耗时较长，出现空白等待的页面，用户体验不好。</p>
+<p>针对单页面应用首次加载时间长怎么解决：可以尽量减少请求和合并请求，使用缓存对静态资源进行缓存或者利用 CDN 加速。针对平台中利用代理图标和图像可以采用雪碧图的方式进行。压缩请求资源图样压缩等。可以采用路由懒加载对使用组件进行按需建在的操作。大文件拆分比如说将 css 文件从 js 文件中抽离出来单独胜场一个 bunde 包,利用 contenthashName 进行命名,针对渲染那块，避免阻塞将 js 文件放入 body 底部，css 文件放入 body 顶部，使用 async 和 defer 等，减少 css 样式的嵌套，避免使用表达式，熟悉 css 的继承属性避免重复属性赋值，只用一些节流和防抖避免事件的频繁触发。减少不必要的回流重绘。针对 SEO 优化可以采用服务器预渲染的方式。</p>
+<h3 id="64、过滤数组中的数字，并求所有数字的和"><a href="#64、过滤数组中的数字，并求所有数字的和" class="headerlink" title="64、过滤数组中的数字，并求所有数字的和"></a><a href="#64%E3%80%81%E8%BF%87%E6%BB%A4%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%95%B0%E5%AD%97%EF%BC%8C%E5%B9%B6%E6%B1%82%E6%89%80%E6%9C%89%E6%95%B0%E5%AD%97%E7%9A%84%E5%92%8C" title="64、过滤数组中的数字，并求所有数字的和"></a>64、过滤数组中的数字，并求所有数字的和</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//isNaN(value) value是数字或者true\false返回false,反之返回true</span></span><br><span class="line"><span class="function"><span class="keyword">function</span>  <span class="title">sum</span>(<span class="params">...args</span>)</span>{</span><br><span class="line">    <span class="keyword">var</span> nResult=<span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;args.length;i++){</span><br><span class="line">        nResult+=(!<span class="built_in">isNaN</span>(args[i])&amp;&amp;<span class="built_in">parseFloat</span>(args[i]))||<span class="number">0</span> </span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">parseFloat</span>(nResult.toPrecision(<span class="number">12</span>))</span><br><span class="line">}</span><br><span class="line"><span class="built_in">console</span>.log(sum(<span class="string">'1.0'</span>, <span class="literal">false</span>, <span class="literal">true</span>, <span class="number">1</span>, <span class="string">'A'</span>, <span class="number">0.1</span>, <span class="number">0.2</span>));</span><br></pre></td></tr></tbody></table>
+
+<h3 id="65、webSocket-的跨域原理"><a href="#65、webSocket-的跨域原理" class="headerlink" title="65、webSocket 的跨域原理"></a><a href="#65%E3%80%81webSocket%E7%9A%84%E8%B7%A8%E5%9F%9F%E5%8E%9F%E7%90%86" title="65、webSocket的跨域原理"></a>65、webSocket 的跨域原理</h3><p>首先该方法不受同源政策的限制，new websocket 实例，通过 onopen 监听连接是否成功，send 和 onmessage 实现数据的发送和接受支持全双工通信。</p>
+<h3 id="66、抽象语法树和虚拟节点的关系"><a href="#66、抽象语法树和虚拟节点的关系" class="headerlink" title="66、抽象语法树和虚拟节点的关系"></a><a href="#66%E3%80%81%E6%8A%BD%E8%B1%A1%E8%AF%AD%E6%B3%95%E6%A0%91%E5%92%8C%E8%99%9A%E6%8B%9F%E8%8A%82%E7%82%B9%E7%9A%84%E5%85%B3%E7%B3%BB" title="66、抽象语法树和虚拟节点的关系"></a>66、抽象语法树和虚拟节点的关系</h3><p><img src="https://fmr-image.oss-cn-hangzhou.aliyuncs.com/202210231655890.png" alt="image-20221023165500439"></p>
+<p>diff 算法是发生在虚拟节点上面的，抽像语法树是对模板语法进行翻译产生 js 对象，直面包含指令。抽象语法树转化为渲染函数时，渲染函数时没有指令的，虚拟节点是真实 DOM 的抽象表示。</p>
+<h3 id="67、vue-的生命周期"><a href="#67、vue-的生命周期" class="headerlink" title="67、vue 的生命周期"></a><a href="#67%E3%80%81vue%E7%9A%84%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F" title="67、vue的生命周期"></a>67、vue 的生命周期</h3><p>1、进入页面，Vue 初始化，执行 new Vue()，进入 vue 的构造函数中执行_init()方法。</p>
+<p>2、在_init()的方法中首先初始化事件和属性，然后触发生命周期钩子函数（beforCreate）随后初始化状态（props\data\methods\data\computed\watch）这个阶段数据转化为响应式数据，,然后触发 created 生命周期钩子。在这个生命周期钩子里面数据完成了初始化，可以向后台发起请求获取数据，这个时候修改数据不会触发 updata 函数。</p>
+<p>3、判断是否提供了 el 选项，如果是调用 vm.$mount 方法。在 mount 函数中将 template 编译成渲染函数，准备渲染，在调用 mountComponent 前执行生命周期钩子 beforemount 钩子，这个钩子中模板已经编译好了。还没有转化为真实 DOM 挂在页面，紧接着调用 updataCompontent，将虚拟 DOM 转化为真实 DOM 过程中开启 watcher 实例用来追踪状态的变化，并将 updateComponent 作为回调函数 cb 传入 Watcher 中。将 watcher 实例放置到全局唯一位置，调用 this.getter 方法，数据的 get 方法会调用 pushtarget 方法将 wathcer 实例推入栈中。调用 render 方法将虚拟 DOM 转化为真实 DOM,并挂在到 DOM 中触发 mount 钩子</p>
+<p>4、被监听的数据发生变化时会触发 watcher 实例，wacher 会通知虚拟 DOM 重新渲染视图，并且会在渲染视图前触发 beforeUpdate 钩子函数，渲染完毕后触发 updated 钩子函数。</p>
+<p>5、如果调用了$destroy 方法后立即执行 beforeDestroy 钩子函数，一般这里做一些善后的工作，清除定时器清楚事件绑定，完成之后执行 destroyed。</p>
+<h3 id="68、编译型语言和解释型语言的区别"><a href="#68、编译型语言和解释型语言的区别" class="headerlink" title="68、编译型语言和解释型语言的区别"></a><a href="#68%E3%80%81%E7%BC%96%E8%AF%91%E5%9E%8B%E8%AF%AD%E8%A8%80%E5%92%8C%E8%A7%A3%E9%87%8A%E5%9E%8B%E8%AF%AD%E8%A8%80%E7%9A%84%E5%8C%BA%E5%88%AB" title="68、编译型语言和解释型语言的区别"></a>68、编译型语言和解释型语言的区别</h3><p>js&#x2F;java&#x2F;python 属于解释型语言，C、C++属于编译型语言</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>原理</th>
+<th>优点</th>
+<th>缺点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>编译型语言</td>
+<td>通过专门的编译器，将所有源代码一次性转换成特定平台（Windows、Linux 等）执行的机器码（以可执行文件的形式存在）。</td>
+<td>编译一次后，脱离了编译器也可以运行，并且运行效率高。</td>
+<td>可移植性差，不够灵活。</td>
+</tr>
+<tr>
+<td>解释型语言</td>
+<td>由专门的解释器，根据需要将部分源代码临时转换成特定平台的机器码。</td>
+<td>跨平台性好，通过不同的解释器，将相同的源代码解释成不同平台下的机器码。</td>
+<td>一边执行一边转换，效率很低。</td>
+</tr>
+</tbody></table>
+<h3 id="69、函数传参，传入的是变量的浅拷贝"><a href="#69、函数传参，传入的是变量的浅拷贝" class="headerlink" title="69、函数传参，传入的是变量的浅拷贝"></a><a href="#69%E3%80%81%E5%87%BD%E6%95%B0%E4%BC%A0%E5%8F%82%EF%BC%8C%E4%BC%A0%E5%85%A5%E7%9A%84%E6%98%AF%E5%8F%98%E9%87%8F%E7%9A%84%E6%B5%85%E6%8B%B7%E8%B4%9D" title="69、函数传参，传入的是变量的浅拷贝"></a>69、函数传参，传入的是变量的浅拷贝</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//案例一</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span> (<span class="params">o</span>)</span>{</span><br><span class="line">    o.url = <span class="string">'xxxx1'</span></span><br><span class="line">    o=<span class="keyword">new</span> <span class="built_in">Object</span>()</span><br><span class="line">    o.url = <span class="string">'xxxx2'</span>  </span><br><span class="line">}</span><br><span class="line"><span class="keyword">let</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>();</span><br><span class="line">change(o)</span><br><span class="line"><span class="built_in">console</span>.log(o.url); <span class="comment">//'xxxx1'</span></span><br><span class="line"><span class="comment">//案例二</span></span><br><span class="line"><span class="keyword">let</span> obj={<span class="attr">a</span>:<span class="number">1</span>,<span class="attr">b</span>:<span class="number">2</span>}</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">obj</span>)</span>{</span><br><span class="line">    obj.a=<span class="number">666</span></span><br><span class="line">}</span><br><span class="line">test(obj)</span><br><span class="line"><span class="built_in">console</span>.log(obj) <span class="comment">//输出{a:666,b2}</span></span><br></pre></td></tr></tbody></table>
+
+<h3 id="70、a-标签下载内容"><a href="#70、a-标签下载内容" class="headerlink" title="70、a 标签下载内容"></a><a href="#70%E3%80%81a%E6%A0%87%E7%AD%BE%E4%B8%8B%E8%BD%BD%E5%86%85%E5%AE%B9" title="70、a标签下载内容"></a>70、a 标签下载内容</h3><p>a 标签下载内容需要使用到 a 标签的 download 属性 属性值为下载后文件的名称。请求域名放入 url 中。</p>
+<p>a 标签 download 属性 html5 新添加的属性存在兼容问题，还有就是跨域下载文件时需要动态创建 a 标签绑定属性和 download 值。</p>
+<h3 id="71、interface-和-type-区别"><a href="#71、interface-和-type-区别" class="headerlink" title="71、interface 和 type 区别"></a><a href="#71%E3%80%81interface-%E5%92%8Ctype%E5%8C%BA%E5%88%AB" title="71、interface 和type区别"></a>71、interface 和 type 区别</h3><p>在 TypeScript 中，<code>interface</code> 和 <code>type</code> 都可以用来定义对象类型或函数类型。</p>
+<p>区别如下：</p>
+<ol>
+<li><code>interface</code> 可以被 <code>extends</code> 和 <code>implements</code> 关键字扩展，而 <code>type</code> 不可以。</li>
+<li><code>type</code> 可以定义联合类型、交叉类型和元组类型，而 <code>interface</code> 不可以。</li>
+<li><code>type</code> 可以使用 typeof 操作符定义类型别名，而 <code>interface</code> 不可以。</li>
+<li><code>interface</code> 可以定义可选属性和只读属性，而 <code>type</code> 不可以。</li>
+<li><code>type</code> 可以使用泛型别名，而 <code>interface</code> 不可以。</li>
+<li><code>interface</code> 的语法可以用于声明合并，即多个同名 interface 会被合并成一个，而 <code>type</code> 的语法不支持。</li>
+</ol>
+<p>总的来说，<code>interface</code> 更适合描述真实存在的对象或类，而 <code>type</code> 更适合定义更复杂的类型、联合类型或函数类型。</p>
+<h3 id="72、在-Node-js-的单进程模型中，一个未捕获的异常会导致-Node-js-进程崩溃，这可能会导致严重的问题，例如服务中断或数据丢失。为了避免这种情况，可以使用以下方法："><a href="#72、在-Node-js-的单进程模型中，一个未捕获的异常会导致-Node-js-进程崩溃，这可能会导致严重的问题，例如服务中断或数据丢失。为了避免这种情况，可以使用以下方法：" class="headerlink" title="72、在 Node.js 的单进程模型中，一个未捕获的异常会导致 Node.js 进程崩溃，这可能会导致严重的问题，例如服务中断或数据丢失。为了避免这种情况，可以使用以下方法："></a><a href="#72%E3%80%81%E5%9C%A8-Node-js-%E7%9A%84%E5%8D%95%E8%BF%9B%E7%A8%8B%E6%A8%A1%E5%9E%8B%E4%B8%AD%EF%BC%8C%E4%B8%80%E4%B8%AA%E6%9C%AA%E6%8D%95%E8%8E%B7%E7%9A%84%E5%BC%82%E5%B8%B8%E4%BC%9A%E5%AF%BC%E8%87%B4-Node-js-%E8%BF%9B%E7%A8%8B%E5%B4%A9%E6%BA%83%EF%BC%8C%E8%BF%99%E5%8F%AF%E8%83%BD%E4%BC%9A%E5%AF%BC%E8%87%B4%E4%B8%A5%E9%87%8D%E7%9A%84%E9%97%AE%E9%A2%98%EF%BC%8C%E4%BE%8B%E5%A6%82%E6%9C%8D%E5%8A%A1%E4%B8%AD%E6%96%AD%E6%88%96%E6%95%B0%E6%8D%AE%E4%B8%A2%E5%A4%B1%E3%80%82%E4%B8%BA%E4%BA%86%E9%81%BF%E5%85%8D%E8%BF%99%E7%A7%8D%E6%83%85%E5%86%B5%EF%BC%8C%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E4%BB%A5%E4%B8%8B%E6%96%B9%E6%B3%95%EF%BC%9A" title="72、在 Node.js 的单进程模型中，一个未捕获的异常会导致 Node.js 进程崩溃，这可能会导致严重的问题，例如服务中断或数据丢失。为了避免这种情况，可以使用以下方法："></a>72、在 Node.js 的单进程模型中，一个未捕获的异常会导致 Node.js 进程崩溃，这可能会导致严重的问题，例如服务中断或数据丢失。为了避免这种情况，可以使用以下方法：</h3><p>1）使用 try&#x2F;catch 语句捕获异常。这是最基本的方法，可以捕获大多数同步异常。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">try {</span><br><span class="line">  // some code that might throw an exception</span><br><span class="line">} catch (err) {</span><br><span class="line">  // handle the exception here</span><br><span class="line">}</span><br></pre></td></tr></tbody></table>
+
+<p>2）使用事件处理程序捕获异步异常。对于异步代码，可以使用事件处理程序来捕获异常。Node.js 中的许多模块都会发出错误事件。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const fs = require('fs');</span><br><span class="line">const stream = fs.createReadStream('/path/to/file');</span><br><span class="line"></span><br><span class="line">stream.on('error', (err) =&gt; {</span><br><span class="line">  // handle the error here</span><br><span class="line">});</span><br></pre></td></tr></tbody></table>
+
+<p>3）使用 process 对象的 uncaughtException 事件。当没有其他处理程序可以处理一个异常时，可以使用 process 对象的 uncaughtException 事件。这个事件将在未捕获的异常导致进程崩溃时触发。可以在事件处理程序中记录异常，并执行一些清理操作。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">process.on('uncaughtException', (err) =&gt; {</span><br><span class="line">  console.error(`Caught exception: ${err}`);</span><br><span class="line">  // do some cleanup here</span><br><span class="line">});</span><br></pre></td></tr></tbody></table>
+
+<p>4）使用 process 对象的 unhandledRejection 事件。当 Promise 被拒绝时，可以使用 process 对象的 unhandledRejection 事件捕获异常。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">process.on('unhandledRejection', (err, promise) =&gt; {</span><br><span class="line">  console.error(`Unhandled rejection at: ${promise}, reason: ${err}`);</span><br><span class="line">  // do some cleanup here</span><br><span class="line">});</span><br></pre></td></tr></tbody></table>
+
+<p>需要注意的是，使用 uncaughtException 或 unhandledRejection 事件处理程序可能会导致进程处于不稳定状态，并且在一些情况下可能无法完全恢复。因此，应该尽可能避免使用这些事件处理程序，并在捕获异常时尽可能采取更加谨慎的方法。</p>
+<h3 id="73、JavaScript-中的Map和Object是两种不同的数据结构，它们的主要区别在于："><a href="#73、JavaScript-中的Map和Object是两种不同的数据结构，它们的主要区别在于：" class="headerlink" title="73、JavaScript 中的Map和Object是两种不同的数据结构，它们的主要区别在于："></a><a href="#73%E3%80%81JavaScript%E4%B8%AD%E7%9A%84Map%E5%92%8CObject%E6%98%AF%E4%B8%A4%E7%A7%8D%E4%B8%8D%E5%90%8C%E7%9A%84%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E5%AE%83%E4%BB%AC%E7%9A%84%E4%B8%BB%E8%A6%81%E5%8C%BA%E5%88%AB%E5%9C%A8%E4%BA%8E%EF%BC%9A" title="73、JavaScript中的Map和Object是两种不同的数据结构，它们的主要区别在于："></a>73、JavaScript 中的<code>Map</code>和<code>Object</code>是两种不同的数据结构，它们的主要区别在于：</h3><ol>
+<li>键的类型：<code>Map</code>可以使用任何 JavaScript 数据类型作为键，包括字符串、数字、布尔值、对象和函数等。而<code>Object</code>的键只能是字符串或 Symbol 类型。</li>
+<li>存储方式：<code>Map</code>会按照插入顺序来存储键值对，而<code>Object</code>则没有顺序的概念，它会将键转换为字符串并按照插入顺序进行存储。</li>
+<li>原型：<code>Object</code>有一个原型对象，所有通过字面量或构造函数创建的对象都继承自该原型对象。而<code>Map</code>没有原型，它是一个独立的数据结构。</li>
+<li>大小：<code>Object</code>的大小是不确定的，因为它可以随时添加或删除属性。而<code>Map</code>的大小可以通过其<code>size</code>属性获取。</li>
+<li>遍历方式：<code>Map</code>提供了多种遍历方式，包括<code>keys()</code>、<code>values()</code>、<code>entries()</code>和<code>forEach()</code>方法。而<code>Object</code>可以通过<code>for...in</code>循环和<code>Object.keys()</code>、<code>Object.values()</code>和<code>Object.entries()</code>方法来遍历。</li>
+</ol>
+<p>总之，<code>Map</code>适合存储键值对，并且可以使用任意数据类型作为键；而<code>Object</code>适合存储具有命名属性的数据。</p>
+<h3 id="74、ETag-响应字段的协商缓存存在的缺陷"><a href="#74、ETag-响应字段的协商缓存存在的缺陷" class="headerlink" title="74、ETag 响应字段的协商缓存存在的缺陷"></a><a href="#74%E3%80%81ETag%E5%93%8D%E5%BA%94%E5%AD%97%E6%AE%B5%E7%9A%84%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%AD%98%E5%9C%A8%E7%9A%84%E7%BC%BA%E9%99%B7" title="74、ETag响应字段的协商缓存存在的缺陷"></a>74、ETag 响应字段的协商缓存存在的缺陷</h3><p>协商缓存是指客户端在发起请求时，携带上一次请求响应中的一些字段，与服务端进行比对，判断资源是否需要重新获取。而其中一个常用的字段是 ETag。</p>
+<p>使用 ETag 的主要缺陷如下：</p>
+<ol>
+<li>计算成本高： ETag 的生成算法是由服务端决定的，因此计算成本可能会很高。对于大型的文件或数据集，这可能会导致服务器的负载过高。</li>
+<li>不跨服务器缓存： ETag 是由服务端生成的，不同的服务器之间可能会生成不同的 ETag 值。如果负载均衡器将请求发送到不同的服务器，客户端就无法从缓存中获取已经存在于另一个服务器上的资源，从而降低了缓存的效率。</li>
+<li>无法处理时间戳： ETag 只能表示资源内容是否有变化，但是并不能确定内容上次更新的时间。如果资源的内容没有变化，但更新了时间戳，那么客户端就无法使用缓存，需要重新获取资源。</li>
+<li>容易出现错误： ETag 由服务端生成，如果服务端实现不当，可能会导致相同内容的资源生成不同的 ETag 值，从而导致缓存失效。</li>
+</ol>
+<p>综上所述，ETag 虽然是一种常用的协商缓存方式，但在某些情况下可能存在一些缺陷。因此，开发人员需要根据具体情况选择合适的缓存方案，以提高性能和可靠性。</p>
+<h3 id="75、精确-0-1-0-2"><a href="#75、精确-0-1-0-2" class="headerlink" title="75、精确 0.1+0.2"></a><a href="#75%E3%80%81%E7%B2%BE%E7%A1%AE0-1-0-2" title="75、精确0.1+0.2"></a>75、精确 0.1+0.2</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Math</span>.round((<span class="number">0.1</span>+<span class="number">0.2</span>)*<span class="number">10</span>)/<span class="number">10</span>)</span><br><span class="line"><span class="built_in">console</span>.log((<span class="number">0.1</span>*<span class="number">10</span>+<span class="number">0.2</span>*<span class="number">10</span>)/<span class="number">10</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">parseFloat</span>((<span class="number">0.1</span>+<span class="number">0.2</span>).toFixed(<span class="number">10</span>)))</span><br></pre></td></tr></tbody></table>
+
+<h3 id="76、Vuex-是一个专门为-Vue-js-设计的状态管理库，其实现原理主要基于以下几个方面："><a href="#76、Vuex-是一个专门为-Vue-js-设计的状态管理库，其实现原理主要基于以下几个方面：" class="headerlink" title="76、Vuex 是一个专门为 Vue.js 设计的状态管理库，其实现原理主要基于以下几个方面："></a><a href="#76%E3%80%81Vuex%E6%98%AF%E4%B8%80%E4%B8%AA%E4%B8%93%E9%97%A8%E4%B8%BAVue-js%E8%AE%BE%E8%AE%A1%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86%E5%BA%93%EF%BC%8C%E5%85%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E4%B8%BB%E8%A6%81%E5%9F%BA%E4%BA%8E%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E6%96%B9%E9%9D%A2%EF%BC%9A" title="76、Vuex是一个专门为Vue.js设计的状态管理库，其实现原理主要基于以下几个方面："></a>76、Vuex 是一个专门为 Vue.js 设计的状态管理库，其实现原理主要基于以下几个方面：</h3><ol>
+<li><strong>核心概念：Store</strong></li>
+</ol>
+<p>Vuex 的核心是一个 Store 实例，它是一个状态容器，包含了整个应用的状态(state)、状态的修改方法(mutations)、可以触发 mutations 的方法(actions)、状态变化时的回调函数(subscriptions)等。所有组件都可以从 Store 中获取状态(state)、派发(actions)、提交(mutations)和订阅(subscribe)。</p>
+<ol>
+<li><strong>数据流向</strong></li>
+</ol>
+<p>Vuex 采用了 Flux 架构中的单向数据流的概念，数据的流向是单向的：组件通过 dispatch 方法触发一个 action，action 通过 commit 方法来提交一个 mutation，mutation 则通过修改 state 来更新应用的状态。状态的变化又会触发一系列的副作用，比如组件的更新等。</p>
+<ol>
+<li><strong>状态管理的响应式</strong></li>
+</ol>
+<p>Vuex 借鉴了 Vue.js 的响应式原理，使得 Store 中的状态变化可以自动更新到组件上。当 Store 中的状态发生变化时，组件会自动重新渲染，从而保证了组件与状态的一致性。</p>
+<ol>
+<li><strong>插件化的设计</strong></li>
+</ol>
+<p>Vuex 的插件化设计使得开发者可以很方便地扩展 Vuex 的功能。通过在 Store 上挂载插件，可以实现很多功能，比如调试工具、持久化存储等。</p>
+<p>总的来说，Vuex 的实现原理主要是通过 Store 实例来管理应用的状态，采用单向数据流的概念，利用 Vue.js 的响应式原理实现状态变化的自动更新，同时提供插件化的设计，使得开发者可以很方便地扩展 Vuex 的功能。</p>
+<h3 id="77、在实现递归深拷贝时，需要注意以下几个问题："><a href="#77、在实现递归深拷贝时，需要注意以下几个问题：" class="headerlink" title="77、在实现递归深拷贝时，需要注意以下几个问题："></a><a href="#77%E3%80%81%E5%9C%A8%E5%AE%9E%E7%8E%B0%E9%80%92%E5%BD%92%E6%B7%B1%E6%8B%B7%E8%B4%9D%E6%97%B6%EF%BC%8C%E9%9C%80%E8%A6%81%E6%B3%A8%E6%84%8F%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E9%97%AE%E9%A2%98%EF%BC%9A" title="77、在实现递归深拷贝时，需要注意以下几个问题："></a>77、在实现递归深拷贝时，需要注意以下几个问题：</h3><ol>
+<li>循环引用：如果被拷贝的对象中存在循环引用（例如 A 引用了 B，B 又引用了 A），那么直接递归拷贝可能会导致死循环。为了避免这种情况，需要记录已经拷贝过的对象，并在递归拷贝时进行判断，如果已经拷贝过，直接返回对应的拷贝对象。</li>
+<li>类型判断：在递归拷贝时，需要对不同的类型进行不同的处理。例如，对于基本数据类型（例如整型、字符串等），直接拷贝即可；对于数组和对象，需要递归拷贝其元素或属性。</li>
+<li>构造函数：在拷贝对象时，需要正确地调用其构造函数。对于普通的 JavaScript 对象，可以使用 Object.create(null) 创建一个新的空对象，并将原对象的属性复制到新对象中；对于自定义的类，需要调用其构造函数，并递归拷贝其属性。</li>
+<li>原型链：如果被拷贝的对象是一个类的实例，那么在拷贝时需要考虑其原型链。可以通过 Object.getPrototypeOf() 方法获取对象的原型，并递归拷贝原型链上的对象。</li>
+<li>性能问题：递归拷贝可能会导致性能问题，特别是当被拷贝对象很大或者层级很深时。为了避免这种情况，可以考虑使用迭代代替递归，或者使用一些优化技巧，例如缓存已经拷贝的对象。</li>
+</ol>
+<h3 id="78、JavaScript-有两种运行模式：严格模式和非严格模式。"><a href="#78、JavaScript-有两种运行模式：严格模式和非严格模式。" class="headerlink" title="78、JavaScript 有两种运行模式：严格模式和非严格模式。"></a><a href="#78%E3%80%81JavaScript%E6%9C%89%E4%B8%A4%E7%A7%8D%E8%BF%90%E8%A1%8C%E6%A8%A1%E5%BC%8F%EF%BC%9A%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E5%92%8C%E9%9D%9E%E4%B8%A5%E6%A0%BC%E6%A8%A1%E5%BC%8F%E3%80%82" title="78、JavaScript有两种运行模式：严格模式和非严格模式。"></a>78、JavaScript 有两种运行模式：严格模式和非严格模式。</h3><ol>
+<li>非严格模式</li>
+</ol>
+<p>在非严格模式下，JavaScript 的行为比较宽松，容错性较强。当代码中存在语法错误或者变量未声明时，JavaScript 并不会抛出异常，而是会尝试在运行时进行一些自动修正。例如，未声明的变量会被隐式地创建并赋值为<code>undefined</code>。</p>
+<p>此外，非严格模式下的<code>this</code>指向是比较随意的。当函数中的<code>this</code>没有通过显式绑定（如使用<code>call</code>、<code>apply</code>或<code>bind</code>方法）或者作为构造函数使用时，<code>this</code>的指向会被自动绑定到全局对象（<code>window</code>）上。</p>
+<ol>
+<li>严格模式</li>
+</ol>
+<p>相比非严格模式，严格模式下的 JavaScript 行为更为严格。在严格模式下，JavaScript 会抛出更多的异常，不容忍任何的语法错误或者变量未声明。</p>
+<p>此外，在严格模式下，函数的<code>this</code>指向是固定的，不会像非严格模式下那样自动绑定到全局对象上。如果函数中的<code>this</code>没有通过显式绑定或者作为构造函数使用，则<code>this</code>的值会被设置为<code>undefined</code>。</p>
+<p>在代码开头声明<code>&quot;use strict&quot;</code>即可进入严格模式，而不声明则默认为非严格模式。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">// 非严格模式</span><br><span class="line">function foo() {</span><br><span class="line">  x = 1; // 未声明变量，自动创建并赋值为1</span><br><span class="line">  console.log(x);</span><br><span class="line">}</span><br><span class="line">foo(); // 输出1</span><br><span class="line"></span><br><span class="line">// 严格模式</span><br><span class="line">"use strict";</span><br><span class="line">function bar() {</span><br><span class="line">  y = 2; // 抛出异常，变量y未声明</span><br><span class="line">  console.log(y);</span><br><span class="line">}</span><br><span class="line">bar(); // Uncaught ReferenceError: y is not defined</span><br></pre></td></tr></tbody></table>
+
+<p>在使用严格模式时，需要在代码的开头添加 <code>&quot;use strict&quot;;</code> 语句，开启严格模式后会禁用一些不安全的语法和行为，同时添加一些新的限制，包括：</p>
+<ol>
+<li>变量必须声明后再使用。</li>
+<li>函数的参数不能有同名属性，否则报错。</li>
+<li>不能使用 <code>with</code> 语句。</li>
+<li>不能对只读属性赋值，否则报错。</li>
+<li>不能使用 <code>eval</code> 函数。</li>
+<li>不能使用 <code>arguments.callee</code>，需要使用命名函数表达式来代替。</li>
+</ol>
+<p>在使用严格模式时，需要注意以下事项：</p>
+<ol>
+<li>严格模式对一些不安全的语法和行为进行了禁用，但并不能完全保证代码的安全性，因此仍需谨慎编写。</li>
+<li>严格模式只影响当前脚本，不影响调用的其他脚本。</li>
+<li>严格模式的错误信息更加详细，因此在调试代码时更容易找到问题所在。</li>
+</ol>
+<h3 id="79、在-JavaScript-中，任务被分为两种类型：宏任务和微任务。"><a href="#79、在-JavaScript-中，任务被分为两种类型：宏任务和微任务。" class="headerlink" title="79、在 JavaScript 中，任务被分为两种类型：宏任务和微任务。"></a><a href="#79%E3%80%81%E5%9C%A8-JavaScript-%E4%B8%AD%EF%BC%8C%E4%BB%BB%E5%8A%A1%E8%A2%AB%E5%88%86%E4%B8%BA%E4%B8%A4%E7%A7%8D%E7%B1%BB%E5%9E%8B%EF%BC%9A%E5%AE%8F%E4%BB%BB%E5%8A%A1%E5%92%8C%E5%BE%AE%E4%BB%BB%E5%8A%A1%E3%80%82" title="79、在 JavaScript 中，任务被分为两种类型：宏任务和微任务。"></a>79、在 JavaScript 中，任务被分为两种类型：宏任务和微任务。</h3><p>宏任务是指 JavaScript 中较长的操作，如事件处理程序、定时器和 XMLHttpRequest 请求等。当一个宏任务被执行时，它将在整个任务队列中占据一个位置，直到它执行完成。</p>
+<p>常见的宏任务包括：</p>
+<ol>
+<li>setTimeout 和 setInterval 函数</li>
+<li>DOM 事件处理程序</li>
+<li>XMLHttpRequest 请求</li>
+<li>setImmediate (Node.js 环境下)</li>
+</ol>
+<p>微任务是指需要尽快执行的较短的操作，通常与异步操作相关。当一个微任务被添加到任务队列中时，它将被立即执行，而不是等待宏任务的完成。</p>
+<p>常见的微任务包括：</p>
+<ol>
+<li>Promise 的回调函数</li>
+<li>process.nextTick (Node.js 环境下)</li>
+<li>MutationObserver 的回调函数</li>
+</ol>
+<p>当一个宏任务执行完成后，将会检查当前任务队列中是否有微任务需要执行。如果有，那么它们将按照添加的顺序依次执行，直到所有微任务都被执行完毕，然后再执行下一个宏任务。这种方式称为事件循环机制。</p>
+<h3 id="80、number-开根号"><a href="#80、number-开根号" class="headerlink" title="80、number 开根号"></a><a href="#80%E3%80%81number%E5%BC%80%E6%A0%B9%E5%8F%B7" title="80、number开根号"></a>80、number 开根号</h3><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//方法一：切线逼近法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">evolution</span>(<span class="params">number</span>) </span>{</span><br><span class="line">    <span class="keyword">let</span> n=number</span><br><span class="line">    <span class="keyword">let</span> detail=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> (detail&gt;<span class="number">0.000001</span>) {</span><br><span class="line">        detail=<span class="built_in">Math</span>.abs(n*n-number)</span><br><span class="line">        n=(n+number/n)/<span class="number">2</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span> n</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(evolution(<span class="number">9</span>))  </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">//方法二：二分查找法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">number</span>) </span>{ </span><br><span class="line">    <span class="keyword">let</span> left=<span class="number">0</span>,right=number,mind=(left+right)/<span class="number">2</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="built_in">Math</span>.abs(mind*mind-number)&gt;<span class="number">0.000001</span>) {</span><br><span class="line">        <span class="keyword">let</span> value=mind*mind</span><br><span class="line">        <span class="keyword">if</span>(value&gt;number){</span><br><span class="line">            right=mind</span><br><span class="line">        }<span class="keyword">else</span> <span class="keyword">if</span>(value&lt;number){</span><br><span class="line">            left=mind</span><br><span class="line">        }<span class="keyword">else</span>{</span><br><span class="line">            <span class="keyword">return</span> mind</span><br><span class="line">        }</span><br><span class="line">        mind=(left+right)/<span class="number">2</span></span><br><span class="line">    }</span><br><span class="line">    <span class="keyword">return</span>  mind</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(test(<span class="number">2</span>))</span><br></pre></td></tr></tbody></table>
+
+<h3 id="81、页面权限管理"><a href="#81、页面权限管理" class="headerlink" title="81、页面权限管理"></a><a href="#81%E3%80%81%E9%A1%B5%E9%9D%A2%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86" title="81、页面权限管理"></a>81、页面权限管理</h3><h4 id="方法-1-Vue-可以使用动态路由来实现权限管理，具体步骤如下："><a href="#方法-1-Vue-可以使用动态路由来实现权限管理，具体步骤如下：" class="headerlink" title="方法 1:Vue 可以使用动态路由来实现权限管理，具体步骤如下："></a><a href="#%E6%96%B9%E6%B3%951-Vue-%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E6%9D%A5%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%EF%BC%8C%E5%85%B7%E4%BD%93%E6%AD%A5%E9%AA%A4%E5%A6%82%E4%B8%8B%EF%BC%9A" title="方法1:Vue 可以使用动态路由来实现权限管理，具体步骤如下："></a>方法 1:Vue 可以使用动态路由来实现权限管理，具体步骤如下：</h4><p>在路由配置中定义需要权限控制的路由，并设置路由的 meta 属性，用于存储该路由所需的权限信息。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">const routes = [</span><br><span class="line">  {</span><br><span class="line">    path: '/home',</span><br><span class="line">    name: 'Home',</span><br><span class="line">    component: Home,</span><br><span class="line">    meta: {</span><br><span class="line">      requiresAuth: true, // 需要登录才能访问</span><br><span class="line">      requiresAdmin: true // 需要管理员权限才能访问</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">  {</span><br><span class="line">    path: '/user',</span><br><span class="line">    name: 'User',</span><br><span class="line">    component: User,</span><br><span class="line">    meta: {</span><br><span class="line">      requiresAuth: true, // 需要登录才能访问</span><br><span class="line">      requiresAdmin: false // 不需要管理员权限</span><br><span class="line">    }</span><br><span class="line">  },</span><br><span class="line">  // ...</span><br><span class="line">]</span><br></pre></td></tr></tbody></table>
+
+<p>在登录成功后，将用户的权限信息存储到 Vuex 或 localStorage 中。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 在登录成功后，将用户信息存储到 Vuex 中</span><br><span class="line">this.$store.commit('setUser', user)</span><br><span class="line"></span><br><span class="line">// 在 setUser 方法中，将用户的权限信息存储到 state 中</span><br><span class="line">setUser(state, user) {</span><br><span class="line">  state.user = user</span><br><span class="line">  state.isAuthenticated = true</span><br><span class="line">  state.isAdmin = user.isAdmin</span><br><span class="line">}</span><br></pre></td></tr></tbody></table>
+
+<p>在路由跳转前，判断该路由是否需要权限控制，并根据用户的权限信息判断是否有权限访问该路由。例如：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach((to, from, next) =&gt; {</span><br><span class="line">  if (to.matched.some(record =&gt; record.meta.requiresAuth)) {</span><br><span class="line">    // 如果需要登录才能访问，则判断用户是否已经登录</span><br><span class="line">    if (!store.state.isAuthenticated) {</span><br><span class="line">      // 如果没有登录，则跳转到登录页面</span><br><span class="line">      next({</span><br><span class="line">        path: '/login',</span><br><span class="line">        query: { redirect: to.fullPath }</span><br><span class="line">      })</span><br><span class="line">    } else {</span><br><span class="line">      // 如果已经登录，则判断用户是否有权限访问该路由</span><br><span class="line">      if (to.matched.some(record =&gt; record.meta.requiresAdmin)) {</span><br><span class="line">        // 如果需要管理员权限才能访问，则判断用户是否是管理员</span><br><span class="line">        if (!store.state.isAdmin) {</span><br><span class="line">          // 如果不是管理员，则提示没有权限</span><br><span class="line">          next({ path: '/403' })</span><br><span class="line">        } else {</span><br><span class="line">          next()</span><br><span class="line">        }</span><br><span class="line">      } else {</span><br><span class="line">        next()</span><br><span class="line">      }</span><br><span class="line">    }</span><br><span class="line">  } else {</span><br><span class="line">    next()</span><br><span class="line">  }</span><br><span class="line">})</span><br></pre></td></tr></tbody></table>
+
+<p>通过以上步骤，就可以实现基于动态路由的权限管理。需要注意的是，如果需要动态添加路由，需要使用异步路由组件和路由懒加载，否则会出现页面白屏的问题。</p>
+<h4 id="方法二：实现权限管理"><a href="#方法二：实现权限管理" class="headerlink" title="方法二：实现权限管理"></a><a href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E5%AE%9E%E7%8E%B0%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86" title="方法二：实现权限管理"></a>方法二：实现权限管理</h4><p>Vue Router 的 addRoute 方法可以用来动态添加路由，可以通过这个方法来实现基于权限的路由管理。</p>
+<p>假设你的项目需要根据用户的权限来动态加载路由，可以先在路由配置文件中定义一个基础路由，然后在用户登录成功之后，根据用户权限动态添加需要的路由。</p>
+<p>示例代码如下：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">javascriptCopy codeimport { createRouter } from 'vue-router'</span><br><span class="line"></span><br><span class="line">const router = createRouter({</span><br><span class="line">  routes: [</span><br><span class="line">    {</span><br><span class="line">      path: '/',</span><br><span class="line">      name: 'Home',</span><br><span class="line">      component: () =&gt; import('../views/Home.vue')</span><br><span class="line">    },</span><br><span class="line">    {</span><br><span class="line">      path: '/about',</span><br><span class="line">      name: 'About',</span><br><span class="line">      component: () =&gt; import('../views/About.vue')</span><br><span class="line">    },</span><br><span class="line">    // 其他基础路由</span><br><span class="line">  ]</span><br><span class="line">})</span><br><span class="line"></span><br><span class="line">// 根据用户权限动态添加路由</span><br><span class="line">function addRoutes(permission) {</span><br><span class="line">  const routes = []</span><br><span class="line">  if (permission === 'admin') {</span><br><span class="line">    routes.push(</span><br><span class="line">      {</span><br><span class="line">        path: '/admin',</span><br><span class="line">        name: 'Admin',</span><br><span class="line">        component: () =&gt; import('../views/Admin.vue')</span><br><span class="line">      },</span><br><span class="line">      // 其他管理员路由</span><br><span class="line">    )</span><br><span class="line">  } else if (permission === 'user') {</span><br><span class="line">    routes.push(</span><br><span class="line">      {</span><br><span class="line">        path: '/user',</span><br><span class="line">        name: 'User',</span><br><span class="line">        component: () =&gt; import('../views/User.vue')</span><br><span class="line">      },</span><br><span class="line">      // 其他普通用户路由</span><br><span class="line">    )</span><br><span class="line">  }</span><br><span class="line">  // 添加路由</span><br><span class="line">  routes.forEach(route =&gt; {</span><br><span class="line">    router.addRoute(route)</span><br><span class="line">  })</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">export { router, addRoutes }</span><br></pre></td></tr></tbody></table>
+
+<h3 id="82、vue-class-component的优势"><a href="#82、vue-class-component的优势" class="headerlink" title="82、vue-class-component的优势"></a><a href="#82%E3%80%81vue-class-component%E7%9A%84%E4%BC%98%E5%8A%BF" title="82、vue-class-component的优势"></a>82、<code>vue-class-component</code>的优势</h3><p><code>vue-class-component</code>是一个开源的 Vue.js 库，它提供了一种基于类的 API 来编写 Vue 组件。相比于原生的 Vue 组件编写方式，<code>vue-class-component</code>有以下几个优势：</p>
+<ol>
+<li>类装饰器语法：使用装饰器语法可以让组件代码更加清晰和简洁。</li>
+<li>类型支持：使用<code>vue-class-component</code>可以轻松地为组件添加类型支持，让代码更加健壮和可维护。</li>
+<li>Mixin 支持：<code>vue-class-component</code>允许多重继承，可以方便地组合多个 mixin 来实现复杂的功能。</li>
+<li>生命周期钩子函数：类的方法可以作为生命周期钩子函数，让组件的生命周期逻辑更加清晰。</li>
+<li>路由支持：<code>vue-class-component</code>可以与 Vue Router 无缝集成，让编写路由组件更加简单。</li>
+</ol>
+<p>综上所述，<code>vue-class-component</code>的优势在于它提供了一种更加清晰、简洁、可维护的组件编写方式，并且具备类型支持、Mixin 支持、生命周期钩子函数和路由支持等特性，可以帮助开发者更加高效地编写 Vue 组件。</p>
+<h3 id="83、tab-页之间的-sessionStorage-共享数据"><a href="#83、tab-页之间的-sessionStorage-共享数据" class="headerlink" title="83、tab 页之间的 sessionStorage 共享数据"></a><a href="#83%E3%80%81tab%E9%A1%B5%E4%B9%8B%E9%97%B4%E7%9A%84sessionStorage%E5%85%B1%E4%BA%AB%E6%95%B0%E6%8D%AE" title="83、tab页之间的sessionStorage共享数据"></a>83、tab 页之间的 sessionStorage 共享数据</h3><p>在同一浏览器窗口的多个标签页之间，可以共享<code>sessionStorage</code>中的数据。这是因为<code>sessionStorage</code>是存储在浏览器进程中的，而不是存储在单个标签页的进程中。</p>
+<p>当在一个标签页中写入<code>sessionStorage</code>数据时，这个数据会自动同步到所有同源的标签页中，也就是说，其他标签页可以读取这个数据。而当在一个标签页中删除<code>sessionStorage</code>数据时，这个数据也会同步到其他标签页中被删除。</p>
+<p>需要注意的是，如果两个标签页的源不同，它们之间是无法共享<code>sessionStorage</code>数据的，这是因为浏览器会为每个源分别创建一个<code>sessionStorage</code>对象，彼此之间是独立的。</p>
+<p>另外，<code>sessionStorage</code>只能存储字符串类型的数据，如果要存储其他类型的数据，需要先将其转化为字符串形式。</p>
+<h3 id="84、sessionStorage-和-localStorage-的区别"><a href="#84、sessionStorage-和-localStorage-的区别" class="headerlink" title="84、sessionStorage 和 localStorage 的区别"></a><a href="#84%E3%80%81sessionStorage-%E5%92%8ClocalStorage%E7%9A%84%E5%8C%BA%E5%88%AB" title="84、sessionStorage 和localStorage的区别"></a>84、sessionStorage 和 localStorage 的区别</h3><p><code>sessionStorage</code>和<code>localStorage</code>都是 Web Storage API 提供的存储机制，它们可以用于在浏览器端保存数据。它们之间的区别主要体现在以下几个方面：</p>
+<ol>
+<li>存储的生命周期不同：<code>sessionStorage</code>中存储的数据只在当前会话期间有效，即只要关闭了当前标签页或浏览器窗口，存储的数据就会被清除。而<code>localStorage</code>中存储的数据则一直有效，除非用户手动清除或网站清除。</li>
+<li>存储的作用域不同：<code>sessionStorage</code>存储的数据只在当前窗口的同源标签页之间共享，不同窗口之间不共享。而<code>localStorage</code>存储的数据则在同源的所有窗口和标签页之间共享。</li>
+<li>存储的容量不同：<code>sessionStorage</code>和<code>localStorage</code>的容量限制不同，通常情况下<code>localStorage</code>的容量限制比<code>sessionStorage</code>大。</li>
+<li>存储的 API 不同：<code>sessionStorage</code>和<code>localStorage</code>的 API 基本相同，但是<code>sessionStorage</code>只能在会话期间访问，需要通过<code>window.sessionStorage</code>访问，而<code>localStorage</code>可以长期访问，通过<code>window.localStorage</code>访问。</li>
+</ol>
+<p>综上所述，<code>sessionStorage</code>和<code>localStorage</code>各有优劣，开发者可以根据需要选择合适的存储方式。如果需要在不同窗口和标签页之间共享数据，应该选择<code>localStorage</code>；如果只需要在同一窗口的同源标签页之间共享数据，可以选择<code>sessionStorage</code>。</p>
+<h3 id="85、cookie-sessionStorage-localStorage-indexDB-的区别"><a href="#85、cookie-sessionStorage-localStorage-indexDB-的区别" class="headerlink" title="85、cookie sessionStorage localStorage indexDB 的区别"></a><a href="#85%E3%80%81cookie-sessionStorage-localStorage-indexDB%E7%9A%84%E5%8C%BA%E5%88%AB" title="85、cookie sessionStorage localStorage indexDB的区别"></a>85、cookie sessionStorage localStorage indexDB 的区别</h3><ol>
+<li>存储容量：Cookie 的大小限制为 4KB 左右，localStorage 和 sessionStorage 通常支持的大小为 5MB 左右，而 IndexedDB 则支持更大的存储空间，可以存储数百 MB 或更大的数据。</li>
+<li>存储周期：Cookie 的存储周期可以设置为长期存储，但它的过期时间通常设置较短，以便随时更新，而 localStorage 和 sessionStorage 可以长期存储数据，除非手动删除或清除浏览器缓存。IndexedDB 也可以长期存储数据，但需要手动删除或清除。</li>
+<li>存储内容：Cookie、localStorage 和 sessionStorage 只能存储字符串类型的数据，如果需要存储其他类型的数据，需要进行序列化和反序列化操作。而 IndexedDB 支持存储 JavaScript 对象和二进制数据等多种类型的数据。</li>
+<li>存储位置：Cookie 会被发送到服务器端，而 localStorage、sessionStorage 和 IndexedDB 都是本地存储，不会发送到服务器。</li>
+<li>访问权限：Cookie 可以设置访问权限，可以限制只有在某个域名或路径下才能访问，而 localStorage 和 sessionStorage 的访问权限是相同的，它们只能在同一源的页面之间共享。IndexedDB 也是同源限制的。</li>
+</ol>
+<p>综上所述，这些前端存储技术各有优缺点，应根据实际需求选择适合的存储方式。Cookie 适用于存储较小的、需要与服务器交互的数据；localStorage 和 sessionStorage 适用于存储较小的、与服务器无关的数据；IndexedDB 适用于存储大量的、结构化的数据，支持高级查询和事务处理。</p>
+<h3 id="86、postcss-px2rem-loader-是一个-Webpack-loader，用于将-CSS-中的-px-单位转换为-rem-单位。其实现原理可以分为以下几个步骤："><a href="#86、postcss-px2rem-loader-是一个-Webpack-loader，用于将-CSS-中的-px-单位转换为-rem-单位。其实现原理可以分为以下几个步骤：" class="headerlink" title="86、postcss-px2rem loader 是一个 Webpack loader，用于将 CSS 中的 px 单位转换为 rem 单位。其实现原理可以分为以下几个步骤："></a><a href="#86%E3%80%81postcss-px2rem-loader%E6%98%AF%E4%B8%80%E4%B8%AAWebpack-loader%EF%BC%8C%E7%94%A8%E4%BA%8E%E5%B0%86CSS%E4%B8%AD%E7%9A%84px%E5%8D%95%E4%BD%8D%E8%BD%AC%E6%8D%A2%E4%B8%BArem%E5%8D%95%E4%BD%8D%E3%80%82%E5%85%B6%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86%E5%8F%AF%E4%BB%A5%E5%88%86%E4%B8%BA%E4%BB%A5%E4%B8%8B%E5%87%A0%E4%B8%AA%E6%AD%A5%E9%AA%A4%EF%BC%9A" title="86、postcss-px2rem loader是一个Webpack loader，用于将CSS中的px单位转换为rem单位。其实现原理可以分为以下几个步骤："></a>86、<code>postcss-px2rem</code> loader 是一个 Webpack loader，用于将 CSS 中的 px 单位转换为 rem 单位。其实现原理可以分为以下几个步骤：</h3><ol>
+<li>Webpack 读取 CSS 文件，通过<code>postcss</code>插件处理 CSS 代码；</li>
+<li><code>postcss-px2rem</code>插件被执行，将 CSS 中的 px 单位转换为 rem 单位；</li>
+<li>处理后的 CSS 代码被返回给 Webpack；</li>
+<li>Webpack 将处理后的 CSS 代码注入到 HTML 页面中。</li>
+</ol>
+<p>更具体地说，<code>postcss-px2rem</code> loader 的实现原理如下：</p>
+<ol>
+<li>安装<code>postcss-px2rem</code>插件，同时在 Webpack 配置文件中配置<code>postcss-loader</code>来使用该插件：</li>
+</ol>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">module.exports = {</span><br><span class="line">  // ...</span><br><span class="line">  module: {</span><br><span class="line">    rules: [</span><br><span class="line">      {</span><br><span class="line">        test: /\.css$/i,</span><br><span class="line">        use: [</span><br><span class="line">          "style-loader",</span><br><span class="line">          "css-loader",</span><br><span class="line">          {</span><br><span class="line">            loader: "postcss-loader",</span><br><span class="line">            options: {</span><br><span class="line">              postcssOptions: {</span><br><span class="line">                plugins: [</span><br><span class="line">                  require("postcss-px2rem")({</span><br><span class="line">                    remUnit: 75, // 换算基数</span><br><span class="line">                  }),</span><br><span class="line">                ],</span><br><span class="line">              },</span><br><span class="line">            },</span><br><span class="line">          },</span><br><span class="line">        ],</span><br><span class="line">      },</span><br><span class="line">    ],</span><br><span class="line">  },</span><br><span class="line">};</span><br></pre></td></tr></tbody></table>
+
+<ol>
+<li>当 Webpack 加载 CSS 文件时，它会将 CSS 代码作为字符串传递给<code>postcss-loader</code>；</li>
+<li><code>postcss-loader</code>使用<code>postcss</code>来处理 CSS 代码，并将其传递给<code>postcss-px2rem</code>插件；</li>
+<li><code>postcss-px2rem</code>插件遍历 CSS 代码中的每个属性，如果属性值中包含<code>px</code>单位，则将其转换为以<code>rem</code>为单位的值，同时根据配置的<code>remUnit</code>值进行换算；</li>
+<li>处理后的 CSS 代码被传递回<code>postcss-loader</code>；</li>
+<li><code>postcss-loader</code>将处理后的 CSS 代码返回给 Webpack，Webpack 将其注入到 HTML 页面中。</li>
+</ol>
+<p>总的来说，<code>postcss-px2rem</code> loader 的实现原理就是利用 Webpack loader 和<code>postcss</code>插件来对 CSS 代码进行处理，将其中的 px 单位转换为 rem 单位。</p>
+<h3 id="87、postcss-loader-postcss-px2rem-源码实现的流程和原理"><a href="#87、postcss-loader-postcss-px2rem-源码实现的流程和原理" class="headerlink" title="87、postcss-loader postcss-px2rem 源码实现的流程和原理"></a><a href="#87%E3%80%81postcss-loader-postcss-px2rem-%E6%BA%90%E7%A0%81%E5%AE%9E%E7%8E%B0%E7%9A%84%E6%B5%81%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86" title="87、postcss-loader postcss-px2rem 源码实现的流程和原理"></a>87、postcss-loader postcss-px2rem 源码实现的流程和原理</h3><p><code>postcss-loader</code> 是一个 webpack 插件，它可以将 CSS 代码转换为 JS 对象，并在这些对象上执行 PostCSS 插件。<code>postcss-px2rem</code> 则是一个 PostCSS 插件，它可以将 CSS 中的 px 值转换为 rem 值，从而实现移动端适配。下面是 <code>postcss-loader</code> 和 <code>postcss-px2rem</code> 的源码实现流程和原理。</p>
+<h2 id="postcss-loader-实现流程和原理"><a href="#postcss-loader-实现流程和原理" class="headerlink" title="postcss-loader 实现流程和原理"></a><a href="#postcss-loader-%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86" title="postcss-loader 实现流程和原理"></a>postcss-loader 实现流程和原理</h2><ol>
+<li><code>postcss-loader</code> 接收 CSS 代码，将其转换为 JS 对象。</li>
+<li>对于每个 JS 对象，<code>postcss-loader</code> 将它们传递给 <code>postcss</code> 进行处理。</li>
+<li><code>postcss</code> 将 JS 对象转换为 AST（抽象语法树），并在 AST 上执行 PostCSS 插件。</li>
+<li><code>postcss</code> 将处理后的 AST 转换回 CSS 代码，并将其作为 JS 对象返回。</li>
+<li><code>postcss-loader</code> 将每个 JS 对象转换回 CSS 代码，并将它们合并成一个 CSS 文件。</li>
+</ol>
+<h2 id="postcss-px2rem-实现流程和原理"><a href="#postcss-px2rem-实现流程和原理" class="headerlink" title="postcss-px2rem 实现流程和原理"></a><a href="#postcss-px2rem-%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B%E5%92%8C%E5%8E%9F%E7%90%86" title="postcss-px2rem 实现流程和原理"></a>postcss-px2rem 实现流程和原理</h2><p><code>postcss-px2rem</code> 是一个 PostCSS 插件，它可以将 CSS 中的 px 值转换为 rem 值，从而实现移动端适配。下面是 <code>postcss-px2rem</code> 的实现流程和原理。</p>
+<ol>
+<li><code>postcss-px2rem</code> 解析 CSS 代码，找出其中所有的 px 值。</li>
+<li>对于每个 px 值，<code>postcss-px2rem</code> 将其转换为 rem 值，并将其替换回 CSS 代码中。</li>
+<li><code>postcss-px2rem</code> 将处理后的 CSS 代码返回。</li>
+</ol>
+<p>下面是 <code>postcss-px2rem</code> 的代码示例：</p>
+<table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">const postcss = require('postcss');</span><br><span class="line">const px2rem = require('postcss-px2rem');</span><br><span class="line"></span><br><span class="line">const css = `</span><br><span class="line">  .example {</span><br><span class="line">    font-size: 16px;</span><br><span class="line">    margin: 10px;</span><br><span class="line">  }</span><br><span class="line">`;</span><br><span class="line"></span><br><span class="line">postcss([px2rem()])</span><br><span class="line">  .process(css, { from: undefined })</span><br><span class="line">  .then(result =&gt; {</span><br><span class="line">    console.log(result.css);</span><br><span class="line">  });</span><br></pre></td></tr></tbody></table>
+
+<p>在上面的代码中，我们使用了 <code>postcss-px2rem</code> 插件，将 CSS 中的 px 值转换为 rem 值。在 <code>postcss</code> 的 <code>process</code> 方法中，我们将 CSS 代码和 <code>px2rem</code> 插件作为参数传递。最后，我们将处理后的 CSS 代码输出到控制台。</p>
+<h3 id="88、vite-和-webpack-的区别"><a href="#88、vite-和-webpack-的区别" class="headerlink" title="88、vite 和 webpack 的区别"></a><a href="#88%E3%80%81vite%E5%92%8Cwebpack%E7%9A%84%E5%8C%BA%E5%88%AB" title="88、vite和webpack的区别"></a>88、vite 和 webpack 的区别</h3><p>Vite 和 Webpack 都是前端项目构建工具，但它们的设计理念和使用方式略有不同。</p>
+<p>Vite 是一个现代化的构建工具，专为开发现代化的 Web 应用而设计。它采用了一种不同于 Webpack 的构建方式，它利用了浏览器原生支持的 ES 模块和动态导入功能来加速开发过程。Vite 的热更新速度非常快，能够在修改代码后立即更新浏览器中的内容，使得开发效率非常高。</p>
+<p>相比之下，Webpack 更注重打包和优化。它采用了一种模块化的方式来管理应用程序中的所有资源，包括 JS，CSS，图片等等，并使用 loader 和 plugin 来对这些资源进行处理和优化。Webpack 的灵活性非常高，可以通过配置来满足各种需求，但是配置较为繁琐，需要一定的学习成本。</p>
+<p>因此，如果你想要快速搭建一个现代化的 Web 应用并且开发效率要求较高，那么 Vite 可能更适合你；如果你想要对项目进行更精细的控制并且注重性能优化，那么 Webpack 可能更适合你。</p>
+<h3 id="89、BFC-的理解"><a href="#89、BFC-的理解" class="headerlink" title="89、BFC 的理解"></a><a href="#89%E3%80%81BFC%E7%9A%84%E7%90%86%E8%A7%A3" title="89、BFC的理解"></a>89、BFC 的理解</h3><p>在 BFC 中，每个元素的布局计算是相互独立的。因此，在处理页面布局时，使用 BFC 可以避免一些常见的问题，如浮动元素导致的高度塌陷，以及嵌套元素的 margin （兄弟元素 margin 重叠，嵌套元素重叠）重叠等。</p>
+<p>在实际应用中，可以通过一些 CSS 属性来创建 BFC，如：</p>
+<ul>
+<li>使用 overflow 属性，将其值设置为非 visible（例如：overflow: auto;）</li>
+<li>使用 float 属性</li>
+<li>使用 position 属性，将其值设置为 absolute 或 fixed</li>
+<li>使用 display 属性，将其值设置为 inline-block、table-cell、table-caption、flex、inline-flex 等</li>
+</ul>
+<h3 id="90、发布订阅模式和观察者模式的区别"><a href="#90、发布订阅模式和观察者模式的区别" class="headerlink" title="90、发布订阅模式和观察者模式的区别"></a><a href="#90%E3%80%81%E5%8F%91%E5%B8%83%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F%E5%92%8C%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB" title="90、发布订阅模式和观察者模式的区别"></a>90、发布订阅模式和观察者模式的区别</h3><p>发布-订阅模式和观察者模式是两种常见的软件设计模式，它们都可以用来实现对象之间的通信和事件处理。它们的主要区别在于以下几个方面：</p>
+<ol>
+<li>概念：发布-订阅模式包含一个消息中心，负责接收和分发消息，订阅者通过订阅消息中心的主题来接收消息；而观察者模式只包含一个被观察者对象和多个观察者对象，被观察者对象在状态改变时会通知所有观察者对象。</li>
+<li>结构：发布-订阅模式中，发布者和订阅者之间没有直接联系，它们通过消息中心进行通信；而观察者模式中，被观察者对象和观察者对象之间直接联系，被观察者对象维护一个观察者列表，并在状态改变时通知观察者对象。</li>
+<li>灵活性：发布-订阅模式比观察者模式更加灵活，因为它可以支持多种消息类型和多个订阅者，订阅者可以根据需要订阅不同的主题和消息类型；而观察者模式只能支持一个被观察者和多个观察者。</li>
+<li>松耦合：发布-订阅模式比观察者模式更加松耦合，因为发布者和订阅者之间没有直接联系，它们只是通过消息中心进行通信，发布者不需要知道订阅者的具体实现；而观察者模式中，被观察者对象需要维护观察者列表，这样会使得被观察者对象和观察者对象之间产生依赖关系，从而增加了耦合度。</li>
+</ol>
+<p>总之，发布-订阅模式和观察者模式都是非常有用的软件设计模式，根据具体的应用场景和需求来选择使用哪种模式。</p>
+<h3 id="91、编译原理"><a href="#91、编译原理" class="headerlink" title="91、编译原理"></a><a href="#91%E3%80%81%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86" title="91、编译原理"></a>91、编译原理</h3><p>编译器是一种将高级编程语言转换为可执行机器代码的程序。编译的原理是将源代码转换为目标代码的过程。该过程涉及到多个阶段和组件，包括词法分析、语法分析、语义分析、中间代码生成、优化、目标代码生成等。</p>
+<p>下面是编译的基本原理：</p>
+<ol>
+<li>词法分析（Lexical Analysis）：将源代码分解为基本单元（词法单元或令牌），例如标识符、关键字、常量、运算符等。</li>
+<li>语法分析（Syntax Analysis）：将词法单元按照语法规则组织成树形结构（语法树），并检查语法错误。</li>
+<li>语义分析（Semantic Analysis）：对语法树进行语义分析，检查类型错误、重复定义、未声明的变量等语义错误。</li>
+<li>中间代码生成（Intermediate Code Generation）：将语法树转换为中间代码表示，通常是一种类似于汇编语言的形式。</li>
+<li>优化（Optimization）：对中间代码进行各种优化，例如常量折叠、循环展开、函数内联等，以提高程序执行效率。</li>
+<li>目标代码生成（Code Generation）：将优化后的中间代码转换为目标机器的机器代码，通常是二进制文件或可执行文件的形式。</li>
+<li>链接（Linking）：将生成的目标文件与库文件链接起来，生成最终可执行文件。</li>
+</ol>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%A7%8B%E6%8B%9B%E6%80%BB%E7%BB%93/" title="高频面试题2" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/面试题-秋招总结/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E9%AB%98%E9%A2%91%E9%9D%A2%E8%AF%95%E9%A2%98(%E5%81%8F%E5%90%91Vue)/" title="高频面试题1"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

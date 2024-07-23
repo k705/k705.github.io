@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Chrome拓展 | Hexo</title>
+  <meta name="description" content="本笔记是各资料整合摘录以及后续相关笔记补充、当时纯为了方便记录,没有记录各个知识点摘录出处;非本人洪撰写(大都是摘录,加以少许个人理解),仅供本人学习使用 本人笔记地址分享:全部笔记 ​										 	 		 学习时间:2020&#x2F;12&#x2F;1启  #目录 [TOC]  一、资料1.非官方中文文档 2.官方文档(英文) 二、核心2.0. 什么是Chrome插件严格来讲，我们">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chrome拓展">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="本笔记是各资料整合摘录以及后续相关笔记补充、当时纯为了方便记录,没有记录各个知识点摘录出处;非本人洪撰写(大都是摘录,加以少许个人理解),仅供本人学习使用 本人笔记地址分享:全部笔记 ​										 	 		 学习时间:2020&#x2F;12&#x2F;1启  #目录 [TOC]  一、资料1.非官方中文文档 2.官方文档(英文) 二、核心2.0. 什么是Chrome插件严格来讲，我们">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://image.liuxianan.com/201706/20170605_181456_375_7033.png">
+<meta property="og:image" content="http://image.liuxianan.com/201706/20170621_175733_172_5903.png">
+<meta property="og:image" content="http://image.liuxianan.com/201706/20170601_100200_647_6507.png">
+<meta property="og:image" content="http://image.liuxianan.com/201706/20170601_100408_338_3095.png">
+<meta property="og:image" content="http://image.liuxianan.com/201706/20170620_175530_598_9800.png">
+<meta property="og:image" content="http://image.liuxianan.com/201706/20170621_181130_362_3360.png">
+<meta property="og:image" content="http://image.liuxianan.com/201707/20170710_221653_875_3099.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:46:02.593Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="软件">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://image.liuxianan.com/201706/20170605_181456_375_7033.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Chrome扩展程序资料摘录及开发笔记整理" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Chrome拓展
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>本笔记是各资料整合<code>摘录</code>以及后续相关笔记补充、当时纯为了方便记录,没有记录各个知识点摘录出处;非本人洪撰写(大都是摘录,加以少许个人理解),仅供本人学习使用</p>
+<p>本人笔记地址分享:<a href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a></p>
+<p>​										 	 		 学习时间:2020&#x2F;12&#x2F;1启</p>
+</blockquote>
+<h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
+<p>[TOC]</p>
+</blockquote>
+<h1 id="一、资料"><a href="#一、资料" class="headerlink" title="一、资料"></a>一、资料</h1><p><a target="_blank" rel="noopener" href="http://kkh86.com/it/chrome-extension-doc/extensions/getstarted.html">1.非官方中文文档</a></p>
+<p><a href="%5B%5D(https://developer.chrome.com/docs/extensions/mv2/getstarted/)">2.官方文档(英文)</a></p>
+<h1 id="二、核心"><a href="#二、核心" class="headerlink" title="二、核心"></a>二、核心</h1><h2 id="2-0-什么是Chrome插件"><a href="#2-0-什么是Chrome插件" class="headerlink" title="2.0. 什么是Chrome插件"></a>2.0. 什么是Chrome插件</h2><p>严格来讲，我们正在说的东西应该叫Chrome扩展(<code>Chrome Extension</code>)，真正意义上的Chrome插件是更底层的浏览器功能扩展，可能需要对浏览器源码有一定掌握才有能力去开发。鉴于Chrome插件的叫法已经习惯，本文也全部采用这种叫法，但读者需深知本文所描述的Chrome插件实际上指的是Chrome扩展。</p>
+<p>Chrome插件是一个用Web技术开发、用来增强浏览器功能的软件，它其实就是一个由HTML、CSS、JS、图片等资源组成的一个<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/crx">.crx</a>后缀的压缩包.</p>
+<h2 id="2-1-manifest-json"><a href="#2-1-manifest-json" class="headerlink" title="2.1. manifest.json"></a>2.1. manifest.json</h2><p>这是一个Chrome插件最重要也是必不可少的文件，用来配置所有和插件相关的配置，必须放在根目录。其中，<code>manifest_version</code>、<code>name</code>、<code>version</code>3个是必不可少的，<code>description</code>和<code>icons</code>是推荐的。</p>
+<p>下面给出的是一些常见的配置项，均有中文注释，完整的配置文档请戳<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/manifest">这里</a>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 清单文件的版本，这个必须写，而且必须是2</span></span><br><span class="line">	<span class="string">&quot;manifest_version&quot;</span>: <span class="number">2</span>,</span><br><span class="line">	<span class="comment">// 插件的名称</span></span><br><span class="line">	<span class="string">&quot;name&quot;</span>: <span class="string">&quot;demo&quot;</span>,</span><br><span class="line">	<span class="comment">// 插件的版本</span></span><br><span class="line">	<span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">	<span class="comment">// 插件描述</span></span><br><span class="line">	<span class="string">&quot;description&quot;</span>: <span class="string">&quot;简单的Chrome扩展demo&quot;</span>,</span><br><span class="line">	<span class="comment">// 图标，一般偷懒全部用一个尺寸的也没问题</span></span><br><span class="line">	<span class="string">&quot;icons&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;16&quot;</span>: <span class="string">&quot;img/icon.png&quot;</span>,</span><br><span class="line">		<span class="string">&quot;48&quot;</span>: <span class="string">&quot;img/icon.png&quot;</span>,</span><br><span class="line">		<span class="string">&quot;128&quot;</span>: <span class="string">&quot;img/icon.png&quot;</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 会一直常驻的后台JS或后台页面</span></span><br><span class="line">	<span class="string">&quot;background&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 2种指定方式，如果指定JS，那么会自动生成一个背景页</span></span><br><span class="line">		<span class="string">&quot;page&quot;</span>: <span class="string">&quot;background.html&quot;</span></span><br><span class="line">		<span class="comment">//&quot;scripts&quot;: [&quot;js/background.js&quot;]</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 浏览器右上角图标设置，browser_action、page_action、app必须三选一</span></span><br><span class="line">	<span class="string">&quot;browser_action&quot;</span>: </span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;default_icon&quot;</span>: <span class="string">&quot;img/icon.png&quot;</span>,</span><br><span class="line">		<span class="comment">// 图标悬停时的标题，可选</span></span><br><span class="line">		<span class="string">&quot;default_title&quot;</span>: <span class="string">&quot;这是一个示例Chrome插件&quot;</span>,</span><br><span class="line">		<span class="string">&quot;default_popup&quot;</span>: <span class="string">&quot;popup.html&quot;</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 当某些特定页面打开才显示的图标</span></span><br><span class="line">	<span class="comment">/*&quot;page_action&quot;:</span></span><br><span class="line"><span class="comment">	&#123;</span></span><br><span class="line"><span class="comment">		&quot;default_icon&quot;: &quot;img/icon.png&quot;,</span></span><br><span class="line"><span class="comment">		&quot;default_title&quot;: &quot;我是pageAction&quot;,</span></span><br><span class="line"><span class="comment">		&quot;default_popup&quot;: &quot;popup.html&quot;</span></span><br><span class="line"><span class="comment">	&#125;,*/</span></span><br><span class="line">	<span class="comment">// 需要直接注入页面的JS</span></span><br><span class="line">	<span class="string">&quot;content_scripts&quot;</span>: </span><br><span class="line">	[</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//&quot;matches&quot;: [&quot;http://*/*&quot;, &quot;https://*/*&quot;],</span></span><br><span class="line">			<span class="comment">// &quot;&lt;all_urls&gt;&quot; 表示匹配所有地址</span></span><br><span class="line">			<span class="string">&quot;matches&quot;</span>: [<span class="string">&quot;&lt;all_urls&gt;&quot;</span>],</span><br><span class="line">			<span class="comment">// 多个JS按顺序注入</span></span><br><span class="line">			<span class="string">&quot;js&quot;</span>: [<span class="string">&quot;js/jquery-1.8.3.js&quot;</span>, <span class="string">&quot;js/content-script.js&quot;</span>],</span><br><span class="line">			<span class="comment">// JS的注入可以随便一点，但是CSS的注意就要千万小心了，因为一不小心就可能影响全局样式</span></span><br><span class="line">			<span class="string">&quot;css&quot;</span>: [<span class="string">&quot;css/custom.css&quot;</span>],</span><br><span class="line">			<span class="comment">// 代码注入的时间，可选值： &quot;document_start&quot;, &quot;document_end&quot;, or &quot;document_idle&quot;，最后一个表示页面空闲时，默认document_idle</span></span><br><span class="line">			<span class="string">&quot;run_at&quot;</span>: <span class="string">&quot;document_start&quot;</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="comment">// 这里仅仅是为了演示content-script可以配置多个规则</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="string">&quot;matches&quot;</span>: [<span class="string">&quot;*://*/*.png&quot;</span>, <span class="string">&quot;*://*/*.jpg&quot;</span>, <span class="string">&quot;*://*/*.gif&quot;</span>, <span class="string">&quot;*://*/*.bmp&quot;</span>],</span><br><span class="line">			<span class="string">&quot;js&quot;</span>: [<span class="string">&quot;js/show-image-content-size.js&quot;</span>]</span><br><span class="line">		&#125;</span><br><span class="line">	],</span><br><span class="line">	<span class="comment">// 权限申请</span></span><br><span class="line">	<span class="string">&quot;permissions&quot;</span>:</span><br><span class="line">	[</span><br><span class="line">		<span class="string">&quot;contextMenus&quot;</span>, <span class="comment">// 右键菜单</span></span><br><span class="line">		<span class="string">&quot;tabs&quot;</span>, <span class="comment">// 标签</span></span><br><span class="line">		<span class="string">&quot;notifications&quot;</span>, <span class="comment">// 通知</span></span><br><span class="line">		<span class="string">&quot;webRequest&quot;</span>, <span class="comment">// web请求</span></span><br><span class="line">		<span class="string">&quot;webRequestBlocking&quot;</span>,</span><br><span class="line">		<span class="string">&quot;storage&quot;</span>, <span class="comment">// 插件本地存储</span></span><br><span class="line">		<span class="string">&quot;http://*/*&quot;</span>, <span class="comment">// 可以通过executeScript或者insertCSS访问的网站</span></span><br><span class="line">		<span class="string">&quot;https://*/*&quot;</span> <span class="comment">// 可以通过executeScript或者insertCSS访问的网站</span></span><br><span class="line">	],</span><br><span class="line">	<span class="comment">// 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的</span></span><br><span class="line">	<span class="string">&quot;web_accessible_resources&quot;</span>: [<span class="string">&quot;js/inject.js&quot;</span>],</span><br><span class="line">	<span class="comment">// 插件主页，这个很重要，不要浪费了这个免费广告位</span></span><br><span class="line">	<span class="string">&quot;homepage_url&quot;</span>: <span class="string">&quot;https://www.baidu.com&quot;</span>,</span><br><span class="line">	<span class="comment">// 覆盖浏览器默认页面</span></span><br><span class="line">	<span class="string">&quot;chrome_url_overrides&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 覆盖浏览器默认的新标签页</span></span><br><span class="line">		<span class="string">&quot;newtab&quot;</span>: <span class="string">&quot;newtab.html&quot;</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// Chrome40以前的插件配置页写法</span></span><br><span class="line">	<span class="string">&quot;options_page&quot;</span>: <span class="string">&quot;options.html&quot;</span>,</span><br><span class="line">	<span class="comment">// Chrome40以后的插件配置页写法，如果2个都写，新版Chrome只认后面这一个</span></span><br><span class="line">	<span class="string">&quot;options_ui&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;page&quot;</span>: <span class="string">&quot;options.html&quot;</span>,</span><br><span class="line">		<span class="comment">// 添加一些默认的样式，推荐使用</span></span><br><span class="line">		<span class="string">&quot;chrome_style&quot;</span>: <span class="literal">true</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 向地址栏注册一个关键字以提供搜索建议，只能设置一个关键字</span></span><br><span class="line">	<span class="string">&quot;omnibox&quot;</span>: &#123; <span class="string">&quot;keyword&quot;</span> : <span class="string">&quot;go&quot;</span> &#125;,</span><br><span class="line">	<span class="comment">// 默认语言</span></span><br><span class="line">	<span class="string">&quot;default_locale&quot;</span>: <span class="string">&quot;zh_CN&quot;</span>,</span><br><span class="line">	<span class="comment">// devtools页面入口，注意只能指向一个HTML文件，不能是JS文件</span></span><br><span class="line">	<span class="string">&quot;devtools_page&quot;</span>: <span class="string">&quot;devtools.html&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>matches</code>的语法参考：<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/match_patterns">https://developer.chrome.com/extensions/match_patterns</a></p>
+<h2 id="2-2-content-scripts"><a href="#2-2-content-scripts" class="headerlink" title="2.2. content-scripts"></a>2.2. content-scripts</h2><p>所谓<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/content_scripts">content-scripts</a>，其实就是Chrome插件中向页面注入脚本的一种形式（虽然名为script，其实还可以包括css的），借助<code>content-scripts</code>我们可以实现通过配置的方式轻松向指定页面注入JS和CSS（如果需要动态注入，可以参考下文），最常见的比如：广告屏蔽、页面CSS定制，等等。</p>
+<p>示例配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 需要直接注入页面的JS</span></span><br><span class="line">	<span class="string">&quot;content_scripts&quot;</span>: </span><br><span class="line">	[</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">//&quot;matches&quot;: [&quot;http://*/*&quot;, &quot;https://*/*&quot;],</span></span><br><span class="line">			<span class="comment">// &quot;&lt;all_urls&gt;&quot; 表示匹配所有地址</span></span><br><span class="line">			<span class="string">&quot;matches&quot;</span>: [<span class="string">&quot;&lt;all_urls&gt;&quot;</span>],</span><br><span class="line">			<span class="comment">// 多个JS按顺序注入</span></span><br><span class="line">			<span class="string">&quot;js&quot;</span>: [<span class="string">&quot;js/jquery-1.8.3.js&quot;</span>, <span class="string">&quot;js/content-script.js&quot;</span>],</span><br><span class="line">			<span class="comment">// JS的注入可以随便一点，但是CSS的注意就要千万小心了，因为一不小心就可能影响全局样式</span></span><br><span class="line">			<span class="string">&quot;css&quot;</span>: [<span class="string">&quot;css/custom.css&quot;</span>],</span><br><span class="line">			<span class="comment">// 代码注入的时间，可选值： &quot;document_start&quot;, &quot;document_end&quot;, or &quot;document_idle&quot;，最后一个表示页面空闲时，默认document_idle</span></span><br><span class="line">			<span class="string">&quot;run_at&quot;</span>: <span class="string">&quot;document_start&quot;</span></span><br><span class="line">		&#125;</span><br><span class="line">	],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特别注意，如果没有主动指定<code>run_at</code>为<code>document_start</code>（默认为<code>document_idle</code>），下面这种代码是不会生效的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;我被执行了！&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>content-scripts</code>和原始页面共享DOM，但是不共享JS，如要访问页面JS（例如某个JS变量），只能通过<code>injected js</code>来实现。<code>content-scripts</code>不能访问绝大部分<code>chrome.xxx.api</code>，除了下面这4种：</p>
+<ul>
+<li>chrome.extension(getURL , inIncognitoContext , lastError , onRequest , sendRequest)</li>
+<li>chrome.i18n</li>
+<li>chrome.runtime(connect , getManifest , getURL , id , onConnect , onMessage , sendMessage)</li>
+<li>chrome.storage</li>
+</ul>
+<p>其实看到这里不要悲观，这些API绝大部分时候都够用了，非要调用其它API的话，你还可以通过通信来实现让background来帮你调用（关于通信，后文有详细介绍）。</p>
+<p>好了，Chrome插件给我们提供了这么强大的JS注入功能，剩下的就是发挥你的想象力去玩弄浏览器了。</p>
+<h2 id="2-3-background"><a href="#2-3-background" class="headerlink" title="2.3. background"></a>2.3. background</h2><p>后台（姑且这么翻译吧），是一个常驻的页面，它的生命周期是插件中所有类型页面中最长的，它随着浏览器的打开而打开，随着浏览器的关闭而关闭，所以通常把需要一直运行的、启动就运行的、全局的代码放在background里面。</p>
+<p>background的权限非常高，几乎可以调用所有的Chrome扩展API（除了devtools），而且它可以无限制跨域，也就是可以跨域访问任何网站而无需要求对方设置<code>CORS</code>。</p>
+<blockquote>
+<p>经过测试，其实不止是background，所有的直接通过<code>chrome-extension://id/xx.html</code>这种方式打开的网页都可以无限制跨域。</p>
+</blockquote>
+<p>配置中，<code>background</code>可以通过<code>page</code>指定一张网页，也可以通过<code>scripts</code>直接指定一个JS，Chrome会自动为这个JS生成一个默认的网页：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 会一直常驻的后台JS或后台页面</span></span><br><span class="line">	<span class="string">&quot;background&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 2种指定方式，如果指定JS，那么会自动生成一个背景页</span></span><br><span class="line">		<span class="string">&quot;page&quot;</span>: <span class="string">&quot;background.html&quot;</span></span><br><span class="line">		<span class="comment">//&quot;scripts&quot;: [&quot;js/background.js&quot;]</span></span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要特别说明的是，虽然你可以通过<code>chrome-extension://xxx/background.html</code>直接打开后台页，但是你打开的后台页和真正一直在后台运行的那个页面不是同一个，换句话说，你可以打开无数个<code>background.html</code>，但是真正在后台常驻的只有一个，而且这个你永远看不到它的界面，只能调试它的代码。</p>
+<h2 id="2-4-event-pages"><a href="#2-4-event-pages" class="headerlink" title="2.4. event-pages"></a>2.4. event-pages</h2><p>这里顺带介绍一下<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/event_pages">event-pages</a>，它是一个什么东西呢？鉴于background生命周期太长，长时间挂载后台可能会影响性能，所以Google又弄一个<code>event-pages</code>，在配置文件上，它与background的唯一区别就是多了一个<code>persistent</code>参数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;background&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;scripts&quot;</span>: [<span class="string">&quot;event-page.js&quot;</span>],</span><br><span class="line">		<span class="string">&quot;persistent&quot;</span>: <span class="literal">false</span></span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>它的生命周期是：在被需要时加载，在空闲时被关闭，什么叫被需要时呢？比如第一次安装、插件更新、有content-script向它发送消息，等等。</p>
+<p>除了配置文件的变化，代码上也有一些细微变化，个人这个简单了解一下就行了，一般情况下background也不会很消耗性能的。</p>
+<h2 id="2-5-popup"><a href="#2-5-popup" class="headerlink" title="2.5. popup"></a>2.5. popup</h2><p><code>popup</code>是点击<code>browser_action</code>或者<code>page_action</code>图标时打开的一个小窗口网页，焦点离开网页就立即关闭，一般用来做一些临时性的交互。<code>popup</code>可以包含任意你想要的HTML内容，并且会自适应大小。可以通过<code>default_popup</code>字段来指定popup页面，也可以调用<code>setPopup()</code>方法。</p>
+<p>配置方式：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;browser_action&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;default_icon&quot;</span>: <span class="string">&quot;img/icon.png&quot;</span>,</span><br><span class="line">		<span class="comment">// 图标悬停时的标题，可选</span></span><br><span class="line">		<span class="string">&quot;default_title&quot;</span>: <span class="string">&quot;这是一个示例Chrome插件&quot;</span>,</span><br><span class="line">		<span class="string">&quot;default_popup&quot;</span>: <span class="string">&quot;popup.html&quot;</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>需要特别注意的是，由于单击图标打开popup，焦点离开又立即关闭，所以popup页面的生命周期一般很短，需要长时间运行的代码千万不要写在popup里面。</p>
+<p>在权限上，它和background非常类似，它们之间最大的不同是生命周期的不同，popup中可以直接通过<code>chrome.extension.getBackgroundPage()</code>获取background的window对象。</p>
+<h2 id="2-6-injected-script"><a href="#2-6-injected-script" class="headerlink" title="2.6. injected-script"></a>2.6. injected-script</h2><p>这里的<code>injected-script</code>是我给它取的，指的是通过DOM操作的方式向页面注入的一种JS。为什么要把这种JS单独拿出来讨论呢？又或者说为什么需要通过这种方式注入JS呢？</p>
+<p>这是因为<code>content-script</code>有一个很大的“缺陷”，也就是无法访问页面中的JS，虽然它可以操作DOM，但是DOM却不能调用它，也就是无法在DOM中通过绑定事件的方式调用<code>content-script</code>中的代码（包括直接写<code>onclick</code>和<code>addEventListener</code>2种方式都不行），但是，“在页面上添加一个按钮并调用插件的扩展API”是一个很常见的需求，那该怎么办呢？其实这就是本小节要讲的。</p>
+<p>在<code>content-script</code>中通过DOM方式向页面注入<code>inject-script</code>代码示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 向页面注入JS</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">injectCustomJs</span>(<span class="params">jsPath</span>)</span><br><span class="line">&#123;</span><br><span class="line">	jsPath = jsPath || <span class="string">&#x27;js/inject.js&#x27;</span>;</span><br><span class="line">	<span class="keyword">var</span> temp = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;script&#x27;</span>);</span><br><span class="line">	temp.<span class="title function_">setAttribute</span>(<span class="string">&#x27;type&#x27;</span>, <span class="string">&#x27;text/javascript&#x27;</span>);</span><br><span class="line">	<span class="comment">// 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js</span></span><br><span class="line">	temp.<span class="property">src</span> = chrome.<span class="property">extension</span>.<span class="title function_">getURL</span>(jsPath);</span><br><span class="line">	temp.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 放在页面不好看，执行完后移除掉</span></span><br><span class="line">		<span class="variable language_">this</span>.<span class="property">parentNode</span>.<span class="title function_">removeChild</span>(<span class="variable language_">this</span>);</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="variable language_">document</span>.<span class="property">head</span>.<span class="title function_">appendChild</span>(temp);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你以为这样就行了？执行一下你会看到如下报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Denying load of chrome-extension://efbllncjkjiijkppagepehoekjojdclc/js/inject.js. Resources must be listed in the web_accessible_resources manifest key in order to be loaded by pages outside the extension.</span><br></pre></td></tr></table></figure>
+
+<p>意思就是你想要在web中直接访问插件中的资源的话必须显示声明才行，配置文件中增加如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的</span></span><br><span class="line">	<span class="string">&quot;web_accessible_resources&quot;</span>: [<span class="string">&quot;js/inject.js&quot;</span>],</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>至于<code>inject-script</code>如何调用<code>content-script</code>中的代码，后面我会在专门的一个消息通信章节详细介绍。</p>
+<h1 id="三、Chrome插件的8种展示形式"><a href="#三、Chrome插件的8种展示形式" class="headerlink" title="三、Chrome插件的8种展示形式"></a>三、Chrome插件的8种展示形式</h1><h2 id="3-1-browserAction-浏览器右上角"><a href="#3-1-browserAction-浏览器右上角" class="headerlink" title="3.1. browserAction(浏览器右上角)"></a>3.1. browserAction(浏览器右上角)</h2><p>通过配置<code>browser_action</code>可以在浏览器的右上角增加一个图标，一个<code>browser_action</code>可以拥有一个图标，一个<code>tooltip</code>，一个<code>badge</code>和一个<code>popup</code>。</p>
+<p>示例配置如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;browser_action&quot;</span>:</span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;default_icon&quot;</span>: <span class="string">&quot;img/icon.png&quot;</span>,</span><br><span class="line">	<span class="string">&quot;default_title&quot;</span>: <span class="string">&quot;这是一个示例Chrome插件&quot;</span>,</span><br><span class="line">	<span class="string">&quot;default_popup&quot;</span>: <span class="string">&quot;popup.html&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-1-1-图标"><a href="#5-1-1-图标" class="headerlink" title="5.1.1. 图标"></a>5.1.1. 图标</h3><p><code>browser_action</code>图标推荐使用宽高都为19像素的图片，更大的图标会被缩小，格式随意，一般推荐png，可以通过manifest中<code>default_icon</code>字段配置，也可以调用setIcon()方法。</p>
+<h3 id="5-1-2-tooltip"><a href="#5-1-2-tooltip" class="headerlink" title="5.1.2. tooltip"></a>5.1.2. tooltip</h3><p>修改<code>browser_action</code>的manifest中<code>default_title</code>字段，或者调用<code>setTitle()</code>方法。</p>
+<h3 id="5-1-3-badge"><a href="#5-1-3-badge" class="headerlink" title="5.1.3. badge"></a>5.1.3. badge</h3><p>所谓<code>badge</code>就是在图标上显示一些文本，可以用来更新一些小的扩展状态提示信息。因为badge空间有限，所以只支持4个以下的字符（英文4个，中文2个）。badge无法通过配置文件来指定，必须通过代码实现，设置badge文字和颜色可以分别使用<code>setBadgeText()</code>和<code>setBadgeBackgroundColor()</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chrome.<span class="property">browserAction</span>.<span class="title function_">setBadgeText</span>(&#123;<span class="attr">text</span>: <span class="string">&#x27;new&#x27;</span>&#125;);</span><br><span class="line">chrome.<span class="property">browserAction</span>.<span class="title function_">setBadgeBackgroundColor</span>(&#123;<span class="attr">color</span>: [<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">255</span>]&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="3-2-pageAction-地址栏右侧"><a href="#3-2-pageAction-地址栏右侧" class="headerlink" title="3.2. pageAction(地址栏右侧)"></a>3.2. pageAction(地址栏右侧)</h2><p>所谓<code>pageAction</code>，指的是只有当某些特定页面打开才显示的图标，它和<code>browserAction</code>最大的区别是一个始终都显示，一个只在特定情况才显示。</p>
+<p>需要特别说明的是早些版本的Chrome是将pageAction放在地址栏的最右边，左键单击弹出popup，右键单击则弹出相关默认的选项菜单</p>
+<p>而新版的Chrome更改了这一策略，pageAction和普通的browserAction一样也是放在浏览器右上角，只不过没有点亮时是灰色的，点亮了才是彩色的，灰色时无论左键还是右键单击都是弹出选项</p>
+<blockquote>
+<p>具体是从哪一版本开始改的没去仔细考究，反正知道v50.0的时候还是前者，v58.0的时候已改为后者。</p>
+</blockquote>
+<p>调整之后的<code>pageAction</code>我们可以简单地把它看成是可以置灰的<code>browserAction</code>。</p>
+<ul>
+<li>chrome.pageAction.show(tabId) 显示图标；</li>
+<li>chrome.pageAction.hide(tabId) 隐藏图标；</li>
+</ul>
+<p>示例(只有打开百度才显示图标)：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// manifest.json</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;page_action&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;default_icon&quot;</span>: <span class="string">&quot;img/icon.png&quot;</span>,</span><br><span class="line">		<span class="string">&quot;default_title&quot;</span>: <span class="string">&quot;我是pageAction&quot;</span>,</span><br><span class="line">		<span class="string">&quot;default_popup&quot;</span>: <span class="string">&quot;popup.html&quot;</span></span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="string">&quot;permissions&quot;</span>: [<span class="string">&quot;declarativeContent&quot;</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// background.js</span></span><br><span class="line">chrome.<span class="property">runtime</span>.<span class="property">onInstalled</span>.<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">	chrome.<span class="property">declarativeContent</span>.<span class="property">onPageChanged</span>.<span class="title function_">removeRules</span>(<span class="literal">undefined</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">		chrome.<span class="property">declarativeContent</span>.<span class="property">onPageChanged</span>.<span class="title function_">addRules</span>([</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="attr">conditions</span>: [</span><br><span class="line">					<span class="comment">// 只有打开百度才显示pageAction</span></span><br><span class="line">					<span class="keyword">new</span> chrome.<span class="property">declarativeContent</span>.<span class="title class_">PageStateMatcher</span>(&#123;<span class="attr">pageUrl</span>: &#123;<span class="attr">urlContains</span>: <span class="string">&#x27;baidu.com&#x27;</span>&#125;&#125;)</span><br><span class="line">				],</span><br><span class="line">				<span class="attr">actions</span>: [<span class="keyword">new</span> chrome.<span class="property">declarativeContent</span>.<span class="title class_">ShowPageAction</span>()]</span><br><span class="line">			&#125;</span><br><span class="line">		]);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-3-右键菜单"><a href="#3-3-右键菜单" class="headerlink" title="3.3. 右键菜单"></a>3.3. 右键菜单</h2><p>通过开发Chrome插件可以自定义浏览器的右键菜单，主要是通过<code>chrome.contextMenus</code>API实现，右键菜单可以出现在不同的上下文，比如普通页面、选中的文字、图片、链接，等等，如果有同一个插件里面定义了多个菜单，Chrome会自动组合放到以插件名字命名的二级菜单里</p>
+<h3 id="3-3-1-最简单的右键菜单示例"><a href="#3-3-1-最简单的右键菜单示例" class="headerlink" title="3.3.1. 最简单的右键菜单示例"></a>3.3.1. 最简单的右键菜单示例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// manifest.json</span></span><br><span class="line">&#123;<span class="string">&quot;permissions&quot;</span>: [<span class="string">&quot;contextMenus&quot;</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// background.js</span></span><br><span class="line">chrome.<span class="property">contextMenus</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">	<span class="attr">title</span>: <span class="string">&quot;测试右键菜单&quot;</span>,</span><br><span class="line">	<span class="attr">onclick</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="title function_">alert</span>(<span class="string">&#x27;您点击了右键菜单！&#x27;</span>);&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-2-添加右键百度搜索"><a href="#3-3-2-添加右键百度搜索" class="headerlink" title="3.3.2. 添加右键百度搜索"></a>3.3.2. 添加右键百度搜索</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// manifest.json</span></span><br><span class="line">&#123;<span class="string">&quot;permissions&quot;</span>: [<span class="string">&quot;contextMenus&quot;</span>， <span class="string">&quot;tabs&quot;</span>]&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// background.js</span></span><br><span class="line">chrome.<span class="property">contextMenus</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">	<span class="attr">title</span>: <span class="string">&#x27;使用度娘搜索：%s&#x27;</span>, <span class="comment">// %s表示选中的文字</span></span><br><span class="line">	<span class="attr">contexts</span>: [<span class="string">&#x27;selection&#x27;</span>], <span class="comment">// 只有当选中文字时才会出现此右键菜单</span></span><br><span class="line">	<span class="attr">onclick</span>: <span class="keyword">function</span>(<span class="params">params</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 注意不能使用location.href，因为location是属于background的window对象</span></span><br><span class="line">		chrome.<span class="property">tabs</span>.<span class="title function_">create</span>(&#123;<span class="attr">url</span>: <span class="string">&#x27;https://www.baidu.com/s?ie=utf-8&amp;wd=&#x27;</span> + <span class="built_in">encodeURI</span>(params.<span class="property">selectionText</span>)&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-3-3-语法说明"><a href="#3-3-3-语法说明" class="headerlink" title="3.3.3. 语法说明"></a>3.3.3. 语法说明</h3><p>这里只是简单列举一些常用的，完整API参见：<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/contextMenus">https://developer.chrome.com/extensions/contextMenus</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">chrome.<span class="property">contextMenus</span>.<span class="title function_">create</span>(&#123;</span><br><span class="line">	<span class="attr">type</span>: <span class="string">&#x27;normal&#x27;</span>， <span class="comment">// 类型，可选：[&quot;normal&quot;, &quot;checkbox&quot;, &quot;radio&quot;, &quot;separator&quot;]，默认 normal</span></span><br><span class="line">	<span class="attr">title</span>: <span class="string">&#x27;菜单的名字&#x27;</span>, <span class="comment">// 显示的文字，除非为“separator”类型否则此参数必需，如果类型为“selection”，可以使用%s显示选定的文本</span></span><br><span class="line">	<span class="attr">contexts</span>: [<span class="string">&#x27;page&#x27;</span>], <span class="comment">// 上下文环境，可选：[&quot;all&quot;, &quot;page&quot;, &quot;frame&quot;, &quot;selection&quot;, &quot;link&quot;, &quot;editable&quot;, &quot;image&quot;, &quot;video&quot;, &quot;audio&quot;]，默认page</span></span><br><span class="line">	<span class="attr">onclick</span>: <span class="keyword">function</span>(<span class="params"></span>)&#123;&#125;, <span class="comment">// 单击时触发的方法</span></span><br><span class="line">	<span class="attr">parentId</span>: <span class="number">1</span>, <span class="comment">// 右键菜单项的父菜单项ID。指定父菜单项将会使此菜单项成为父菜单项的子菜单</span></span><br><span class="line">	<span class="attr">documentUrlPatterns</span>: <span class="string">&#x27;https://*.baidu.com/*&#x27;</span> <span class="comment">// 只在某些页面显示此右键菜单</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 删除某一个菜单项</span></span><br><span class="line">chrome.<span class="property">contextMenus</span>.<span class="title function_">remove</span>(menuItemId)；</span><br><span class="line"><span class="comment">// 删除所有自定义右键菜单</span></span><br><span class="line">chrome.<span class="property">contextMenus</span>.<span class="title function_">removeAll</span>();</span><br><span class="line"><span class="comment">// 更新某一个菜单项</span></span><br><span class="line">chrome.<span class="property">contextMenus</span>.<span class="title function_">update</span>(menuItemId, updateProperties);</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-4-override-覆盖特定页面"><a href="#3-4-override-覆盖特定页面" class="headerlink" title="3.4. override(覆盖特定页面)"></a>3.4. override(覆盖特定页面)</h2><p>使用<code>override</code>页可以将Chrome默认的一些特定页面替换掉，改为使用扩展提供的页面。</p>
+<p>扩展可以替代如下页面：</p>
+<ul>
+<li>历史记录：从工具菜单上点击历史记录时访问的页面，或者从地址栏直接输入 <a href="chrome://history/">chrome:&#x2F;&#x2F;history</a></li>
+<li>新标签页：当创建新标签的时候访问的页面，或者从地址栏直接输入 <a href="chrome://newtab/">chrome:&#x2F;&#x2F;newtab</a></li>
+<li>书签：浏览器的书签，或者直接输入 <a href="chrome://bookmarks/">chrome:&#x2F;&#x2F;bookmarks</a></li>
+</ul>
+<p>注意：</p>
+<ul>
+<li>一个扩展只能替代一个页面；</li>
+<li>不能替代隐身窗口的新标签页；</li>
+<li>网页必须设置title，否则用户可能会看到网页的URL，造成困扰；</li>
+</ul>
+<p>代码（注意，一个插件只能替代一个默认页，以下仅为演示）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;chrome_url_overrides&quot;</span>:</span><br><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;newtab&quot;</span>: <span class="string">&quot;newtab.html&quot;</span>,</span><br><span class="line">	<span class="string">&quot;history&quot;</span>: <span class="string">&quot;history.html&quot;</span>,</span><br><span class="line">	<span class="string">&quot;bookmarks&quot;</span>: <span class="string">&quot;bookmarks.html&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-5-devtools-开发者工具"><a href="#3-5-devtools-开发者工具" class="headerlink" title="3.5. devtools(开发者工具)"></a>3.5. devtools(开发者工具)</h2><h3 id="3-5-1-预热"><a href="#3-5-1-预热" class="headerlink" title="3.5.1. 预热"></a>3.5.1. 预热</h3><p>使用过vue的应该见过这种类型的插件：</p>
+<p><img src="http://image.liuxianan.com/201706/20170605_181456_375_7033.png"></p>
+<p>是的，Chrome允许插件在开发者工具(devtools)上动手脚，主要表现在：</p>
+<ul>
+<li>自定义一个和多个和<code>Elements</code>、<code>Console</code>、<code>Sources</code>等同级别的面板；</li>
+<li>自定义侧边栏(sidebar)，目前只能自定义<code>Elements</code>面板的侧边栏；</li>
+</ul>
+<h3 id="3-5-2-devtools扩展介绍"><a href="#3-5-2-devtools扩展介绍" class="headerlink" title="3.5.2. devtools扩展介绍"></a>3.5.2. devtools扩展介绍</h3><p>主页：<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/devtools">https://developer.chrome.com/extensions/devtools</a></p>
+<p>每打开一个开发者工具窗口，都会创建devtools页面的实例，F12窗口关闭，页面也随着关闭，所以devtools页面的生命周期和devtools窗口是一致的。devtools页面可以访问一组特有的<code>DevTools API</code>以及有限的扩展API，这组特有的<code>DevTools API</code>只有devtools页面才可以访问，background都无权访问，这些API包括：</p>
+<ul>
+<li><code>chrome.devtools.panels</code>：面板相关；</li>
+<li><code>chrome.devtools.inspectedWindow</code>：获取被审查窗口的有关信息；</li>
+<li><code>chrome.devtools.network</code>：获取有关网络请求的信息；</li>
+</ul>
+<p>大部分扩展API都无法直接被<code>DevTools</code>页面调用，但它可以像<code>content-script</code>一样直接调用<code>chrome.extension</code>和<code>chrome.runtime</code>API，同时它也可以像<code>content-script</code>一样使用Message交互的方式与background页面进行通信。</p>
+<h3 id="3-5-3-实例：创建一个devtools扩展"><a href="#3-5-3-实例：创建一个devtools扩展" class="headerlink" title="3.5.3. 实例：创建一个devtools扩展"></a>3.5.3. 实例：创建一个devtools扩展</h3><p>首先，要针对开发者工具开发插件，需要在清单文件声明如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 只能指向一个HTML文件，不能是JS文件</span></span><br><span class="line">	<span class="string">&quot;devtools_page&quot;</span>: <span class="string">&quot;devtools.html&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个<code>devtools.html</code>里面一般什么都没有，就引入一个js：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">	&lt;script type=&quot;text/javascript&quot; src=&quot;js/devtools.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以看出来，其实真正代码是<code>devtools.js</code>，html文件是“多余”的，所以这里觉得有点坑，<code>devtools_page</code>干嘛不允许直接指定JS呢？</p>
+<p>再来看devtools.js的代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建自定义面板，同一个插件可以创建多个自定义面板</span></span><br><span class="line"><span class="comment">// 几个参数依次为：panel标题、图标（其实设置了也没地方显示）、要加载的页面、加载成功后的回调</span></span><br><span class="line">chrome.<span class="property">devtools</span>.<span class="property">panels</span>.<span class="title function_">create</span>(<span class="string">&#x27;MyPanel&#x27;</span>, <span class="string">&#x27;img/icon.png&#x27;</span>, <span class="string">&#x27;mypanel.html&#x27;</span>, <span class="keyword">function</span>(<span class="params">panel</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;自定义面板创建成功！&#x27;</span>); <span class="comment">// 注意这个log一般看不到</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建自定义侧边栏</span></span><br><span class="line">chrome.<span class="property">devtools</span>.<span class="property">panels</span>.<span class="property">elements</span>.<span class="title function_">createSidebarPane</span>(<span class="string">&quot;Images&quot;</span>, <span class="keyword">function</span>(<span class="params">sidebar</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// sidebar.setPage(&#x27;../sidebar.html&#x27;); // 指定加载某个页面</span></span><br><span class="line">	sidebar.<span class="title function_">setExpression</span>(<span class="string">&#x27;document.querySelectorAll(&quot;img&quot;)&#x27;</span>, <span class="string">&#x27;All Images&#x27;</span>); <span class="comment">// 通过表达式来指定</span></span><br><span class="line">	<span class="comment">//sidebar.setObject(&#123;aaa: 111, bbb: &#x27;Hello World!&#x27;&#125;); // 直接设置显示某个对象</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 检测jQuery</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;check_jquery&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 访问被检查的页面DOM需要使用inspectedWindow</span></span><br><span class="line">	<span class="comment">// 简单例子：检测被检查页面是否使用了jQuery</span></span><br><span class="line">	chrome.<span class="property">devtools</span>.<span class="property">inspectedWindow</span>.<span class="built_in">eval</span>(<span class="string">&quot;jQuery.fn.jquery&quot;</span>, <span class="keyword">function</span>(<span class="params">result, isException</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">var</span> html = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">		<span class="keyword">if</span> (isException) html = <span class="string">&#x27;当前页面没有使用jQuery。&#x27;</span>;</span><br><span class="line">		<span class="keyword">else</span> html = <span class="string">&#x27;当前页面使用了jQuery，版本为：&#x27;</span>+result;</span><br><span class="line">		<span class="title function_">alert</span>(html);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打开某个资源</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;open_resource&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">	chrome.<span class="property">devtools</span>.<span class="property">inspectedWindow</span>.<span class="built_in">eval</span>(<span class="string">&quot;window.location.href&quot;</span>, <span class="keyword">function</span>(<span class="params">result, isException</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		chrome.<span class="property">devtools</span>.<span class="property">panels</span>.<span class="title function_">openResource</span>(result, <span class="number">20</span>, <span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;资源打开成功！&#x27;</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 审查元素</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;test_inspect&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">	chrome.<span class="property">devtools</span>.<span class="property">inspectedWindow</span>.<span class="built_in">eval</span>(<span class="string">&quot;inspect(document.images[0])&quot;</span>, <span class="keyword">function</span>(<span class="params">result, isException</span>)&#123;&#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 获取所有资源</span></span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;get_all_resources&#x27;</span>).<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">	chrome.<span class="property">devtools</span>.<span class="property">inspectedWindow</span>.<span class="title function_">getResources</span>(<span class="keyword">function</span>(<span class="params">resources</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="title class_">JSON</span>.<span class="title function_">stringify</span>(resources));</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-4-调试技巧"><a href="#3-5-4-调试技巧" class="headerlink" title="3.5.4. 调试技巧"></a>3.5.4. 调试技巧</h3><p>修改了devtools页面的代码时，需要先在 chrome:&#x2F;&#x2F;extensions 页面按下<code>Ctrl+R</code>重新加载插件，然后关闭再打开开发者工具即可，无需刷新页面（而且只刷新页面不刷新开发者工具的话是不会生效的）。</p>
+<p>由于devtools本身就是开发者工具页面，所以几乎没有方法可以直接调试它，直接用 <code>chrome-extension://extid/devtools.html&quot;</code>的方式打开页面肯定报错，因为不支持相关特殊API，只能先自己写一些方法屏蔽这些错误，调试通了再放开。</p>
+<h2 id="3-6-option-选项页"><a href="#3-6-option-选项页" class="headerlink" title="3.6. option(选项页)"></a>3.6. option(选项页)</h2><p>所谓<code>options</code>页，就是插件的设置页面，有2个入口，一个是右键图标有一个“选项”菜单，还有一个在插件管理页面：</p>
+<p>在Chrome40以前，options页面和其它普通页面没什么区别，Chrome40以后则有了一些变化。</p>
+<p>我们先看老版的<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/options">options</a>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="comment">// Chrome40以前的插件配置页写法</span></span><br><span class="line">	<span class="string">&quot;options_page&quot;</span>: <span class="string">&quot;options.html&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这个页面里面的内容就随你自己发挥了，配置之后在插件管理页就会看到一个<code>选项</code>按钮入口，点进去就是打开一个网页，没啥好讲的。</p>
+<p>再来看新版的<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/optionsV2">optionsV2</a>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;options_ui&quot;</span>:</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="string">&quot;page&quot;</span>: <span class="string">&quot;options.html&quot;</span>,</span><br><span class="line">		<span class="comment">// 添加一些默认的样式，推荐使用</span></span><br><span class="line">		<span class="string">&quot;chrome_style&quot;</span>: <span class="literal">true</span></span><br><span class="line">	&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>几点注意：</p>
+<ul>
+<li>为了兼容，建议2种都写，如果都写了，Chrome40以后会默认读取新版的方式；</li>
+<li>新版options中不能使用alert；</li>
+<li>数据存储建议用chrome.storage，因为会随用户自动同步；</li>
+</ul>
+<h2 id="3-7-omnibox"><a href="#3-7-omnibox" class="headerlink" title="3.7. omnibox"></a>3.7. omnibox</h2><p><code>omnibox</code>是向用户提供搜索建议的一种方式</p>
+<p>注册某个关键字以触发插件自己的搜索建议界面，然后可以任意发挥了。</p>
+<p>首先，配置文件如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 向地址栏注册一个关键字以提供搜索建议，只能设置一个关键字</span></span><br><span class="line">	<span class="string">&quot;omnibox&quot;</span>: &#123; <span class="string">&quot;keyword&quot;</span> : <span class="string">&quot;go&quot;</span> &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后<code>background.js</code>中注册监听事件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// omnibox 演示</span></span><br><span class="line">chrome.<span class="property">omnibox</span>.<span class="property">onInputChanged</span>.<span class="title function_">addListener</span>(<span class="function">(<span class="params">text, suggest</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inputChanged: &#x27;</span> + text);</span><br><span class="line">	<span class="keyword">if</span>(!text) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">if</span>(text == <span class="string">&#x27;美女&#x27;</span>) &#123;</span><br><span class="line">		<span class="title function_">suggest</span>([</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;中国&#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;你要找“中国美女”吗？&#x27;</span>&#125;,</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;日本&#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;你要找“日本美女”吗？&#x27;</span>&#125;,</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;泰国&#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;你要找“泰国美女或人妖”吗？&#x27;</span>&#125;,</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;韩国&#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;你要找“韩国美女”吗？&#x27;</span>&#125;</span><br><span class="line">		]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(text == <span class="string">&#x27;微博&#x27;</span>) &#123;</span><br><span class="line">		<span class="title function_">suggest</span>([</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;新浪&#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;新浪&#x27;</span> + text&#125;,</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;腾讯&#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;腾讯&#x27;</span> + text&#125;,</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;搜狐&#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;搜索&#x27;</span> + text&#125;,</span><br><span class="line">		]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="title function_">suggest</span>([</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;百度搜索 &#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;百度搜索 &#x27;</span> + text&#125;,</span><br><span class="line">			&#123;<span class="attr">content</span>: <span class="string">&#x27;谷歌搜索 &#x27;</span> + text, <span class="attr">description</span>: <span class="string">&#x27;谷歌搜索 &#x27;</span> + text&#125;,</span><br><span class="line">		]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当用户接收关键字建议时触发</span></span><br><span class="line">chrome.<span class="property">omnibox</span>.<span class="property">onInputEntered</span>.<span class="title function_">addListener</span>(<span class="function">(<span class="params">text</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;inputEntered: &#x27;</span> + text);</span><br><span class="line">	<span class="keyword">if</span>(!text) <span class="keyword">return</span>;</span><br><span class="line">	<span class="keyword">var</span> href = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">	<span class="keyword">if</span>(text.<span class="title function_">endsWith</span>(<span class="string">&#x27;美女&#x27;</span>)) href = <span class="string">&#x27;http://image.baidu.com/search/index?tn=baiduimage&amp;ie=utf-8&amp;word=&#x27;</span> + text;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(text.<span class="title function_">startsWith</span>(<span class="string">&#x27;百度搜索&#x27;</span>)) href = <span class="string">&#x27;https://www.baidu.com/s?ie=UTF-8&amp;wd=&#x27;</span> + text.<span class="title function_">replace</span>(<span class="string">&#x27;百度搜索 &#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(text.<span class="title function_">startsWith</span>(<span class="string">&#x27;谷歌搜索&#x27;</span>)) href = <span class="string">&#x27;https://www.google.com.tw/search?q=&#x27;</span> + text.<span class="title function_">replace</span>(<span class="string">&#x27;谷歌搜索 &#x27;</span>, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">	<span class="keyword">else</span> href = <span class="string">&#x27;https://www.baidu.com/s?ie=UTF-8&amp;wd=&#x27;</span> + text;</span><br><span class="line">	<span class="title function_">openUrlCurrentTab</span>(href);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 获取当前选项卡ID</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getCurrentTabId</span>(<span class="params">callback</span>)</span><br><span class="line">&#123;</span><br><span class="line">	chrome.<span class="property">tabs</span>.<span class="title function_">query</span>(&#123;<span class="attr">active</span>: <span class="literal">true</span>, <span class="attr">currentWindow</span>: <span class="literal">true</span>&#125;, <span class="keyword">function</span>(<span class="params">tabs</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(callback) <span class="title function_">callback</span>(tabs.<span class="property">length</span> ? tabs[<span class="number">0</span>].<span class="property">id</span>: <span class="literal">null</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前标签打开某个链接</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">openUrlCurrentTab</span>(<span class="params">url</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="title function_">getCurrentTabId</span>(<span class="function"><span class="params">tabId</span> =&gt;</span> &#123;</span><br><span class="line">		chrome.<span class="property">tabs</span>.<span class="title function_">update</span>(tabId, &#123;<span class="attr">url</span>: url&#125;);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-8-桌面通知"><a href="#3-8-桌面通知" class="headerlink" title="3.8. 桌面通知"></a>3.8. 桌面通知</h2><p>Chrome提供了一个<code>chrome.notifications</code>API以便插件推送桌面通知，暂未找到<code>chrome.notifications</code>和HTML5自带的<code>Notification</code>的显著区别及优势。</p>
+<p>在后台JS中，无论是使用<code>chrome.notifications</code>还是<code>Notification</code>都不需要申请权限（HTML5方式需要申请权限），直接使用即可。</p>
+<p>最简单的通知：</p>
+<p>代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chrome.<span class="property">notifications</span>.<span class="title function_">create</span>(<span class="literal">null</span>, &#123;</span><br><span class="line">	<span class="attr">type</span>: <span class="string">&#x27;basic&#x27;</span>,</span><br><span class="line">	<span class="attr">iconUrl</span>: <span class="string">&#x27;img/icon.png&#x27;</span>,</span><br><span class="line">	<span class="attr">title</span>: <span class="string">&#x27;这是标题&#x27;</span>,</span><br><span class="line">	<span class="attr">message</span>: <span class="string">&#x27;您刚才点击了自定义右键菜单！&#x27;</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>这个没有深入研究，有需要的可以去<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/notifications">官方文档</a>查看更多细节。</p>
+<h1 id="四、5种类型的JS对比"><a href="#四、5种类型的JS对比" class="headerlink" title="四、5种类型的JS对比"></a>四、5种类型的JS对比</h1><p>Chrome插件的JS主要可以分为这5类：<code>injected script</code>、<code>content-script</code>、<code>popup js</code>、<code>background js</code>和<code>devtools js</code>，</p>
+<h2 id="4-1-权限对比"><a href="#4-1-权限对比" class="headerlink" title="4.1. 权限对比"></a>4.1. 权限对比</h2><table>
+<thead>
+<tr>
+<th>JS种类</th>
+<th>可访问的API</th>
+<th>DOM访问情况</th>
+<th>JS访问情况</th>
+<th>直接跨域</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>injected script</td>
+<td>和普通JS无任何差别，不能访问任何扩展API</td>
+<td>可以访问</td>
+<td>可以访问</td>
+<td>不可以</td>
+</tr>
+<tr>
+<td>content script</td>
+<td>只能访问 extension、runtime等部分API</td>
+<td>可以访问</td>
+<td>不可以</td>
+<td>不可以</td>
+</tr>
+<tr>
+<td>popup js</td>
+<td>可访问绝大部分API，除了devtools系列</td>
+<td>不可直接访问</td>
+<td>不可以</td>
+<td>可以</td>
+</tr>
+<tr>
+<td>background js</td>
+<td>可访问绝大部分API，除了devtools系列</td>
+<td>不可直接访问</td>
+<td>不可以</td>
+<td>可以</td>
+</tr>
+<tr>
+<td>devtools js</td>
+<td>只能访问 devtools、extension、runtime等部分API</td>
+<td>可以</td>
+<td>可以</td>
+<td>不可以</td>
+</tr>
+</tbody></table>
+<h2 id="4-2-调试方式对比"><a href="#4-2-调试方式对比" class="headerlink" title="4.2. 调试方式对比"></a>4.2. 调试方式对比</h2><table>
+<thead>
+<tr>
+<th>JS类型</th>
+<th>调试方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>injected script</td>
+<td>直接普通的F12即可</td>
+</tr>
+<tr>
+<td>content-script</td>
+<td>打开Console,如图切换</td>
+</tr>
+<tr>
+<td>popup-js</td>
+<td>popup页面右键审查元素</td>
+</tr>
+<tr>
+<td>background</td>
+<td>插件管理页点击背景页即可</td>
+</tr>
+<tr>
+<td>devtools-js</td>
+<td>暂未找到有效方法</td>
+</tr>
+</tbody></table>
+<h1 id="五、消息通信"><a href="#五、消息通信" class="headerlink" title="五、消息通信"></a>五、消息通信</h1><p>通信主页：<a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/messaging">https://developer.chrome.com/extensions/messaging</a></p>
+<p>前面我们介绍了Chrome插件中存在的5种JS，那么它们之间如何互相通信呢？下面先来系统概况一下，然后再分类细说。需要知道的是，popup和background其实几乎可以视为一种东西，因为它们可访问的API都一样、通信机制一样、都可以跨域。</p>
+<h2 id="5-1-互相通信概览"><a href="#5-1-互相通信概览" class="headerlink" title="5.1. 互相通信概览"></a>5.1. 互相通信概览</h2><p>注：<code>-</code>表示不存在或者无意义，或者待验证。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>injected-script</th>
+<th>content-script</th>
+<th>popup-js</th>
+<th>background-js</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>injected-script</td>
+<td>-</td>
+<td>window.postMessage</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>content-script</td>
+<td>window.postMessage</td>
+<td>-</td>
+<td>chrome.runtime.sendMessage chrome.runtime.connect</td>
+<td>chrome.runtime.sendMessage chrome.runtime.connect</td>
+</tr>
+<tr>
+<td>popup-js</td>
+<td>-</td>
+<td>chrome.tabs.sendMessage chrome.tabs.connect</td>
+<td>-</td>
+<td>chrome.extension. getBackgroundPage()</td>
+</tr>
+<tr>
+<td>background-js</td>
+<td>-</td>
+<td>chrome.tabs.sendMessage chrome.tabs.connect</td>
+<td>chrome.extension.getViews</td>
+<td>-</td>
+</tr>
+<tr>
+<td>devtools-js</td>
+<td>chrome.devtools. inspectedWindow.eval</td>
+<td>-</td>
+<td>chrome.runtime.sendMessage</td>
+<td>chrome.runtime.sendMessage</td>
+</tr>
+</tbody></table>
+<h2 id="5-2-通信详细介绍"><a href="#5-2-通信详细介绍" class="headerlink" title="5.2. 通信详细介绍"></a>5.2. 通信详细介绍</h2><h3 id="5-2-1-popup和background"><a href="#5-2-1-popup和background" class="headerlink" title="5.2.1. popup和background"></a>5.2.1. popup和background</h3><p>popup可以直接调用background中的JS方法，也可以直接访问background的DOM：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// background.js</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="title function_">alert</span>(<span class="string">&#x27;我是background！&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// popup.js</span></span><br><span class="line"><span class="keyword">var</span> bg = chrome.<span class="property">extension</span>.<span class="title function_">getBackgroundPage</span>();</span><br><span class="line">bg.<span class="title function_">test</span>(); <span class="comment">// 访问bg的函数</span></span><br><span class="line"><span class="title function_">alert</span>(bg.<span class="property">document</span>.<span class="property">body</span>.<span class="property">innerHTML</span>); <span class="comment">// 访问bg的DOM</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小插曲，今天碰到一个情况，发现popup无法获取background的任何方法，找了半天才发现是因为background的js报错了，而你如果不主动查看background的js的话，是看不到错误信息的，特此提醒。</p>
+</blockquote>
+<p>至于<code>background</code>访问<code>popup</code>如下（前提是<code>popup</code>已经打开）：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> views = chrome.<span class="property">extension</span>.<span class="title function_">getViews</span>(&#123;<span class="attr">type</span>:<span class="string">&#x27;popup&#x27;</span>&#125;);</span><br><span class="line"><span class="keyword">if</span>(views.<span class="property">length</span> &gt; <span class="number">0</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(views[<span class="number">0</span>].<span class="property">location</span>.<span class="property">href</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-2-popup或者bg向content主动发送消息"><a href="#5-2-2-popup或者bg向content主动发送消息" class="headerlink" title="5.2.2. popup或者bg向content主动发送消息"></a>5.2.2. popup或者bg向content主动发送消息</h3><p>background.js或者popup.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">sendMessageToContentScript</span>(<span class="params">message, callback</span>)</span><br><span class="line">&#123;</span><br><span class="line">	chrome.<span class="property">tabs</span>.<span class="title function_">query</span>(&#123;<span class="attr">active</span>: <span class="literal">true</span>, <span class="attr">currentWindow</span>: <span class="literal">true</span>&#125;, <span class="keyword">function</span>(<span class="params">tabs</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		chrome.<span class="property">tabs</span>.<span class="title function_">sendMessage</span>(tabs[<span class="number">0</span>].<span class="property">id</span>, message, <span class="keyword">function</span>(<span class="params">response</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(callback) <span class="title function_">callback</span>(response);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">sendMessageToContentScript</span>(&#123;<span class="attr">cmd</span>:<span class="string">&#x27;test&#x27;</span>, <span class="attr">value</span>:<span class="string">&#x27;你好，我是popup！&#x27;</span>&#125;, <span class="keyword">function</span>(<span class="params">response</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;来自content的回复：&#x27;</span>+response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>content-script.js</code>接收：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">chrome.<span class="property">runtime</span>.<span class="property">onMessage</span>.<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params">request, sender, sendResponse</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// console.log(sender.tab ?&quot;from a content script:&quot; + sender.tab.url :&quot;from the extension&quot;);</span></span><br><span class="line">	<span class="keyword">if</span>(request.<span class="property">cmd</span> == <span class="string">&#x27;test&#x27;</span>) <span class="title function_">alert</span>(request.<span class="property">value</span>);</span><br><span class="line">	<span class="title function_">sendResponse</span>(<span class="string">&#x27;我收到了你的消息！&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>双方通信直接发送的都是JSON对象，不是JSON字符串，所以无需解析，很方便（当然也可以直接发送字符串）。</p>
+<blockquote>
+<p>网上有些老代码中用的是<code>chrome.extension.onMessage</code>，没有完全查清二者的区别(貌似是别名)，但是建议统一使用<code>chrome.runtime.onMessage</code>。</p>
+</blockquote>
+<h3 id="5-2-3-content-script主动发消息给后台"><a href="#5-2-3-content-script主动发消息给后台" class="headerlink" title="5.2.3. content-script主动发消息给后台"></a>5.2.3. content-script主动发消息给后台</h3><p>content-script.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">chrome.<span class="property">runtime</span>.<span class="title function_">sendMessage</span>(&#123;<span class="attr">greeting</span>: <span class="string">&#x27;你好，我是content-script呀，我主动发消息给后台！&#x27;</span>&#125;, <span class="keyword">function</span>(<span class="params">response</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到来自后台的回复：&#x27;</span> + response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>background.js 或者 popup.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听来自content-script的消息</span></span><br><span class="line">chrome.<span class="property">runtime</span>.<span class="property">onMessage</span>.<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params">request, sender, sendResponse</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到来自content-script的消息：&#x27;</span>);</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(request, sender, sendResponse);</span><br><span class="line">	<span class="title function_">sendResponse</span>(<span class="string">&#x27;我是后台，我已收到你的消息：&#x27;</span> + <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(request));</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>注意事项：</p>
+<ul>
+<li>content_scripts向<code>popup</code>主动发消息的前提是popup必须打开！否则需要利用background作中转；</li>
+<li>如果background和popup同时监听，那么它们都可以同时收到消息，但是只有一个可以sendResponse，一个先发送了，那么另外一个再发送就无效；</li>
+</ul>
+<h3 id="5-2-4-injected-script和content-script"><a href="#5-2-4-injected-script和content-script" class="headerlink" title="5.2.4. injected script和content-script"></a>5.2.4. injected script和content-script</h3><p><code>content-script</code>和页面内的脚本（<code>injected-script</code>自然也属于页面内的脚本）之间唯一共享的东西就是页面的DOM元素，有2种方法可以实现二者通讯：</p>
+<ol>
+<li>可以通过<code>window.postMessage</code>和<code>window.addEventListener</code>来实现二者消息通讯；</li>
+<li>通过自定义DOM事件来实现；</li>
+</ol>
+<p>第一种方法（推荐）：</p>
+<p><code>injected-script</code>中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">postMessage</span>(&#123;<span class="string">&quot;test&quot;</span>: <span class="string">&#x27;你好！&#x27;</span>&#125;, <span class="string">&#x27;*&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>content script中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&quot;message&quot;</span>, <span class="keyword">function</span>(<span class="params">e</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(e.<span class="property">data</span>);</span><br><span class="line">&#125;, <span class="literal">false</span>);</span><br></pre></td></tr></table></figure>
+
+<p>第二种方法：</p>
+<p><code>injected-script</code>中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> customEvent = <span class="variable language_">document</span>.<span class="title function_">createEvent</span>(<span class="string">&#x27;Event&#x27;</span>);</span><br><span class="line">customEvent.<span class="title function_">initEvent</span>(<span class="string">&#x27;myCustomEvent&#x27;</span>, <span class="literal">true</span>, <span class="literal">true</span>);</span><br><span class="line"><span class="keyword">function</span> <span class="title function_">fireCustomEvent</span>(<span class="params">data</span>) &#123;</span><br><span class="line">	hiddenDiv = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myCustomEventDiv&#x27;</span>);</span><br><span class="line">	hiddenDiv.<span class="property">innerText</span> = data</span><br><span class="line">	hiddenDiv.<span class="title function_">dispatchEvent</span>(customEvent);</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">fireCustomEvent</span>(<span class="string">&#x27;你好，我是普通JS！&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>content-script.js</code>中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> hiddenDiv = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myCustomEventDiv&#x27;</span>);</span><br><span class="line"><span class="keyword">if</span>(!hiddenDiv) &#123;</span><br><span class="line">	hiddenDiv = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">	hiddenDiv.<span class="property">style</span>.<span class="property">display</span> = <span class="string">&#x27;none&#x27;</span>;</span><br><span class="line">	<span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(hiddenDiv);</span><br><span class="line">&#125;</span><br><span class="line">hiddenDiv.<span class="title function_">addEventListener</span>(<span class="string">&#x27;myCustomEvent&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="keyword">var</span> eventData = <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;myCustomEventDiv&#x27;</span>).<span class="property">innerText</span>;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到自定义事件消息：&#x27;</span> + eventData);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-2-5-injected-script与popup通信"><a href="#5-2-5-injected-script与popup通信" class="headerlink" title="5.2.5. injected-script与popup通信"></a>5.2.5. injected-script与popup通信</h3><p><code>injected-script</code>无法直接和<code>popup</code>通信，必须借助<code>content-script</code>作为中间人。</p>
+<p>&#x2F;&#x2F;TODO 示例代码有待完善。</p>
+<h2 id="5-3-长连接和短连接"><a href="#5-3-长连接和短连接" class="headerlink" title="5.3. 长连接和短连接"></a>5.3. 长连接和短连接</h2><p>其实上面已经涉及到了，这里再单独说明一下。Chrome插件中有2种通信方式，一个是短连接（<code>chrome.tabs.sendMessage</code>和<code>chrome.runtime.sendMessage</code>），一个是长连接（<code>chrome.tabs.connect</code>和<code>chrome.runtime.connect</code>）。</p>
+<p>短连接的话就是挤牙膏一样，我发送一下，你收到了再回复一下，如果对方不回复，你只能重新发，而长连接类似<code>WebSocket</code>会一直建立连接，双方可以随时互发消息。</p>
+<p>短连接上面已经有代码示例了，这里只讲一下长连接。</p>
+<p>popup.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">getCurrentTabId</span>(<span class="function">(<span class="params">tabId</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">var</span> port = chrome.<span class="property">tabs</span>.<span class="title function_">connect</span>(tabId, &#123;<span class="attr">name</span>: <span class="string">&#x27;test-connect&#x27;</span>&#125;);</span><br><span class="line">	port.<span class="title function_">postMessage</span>(&#123;<span class="attr">question</span>: <span class="string">&#x27;你是谁啊？&#x27;</span>&#125;);</span><br><span class="line">	port.<span class="property">onMessage</span>.<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">		<span class="title function_">alert</span>(<span class="string">&#x27;收到消息：&#x27;</span>+msg.<span class="property">answer</span>);</span><br><span class="line">		<span class="keyword">if</span>(msg.<span class="property">answer</span> &amp;&amp; msg.<span class="property">answer</span>.<span class="title function_">startsWith</span>(<span class="string">&#x27;我是&#x27;</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			port.<span class="title function_">postMessage</span>(&#123;<span class="attr">question</span>: <span class="string">&#x27;哦，原来是你啊！&#x27;</span>&#125;);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>content-script.js：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听长连接</span></span><br><span class="line">chrome.<span class="property">runtime</span>.<span class="property">onConnect</span>.<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params">port</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(port);</span><br><span class="line">	<span class="keyword">if</span>(port.<span class="property">name</span> == <span class="string">&#x27;test-connect&#x27;</span>) &#123;</span><br><span class="line">		port.<span class="property">onMessage</span>.<span class="title function_">addListener</span>(<span class="keyword">function</span>(<span class="params">msg</span>) &#123;</span><br><span class="line">			<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;收到长连接消息：&#x27;</span>, msg);</span><br><span class="line">			<span class="keyword">if</span>(msg.<span class="property">question</span> == <span class="string">&#x27;你是谁啊？&#x27;</span>) port.<span class="title function_">postMessage</span>(&#123;<span class="attr">answer</span>: <span class="string">&#x27;我是你爸！&#x27;</span>&#125;);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h1 id="六、其它补充"><a href="#六、其它补充" class="headerlink" title="六、其它补充"></a>六、其它补充</h1><h2 id="6-1-动态注入或执行JS"><a href="#6-1-动态注入或执行JS" class="headerlink" title="6.1. 动态注入或执行JS"></a>6.1. 动态注入或执行JS</h2><p>虽然在<code>background</code>和<code>popup</code>中无法直接访问页面DOM，但是可以通过<code>chrome.tabs.executeScript</code>来执行脚本，从而实现访问web页面的DOM（注意，这种方式也不能直接访问页面JS）。</p>
+<p>示例<code>manifest.json</code>配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;name&quot;</span>: <span class="string">&quot;动态JS注入演示&quot;</span>,</span><br><span class="line">	...</span><br><span class="line">	<span class="string">&quot;permissions&quot;</span>: [</span><br><span class="line">		<span class="string">&quot;tabs&quot;</span>, <span class="string">&quot;http://*/*&quot;</span>, <span class="string">&quot;https://*/*&quot;</span></span><br><span class="line">	],</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JS：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 动态执行JS代码</span></span><br><span class="line">chrome.<span class="property">tabs</span>.<span class="title function_">executeScript</span>(tabId, &#123;<span class="attr">code</span>: <span class="string">&#x27;document.body.style.backgroundColor=&quot;red&quot;&#x27;</span>&#125;);</span><br><span class="line"><span class="comment">// 动态执行JS文件</span></span><br><span class="line">chrome.<span class="property">tabs</span>.<span class="title function_">executeScript</span>(tabId, &#123;<span class="attr">file</span>: <span class="string">&#x27;some-script.js&#x27;</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-2-动态注入CSS"><a href="#6-2-动态注入CSS" class="headerlink" title="6.2. 动态注入CSS"></a>6.2. 动态注入CSS</h2><p>示例<code>manifest.json</code>配置：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;name&quot;</span>: <span class="string">&quot;动态CSS注入演示&quot;</span>,</span><br><span class="line">	...</span><br><span class="line">	<span class="string">&quot;permissions&quot;</span>: [</span><br><span class="line">		<span class="string">&quot;tabs&quot;</span>, <span class="string">&quot;http://*/*&quot;</span>, <span class="string">&quot;https://*/*&quot;</span></span><br><span class="line">	],</span><br><span class="line">	...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JS代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 动态执行CSS代码，TODO，这里有待验证</span></span><br><span class="line">chrome.<span class="property">tabs</span>.<span class="title function_">insertCSS</span>(tabId, &#123;<span class="attr">code</span>: <span class="string">&#x27;xxx&#x27;</span>&#125;);</span><br><span class="line"><span class="comment">// 动态执行CSS文件</span></span><br><span class="line">chrome.<span class="property">tabs</span>.<span class="title function_">insertCSS</span>(tabId, &#123;<span class="attr">file</span>: <span class="string">&#x27;some-style.css&#x27;</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-3-获取当前窗口ID"><a href="#6-3-获取当前窗口ID" class="headerlink" title="6.3. 获取当前窗口ID"></a>6.3. 获取当前窗口ID</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chrome.<span class="property">windows</span>.<span class="title function_">getCurrent</span>(<span class="keyword">function</span>(<span class="params">currentWindow</span>)</span><br><span class="line">&#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;当前窗口ID：&#x27;</span> + currentWindow.<span class="property">id</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-4-获取当前标签页ID"><a href="#6-4-获取当前标签页ID" class="headerlink" title="6.4. 获取当前标签页ID"></a>6.4. 获取当前标签页ID</h2><p>一般有2种方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前选项卡ID</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getCurrentTabId</span>(<span class="params">callback</span>)</span><br><span class="line">&#123;</span><br><span class="line">	chrome.<span class="property">tabs</span>.<span class="title function_">query</span>(&#123;<span class="attr">active</span>: <span class="literal">true</span>, <span class="attr">currentWindow</span>: <span class="literal">true</span>&#125;, <span class="keyword">function</span>(<span class="params">tabs</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(callback) <span class="title function_">callback</span>(tabs.<span class="property">length</span> ? tabs[<span class="number">0</span>].<span class="property">id</span>: <span class="literal">null</span>);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取当前选项卡id的另一种方法，大部分时候都类似，只有少部分时候会不一样（例如当窗口最小化时）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取当前选项卡ID</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">getCurrentTabId2</span>(<span class="params"></span>)</span><br><span class="line">&#123;</span><br><span class="line">	chrome.<span class="property">windows</span>.<span class="title function_">getCurrent</span>(<span class="keyword">function</span>(<span class="params">currentWindow</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		chrome.<span class="property">tabs</span>.<span class="title function_">query</span>(&#123;<span class="attr">active</span>: <span class="literal">true</span>, <span class="attr">windowId</span>: currentWindow.<span class="property">id</span>&#125;, <span class="keyword">function</span>(<span class="params">tabs</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(callback) <span class="title function_">callback</span>(tabs.<span class="property">length</span> ? tabs[<span class="number">0</span>].<span class="property">id</span>: <span class="literal">null</span>);</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-5-本地存储"><a href="#6-5-本地存储" class="headerlink" title="6.5. 本地存储"></a>6.5. 本地存储</h2><p>本地存储建议用<code>chrome.storage</code>而不是普通的<code>localStorage</code>，区别有好几点，个人认为最重要的2点区别是：</p>
+<ul>
+<li><code>chrome.storage</code>是针对插件全局的，即使你在<code>background</code>中保存的数据，在<code>content-script</code>也能获取到；</li>
+<li><code>chrome.storage.sync</code>可以跟随当前登录用户自动同步，这台电脑修改的设置会自动同步到其它电脑，很方便，如果没有登录或者未联网则先保存到本地，等登录了再同步至网络；</li>
+</ul>
+<p>需要声明<code>storage</code>权限，有<code>chrome.storage.sync</code>和<code>chrome.storage.local</code>2种方式可供选择，使用示例如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 读取数据，第一个参数是指定要读取的key以及设置默认值</span></span><br><span class="line">chrome.<span class="property">storage</span>.<span class="property">sync</span>.<span class="title function_">get</span>(&#123;<span class="attr">color</span>: <span class="string">&#x27;red&#x27;</span>, <span class="attr">age</span>: <span class="number">18</span>&#125;, <span class="keyword">function</span>(<span class="params">items</span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(items.<span class="property">color</span>, items.<span class="property">age</span>);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 保存数据</span></span><br><span class="line">chrome.<span class="property">storage</span>.<span class="property">sync</span>.<span class="title function_">set</span>(&#123;<span class="attr">color</span>: <span class="string">&#x27;blue&#x27;</span>&#125;, <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;保存成功！&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-6-webRequest"><a href="#6-6-webRequest" class="headerlink" title="6.6. webRequest"></a>6.6. webRequest</h2><p>这里通过<code>beforeRequest</code>来简单演示一下它的冰山一角：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//manifest.json</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">// 权限申请</span></span><br><span class="line">	<span class="string">&quot;permissions&quot;</span>:</span><br><span class="line">	[</span><br><span class="line">		<span class="string">&quot;webRequest&quot;</span>, <span class="comment">// web请求</span></span><br><span class="line">		<span class="string">&quot;webRequestBlocking&quot;</span>, <span class="comment">// 阻塞式web请求</span></span><br><span class="line">		<span class="string">&quot;storage&quot;</span>, <span class="comment">// 插件本地存储</span></span><br><span class="line">		<span class="string">&quot;http://*/*&quot;</span>, <span class="comment">// 可以通过executeScript或者insertCSS访问的网站</span></span><br><span class="line">		<span class="string">&quot;https://*/*&quot;</span> <span class="comment">// 可以通过executeScript或者insertCSS访问的网站</span></span><br><span class="line">	],</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// background.js</span></span><br><span class="line"><span class="comment">// 是否显示图片</span></span><br><span class="line"><span class="keyword">var</span> showImage;</span><br><span class="line">chrome.<span class="property">storage</span>.<span class="property">sync</span>.<span class="title function_">get</span>(&#123;<span class="attr">showImage</span>: <span class="literal">true</span>&#125;, <span class="keyword">function</span>(<span class="params">items</span>) &#123;</span><br><span class="line">	showImage = items.<span class="property">showImage</span>;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// web请求监听，最后一个参数表示阻塞式，需单独声明权限：webRequestBlocking</span></span><br><span class="line">chrome.<span class="property">webRequest</span>.<span class="property">onBeforeRequest</span>.<span class="title function_">addListener</span>(<span class="function"><span class="params">details</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="comment">// cancel 表示取消本次请求</span></span><br><span class="line">	<span class="keyword">if</span>(!showImage &amp;&amp; details.<span class="property">type</span> == <span class="string">&#x27;image&#x27;</span>) <span class="keyword">return</span> &#123;<span class="attr">cancel</span>: <span class="literal">true</span>&#125;;</span><br><span class="line">	<span class="comment">// 简单的音视频检测</span></span><br><span class="line">	<span class="comment">// 大部分网站视频的type并不是media，且视频做了防下载处理，所以这里仅仅是为了演示效果，无实际意义</span></span><br><span class="line">	<span class="keyword">if</span>(details.<span class="property">type</span> == <span class="string">&#x27;media&#x27;</span>) &#123;</span><br><span class="line">		chrome.<span class="property">notifications</span>.<span class="title function_">create</span>(<span class="literal">null</span>, &#123;</span><br><span class="line">			<span class="attr">type</span>: <span class="string">&#x27;basic&#x27;</span>,</span><br><span class="line">			<span class="attr">iconUrl</span>: <span class="string">&#x27;img/icon.png&#x27;</span>,</span><br><span class="line">			<span class="attr">title</span>: <span class="string">&#x27;检测到音视频&#x27;</span>,</span><br><span class="line">			<span class="attr">message</span>: <span class="string">&#x27;音视频地址：&#x27;</span> + details.<span class="property">url</span>,</span><br><span class="line">		&#125;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;, &#123;<span class="attr">urls</span>: [<span class="string">&quot;&lt;all_urls&gt;&quot;</span>]&#125;, [<span class="string">&quot;blocking&quot;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>几个可能经常用到的事件使用示例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 每次请求前触发，可以拿到 requestBody 数据，同时可以对本次请求作出干预修改</span></span><br><span class="line">chrome.<span class="property">webRequest</span>.<span class="property">onBeforeRequest</span>.<span class="title function_">addListener</span>(<span class="function"><span class="params">details</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;onBeforeRequest&#x27;</span>, details);</span><br><span class="line">&#125;, &#123;<span class="attr">urls</span>: [<span class="string">&#x27;&lt;all_urls&gt;&#x27;</span>]&#125;, [<span class="string">&#x27;blocking&#x27;</span>, <span class="string">&#x27;extraHeaders&#x27;</span>, <span class="string">&#x27;requestBody&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送header之前触发，可以拿到请求headers，也可以添加、修改、删除headers</span></span><br><span class="line"><span class="comment">// 但使用有一定限制，一些特殊头部可能拿不到或者存在特殊情况，详见官网文档</span></span><br><span class="line">chrome.<span class="property">webRequest</span>.<span class="property">onBeforeSendHeaders</span>.<span class="title function_">addListener</span>(<span class="function"><span class="params">details</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;onBeforeSendHeaders&#x27;</span>, details);</span><br><span class="line">&#125;, &#123;<span class="attr">urls</span>: [<span class="string">&#x27;&lt;all_urls&gt;&#x27;</span>]&#125;, [<span class="string">&#x27;blocking&#x27;</span>, <span class="string">&#x27;extraHeaders&#x27;</span>, <span class="string">&#x27;requestHeaders&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 开始响应触发，可以拿到服务端返回的headers</span></span><br><span class="line">chrome.<span class="property">webRequest</span>.<span class="property">onResponseStarted</span>.<span class="title function_">addListener</span>(<span class="function"><span class="params">details</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;onResponseStarted&#x27;</span>, details);</span><br><span class="line">&#125;, &#123;<span class="attr">urls</span>: [<span class="string">&#x27;&lt;all_urls&gt;&#x27;</span>]&#125;, [<span class="string">&#x27;extraHeaders&#x27;</span>, <span class="string">&#x27;responseHeaders&#x27;</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 请求完成触发，能拿到的数据和onResponseStarted一样，注意无法拿到responseBody</span></span><br><span class="line">chrome.<span class="property">webRequest</span>.<span class="property">onCompleted</span>.<span class="title function_">addListener</span>(<span class="function"><span class="params">details</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;onCompleted&#x27;</span>, details);</span><br><span class="line">&#125;, &#123;<span class="attr">urls</span>: [<span class="string">&#x27;&lt;all_urls&gt;&#x27;</span>]&#125;, [<span class="string">&#x27;extraHeaders&#x27;</span>, <span class="string">&#x27;responseHeaders&#x27;</span>]);</span><br></pre></td></tr></table></figure>
+
+<p>上面示例中提到，使用<code>webRequest</code>API是无法拿到<code>responseBody</code>的，想要拿到的话只能采取一些变通方法，例如：</p>
+<ol>
+<li>重写<code>XmlHttpRequest</code>和<code>fetch</code>，增加自定义拦截事件，缺点是实现方式可能有点脏，重写不好的话可能影响正常页面；</li>
+<li><code>devtools</code>的<code>chrome.devtools.network.onRequestFinished</code>API可以拿到返回的body，缺点是必须打开开发者面板；</li>
+<li>使用<code>chrome.debugger.sendCommand</code>发送<code>Network.getResponseBody</code>命令来获取body内容，缺点也很明显，会有一个恼人的提示：</li>
+</ol>
+<p>上述几种方法的实现方式这个链接基本上都有，可以参考下：<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/18534771/chrome-extension-how-to-get-http-response-body">https://stackoverflow.com/questions/18534771/chrome-extension-how-to-get-http-response-body</a></p>
+<h2 id="6-7-国际化"><a href="#6-7-国际化" class="headerlink" title="6.7. 国际化"></a>6.7. 国际化</h2><p>插件根目录新建一个名为<code>_locales</code>的文件夹，再在下面新建一些语言的文件夹，如<code>en</code>、<code>zh_CN</code>、<code>zh_TW</code>，然后再在每个文件夹放入一个<code>messages.json</code>，同时必须在清单文件中设置<code>default_locale</code>。</p>
+<p><code>_locales\en\messages.json</code>内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;pluginDesc&quot;</span>: &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;A simple chrome extension demo&quot;</span>&#125;,</span><br><span class="line">	<span class="string">&quot;helloWorld&quot;</span>: &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;Hello World!&quot;</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>_locales\zh_CN\messages.json</code>内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;pluginDesc&quot;</span>: &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;一个简单的Chrome插件demo&quot;</span>&#125;,</span><br><span class="line">	<span class="string">&quot;helloWorld&quot;</span>: &#123;<span class="string">&quot;message&quot;</span>: <span class="string">&quot;你好啊，世界！&quot;</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在<code>manifest.json</code>和<code>CSS</code>文件中通过<code>__MSG_messagename__</code>引入，如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="string">&quot;description&quot;</span>: <span class="string">&quot;__MSG_pluginDesc__&quot;</span>,</span><br><span class="line">	<span class="comment">// 默认语言</span></span><br><span class="line">	<span class="string">&quot;default_locale&quot;</span>: <span class="string">&quot;zh_CN&quot;</span>,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>JS中则直接<code>chrome.i18n.getMessage(&quot;helloWorld&quot;)</code>。</p>
+<p><img src="http://image.liuxianan.com/201706/20170621_175733_172_5903.png" alt="img"></p>
+<h1 id="七、常见API总结"><a href="#七、常见API总结" class="headerlink" title="七、常见API总结"></a>七、常见API总结</h1><p>比较常用用的一些API系列：</p>
+<ul>
+<li>chrome.tabs</li>
+<li>chrome.webRequest</li>
+<li>chrome.window</li>
+<li>chrome.storage</li>
+<li>chrome.contextMenus</li>
+<li>chrome.devtools</li>
+<li>chrome.extension</li>
+</ul>
+<h2 id="7-1-chrome-cookies"><a href="#7-1-chrome-cookies" class="headerlink" title="7.1. chrome.cookies"></a>7.1. chrome.cookies</h2><p>获取某个网站的所有cookie：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://www.baidu.com&#x27;</span>;</span><br><span class="line">chrome.<span class="property">cookies</span>.<span class="title function_">getAll</span>(&#123;url&#125;, <span class="function"><span class="params">cookies</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="variable language_">console</span>.<span class="title function_">log</span>(cookies);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>清除某个网站的某个cookie：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = <span class="string">&#x27;https://www.baidu.com&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> cookieName = <span class="string">&#x27;userName&#x27;</span>;</span><br><span class="line">chrome.<span class="property">cookies</span>.<span class="title function_">remove</span>(&#123;url, <span class="attr">name</span>: cookieName&#125;, <span class="function"><span class="params">details</span> =&gt;</span> &#123;&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-2-chrome-runtime"><a href="#7-2-chrome-runtime" class="headerlink" title="7.2. chrome.runtime"></a>7.2. chrome.runtime</h2><ul>
+<li><code>chrome.runtime.id</code>：获取插件id</li>
+<li><code>chrome.runtime.getURL(&#39;xxx.html&#39;)</code>：获取<code>xxx.html</code>在插件中的地址</li>
+</ul>
+<h1 id="八、经验总结"><a href="#八、经验总结" class="headerlink" title="八、经验总结"></a>八、经验总结</h1><h2 id="8-1-查看已安装插件路径"><a href="#8-1-查看已安装插件路径" class="headerlink" title="8.1. 查看已安装插件路径"></a>8.1. 查看已安装插件路径</h2><p>查看本地已安装的插件源码路径：<code>C:\Users\用户名\AppData\Local\Google\Chrome\User Data\Default\Extensions</code>，每一个插件被放在以插件ID为名的文件夹里面，想要学习某个插件的某个功能是如何实现的，看人家的源码是最好的方法了：</p>
+<p><img src="http://image.liuxianan.com/201706/20170601_100200_647_6507.png" alt="img"></p>
+<p>如何查看某个插件的ID？进入 chrome:&#x2F;&#x2F;extensions ，然后勾线开发者模式即可看到了。</p>
+<p><img src="http://image.liuxianan.com/201706/20170601_100408_338_3095.png" alt="img"></p>
+<blockquote>
+<p>Mac系统插件本地缓存位于：<code>/Users/用户名/Library/Application Support/Google/Chrome/Default/Extensions</code> 文件夹</p>
+</blockquote>
+<h2 id="8-2-特别注意background的报错"><a href="#8-2-特别注意background的报错" class="headerlink" title="8.2. 特别注意background的报错"></a>8.2. 特别注意background的报错</h2><p>很多时候你发现你的代码会莫名其妙的失效，找来找去又找不到原因，这时打开background的控制台才发现原来某个地方写错了导致代码没生效，正式由于background报错的隐蔽性(需要主动打开对应的控制台才能看到错误)，所以特别注意这点。</p>
+<h2 id="8-3-如何让popup页面不关闭"><a href="#8-3-如何让popup页面不关闭" class="headerlink" title="8.3. 如何让popup页面不关闭"></a>8.3. 如何让popup页面不关闭</h2><p>在对popup页面审查元素的时候popup会被强制打开无法关闭，只有控制台关闭了才可以关闭popup，原因很简单：如果popup关闭了控制台就没用了。这种方法在某些情况下很实用！</p>
+<h2 id="8-4-不支持内联JavaScript的执行"><a href="#8-4-不支持内联JavaScript的执行" class="headerlink" title="8.4. 不支持内联JavaScript的执行"></a>8.4. 不支持内联JavaScript的执行</h2><p>也就是不支持将js直接写在html中，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input id=&quot;btn&quot; type=&quot;button&quot; value=&quot;收藏&quot; onclick=&quot;test()&quot;/&gt;</span><br></pre></td></tr></table></figure>
+
+<p>报错如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Refused to execute inline event handler because it violates the following Content Security Policy directive: &quot;script-src &#x27;self&#x27; blob: filesystem: chrome-extension-resource:&quot;. Either the &#x27;unsafe-inline&#x27; keyword, a hash (&#x27;sha256-...&#x27;), or a nonce (&#x27;nonce-...&#x27;) is required to enable inline execution.</span><br></pre></td></tr></table></figure>
+
+<p>解决方法就是用JS绑定事件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#btn&#x27;</span>).<span class="title function_">on</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params"></span>)&#123;<span class="title function_">alert</span>(<span class="string">&#x27;测试&#x27;</span>)&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>另外，对于A标签，这样写<code>href=&quot;javascript:;&quot;</code>然后用JS绑定事件虽然控制台会报错，但是不受影响，当然强迫症患者受不了的话只能写成<code>href=&quot;#&quot;</code>了。</p>
+<p>如果这样写：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&quot;javascript:;&quot; id=&quot;get_secret&quot;&gt;请求secret&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>报错如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Refused to execute JavaScript URL because it violates the following Content Security Policy directive: &quot;script-src &#x27;self&#x27; blob: filesystem: chrome-extension-resource:&quot;. Either the &#x27;unsafe-inline&#x27; keyword, a hash (&#x27;sha256-...&#x27;), or a nonce (&#x27;nonce-...&#x27;) is required to enable inline execution.</span><br></pre></td></tr></table></figure>
+
+<h2 id="8-5-注入CSS的时候必须小心"><a href="#8-5-注入CSS的时候必须小心" class="headerlink" title="8.5. 注入CSS的时候必须小心"></a>8.5. 注入CSS的时候必须小心</h2><p>由于通过<code>content_scripts</code>注入的CSS优先级非常高，几乎仅次于浏览器默认样式，稍不注意可能就会影响一些网站的展示效果，所以尽量不要写一些影响全局的样式。</p>
+<p>之所以强调这个，是因为这个带来的问题非常隐蔽，不太容易找到，可能你正在写某个网页，昨天样式还是好好的，怎么今天就突然不行了？然后你辛辛苦苦找来找去，找了半天才发现竟然是因为插件里面的一个样式影响的！</p>
+<p><img src="http://image.liuxianan.com/201706/20170620_175530_598_9800.png" alt="img"></p>
+<h1 id="打包与发布"><a href="#打包与发布" class="headerlink" title="打包与发布"></a>打包与发布</h1><p>打包的话直接在插件管理页有一个打包按钮：</p>
+<p><img src="http://image.liuxianan.com/201706/20170621_181130_362_3360.png" alt="img"></p>
+<p>然后会生成一个<code>.crx</code>文件，要发布到Google应用商店的话需要先登录你的Google账号，然后花5个$注册为开发者，本人太穷，就懒得亲自验证了，有发布需求的自己去整吧。</p>
+<p><img src="http://image.liuxianan.com/201707/20170710_221653_875_3099.png" alt="img"></p>
+<h1 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h1><h2 id="12-1-官方资料"><a href="#12-1-官方资料" class="headerlink" title="12.1. 官方资料"></a>12.1. 官方资料</h2><p>推荐查看官方文档，虽然是英文，但是全且新，国内的中文资料都比较旧（注意以下全部需要翻墙）：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions">Chrome插件官方文档主页</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/samples">Chrome插件官方示例</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/manifest">manifest清单文件</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/permissions">permissions权限</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/api_index">chrome.xxx.api文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.chrome.com/extensions/match_patterns">模糊匹配规则语法详解</a></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" title="Chrome拓展" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Chrome扩展程序资料摘录及开发笔记整理/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Es6-10%E3%80%81Es6_%E5%AF%B9%E8%B1%A1%E7%9A%84%E6%96%B0%E5%A2%9E%E6%96%B9%E6%B3%95_day11-27/" title="对象的新增方法"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Es6-11%E3%80%81Es6_Symbol_day11-27%EF%BC%88%E4%BA%86%E8%A7%A3%EF%BC%89/" title="Symbol"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

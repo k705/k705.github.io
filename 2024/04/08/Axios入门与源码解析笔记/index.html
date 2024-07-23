@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Axios笔记 | Hexo</title>
+  <meta name="description" content="#说明 本笔记为尚硅谷axios入门与源码解析的学习笔记 该课程主要讲述 axios的API、源码分析、模拟实现重要功能 课程预备知识点: HTTP ajax promise   ps:大学时候的课程一定要好好学,不然迟早要还的,留下了不学无术的眼泪:cry: 仅供本人洪学习使用 本人笔记地址分享:全部笔记、axios笔记 ​												记录时间: 2021-3-15晚启  2021-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Axios笔记">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 本笔记为尚硅谷axios入门与源码解析的学习笔记 该课程主要讲述 axios的API、源码分析、模拟实现重要功能 课程预备知识点: HTTP ajax promise   ps:大学时候的课程一定要好好学,不然迟早要还的,留下了不学无术的眼泪:cry: 仅供本人洪学习使用 本人笔记地址分享:全部笔记、axios笔记 ​												记录时间: 2021-3-15晚启  2021-">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E5%9B%BE.png">
+<meta property="og:image" content="https://gitee.com/study73/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:45:11.165Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="Axios">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E5%9B%BE.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Axios入门与源码解析笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Axios笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/Axios/" rel="tag">Axios</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h1><blockquote>
+<p>本笔记为<code>尚硅谷axios入门与源码解析</code>的学习笔记</p>
+<p>该课程主要讲述 axios的API、源码分析、模拟实现重要功能</p>
+<p>课程预备知识点: <code>HTTP</code> <a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Ajax%E3%80%81Axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ajax</a> <a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Promise%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">promise</a>  </p>
+<p><code>ps</code>:大学时候的课程一定要好好学,不然迟早要还的,留下了不学无术的眼泪:cry:</p>
+<p>仅供本人<code>洪</code>学习使用</p>
+<p>本人笔记地址分享:<a href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a>、<a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Ajax%E3%80%81Axios%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0.md"><code>axios笔记</code></a></p>
+<p>​												记录时间: 2021-3-15晚启  2021-3-19结束</p>
+</blockquote>
+<h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
+<p>[TOC]</p>
+</blockquote>
+<h2 id="预备工具"><a href="#预备工具" class="headerlink" title="预备工具"></a>预备工具</h2><blockquote>
+<ol>
+<li>作为一个前端开发工程师，在后端还没有ready的时候，不可避免的要使用mock的数据。很多时候，我们并不想使用简单的静态数据，而是希望自己起一个本地的mock-server来完全模拟请求以及请求回来的过程。json-server是一个很好的可以替我们完成这一工作的工具。我们只需要提供一个json文件，或者写几行简单的js脚本就可以模拟出RESTful API的接口。</li>
+<li>安装json-server<br><code>npm install -g json-server</code></li>
+<li>创建db.json<br>在一个文件夹下新建一个db.json文件</li>
+</ol>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="punctuation">&#123;</span></span><br><span class="line"><span class="attr">&quot;posts&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span> <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;json-server&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;author&quot;</span><span class="punctuation">:</span> <span class="string">&quot;typicode&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;comments&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">1</span><span class="punctuation">,</span> <span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="string">&quot;some comment&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;postId&quot;</span><span class="punctuation">:</span> <span class="number">1</span> <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"><span class="attr">&quot;profile&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;typicode&quot;</span> <span class="punctuation">&#125;</span></span><br><span class="line">&gt;<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>启动json-server<br>在当前文件夹下输入如下命令：<code>json-server db.json</code></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/typicode/json-server">文档</a></li>
+</ol>
+</blockquote>
+<h1 id="一、Axios的理解与使用"><a href="#一、Axios的理解与使用" class="headerlink" title="一、Axios的理解与使用"></a>一、Axios的理解与使用</h1><h2 id="Ⅰ-axios-是什么"><a href="#Ⅰ-axios-是什么" class="headerlink" title="Ⅰ-axios 是什么?"></a>Ⅰ-axios 是什么?</h2><blockquote>
+<ol>
+<li>前端最流行的 ajax 请求库 </li>
+<li>react&#x2F;vue 官方都推荐使用 axios 发 ajax 请求 </li>
+<li>文档: <a target="_blank" rel="noopener" href="https://github.com/axios/axios">https://github.com/axios/axios</a></li>
+</ol>
+</blockquote>
+<h2 id="Ⅱ-axios-特点"><a href="#Ⅱ-axios-特点" class="headerlink" title="Ⅱ-axios 特点"></a>Ⅱ-axios 特点</h2><blockquote>
+<ol>
+<li>基于 xhr + promise 的异步 ajax 请求库 </li>
+<li>浏览器端&#x2F;node 端都可以使用 </li>
+<li>支持请求／响应拦截器 </li>
+<li>支持请求取消 </li>
+<li>请求&#x2F;响应数据转换 </li>
+<li>批量发送多个请求</li>
+</ol>
+</blockquote>
+<h2 id="Ⅲ-axios-常用语法"><a href="#Ⅲ-axios-常用语法" class="headerlink" title="Ⅲ-axios 常用语法"></a>Ⅲ-axios 常用语法</h2><blockquote>
+<ol>
+<li>axios(config): <code>通用/最本质</code>的发任意类型请求的方式 </li>
+<li>axios(url[, config]): 可以只指定 url 发 get 请求 </li>
+<li>axios.request(config): 等同于 axios(config) </li>
+<li>axios.get(url[, config]): 发 get 请求 </li>
+<li>axios.delete(url[, config]): 发 delete 请求 </li>
+<li>axios.post(url[, data, config]): 发 post 请求</li>
+<li>axios.put(url[, data, config]): 发 put 请求 </li>
+<li>axios.defaults.xxx: 请求的默认全局配置 </li>
+<li>axios.interceptors.request.use(): 添加请求拦截器 </li>
+<li>axios.interceptors.response.use(): 添加响应拦截器 </li>
+<li>axios.create([config]): 创建一个新的 axios(它没有下面的功能) </li>
+<li>axios.Cancel(): 用于创建取消请求的错误对象 </li>
+<li>axios.CancelToken(): 用于创建取消请求的 token 对象 </li>
+<li>axios.isCancel(): 是否是一个取消请求的错误 </li>
+<li>axios.all(promises): 用于批量执行多个异步请求 </li>
+<li>axios.spread(): 用来指定接收所有成功数据的回调函数的方法</li>
+</ol>
+</blockquote>
+<h2 id="Ⅳ-原理图"><a href="#Ⅳ-原理图" class="headerlink" title="Ⅳ-原理图"></a>Ⅳ-原理图</h2><p><img src="/study73/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E5%8E%9F%E7%90%86%E5%9B%BE.png" alt="Axios系统学习笔记原理图"></p>
+<h2 id="Ⅴ-难点语法的理解和使用"><a href="#Ⅴ-难点语法的理解和使用" class="headerlink" title="Ⅴ-难点语法的理解和使用"></a>Ⅴ-难点语法的理解和使用</h2><h3 id="1、axios-create-config"><a href="#1、axios-create-config" class="headerlink" title="1、axios.create(config)"></a>1、axios.create(config)</h3><blockquote>
+<ol>
+<li><p>根据指定配置创建一个新的 axios, 也就就每个新 axios 都有自己的配置 </p>
+</li>
+<li><p>新 axios 只是没有取消请求和批量发请求的方法, 其它所有语法都是一致的 </p>
+</li>
+<li><p>为什么要设计这个语法?</p>
+</li>
+</ol>
+<p>  (1) 需求: 项目中有部分接口需要的配置与另一部分接口需要的配置不太一样, 如何处理 </p>
+<p>  (2) 解决: 创建 2 个新 axios, 每个都有自己特有的配置, 分别应用到不同要 求的接口请求中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建实例对象  /getJoke</span></span><br><span class="line">  <span class="keyword">const</span> duanzi = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">baseURL</span>: <span class="string">&#x27;https://api.apiopen.top&#x27;</span>,</span><br><span class="line">    <span class="attr">timeout</span>: <span class="number">2000</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">const</span> onather = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">    <span class="attr">baseURL</span>: <span class="string">&#x27;https://b.com&#x27;</span>,</span><br><span class="line">    <span class="attr">timeout</span>: <span class="number">2000</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="comment">//这里  duanzi 与 axios 对象的功能几近是一样的</span></span><br><span class="line">  <span class="comment">// duanzi(&#123;</span></span><br><span class="line">  <span class="comment">//     url: &#x27;/getJoke&#x27;,</span></span><br><span class="line">  <span class="comment">// &#125;).then(response =&gt; &#123;</span></span><br><span class="line">  <span class="comment">//     console.log(response);</span></span><br><span class="line">  <span class="comment">// &#125;);</span></span><br><span class="line">  duanzi.<span class="title function_">get</span>(<span class="string">&#x27;/getJoke&#x27;</span>).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response.<span class="property">data</span>)</span><br><span class="line">  &#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="2、拦截器函数-ajax-请求-请求的回调函数的调用顺序"><a href="#2、拦截器函数-ajax-请求-请求的回调函数的调用顺序" class="headerlink" title="2、拦截器函数&#x2F;ajax 请求&#x2F;请求的回调函数的调用顺序"></a>2、拦截器函数&#x2F;ajax 请求&#x2F;请求的回调函数的调用顺序</h3><blockquote>
+<ol>
+<li>说明: 调用 axios()并不是立即发送 ajax 请求, 而是需要经历一个较长的流程 </li>
+<li>流程: 请求拦截器2 &#x3D;&gt; 请求拦截器1 &#x3D;&gt; 发ajax请求 &#x3D;&gt; 响应拦截器1 &#x3D;&gt; 响应拦截器 2 &#x3D;&gt; 请求的回调 </li>
+<li>注意: 此流程是通过 promise 串连起来的, 请求拦截器传递的是 config, 响应 拦截器传递的是 response</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="comment">// Promise</span></span><br><span class="line">  <span class="comment">// 设置请求拦截器  config 配置对象</span></span><br><span class="line">  axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 成功 - 1号&#x27;</span>);</span><br><span class="line">    <span class="comment">//修改 config 中的参数</span></span><br><span class="line">    config.<span class="property">params</span> = &#123;</span><br><span class="line">      <span class="attr">a</span>: <span class="number">100</span></span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 失败 - 1号&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 成功 - 2号&#x27;</span>);</span><br><span class="line">    <span class="comment">//修改 config 中的参数</span></span><br><span class="line">    config.<span class="property">timeout</span> = <span class="number">2000</span>;</span><br><span class="line">    <span class="keyword">return</span> config;</span><br><span class="line">  &#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 失败 - 2号&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 设置响应拦截器</span></span><br><span class="line">  axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 成功 1号&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> response.<span class="property">data</span>;</span><br><span class="line">    <span class="comment">// return response;</span></span><br><span class="line">  &#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 失败 1号&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 成功 2号&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> response;</span><br><span class="line">  &#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 失败 2号&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="comment">//发送请求</span></span><br><span class="line">  <span class="title function_">axios</span>(&#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">    <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts&#x27;</span></span><br><span class="line">  &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;自定义回调处理成功的结果&#x27;</span>);</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">  &#125;);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="3、取消请求"><a href="#3、取消请求" class="headerlink" title="3、取消请求"></a>3、取消请求</h3><blockquote>
+<ol>
+<li>基本流程 配置 cancelToken 对象 </li>
+<li>缓存用于取消请求的 cancel 函数 </li>
+<li>在后面特定时机调用 cancel 函数取消请求 </li>
+<li>在错误回调中判断如果 error 是 cancel, 做相应处理</li>
+<li>实现功能 点击按钮, 取消某个正在请求中的请求,</li>
+<li>实现功能 点击按钮, 取消某个正在请求中的请求</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">  <span class="comment">//获取按钮</span></span><br><span class="line">  <span class="keyword">const</span> btns = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;button&#x27;</span>);</span><br><span class="line">  <span class="comment">//2.声明全局变量</span></span><br><span class="line">  <span class="keyword">let</span> cancel = <span class="literal">null</span>;</span><br><span class="line">  <span class="comment">//发送请求</span></span><br><span class="line">  btns[<span class="number">0</span>].<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//检测上一次的请求是否已经完成</span></span><br><span class="line">    <span class="keyword">if</span> (cancel !== <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="comment">//取消上一次的请求</span></span><br><span class="line">      <span class="title function_">cancel</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_">axios</span>(&#123;</span><br><span class="line">      <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span><br><span class="line">      <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts&#x27;</span>,</span><br><span class="line">      <span class="comment">//1. 添加配置对象的属性</span></span><br><span class="line">      <span class="attr">cancelToken</span>: <span class="keyword">new</span> axios.<span class="title class_">CancelToken</span>(<span class="keyword">function</span> (<span class="params">c</span>) &#123;</span><br><span class="line">        <span class="comment">//3. 将 c 的值赋值给 cancel</span></span><br><span class="line">        cancel = c;</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">      <span class="comment">//将 cancel 的值初始化</span></span><br><span class="line">      cancel = <span class="literal">null</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//绑定第二个事件取消请求</span></span><br><span class="line">  btns[<span class="number">1</span>].<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;<span class="title function_">cancel</span>(); &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Ⅵ-默认配置"><a href="#Ⅵ-默认配置" class="headerlink" title="Ⅵ-默认配置"></a>Ⅵ-默认配置</h2><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//默认配置</span></span><br><span class="line">       axios.<span class="property">defaults</span>.<span class="property">method</span> = <span class="string">&#x27;GET&#x27;</span>;<span class="comment">//设置默认的请求类型为 GET</span></span><br><span class="line">       axios.<span class="property">defaults</span>.<span class="property">baseURL</span> = <span class="string">&#x27;http://localhost:3000&#x27;</span>;<span class="comment">//设置基础 URL</span></span><br><span class="line">       axios.<span class="property">defaults</span>.<span class="property">params</span> = &#123;<span class="attr">id</span>:<span class="number">100</span>&#125;;</span><br><span class="line">       axios.<span class="property">defaults</span>.<span class="property">timeout</span> = <span class="number">3000</span>;<span class="comment">//</span></span><br><span class="line"></span><br><span class="line">       btns[<span class="number">0</span>].<span class="property">onclick</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">           <span class="title function_">axios</span>(&#123;</span><br><span class="line">               <span class="attr">url</span>: <span class="string">&#x27;/posts&#x27;</span></span><br><span class="line">           &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span><br><span class="line">               <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span><br><span class="line">           &#125;)</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="二、Axios的难点问题"><a href="#二、Axios的难点问题" class="headerlink" title="二、Axios的难点问题"></a>二、Axios的难点问题</h1><h2 id="Ⅰ-目录结构"><a href="#Ⅰ-目录结构" class="headerlink" title="Ⅰ-目录结构"></a>Ⅰ-目录结构</h2><blockquote>
+<p>├── &#x2F;dist&#x2F; # 项目输出目录<br>├── &#x2F;lib&#x2F; # 项目源码目录<br>│ ├── &#x2F;adapters&#x2F; # 定义请求的适配器 xhr、http<br>│ │ ├── http.js # 实现 http 适配器(包装 http 包)<br>│ │ └── xhr.js # 实现 xhr 适配器(包装 xhr 对象)<br>│ ├── &#x2F;cancel&#x2F; # 定义取消功能<br>│ ├── &#x2F;core&#x2F; # 一些核心功能<br>│ │ ├── Axios.js # axios 的核心主类<br>│ │ ├── dispatchRequest.js # 用来调用 http 请求适配器方法发送请求的函数<br>│ │ ├── InterceptorManager.js # 拦截器的管理器<br>│ │ └── settle.js # 根据 http 响应状态，改变 Promise 的状态<br>│ ├── &#x2F;helpers&#x2F; # 一些辅助方法<br>│ ├── axios.js # 对外暴露接口<br>│ ├── defaults.js # axios 的默认配置<br>│ └── utils.js # 公用工具<br>├── package.json # 项目信息<br>├── index.d.ts # 配置 TypeScript 的声明文件<br>└── index.js # 入口文件</p>
+</blockquote>
+<h2 id="Ⅱ-axios-与-Axios-的关系"><a href="#Ⅱ-axios-与-Axios-的关系" class="headerlink" title="Ⅱ-axios 与 Axios 的关系"></a>Ⅱ-axios 与 Axios 的关系</h2><blockquote>
+<ol>
+<li>从<code>语法</code>上来说: axios 不是 Axios 的实例</li>
+<li>从<code>功能</code>上来说: axios 是 Axios 的实例</li>
+<li>axios 是 <code>Axios.prototype.request</code> 函数 bind()返回的函数</li>
+<li>axios 作为对象有 Axios 原型对象上的所有方法, 有 Axios 对象上所有属性</li>
+</ol>
+</blockquote>
+<h2 id="Ⅲ-instance-与-axios-的区别"><a href="#Ⅲ-instance-与-axios-的区别" class="headerlink" title="Ⅲ- instance 与 axios 的区别?"></a>Ⅲ- instance 与 axios 的区别?</h2><blockquote>
+<ol>
+<li>相同:<br>(1) 都是一个能发任意请求的函数: request(config)<br>(2) 都有发特定请求的各种方法: get()&#x2F;post()&#x2F;put()&#x2F;delete()<br>(3) 都有默认配置和拦截器的属性: defaults&#x2F;interceptors</li>
+<li>不同:<br>(1) 默认配置很可能不一样<br>(2) instance 没有 axios 后面添加的一些方法: create()&#x2F;CancelToken()&#x2F;all()</li>
+</ol>
+</blockquote>
+<h2 id="Ⅳ-axios运行的整体流程"><a href="#Ⅳ-axios运行的整体流程" class="headerlink" title="Ⅳ-axios运行的整体流程"></a>Ⅳ-axios运行的整体流程</h2><blockquote>
+<ol>
+<li><p>整体流程:<br> request(config) &#x3D;&#x3D;&gt; dispatchRequest(config) &#x3D;&#x3D;&gt; xhrAdapter(config)</p>
+</li>
+<li><p>request(config):<br> 将请求拦截器 &#x2F; dispatchRequest() &#x2F; 响应拦截器 通过 promise 链串连起来,<br>  返回 promise</p>
+</li>
+<li><p>dispatchRequest(config):<br> 转换请求数据 &#x3D;&#x3D;&#x3D;&gt; 调用 xhrAdapter()发请求 &#x3D;&#x3D;&#x3D;&gt; 请求返回后转换响应数<br>  据. 返回 promise</p>
+</li>
+<li><p>xhrAdapter(config):<br> 创建 XHR 对象, 根据 config 进行相应设置, 发送特定请求, 并接收响应数据,<br>  返回 promise </p>
+</li>
+<li><p>流程图:</p>
+</li>
+</ol>
+<p><img src="/study73/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/Axios%E7%B3%BB%E7%BB%9F%E5%AD%A6%E4%B9%A0%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="Axios系统学习流程图"></p>
+</blockquote>
+<h2 id="Ⅴ-axios-的请求-响应拦截器是什么"><a href="#Ⅴ-axios-的请求-响应拦截器是什么" class="headerlink" title="Ⅴ-axios 的请求&#x2F;响应拦截器是什么?"></a>Ⅴ-axios 的请求&#x2F;响应拦截器是什么?</h2><blockquote>
+<ol>
+<li>请求拦截器:<br>Ⅰ- 在真正发送请求前执行的回调函数<br>Ⅱ- 可以对请求进行检查或配置进行特定处理<br>Ⅲ- 成功的回调函数, 传递的默认是 config(也必须是)<br>Ⅳ- 失败的回调函数, 传递的默认是 error</li>
+<li>响应拦截器<br>Ⅰ- 在请求得到响应后执行的回调函数<br>Ⅱ- 可以对响应数据进行特定处理<br>Ⅲ- 成功的回调函数, 传递的默认是 response<br>Ⅳ- 失败的回调函数, 传递的默认是 error</li>
+</ol>
+</blockquote>
+<h2 id="Ⅵ-axios-的请求-响应数据转换器是什么"><a href="#Ⅵ-axios-的请求-响应数据转换器是什么" class="headerlink" title="Ⅵ-axios 的请求&#x2F;响应数据转换器是什么?"></a>Ⅵ-axios 的请求&#x2F;响应数据转换器是什么?</h2><blockquote>
+<ol>
+<li>请求转换器: 对请求头和请求体数据进行特定处理的函数</li>
+</ol>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (utils.<span class="title function_">isObject</span>(data)) &#123;</span><br><span class="line"> <span class="title function_">setContentTypeIfUnset</span>(headers, <span class="string">&#x27;application/json;charset=utf-8&#x27;</span>);</span><br><span class="line"> <span class="keyword">return</span> <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(data);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>响应转换器: 将响应体 json 字符串解析为 js 对象或数组的函数</li>
+</ol>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">response.<span class="property">data</span> = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(response.<span class="property">data</span>)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Ⅶ-response与error-的整体结构"><a href="#Ⅶ-response与error-的整体结构" class="headerlink" title="Ⅶ- response与error  的整体结构"></a>Ⅶ- response与error  的整体结构</h2><blockquote>
+<ol>
+<li>response的整体结构</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&#123;</span><br><span class="line">data, status,statusText,headers,config,request</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>error  的整体结构</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;&#123;</span><br><span class="line">message,response,request,</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Ⅷ-如何取消未完成的请求"><a href="#Ⅷ-如何取消未完成的请求" class="headerlink" title="Ⅷ-如何取消未完成的请求?"></a>Ⅷ-如何取消未完成的请求?</h2><blockquote>
+<ol>
+<li>当配置了 cancelToken 对象时, 保存 cancel 函数<br>(1) 创建一个用于将来中断请求的 cancelPromise<br>(2) 并定义了一个用于取消请求的 cancel 函数<br>(3) 将 cancel 函数传递出来</li>
+<li>调用 cancel()取消请求<br>(1) 执行 cacel 函数, 传入错误信息 message<br>(2) 内部会让 cancelPromise 变为成功, 且成功的值为一个 Cancel 对象<br>(3) 在 cancelPromise 的成功回调中中断请求, 并让发请求的 proimse 失败,<br>失败的 reason 为 Cancel 对象</li>
+</ol>
+</blockquote>
+<h1 id="三、Axios源码模拟实现"><a href="#三、Axios源码模拟实现" class="headerlink" title="三、Axios源码模拟实现"></a>三、Axios源码模拟实现</h1><h2 id="Ⅰ-axios-的创建过程模拟实现"><a href="#Ⅰ-axios-的创建过程模拟实现" class="headerlink" title="Ⅰ- axios 的创建过程模拟实现"></a>Ⅰ- axios 的创建过程模拟实现</h2><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">   <span class="comment">//构造函数</span></span><br><span class="line">   <span class="keyword">function</span> <span class="title function_">Axios</span>(<span class="params">config</span>) &#123;</span><br><span class="line">     <span class="comment">//初始化</span></span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">defaults</span> = config; <span class="comment">//为了创建 default 默认属性</span></span><br><span class="line">     <span class="variable language_">this</span>.<span class="property">intercepters</span> = &#123;</span><br><span class="line">       <span class="attr">request</span>: &#123;&#125;,</span><br><span class="line">       <span class="attr">response</span>: &#123;&#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="comment">//原型添加相关的方法</span></span><br><span class="line">   <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span> = <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;发送 AJAX 请求 请求的类型为 &#x27;</span> + config.<span class="property">method</span>);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">get</span> = <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(&#123;</span><br><span class="line">       <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span></span><br><span class="line">     &#125;);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">post</span> = <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">request</span>(&#123;</span><br><span class="line">       <span class="attr">method</span>: <span class="string">&#x27;POST&#x27;</span></span><br><span class="line">     &#125;);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//声明函数</span></span><br><span class="line">   <span class="keyword">function</span> <span class="title function_">createInstance</span>(<span class="params">config</span>) &#123;</span><br><span class="line">     <span class="comment">//实例化一个对象</span></span><br><span class="line">     <span class="keyword">let</span> context = <span class="keyword">new</span> <span class="title class_">Axios</span>(config); <span class="comment">// context.get()  context.post()  但是不能当做函数使用 context() X</span></span><br><span class="line">     <span class="comment">//创建请求函数</span></span><br><span class="line">     <span class="keyword">let</span> instance = <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span>.<span class="title function_">bind</span>(</span><br><span class="line">     context); <span class="comment">// instance 是一个函数 并且可以 instance(&#123;&#125;)  此时 instance 不能 instance.get X</span></span><br><span class="line">     <span class="comment">//将 Axios.prototype 对象中的方法添加到instance函数对象中,才可以instance.get....</span></span><br><span class="line">     <span class="title class_">Object</span>.<span class="title function_">keys</span>(<span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>).<span class="title function_">forEach</span>(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">       instance[key] = <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>[key].<span class="title function_">bind</span>(context); <span class="comment">// this.default  this.interceptors</span></span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="comment">//为 instance 函数对象添加属性 default 与 interceptors</span></span><br><span class="line">     <span class="title class_">Object</span>.<span class="title function_">keys</span>(context).<span class="title function_">forEach</span>(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">       instance[key] = context[key];</span><br><span class="line">     &#125;);</span><br><span class="line">     <span class="keyword">return</span> instance;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">let</span> axios = <span class="title function_">createInstance</span>();</span><br><span class="line">   <span class="comment">//发送请求</span></span><br><span class="line">   <span class="comment">// axios(&#123;method:&#x27;POST&#x27;&#125;);</span></span><br><span class="line">   axios.<span class="title function_">get</span>(&#123;&#125;);</span><br><span class="line">   axios.<span class="title function_">post</span>(&#123;&#125;);</span><br><span class="line"> &lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Ⅱ-axios发送请求过程详解"><a href="#Ⅱ-axios发送请求过程详解" class="headerlink" title="Ⅱ-axios发送请求过程详解"></a>Ⅱ-axios发送请求过程详解</h2><blockquote>
+<ol>
+<li>整体流程:<br> request(config) &#x3D;&#x3D;&gt; dispatchRequest(config) &#x3D;&#x3D;&gt; xhrAdapter(config)</li>
+<li>request(config):<br> 将请求拦截器 &#x2F; dispatchRequest() &#x2F; 响应拦截器 通过 promise 链串连起来,<br> 返回 promise</li>
+<li>dispatchRequest(config):<br> 转换请求数据 &#x3D;&#x3D;&#x3D;&gt; 调用 xhrAdapter()发请求 &#x3D;&#x3D;&#x3D;&gt; 请求返回后转换响应数<br> 据. 返回 promise</li>
+<li>xhrAdapter(config):<br> 创建 XHR 对象, 根据 config 进行相应设置, 发送特定请求, 并接收响应数据,<br> 返回 promise</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="comment">// axios 发送请求   axios  Axios.prototype.request  bind</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="comment">//1. 声明构造函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">function</span> <span class="title function_">Axios</span>(<span class="params">config</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="variable language_">this</span>.<span class="property">config</span> = config;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span> = <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="comment">//发送请求</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="comment">//创建一个 promise 对象</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="keyword">let</span> promise = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(config);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="comment">//声明一个数组</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="keyword">let</span> chains = [dispatchRequest, <span class="literal">undefined</span>]; <span class="comment">// undefined 占位</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="comment">//调用 then 方法指定回调</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="keyword">let</span> result = promise.<span class="title function_">then</span>(chains[<span class="number">0</span>], chains[<span class="number">1</span>]);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="comment">//返回 promise 的结果</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="keyword">return</span> result;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="comment">//2. dispatchRequest 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">function</span> <span class="title function_">dispatchRequest</span>(<span class="params">config</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="comment">//调用适配器发送请求</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="keyword">return</span> <span class="title function_">xhrAdapter</span>(config).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="comment">//响应的结果进行转换处理</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="comment">//....</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="keyword">return</span> response;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     &#125;, <span class="function"><span class="params">error</span> =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="keyword">throw</span> error;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="comment">//3. adapter 适配器</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">function</span> <span class="title function_">xhrAdapter</span>(<span class="params">config</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;xhrAdapter 函数执行&#x27;</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="comment">//发送 AJAX 请求</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="keyword">let</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="comment">//初始化</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       xhr.<span class="title function_">open</span>(config.<span class="property">method</span>, config.<span class="property">url</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="comment">//发送</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       xhr.<span class="title function_">send</span>();</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       <span class="comment">//绑定事件</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         <span class="keyword">if</span> (xhr.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">           <span class="comment">//判断成功的条件</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">           <span class="keyword">if</span> (xhr.<span class="property">status</span> &gt;= <span class="number">200</span> &amp;&amp; xhr.<span class="property">status</span> &lt; <span class="number">300</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">             <span class="comment">//成功的状态</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">             <span class="title function_">resolve</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="comment">//配置对象</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="attr">config</span>: config,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="comment">//响应体</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="attr">data</span>: xhr.<span class="property">response</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="comment">//响应头</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="attr">headers</span>: xhr.<span class="title function_">getAllResponseHeaders</span>(), <span class="comment">//字符串  parseHeaders</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="comment">// xhr 请求对象</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="attr">request</span>: xhr,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="comment">//响应状态码</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="attr">status</span>: xhr.<span class="property">status</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="comment">//响应状态字符串</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">               <span class="attr">statusText</span>: xhr.<span class="property">statusText</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">             &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">           &#125; <span class="keyword">else</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">             <span class="comment">//失败的状态</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">             <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;请求失败 失败的状态码为&#x27;</span> + xhr.<span class="property">status</span>));</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">           &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">         &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">       &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="comment">//4. 创建 axios 函数</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="keyword">let</span> axios = <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span>.<span class="title function_">bind</span>(<span class="literal">null</span>);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   <span class="title function_">axios</span>(&#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts&#x27;</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">     <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">   &#125;);</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Ⅲ-拦截器的模拟实现"><a href="#Ⅲ-拦截器的模拟实现" class="headerlink" title="Ⅲ-拦截器的模拟实现"></a>Ⅲ-拦截器的模拟实现</h2><blockquote>
+<ol>
+<li>array.shift()该方法用于把数组的第一个元素从其中删除，并返回第一个元素的值</li>
+<li>思路为先将拦截器的响应回调与请求回调都压入一个数组中,之后进行遍历运行</li>
+<li><code>promise = promise.then(chains.shift(), chains.shift());</code> 通过循环使用promise的then链条得到最终的结果–&gt;等式前面的<code>promise</code>将被最终的结果覆盖</li>
+</ol>
+</blockquote>
+<blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">title</span>&gt;</span>拦截器<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">   <span class="comment">&lt;!-- &lt;script src=&quot;./node_modules/axios/dist/mine-axios.js&quot;&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//构造函数</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">function</span> <span class="title function_">Axios</span>(<span class="params">config</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">this</span>.<span class="property">config</span> = config;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">this</span>.<span class="property">interceptors</span> = &#123;</span></span><br><span class="line"><span class="language-javascript">               <span class="attr">request</span>: <span class="keyword">new</span> <span class="title class_">InterceptorManager</span>(),</span></span><br><span class="line"><span class="language-javascript">               <span class="attr">response</span>: <span class="keyword">new</span> <span class="title class_">InterceptorManager</span>(),</span></span><br><span class="line"><span class="language-javascript">           &#125;</span></span><br><span class="line"><span class="language-javascript">       &#125;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//发送请求  难点与重点</span></span></span><br><span class="line"><span class="language-javascript">       <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span> = <span class="keyword">function</span>(<span class="params">config</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//创建一个 promise 对象</span></span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">let</span> promise = <span class="title class_">Promise</span>.<span class="title function_">resolve</span>(config);</span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//创建一个数组</span></span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">const</span> chains = [dispatchRequest, <span class="literal">undefined</span>];</span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//处理拦截器</span></span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//请求拦截器 将请求拦截器的回调 压入到 chains 的前面  request.handles = []</span></span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">this</span>.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="property">handlers</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">               chains.<span class="title function_">unshift</span>(item.<span class="property">fulfilled</span>, item.<span class="property">rejected</span>);</span></span><br><span class="line"><span class="language-javascript">           &#125;);</span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//响应拦截器</span></span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">this</span>.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="property">handlers</span>.<span class="title function_">forEach</span>(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">               chains.<span class="title function_">push</span>(item.<span class="property">fulfilled</span>, item.<span class="property">rejected</span>);</span></span><br><span class="line"><span class="language-javascript">           &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">           <span class="comment">// console.log(chains);</span></span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//遍历</span></span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">while</span>(chains.<span class="property">length</span> &gt; <span class="number">0</span>)&#123; </span></span><br><span class="line"><span class="language-javascript">               <span class="comment">//array.shift()</span></span></span><br><span class="line"><span class="language-javascript">               promise = promise.<span class="title function_">then</span>(chains.<span class="title function_">shift</span>(), chains.<span class="title function_">shift</span>());</span></span><br><span class="line"><span class="language-javascript">           &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> promise;</span></span><br><span class="line"><span class="language-javascript">       &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//发送请求</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">function</span> <span class="title function_">dispatchRequest</span>(<span class="params">config</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//返回一个promise 队形</span></span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">               <span class="title function_">resolve</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">                   <span class="attr">status</span>: <span class="number">200</span>,</span></span><br><span class="line"><span class="language-javascript">                   <span class="attr">statusText</span>: <span class="string">&#x27;OK&#x27;</span></span></span><br><span class="line"><span class="language-javascript">               &#125;);</span></span><br><span class="line"><span class="language-javascript">           &#125;);</span></span><br><span class="line"><span class="language-javascript">       &#125;</span></span><br><span class="line"><span class="language-javascript">      </span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//创建实例</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">let</span> context = <span class="keyword">new</span> <span class="title class_">Axios</span>(&#123;&#125;);</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//创建axios函数</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">let</span> axios = <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span>.<span class="title function_">bind</span>(context);</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//将 context 属性 config interceptors 添加至 axios 函数对象身上</span></span></span><br><span class="line"><span class="language-javascript">       <span class="title class_">Object</span>.<span class="title function_">keys</span>(context).<span class="title function_">forEach</span>(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">           axios[key] = context[key];</span></span><br><span class="line"><span class="language-javascript">       &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//拦截器管理器构造函数</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">function</span> <span class="title function_">InterceptorManager</span>(<span class="params"></span>)&#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">this</span>.<span class="property">handlers</span> = [];</span></span><br><span class="line"><span class="language-javascript">       &#125;</span></span><br><span class="line"><span class="language-javascript">       <span class="title class_">InterceptorManager</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">use</span> = <span class="keyword">function</span>(<span class="params">fulfilled, rejected</span>)&#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">this</span>.<span class="property">handlers</span>.<span class="title function_">push</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">               fulfilled,</span></span><br><span class="line"><span class="language-javascript">               rejected</span></span><br><span class="line"><span class="language-javascript">           &#125;)</span></span><br><span class="line"><span class="language-javascript">       &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//以下为功能测试代码</span></span></span><br><span class="line"><span class="language-javascript">       <span class="comment">// 设置请求拦截器  config 配置对象</span></span></span><br><span class="line"><span class="language-javascript">       axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> <span class="title function_">one</span>(<span class="params">config</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 成功 - 1号&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> config;</span></span><br><span class="line"><span class="language-javascript">       &#125;, <span class="keyword">function</span> <span class="title function_">one</span>(<span class="params">error</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 失败 - 1号&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span></span><br><span class="line"><span class="language-javascript">       &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       axios.<span class="property">interceptors</span>.<span class="property">request</span>.<span class="title function_">use</span>(<span class="keyword">function</span> <span class="title function_">two</span>(<span class="params">config</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 成功 - 2号&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> config;</span></span><br><span class="line"><span class="language-javascript">       &#125;, <span class="keyword">function</span> <span class="title function_">two</span>(<span class="params">error</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;请求拦截器 失败 - 2号&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span></span><br><span class="line"><span class="language-javascript">       &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       <span class="comment">// 设置响应拦截器</span></span></span><br><span class="line"><span class="language-javascript">       axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 成功 1号&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> response;</span></span><br><span class="line"><span class="language-javascript">       &#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 失败 1号&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span></span><br><span class="line"><span class="language-javascript">       &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       axios.<span class="property">interceptors</span>.<span class="property">response</span>.<span class="title function_">use</span>(<span class="keyword">function</span> (<span class="params">response</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 成功 2号&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> response;</span></span><br><span class="line"><span class="language-javascript">       &#125;, <span class="keyword">function</span> (<span class="params">error</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;响应拦截器 失败 2号&#x27;</span>)</span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">return</span> <span class="title class_">Promise</span>.<span class="title function_">reject</span>(error);</span></span><br><span class="line"><span class="language-javascript">       &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//发送请求</span></span></span><br><span class="line"><span class="language-javascript">       <span class="title function_">axios</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">           <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts&#x27;</span></span></span><br><span class="line"><span class="language-javascript">       &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span></span><br><span class="line"><span class="language-javascript">       &#125;);</span></span><br><span class="line"><span class="language-javascript">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="Ⅳ-请求取消功能模拟实现"><a href="#Ⅳ-请求取消功能模拟实现" class="headerlink" title="Ⅳ-请求取消功能模拟实现"></a>Ⅳ-请求取消功能模拟实现</h2><blockquote>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="meta">&lt;!DOCTYPE <span class="keyword">html</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">title</span>&gt;</span>取消请求<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">link</span> <span class="attr">crossorigin</span>=<span class="string">&#x27;anonymous&#x27;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css&quot;</span></span></span><br><span class="line"><span class="tag">   <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span>&gt;</span></span><br><span class="line"> <span class="comment">&lt;!-- &lt;script src=&quot;./node_modules/axios/dist/mine-axios.js&quot;&gt;&lt;/script&gt; --&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;container&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">h2</span> <span class="attr">class</span>=<span class="string">&quot;page-header&quot;</span>&gt;</span>axios取消请求<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-primary&quot;</span>&gt;</span> 发送请求 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">button</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-warning&quot;</span>&gt;</span> 取消请求 <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//构造函数</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">function</span> <span class="title function_">Axios</span>(<span class="params">config</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">this</span>.<span class="property">config</span> = config;</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//原型 request 方法</span></span></span><br><span class="line"><span class="language-javascript">   <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span> = <span class="keyword">function</span> (<span class="params">config</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">return</span> <span class="title function_">dispatchRequest</span>(config);</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//dispatchRequest 函数</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">function</span> <span class="title function_">dispatchRequest</span>(<span class="params">config</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">return</span> <span class="title function_">xhrAdapter</span>(config);</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//xhrAdapter</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">function</span> <span class="title function_">xhrAdapter</span>(<span class="params">config</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//发送 AJAX 请求</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//实例化对象</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">const</span> xhr = <span class="keyword">new</span> <span class="title class_">XMLHttpRequest</span>();</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//初始化</span></span></span><br><span class="line"><span class="language-javascript">       xhr.<span class="title function_">open</span>(config.<span class="property">method</span>, config.<span class="property">url</span>);</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//发送</span></span></span><br><span class="line"><span class="language-javascript">       xhr.<span class="title function_">send</span>();</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//处理结果</span></span></span><br><span class="line"><span class="language-javascript">       xhr.<span class="property">onreadystatechange</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="keyword">if</span> (xhr.<span class="property">readyState</span> === <span class="number">4</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//判断结果</span></span></span><br><span class="line"><span class="language-javascript">           <span class="keyword">if</span> (xhr.<span class="property">status</span> &gt;= <span class="number">200</span> &amp;&amp; xhr.<span class="property">status</span> &lt; <span class="number">300</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">             <span class="comment">//设置为成功的状态</span></span></span><br><span class="line"><span class="language-javascript">             <span class="title function_">resolve</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">               <span class="attr">status</span>: xhr.<span class="property">status</span>,</span></span><br><span class="line"><span class="language-javascript">               <span class="attr">statusText</span>: xhr.<span class="property">statusText</span></span></span><br><span class="line"><span class="language-javascript">             &#125;);</span></span><br><span class="line"><span class="language-javascript">           &#125; <span class="keyword">else</span> &#123;</span></span><br><span class="line"><span class="language-javascript">             <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;请求失败&#x27;</span>));</span></span><br><span class="line"><span class="language-javascript">           &#125;</span></span><br><span class="line"><span class="language-javascript">         &#125;</span></span><br><span class="line"><span class="language-javascript">       &#125;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//关于取消请求的处理</span></span></span><br><span class="line"><span class="language-javascript">       <span class="keyword">if</span> (config.<span class="property">cancelToken</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">         <span class="comment">//对 cancelToken 对象身上的 promise 对象指定成功的回调</span></span></span><br><span class="line"><span class="language-javascript">         config.<span class="property">cancelToken</span>.<span class="property">promise</span>.<span class="title function_">then</span>(<span class="function"><span class="params">value</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">           xhr.<span class="title function_">abort</span>();</span></span><br><span class="line"><span class="language-javascript">           <span class="comment">//将整体结果设置为失败</span></span></span><br><span class="line"><span class="language-javascript">           <span class="title function_">reject</span>(<span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;请求已经被取消&#x27;</span>))</span></span><br><span class="line"><span class="language-javascript">         &#125;);</span></span><br><span class="line"><span class="language-javascript">       &#125;</span></span><br><span class="line"><span class="language-javascript">     &#125;)</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//创建 axios 函数</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">const</span> context = <span class="keyword">new</span> <span class="title class_">Axios</span>(&#123;&#125;);</span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">const</span> axios = <span class="title class_">Axios</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">request</span>.<span class="title function_">bind</span>(context);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//CancelToken 构造函数</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">function</span> <span class="title function_">CancelToken</span>(<span class="params">executor</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//声明一个变量</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">var</span> resolvePromise;</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//为实例对象添加属性</span></span></span><br><span class="line"><span class="language-javascript">     <span class="variable language_">this</span>.<span class="property">promise</span> = <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//将 resolve 赋值给 resolvePromise</span></span></span><br><span class="line"><span class="language-javascript">       resolvePromise = resolve</span></span><br><span class="line"><span class="language-javascript">     &#125;);</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//调用 executor 函数</span></span></span><br><span class="line"><span class="language-javascript">     <span class="title function_">executor</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//执行 resolvePromise 函数</span></span></span><br><span class="line"><span class="language-javascript">       <span class="title function_">resolvePromise</span>();</span></span><br><span class="line"><span class="language-javascript">     &#125;);</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//获取按钮 以上为模拟实现的代码</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">const</span> btns = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;button&#x27;</span>);</span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//2.声明全局变量</span></span></span><br><span class="line"><span class="language-javascript">   <span class="keyword">let</span> cancel = <span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//发送请求</span></span></span><br><span class="line"><span class="language-javascript">   btns[<span class="number">0</span>].<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//检测上一次的请求是否已经完成</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">if</span> (cancel !== <span class="literal">null</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//取消上一次的请求</span></span></span><br><span class="line"><span class="language-javascript">       <span class="title function_">cancel</span>();</span></span><br><span class="line"><span class="language-javascript">     &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="comment">//创建 cancelToken 的值</span></span></span><br><span class="line"><span class="language-javascript">     <span class="keyword">let</span> cancelToken = <span class="keyword">new</span> <span class="title class_">CancelToken</span>(<span class="keyword">function</span> (<span class="params">c</span>) &#123;</span></span><br><span class="line"><span class="language-javascript">       cancel = c;</span></span><br><span class="line"><span class="language-javascript">     &#125;);</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">     <span class="title function_">axios</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="attr">method</span>: <span class="string">&#x27;GET&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">       <span class="attr">url</span>: <span class="string">&#x27;http://localhost:3000/posts&#x27;</span>,</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//1. 添加配置对象的属性</span></span></span><br><span class="line"><span class="language-javascript">       <span class="attr">cancelToken</span>: cancelToken</span></span><br><span class="line"><span class="language-javascript">     &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">response</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="language-javascript">       <span class="variable language_">console</span>.<span class="title function_">log</span>(response);</span></span><br><span class="line"><span class="language-javascript">       <span class="comment">//将 cancel 的值初始化</span></span></span><br><span class="line"><span class="language-javascript">       cancel = <span class="literal">null</span>;</span></span><br><span class="line"><span class="language-javascript">     &#125;)</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">   <span class="comment">//绑定第二个事件取消请求</span></span></span><br><span class="line"><span class="language-javascript">   btns[<span class="number">1</span>].<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span><br><span class="line"><span class="language-javascript">     <span class="title function_">cancel</span>();</span></span><br><span class="line"><span class="language-javascript">   &#125;</span></span><br><span class="line"><span class="language-javascript"> </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="四、自己对于某些问题解答与理解"><a href="#四、自己对于某些问题解答与理解" class="headerlink" title="四、自己对于某些问题解答与理解"></a>四、自己对于某些问题解答与理解</h1><h2 id="Ⅰ-axios同步与异步转换-在外部取值"><a href="#Ⅰ-axios同步与异步转换-在外部取值" class="headerlink" title="Ⅰ-axios同步与异步转换,在外部取值"></a>Ⅰ-axios同步与异步转换,在外部取值</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span>  axios  =  <span class="built_in">require</span> (<span class="string">&#x27;axios&#x27;</span>);</span><br><span class="line"> <span class="comment">//创建实例对象 </span></span><br><span class="line"> <span class="keyword">const</span> $http = axios.<span class="title function_">create</span>(&#123;</span><br><span class="line">  <span class="attr">baseURL</span>: <span class="string">&#x27;http://localhost:53000&#x27;</span>,</span><br><span class="line">  <span class="attr">timeout</span>: <span class="number">11000</span>  <span class="comment">//请求超时时间</span></span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">resolveCommon</span> = (<span class="params"></span>)=&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> data=$http(&#123; <span class="attr">url</span>:<span class="string">&quot;/test&quot;</span>&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">v</span>=&gt;</span>v.<span class="property">data</span>)  <span class="comment">//等于 `.then(v=&gt;&#123;return v&#125;)`</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">  <span class="comment">//打印结果: Promise &#123; &lt;pending&gt; &#125; </span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> <span class="title function_">resolveAsync</span>=<span class="keyword">async</span> (<span class="params"></span>)=&gt; &#123;</span><br><span class="line">  <span class="keyword">let</span> data=<span class="keyword">await</span> $http(&#123; <span class="attr">url</span>:<span class="string">&quot;/test&quot;</span>&#125;)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">v</span>=&gt;</span>v.<span class="property">data</span>)  <span class="comment">//等于 `.then(v=&gt;&#123;return v&#125;)`,我再then()中返回出去,让外部承接</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data)  <span class="comment">//获得正确的值</span></span><br><span class="line">   <span class="comment">/** </span></span><br><span class="line"><span class="comment">    * 打印结果&#123; id: 1000,course_name: &#x27;这是请求数据1&#x27;, autor: &#x27;袁明&#x27;, college: &#x27;金并即总变史&#x27;,category_Id: 2&#125;</span></span><br><span class="line"><span class="comment">    *  */</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">//模拟新增数据,将上一步的结果简单加工一下</span></span><br><span class="line">   data.<span class="property">course_name</span>=data.<span class="property">course_name</span>+<span class="number">1</span></span><br><span class="line"> $http(&#123;</span><br><span class="line">   <span class="attr">url</span>:<span class="string">&quot;/test&quot;</span>,</span><br><span class="line">   <span class="attr">method</span>:<span class="string">&quot;put&quot;</span>,</span><br><span class="line">   data</span><br><span class="line"> &#125;).<span class="title function_">then</span>(<span class="function"><span class="params">v</span>=&gt;</span>&#123;</span><br><span class="line">   <span class="variable language_">console</span>.<span class="title function_">log</span>(v)  <span class="comment">//直接打印了 需要再取出参照上一步</span></span><br><span class="line"> &#125;)</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"><span class="title function_">resolveCommon</span>()  <span class="comment">//调用普通promise函数</span></span><br><span class="line"><span class="title function_">resolveAsync</span>()    <span class="comment">//调用await+async</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" title="Axios笔记" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Axios入门与源码解析笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-%E5%B0%81%E8%A3%85Notification%E9%80%9A%E7%9F%A5%E6%8F%90%E9%86%92%E6%A1%86%E7%BB%84%E4%BB%B6/" title="antd原生Notification通知提醒框"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Css%E8%A1%A5%E7%BC%BA%E7%AC%94%E8%AE%B0/" title="Css补缺"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

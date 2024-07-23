@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Js工具库 | Hexo</title>
+  <meta name="description" content="“dependencies”: {    “@amap&#x2F;amap-jsapi-loader”: “^1.0.1”, &#x2F;&#x2F; 高德地图 JavaScript API Loader    “@howdyjs&#x2F;mouse-menu”: “^2.1.3”, &#x2F;&#x2F; 自定义鼠标右键菜单    “@infectoone&#x2F;vue-ganttast">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Js工具库">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFJS%E5%B7%A5%E5%85%B7%E5%BA%93-%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="“dependencies”: {    “@amap&#x2F;amap-jsapi-loader”: “^1.0.1”, &#x2F;&#x2F; 高德地图 JavaScript API Loader    “@howdyjs&#x2F;mouse-menu”: “^2.1.3”, &#x2F;&#x2F; 自定义鼠标右键菜单    “@infectoone&#x2F;vue-ganttast">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-22T01:55:36.590Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="Js工具库">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFJS%E5%B7%A5%E5%85%B7%E5%BA%93-%E6%80%BB%E7%BB%93/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-前端JS工具库-总结" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Js工具库
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFJS%E5%B7%A5%E5%85%B7%E5%BA%93-%E6%80%BB%E7%BB%93/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFJS%E5%B7%A5%E5%85%B7%E5%BA%93-%E6%80%BB%E7%BB%93/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <p>“dependencies”: {<br>    “@amap&#x2F;amap-jsapi-loader”: “^1.0.1”, &#x2F;&#x2F; 高德地图 JavaScript API Loader<br>    “@howdyjs&#x2F;mouse-menu”: “^2.1.3”, &#x2F;&#x2F; 自定义鼠标右键菜单<br>    “@infectoone&#x2F;vue-ganttastic”: “^2.3.2”, &#x2F;&#x2F; Vue 甘特图组件<br>    “@logicflow&#x2F;core”: “^1.2.26”, &#x2F;&#x2F; 逻辑流程图库<br>    “@logicflow&#x2F;extension”: “^1.2.26”, &#x2F;&#x2F; 逻辑流程图扩展库<br>    “@pureadmin&#x2F;descriptions”: “^1.2.1”, &#x2F;&#x2F; 表格描述组件<br>    “@pureadmin&#x2F;table”: “^3.1.2”, &#x2F;&#x2F; 表格组件<br>    “@pureadmin&#x2F;utils”: “^2.4.7”, &#x2F;&#x2F; 工具库<br>    “@vue-flow&#x2F;background”: “^1.3.0”, &#x2F;&#x2F; Vue 流程图背景组件<br>    “@vue-flow&#x2F;core”: “^1.33.5”, &#x2F;&#x2F; Vue 流程图核心组件<br>    “@vue-office&#x2F;docx”: “^1.6.0”, &#x2F;&#x2F; Word 文档处理库<br>    “@vue-office&#x2F;excel”: “^1.7.6”, &#x2F;&#x2F; Excel 表格处理库<br>    “@vueuse&#x2F;core”: “^10.9.0”, &#x2F;&#x2F; Vue 工具库<br>    “@vueuse&#x2F;motion”: “^2.1.0”, &#x2F;&#x2F; Vue 动画库<br>    “@wangeditor&#x2F;editor”: “^5.1.23”, &#x2F;&#x2F; 富文本编辑器<br>    “@wangeditor&#x2F;editor-for-vue”: “^5.1.12”, &#x2F;&#x2F; 富文本编辑器 Vue 组件<br>    “@zxcvbn-ts&#x2F;core”: “^3.0.4”, &#x2F;&#x2F; 密码强度估算库<br>    “animate.css”: “^4.1.1”, &#x2F;&#x2F; 动画库<br>    “axios”: “^1.6.8”, &#x2F;&#x2F; HTTP 客户端<br>    “china-area-data”: “^5.0.1”, &#x2F;&#x2F; 中国行政区划数据<br>    “cropperjs”: “^1.6.1”, &#x2F;&#x2F; 图片裁剪库<br>    “dayjs”: “^1.11.10”, &#x2F;&#x2F; 日期处理库<br>    “echarts”: “^5.5.0”, &#x2F;&#x2F; 图表库<br>    “el-table-infinite-scroll”: “^3.0.3”, &#x2F;&#x2F; Element-Plus 表格无限滚动组件<br>    “element-plus”: “2.6.3”, &#x2F;&#x2F; Element-Plus UI 组件库<br>    “intro.js”: “^7.2.0”, &#x2F;&#x2F; 引导提示库<br>    “js-cookie”: “^3.0.5”, &#x2F;&#x2F; Cookie 操作库<br>    “jsbarcode”: “^3.11.6”, &#x2F;&#x2F; 条形码生成库<br>    “localforage”: “^1.10.0”, &#x2F;&#x2F; 离线存储库<br>    “mint-filter”: “^4.0.3”, &#x2F;&#x2F; Mint UI 过滤器<br>    “mitt”: “^3.0.1”, &#x2F;&#x2F; 简单的事件总线<br>    “mqtt”: “4.3.7”, &#x2F;&#x2F; MQTT 客户端<br>    “nprogress”: “^0.2.0”, &#x2F;&#x2F; 进度条库<br>    “path”: “^0.12.7”, &#x2F;&#x2F; 路径处理库<br>    “pinia”: “^2.1.7”, &#x2F;&#x2F; 状态管理库<br>    “pinyin-pro”: “^3.20.1”, &#x2F;&#x2F; 汉字拼音转换库<br>    “plus-pro-components”: “^0.0.11”, &#x2F;&#x2F; PRO 组件库<br>    “qrcode”: “^1.5.3”, &#x2F;&#x2F; 二维码生成库<br>    “qs”: “^6.12.1”, &#x2F;&#x2F; 查询字符串解析库<br>    “responsive-storage”: “^2.2.0”, &#x2F;&#x2F; 响应式存储库<br>    “sortablejs”: “^1.15.2”, &#x2F;&#x2F; 拖放排序库<br>    “swiper”: “^11.1.1”, &#x2F;&#x2F; 轮播图库<br>    “typeit”: “^8.8.3”, &#x2F;&#x2F; 打字机效果库<br>    “v-contextmenu”: “^3.2.0”, &#x2F;&#x2F; Vue 右键菜单组件<br>    “v3-infinite-loading”: “^1.3.1”, &#x2F;&#x2F; Vue3 无限加载组件<br>    “version-rocket”: “^1.7.1”, &#x2F;&#x2F; 版本管理库<br>    “vue”: “^3.4.23”, &#x2F;&#x2F; Vue.js<br>    “vue-i18n”: “^9.12.1”, &#x2F;&#x2F; Vue 国际化插件<br>    “vue-json-pretty”: “^2.4.0”, &#x2F;&#x2F; Vue JSON 美化组件<br>    “vue-pdf-embed”: “^2.0.3”, &#x2F;&#x2F; Vue PDF 预览组件<br>    “vue-router”: “^4.3.1”, &#x2F;&#x2F; Vue 路由<br>    “vue-tippy”: “^6.4.1”, &#x2F;&#x2F; Vue 提示框组件<br>    “vue-types”: “^5.1.1”, &#x2F;&#x2F; Vue 类型检查库<br>    “vue-virtual-scroller”: “2.0.0-beta.8”, &#x2F;&#x2F; Vue 虚拟滚动组件<br>    “vue-waterfall-plugin-next”: “^2.4.3”, &#x2F;&#x2F; Vue 瀑布流插件<br>    “vue3-danmaku”: “^1.6.0”, &#x2F;&#x2F; Vue3 弹幕组件<br>    “vue3-puzzle-vcode”: “^1.1.7”, &#x2F;&#x2F; Vue3 拼图验证码组件<br>    “vuedraggable”: “^4.1.0”, &#x2F;&#x2F; Vue 拖放组件<br>    “vxe-table”: “^4.5.22”, &#x2F;&#x2F; Vue 表格组件<br>    “wavesurfer.js”: “^7.7.11”, &#x2F;&#x2F; 音频可视化库<br>    “xgplayer”: “^3.0.16”, &#x2F;&#x2F; 播放器库<br>    “xlsx”: “^0.18.5” &#x2F;&#x2F; Excel 文件读写库<br>  },<br>  “devDependencies”: {<br>    “@commitlint&#x2F;cli”: “^19.2.2”, &#x2F;&#x2F; Commitlint CLI 工具<br>    “@commitlint&#x2F;config-conventional”: “^19.2.2”, &#x2F;&#x2F; Commitlint 规则配置<br>    “@commitlint&#x2F;types”: “^19.0.3”, &#x2F;&#x2F; Commitlint 类型定义<br>    “@eslint&#x2F;js”: “^9.0.0”, &#x2F;&#x2F; ESLint JavaScript 解析器<br>    “@faker-js&#x2F;faker”: “^8.4.1”, &#x2F;&#x2F; 用于生成假数据的工具<br>    “@iconify-icons&#x2F;ep”: “^1.2.12”, &#x2F;&#x2F; Iconify EP 图标集<br>    “@iconify-icons&#x2F;ri”: “^1.2.10”, &#x2F;&#x2F; Iconify RI 图标集<br>    “@iconify&#x2F;vue”: “^4.1.1”, &#x2F;&#x2F; Iconify Vue 组件<br>    “@intlify&#x2F;unplugin-vue-i18n”: “^4.0.0”, &#x2F;&#x2F; Vue I18n 插件<br>    “@pureadmin&#x2F;theme”: “^3.2.0”, &#x2F;&#x2F; PureAdmin 主题库<br>    “@types&#x2F;dagre”: “^0.7.52”, &#x2F;&#x2F; Dagre 类型定义<br>    “@types&#x2F;gradient-string”: “^1.1.6”, &#x2F;&#x2F; Gradient-String 类型定义<br>    “@types&#x2F;intro.js”: “^5.1.5”, &#x2F;&#x2F; Intro.js 类型定义<br>    “@types&#x2F;js-cookie”: “^3.0.6”, &#x2F;&#x2F; JS-Cookie 类型定义<br>    “@types&#x2F;node”: “^20.12.7”, &#x2F;&#x2F; Node.js 类型定义<br>    “@types&#x2F;nprogress”: “^0.2.3”, &#x2F;&#x2F; NProgress 类型定义<br>    “@types&#x2F;qrcode”: “^1.5.5”, &#x2F;&#x2F; QRCode 类型定义<br>    “@types&#x2F;qs”: “^6.9.15”, &#x2F;&#x2F; QS 类型定义<br>    “@typescript-eslint&#x2F;eslint-plugin”: “^7.7.0”, &#x2F;&#x2F; TypeScript ESLint 插件<br>    “@typescript-eslint&#x2F;parser”: “^7.7.0”, &#x2F;&#x2F; TypeScript ESLint 解析器<br>    “@vitejs&#x2F;plugin-vue”: “^5.0.4”, &#x2F;&#x2F; Vite Vue 插件<br>    “@vitejs&#x2F;plugin-vue-jsx”: “^3.1.0”, &#x2F;&#x2F; Vite Vue JSX 插件<br>    “autoprefixer”: “^10.4.19”, &#x2F;&#x2F; CSS Autoprefixer 工具<br>    “boxen”: “^7.1.1”, &#x2F;&#x2F; 控制台美化工具<br>    “cssnano”: “^6.1.2”, &#x2F;&#x2F; CSS 压缩工具<br>    “dagre”: “^0.8.5”, &#x2F;&#x2F; Dagre 图布局工具<br>    “eslint”: “^9.0.0”, &#x2F;&#x2F; ESLint 代码质量检查工具<br>    “eslint-config-prettier”: “^9.1.0”, &#x2F;&#x2F; ESLint Prettier 配置<br>    “eslint-define-config”: “^2.1.0”, &#x2F;&#x2F; ESLint 定义配置工具<br>    “eslint-plugin-prettier”: “^5.1.3”, &#x2F;&#x2F; ESLint Prettier 插件<br>    “eslint-plugin-vue”: “^9.25.0”, &#x2F;&#x2F; ESLint Vue 插件<br>    “gradient-string”: “^2.0.2”, &#x2F;&#x2F; 渐变字符串生成工具<br>    “husky”: “^9.0.11”, &#x2F;&#x2F; Git 钩子管理工具<br>    “lint-staged”: “^15.2.2”, &#x2F;&#x2F; 针对暂存文件的代码检查工具<br>    “postcss”: “^8.4.38”, &#x2F;&#x2F; CSS 后处理器<br>    “postcss-html”: “^1.6.0”, &#x2F;&#x2F; PostCSS HTML 处理插件<br>    “postcss-import”: “^16.1.0”, &#x2F;&#x2F; PostCSS 导入插件<br>    “postcss-scss”: “^4.0.9”, &#x2F;&#x2F; PostCSS SCSS 处理插件<br>    “prettier”: “^3.2.5”, &#x2F;&#x2F; 代码格式化工具<br>    “rimraf”: “^5.0.5”, &#x2F;&#x2F; 跨平台删除文件工具<br>    “rollup-plugin-visualizer”: “^5.12.0”, &#x2F;&#x2F; Rollup 可视化插件<br>    “sass”: “^1.75.0”, &#x2F;&#x2F; Sass CSS 预处理器<br>    “stylelint”: “^16.3.1”, &#x2F;&#x2F; CSS 代码风格检查工具<br>    “stylelint-config-recess-order”: “^5.0.1”, &#x2F;&#x2F; Stylelint 顺序配置<br>    “stylelint-config-recommended-vue”: “^1.5.0”, &#x2F;&#x2F; Stylelint 推荐 Vue 配置<br>    “stylelint-config-standard-scss”: “^13.1.0”, &#x2F;&#x2F; Stylelint SCSS 标准配置<br>    “stylelint-prettier”: “^5.0.0”, &#x2F;&#x2F; Stylelint Prettier 插件<br>    “svgo”: “^3.2.0”, &#x2F;&#x2F; SVG 优化工具<br>    “tailwindcss”: “^3.4.3”, &#x2F;&#x2F; Tailwind CSS 工具<br>    “typescript”: “^5.4.5”, &#x2F;&#x2F; TypeScript 语言<br>    “vite”: “^5.2.9”, &#x2F;&#x2F; Vite 构建工具<br>    “vite-plugin-cdn-import”: “^0.3.5”, &#x2F;&#x2F; Vite CDN 导入插件<br>    “vite-plugin-compression”: “^0.5.1”, &#x2F;&#x2F; Vite 压缩插件<br>    “vite-plugin-fake-server”: “^2.1.1”, &#x2F;&#x2F; Vite 虚拟服务器插件<br>    “vite-plugin-remove-console”: “^2.2.0”, &#x2F;&#x2F; Vite 移除控制台插件<br>    “vite-plugin-router-warn”: “^1.0.0”, &#x2F;&#x2F; Vite 路由警告插件<br>    “vite-plugin-svg-loader”: “^5.1.0”, &#x2F;&#x2F; Vite SVG 加载器插件<br>    “vue-eslint-parser”: “^9.4.2”, &#x2F;&#x2F; Vue ESLint 解析器<br>    “vue-tsc”: “^1.8.27” &#x2F;&#x2F; Vue TypeScript 编译器<br>  }</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFJS%E5%B7%A5%E5%85%B7%E5%BA%93-%E6%80%BB%E7%BB%93/" title="Js工具库" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/前端JS工具库-总结/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-2022/" title="2022最新"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

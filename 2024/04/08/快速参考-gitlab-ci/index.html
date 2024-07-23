@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>GitLab CI/CD 备忘清单 | Hexo</title>
+  <meta name="description" content="GitLab CI&#x2F;CD 备忘清单本备忘单总结了 GitLab CI&#x2F;CD 常用的配置说明，以供快速参考 入门介绍创建并运行您的第一个 GitLab CI&#x2F;CD 管道，在开始之前，请确保您拥有：  GitLab 中您想要使用 CI&#x2F;CD 的项目 项目的维护者或所有者角色  如果您没有项目，可以在 https:&#x2F;&#x2F;gitlab.com 上免费创建一个公共项目  在存储库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitLab CI&#x2F;CD 备忘清单">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-gitlab-ci/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="GitLab CI&#x2F;CD 备忘清单本备忘单总结了 GitLab CI&#x2F;CD 常用的配置说明，以供快速参考 入门介绍创建并运行您的第一个 GitLab CI&#x2F;CD 管道，在开始之前，请确保您拥有：  GitLab 中您想要使用 CI&#x2F;CD 的项目 项目的维护者或所有者角色  如果您没有项目，可以在 https:&#x2F;&#x2F;gitlab.com 上免费创建一个公共项目  在存储库">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-11T02:08:51.795Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="快速参考备忘清单">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-gitlab-ci/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-快速参考-gitlab-ci" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      GitLab CI/CD 备忘清单
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-gitlab-ci/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-gitlab-ci/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="GitLab-CI-CD-备忘清单"><a href="#GitLab-CI-CD-备忘清单" class="headerlink" title="GitLab CI&#x2F;CD 备忘清单"></a>GitLab CI&#x2F;CD 备忘清单</h1><p>本备忘单总结了 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#default">GitLab CI&#x2F;CD</a> 常用的配置说明，以供快速参考</p>
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><p>创建并运行您的第一个 GitLab <code>CI/CD</code> 管道，在开始之前，请确保您拥有：</p>
+<ul>
+<li>GitLab 中您想要使用 CI&#x2F;CD 的项目</li>
+<li>项目的维护者或所有者角色</li>
+</ul>
+<p>如果您没有项目，可以在 <a target="_blank" rel="noopener" href="https://gitlab.com/">https://gitlab.com</a> 上免费创建一个公共项目</p>
+<ul>
+<li>在存储库的根目录下创建一个 <code>.gitlab-ci.yml</code> 文件。该文件是您定义 <code>CI/CD</code> 作业的地方</li>
+<li>转到<code>Settings</code> &gt; <code>CI/CD</code> 并展开运行程序，只要您至少有一个运行器处于活动状态，旁边有一个绿色圆圈，您就有一个运行器可以处理您的工作<!--rehype:className=style-timeline--></li>
+</ul>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">default:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">node:16</span></span><br><span class="line"></span><br><span class="line"><span class="attr">windows_job:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">windows</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">Hello,</span> <span class="string">%USERNAME%!</span></span><br><span class="line"></span><br><span class="line"><span class="attr">linux_job:</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">linux</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;Hello, $USER!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>tags</code> 用于在不同的平台上运行作业，<code>only</code> 控制 <code>master</code> 分支提交触发</p>
+<h2 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h2><h3 id="关键字-1"><a href="#关键字-1" class="headerlink" title="关键字"></a>关键字</h3><table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="#default">default</a></td>
+<td>工作关键字的自定义默认值 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#default">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#include">include</a></td>
+<td>从其他 YAML 文件导入配置 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#include">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#stages">stages</a></td>
+<td>管道阶段的名称和顺序 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#stages">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#variables">variables</a></td>
+<td>为管道中的所有作业定义 CI&#x2F;CD 变量 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#variables">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#workflow">workflow</a></td>
+<td>控制运行什么类型的管道 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#workflow">#</a></td>
+</tr>
+</tbody></table>
+<h3 id="关键字-2"><a href="#关键字-2" class="headerlink" title="关键字"></a>关键字</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<table>
+<thead>
+<tr>
+<th align="left">关键字</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="#after_script">after_script</a></td>
+<td>覆盖一组在作业之后执行的命令 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#after_script">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#allow_failure">allow_failure</a></td>
+<td>允许作业失败。失败的作业不会导致管道失败 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#allow_failure">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#artifacts">artifacts</a></td>
+<td>成功时附加到作业的文件和目录列表 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#artifacts">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#before_script">before_script</a></td>
+<td>覆盖在作业之前执行的一组命令 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#before_script">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#cache">cache</a></td>
+<td>应在后续运行之间缓存的文件列表 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#cache">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#coverage">coverage</a></td>
+<td>给定作业的代码覆盖率设置 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#coverage">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#dast_configuration">dast_configuration</a></td>
+<td>在作业级别使用 DAST 配置文件中的配置 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#dast_configuration">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#dependencies">dependencies</a></td>
+<td>通过提供要从中获取工件的作业列表来限制将哪些工件传递给特定作业 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#dependencies">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#environment">environment</a></td>
+<td>作业部署到的环境的名称 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#environment">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#only--except">except</a></td>
+<td>控制何时不创建作业 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#only--except">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#extends">extends</a></td>
+<td>此作业继承自的配置条目 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#extends">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#image">image</a></td>
+<td>使用 Docker 镜像 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#image">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#inherit">inherit</a></td>
+<td>选择所有作业继承的全局默认值 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#inherit">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#interruptible">interruptible</a></td>
+<td>定义作业是否可以在被较新的运行冗余时取消 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#interruptible">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#needs">needs</a></td>
+<td>在阶段排序之前执行作业 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#needs">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#only--except">only</a></td>
+<td>控制何时创建作业 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#only--except">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#pages">pages</a></td>
+<td>上传作业的结果以与 GitLab Pages 一起使用 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#pages">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#parallel">parallel</a></td>
+<td>应并行运行多少个作业实例 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#parallel">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#release">release</a></td>
+<td>指示运行器生成释放对象 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#release">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#resource_group">resource_group</a></td>
+<td>限制作业并发 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#resource_group">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#retry">retry</a></td>
+<td>发生故障时可以自动重试作业的时间和次数 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#retry">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#rules">rules</a></td>
+<td>用于评估和确定作业的选定属性以及是否创建的条件列表 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#rules">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#script">script</a></td>
+<td>由运行器执行的 Shell 脚本 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#script">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#secrets">secrets</a></td>
+<td>CI&#x2F;CD 保密工作需要 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#secrets">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#services">services</a></td>
+<td>使用 Docker 服务映像 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#services">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#stage">stage</a></td>
+<td>定义作业阶段 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#stage">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#tags">tags</a></td>
+<td>用于选择跑步者的标签列表 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#tags">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#timeout">timeout</a></td>
+<td>定义优先于项目范围设置的自定义作业级超时 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#timeout">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#trigger">trigger</a></td>
+<td>定义下游管道触发器 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#trigger">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#variables">variables</a></td>
+<td>在作业级别定义作业变量 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#variables">#</a></td>
+</tr>
+<tr>
+<td align="left"><a href="#when">when</a></td>
+<td>何时运行作业 <a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/#when">#</a></td>
+</tr>
+</tbody></table>
+<h3 id="全局关键词"><a href="#全局关键词" class="headerlink" title="全局关键词"></a>全局关键词</h3><ul>
+<li><a href="#after_script">after_script</a></li>
+<li><a href="#artifacts">artifacts</a></li>
+<li><a href="#before_script">before_script</a></li>
+<li><a href="#cache">cache</a></li>
+<li><a href="#image">image</a></li>
+<li><a href="#interruptible">interruptible</a></li>
+<li><a href="#retry">retry</a></li>
+<li><a href="#services">services</a></li>
+<li><a href="#tags">tags</a></li>
+<li><a href="#timeout">timeout</a><!--rehype:className=cols-3--></li>
+</ul>
+<h2 id="全局关键词-1"><a href="#全局关键词-1" class="headerlink" title="全局关键词"></a>全局关键词</h2><h3 id="default"><a href="#default" class="headerlink" title="default"></a>default</h3><!--rehype:wrap-class=row-span-3-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">default:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">ruby:3.0</span></span><br><span class="line"></span><br><span class="line"><span class="attr">rspec:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">bundle</span> <span class="string">exec</span> <span class="string">rspec</span></span><br><span class="line"></span><br><span class="line"><span class="attr">rspec 2.7:</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">ruby:2.7</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">bundle</span> <span class="string">exec</span> <span class="string">rspec</span></span><br></pre></td></tr></table></figure>
+
+<p>在此示例中，<code>ruby:3.0</code> 是管道中所有作业的默认图像值。<code>rspec 2.7</code> 作业不使用默认值，因为它使用特定于作业的图像部分覆盖了默认值</p>
+<h3 id="include"><a href="#include" class="headerlink" title="include"></a>include</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">&#x27;/temp/.gitlab-ci-template.yml&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 <code>11.4</code> 中移至 <code>GitLab</code> 免费版，使用 <code>include</code> 将外部 <code>YAML</code> 文件包含在您的 <code>CI/CD</code> 配置中</p>
+<h3 id="include-local"><a href="#include-local" class="headerlink" title="include:local"></a>include:local</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">local:</span> <span class="string">&#x27;/temp/.gitlab-ci-template.yml&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>include:local</code> 包含与 <code>.gitlab-ci.yml</code> 文件位于同一存储库中的文件</p>
+<h3 id="include-project"><a href="#include-project" class="headerlink" title="include:project"></a>include:project</h3><!--rehype:wrap-class=row-span-3-->
+
+<p>要在同一个 GitLab 实例上包含来自另一个私有项目的文件，请使用 <code>include:project</code> 和 <code>include:file</code></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">project:</span> <span class="string">&#x27;group/my-project&#x27;</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">&#x27;/temp/.gitlab-ci-template.yml&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">project:</span> <span class="string">&#x27;group/subgroup/my-project-2&#x27;</span></span><br><span class="line">    <span class="attr">file:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;/temp/.builds.yml&#x27;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&#x27;/temp/.tests.yml&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>您还可以指定一个 <code>ref</code>：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">project:</span> <span class="string">&#x27;group/my-project&#x27;</span></span><br><span class="line">    <span class="attr">ref:</span> <span class="string">main</span>    <span class="comment"># Git branch</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">&#x27;/templates/.gitlab-ci.yml&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">project:</span> <span class="string">&#x27;group/my-project&#x27;</span></span><br><span class="line">    <span class="attr">ref:</span> <span class="string">v1.0.0</span>   <span class="comment"># Git Tag</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">&#x27;/templates/.gitlab-ci.yml&#x27;</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">project:</span> <span class="string">&#x27;group/my-project&#x27;</span></span><br><span class="line">    <span class="attr">ref:</span> <span class="string">787123b</span>  <span class="comment"># Git SHA</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">&#x27;/templates/.gitlab-ci.yml&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="include-remote"><a href="#include-remote" class="headerlink" title="include:remote"></a>include:remote</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">remote:</span> <span class="string">&#x27;https://gitlab.com/example-project/-/raw/main/.gitlab-ci.yml&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用带有完整 <code>URL</code> 的 <code>include:remote</code> 来包含来自不同位置的文件</p>
+<h3 id="include-template"><a href="#include-template" class="headerlink" title="include:template"></a>include:template</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>使用 <code>include:template</code> 来包含 <code>.gitlab-ci.yml</code> 模板</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 文件来自 GitLab 模板集合</span></span><br><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">template:</span> <span class="string">Auto-DevOps.gitlab-ci.yml</span></span><br></pre></td></tr></table></figure>
+
+<p>多个 <code>include:template</code> 文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">template:</span> <span class="string">Android-Fastlane.gitlab-ci.yml</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">template:</span> <span class="string">Auto-DevOps.gitlab-ci.yml</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="stages"><a href="#stages" class="headerlink" title="stages"></a>stages</h3><p>使用阶段来定义包含作业组的阶段。如果 <code>.gitlab-ci.yml</code> 文件中未定义阶段，则默认管道阶段为：</p>
+<ul>
+<li><a href="#stage-pre">.pre</a></li>
+<li>build</li>
+<li>test</li>
+<li>deploy</li>
+<li><a href="#stage-post">.post</a><!--rehype:className=cols-2--></li>
+</ul>
+<hr>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">test</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="workflow"><a href="#workflow" class="headerlink" title="workflow"></a>workflow</h2><h3 id="workflow-name"><a href="#workflow-name" class="headerlink" title="workflow:name"></a>workflow:name</h3><p>您可以在 workflow: 中使用 name 来定义管道的名称</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">workflow:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&#x27;分支管道：$CI_COMMIT_BRANCH&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>根据管道条件具有不同管道名称的配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line">  <span class="attr">PIPELINE_NAME:</span> <span class="string">&#x27;默认管道名称&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">workflow:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&#x27;$PIPELINE_NAME&#x27;</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">&#x27;$CI_PIPELINE_SOURCE == &quot;merge_request_event&quot;&#x27;</span></span><br><span class="line">      <span class="attr">variables:</span></span><br><span class="line">        <span class="attr">PIPELINE_NAME:</span> <span class="string">&#x27;MR pipeline: $CI_COMMIT_BRANCH&#x27;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">&#x27;$CI_MERGE_REQUEST_LABELS =~ /pipeline:run-in-ruby3/&#x27;</span></span><br><span class="line">      <span class="attr">variables:</span></span><br><span class="line">        <span class="attr">PIPELINE_NAME:</span> <span class="string">&#x27;Ruby 3 pipeline&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="workflow-rules-variables"><a href="#workflow-rules-variables" class="headerlink" title="workflow:rules:variables"></a>workflow:rules:variables</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<p>您可以在 <code>workflow:rules</code> 中使用变量来定义特定管道条件的变量</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line">  <span class="attr">DEPLOY_VARIABLE:</span> <span class="string">&quot;default-deploy&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">workflow:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_REF_NAME</span> <span class="string">==</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br><span class="line">      <span class="attr">variables:</span></span><br><span class="line">        <span class="attr">DEPLOY_VARIABLE:</span> <span class="string">&quot;deploy-production&quot;</span>  <span class="comment"># 覆盖全局定义的 DEPLOY_VARIABLE</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_REF_NAME</span> <span class="string">=~</span> <span class="string">/feature/</span></span><br><span class="line">      <span class="attr">variables:</span></span><br><span class="line">        <span class="attr">IS_A_FEATURE:</span> <span class="string">&quot;true&quot;</span>                  <span class="comment"># 定义一个新变量</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">when:</span> <span class="string">always</span>                            <span class="comment"># 在其他情况下运行管道</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">variables:</span></span><br><span class="line">    <span class="attr">DEPLOY_VARIABLE:</span> <span class="string">&quot;job1-default-deploy&quot;</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_REF_NAME</span> <span class="string">==</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br><span class="line">      <span class="attr">variables:</span>                                   <span class="comment"># 覆盖定义的 DEPLOY_VARIABLE</span></span><br><span class="line">        <span class="attr">DEPLOY_VARIABLE:</span> <span class="string">&quot;job1-deploy-production&quot;</span>  <span class="comment"># 在工作层面。</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">when:</span> <span class="string">on_success</span>                             <span class="comment"># 在其他情况下运行作业</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;以 $DEPLOY_VARIABLE 作为参数运行脚本&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;如果 $IS_A_FEATURE 存在则运行另一个脚本&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;以 $DEPLOY_VARIABLE 作为参数运行脚本&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;如果 $IS_A_FEATURE 存在则运行另一个脚本&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="workflow-rules"><a href="#workflow-rules" class="headerlink" title="workflow:rules"></a>workflow:rules</h3><p>工作流(workflow)中的 <code>rules</code> 关键字类似于作业中定义的 <a href="#rules"><code>rules</code></a>，但控制是否创建整个管道</p>
+<ul>
+<li><a href="#rulesif">rules: if</a></li>
+<li><a href="#ruleschanges">rules: changes</a></li>
+<li><a href="#rulesexists">rules: exists</a></li>
+<li><a href="#when">when</a></li>
+<li><a href="#workflowrulesvariables">variables</a><!--rehype:className=cols-2--></li>
+</ul>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">workflow:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_TITLE</span> <span class="string">=~</span> <span class="string">/-draft$/</span></span><br><span class="line">      <span class="attr">when:</span> <span class="string">never</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_PIPELINE_SOURCE</span> <span class="string">==</span> <span class="string">&quot;merge_request_event&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_BRANCH</span> <span class="string">==</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Job-关键词"><a href="#Job-关键词" class="headerlink" title="Job 关键词"></a>Job 关键词</h2><h3 id="after-script"><a href="#after-script" class="headerlink" title="after_script"></a>after_script</h3><p>在每个作业（包括失败的作业）<strong>之后</strong>运行的命令数组</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;示例脚本部分&quot;</span></span><br><span class="line">  <span class="attr">after_script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;在“script”部分完成后执行此命令&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="allow-failure"><a href="#allow-failure" class="headerlink" title="allow_failure"></a>allow_failure</h3><!--rehype:wrap-class=row-span-4-->
+
+<p>确定管道是否应在作业失败时继续运行</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">execute_script_1</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">execute_script_2</span></span><br><span class="line">  <span class="attr">allow_failure:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job3:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">deploy_to_staging</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">staging</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="allow-failure-exit-codes"><a href="#allow-failure-exit-codes" class="headerlink" title="allow_failure:exit_codes"></a>allow_failure:exit_codes</h4><p>控制何时允许作业失败。对于任何列出的退出代码，作业是 <code>allow_failure: true</code>，对于任何其他退出代码，<code>allow_failure</code> false</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test_job_1:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;退出代码 1 的脚本。此作业失败&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">exit</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">allow_failure:</span></span><br><span class="line">    <span class="attr">exit_codes:</span> <span class="number">137</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test_job_2:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;退出代码 137 的脚本允许此作业失败&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">exit</span> <span class="number">137</span></span><br><span class="line">  <span class="attr">allow_failure:</span></span><br><span class="line">    <span class="attr">exit_codes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">137</span></span><br><span class="line">      <span class="bullet">-</span> <span class="number">255</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="dast-configuration"><a href="#dast-configuration" class="headerlink" title="dast_configuration"></a>dast_configuration</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">dast</span></span><br><span class="line"></span><br><span class="line"><span class="attr">include:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">template:</span> <span class="string">DAST.gitlab-ci.yml</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dast:</span></span><br><span class="line">  <span class="attr">dast_configuration:</span></span><br><span class="line">    <span class="attr">site_profile:</span> <span class="string">&quot;Example Co&quot;</span></span><br><span class="line">    <span class="attr">scanner_profile:</span> <span class="string">&quot;Quick Passive Test&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>指定要在 CI&#x2F;CD 配置中使用的站点配置文件和扫描仪配置文件。 两个配置文件必须首先在项目中创建。 作业的阶段必须快</p>
+<h3 id="before-script"><a href="#before-script" class="headerlink" title="before_script"></a>before_script</h3><p>在每个作业的 <code>script</code> 命令之前运行，但在工件恢复之后运行</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">before_script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;在任何“script:”命令之前执行此命令&quot;</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;“before_script”命令之后执行&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="coverage"><a href="#coverage" class="headerlink" title="coverage"></a>coverage</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rspec</span></span><br><span class="line">  <span class="attr">coverage:</span> <span class="string">&#x27;/Code coverage: \d+\.\d+/&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用自定义正则表达式的覆盖率来配置如何从作业输出中提取代码覆盖率</p>
+<h3 id="extends"><a href="#extends" class="headerlink" title="extends"></a>extends</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">.tests:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rake</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="attr">refs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">branches</span></span><br><span class="line"></span><br><span class="line"><span class="attr">rspec:</span></span><br><span class="line">  <span class="attr">extends:</span> <span class="string">.tests</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rake</span> <span class="string">rspec</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="attr">variables:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$RSPEC</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>extends</code> 重用配置部分。 它是 YAML 锚点的替代品，并且更加灵活和可读</p>
+<h3 id="dependencies"><a href="#dependencies" class="headerlink" title="dependencies"></a>dependencies</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">build osx:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">build:osx</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">binaries/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build linux:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">build:linux</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">binaries/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test osx:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">test:osx</span></span><br><span class="line">  <span class="attr">dependencies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">build</span> <span class="string">osx</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test linux:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">test:linux</span></span><br><span class="line">  <span class="attr">dependencies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">build</span> <span class="string">linux</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<p>定义要从中获取工件的作业列表。您还可以将作业设置为根本不下载任何工件</p>
+<h3 id="inherit"><a href="#inherit" class="headerlink" title="inherit"></a>inherit</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>使用 inherit 控制默认关键字和变量的继承</p>
+<h4 id="inherit-default"><a href="#inherit-default" class="headerlink" title="inherit:default"></a>inherit:default</h4><p>使用 <code>inherit:default</code> 控制 <code>default</code> 关键字的继承</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">default:</span></span><br><span class="line">  <span class="attr">retry:</span> <span class="number">2</span></span><br><span class="line">  <span class="attr">image:</span> <span class="string">ruby:3.0</span></span><br><span class="line">  <span class="attr">interruptible:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;此作业不继承任何默认关键字&quot;</span></span><br><span class="line">  <span class="attr">inherit:</span></span><br><span class="line">    <span class="attr">default:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;此作业仅继承列出的两个默认关键字。它不继承“可中断”&quot;</span></span><br><span class="line">  <span class="attr">inherit:</span></span><br><span class="line">    <span class="attr">default:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">retry</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">image</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="inherit-variables"><a href="#inherit-variables" class="headerlink" title="inherit:variables"></a>inherit:variables</h4><p>使用 inherit:variables 控制全局变量关键字的继承</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line">  <span class="attr">VARIABLE1:</span> <span class="string">&quot;这是变量 1&quot;</span></span><br><span class="line">  <span class="attr">VARIABLE2:</span> <span class="string">&quot;这是变量 2&quot;</span></span><br><span class="line">  <span class="attr">VARIABLE3:</span> <span class="string">&quot;这是变量 3&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;该作业不继承任何全局变量&quot;</span></span><br><span class="line">  <span class="attr">inherit:</span></span><br><span class="line">    <span class="attr">variables:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;此作业仅继承列出的两个全局变量。它不继承“VARIABLE3”&quot;</span></span><br><span class="line">  <span class="attr">inherit:</span></span><br><span class="line">    <span class="attr">variables:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">VARIABLE1</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">VARIABLE2</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="interruptible"><a href="#interruptible" class="headerlink" title="interruptible"></a>interruptible</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stage1</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stage2</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">stage3</span></span><br><span class="line"></span><br><span class="line"><span class="attr">step-1:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">stage1</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;可以取消&quot;</span></span><br><span class="line">  <span class="attr">interruptible:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">step-2:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">stage2</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;不能取消&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">step-3:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">stage3</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;因为第 2 步无法取消，所以此步骤永远无法取消，即使它被设置为可中断&quot;</span></span><br><span class="line">  <span class="attr">interruptible:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>如果在作业完成之前启动较新的管道时应取消作业，则使用可中断的</p>
+<h3 id="pages"><a href="#pages" class="headerlink" title="pages"></a>pages</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pages:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">mkdir</span> <span class="string">.public</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">cp</span> <span class="string">-r</span> <span class="string">*</span> <span class="string">.public</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">mv</span> <span class="string">.public</span> <span class="string">public</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">public</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_BRANCH</span> <span class="string">==</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<p>使用页面定义将静态内容上传到 <code>GitLab</code> 的 <code>GitLab Pages</code> 作业。然后将内容发布为网站</p>
+<h3 id="parallel"><a href="#parallel" class="headerlink" title="parallel"></a>parallel</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rspec</span></span><br><span class="line">  <span class="attr">parallel:</span> <span class="number">5</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>parallel</code> 在单个管道中并行多次运行作业</p>
+<h4 id="parallel-matrix"><a href="#parallel-matrix" class="headerlink" title="parallel:matrix"></a>parallel:matrix</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploystacks:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">bin/deploy</span></span><br><span class="line">  <span class="attr">parallel:</span></span><br><span class="line">    <span class="attr">matrix:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">PROVIDER:</span> <span class="string">aws</span></span><br><span class="line">        <span class="attr">STACK:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">monitoring</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">app1</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">app2</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">PROVIDER:</span> <span class="string">ovh</span></span><br><span class="line">        <span class="attr">STACK:</span> [<span class="string">monitoring</span>, <span class="string">backup</span>, <span class="string">app</span>]</span><br><span class="line">      <span class="bullet">-</span> <span class="attr">PROVIDER:</span> [<span class="string">gcp</span>, <span class="string">vultr</span>]</span><br><span class="line">        <span class="attr">STACK:</span> [<span class="string">data</span>, <span class="string">processing</span>]</span><br><span class="line">  <span class="attr">environment:</span> <span class="string">$PROVIDER/$STACK</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>parallel:matrix</code> 在单个管道中并行多次运行作业，但每个作业实例具有不同的变量值</p>
+<h3 id="resource-group"><a href="#resource-group" class="headerlink" title="resource_group"></a>resource_group</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy-to-production:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">resource_group:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<p>创建一个资源组，以确保作业在同一项目的不同管道之间互斥</p>
+<h3 id="tags"><a href="#tags" class="headerlink" title="tags"></a>tags</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">tags:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ruby</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">postgres</span></span><br></pre></td></tr></table></figure>
+
+<p>使用标签从项目可用的所有运行器列表中选择特定运行器</p>
+<h3 id="retry"><a href="#retry" class="headerlink" title="retry"></a>retry</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rspec</span></span><br><span class="line">  <span class="attr">retry:</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>retry</code> 配置作业失败时重试的次数。如果未定义，则默认为 <code>0</code>，并且作业不会重试</p>
+<h4 id="retry-when"><a href="#retry-when" class="headerlink" title="retry:when"></a>retry:when</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rspec</span></span><br><span class="line">  <span class="attr">retry:</span></span><br><span class="line">    <span class="attr">max:</span> <span class="number">2</span></span><br><span class="line">    <span class="attr">when:</span> <span class="string">runner_system_failure</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>retry:when</code> 和 <code>retry:max</code> 来重试特定失败案例的作业。 <code>retry:max</code> 是最大重试次数，和<code>retry</code>一样，可以是0、1、2</p>
+<h3 id="script"><a href="#script" class="headerlink" title="script"></a>script</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">&quot;bundle exec rspec&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">uname</span> <span class="string">-a</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">bundle</span> <span class="string">exec</span> <span class="string">rspec</span></span><br></pre></td></tr></table></figure>
+
+<p>使用脚本指定运行器执行的命令</p>
+<h3 id="secrets"><a href="#secrets" class="headerlink" title="secrets"></a>secrets</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>此关键字必须与 <code>secrets:vault</code> 一起使用</p>
+<h4 id="secrets-vault"><a href="#secrets-vault" class="headerlink" title="secrets:vault"></a>secrets:vault</h4><p>使用 <code>secrets:vault</code> 指定 HashiCorp Vault 提供的秘密</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">secrets:</span></span><br><span class="line">    <span class="comment"># 将秘密的路径存储在此 CI/CD 变量中</span></span><br><span class="line">    <span class="attr">DATABASE_PASSWORD:</span></span><br><span class="line">      <span class="comment"># 转换为秘密：`ops/data/production/db`</span></span><br><span class="line">      <span class="comment"># 字段：`password`</span></span><br><span class="line">      <span class="attr">vault:</span> </span><br><span class="line">        <span class="attr">engine:</span></span><br><span class="line">          <span class="attr">name:</span> <span class="string">kv-v2</span></span><br><span class="line">          <span class="attr">path:</span> <span class="string">ops</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">production/db</span></span><br><span class="line">        <span class="attr">field:</span> <span class="string">password</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="secrets-file"><a href="#secrets-file" class="headerlink" title="secrets:file"></a>secrets:file</h4><p>使用 <code>secrets:file</code> 将秘密配置为存储为文件或变量类型的 CI&#x2F;CD 变量</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">secrets:</span></span><br><span class="line">    <span class="attr">DATABASE_PASSWORD:</span></span><br><span class="line">      <span class="attr">vault:</span> <span class="string">production/db/password@ops</span></span><br><span class="line">      <span class="attr">file:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="timeout"><a href="#timeout" class="headerlink" title="timeout"></a>timeout</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">build:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">build.sh</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="number">3</span> <span class="string">hours</span> <span class="number">30</span> <span class="string">minutes</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rspec</span></span><br><span class="line">  <span class="attr">timeout:</span> <span class="string">3h</span> <span class="string">30m</span></span><br></pre></td></tr></table></figure>
+
+<p>为特定作业配置超时。 如果作业运行时间超过超时时间，则作业失败</p>
+<h3 id="services"><a href="#services" class="headerlink" title="services"></a>services</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>使用服务指定额外的 <code>Docker</code> 映像以在其中运行脚本</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">default:</span></span><br><span class="line">  <span class="attr">image:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">ruby:2.6</span></span><br><span class="line">    <span class="attr">entrypoint:</span> [<span class="string">&quot;/bin/bash&quot;</span>]</span><br><span class="line"></span><br><span class="line">  <span class="attr">services:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">my-postgres:11.7</span></span><br><span class="line">      <span class="attr">alias:</span> <span class="string">db-postgres</span></span><br><span class="line">      <span class="attr">entrypoint:</span> [<span class="string">&quot;/usr/local/bin/db-postgres&quot;</span>]</span><br><span class="line">      <span class="attr">command:</span> [<span class="string">&quot;start&quot;</span>]</span><br><span class="line"></span><br><span class="line">  <span class="attr">before_script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">bundle</span> <span class="string">install</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">bundle</span> <span class="string">exec</span> <span class="string">rake</span> <span class="string">spec</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="service-pull-policy"><a href="#service-pull-policy" class="headerlink" title="service:pull_policy"></a>service:pull_policy</h4><p>运行器用于获取 <code>Docker</code> 映像的拉取策略</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;A single pull policy.&quot;</span></span><br><span class="line">  <span class="attr">services:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">postgres:11.6</span></span><br><span class="line">      <span class="attr">pull_policy:</span> <span class="string">if-not-present</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;Multiple pull policies.&quot;</span></span><br><span class="line">  <span class="attr">services:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">postgres:11.6</span></span><br><span class="line">      <span class="attr">pull_policy:</span> [<span class="string">always</span>, <span class="string">if-not-present</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="stage"><a href="#stage" class="headerlink" title="stage"></a>stage</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">test</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">deploy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;这项工作编译代码&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此作业测试编译后的代码。它在构建阶段完成时运行&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job3:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;这项工作也在测试阶段运行&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job4:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此作业部署代码。它在测试阶段完成时运行&quot;</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="stage-pre"><a href="#stage-pre" class="headerlink" title="stage: .pre"></a>stage: .pre</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">test</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;该作业在构建阶段运行&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">first-job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">.pre</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;该作业在 .pre 阶段运行，在所有其他阶段之前&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;该作业在测试阶段运行&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="stage-post"><a href="#stage-post" class="headerlink" title="stage: .post"></a>stage: .post</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">test</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;该作业在构建阶段运行&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">last-job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">.post</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;该作业在 .post 阶段运行，在所有其他阶段之后&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;该作业在测试阶段运行&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="trigger"><a href="#trigger" class="headerlink" title="trigger"></a>trigger</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>声明一个作业是一个“触发作业”</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">trigger-multi-project-pipeline:</span></span><br><span class="line">  <span class="attr">trigger:</span> <span class="string">my-group/my-project</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="trigger-include"><a href="#trigger-include" class="headerlink" title="trigger:include"></a>trigger:include</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">trigger-child-pipeline:</span></span><br><span class="line">  <span class="attr">trigger:</span></span><br><span class="line">    <span class="attr">include:</span> <span class="string">path/to/child-pipeline.gitlab-ci.yml</span></span><br></pre></td></tr></table></figure>
+
+<p>声明作业是启动子管道的“触发器作业”</p>
+<h4 id="trigger-project"><a href="#trigger-project" class="headerlink" title="trigger:project"></a>trigger:project</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">trigger-multi-project-pipeline:</span></span><br><span class="line">  <span class="attr">trigger:</span></span><br><span class="line">    <span class="attr">project:</span> <span class="string">my-group/my-project</span></span><br></pre></td></tr></table></figure>
+
+<p>声明作业是启动多项目管道的“触发器作业”</p>
+<h4 id="trigger-strategy"><a href="#trigger-strategy" class="headerlink" title="trigger:strategy"></a>trigger:strategy</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">trigger-multi-project-pipeline:</span></span><br><span class="line">  <span class="attr">trigger:</span></span><br><span class="line">    <span class="attr">project:</span> <span class="string">my-group/my-project</span></span><br><span class="line">    <span class="attr">branch:</span> <span class="string">development</span></span><br></pre></td></tr></table></figure>
+
+<p>强制触发作业等待下游管道完成后再标记为成功</p>
+<h4 id="trigger-forward"><a href="#trigger-forward" class="headerlink" title="trigger:forward"></a>trigger:forward</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span> <span class="comment"># 每个作业的默认变量</span></span><br><span class="line">  <span class="attr">VAR:</span> <span class="string">value</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 默认行为：</span></span><br><span class="line"><span class="comment"># - VAR 传递给孩子</span></span><br><span class="line"><span class="comment"># - MYVAR 没有传递给孩子</span></span><br><span class="line"><span class="attr">child1:</span></span><br><span class="line">  <span class="attr">trigger:</span></span><br><span class="line">    <span class="attr">include:</span> <span class="string">.child-pipeline.yml</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 转发管道变量：</span></span><br><span class="line"><span class="comment"># - VAR 传递给孩子</span></span><br><span class="line"><span class="comment"># - MYVAR 传递给孩子</span></span><br><span class="line"><span class="attr">child2:</span></span><br><span class="line">  <span class="attr">trigger:</span></span><br><span class="line">    <span class="attr">include:</span> <span class="string">.child-pipeline.yml</span></span><br><span class="line">    <span class="attr">forward:</span></span><br><span class="line">      <span class="attr">pipeline_variables:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 不要转发 YAML 变量：</span></span><br><span class="line"><span class="comment"># - VAR 不会传递给孩子</span></span><br><span class="line"><span class="comment"># - MYVAR 没有传递给孩子</span></span><br><span class="line"><span class="attr">child3:</span></span><br><span class="line">  <span class="attr">trigger:</span></span><br><span class="line">    <span class="attr">include:</span> <span class="string">.child-pipeline.yml</span></span><br><span class="line">    <span class="attr">forward:</span></span><br><span class="line">      <span class="attr">yaml_variables:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="variables"><a href="#variables" class="headerlink" title="variables"></a>variables</h3><p>CI&#x2F;CD 变量是传递给作业的可配置值。使用变量创建自定义变量</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line">  <span class="attr">DEPLOY_SITE:</span> <span class="string">&quot;https://example.com/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">deploy-script</span> <span class="string">--url</span> <span class="string">$DEPLOY_SITE</span> <span class="string">--path</span> <span class="string">&quot;/&quot;</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">production</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy_review_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">variables:</span></span><br><span class="line">    <span class="attr">REVIEW_PATH:</span> <span class="string">&quot;/review&quot;</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">deploy-review-script</span> <span class="string">--url</span> <span class="string">$DEPLOY_SITE</span> <span class="string">--path</span> <span class="string">$REVIEW_PATH</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="variables-description"><a href="#variables-description" class="headerlink" title="variables:description"></a>variables:description</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line">  <span class="attr">DEPLOY_ENVIRONMENT:</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">&quot;部署目标。 如果需要，将此变量更改为“canary”或“production”&quot;</span></span><br><span class="line">    <span class="attr">value:</span> <span class="string">&quot;staging&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="variables-expand"><a href="#variables-expand" class="headerlink" title="variables:expand"></a>variables:expand</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">variables:</span></span><br><span class="line">  <span class="attr">VAR1:</span> <span class="string">value1</span></span><br><span class="line">  <span class="attr">VAR2:</span> <span class="string">value2</span> <span class="string">$VAR1</span></span><br><span class="line">  <span class="attr">VAR3:</span></span><br><span class="line">    <span class="attr">value:</span> <span class="string">value3</span> <span class="string">$VAR1</span></span><br><span class="line">    <span class="attr">expand:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>expand</code> 关键字将变量配置为可扩展或不可扩展</p>
+<h3 id="when"><a href="#when" class="headerlink" title="when"></a>when</h3><p>使用 <code>when</code> 配置作业运行的条件。如果未在作业中定义，则默认值为 <code>when:on_success</code></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stages:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cleanup_build</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">test</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">deploy</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">cleanup</span></span><br><span class="line"></span><br><span class="line"><span class="attr">build_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">make</span> <span class="string">build</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cleanup_build_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">cleanup_build</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">cleanup</span> <span class="string">build</span> <span class="string">when</span> <span class="string">failed</span></span><br><span class="line">  <span class="attr">when:</span> <span class="string">on_failure</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">make</span> <span class="string">test</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">make</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">when:</span> <span class="string">manual</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">production</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cleanup_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">cleanup</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">cleanup</span> <span class="string">after</span> <span class="string">jobs</span></span><br><span class="line">  <span class="attr">when:</span> <span class="string">always</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>on_success(default)</code></td>
+<td>仅当早期阶段的所有作业都成功或具有 <code>allow_failure: true</code> 时才运行该作业</td>
+</tr>
+<tr>
+<td align="left"><code>manual</code></td>
+<td>仅在手动触发时运行作业</td>
+</tr>
+<tr>
+<td align="left"><code>always</code></td>
+<td>无论早期阶段的作业状态如何，都运行作业。也可以用在 <code>workflow:rules</code> 中</td>
+</tr>
+<tr>
+<td align="left"><code>on_failure</code></td>
+<td>仅当早期阶段的至少一项作业失败时才运行该作业</td>
+</tr>
+<tr>
+<td align="left"><code>delayed</code></td>
+<td>将作业的执行延迟指定的持续时间</td>
+</tr>
+<tr>
+<td align="left"><code>never</code></td>
+<td>不要运行作业。只能在规则<a href="#rules">rules</a>部分或工作流中使用：<code>workflow: rules</code></td>
+</tr>
+</tbody></table>
+<!--rehype:className=style-list-->
+
+<h2 id="artifacts"><a href="#artifacts" class="headerlink" title="artifacts"></a>artifacts</h2><p>使用工件指定要将哪些文件另存为作业 artifacts。作业 artifacts 是作业成功、失败或始终附加到作业的文件和目录的列表</p>
+<h3 id="artifacts-paths"><a href="#artifacts-paths" class="headerlink" title="artifacts:paths"></a>artifacts:paths</h3><p>路径是相对于项目目录（$CI_PROJECT_DIR）的，不能直接链接到项目目录之外</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">binaries/</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.config</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="artifacts-exclude"><a href="#artifacts-exclude" class="headerlink" title="artifacts:exclude"></a>artifacts:exclude</h3><p>防止将文件添加到 artifacts 存档中</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">artifacts:</span></span><br><span class="line">  <span class="attr">paths:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">binaries/</span></span><br><span class="line">  <span class="attr">exclude:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">binaries/**/*.o</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="artifacts-expire-in"><a href="#artifacts-expire-in" class="headerlink" title="artifacts:expire_in"></a>artifacts:expire_in</h3><p>指定作业 artifacts 在它们过期和被删除之前存储多长时间</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">expire_in:</span> <span class="number">1</span> <span class="string">week</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>‘42’</li>
+<li>42 seconds</li>
+<li>3 mins 4 sec</li>
+<li>2 hrs 20 min</li>
+<li>2h20min</li>
+<li>6 mos 1 day</li>
+<li>47 yrs 6 mos and 4d</li>
+<li>3 weeks and 2 days</li>
+<li>never<!--rehype:className=cols-2--></li>
+</ul>
+<h3 id="artifacts-expose-as"><a href="#artifacts-expose-as" class="headerlink" title="artifacts:expose_as"></a>artifacts:expose_as</h3><p>使用 <code>artifacts:expose_as</code> 关键字在合并请求 UI 中公开作业 artifacts</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test:</span></span><br><span class="line">  <span class="attr">script:</span> [<span class="string">&quot;echo &#x27;test&#x27; &gt; file.txt&quot;</span>]</span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">expose_as:</span> <span class="string">&#x27;artifact 1&#x27;</span></span><br><span class="line">    <span class="attr">paths:</span> [<span class="string">&#x27;file.txt&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="artifacts-name"><a href="#artifacts-name" class="headerlink" title="artifacts:name"></a>artifacts:name</h3><p>定义创建的 <code>artifacts</code> 存档的名称。您可以为每个存档指定一个唯一的名称</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">&quot;job1-artifacts-file&quot;</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">binaries/</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="artifacts-public"><a href="#artifacts-public" class="headerlink" title="artifacts:public"></a>artifacts:public</h3><p>确定作业工件是否应该公开可用</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">public:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="artifacts-reports"><a href="#artifacts-reports" class="headerlink" title="artifacts:reports"></a>artifacts:reports</h3><p>收集作业中包含的模板生成的 <code>artifacts</code></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">bundle</span> <span class="string">install</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">rspec</span> <span class="string">--format</span> <span class="string">RspecJunitFormatter</span> <span class="string">--out</span> <span class="string">rspec.xml</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">reports:</span></span><br><span class="line">      <span class="attr">junit:</span> <span class="string">rspec.xml</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="artifacts-untracked"><a href="#artifacts-untracked" class="headerlink" title="artifacts:untracked"></a>artifacts:untracked</h3><p>将所有 Git 未跟踪文件添加为 <code>artifacts</code>（连同在 <code>artifacts:paths</code> 中定义的路径）</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">untracked:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="artifacts-when"><a href="#artifacts-when" class="headerlink" title="artifacts:when"></a>artifacts:when</h3><p>作业失败或尽管失败时上传 <code>artifacts</code></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">when:</span> <span class="string">on_failure</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h2><h3 id="cache-paths"><a href="#cache-paths" class="headerlink" title="cache:paths"></a>cache:paths</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此作业使用缓存&quot;</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">key:</span> <span class="string">binaries-cache</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">binaries/*.apk</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">.config</span></span><br></pre></td></tr></table></figure>
+
+<p>关键字来选择要缓存的文件或目录</p>
+<h3 id="cache-key"><a href="#cache-key" class="headerlink" title="cache:key"></a>cache:key</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>为每个缓存提供唯一的标识键。 使用相同缓存键的所有作业都使用相同的缓存，包括在不同的管道中</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache-job:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此作业使用缓存&quot;</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">key:</span> <span class="string">binaries-cache-$CI_COMMIT_REF_SLUG</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">binaries/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="cache-key-files"><a href="#cache-key-files" class="headerlink" title="cache:key:files"></a><code>cache:key:files</code></h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cache-job:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此作业使用缓存&quot;</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">key:</span></span><br><span class="line">      <span class="attr">files:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Gemfile.lock</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">package.json</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">vendor/ruby</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">node_modules</span></span><br></pre></td></tr></table></figure>
+
+<p>当一个或两个特定文件更改时，使用 <code>cache:key:files</code> 关键字生成新密钥</p>
+<h4 id="cache-key-prefix"><a href="#cache-key-prefix" class="headerlink" title="cache:key:prefix"></a><code>cache:key:prefix</code></h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此 rspec 作业使用缓存&quot;</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">key:</span></span><br><span class="line">      <span class="attr">files:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Gemfile.lock</span></span><br><span class="line">      <span class="attr">prefix:</span> <span class="string">$CI_JOB_NAME</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">vendor/ruby</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>cache:key:prefix</code> 将前缀与为 <code>cache:key:files</code> 计算的 SHA 结合起来</p>
+<h3 id="cache-untracked"><a href="#cache-untracked" class="headerlink" title="cache:untracked"></a>cache:untracked</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">untracked:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">binaries/</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>untracked: true</code> 缓存 Git 存储库中所有未跟踪的文件</p>
+<h3 id="cache-when"><a href="#cache-when" class="headerlink" title="cache:when"></a>cache:when</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">rspec:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">rspec</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">rspec/</span></span><br><span class="line">    <span class="attr">when:</span> <span class="string">&#x27;always&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>cache:when</code> 根据作业的状态定义何时保存缓存</p>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>on_succes(默认)</code></td>
+<td>仅当作业成功时才保存缓存</td>
+</tr>
+<tr>
+<td align="left"><code>on_failure</code></td>
+<td>仅在作业失败时才保存缓存</td>
+</tr>
+<tr>
+<td align="left"><code>always</code></td>
+<td>始终保存缓存</td>
+</tr>
+</tbody></table>
+<h3 id="cache-policy"><a href="#cache-policy" class="headerlink" title="cache:policy"></a>cache:policy</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">prepare-dependencies-job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">key:</span> <span class="string">gems</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">vendor/bundle</span></span><br><span class="line">    <span class="attr">policy:</span> <span class="string">push</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此作业仅下载依赖项并构建缓存&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;正在下载依赖...&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">faster-test-job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">cache:</span></span><br><span class="line">    <span class="attr">key:</span> <span class="string">gems</span></span><br><span class="line">    <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">vendor/bundle</span></span><br><span class="line">    <span class="attr">policy:</span> <span class="string">pull</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;此作业脚本使用缓存，但不更新它&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;运行测试...&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>要更改缓存的上传和下载行为，请使用 <code>cache:policy</code> 关键字</p>
+<h2 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h2><h3 id="environment-name"><a href="#environment-name" class="headerlink" title="environment:name"></a>environment:name</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy to production:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">git</span> <span class="string">push</span> <span class="string">production</span> <span class="string">HEAD:main</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<p>为环境设置名称</p>
+<h3 id="environment-url"><a href="#environment-url" class="headerlink" title="environment:url"></a>environment:url</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy to production:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">git</span> <span class="string">push</span> <span class="string">production</span> <span class="string">HEAD:main</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">production</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://prod.example.com</span></span><br></pre></td></tr></table></figure>
+
+<p>为环境设置 URL</p>
+<h3 id="environment-on-stop"><a href="#environment-on-stop" class="headerlink" title="environment:on_stop"></a>environment:on_stop</h3><p>关闭（停止）环境可以通过在环境下定义的 on_stop 关键字来实现。 它声明运行以关闭环境的不同作业</p>
+<h3 id="environment-action"><a href="#environment-action" class="headerlink" title="environment:action"></a>environment:action</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stop_review_app:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">variables:</span></span><br><span class="line">    <span class="attr">GIT_STRATEGY:</span> <span class="string">none</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">delete-app</span></span><br><span class="line">  <span class="attr">when:</span> <span class="string">manual</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">review/$CI_COMMIT_REF_SLUG</span></span><br><span class="line">    <span class="attr">action:</span> <span class="string">stop</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>start</code> <em>默认值</em></td>
+<td>指示作业启动环境。在作业开始后创建的</td>
+</tr>
+<tr>
+<td align="left"><code>prepare</code></td>
+<td>表示作业只是准备环境。它不会触发部署</td>
+</tr>
+<tr>
+<td align="left"><code>stop</code></td>
+<td>指示作业停止部署</td>
+</tr>
+<tr>
+<td align="left"><code>verify</code></td>
+<td>指示作业仅验证环境。它不会触发部署</td>
+</tr>
+<tr>
+<td align="left"><code>access</code></td>
+<td>指示作业仅访问环境。它不会触发部署</td>
+</tr>
+</tbody></table>
+<h3 id="environment-auto-stop-in"><a href="#environment-auto-stop-in" class="headerlink" title="environment:auto_stop_in"></a>environment:auto_stop_in</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">review_app:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">deploy-review-app</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">review/$CI_COMMIT_REF_SLUG</span></span><br><span class="line">    <span class="attr">auto_stop_in:</span> <span class="number">1</span> <span class="string">day</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>168 hours</code></li>
+<li><code>7 days</code></li>
+<li><code>one week</code></li>
+<li><code>never</code><!--rehype:className=cols-2--></li>
+</ul>
+<p><code>auto_stop_in</code> 关键字指定环境的生命周期。 当环境到期时，GitLab 会自动停止它</p>
+<h3 id="environment-kubernetes"><a href="#environment-kubernetes" class="headerlink" title="environment:kubernetes"></a>environment:kubernetes</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">deploy-app</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">production</span></span><br><span class="line">    <span class="attr">kubernetes:</span></span><br><span class="line">      <span class="attr">namespace:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>kubernetes</code> 关键字将部署配置到与您的项目关联的 <code>Kubernetes</code> 集群</p>
+<h3 id="environment-deployment-tier"><a href="#environment-deployment-tier" class="headerlink" title="environment:deployment_tier"></a>environment:deployment_tier</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">customer-portal</span></span><br><span class="line">    <span class="attr">deployment_tier:</span> <span class="string">production</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>production</code></li>
+<li><code>staging</code></li>
+<li><code>testing</code></li>
+<li><code>development</code></li>
+<li><code>other</code><!--rehype:className=cols-2--></li>
+</ul>
+<h3 id="动态-environment"><a href="#动态-environment" class="headerlink" title="动态 environment"></a>动态 environment</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy as review app:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">make</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">environment:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">review/$CI_COMMIT_REF_SLUG</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://$CI_ENVIRONMENT_SLUG.example.com/</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="image"><a href="#image" class="headerlink" title="image"></a>image</h2><h3 id="image-name"><a href="#image-name" class="headerlink" title="image:name"></a>image:name</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">&quot;registry.example.com/my/image:latest&quot;</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text-->
+
+<p>作业运行所在的 Docker 镜像的名称。类似于它自己使用的镜像</p>
+<h3 id="image-entrypoint"><a href="#image-entrypoint" class="headerlink" title="image:entrypoint"></a>image:entrypoint</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">super/sql:experimental</span></span><br><span class="line">  <span class="attr">entrypoint:</span> [<span class="string">&quot;&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<p>作为容器入口点执行的命令或脚本</p>
+<h3 id="image-pull-policy"><a href="#image-pull-policy" class="headerlink" title="image:pull_policy"></a>image:pull_policy</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;单一拉动政策&quot;</span></span><br><span class="line">  <span class="attr">image:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">ruby:3.0</span></span><br><span class="line">    <span class="attr">pull_policy:</span> <span class="string">if-not-present</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;多重拉动政策&quot;</span></span><br><span class="line">  <span class="attr">image:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">ruby:3.0</span></span><br><span class="line">    <span class="attr">pull_policy:</span> [<span class="string">always</span>, <span class="string">if-not-present</span>]</span><br></pre></td></tr></table></figure>
+
+<p>运行器用于获取 Docker 映像的拉取策略</p>
+<h2 id="needs"><a href="#needs" class="headerlink" title="needs"></a>needs</h2><h3 id="needs-artifacts"><a href="#needs-artifacts" class="headerlink" title="needs:artifacts"></a>needs:artifacts</h3><p>当作业使用需求时，它不再默认下载先前阶段的所有工件，因为有需求的作业可以在早期阶段完成之前开始</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">test-job1:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">needs:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">job:</span> <span class="string">build_job1</span></span><br><span class="line">      <span class="attr">artifacts:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test-job2:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">needs:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">job:</span> <span class="string">build_job2</span></span><br><span class="line">      <span class="attr">artifacts:</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test-job3:</span></span><br><span class="line">  <span class="attr">needs:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">job:</span> <span class="string">build_job1</span></span><br><span class="line">      <span class="attr">artifacts:</span> <span class="literal">true</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">job:</span> <span class="string">build_job2</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">build_job3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="needs-project"><a href="#needs-project" class="headerlink" title="needs:project"></a>needs:project</h3><!--rehype:wrap-class=col-span-2-->
+
+<p>使用 <code>needs:project</code> 从其他管道中的最多五个作业下载工件。工件是从指定参考的最新成功管道下载的。要指定多个作业，请将每个作业作为单独的数组项添加到 needs 关键字下</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">build_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">ls</span> <span class="string">-lhR</span></span><br><span class="line">  <span class="attr">needs:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">project:</span> <span class="string">namespace/group/project-name</span></span><br><span class="line">      <span class="attr">job:</span> <span class="string">build-1</span></span><br><span class="line">      <span class="attr">ref:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">artifacts:</span> <span class="literal">true</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">project:</span> <span class="string">namespace/group/project-name-2</span></span><br><span class="line">      <span class="attr">job:</span> <span class="string">build-2</span></span><br><span class="line">      <span class="attr">ref:</span> <span class="string">main</span></span><br><span class="line">      <span class="attr">artifacts:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="needs-pipeline-job"><a href="#needs-pipeline-job" class="headerlink" title="needs:pipeline:job"></a>needs:pipeline:job</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">create-artifact:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;sample artifact&quot;</span> <span class="string">&gt;</span> <span class="string">artifact.txt</span></span><br><span class="line">  <span class="attr">artifacts:</span></span><br><span class="line">    <span class="attr">paths:</span> [<span class="string">artifact.txt</span>]</span><br><span class="line"></span><br><span class="line"><span class="attr">child-pipeline:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">trigger:</span></span><br><span class="line">    <span class="attr">include:</span> <span class="string">child.yml</span></span><br><span class="line">    <span class="attr">strategy:</span> <span class="string">depend</span></span><br><span class="line">  <span class="attr">variables:</span></span><br><span class="line">    <span class="attr">PARENT_PIPELINE_ID:</span> <span class="string">$CI_PIPELINE_ID</span></span><br></pre></td></tr></table></figure>
+
+<p>子管道可以从其父管道中的作业或同一父子管道层次结构中的另一个子管道下载工件</p>
+<h3 id="needs-optional"><a href="#needs-optional" class="headerlink" title="needs:optional"></a>needs:optional</h3><!--rehype:wrap-class=col-span-2 row-span-2-->
+
+<p>要需要管道中有时不存在的作业，请将 <code>optional: true</code> 添加到需求配置中。如果未定义，则可选：默认为 <code>false</code></p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">build-job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">build</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test-job1:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line"></span><br><span class="line"><span class="attr">test-job2:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_BRANCH</span> <span class="string">==</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br><span class="line"></span><br><span class="line"><span class="attr">deploy-job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">needs:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">job:</span> <span class="string">test-job2</span></span><br><span class="line">      <span class="attr">optional:</span> <span class="literal">true</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">job:</span> <span class="string">test-job1</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">production</span></span><br><span class="line"></span><br><span class="line"><span class="attr">review-job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">needs:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">job:</span> <span class="string">test-job2</span></span><br><span class="line">      <span class="attr">optional:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">environment:</span> <span class="string">review</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="needs-pipeline"><a href="#needs-pipeline" class="headerlink" title="needs:pipeline"></a>needs:pipeline</h3><p>您可以使用 <code>needs:pipeline</code> 关键字将管道状态从上游管道镜像到桥接作业</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">upstream_bridge:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">needs:</span></span><br><span class="line">    <span class="attr">pipeline:</span> <span class="string">other/project</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="only-except"><a href="#only-except" class="headerlink" title="only &#x2F; except"></a>only &#x2F; except</h2><h3 id="only-refs-except-refs"><a href="#only-refs-except-refs" class="headerlink" title="only:refs &#x2F; except:refs"></a>only:refs &#x2F; except:refs</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">main</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/^issue-.*$/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">merge_requests</span></span><br><span class="line"></span><br><span class="line"><span class="attr">job2:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span></span><br><span class="line">  <span class="attr">except:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">main</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">/^stable-branch.*$/</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">schedules</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>only:refs</code> 和 <code>except:refs</code> 关键字来控制何时根据分支名称或管道类型将作业添加到管道</p>
+<h3 id="only-variables-except-variables"><a href="#only-variables-except-variables" class="headerlink" title="only:variables &#x2F; except:variables"></a>only:variables &#x2F; except:variables</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">cap</span> <span class="string">staging</span> <span class="string">deploy</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="attr">variables:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$RELEASE</span> <span class="string">==</span> <span class="string">&quot;staging&quot;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">$STAGING</span></span><br></pre></td></tr></table></figure>
+
+<p>根据 CI&#x2F;CD 变量的状态，使用 only:variables 或 except:variables 关键字来控制何时将作业添加到管道</p>
+<h3 id="only-changes-except-changes"><a href="#only-changes-except-changes" class="headerlink" title="only:changes &#x2F; except:changes"></a>only:changes &#x2F; except:changes</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">docker build:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">docker</span> <span class="string">build</span> <span class="string">-t</span> <span class="string">my-image:$CI_COMMIT_REF_SLUG</span> <span class="string">.</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="attr">refs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">branches</span></span><br><span class="line">    <span class="attr">changes:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">Dockerfile</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">docker/scripts/*</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">dockerfiles/**/*</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">more_scripts/*.&#123;rb,py,sh&#125;</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;**/*.json&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>当 <code>Git</code> 推送事件修改文件时，使用 <code>changes</code> 关键字仅运行作业，或使用 <code>except</code> 跳过作业</p>
+<h3 id="only-kubernetes-except-kubernetes"><a href="#only-kubernetes-except-kubernetes" class="headerlink" title="only:kubernetes &#x2F; except:kubernetes"></a>only:kubernetes &#x2F; except:kubernetes</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">only:</span></span><br><span class="line">    <span class="attr">kubernetes:</span> <span class="string">active</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>only:kubernetes</code> 或 <code>except:kubernetes</code> 来控制当 <code>Kubernetes</code> 服务在项目中处于活动状态时是否将作业添加到管道中</p>
+<h2 id="release"><a href="#release" class="headerlink" title="release"></a>release</h2><h3 id="release-参考"><a href="#release-参考" class="headerlink" title="release 参考"></a>release 参考</h3><table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th>–</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><a href="#releasetag_name">release:tag_name</a></td>
+<td>发布的 Git 标签</td>
+</tr>
+<tr>
+<td align="left"><a href="#releasetag_message">release:tag_message</a></td>
+<td>指定的消息进行注释</td>
+</tr>
+<tr>
+<td align="left"><a href="#releasename">release:name</a></td>
+<td>发布名称</td>
+</tr>
+<tr>
+<td align="left"><a href="#releasedescription">release:description</a></td>
+<td>版本的详细描述</td>
+</tr>
+<tr>
+<td align="left"><a href="#releaseref">release:ref</a></td>
+<td>发布的 ref</td>
+</tr>
+<tr>
+<td align="left"><a href="#releasemilestones">release:milestones</a></td>
+<td>每个里程碑的标题</td>
+</tr>
+<tr>
+<td align="left"><a href="#releasereleased_at">release:released_at</a></td>
+<td>发布准备就绪的日期和时间</td>
+</tr>
+</tbody></table>
+<h3 id="release-tag-name"><a href="#release-tag-name" class="headerlink" title="release:tag_name"></a>release:tag_name</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;为新标签运行发布作业&quot;</span></span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">tag_name:</span> <span class="string">$CI_COMMIT_TAG</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">&#x27;Release description&#x27;</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_TAG</span></span><br></pre></td></tr></table></figure>
+
+<p>必需的。发布的 Git 标签</p>
+<h3 id="release-tag-message"><a href="#release-tag-message" class="headerlink" title="release:tag_message"></a>release:tag_message</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">release_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">release</span></span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">tag_name:</span> <span class="string">$CI_COMMIT_TAG</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">&#x27;Release description&#x27;</span></span><br><span class="line">    <span class="attr">tag_message:</span> <span class="string">&#x27;Annotated tag message&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果标签不存在，则新创建的标签将使用 <code>tag_message</code> 指定的消息进行注释</p>
+<h3 id="release-name"><a href="#release-name" class="headerlink" title="release:name"></a>release:name</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">release_job:</span></span><br><span class="line">  <span class="attr">stage:</span> <span class="string">release</span></span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">&#x27;Release $CI_COMMIT_TAG&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>发布名称。如果省略，它会填充 <code>release:tag_name</code> 的值</p>
+<h3 id="release-description"><a href="#release-description" class="headerlink" title="release:description"></a>release:description</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">release:</span></span><br><span class="line">    <span class="attr">tag_name:</span> <span class="string">$&#123;MAJOR&#125;_$&#123;MINOR&#125;_$&#123;REVISION&#125;</span></span><br><span class="line">    <span class="attr">description:</span> <span class="string">&#x27;./path/to/CHANGELOG.md&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>版本的详细描述</p>
+<h3 id="release-ref"><a href="#release-ref" class="headerlink" title="release:ref"></a>release:ref</h3><p>发布的 ref，如果发布：<code>tag_name</code> 尚不存在</p>
+<h3 id="release-milestones"><a href="#release-milestones" class="headerlink" title="release:milestones"></a>release:milestones</h3><p>与版本关联的每个里程碑的标题</p>
+<h3 id="release-released-at"><a href="#release-released-at" class="headerlink" title="release:released_at"></a>release:released_at</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">released_at:</span> <span class="string">&#x27;2021-03-15T08:00:00Z&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>发布准备就绪的日期和时间</p>
+<h3 id="release-assets-links"><a href="#release-assets-links" class="headerlink" title="release:assets:links"></a>release:assets:links</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">assets:</span></span><br><span class="line">  <span class="attr">links:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&#x27;asset1&#x27;</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">&#x27;https://example.com/assets/1&#x27;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">&#x27;asset2&#x27;</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">&#x27;https://example.com/assets/2&#x27;</span></span><br><span class="line">      <span class="attr">filepath:</span> <span class="string">&#x27;/pretty/url/1&#x27;</span> <span class="comment"># 可选的</span></span><br><span class="line">      <span class="attr">link_type:</span> <span class="string">&#x27;other&#x27;</span> <span class="comment"># 可选的</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>release:assets:links</code> 在发布中包含资产链接</p>
+<h2 id="rules"><a href="#rules" class="headerlink" title="rules"></a>rules</h2><h3 id="rules-if"><a href="#rules-if" class="headerlink" title="rules:if"></a>rules:if</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;Hello, Rules!&quot;</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME</span> <span class="string">=~</span> <span class="string">/^feature/</span> <span class="string">&amp;&amp;</span> <span class="string">$CI_MERGE_REQUEST_TARGET_BRANCH_NAME</span> <span class="type">!=</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br><span class="line">      <span class="attr">when:</span> <span class="string">never</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME</span> <span class="string">=~</span> <span class="string">/^feature/</span></span><br><span class="line">      <span class="attr">when:</span> <span class="string">manual</span></span><br><span class="line">      <span class="attr">allow_failure:</span> <span class="literal">true</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>rules:if</code> 子句指定何时将作业添加到管道</p>
+<h3 id="rules-changes"><a href="#rules-changes" class="headerlink" title="rules:changes"></a>rules:changes</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">docker build:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">docker</span> <span class="string">build</span> <span class="string">-t</span> <span class="string">my-image:$CI_COMMIT_REF_SLUG</span> <span class="string">.</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_PIPELINE_SOURCE</span> <span class="string">==</span> <span class="string">&quot;merge_request_event&quot;</span></span><br><span class="line">      <span class="attr">changes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Dockerfile</span></span><br><span class="line">      <span class="attr">when:</span> <span class="string">manual</span></span><br><span class="line">      <span class="attr">allow_failure:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>rules:changes</code> 通过检查对特定文件的更改来指定何时将作业添加到管道</p>
+<h4 id="rules-changes-paths"><a href="#rules-changes-paths" class="headerlink" title="rules:changes:paths"></a>rules:changes:paths</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">docker-build-1:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">docker</span> <span class="string">build</span> <span class="string">-t</span> <span class="string">my-image:$CI_COMMIT_REF_SLUG</span> <span class="string">.</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_PIPELINE_SOURCE</span> <span class="string">==</span> <span class="string">&quot;merge_request_event&quot;</span></span><br><span class="line">      <span class="attr">changes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Dockerfile</span></span><br><span class="line"></span><br><span class="line"><span class="attr">docker-build-2:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">docker</span> <span class="string">build</span> <span class="string">-t</span> <span class="string">my-image:$CI_COMMIT_REF_SLUG</span> <span class="string">.</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_PIPELINE_SOURCE</span> <span class="string">==</span> <span class="string">&quot;merge_request_event&quot;</span></span><br><span class="line">      <span class="attr">changes:</span></span><br><span class="line">        <span class="attr">paths:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">Dockerfile</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>rules:changes</code> 指定仅在更改特定文件时将作业添加到管道，并使用 <code>rules:changes:paths</code> 指定文件</p>
+<h4 id="rules-changes-compare-to"><a href="#rules-changes-compare-to" class="headerlink" title="rules:changes:compare_to"></a>rules:changes:compare_to</h4><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">docker build:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">docker</span> <span class="string">build</span> <span class="string">-t</span> <span class="string">my-image:$CI_COMMIT_REF_SLUG</span> <span class="string">.</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_PIPELINE_SOURCE</span> <span class="string">==</span> <span class="string">&quot;merge_request_event&quot;</span></span><br><span class="line">      <span class="attr">changes:</span></span><br><span class="line">        <span class="attr">paths:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">Dockerfile</span></span><br><span class="line">        <span class="attr">compare_to:</span> <span class="string">&#x27;refs/heads/branch1&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>rules:changes:compare_to</code> 指定要比较哪个 <code>ref</code> 来比较 <code>rules:changes:paths</code> 下列出的文件的更改</p>
+<h3 id="rules-exists"><a href="#rules-exists" class="headerlink" title="rules:exists"></a>rules:exists</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">docker</span> <span class="string">build</span> <span class="string">-t</span> <span class="string">my-image:$CI_COMMIT_REF_SLUG</span> <span class="string">.</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">exists:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="string">Dockerfile</span></span><br></pre></td></tr></table></figure>
+
+<p>当存储库中存在某些文件时，使用 <code>exists</code> 运行作业</p>
+<h3 id="rules-allow-failure"><a href="#rules-allow-failure" class="headerlink" title="rules:allow_failure"></a>rules:allow_failure</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">script:</span> <span class="string">echo</span> <span class="string">&quot;Hello, Rules!&quot;</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_MERGE_REQUEST_TARGET_BRANCH_NAME</span> <span class="string">==</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br><span class="line">      <span class="attr">when:</span> <span class="string">manual</span></span><br><span class="line">      <span class="attr">allow_failure:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>在规则中使用 <code>allow_failure: true</code> 允许作业失败而不停止管道</p>
+<h3 id="rules-variables"><a href="#rules-variables" class="headerlink" title="rules:variables"></a>rules:variables</h3><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">job:</span></span><br><span class="line">  <span class="attr">variables:</span></span><br><span class="line">    <span class="attr">DEPLOY_VARIABLE:</span> <span class="string">&quot;default-deploy&quot;</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_REF_NAME</span> <span class="string">==</span> <span class="string">$CI_DEFAULT_BRANCH</span></span><br><span class="line">      <span class="attr">variables:</span>                              <span class="comment"># 覆盖定义的 DEPLOY_VARIABLE</span></span><br><span class="line">        <span class="attr">DEPLOY_VARIABLE:</span> <span class="string">&quot;deploy-production&quot;</span>  <span class="comment"># 在工作层面</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">if:</span> <span class="string">$CI_COMMIT_REF_NAME</span> <span class="string">=~</span> <span class="string">/feature/</span></span><br><span class="line">      <span class="attr">variables:</span></span><br><span class="line">        <span class="attr">IS_A_FEATURE:</span> <span class="string">&quot;true&quot;</span>                  <span class="comment"># 定义一个新变量</span></span><br><span class="line">  <span class="attr">script:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;以 $DEPLOY_VARIABLE 作为参数运行脚本&quot;</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">echo</span> <span class="string">&quot;如果 $IS_A_FEATURE 存在则运行另一个脚本&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在规则中使用变量来为特定条件定义变量</p>
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://docs.gitlab.com/ee/ci/yaml/">.gitlab-ci.yml 关键字参考</a></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-gitlab-ci/" title="GitLab CI/CD 备忘清单" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/快速参考-gitlab-ci/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-github/" title="Github 备忘清单"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-gitlab/" title="GitLab 键盘快捷键 备忘清单"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

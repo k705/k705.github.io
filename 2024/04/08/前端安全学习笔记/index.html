@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>安全编码 | Hexo</title>
+  <meta name="description" content="#说明  随着互联网以及大前端的快速发展,前端安全问题也越来越值得前端开发人员重视学习了;  相信大家在学习或者工作中也常常会听到一些前端安全相关的名词或者知识点,但基本都是知其名不知其所以 这里我将会学习并梳理几个常见前端安全问题,如果有错误,大家可以私信或者评论指出  查阅借鉴的资料: 思否的前端安全编码规范; 知乎的 前端安全问题汇总（实战）; 美团技术团队的 前端安全部分; 掘金的 常见前">
+<meta property="og:type" content="article">
+<meta property="og:title" content="安全编码">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明  随着互联网以及大前端的快速发展,前端安全问题也越来越值得前端开发人员重视学习了;  相信大家在学习或者工作中也常常会听到一些前端安全相关的名词或者知识点,但基本都是知其名不知其所以 这里我将会学习并梳理几个常见前端安全问题,如果有错误,大家可以私信或者评论指出  查阅借鉴的资料: 思否的前端安全编码规范; 知乎的 前端安全问题汇总（实战）; 美团技术团队的 前端安全部分; 掘金的 常见前">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/README%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102181652040.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T10:00:31.527Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="底层知识">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/README%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102181652040.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-前端安全学习笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      安全编码
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h2><blockquote>
+<ul>
+<li>随着互联网以及大前端的快速发展,前端安全问题也越来越值得前端开发人员重视学习了; </li>
+<li>相信大家在学习或者工作中也常常会听到一些前端安全相关的名词或者知识点,但基本都是知其名不知其所以</li>
+<li>这里我将会学习并梳理几个常见前端安全问题,如果有错误,大家可以私信或者评论指出</li>
+</ul>
+<p>查阅借鉴的资料: 思否的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000037657222">前端安全编码规范</a>; 知乎的 <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/83865185">前端安全问题汇总（实战）</a>; 美团技术团队的 <a target="_blank" rel="noopener" href="https://tech.meituan.com/tags/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8.html">前端安全部分</a>; 掘金的 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903942036389895#heading-0">常见前端安全问题及解决方案</a>;CSDN的<a target="_blank" rel="noopener" href="https://blog.csdn.net/kzadmxz/article/details/92076837">【安全漏洞】CSRF漏洞攻击：原理、检测、防御、实践</a></p>
+<p>除此笔记外大家可以看我其他笔记 :<strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master">全栈笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据结构与算法</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_前端开发学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_后台服务端学习笔记</a></strong> 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java">Java</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Nodejs">Nodejs</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/HTML+CSS+JS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0">JavaScript笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/A_%E5%89%8D%E7%AB%AF%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0">编程工具使用笔记</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6及后续版本学习笔记</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Vue%E7%AC%94%E8%AE%B0%E6%95%B4%E5%90%88">Vue笔记整合</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0">React笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">微信小程序学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Chrome开发使用及学习笔记</a>** 以及许多其他笔记就不一一例举了</p>
+</blockquote>
+<h2 id="一、常见前端安全问题"><a href="#一、常见前端安全问题" class="headerlink" title="一、常见前端安全问题"></a>一、常见前端安全问题</h2><blockquote>
+<h6 id="按常见程度排序"><a href="#按常见程度排序" class="headerlink" title="按常见程度排序"></a>按常见程度排序</h6><ol>
+<li><strong>XSS(跨站脚本攻击)</strong></li>
+<li><strong>CSRF(跨站请求伪装)</strong></li>
+<li><strong>ClickJacking(点击劫持)</strong></li>
+<li>HSTS(HTTP严格传输安全)</li>
+<li>CND劫持</li>
+<li>iframe</li>
+<li>opener</li>
+</ol>
+</blockquote>
+<h2 id="二、XSS-跨站脚本攻击"><a href="#二、XSS-跨站脚本攻击" class="headerlink" title="二、XSS (跨站脚本攻击)"></a>二、XSS (跨站脚本攻击)</h2><blockquote>
+<h6 id="XSS全称-CRoss-Site-Scripting-跨站脚本攻击-是前端最常见的安全问题"><a href="#XSS全称-CRoss-Site-Scripting-跨站脚本攻击-是前端最常见的安全问题" class="headerlink" title="XSS全称 ( CRoss Site Scripting ) 跨站脚本攻击,是前端最常见的安全问题"></a><strong>XSS全称 ( CRoss Site Scripting ) 跨站脚本攻击</strong>,是前端最常见的安全问题</h6><ul>
+<li>XSS 是一种在web应用中的计算机安全漏洞,它允许恶意web用户将代码植入到提供给其他用户使用的页面中</li>
+<li>攻击者通过注入非法的 <strong>html标签</strong> 或者 <strong>JavaScrpipt代码</strong>, 从而当用户浏览该网页时,控制用户浏览器</li>
+</ul>
+<p>这里推荐一篇文章,是美团技术团队出的 –&gt; <a target="_blank" rel="noopener" href="https://tech.meituan.com/2018/09/27/fe-security.html">如何防止XSS攻击</a></p>
+</blockquote>
+<h3 id="Ⅰ-DOM类型-xss"><a href="#Ⅰ-DOM类型-xss" class="headerlink" title="Ⅰ -  DOM类型 xss"></a>Ⅰ -  DOM类型 xss</h3><blockquote>
+<h6 id="利用DOM本身存在的缺陷进行攻击"><a href="#利用DOM本身存在的缺陷进行攻击" class="headerlink" title="利用DOM本身存在的缺陷进行攻击"></a>利用DOM本身存在的缺陷进行攻击</h6><p>举个🌰:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;//正常写代码</span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;绑定正确的路径&#x27;</span> /&gt;</span></span><br><span class="line">&gt;//xss攻击  --&gt;将其绑定的src弄成错误的,这样就会走到 innerror中的代码</span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&#x27;/错误的代码&#x27;</span> <span class="attr">onerror</span>=<span class="string">&#x27;恶意代码块&#x27;</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="①-攻击步骤"><a href="#①-攻击步骤" class="headerlink" title="① 攻击步骤"></a>① 攻击步骤</h4><blockquote>
+<ul>
+<li>攻击者构造出特殊的URL,其中包含恶意代码</li>
+<li>用户打开带有恶意代码的URL</li>
+<li>用户浏览器接收到响应后解析执行,前端JS取出URL中的恶意代码并执行</li>
+<li>恶意代码且与用户数据并发送到攻击者的网站,或者冒充用户行为,调用目标网站接口执行攻击者指定的操作</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-反射型xss-非持久性"><a href="#Ⅱ-反射型xss-非持久性" class="headerlink" title="Ⅱ -  反射型xss (非持久性)"></a>Ⅱ -  反射型xss (非持久性)</h3><blockquote>
+<ul>
+<li><strong>反射型xss也被称为<code>非持久性XSS</code></strong>, 是现在最容易出现的一种XSS漏洞</li>
+<li>XSS代码出现在URL中,通过引诱用户点击一个链接到目标网站的恶意链接来实施攻击(是不是很熟悉)</li>
+</ul>
+<p>举个栗子</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//其中 `xxx` 代表恶意代码</span></span><br><span class="line">&gt;<span class="attr">https</span>:<span class="comment">//gitee.com/hongjilin?data=xxx</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>xxx</code>是恶意代码,传到服务器的参数data被服务器接收之后</li>
+<li>响应的页面包含data这个变量的,会将恶意代码注入到页面上,进行攻击</li>
+</ul>
+</blockquote>
+<h4 id="①-攻击步骤-1"><a href="#①-攻击步骤-1" class="headerlink" title="① 攻击步骤"></a>① 攻击步骤</h4><blockquote>
+<ul>
+<li>攻击者构造出特殊的URL,其中包含恶意代码</li>
+<li>用户打开带有恶意代码的URL时,网站服务端将恶意代码从URL中取出,拼接在HTML中返回给浏览器</li>
+<li>用户浏览器接收到响应后解析执行,同时混在其中的恶意代码也会被执行</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站,或者冒充用户的行为,调用目标网站接口执行攻击者指定的操作</li>
+</ul>
+</blockquote>
+<h4 id="②-特点"><a href="#②-特点" class="headerlink" title="② 特点"></a>② 特点</h4><blockquote>
+<ul>
+<li>反射型XSS漏洞常见于通过URL传递参数的功能,如网站搜索、跳转等</li>
+<li>由于需要用户主动打开恶意URL才能生效(像是你发了一段恶意链接给人,通常都不会自动运行的,只有你手动点击触发),攻击者往往会结合多种手段诱导用户点击(只要你触发了就会跳转或者运行恶意代码)</li>
+<li>POST的内容也可以触发反射型XSS,只不过其触发条件比较苛刻(需要构造表单提交页面,并引导用户点击),所以非常少见</li>
+</ul>
+</blockquote>
+<h3 id="Ⅲ-存储型xss-持久性"><a href="#Ⅲ-存储型xss-持久性" class="headerlink" title="Ⅲ - 存储型xss  (持久性)"></a>Ⅲ - 存储型xss  (持久性)</h3><h4 id="①-特点"><a href="#①-特点" class="headerlink" title="① 特点"></a>① 特点</h4><blockquote>
+<ul>
+<li>**存储型XSS又被称为 <code>持久性XSS</code> **, 它是最为危险的一种跨站脚本</li>
+<li>相比 <strong>反射型XSS</strong> 和 <strong>DOM型</strong> :  它具有更高的隐蔽性,所以危害更大,<strong>它不需要用户手动触发</strong></li>
+<li>当攻击者提交一段XSS代码后被服务端接收并存储,当所有浏览者访问某个页面时都会被XSS</li>
+<li>其中最典型的栗子就是 <strong>留言板</strong></li>
+</ul>
+</blockquote>
+<h4 id="②-攻击步骤"><a href="#②-攻击步骤" class="headerlink" title="② 攻击步骤"></a>② 攻击步骤</h4><blockquote>
+<ul>
+<li>攻击者将恶意代码提交到目标网站的数据库中</li>
+<li>用户打开目标网站时,网站服务器将恶意代码从数据库取出: 拼接在HTML中返回给浏览器</li>
+<li>用户浏览器接收到响应后解析执行,混在其中的恶意代码也被执行</li>
+<li>恶意代码窃取用户数据并发送到攻击者的网站,或者冒充用户的行为,调用目标网站接口执行攻击者指定的操作</li>
+</ul>
+<p>这种攻击常见于带有用户保存数据的网站功能: 如 <strong>论坛发帖</strong>、<strong>商品评论</strong>、<strong>用户私信</strong>等</p>
+</blockquote>
+<h3 id="Ⅳ-反射型与存储型XSS的区别"><a href="#Ⅳ-反射型与存储型XSS的区别" class="headerlink" title="Ⅳ - 反射型与存储型XSS的区别"></a>Ⅳ - 反射型与存储型XSS的区别</h3><blockquote>
+<ul>
+<li>反射型XSS(非持久性)的恶意代码存储在URL中</li>
+<li>存储型XSS(持久性)的恶意代码存储在数据库中</li>
+</ul>
+</blockquote>
+<h3 id="Ⅴ-DOM型跟其他两种XSS的区别"><a href="#Ⅴ-DOM型跟其他两种XSS的区别" class="headerlink" title="Ⅴ - DOM型跟其他两种XSS的区别"></a>Ⅴ - DOM型跟其他两种XSS的区别</h3><blockquote>
+<p>DOM型XSS攻击中</p>
+<ul>
+<li>取出和执行恶意代码由浏览器端完成,属于前端JavaScript本身的安全漏洞;</li>
+<li>其他两种都属于服务端的安全漏洞</li>
+</ul>
+</blockquote>
+<h3 id="Ⅵ-解决方案"><a href="#Ⅵ-解决方案" class="headerlink" title="Ⅵ - 解决方案"></a>Ⅵ - 解决方案</h3><h4 id="①-httpOnly"><a href="#①-httpOnly" class="headerlink" title="①  httpOnly"></a>①  httpOnly</h4><blockquote>
+<p>在cookie中设置<strong>HttpOnly</strong>属性, 使得JS脚本无法读取到cookie信息</p>
+</blockquote>
+<h4 id="②-输入过滤"><a href="#②-输入过滤" class="headerlink" title="② 输入过滤"></a>② 输入过滤</h4><blockquote>
+<p>对用户的输入进行过滤,通过将 <code>&lt;&gt;</code>、<code>&#39;&#39;</code>、<code>&quot;&quot;</code>等字符进行转义,移除用户输入的Style节点、Script节点、iframe节点</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">const</span> <span class="title function_">filterXSS</span>(<span class="params">str</span>)&#123;</span><br><span class="line">   <span class="keyword">let</span> s= <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">   <span class="keyword">if</span>(str.<span class="property">length</span> == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">   s = str.<span class="title function_">replace</span>(<span class="regexp">/&amp;/g</span>,<span class="string">&quot;&amp;amp;&quot;</span>);</span><br><span class="line">   s = s.<span class="title function_">replace</span>(<span class="regexp">/&lt;/g</span>,<span class="string">&quot;&amp;lt;&quot;</span>);</span><br><span class="line">   s = s.<span class="title function_">replace</span>(<span class="regexp">/&gt;/g</span>,<span class="string">&quot;&amp;gt;&quot;</span>);</span><br><span class="line">   s = s.<span class="title function_">replace</span>(<span class="regexp">/ /g</span>,<span class="string">&quot;&amp;nbsp;&quot;</span>);</span><br><span class="line">   s = s.<span class="title function_">replace</span>(<span class="regexp">/\&#x27;/g</span>,<span class="string">&quot;&amp;#39;&quot;</span>);</span><br><span class="line">   s = s.<span class="title function_">replace</span>(<span class="regexp">/\&quot;/g</span>,<span class="string">&quot;&amp;quot;&quot;</span>);</span><br><span class="line">   <span class="keyword">return</span> s; </span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="③-转义HTML"><a href="#③-转义HTML" class="headerlink" title="③ 转义HTML"></a>③ 转义HTML</h4><blockquote>
+<ul>
+<li>根据输出数据所在的上下文来进行相应的编码</li>
+<li>数据放置于HTML元素中,需进行 <strong>HTML编码</strong></li>
+<li>放置于 URL 中,需要进行 <strong>URL编码</strong></li>
+<li>还有 <strong>JavaScript编码</strong>、<strong>CSS编码</strong>、<strong>HTML编码</strong>、<strong>JSON编码</strong>等</li>
+</ul>
+</blockquote>
+<h4 id="④-预防-存储型、反射型XSS攻击"><a href="#④-预防-存储型、反射型XSS攻击" class="headerlink" title="④  预防 存储型、反射型XSS攻击"></a>④  预防 存储型、反射型XSS攻击</h4><blockquote>
+<blockquote>
+<h6 id="此方法主要预防-存储型和反射型XSS攻击"><a href="#此方法主要预防-存储型和反射型XSS攻击" class="headerlink" title="此方法主要预防 存储型和反射型XSS攻击"></a>此方法主要预防 存储型和反射型XSS攻击</h6></blockquote>
+<p><strong>纯前端渲染过程</strong></p>
+<ul>
+<li>浏览器先加载一个静态HTML,此HTML中不包含任何跟业务相关的数据</li>
+<li>然后浏览器执行HTML中的JavaScript</li>
+<li>JavaScript 通过 Ajax 加载业务数据,调用 <code>DOM API</code> 更新到页面上</li>
+</ul>
+<p><strong>在纯前端渲染中,我们会明确告诉浏览器:下面要设置的内容是文本（<code>.innerText</code>），还是属性（<code>.setAttribute</code>），还是样式（<code>.style</code>）等等。浏览器不会被轻易的被欺骗，执行预期外的代码了</strong></p>
+<ul>
+<li>但纯前端渲染就需要注意避免DOM型的XSS漏洞</li>
+<li>在很多内部、管理系统中,采用纯前端渲染是非常适合的,但对于性能要求高; </li>
+<li>或有SEO需求的页面,我们仍要面对拼接HTML的问题</li>
+</ul>
+</blockquote>
+<h4 id="⑤-预防DOM型XSS攻击"><a href="#⑤-预防DOM型XSS攻击" class="headerlink" title="⑤ 预防DOM型XSS攻击"></a>⑤ 预防DOM型XSS攻击</h4><blockquote>
+<p>DOM型XSS攻击,实际上就是网站前端JavaScript本身不够严谨,把不可信的数据当代码执行了</p>
+<ul>
+<li>在在使用 <code>.innerHTML</code>、<code>.outerHTML</code>、<code>document.write()</code> 时要特别小心，不要把不可信的数据作为 HTML 插到页面上，而应尽量使用 <code>.textContent</code>、<code>.setAttribute()</code> 等。</li>
+<li>如果用 Vue&#x2F;React 技术栈，并且不使用 <code>v-html</code>&#x2F;<code>dangerouslySetInnerHTML</code> 功能，就在前端 render 阶段避免 <code>innerHTML</code>、<code>outerHTML</code> 的 XSS 隐患。</li>
+<li>DOM 中的内联事件监听器，如 <code>location</code>、<code>onclick</code>、<code>onerror</code>、<code>onload</code>、<code>onmouseover</code> 等，<code>&lt;a&gt;</code> 标签的 <code>href</code> 属性，JavaScript 的 <code>eval()</code>、<code>setTimeout()</code>、<code>setInterval()</code> 等，都能把字符串作为代码运行。如果不可信的数据拼接到字符串中传递给这些 API，很容易产生安全隐患，请务必避免。</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">&lt;!-- 内联事件监听器中包含恶意代码 --&gt;</span></span><br><span class="line">&gt;![](https://awps-assets.meituan.net/mit-x/blog-images-bundle-2018b/3e724ce0.data:image/png,)</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">&lt;!-- 链接内包含恶意代码 --&gt;</span></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;UNTRUSTED&quot;</span>&gt;</span>1<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="comment">// setTimeout()/setInterval() 中调用恶意代码</span></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="built_in">setTimeout</span>(<span class="string">&quot;UNTRUSTED&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">&gt;<span class="built_in">setInterval</span>(<span class="string">&quot;UNTRUSTED&quot;</span>)</span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="comment">// location 调用恶意代码</span></span></span><br><span class="line"><span class="language-javascript">&gt;location.<span class="property">href</span> = <span class="string">&#x27;UNTRUSTED&#x27;</span></span></span><br><span class="line"><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="comment">// eval() 中调用恶意代码</span></span></span><br><span class="line"><span class="language-javascript">&gt;<span class="built_in">eval</span>(<span class="string">&quot;UNTRUSTED&quot;</span>)</span></span><br><span class="line"><span class="language-javascript">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅶ-通过一些原则减少漏洞产生"><a href="#Ⅶ-通过一些原则减少漏洞产生" class="headerlink" title="Ⅶ -  通过一些原则减少漏洞产生"></a>Ⅶ -  通过一些原则减少漏洞产生</h3><blockquote>
+<ul>
+<li><strong>利用模板引擎</strong>:开启模板引起自带的HTML转义功能</li>
+<li><strong>避免内联事件</strong>: 尽量不要使用 <code>onLoad=&quot;onload(&#39;&#123;&#123;data&#125;&#125;&#39;)&quot;</code>、<code>onClick=&quot;go(&#39;&#123;&#123;action&#125;&#125;&#39;)&quot;</code> 这种拼接内联事件的写法。在 JavaScript 中通过 <code>.addEventlistener()</code> 事件绑定会更安全。</li>
+<li><strong>避免拼接HTML</strong>: 前端采用拼接HTML的方法比较危险,如果框架允许，使用 <code>createElement</code>、<code>setAttribute</code> 之类的方法实现。或者采用比较成熟的渲染框架，如 Vue&#x2F;React 等。</li>
+<li><strong>时刻保持警惕</strong>: 插入位置为 DOM 属性、链接等位置时，要打起精神，严加防范。</li>
+<li><strong>增加攻击难度，降低攻击后果</strong> 通过 CSP、输入长度配置、接口安全措施等方法，增加攻击的难度，降低攻击的后果。</li>
+<li><strong>主动检测和发现</strong> 可使用 XSS 攻击字符串和自动扫描工具寻找潜在的 XSS 漏洞。</li>
+</ul>
+</blockquote>
+<hr>
+<h2 id="三、CSRF-跨站请求伪造"><a href="#三、CSRF-跨站请求伪造" class="headerlink" title="三、CSRF (跨站请求伪造)"></a>三、CSRF (跨站请求伪造)</h2><blockquote>
+<ol>
+<li><strong>CSRF全称 ( Cross-Site Request Forgeries )跨站请求伪造</strong>,跟XSS攻击一样,存在巨大的危险性</li>
+</ol>
+<ul>
+<li>攻击者盗用了你的身份,以你的名义发送恶意请求</li>
+<li>对于服务器来说这个请求完全是合法的,但是时却完成攻击者所期望的一个动作: 以你的名义发送邮件、发消息、添加系统管理员、甚至于转账、购买商品等</li>
+</ul>
+</blockquote>
+<h3 id="Ⅰ-原理图"><a href="#Ⅰ-原理图" class="headerlink" title="Ⅰ- 原理图"></a>Ⅰ- 原理图</h3><blockquote>
+<p><img src="/study73/README%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102181652040.png" alt="image-20211102181652040"></p>
+<p>上图中<strong>网站A</strong>就是存在CSRF漏洞的网站,<strong>网站B</strong>为攻击者构建的恶意网站;<strong>User</strong>为网站A的合法用户</p>
+<ul>
+<li><strong>用户user</strong>打开浏览器,访问受信任网站A,输入用户名和密码请求登录网站A</li>
+<li>在用户信息通过验证后,<strong>网站A</strong>产生Cookie信息并返回给浏览器,此时用户登录<strong>网站A</strong>成功,可以正常发送请求到网站A</li>
+<li>用户未退出网站A之前,在同一浏览器中打开一个<strong>tab页</strong>访问网站B</li>
+<li><strong>网站B</strong>接收到用户请求后,返回一些攻击性代码,并发出一个请求要求访问第三方站点A</li>
+<li>浏览器在接收到这些攻击性代码后,根据网站B的请求,在用户不知情的情况下携带Cookie信息,向网站A发出请求,网站A并不知道该请求其实是由B发起的,所以会<strong>根据用户带的Cookie信息</strong>以他的权限处理该请求,导致来自网站的恶意代码被执行</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-CSRF与XSS的区别"><a href="#Ⅱ-CSRF与XSS的区别" class="headerlink" title="Ⅱ - CSRF与XSS的区别"></a>Ⅱ - CSRF与XSS的区别</h3><blockquote>
+<h6 id="CSRF尽管听起来很像跨站脚本-XSS-但它与XSS非常不同"><a href="#CSRF尽管听起来很像跨站脚本-XSS-但它与XSS非常不同" class="headerlink" title="CSRF尽管听起来很像跨站脚本(XSS),但它与XSS非常不同"></a>CSRF尽管听起来很像跨站脚本(XSS),但它与XSS非常不同</h6><ul>
+<li>XSS利用站点内的信任用户; 而 CSRF 则通过伪装成受信任用户的请求来利用受信任的网站</li>
+<li>与XSS攻击相比,CSRF攻击往往不大流行(因此对其进行防范的资源也相当稀少)和难以防范,所以被认为比XSS更具危险性</li>
+</ul>
+</blockquote>
+<h3 id="Ⅲ-举个CSRF攻击🌰"><a href="#Ⅲ-举个CSRF攻击🌰" class="headerlink" title="Ⅲ - 举个CSRF攻击🌰"></a>Ⅲ - 举个CSRF攻击🌰</h3><blockquote>
+<ol>
+<li><strong>前置条件解释</strong></li>
+</ol>
+<ul>
+<li>受害者 <strong>努力学习的汪</strong> 在某银行有一笔存款</li>
+<li>而他如果在该银行的网站转账,发起的请求接口为: <code>http://yinhang.example/withdraw/account=努力学习的汪&amp;money=10000&amp;for=某人</code>   –&gt; 意思为 努力学习的汪转账10000给某人账号下</li>
+<li>通常情况下: 该请求发送到网站后,服务器会先验证该请求是否来自一个合法的 <strong>session</strong> ,并且确认该<strong>session 用户</strong>已经登录成功,才会真正完成转账</li>
+</ul>
+<ol start="2">
+<li><strong>没用CSRF攻击,尝试直接修改请求参数</strong></li>
+</ol>
+<ul>
+<li>黑客 <strong>hong</strong> 自己在该银行也有账号,并且知道上文中的 <strong>URL</strong> 可以把钱进行转账操作. </li>
+<li>所以他尝试自己发一个请求给服务器 :  <code>http://yinhang.example/withdraw/account=努力学习的汪&amp;money=10000&amp;for=hong</code></li>
+<li>但实际上这个请求来自于 <strong>hong</strong> 而不是 <strong>努力学习的汪</strong> . 所以根本不能通过验证</li>
+</ul>
+<ol start="3">
+<li><strong>使用CSRF攻击</strong></li>
+</ol>
+<ul>
+<li>痛定思痛,黑客hong 突然想到了<strong>CSRF攻击</strong>的方式,于是他写了一个网站来随机挑选幸运儿</li>
+<li>他在自己网站上放入以下代码: <code>http://yinhang.example/withdraw/account=[用户信息占位符]&amp;money=10000&amp;for=hong</code>;然后通过某些广告勾引某些人来访问这个网站</li>
+<li>这样当某幸运儿登录该网站时,这个请求就会携带 这个幸运儿 的浏览器中的cookie、从他的浏览器向银行发起请求;这里暂时将这个幸运儿定为 <strong>努力学习的汪</strong></li>
+<li><strong>大多数情况下,这个请求会失败</strong>: 因为他要求 努力学习的汪 的认证信息</li>
+<li>但如果 努力学习的汪 恰巧刚访问它的银行不久,这时候他浏览器与银行网站之间的 <strong>session</strong> 并未过期,浏览器的<strong>cookie</strong>中还含有他的认证信息,那么,他就悲剧了!!!</li>
+<li>这个URL如果得到正确的认证信息,那么就会得到响应,钱将从 努力学习的汪 的账号转移到 hong 的账号;并且他当时是完全不知情的</li>
+<li>即便他后来发现去银行查询日志,也只能发现确实有一个来自于他的合法请求转移了资金,没用任何被攻击的痕迹,而hong拿着钱逍遥法外</li>
+</ul>
+</blockquote>
+<h3 id="Ⅳ-CSRF漏洞检测"><a href="#Ⅳ-CSRF漏洞检测" class="headerlink" title="Ⅳ  -  CSRF漏洞检测"></a>Ⅳ  -  CSRF漏洞检测</h3><blockquote>
+<ol>
+<li>检测CSRF漏洞是一项比较繁琐的工作,最简单的方法就是抓取一个正常请求的数据包,去掉Referer字段后再重新提交,如果该提交还有效,那么基本上可以确定存在CSRF漏洞</li>
+<li>随着对CSRF漏洞研究的不断深入,不断涌现出一些专门针对CSRF漏洞进行检测的工具:<code>CSRFTester</code>、<code>CSRF Request Builder</code>等</li>
+<li>以<code>CSRFTester</code>为例:</li>
+</ol>
+<ul>
+<li>首先需要抓取我们在浏览器中访问过的所有链接以及所有的表单等信息</li>
+<li>然后通过在<code>CSRFTester</code>中修改相应的表单等信息重新提交,这相当于一次伪造客户端请求</li>
+<li>如果修改后的测试请求被网站服务器接收,则说明存在CSRF漏洞,当然此款工具也可以被用来进行CSRF攻击</li>
+</ul>
+</blockquote>
+<h3 id="Ⅴ-防御CSRF攻击"><a href="#Ⅴ-防御CSRF攻击" class="headerlink" title="Ⅴ - 防御CSRF攻击"></a>Ⅴ - 防御CSRF攻击</h3><blockquote>
+<p>目前防御CSRF攻击主要有三种策略: </p>
+<ul>
+<li>验证<code>HTTP Referer</code>字段;</li>
+<li>在请求地址中添加token并验证</li>
+<li>在<code>HTTP头</code>中自定义属性并验证</li>
+</ul>
+<p>但鉴于种种原因,这三种方法都不是那么完美,各有利弊</p>
+</blockquote>
+<h4 id="①-验证HTTP-Referer字段"><a href="#①-验证HTTP-Referer字段" class="headerlink" title="① 验证HTTP Referer字段"></a>① 验证<code>HTTP Referer</code>字段</h4><blockquote>
+<p>根据HTTP协议,在HTTP头张有一个字段叫做<code>Referer</code>,它记录了该<code>HTTP</code>请求的来源地址</p>
+<ul>
+<li>通常情况下,访问一个安全受限页面的请求来自于同一个网站,如上述说的: <code>http://yinhang.example/withdraw/account=努力学习的汪&amp;money=10000&amp;for=hong</code>,用户必须先登录<code>http://yinhang.example</code>,然后通过点击页面上的按钮来触发转账事件</li>
+<li>这时,该转账请求的<code>Referer</code>值就会是转账按钮所在的页面的url,通常就是以<code>http://yinhang.example</code>开头的地址</li>
+<li>如果黑客要对某银行网站实施 <strong>CSRF</strong> 攻击,他就只能在自己的网站构造请求,当用户通过黑客的网站发送请求到银行是,该请求的<strong>Referer</strong> 是指向黑客自己的网站</li>
+<li><strong>所以如果要防御CSRF攻击</strong>: 银行网站只需要对每个转账请求验证其<strong>Referer</strong>值,如果是以<code>http://yinhang.example</code>开头的域名,则说明该请求时来自银行网站自己的请求,是合法的; 如果<strong>Referer</strong>是其他网站的话,就可能使黑客的CSRF攻击,拒绝该请求</li>
+</ul>
+</blockquote>
+<h5 id="a-优点"><a href="#a-优点" class="headerlink" title="a) 优点"></a>a) 优点</h5><blockquote>
+<p>这种方法简单易行,网站的普通开发人员不需要担心CSRF漏洞,只需要在最后给所有安全敏感的请求统一增加一个拦截器来检查<strong>Referer</strong>值就行.特别是对于当前现有的系统,不需要改变当前系统的任何已有代码和逻辑,没有风险,非常便捷</p>
+</blockquote>
+<h5 id="b-缺点"><a href="#b-缺点" class="headerlink" title="b)缺点"></a>b)缺点</h5><blockquote>
+<p>这种方法并非万无一失的,<strong>Referer</strong>的值由浏览器提供的,虽然HTTP协议上有明确的要求,但是每个浏览器对于Referer的具体实现可能有区别,并不能保证浏览器本身没有安全漏洞</p>
+<ul>
+<li>使用验证<strong>Referer</strong>值的方法,就是把安全性都依赖给第三方(<strong>即浏览器</strong>)来保障,理论上讲这并不安全</li>
+<li>事实上,对于某些浏览器,如<strong>IE6</strong>或者<strong>FF2</strong>,目前已经有一些方法可以篡改<strong>Referer</strong>值,如果该银行网站支持<strong>IE6</strong>浏览器,黑客完全可以修改使用<strong>IE6</strong>的用户的<strong>Referer</strong>值,从而通过验证,从而进行CSRF攻击</li>
+</ul>
+<p>而且,即便是使用最新的浏览器,黑客无法篡改<strong>Referer</strong>值,这种方法仍有问题.</p>
+<ul>
+<li>因为<strong>Referer</strong>值会记录下用户的访问来源,有些用户认为这样会侵犯到他们自己的隐私权</li>
+<li>特别使有些组织担心<strong>Referer</strong> 会组织内网中的某些信息泄露到外网中,因此用户可以设置浏览器在其发送请求时不再提供<strong>Referer</strong></li>
+<li>当关闭Referer的用户正常给访问银行网站时,网站会因为请求没有Referer值而认为是<strong>CSRF</strong>攻击,拒接该合法用户的访问</li>
+</ul>
+</blockquote>
+<h4 id="②-在请求地址中添加-token-并验证"><a href="#②-在请求地址中添加-token-并验证" class="headerlink" title="② 在请求地址中添加 token 并验证"></a>② 在请求地址中添加 token 并验证</h4><blockquote>
+<p>CSRF攻击之所以能够成功,是因为黑客可以完全伪造用户的请求,该请求中所有用户验证信息都在cookie中,因此黑客可以在不知道这些验证信息的情况下利用用户自己的<strong>cookie</strong>来通过安全验证</p>
+<ul>
+<li><strong>要抵御CSRF,关键在于在请求中放入黑客所不能伪造的信息,并且该信息不能存在于cookie中</strong></li>
+<li>可以在HTTP请求中以参数的形式加入一个随机产生的token,并在服务端建立一个拦截器来验证这个token,如果请求中没有token或者token内容不正确,则认为可能是CSRF攻击而拒绝该请求</li>
+</ul>
+</blockquote>
+<h5 id="a-优点-1"><a href="#a-优点-1" class="headerlink" title="a) 优点"></a>a) 优点</h5><blockquote>
+<p>这种方法要比Referer要安全一点,token可以在用户登录后产生并放在<strong>session</strong>中,然后在每次请求时把token从session中取出,与请求中的token进行对比</p>
+</blockquote>
+<h5 id="b-缺点-1"><a href="#b-缺点-1" class="headerlink" title="b) 缺点"></a>b) 缺点</h5><blockquote>
+<p>这个方法的难点在于如何把token以参数的形式加入请求:</p>
+<ul>
+<li>对于GET请求,token将附在请求地址之后,这样URL就变成<code>http://url?csrftoken=tokenValue</code>;</li>
+<li>而对于Post请求来说,要在form的最后加上<code>&lt;input type=&#39;hidden&#39; name=&#39;csrftoken&#39; value=&#39;tokenValue&#39;/&gt;</code>,这样就能把token以参数的形式加入请求了</li>
+<li>但是在一个网站中可以接收请求的地方非常多,要对每个请求都加上token是非常麻烦的,而且容易遗漏</li>
+<li>通常使用的方法是在每次页面加载时,使用<strong>JavaScript</strong>遍历整个dom树,对于dom中所有的a和form标签后加入token;这样可以解决大部分请求,但是对于页面加载后动态生成的html代码就没有作用,需要程序员在编码时手动添加token</li>
+</ul>
+<p>该方法还有一个明显的缺点是<strong>难以保证token本身的安全</strong>,例如在论坛网站上</p>
+<ul>
+<li>特别是在一些论坛之类支持用户自己发表内容的网站,黑客可以在上面发布自己个人网站的地址</li>
+<li>由于系统也会在这个地址后面加上token,那么黑客就可以在自己网站上得到这个token,并马上可以发动CSRF攻击;</li>
+<li>为了避免这一点,系统可以在添加Token的时候增加一个判断: <strong>如果这个连接是连到自己本站的,可以加token,如果不是则不加</strong></li>
+<li>但即便是这个 **csrftoken ** 不以参数的形式附加在请求之中,黑客的网站也同样可以通过Referer来得到这个token值来发起CSRF攻击,这也是一些用户喜欢手动关闭浏览器Referer功能的原因</li>
+</ul>
+</blockquote>
+<h4 id="③-在HTTP头中自定义属性并验证"><a href="#③-在HTTP头中自定义属性并验证" class="headerlink" title="③ 在HTTP头中自定义属性并验证"></a>③ 在HTTP头中自定义属性并验证</h4><blockquote>
+<p>这种方法也是用token进行验证的,和商议中方法不同的是: </p>
+<ul>
+<li>这里并不是把token以参数的形式置与HTTP请求中,而是把它放到HTTP头中自定义的属性中</li>
+<li>通过<code>XMLHttpRequest</code>这个类,可以一次性给所有该类请求加上 **csrftoken **这个HTTP头属性,并把token放入其中</li>
+<li>这样解决了上一个方法中添加token不便的问题</li>
+<li>同时通过<code>XMLHttpRequest</code>请求的地址不会被记录到浏览器的地址栏,也不用担心token会透过Rerfer泄漏到其他网站中去</li>
+</ul>
+</blockquote>
+<h5 id="a-局限性"><a href="#a-局限性" class="headerlink" title="a) 局限性"></a>a) 局限性</h5><blockquote>
+<ul>
+<li><code>XMLHttpRequest</code>请求通常用于Ajax方法中对于页面局部的异步刷新,并非所有的请求都适合用这个类来发起</li>
+<li>且通过这个类请求到的页面不能被浏览器记录下来,从而进行前进、后退、刷新、收藏等操作,给用户带来不便</li>
+<li>另外,对于没有进行CSRF防护的遗留系统来说,要采用这种方式来进行防护,所有请求都要改<code>XMLHttpRequest</code>,这样基本是重写整个网站,这代码无疑是无法接收的</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AF%E5%AE%89%E5%85%A8%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="安全编码" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/前端安全学习笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95%E7%AC%94%E8%AE%B0/" title="AntDesign使用笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AF%E6%89%93%E5%8C%85%E9%83%A8%E7%BD%B2%E8%87%B3%E6%9C%AC%E5%9C%B0%E6%A8%A1%E6%8B%9F%E5%8F%91%E5%B8%83/" title="打包部署"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>webpack高阶学习笔记 | Hexo</title>
+  <meta name="description" content="Webpack高级进阶学习笔记(暂停更新) 这部分笔记是观看尚硅谷webpack5高级进阶进行记录 本人目前还是学生,并无很多项目构建经验,所以此部分目前为初步了解学习阶段,待之后有项目经验后会再回来补足笔记 应是webpack基础学习的进阶,分析react与vue脚手架中wenpack的配置 本笔记更新至自定义webpack部分，暂停，待项目经验积累后在进行学习 除此笔记外大家可以看我其他笔记">
+<meta property="og:type" content="article">
+<meta property="og:title" content="webpack高阶学习笔记">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Webpack-%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="Webpack高级进阶学习笔记(暂停更新) 这部分笔记是观看尚硅谷webpack5高级进阶进行记录 本人目前还是学生,并无很多项目构建经验,所以此部分目前为初步了解学习阶段,待之后有项目经验后会再回来补足笔记 应是webpack基础学习的进阶,分析react与vue脚手架中wenpack的配置 本笔记更新至自定义webpack部分，暂停，待项目经验积累后在进行学习 除此笔记外大家可以看我其他笔记">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:58:33.849Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="webpack">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Webpack-%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Webpack-高级进阶学习笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      webpack高阶学习笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Webpack-%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/webpack/" rel="tag">webpack</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Webpack-%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="Webpack高级进阶学习笔记-暂停更新"><a href="#Webpack高级进阶学习笔记-暂停更新" class="headerlink" title="Webpack高级进阶学习笔记(暂停更新)"></a>Webpack高级进阶学习笔记(<code>暂停更新</code>)</h1><blockquote>
+<p>这部分笔记是观看<code>尚硅谷webpack5高级进阶</code>进行记录</p>
+<p>本人目前还是学生,并无很多项目构建经验,所以此部分目前为初步了解学习阶段,待之后有项目经验后会再回来补足笔记</p>
+<p>应是webpack基础学习的进阶,分析react与vue脚手架中wenpack的配置</p>
+<p>本笔记更新至<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Webpack%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><code>自定义webpack部分</code></a>，暂停，待项目经验积累后在进行学习</p>
+<p>除此笔记外大家可以看我其他笔记 :<strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master">全栈笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95">数据结构与算法</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_前端开发学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_后台服务端学习笔记</a></strong> 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Java">Java</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%90%8E%E5%8F%B0%E6%9C%8D%E5%8A%A1%E7%AB%AF%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Nodejs">Nodejs</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/HTML+CSS+JS%E5%9F%BA%E7%A1%80%E7%AC%94%E8%AE%B0/JavaScript%E7%AC%94%E8%AE%B0">JavaScript笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6及后续版本学习笔记</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Vue%E7%AC%94%E8%AE%B0%E6%95%B4%E5%90%88">Vue笔记整合</a>** 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0">React笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">微信小程序学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Chrome开发使用及学习笔记</a>** 以及许多其他笔记就不一一例举了</p>
+</blockquote>
+<h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
+<p>[TOC]</p>
+</blockquote>
+<h1 id="一、React中的配置分析"><a href="#一、React中的配置分析" class="headerlink" title="一、React中的配置分析"></a>一、React中的配置分析</h1><blockquote>
+<p>1、使用<code>creact-react-app</code>命令创建react项目</p>
+<p>2、运行指令<code>npm run eject</code>:为了更好的<code>学习与观察</code>webpack在react中的配置,运行该命令</p>
+<p>​	该命令会将react脚手架中隐藏的webpack配置暴露出来,而且<code>是不可逆</code>的,并使项目根目录多出两个文件目录:<code>config</code>和<code>scripts</code>,同时<code>package.json</code>的启动命令发生改变</p>
+</blockquote>
+<h3 id="Ⅰ-paths-js文件分析"><a href="#Ⅰ-paths-js文件分析" class="headerlink" title="Ⅰ-paths.js文件分析"></a>Ⅰ-paths.js文件分析</h3><blockquote>
+<p>1、<code>appDirectory</code>:项目根目录</p>
+<p>2、<code>resolveApp</code>:生成绝对路径的方法</p>
+<p>3、<code>publicUrlOrPath</code>:所有资源的公共访问路径 –&gt;参数为<code>/</code> 对应自己当前这个服务器的地址</p>
+<p>4、<code>moduleFileExtensions</code>:定义文件拓展名,在这里定义的拓展名会被react解析到</p>
+<p>5、<code>resolveModule</code>:拿到上面的文件拓展名,检查文件路径是否匹配,存在则解析</p>
+<p>部分代码与注释</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> getPublicUrlOrPath = <span class="built_in">require</span>(<span class="string">&#x27;react-dev-utils/getPublicUrlOrPath&#x27;</span>);</span><br><span class="line"><span class="comment">//项目根目录</span></span><br><span class="line"><span class="keyword">const</span> appDirectory = fs.<span class="title function_">realpathSync</span>(process.<span class="title function_">cwd</span>());</span><br><span class="line"><span class="comment">//生成绝对路径的方法</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">resolveApp</span> = relativePath =&gt; path.<span class="title function_">resolve</span>(appDirectory, relativePath);</span><br><span class="line"><span class="comment">// 所有资源的公共访问路径: / --&gt;`/`对应自己当前这个服务器的地址</span></span><br><span class="line"><span class="keyword">const</span> publicUrlOrPath = <span class="title function_">getPublicUrlOrPath</span>(</span><br><span class="line">  process.<span class="property">env</span>.<span class="property">NODE_ENV</span> === <span class="string">&#x27;development&#x27;</span>,</span><br><span class="line">   <span class="comment">//当你需要修改路径的时候去`package.json`进行修改,通常是不需要的</span></span><br><span class="line">  <span class="built_in">require</span>(<span class="title function_">resolveApp</span>(<span class="string">&#x27;package.json&#x27;</span>)).<span class="property">homepage</span>,</span><br><span class="line">  process.<span class="property">env</span>.<span class="property">PUBLIC_URL</span></span><br><span class="line">);</span><br><span class="line"><span class="keyword">const</span> buildPath = process.<span class="property">env</span>.<span class="property">BUILD_PATH</span> || <span class="string">&#x27;build&#x27;</span>;</span><br><span class="line"><span class="comment">//定义文件拓展名,在这里定义的拓展名会被react解析到</span></span><br><span class="line"><span class="keyword">const</span> moduleFileExtensions = [</span><br><span class="line">  <span class="string">&#x27;web.mjs&#x27;</span>, <span class="string">&#x27;mjs&#x27;</span>, <span class="string">&#x27;web.js&#x27;</span>,<span class="string">&#x27;js&#x27;</span>, <span class="string">&#x27;web.ts&#x27;</span>,<span class="string">&#x27;ts&#x27;</span>,<span class="string">&#x27;web.tsx&#x27;</span>,<span class="string">&#x27;tsx&#x27;</span>,<span class="string">&#x27;json&#x27;</span>,<span class="string">&#x27;web.jsx&#x27;</span>,<span class="string">&#x27;jsx&#x27;</span>,</span><br><span class="line">];</span><br><span class="line"><span class="comment">// 解析模块的方法:</span></span><br><span class="line"><span class="comment">//拿到上面的文件拓展名,检查文件路径是否匹配,存在则解析</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">resolveModule</span> = (<span class="params">resolveFn, filePath</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">const</span> extension = moduleFileExtensions.<span class="title function_">find</span>(<span class="function"><span class="params">extension</span> =&gt;</span></span><br><span class="line">    fs.<span class="title function_">existsSync</span>(<span class="title function_">resolveFn</span>(<span class="string">`<span class="subst">$&#123;filePath&#125;</span>.<span class="subst">$&#123;extension&#125;</span>`</span>))</span><br><span class="line">  );</span><br><span class="line">  <span class="keyword">if</span> (extension) &#123;<span class="keyword">return</span> <span class="title function_">resolveFn</span>(<span class="string">`<span class="subst">$&#123;filePath&#125;</span>.<span class="subst">$&#123;extension&#125;</span>`</span>); &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="title function_">resolveFn</span>(<span class="string">`<span class="subst">$&#123;filePath&#125;</span>.js`</span>);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 暴露出去的路径</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">dotenv</span>: <span class="title function_">resolveApp</span>(<span class="string">&#x27;.env&#x27;</span>),</span><br><span class="line">  <span class="attr">appPath</span>: <span class="title function_">resolveApp</span>(<span class="string">&#x27;.&#x27;</span>),</span><br><span class="line">	...</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">//将拓展名加至暴露出去的对象上暴露出去</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">moduleFileExtensions</span> = moduleFileExtensions;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅱ-start-js分析"><a href="#Ⅱ-start-js分析" class="headerlink" title="Ⅱ-start.js分析"></a>Ⅱ-start.js分析</h3><blockquote>
+<p>用来运行<code>开发环境</code>配置</p>
+<p>1、<code>定义环境变量</code>: ① process.env.BABEL_ENV ② process.env.NODE_ENV</p>
+<p>2、<code>useYarn</code>:判断是否使用yarn</p>
+<p>3、<code>config = configFactory(&#39;development&#39;)</code>:引入webpack的开发环境配置</p>
+<p>4、<code>checkBrowsers</code>:检查当前使用的是什么浏览器</p>
+<p>部分代码与注释</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&#x27;use strict&#x27;</span>;</span><br><span class="line"><span class="comment">// 定义环境变量:开发环境</span></span><br><span class="line">process.<span class="property">env</span>.<span class="property">BABEL_ENV</span> = <span class="string">&#x27;development&#x27;</span>;</span><br><span class="line">process.<span class="property">env</span>.<span class="property">NODE_ENV</span> = <span class="string">&#x27;development&#x27;</span>;</span><br><span class="line"><span class="comment">// 捕获异常</span></span><br><span class="line">process.<span class="title function_">on</span>(<span class="string">&#x27;unhandledRejection&#x27;</span>, <span class="function"><span class="params">err</span> =&gt;</span> &#123; <span class="keyword">throw</span> err;&#125;);</span><br><span class="line"><span class="comment">// 加载.env的环境变量:</span></span><br><span class="line"><span class="built_in">require</span>(<span class="string">&#x27;../config/env&#x27;</span>);</span><br><span class="line"><span class="comment">//判断是否使用yarn</span></span><br><span class="line"><span class="keyword">const</span> useYarn = fs.<span class="title function_">existsSync</span>(paths.<span class="property">yarnLockFile</span>);</span><br><span class="line"><span class="comment">// 判断是否包含必要文件:publuc/index.html src/index.js 如果没有退出</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="title function_">checkRequiredFiles</span>([paths.<span class="property">appHtml</span>, paths.<span class="property">appIndexJs</span>])) &#123;process.<span class="title function_">exit</span>(<span class="number">1</span>);&#125;</span><br><span class="line"><span class="comment">// 定义默认端口号和域名</span></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DEFAULT_PORT</span> = <span class="built_in">parseInt</span>(process.<span class="property">env</span>.<span class="property">PORT</span>, <span class="number">10</span>) || <span class="number">3000</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">HOST</span> = process.<span class="property">env</span>.<span class="property">HOST</span> || <span class="string">&#x27;0.0.0.0&#x27;</span>;</span><br><span class="line"><span class="keyword">const</span> &#123; checkBrowsers &#125; = <span class="built_in">require</span>(<span class="string">&#x27;react-dev-utils/browsersHelper&#x27;</span>);</span><br><span class="line"><span class="comment">//检查当前使用的是什么浏览器</span></span><br><span class="line"><span class="title function_">checkBrowsers</span>(paths.<span class="property">appPath</span>, isInteractive)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// 检查端口号:检查当前端口号是否被占用,如果被占用自动加1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">choosePort</span>(<span class="variable constant_">HOST</span>, <span class="variable constant_">DEFAULT_PORT</span>);</span><br><span class="line">  &#125;)</span><br><span class="line">    <span class="comment">//webpack的开发环境配置</span></span><br><span class="line">    <span class="keyword">const</span> config = <span class="title function_">configFactory</span>(<span class="string">&#x27;development&#x27;</span>);</span><br><span class="line">    <span class="keyword">const</span> protocol = process.<span class="property">env</span>.<span class="property">HTTPS</span> === <span class="string">&#x27;true&#x27;</span> ? <span class="string">&#x27;https&#x27;</span> : <span class="string">&#x27;http&#x27;</span>;</span><br><span class="line">    <span class="keyword">const</span> appName = <span class="built_in">require</span>(paths.<span class="property">appPackageJson</span>).<span class="property">name</span>;</span><br><span class="line">	<span class="comment">//判断是否使用typeScript</span></span><br><span class="line">    <span class="keyword">const</span> useTypeScript = fs.<span class="title function_">existsSync</span>(paths.<span class="property">appTsConfig</span>);</span><br><span class="line">    <span class="keyword">const</span> tscCompileOnError = process.<span class="property">env</span>.<span class="property">TSC_COMPILE_ON_ERROR</span> === <span class="string">&#x27;true&#x27;</span>;</span><br><span class="line">    <span class="comment">// 创建编译器,将所有配置传进来</span></span><br><span class="line">    <span class="keyword">const</span> compiler = <span class="title function_">createCompiler</span>(&#123; appName,config, devSocket,urls,useYarn,useTypeScript,tscCompileOnError, webpack,&#125;);</span><br><span class="line">    <span class="comment">// 加载package.json中的prost配置</span></span><br><span class="line">    <span class="keyword">const</span> proxySetting = <span class="built_in">require</span>(paths.<span class="property">appPackageJson</span>).<span class="property">proxy</span>;</span><br><span class="line">    <span class="keyword">const</span> proxyConfig = <span class="title function_">prepareProxy</span>( proxySetting, paths.<span class="property">appPublic</span>, paths.<span class="property">publicUrlOrPath</span> );</span><br><span class="line">    <span class="comment">// 创建devServer的配置</span></span><br><span class="line">    <span class="keyword">const</span> serverConfig = <span class="title function_">createDevServerConfig</span>(</span><br><span class="line">      proxyConfig,</span><br><span class="line">      urls.<span class="property">lanUrlForConfig</span></span><br><span class="line">    );</span><br><span class="line">    <span class="keyword">const</span> devServer = <span class="keyword">new</span> <span class="title class_">WebpackDevServer</span>(compiler, serverConfig);</span><br><span class="line">    <span class="comment">// 启动服务</span></span><br><span class="line">    devServer.<span class="title function_">listen</span>(port, <span class="variable constant_">HOST</span>, <span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (err) &#123;<span class="keyword">return</span> <span class="variable language_">console</span>.<span class="title function_">log</span>(err); &#125;</span><br><span class="line">      .....</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅲ-build-js"><a href="#Ⅲ-build-js" class="headerlink" title="Ⅲ-build.js"></a>Ⅲ-build.js</h3><blockquote>
+<p>大致与开发环境相同,但是运行<code>生产环境</code>的</p>
+</blockquote>
+<h3 id="Ⅳ-webpack-config-js"><a href="#Ⅳ-webpack-config-js" class="headerlink" title="Ⅳ-webpack.config.js"></a>Ⅳ-webpack.config.js</h3><blockquote>
+<p>用来定义开发环境与生产环境的配置</p>
+<p>部分代码与注释</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 是否生成map文件</span></span><br><span class="line"><span class="comment">// cross-env修改</span></span><br><span class="line"><span class="keyword">const</span> shouldUseSourceMap = process.<span class="property">env</span>.<span class="property">GENERATE_SOURCEMAP</span> !== <span class="string">&quot;false&quot;</span>;</span><br><span class="line"><span class="comment">// 是否内联runtime文件</span></span><br><span class="line"><span class="keyword">const</span> shouldInlineRuntimeChunk = process.<span class="property">env</span>.<span class="property">INLINE_RUNTIME_CHUNK</span> !== <span class="string">&quot;false&quot;</span>;</span><br><span class="line"><span class="comment">// 最小转化base64的图片大小</span></span><br><span class="line"><span class="keyword">const</span> imageInlineSizeLimit = <span class="built_in">parseInt</span>(	process.<span class="property">env</span>.<span class="property">IMAGE_INLINE_SIZE_LIMIT</span> || <span class="string">&quot;10000&quot;</span>);</span><br><span class="line"><span class="comment">// 样式文件正则</span></span><br><span class="line"><span class="keyword">const</span> cssRegex = <span class="regexp">/\.css$/</span>;</span><br><span class="line"><span class="keyword">const</span> cssModuleRegex = <span class="regexp">/\.module\.css$/</span>;</span><br><span class="line"><span class="keyword">const</span> sassRegex = <span class="regexp">/\.(scss|sass)$/</span>;</span><br><span class="line"><span class="comment">// 生成最终webpack开发或生产环境配置的函数</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">webpackEnv</span>) &#123;</span><br><span class="line">    <span class="comment">// 获取环境变量的方法</span></span><br><span class="line">	<span class="comment">// 加载.env文件的环境变量，REACT_APP_开头</span></span><br><span class="line">	<span class="keyword">const</span> env = <span class="title function_">getClientEnvironment</span>(paths.<span class="property">publicUrlOrPath</span>.<span class="title function_">slice</span>(<span class="number">0</span>, -<span class="number">1</span>));</span><br><span class="line">    	<span class="comment">// 获取处理样式文件loader的函数</span></span><br><span class="line">	<span class="keyword">const</span> <span class="title function_">getStyleLoaders</span> = (<span class="params">cssOptions, preProcessor</span>) =&gt; &#123;&#125;</span><br><span class="line">   <span class="comment">// webpack配置对象</span></span><br><span class="line">	<span class="keyword">return</span> &#123;</span><br><span class="line">		<span class="attr">mode</span>: isEnvProduction ? <span class="string">&quot;production&quot;</span> : isEnvDevelopment &amp;&amp; <span class="string">&quot;development&quot;</span>,</span><br><span class="line">		<span class="comment">// 如果该变量为true(生产环境),则代码出错终止打包</span></span><br><span class="line">		<span class="attr">bail</span>: isEnvProduction,</span><br><span class="line">		<span class="attr">devtool</span>: isEnvProduction? shouldUseSourceMap? <span class="string">&quot;source-map&quot;</span> <span class="comment">// 生产环境</span></span><br><span class="line">				: <span class="attr">false</span>: isEnvDevelopment &amp;&amp; <span class="string">&quot;cheap-module-source-map&quot;</span>, <span class="comment">// 开发环境</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 添加 /* filename */ 注释到输出的文件中</span></span><br><span class="line">	<span class="attr">pathinfo</span>: isEnvDevelopment,</span><br><span class="line">    <span class="comment">// 默认 / ，可以通过package.json.homepage.</span></span><br><span class="line">	<span class="attr">publicPath</span>: paths.<span class="property">publicUrlOrPath</span>,</span><br><span class="line">         <span class="comment">// 启用压缩</span></span><br><span class="line">    <span class="attr">optimization</span>: &#123;</span><br><span class="line">		<span class="attr">minimize</span>: isEnvProduction,</span><br><span class="line">		<span class="attr">minimizer</span>: [<span class="keyword">new</span> <span class="title class_">TerserPlugin</span>(&#123;&#125;)]<span class="comment">// 压缩js</span></span><br><span class="line">       &#125;</span><br><span class="line">    </span><br><span class="line">	<span class="comment">// 是否内联runtime文件：少发一个请求</span></span><br><span class="line">	isEnvProduction &amp;&amp;</span><br><span class="line">		shouldInlineRuntimeChunk &amp;&amp;</span><br><span class="line">		<span class="keyword">new</span> <span class="title class_">InlineChunkHtmlPlugin</span>(<span class="title class_">HtmlWebpackPlugin</span>, [<span class="regexp">/runtime-.+[.]js/</span>]),</span><br><span class="line">	<span class="comment">// 解析index.html中 &amp;PULBLIC_URL%</span></span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">InterpolateHtmlPlugin</span>(<span class="title class_">HtmlWebpackPlugin</span>, env.<span class="property">raw</span>),</span><br><span class="line">	<span class="comment">// 给ModuleNotFound更好提示</span></span><br><span class="line">	<span class="keyword">new</span> <span class="title class_">ModuleNotFoundPlugin</span>(paths.<span class="property">appPath</span>),</span><br><span class="line">	<span class="comment">// 定义环境变量</span></span><br><span class="line">	<span class="keyword">new</span> webpack.<span class="title class_">DefinePlugin</span>(env.<span class="property">stringified</span>),</span><br><span class="line">	<span class="comment">// 开发环境下：HMR功能</span></span><br><span class="line">	isEnvDevelopment &amp;&amp; <span class="keyword">new</span> webpack.<span class="title class_">HotModuleReplacementPlugin</span>(),</span><br><span class="line">	<span class="comment">// 文件路径：严格区分大小写</span></span><br><span class="line">	isEnvDevelopment &amp;&amp; <span class="keyword">new</span> <span class="title class_">CaseSensitivePathsPlugin</span>(),</span><br><span class="line">	<span class="comment">// 监视node_modules，一旦发生变化可以重启dev server</span></span><br><span class="line">	<span class="comment">// See https://github.com/facebook/create-react-app/issues/186</span></span><br><span class="line">	isEnvDevelopment &amp;&amp;</span><br><span class="line">		<span class="keyword">new</span> <span class="title class_">WatchMissingNodeModulesPlugin</span>(paths.<span class="property">appNodeModules</span>),</span><br><span class="line">		<span class="comment">// 提取css成单独文件</span></span><br><span class="line">	isEnvProduction &amp;&amp;</span><br><span class="line">		<span class="keyword">new</span> <span class="title class_">MiniCssExtractPlugin</span>(&#123;&#125;)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h1 id="二、Vue中的配置分析"><a href="#二、Vue中的配置分析" class="headerlink" title="二、Vue中的配置分析"></a>二、Vue中的配置分析</h1><blockquote>
+<p>将基于脚手架4.x版本的vue2.x配置进行分析,大致内容与react无太大区别</p>
+<p>1、卸载老版本vuecli（1.x， 2.x）:<code>npm uninstall vue-cli -g</code>或者<code>yarn global remove vue-cli</code></p>
+<p>2、安装最新的vuecli:<code>npm install -g @vue/cli</code></p>
+<p>3、<code>vue create project-name</code>,选择创建vue2.x,vue2与3版本的weback配置差不多</p>
+<p>4、vue并没有提供将webpack配置直接暴露出来的命令,但是提供了另外一种方法让我们能审查vue里面的配置,通过指令将单独的配置单独打包成单独的文件</p>
+<p>​	Ⅰ-<code>vue inspect --mode=development &gt; webpack.dev.js</code> :将webpack的开发环境单独打包</p>
+<p>​	Ⅱ-<code>vue inspect --mode=production &gt; webpack.prod.js</code> :将webpack的生产环境单独打包</p>
+<p>​	Ⅲ-生成后的文件会报错,想要取消报错,在最前面用<code>module.exports=</code>将其暴露出去,就不会报错了</p>
+</blockquote>
+<h1 id="三、loader"><a href="#三、loader" class="headerlink" title="三、loader"></a>三、loader</h1><h3 id="Ⅰ-编写一个简单的loader"><a href="#Ⅰ-编写一个简单的loader" class="headerlink" title="Ⅰ-编写一个简单的loader"></a>Ⅰ-编写一个简单的loader</h3><blockquote>
+<p>loader本质上是一种函数,此处创建一个js编写loader</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//loader1.js</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">content, map, meta</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(content,<span class="string">&quot;------------------------------------&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> content</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>1、如不配置loader解析规则,默认路径是<code>node_modules</code>,所以平时使用<code>style-loader</code>等都不用加路径</p>
+<p>webpack.config.js</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</span><br><span class="line">        <span class="attr">loader</span>: <span class="string">&#x27;loader1&#x27;</span>,<span class="comment">//当配置了liader解析规则后写法</span></span><br><span class="line">        <span class="comment">// loader:path.resolve(__dirname,&#x27;loaders&#x27;,&#x27;loader1&#x27;) //不写resolveLoader配置的写法</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 配置loader解析规则,默认路径是`node_modules`</span></span><br><span class="line">  <span class="attr">resolveLoader</span>: &#123;</span><br><span class="line">    <span class="attr">modules</span>: [</span><br><span class="line">      <span class="string">&#x27;node_modules&#x27;</span>,</span><br><span class="line">      path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;loaders&#x27;</span>)</span><br><span class="line">    ]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅱ-loader的执行顺序"><a href="#Ⅱ-loader的执行顺序" class="headerlink" title="Ⅱ-loader的执行顺序"></a>Ⅱ-loader的执行顺序</h3><blockquote>
+<p>1、loader是从上往下编译,编译结束后运行的顺序是<code>从下往上,从右往左 </code>执行</p>
+<p>2、当你有写loader想要先行运行的话,可以加在<code>pitch</code>方法上,这样在编译时就会调用,且<code>从上往下</code>执行</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">content, map, meta</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">111111</span>,<span class="string">&quot;------------------------------------&quot;</span>);</span><br><span class="line">  <span class="keyword">return</span> content</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span>.<span class="property">pitch</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;<span class="comment">//编译时从上往下调用</span></span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;pitch 111&#x27;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅲ-同步-异步loader"><a href="#Ⅲ-同步-异步loader" class="headerlink" title="Ⅲ-同步&amp;异步loader"></a>Ⅲ-同步&amp;异步loader</h3><blockquote>
+<p>1、<code>this.callback()</code>:同步的方法  –&gt;可以替代<code>return</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">content, map, meta</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">111111</span>,<span class="string">&quot;------------------------------------&quot;</span>);</span><br><span class="line">  <span class="variable language_">this</span>.<span class="title function_">callback</span>(<span class="literal">null</span>, content, map, meta);</span><br><span class="line">	<span class="comment">//是否有错误,需要传递的内容(处理后的内容) ,可选参数,可选参数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>2、<code>this.async()</code>:异步的方法</p>
+<p>​	使用<code>this.async()</code>方法会使整个loader停住,只有当你再次调用<code>callback</code>方法才会继续执行,整体性能会好过同步,<code>推荐使用</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 异步loader</span></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">content, map, meta</span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">222</span>);</span><br><span class="line">  <span class="keyword">const</span> callback = <span class="variable language_">this</span>.<span class="title function_">async</span>();</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="title function_">callback</span>(<span class="literal">null</span>, content);</span><br><span class="line">  &#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅳ-获取-校验loader的options"><a href="#Ⅳ-获取-校验loader的options" class="headerlink" title="Ⅳ-获取&amp;校验loader的options"></a>Ⅳ-获取&amp;校验loader的options</h3><blockquote>
+<p>1、需要下载依赖:<code>npm i loader-utils -D</code></p>
+<p>2、需要下载依赖:<code>schema-utils</code></p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//webpack.config.js传入</span></span><br><span class="line">&#123;	<span class="attr">loader</span>: <span class="string">&#x27;loader3&#x27;</span>,</span><br><span class="line">    <span class="attr">options</span>: &#123;</span><br><span class="line">        <span class="attr">name</span>: <span class="string">&#x27;jack&#x27;</span>,</span><br><span class="line">        <span class="attr">age</span>: <span class="number">18</span> <span class="comment">//当校验文件追加属性调为false,将会报错</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">------------------------------------------------------------------------------------</span><br><span class="line"><span class="comment">//loader3.js</span></span><br><span class="line"><span class="comment">// loader本质上是一个函数</span></span><br><span class="line"><span class="keyword">const</span> &#123; getOptions &#125; = <span class="built_in">require</span>(<span class="string">&#x27;loader-utils&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; validate &#125; = <span class="built_in">require</span>(<span class="string">&#x27;schema-utils&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> schema = <span class="built_in">require</span>(<span class="string">&#x27;./schema&#x27;</span>);</span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">content, map, meta</span>) &#123;</span><br><span class="line">  <span class="comment">// 获取options</span></span><br><span class="line">  <span class="keyword">const</span> options = <span class="title function_">getOptions</span>(<span class="variable language_">this</span>);</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">333</span>, options);</span><br><span class="line">  <span class="comment">// 校验options是否合法</span></span><br><span class="line">  <span class="title function_">validate</span>(schema, options, &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;loader3&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="keyword">return</span> content;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>校验文件:定义校验规则</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;object&quot;</span><span class="punctuation">,</span><span class="comment">//指定options的类型</span></span><br><span class="line">  <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="comment">//定义options里面有什么属性</span></span><br><span class="line">    <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span>	<span class="comment">//定义有name类型</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;string&quot;</span><span class="punctuation">,</span>	</span><br><span class="line">      <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;名称～&quot;</span>	<span class="comment">//定义描述,可以随便写</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;additionalProperties&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span> <span class="comment">//代表是否可以运行追加其他属性</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅴ-自定义babel-loader"><a href="#Ⅴ-自定义babel-loader" class="headerlink" title="Ⅴ-自定义babel-loader"></a>Ⅴ-自定义babel-loader</h3><blockquote>
+<p>自定义babel-loader,并不是工作中的babel配置</p>
+</blockquote>
+<blockquote>
+<p>webpack.config.js配置</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  <span class="attr">module</span>: &#123;</span><br><span class="line">    <span class="attr">rules</span>: [&#123;</span><br><span class="line">      <span class="attr">test</span>: <span class="regexp">/\.js$/</span>,</span><br><span class="line">      <span class="attr">loader</span>:<span class="string">&#x27;babelLoader&#x27;</span>,</span><br><span class="line">      <span class="attr">options</span>:&#123; <span class="attr">presets</span>:[<span class="string">&#x27;@babel/preset-env&#x27;</span>] &#125;</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 配置loader解析规则,默认路径是`node_modules`</span></span><br><span class="line">  <span class="attr">resolveLoader</span>: &#123;  <span class="attr">modules</span>: [ <span class="string">&#x27;node_modules&#x27;</span>,path.<span class="title function_">resolve</span>(__dirname, <span class="string">&#x27;loaders&#x27;</span>)]&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>babelLoader.js  –&gt;中间大写是防止与自带的babelloader冲突</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; getOptions &#125; = <span class="built_in">require</span>(<span class="string">&#x27;loader-utils&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; validate &#125; = <span class="built_in">require</span>(<span class="string">&#x27;schema-utils&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> babel = <span class="built_in">require</span>(<span class="string">&#x27;@babel/core&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> util = <span class="built_in">require</span>(<span class="string">&#x27;util&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> babelSchema = <span class="built_in">require</span>(<span class="string">&#x27;./babelSchema.json&#x27;</span>);</span><br><span class="line"><span class="comment">//babel.transfrom用来编译代码的方法,是一个普通异步方法</span></span><br><span class="line"><span class="comment">//util.promisify会将普通异步方法转换成基于promise的异步方法</span></span><br><span class="line"><span class="keyword">const</span> transform=util.<span class="title function_">promisify</span>(babel.<span class="property">transform</span>)</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="keyword">function</span> (<span class="params">content, map, meta</span>) &#123;</span><br><span class="line">  <span class="comment">//获取loader的options配置</span></span><br><span class="line">  <span class="keyword">const</span> options = <span class="title function_">getOptions</span>(<span class="variable language_">this</span>) || &#123;&#125;;</span><br><span class="line">  <span class="comment">//校验babel的options的配置</span></span><br><span class="line">  <span class="title function_">validate</span>(babelSchema,options,&#123;</span><br><span class="line">    <span class="attr">name</span>:<span class="string">&#x27;Babel Loader&#x27;</span></span><br><span class="line">  &#125;)</span><br><span class="line">  <span class="comment">//创建异步</span></span><br><span class="line">  <span class="keyword">const</span> callback=<span class="variable language_">this</span>.<span class="title function_">async</span>();</span><br><span class="line">  <span class="comment">//使用babel编译代码</span></span><br><span class="line">  <span class="title function_">transform</span>(content,options)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">&#123;code,map&#125;</span>)=&gt;</span><span class="title function_">callback</span>(<span class="literal">null</span>,code,map,meta))</span><br><span class="line">  .<span class="title function_">catch</span>(<span class="function">(<span class="params">e</span>)=&gt;</span><span class="title function_">callback</span>(e))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>校验文件:babelSchema.json</p>
+</blockquote>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;object&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;properties&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;presets&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;array&quot;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;addtionalProperties&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="四、plugins"><a href="#四、plugins" class="headerlink" title="四、plugins"></a>四、plugins</h1><h3 id="Ⅰ-tabaple介绍与使用"><a href="#Ⅰ-tabaple介绍与使用" class="headerlink" title="Ⅰ-tabaple介绍与使用"></a>Ⅰ-tabaple介绍与使用</h3><blockquote>
+<p>安装tapable：npm install tapable -D</p>
+<p>初始化hooks容器 2.1 同步hooks，任务会依次执行:SyncHook、SyncBailHook 2.2 异步hooks，异步并行：AsyncParallelHook，异步串行：AsyncSeriesHook</p>
+<p>往hooks容器中注册事件&#x2F;添加回调函数</p>
+<p>触发hooks</p>
+<p>启动文件：node tapable.test.js</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> &#123; <span class="title class_">SyncHook</span>, <span class="title class_">SyncBailHook</span>, <span class="title class_">AsyncParallelHook</span>, <span class="title class_">AsyncSeriesHook</span> &#125; = <span class="built_in">require</span>(<span class="string">&#x27;tapable&#x27;</span>);</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Lesson</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 初始化hooks容器</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">hooks</span> = &#123;</span><br><span class="line">      <span class="comment">// 同步hooks，任务回依次执行</span></span><br><span class="line">      <span class="comment">// go: new SyncHook([&#x27;address&#x27;])</span></span><br><span class="line">      <span class="comment">// SyncBailHook：一旦有返回值就会退出～</span></span><br><span class="line">      <span class="attr">go</span>: <span class="keyword">new</span> <span class="title class_">SyncBailHook</span>([<span class="string">&#x27;address&#x27;</span>]),</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 异步hooks</span></span><br><span class="line">      <span class="comment">// AsyncParallelHook：异步并行</span></span><br><span class="line">      <span class="comment">// leave: new AsyncParallelHook([&#x27;name&#x27;, &#x27;age&#x27;]),</span></span><br><span class="line">      <span class="comment">// AsyncSeriesHook: 异步串行</span></span><br><span class="line">      <span class="attr">leave</span>: <span class="keyword">new</span> <span class="title class_">AsyncSeriesHook</span>([<span class="string">&#x27;name&#x27;</span>, <span class="string">&#x27;age&#x27;</span>])</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">tap</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 往hooks容器中注册事件/添加回调函数</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">hooks</span>.<span class="property">go</span>.<span class="title function_">tap</span>(<span class="string">&#x27;class0318&#x27;</span>, <span class="function">(<span class="params">address</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;class0318&#x27;</span>, address);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">111</span>;</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">hooks</span>.<span class="property">go</span>.<span class="title function_">tap</span>(<span class="string">&#x27;class0410&#x27;</span>, <span class="function">(<span class="params">address</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;class0410&#x27;</span>, address);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">hooks</span>.<span class="property">leave</span>.<span class="title function_">tapAsync</span>(<span class="string">&#x27;class0510&#x27;</span>, <span class="function">(<span class="params">name, age, cb</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;class0510&#x27;</span>, name, age);</span><br><span class="line">        <span class="title function_">cb</span>();</span><br><span class="line">      &#125;, <span class="number">2000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">hooks</span>.<span class="property">leave</span>.<span class="title function_">tapPromise</span>(<span class="string">&#x27;class0610&#x27;</span>, <span class="function">(<span class="params">name, age</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;class0610&#x27;</span>, name, age);</span><br><span class="line">          <span class="title function_">resolve</span>();</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="title function_">start</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 触发hooks</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">hooks</span>.<span class="property">go</span>.<span class="title function_">call</span>(<span class="string">&#x27;c318&#x27;</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">hooks</span>.<span class="property">leave</span>.<span class="title function_">callAsync</span>(<span class="string">&#x27;jack&#x27;</span>, <span class="number">18</span>, <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">// 代表所有leave容器中的函数触发完了，才触发</span></span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;end~~~&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> l = <span class="keyword">new</span> <span class="title class_">Lesson</span>();</span><br><span class="line">l.<span class="title function_">tap</span>();</span><br><span class="line">l.<span class="title function_">start</span>();</span><br></pre></td></tr></table></figure>
+
+<h3 id="Ⅱ-compiler钩子"><a href="#Ⅱ-compiler钩子" class="headerlink" title="Ⅱ- compiler钩子"></a>Ⅱ- compiler钩子</h3><blockquote>
+<p>工作方式：异步串行执行，因此下面代码输出顺序如下： 1.1 emit.tap 111 1.2 1秒后输出 emit.tapAsync 111 1.3 1秒后输出 emit.tapPromise 111 1.4 afterEmit.tap 111 1.5 done.tap 111</p>
+<p>tapAsync和tapPromise表示异步</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Plugin1</span> &#123;</span><br><span class="line">  <span class="title function_">apply</span>(<span class="params">complier</span>) &#123;</span><br><span class="line"></span><br><span class="line">    complier.<span class="property">hooks</span>.<span class="property">emit</span>.<span class="title function_">tap</span>(<span class="string">&#x27;Plugin1&#x27;</span>, <span class="function">(<span class="params">compilation</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;emit.tap 111&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    complier.<span class="property">hooks</span>.<span class="property">emit</span>.<span class="title function_">tapAsync</span>(<span class="string">&#x27;Plugin1&#x27;</span>, <span class="function">(<span class="params">compilation, cb</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;emit.tapAsync 111&#x27;</span>);</span><br><span class="line">        <span class="title function_">cb</span>();</span><br><span class="line">      &#125;, <span class="number">1000</span>)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    complier.<span class="property">hooks</span>.<span class="property">emit</span>.<span class="title function_">tapPromise</span>(<span class="string">&#x27;Plugin1&#x27;</span>, <span class="function">(<span class="params">compilation</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;emit.tapPromise 111&#x27;</span>);</span><br><span class="line">          <span class="title function_">resolve</span>();</span><br><span class="line">        &#125;, <span class="number">1000</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    complier.<span class="property">hooks</span>.<span class="property">afterEmit</span>.<span class="title function_">tap</span>(<span class="string">&#x27;Plugin1&#x27;</span>, <span class="function">(<span class="params">compilation</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;afterEmit.tap 111&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    complier.<span class="property">hooks</span>.<span class="property">done</span>.<span class="title function_">tap</span>(<span class="string">&#x27;Plugin1&#x27;</span>, <span class="function">(<span class="params">stats</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;done.tap 111&#x27;</span>);</span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = <span class="title class_">Plugin1</span>;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>此部分剩余部分,暂时跳过,并无太多实践,以后再来补足</p>
+</blockquote>
+<h1 id="五、自定义webpack"><a href="#五、自定义webpack" class="headerlink" title="五、自定义webpack"></a>五、自定义webpack</h1><h3 id="Ⅰ-webpack执行流程"><a href="#Ⅰ-webpack执行流程" class="headerlink" title="Ⅰ-webpack执行流程"></a>Ⅰ-webpack执行流程</h3><blockquote>
+<p>1、初始化 Compiler：webpack(config) 得到 Compiler 对象</p>
+<p>2、开始编译：调用 Compiler 对象 run 方法开始执行编译</p>
+<p>3、确定入口：根据配置中的 entry 找出所有的入口文件。</p>
+<p>4、编译模块：从入口文件出发，调用所有配置的 Loader 对模块进行编译，再找出该模块依赖的模块，递归直到所有模块被加载进来</p>
+<p>5、完成模块编译： 在经过第 4 步使用 Loader 编译完所有模块后，得到了每个模块被编译后的最终内容以及它们之间的依赖关系。</p>
+<p>6、输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 Chunk，再把每个 Chunk 转换成一个单独的文件加入到输出列表。（注意：这步是可以修改输出内容的最后机会）</p>
+<p>7、输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统</p>
+</blockquote>
+<h3 id="Ⅱ-准备工作"><a href="#Ⅱ-准备工作" class="headerlink" title="Ⅱ-准备工作"></a>Ⅱ-准备工作</h3><blockquote>
+<p>1、创建文件夹myWebpack</p>
+<p>2、创建src–&gt;(add.js &#x2F; count.js &#x2F; index.js)，写入对应的js代码</p>
+<p>3、创建config–&gt;webpack.config.js写入webpack基础配置（entry和output）</p>
+<p>4、创建lib文件夹，里面写webpack的主要配置</p>
+<p>5、创建script–&gt;build.js（将lib文件夹下面的myWebpack核心代码和config文件下的webpack基础配置引入并调用run()函数开始打包）</p>
+<p>6、为了方便启动，控制台通过输入命令 <code>npm init -y</code>拉取出package.json文件，修改文件中scripts部分为<code>&quot;build&quot;: &quot;node ./script/build.js&quot;</code>表示通过在终端输入命令<code>npm run build</code>时会运行&#x2F;script&#x2F;build.js文</p>
+<p>7、如果需要断点调试:在scripts中添加<code>&quot;debug&quot;: &quot;node --inspect-brk ./script/build.js&quot;</code>表示通过在终端输入命令<code>npm run debug</code>时会调试&#x2F;script&#x2F;build.js文件中的代码</p>
+</blockquote>
+<blockquote>
+<p>下面部分暂停学习,转回React系统学习 2021&#x2F;3&#x2F;6</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Webpack-%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="webpack高阶学习笔记" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Webpack-高级进阶学习笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Webpack-%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="webpack基础学习笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Webpack-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="webpack学习笔记"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

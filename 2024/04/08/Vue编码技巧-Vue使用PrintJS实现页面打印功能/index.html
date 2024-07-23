@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>PrintJS | Hexo</title>
+  <meta name="description" content="#说明 某天收到一个需求,要求实现  拼接成表格并能一键回填数据并能打印成A4大小(或者生成pdf)的功能. 实际上回填数据以及拼接部分都很简单,稍微陌生的就是调用浏览器打印功能并将页面内容变成pdf并打印 然后百度了一下发现百度上给出的解决方案并不够具体,很容易踩坑出现各种奇怪的错误,于是就将本人的踩坑解决方案以及思路都记录下来  一、需求及实现效果   二、使用的技术 这里采用了 Print.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PrintJS">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E4%BD%BF%E7%94%A8PrintJS%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8D%B0%E5%8A%9F%E8%83%BD/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 某天收到一个需求,要求实现  拼接成表格并能一键回填数据并能打印成A4大小(或者生成pdf)的功能. 实际上回填数据以及拼接部分都很简单,稍微陌生的就是调用浏览器打印功能并将页面内容变成pdf并打印 然后百度了一下发现百度上给出的解决方案并不够具体,很容易踩坑出现各种奇怪的错误,于是就将本人的踩坑解决方案以及思路都记录下来  一、需求及实现效果   二、使用的技术 这里采用了 Print.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/VUE%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/image-20220216191223441.png">
+<meta property="og:image" content="https://gitee.com/study73/VUE%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/image-20220216193712184.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:55:22.822Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/VUE%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/image-20220216191223441.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E4%BD%BF%E7%94%A8PrintJS%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8D%B0%E5%8A%9F%E8%83%BD/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Vue编码技巧-Vue使用PrintJS实现页面打印功能" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      PrintJS
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E4%BD%BF%E7%94%A8PrintJS%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8D%B0%E5%8A%9F%E8%83%BD/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/Vue/" rel="tag">Vue</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E4%BD%BF%E7%94%A8PrintJS%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8D%B0%E5%8A%9F%E8%83%BD/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h2><blockquote>
+<p>某天收到一个需求,要求实现  拼接成表格并能一键回填数据并能打印成A4大小(或者生成pdf)的功能.</p>
+<p>实际上回填数据以及拼接部分都很简单,稍微陌生的就是调用浏览器打印功能并将页面内容变成pdf并打印</p>
+<p>然后百度了一下发现百度上给出的解决方案并不够具体,很容易踩坑出现各种奇怪的错误,于是就将本人的踩坑解决方案以及思路都记录下来</p>
+</blockquote>
+<h2 id="一、需求及实现效果"><a href="#一、需求及实现效果" class="headerlink" title="一、需求及实现效果"></a>一、需求及实现效果</h2><blockquote>
+<p><img src="/study73/VUE%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/image-20220216191223441.png" alt="image-20220216191223441"></p>
+</blockquote>
+<h2 id="二、使用的技术"><a href="#二、使用的技术" class="headerlink" title="二、使用的技术"></a>二、使用的技术</h2><blockquote>
+<p>这里采用了 <strong><code>Print.js</code></strong> ,以下是他的 源码下载地址 –&gt; <a target="_blank" rel="noopener" href="https://github.com/crabbly/Print.js/releases/tag/v1.5.0">点我传送</a> </p>
+<p>可以直接npm下载安装依赖或者直接下载源码放到项目中直接调用,代码量不大,所以本人选择下载到项目中</p>
+</blockquote>
+<h2 id="三、实现代码"><a href="#三、实现代码" class="headerlink" title="三、实现代码"></a>三、实现代码</h2><h3 id="Ⅰ-下载源码"><a href="#Ⅰ-下载源码" class="headerlink" title="Ⅰ - 下载源码"></a>Ⅰ - 下载源码</h3><blockquote>
+<ul>
+<li>首先源码下载地址 –&gt; <a target="_blank" rel="noopener" href="https://github.com/crabbly/Print.js/releases/tag/v1.5.0">点我传送</a> </li>
+<li>在这里选择一个版本下载(一般可以选最新的),下载纯js源码,但是源码中有点地方需要按照个人业务需求做点改变</li>
+<li>或者直接复制本人修改过的js源码,创建一个<code>Print.js</code>的文件,将下面代码复制进去</li>
+</ul>
+<p>在<code>getStyle</code>函数中可以写内联样式,覆盖外面原有的样式,以去除一些打印时不需要的而原HTML中有的样式</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">/**</span></span><br><span class="line"><span class="comment">* 打印类属性、方法定义,需要先在插件中引入</span></span><br><span class="line"><span class="comment">* 使用示例: 1. 先在mian.js中引入</span></span><br><span class="line"><span class="comment">*          2. 函数中调用this.$print(this.$refs.xxxx)</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">/* eslint-disable */</span></span><br><span class="line">&gt;<span class="keyword">const</span> <span class="title class_">Print</span> = <span class="keyword">function</span> (<span class="params">dom, options</span>) &#123;</span><br><span class="line"> <span class="keyword">if</span> (!(<span class="variable language_">this</span> <span class="keyword">instanceof</span> <span class="title class_">Print</span>)) <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Print</span>(dom, options);</span><br><span class="line"></span><br><span class="line"> <span class="variable language_">this</span>.<span class="property">options</span> = <span class="variable language_">this</span>.<span class="title function_">extend</span>(&#123;</span><br><span class="line">   <span class="string">&#x27;noPrint&#x27;</span>: <span class="string">&#x27;.no-print&#x27;</span></span><br><span class="line"> &#125;, options);</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span> ((<span class="keyword">typeof</span> dom) === <span class="string">&quot;string&quot;</span>) &#123;</span><br><span class="line">   <span class="variable language_">this</span>.<span class="property">dom</span> = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(dom);</span><br><span class="line"> &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">   <span class="variable language_">this</span>.<span class="title function_">isDOM</span>(dom)</span><br><span class="line">   <span class="variable language_">this</span>.<span class="property">dom</span> = <span class="variable language_">this</span>.<span class="title function_">isDOM</span>(dom) ? dom : dom.<span class="property">$el</span>;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="variable language_">this</span>.<span class="title function_">init</span>();</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="title class_">Print</span>.<span class="property"><span class="keyword">prototype</span></span> = &#123;</span><br><span class="line"> <span class="attr">init</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> content = <span class="variable language_">this</span>.<span class="title function_">getStyle</span>() + <span class="variable language_">this</span>.<span class="title function_">getHtml</span>();</span><br><span class="line">   <span class="variable language_">this</span>.<span class="title function_">writeIframe</span>(content);</span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="attr">extend</span>: <span class="keyword">function</span> (<span class="params">obj, obj2</span>) &#123;</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> k <span class="keyword">in</span> obj2) &#123;</span><br><span class="line">     obj[k] = obj2[k];</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> obj;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> <span class="attr">getStyle</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> str = <span class="string">&quot;&quot;</span>,</span><br><span class="line">    styles = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;style,link&#x27;</span>);</span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; styles.<span class="property">length</span>; i++) &#123;</span><br><span class="line">    str += styles[i].<span class="property">outerHTML</span>;</span><br><span class="line">   &#125;</span><br><span class="line">   str += <span class="string">&quot;&lt;style&gt;&quot;</span> + (<span class="variable language_">this</span>.<span class="property">options</span>.<span class="property">noPrint</span> ? <span class="variable language_">this</span>.<span class="property">options</span>.<span class="property">noPrint</span> : <span class="string">&#x27;.no-print&#x27;</span>) + <span class="string">&quot;&#123;display:none;&#125;&lt;/style&gt;&quot;</span>;</span><br><span class="line">   <span class="comment">//str += &quot;&lt;style&gt;html,body,div&#123;height: auto!important;font-size:14px&#125;&lt;/style&gt;&quot;;</span></span><br><span class="line">   <span class="comment">//这边样式要谨慎使用,会覆盖样式表中设置的样式  --&gt;按照自己的业务需求拼接,会覆盖外面H5原先的样式</span></span><br><span class="line">   str += <span class="string">&quot;&lt;style&gt;html,body,div&#123;font-size:14px&#125;&lt;/style&gt;&quot;</span>;</span><br><span class="line"> </span><br><span class="line">   <span class="keyword">return</span> str;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line"> <span class="attr">getHtml</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> inputs = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;input&#x27;</span>);</span><br><span class="line">   <span class="keyword">var</span> textareas = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;textarea&#x27;</span>);</span><br><span class="line">   <span class="keyword">var</span> selects = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;select&#x27;</span>);</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> k = <span class="number">0</span>; k &lt; inputs.<span class="property">length</span>; k++) &#123;</span><br><span class="line">     <span class="keyword">if</span> (inputs[k].<span class="property">type</span> == <span class="string">&quot;checkbox&quot;</span> || inputs[k].<span class="property">type</span> == <span class="string">&quot;radio&quot;</span>) &#123;</span><br><span class="line">       <span class="keyword">if</span> (inputs[k].<span class="property">checked</span> == <span class="literal">true</span>) &#123;</span><br><span class="line">         inputs[k].<span class="title function_">setAttribute</span>(<span class="string">&#x27;checked&#x27;</span>, <span class="string">&quot;checked&quot;</span>)</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         inputs[k].<span class="title function_">removeAttribute</span>(<span class="string">&#x27;checked&#x27;</span>)</span><br><span class="line">       &#125;</span><br><span class="line">     &#125; <span class="keyword">else</span> <span class="keyword">if</span> (inputs[k].<span class="property">type</span> == <span class="string">&quot;text&quot;</span>) &#123;</span><br><span class="line">       inputs[k].<span class="title function_">setAttribute</span>(<span class="string">&#x27;value&#x27;</span>, inputs[k].<span class="property">value</span>)</span><br><span class="line">     &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">       inputs[k].<span class="title function_">setAttribute</span>(<span class="string">&#x27;value&#x27;</span>, inputs[k].<span class="property">value</span>)</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> k2 = <span class="number">0</span>; k2 &lt; textareas.<span class="property">length</span>; k2++) &#123;</span><br><span class="line">     <span class="keyword">if</span> (textareas[k2].<span class="property">type</span> == <span class="string">&#x27;textarea&#x27;</span>) &#123;</span><br><span class="line">       textareas[k2].<span class="property">innerHTML</span> = textareas[k2].<span class="property">value</span></span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">var</span> k3 = <span class="number">0</span>; k3 &lt; selects.<span class="property">length</span>; k3++) &#123;</span><br><span class="line">     <span class="keyword">if</span> (selects[k3].<span class="property">type</span> == <span class="string">&#x27;select-one&#x27;</span>) &#123;</span><br><span class="line">       <span class="keyword">var</span> child = selects[k3].<span class="property">children</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">var</span> i <span class="keyword">in</span> child) &#123;</span><br><span class="line">         <span class="keyword">if</span> (child[i].<span class="property">tagName</span> == <span class="string">&#x27;OPTION&#x27;</span>) &#123;</span><br><span class="line">           <span class="keyword">if</span> (child[i].<span class="property">selected</span> == <span class="literal">true</span>) &#123;</span><br><span class="line">             child[i].<span class="title function_">setAttribute</span>(<span class="string">&#x27;selected&#x27;</span>, <span class="string">&quot;selected&quot;</span>)</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             child[i].<span class="title function_">removeAttribute</span>(<span class="string">&#x27;selected&#x27;</span>)</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">dom</span>.<span class="property">outerHTML</span>;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> <span class="attr">writeIframe</span>: <span class="keyword">function</span> (<span class="params">content</span>) &#123;</span><br><span class="line">   <span class="keyword">var</span> w, doc, iframe = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&#x27;iframe&#x27;</span>),</span><br><span class="line">     f = <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">appendChild</span>(iframe);</span><br><span class="line">   iframe.<span class="property">id</span> = <span class="string">&quot;myIframe&quot;</span>;</span><br><span class="line">   <span class="comment">//iframe.style = &quot;position:absolute;width:0;height:0;top:-10px;left:-10px;&quot;;</span></span><br><span class="line">   iframe.<span class="title function_">setAttribute</span>(<span class="string">&#x27;style&#x27;</span>, <span class="string">&#x27;position:absolute;width:0;height:0;top:-10px;left:-10px;&#x27;</span>);</span><br><span class="line">   w = f.<span class="property">contentWindow</span> || f.<span class="property">contentDocument</span>;</span><br><span class="line">   doc = f.<span class="property">contentDocument</span> || f.<span class="property">contentWindow</span>.<span class="property">document</span>;</span><br><span class="line">   doc.<span class="title function_">open</span>();</span><br><span class="line">   doc.<span class="title function_">write</span>(content);</span><br><span class="line">   doc.<span class="title function_">close</span>();</span><br><span class="line">   <span class="keyword">var</span> _this = <span class="variable language_">this</span></span><br><span class="line">   iframe.<span class="property">onload</span> = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">     _this.<span class="title function_">toPrint</span>(w);</span><br><span class="line">     <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">       <span class="variable language_">document</span>.<span class="property">body</span>.<span class="title function_">removeChild</span>(iframe)</span><br><span class="line">     &#125;, <span class="number">100</span>)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"></span><br><span class="line"> <span class="attr">toPrint</span>: <span class="keyword">function</span> (<span class="params">frameWindow</span>) &#123;</span><br><span class="line">   <span class="keyword">try</span> &#123;</span><br><span class="line">     <span class="built_in">setTimeout</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">       frameWindow.<span class="title function_">focus</span>();</span><br><span class="line">       <span class="keyword">try</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (!frameWindow.<span class="property">document</span>.<span class="title function_">execCommand</span>(<span class="string">&#x27;print&#x27;</span>, <span class="literal">false</span>, <span class="literal">null</span>)) &#123;</span><br><span class="line">           frameWindow.<span class="title function_">print</span>();</span><br><span class="line">         &#125;</span><br><span class="line">       &#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">         frameWindow.<span class="title function_">print</span>();</span><br><span class="line">       &#125;</span><br><span class="line">       frameWindow.<span class="title function_">close</span>();</span><br><span class="line">     &#125;, <span class="number">10</span>);</span><br><span class="line">   &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">     <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;err&#x27;</span>, err);</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;,</span><br><span class="line"> <span class="attr">isDOM</span>: (<span class="keyword">typeof</span> <span class="title class_">HTMLElement</span> === <span class="string">&#x27;object&#x27;</span>) ?</span><br><span class="line">   <span class="keyword">function</span> (<span class="params">obj</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> obj <span class="keyword">instanceof</span> <span class="title class_">HTMLElement</span>;</span><br><span class="line">   &#125; :</span><br><span class="line">   <span class="keyword">function</span> (<span class="params">obj</span>) &#123;</span><br><span class="line">     <span class="keyword">return</span> obj &amp;&amp; <span class="keyword">typeof</span> obj === <span class="string">&#x27;object&#x27;</span> &amp;&amp; obj.<span class="property">nodeType</span> === <span class="number">1</span> &amp;&amp; <span class="keyword">typeof</span> obj.<span class="property">nodeName</span> === <span class="string">&#x27;string&#x27;</span>;</span><br><span class="line">   &#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="keyword">const</span> <span class="title class_">MyPlugin</span> = &#123;&#125;</span><br><span class="line">&gt;<span class="title class_">MyPlugin</span>.<span class="property">install</span> = <span class="keyword">function</span> (<span class="params">Vue, options</span>) &#123;</span><br><span class="line"> <span class="comment">// 4. 添加实例方法</span></span><br><span class="line"> <span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$print</span> = <span class="title class_">Print</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">MyPlugin</span></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-将代码放入指定文件夹中"><a href="#Ⅱ-将代码放入指定文件夹中" class="headerlink" title="Ⅱ - 将代码放入指定文件夹中"></a>Ⅱ - 将代码放入指定文件夹中</h3><blockquote>
+<ul>
+<li>首先要明确一点,一般来说如果你使用vue默认的webpack配置,那么最好将其放到 <code>src/plugins</code> 文件目录下(没有的话自己创建)</li>
+<li>然后这个<code>printjs</code>是一个插件,所以后续还需要在<code>main.js</code>中进行一些修改,现在放在这里就是为了后面能找到</li>
+</ul>
+<p><img src="/study73/VUE%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E5%9B%BE%E7%89%87/image-20220216193712184.png" alt="image-20220216193712184"> </p>
+</blockquote>
+<h3 id="Ⅲ-mian-js中添加以下代码"><a href="#Ⅲ-mian-js中添加以下代码" class="headerlink" title="Ⅲ - mian.js中添加以下代码"></a>Ⅲ - <code>mian.js</code>中添加以下代码</h3><blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//相对路径引入Print.js</span></span><br><span class="line">&gt;<span class="keyword">import</span> <span class="title class_">Print</span> <span class="keyword">from</span> <span class="string">&#x27;../../plugins/Print&#x27;</span></span><br><span class="line">&gt;<span class="title class_">Vue</span>.<span class="title function_">use</span>(<span class="title class_">Print</span>) <span class="comment">// 注册打印</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>到这里就已经将<code>Printjs</code>中的方法挂载到Vue实例中了</p>
+</li>
+<li><p>可能有同学会问,直接use怎么就将方法都挂上去了?问这个问题的同学去看下源码,源码中有这么一段代码,已经帮你将方法挂在到了vue实例的<code>$print</code>上面了</p>
+</li>
+</ul>
+ <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">MyPlugin</span>.<span class="property">install</span> = <span class="keyword">function</span> (<span class="params">Vue, options</span>) &#123;</span><br><span class="line">  <span class="comment">// 4. 添加实例方法</span></span><br><span class="line">  <span class="title class_">Vue</span>.<span class="property"><span class="keyword">prototype</span></span>.<span class="property">$print</span> = <span class="title class_">Print</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅳ-需要打印页面中的调用方式"><a href="#Ⅳ-需要打印页面中的调用方式" class="headerlink" title="Ⅳ - 需要打印页面中的调用方式"></a>Ⅳ - 需要打印页面中的调用方式</h3><blockquote>
+<ul>
+<li>确定需要打印的元素标签,给其加上<code>ref</code>,比如下面代码中的 <code>ref=&quot;printRef&quot;</code></li>
+<li>声明一个打印函数,函数中调用vue实例中的 <code>$print</code> 方法,将ref作为参数传入,如代码中的 <code>this.$print(this.$refs.printRef)</code></li>
+<li>不需要打印的元素加上 <code>class=&quot;no-print&quot;</code>,那么打印时就会将设置了此类名的元素忽略</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&gt;&lt;template v-loading=&quot;loading&quot;&gt;</span><br><span class="line"> &lt;!-- 需要ref使得Printjs能找到要打印的元素 --&gt;</span><br><span class="line"> &lt;div ref=&quot;printRef&quot; class=&quot;pitchman-box&quot;&gt;</span><br><span class="line">   &lt;div class=&quot;btn-class&quot;&gt;</span><br><span class="line">     &lt;!-- 不需要打印的部分加上  class=&quot;no-print&quot;,比如下面的打印与关闭按钮 --&gt;</span><br><span class="line">     &lt;el-button type=&quot;primary&quot; plain :size=&quot;$size&quot; class=&quot;no-print&quot; @click=&quot;toPrint&quot;&gt;打印&lt;/el-button&gt;</span><br><span class="line">     &lt;el-button plain :size=&quot;$size&quot; class=&quot;no-print&quot; @click=&quot;close&quot;&gt;关闭&lt;/el-button&gt;</span><br><span class="line">   &lt;/div&gt;</span><br><span class="line">   &lt;div&gt;需要打印的内容&lt;/div&gt;</span><br><span class="line"> &lt;/div&gt;</span><br><span class="line">&gt;&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&gt;&lt;script&gt;</span><br><span class="line">&gt;export default &#123;</span><br><span class="line"> methods: &#123;</span><br><span class="line">   // 打印</span><br><span class="line">   toPrint () &#123;</span><br><span class="line">     this.$print(this.$refs.printRef)</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&lt;/script&gt;  </span><br></pre></td></tr></table></figure>
+
+<p>到这里就能正常使用了,但是可能还会有一些坑,我再下面列举</p>
+</blockquote>
+<h2 id="四、可能出现的问题"><a href="#四、可能出现的问题" class="headerlink" title="四、可能出现的问题"></a>四、可能出现的问题</h2><h3 id="Ⅰ-出现多余的空白页"><a href="#Ⅰ-出现多余的空白页" class="headerlink" title="Ⅰ - 出现多余的空白页"></a>Ⅰ - 出现多余的空白页</h3><blockquote>
+<p>可能有的同学会发现,怎么自己打印预览的时候明明高度限制好了固定页数,但是打印预览的时候竟然多了一页空白页,怎么删减内容都去除不了</p>
+<p>当时我百度了很久,网上大多都是不知道原因,都是蛮将高度之类的去除,但我推测是因为 <code>margin</code> 的问题</p>
+<p>本人产生此问题的原因是<code>margin-top</code>,把margin-top拿掉,改用其他的设置样式就好了,应该是父盒子外边距塌陷的问题,但是用overflow:hidden;没有解决.所以将需要用到<code>margin</code>的地方换成<code>padding</code>就能解决这个问题</p>
+</blockquote>
+<h3 id="Ⅱ-打印页面滚动条"><a href="#Ⅱ-打印页面滚动条" class="headerlink" title="Ⅱ - 打印页面滚动条"></a>Ⅱ - 打印页面滚动条</h3><blockquote>
+<p>实际上这个的解决方案也很简单,只要将页面的滚动条设置隐藏即可,打印时实际上也会继承到该样式</p>
+<p>在样式中加入以下代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&gt;::-webkit-scrollbar &#123;</span><br><span class="line"> <span class="attr">width</span>: <span class="number">0</span> !important;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;::-webkit-scrollbar &#123;</span><br><span class="line"> <span class="attr">width</span>: <span class="number">0</span> !important;<span class="attr">height</span>: <span class="number">0</span>;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="attr">body</span>::-webkit-scrollbar &#123;</span><br><span class="line"> <span class="attr">display</span>: none;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;body &#123;</span><br><span class="line"> -ms-overflow-<span class="attr">style</span>: none;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;html &#123;</span><br><span class="line"> <span class="attr">overflow</span>: -moz-hidden-unscrollable; <span class="comment">/*注意！若只打 hidden，chrome 的其它 hidden 会出问题*/</span></span><br><span class="line"> <span class="attr">height</span>: <span class="number">100</span>%;</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅲ-去除页脚的链接"><a href="#Ⅲ-去除页脚的链接" class="headerlink" title="Ⅲ - 去除页脚的链接"></a>Ⅲ - 去除页脚的链接</h3><blockquote>
+<p>有的同学发现,打印时怎么将自己网址给打印出来了,实际中并不需要这个,实际上在样式中加入以下代码即可</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//不打印页脚的链接  --放在样式中</span></span><br><span class="line">&gt;<span class="keyword">@page</span> &#123;</span><br><span class="line"> <span class="attribute">margin-top</span>: <span class="number">1mm</span>;</span><br><span class="line"> <span class="attribute">margin-bottom</span>: <span class="number">1mm</span>;</span><br><span class="line"> <span class="attribute">padding-top</span>: <span class="number">1mm</span>;</span><br><span class="line">&gt;&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E4%BD%BF%E7%94%A8PrintJS%E5%AE%9E%E7%8E%B0%E9%A1%B5%E9%9D%A2%E6%89%93%E5%8D%B0%E5%8A%9F%E8%83%BD/" title="PrintJS" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Vue编码技巧-Vue使用PrintJS实现页面打印功能/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Vue2.x-MyVscode%E9%85%8D%E7%BD%AE/" title="vscode配置"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Vue%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7-Vue%E7%9A%84%E7%BC%96%E7%A0%81%E6%8A%80%E5%B7%A7%E8%AE%B0%E5%BD%95/" title="Vue编码技巧"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

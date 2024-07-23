@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>强制缓存和协商缓存 | Hexo</title>
+  <meta name="description" content="#说明 浏览器缓存策略对于我们前端来说应该算是必须要会的知识点,但如果没有系统地进行归纳总结,也很难三言两语说明白甚至说错;特别是在面试时,基本上就讲个概念,甚至有时候就忘掉了,所以整理一下,也为了以后遗忘时能快速复习 查阅借鉴的资料: 掘金的 http面试必会的：强制缓存和协商缓存、一文读懂前端缓存、前端浏览器缓存知识梳理;Github的 缓存（二）——浏览器缓存机制：强缓存、协商缓存;机器之心">
+<meta property="og:type" content="article">
+<meta property="og:title" content="强制缓存和协商缓存">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 浏览器缓存策略对于我们前端来说应该算是必须要会的知识点,但如果没有系统地进行归纳总结,也很难三言两语说明白甚至说错;特别是在面试时,基本上就讲个概念,甚至有时候就忘掉了,所以整理一下,也为了以后遗忘时能快速复习 查阅借鉴的资料: 掘金的 http面试必会的：强制缓存和协商缓存、一文读懂前端缓存、前端浏览器缓存知识梳理;Github的 缓存（二）——浏览器缓存机制：强缓存、协商缓存;机器之心">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
+<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T10:17:08.320Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="底层知识">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-计算机网络-浏览器缓存机制：强缓存、协商缓存" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      强制缓存和协商缓存
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h2 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h2><blockquote>
+<p>浏览器缓存策略对于我们前端来说应该算是必须要会的知识点,但如果没有系统地进行归纳总结,也很难三言两语说明白甚至说错;特别是在面试时,基本上就讲个概念,甚至有时候就忘掉了,所以整理一下,也为了以后遗忘时能快速复习</p>
+<p>查阅借鉴的资料: 掘金的 <a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903838768431118">http面试必会的：强制缓存和协商缓存</a>、<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903747357769742?utm_source=gold_browser_extension">一文读懂前端缓存</a>、<a target="_blank" rel="noopener" href="https://juejin.cn/post/6947936223126093861">前端浏览器缓存知识梳理</a>;Github的 <a target="_blank" rel="noopener" href="https://github.com/amandakelake/blog/issues/41#">缓存（二）——浏览器缓存机制：强缓存、协商缓存</a>;机器之心的 <a target="_blank" rel="noopener" href="https://www.jiqizhixin.com/articles/2020-07-24-12">彻底弄懂浏览器缓存策略</a></p>
+</blockquote>
+<h2 id="1、前端缓存"><a href="#1、前端缓存" class="headerlink" title="1、前端缓存"></a>1、前端缓存</h2><blockquote>
+<p>当我们第一次访问网站时,电脑会把网站上的图片与数据下载到电脑上,当我们再次访问该网站时,网站就会从电脑中直接加载出来,这就是缓存</p>
+<ul>
+<li>web缓存是指一个Web资源(如html页面、图、JS等)存在于web服务器和客户端(浏览器)之间的副本</li>
+<li>缓存会根据进来的请求保存输出内容的副本: 当下一个请求来到的时候,如果是相同的Url,缓存会根据缓存机制决定是直接使用副本响应访问请求还是像源服务器再次发起请求</li>
+</ul>
+</blockquote>
+<h3 id="Ⅰ-缓存有哪些好处"><a href="#Ⅰ-缓存有哪些好处" class="headerlink" title="Ⅰ - 缓存有哪些好处"></a>Ⅰ - 缓存有哪些好处</h3><blockquote>
+<ul>
+<li>缓解服务端压力,不用每次都去请求某些数据</li>
+<li>提升性能,打开本地资源肯定比请求服务器来的更快 </li>
+<li>减少宽带消耗,当我们使用缓存的时候,只会产生很小的网络消耗,至于为什么打开本地资源也会产生网络消耗?</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-前端缓存种类"><a href="#Ⅱ-前端缓存种类" class="headerlink" title="Ⅱ - 前端缓存种类"></a>Ⅱ - 前端缓存种类</h3><blockquote>
+<ol>
+<li>数据库缓存</li>
+<li>CDN缓存</li>
+<li>代理服务器缓存</li>
+<li>浏览器缓存</li>
+</ol>
+<p><strong>此图截取自网上相关文章</strong></p>
+<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png" alt="image-20211027182618788"></p>
+</blockquote>
+<h2 id="2、什么是浏览器缓存策略"><a href="#2、什么是浏览器缓存策略" class="headerlink" title="2、什么是浏览器缓存策略"></a>2、什么是浏览器缓存策略</h2><blockquote>
+<p>良好的缓存策略可以降低资源的重复加载从而提高页面整体加载速度,通常浏览器缓存策略分为两种结果</p>
+<ul>
+<li>强缓存</li>
+<li>协商缓存</li>
+</ul>
+<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png" alt="image-20211027184535569"> </p>
+</blockquote>
+<h3 id="Ⅰ-基本原理"><a href="#Ⅰ-基本原理" class="headerlink" title="Ⅰ - 基本原理"></a>Ⅰ - 基本原理</h3><blockquote>
+<ul>
+<li>浏览器在加载资源时,根据请求头的 <code>Expires(过期时间)</code> 和<code>chche-control(缓存控制)</code>判断是否命中强缓存,命中则直接从缓存中读取资源,不会发送到服务器</li>
+<li>如果没有命中强缓存,浏览器一定会发送一个请求到服务器,通过<code>last-modified</code>和<code>etag</code>验证资源是否命中协商缓存,如果命中,服务器回将这个请求返回,但是不会返回这个资源的数据,依然是从缓存中读取资源</li>
+<li>如果前面两者都没有命中,则直接从服务器加载资源</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-根据什么规则缓存"><a href="#Ⅱ-根据什么规则缓存" class="headerlink" title="Ⅱ - 根据什么规则缓存"></a>Ⅱ - 根据什么规则缓存</h3><blockquote>
+<ol>
+<li><strong>新鲜度</strong>(过期机制):也就是缓存副本有效期. 一个缓存副本必须满足以下条件,浏览器会认为它是有效的,足够新的</li>
+</ol>
+<ul>
+<li>含有完整的过期时间控制头信息(HTTP协议报头),并且仍在有效期内</li>
+<li>浏览器已经使用过这个缓存副本,并且在一个会话中已经检查过新鲜度</li>
+<li><strong>通常是强缓存阶段使用的机制</strong></li>
+</ul>
+<ol start="2">
+<li><strong>校验值</strong>(验证机制): 服务器返回资源的时候有时在控制头信息带上这个资源的实体标签<code>Etag</code>,</li>
+</ol>
+<ul>
+<li>它可以用来作为浏览器再次请求过程的校验标识</li>
+<li>如果发现校验标识不匹配,说明资源已经被修改或者过期,浏览器需要重新获取资源内容</li>
+<li><strong>所以通常是协商缓存中使用的机制</strong></li>
+</ul>
+</blockquote>
+<h3 id="Ⅲ-HTTP缓存的两个阶段"><a href="#Ⅲ-HTTP缓存的两个阶段" class="headerlink" title="Ⅲ - HTTP缓存的两个阶段"></a>Ⅲ - HTTP缓存的两个阶段</h3><blockquote>
+<p>浏览器缓存一般分为两类: <strong>强缓存</strong>(也称本地缓存) 和 <strong>协商缓存</strong>(也称弱缓存)</p>
+<h6 id="强缓存阶段"><a href="#强缓存阶段" class="headerlink" title="强缓存阶段"></a>强缓存阶段</h6><blockquote>
+<p>浏览器发送请求前,会去缓存里查看是否命中强缓存,如果命中,则直接从缓存中读取资源,不会发送请求到服务器;</p>
+</blockquote>
+<h6 id="协商缓存阶段"><a href="#协商缓存阶段" class="headerlink" title="协商缓存阶段"></a>协商缓存阶段</h6><blockquote>
+<p>当强缓存没有命中时,浏览器一定会向服务器发起请求</p>
+<ul>
+<li>服务器会根据 <code>request header</code> 中的一些字段来判断是否命中协商缓存</li>
+<li>如果命中,服务端会返回304响应,但是不会携带任何响应实体,只是高速浏览器可以直接从浏览器缓存中获取这个资源</li>
+<li>如果 <strong>强缓存</strong> 和 <strong>协商缓存</strong> 都没有命中,则直接从服务器加载资源</li>
+</ul>
+</blockquote>
+<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png" alt="image-20211027190616969"> </p>
+</blockquote>
+<h3 id="Ⅳ-优先级"><a href="#Ⅳ-优先级" class="headerlink" title="Ⅳ - 优先级"></a>Ⅳ - 优先级</h3><blockquote>
+<ul>
+<li><code>Cache-Control</code>优先级大于 <code>expires</code></li>
+<li><code>Etag</code> 优先级大于 <code>last - Modified/if-Modified-since</code>,同时存在时会以Etag为准</li>
+</ul>
+</blockquote>
+<h3 id="Ⅴ-浏览器缓存流程图"><a href="#Ⅴ-浏览器缓存流程图" class="headerlink" title="Ⅴ - 浏览器缓存流程图"></a>Ⅴ - 浏览器缓存流程图</h3><blockquote>
+<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png" alt="image-20211027190721706"> </p>
+</blockquote>
+<h2 id="3、强缓存与协商缓存"><a href="#3、强缓存与协商缓存" class="headerlink" title="3、强缓存与协商缓存"></a>3、强缓存与协商缓存</h2><h3 id="Ⅰ-强缓存"><a href="#Ⅰ-强缓存" class="headerlink" title="Ⅰ - 强缓存"></a>Ⅰ - 强缓存</h3><blockquote>
+<h6 id="通过Expires-过yu期-和cache-control-缓存控制器-两种响应头实现"><a href="#通过Expires-过yu期-和cache-control-缓存控制器-两种响应头实现" class="headerlink" title="通过Expires(过yu期)和cache-control(缓存控制器)两种响应头实现"></a>通过<code>Expires(过yu期)</code>和<code>cache-control(缓存控制器)</code>两种响应头实现</h6><p>浏览器在加载资源时,根据请求头的 <code>Expires(过期时间)</code> 和<code>chche-control(缓存控制)</code>判断是否命中强缓存,命中则直接从缓存中读取资源,不会发送到服务器</p>
+</blockquote>
+<h4 id="①-Expires-过期"><a href="#①-Expires-过期" class="headerlink" title="①  Expires(过期)"></a>①  Expires(过期)</h4><blockquote>
+<p><code>Expires</code>是 http1.0 提出的表示资源过期时间的header, 它描述的是一个绝对时间,由服务端返回;当我们准备再次发起请求时,本地时间未超过这个设置的时间,那么就不会真正的发出请求,而是读取缓存</p>
+<p>expires受限于本地时间,如果修改了本地时间,可能会造成缓存失效</p>
+</blockquote>
+<h4 id="②-cache-control"><a href="#②-cache-control" class="headerlink" title="②  cache-control"></a>②  cache-control</h4><blockquote>
+<p><code>cache-control</code>出现于HTTP1.1, 优先级高于Expires ,表示的是相对时间</p>
+<ul>
+<li><code>cache-control:no-cache</code> 的响应实际上是可以存储在本地缓存去中的,只是在与原始服务器进行新鲜度再验证之前,缓存不能将其提供给客户端使用</li>
+<li><code>Cache-Control: no-store</code> 真正的不缓存到本地</li>
+<li><code>Cache-Control: public</code> 可以被所有用户缓存(多用户共享),包括终端和CDN等中间代理服务器</li>
+<li><code>Cache-Control: private</code>只能被终端浏览器缓存（而且是私有缓存），不允许中继缓存服务器进行缓存</li>
+</ul>
+<p>Cache-Control除了在响应中使用，在请求中也可以使用。我们用开发者工具来模拟下请求时带上Cache-Control：勾选Disable cache，刷新页面，可以看到Request Headers中有个字段Cache-Control: no-cache。</p>
+<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png" alt="image-20220225160543826"></p>
+</blockquote>
+<h3 id="Ⅱ-协商缓存"><a href="#Ⅱ-协商缓存" class="headerlink" title="Ⅱ - 协商缓存"></a>Ⅱ - 协商缓存</h3><blockquote>
+<h6 id="协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的"><a href="#协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的" class="headerlink" title="协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的"></a>协商缓存是通过<code>【Last-Modified，If-Modified-Since】</code>和<code>【ETag、If-None-Match】</code>这两对Header来管理的</h6><ul>
+<li>当浏览器对某个资源的请求没有命中强缓存(换句话说就是: <strong>强缓存失效后</strong>)</li>
+<li>就会发一个请求到服务器,验证协商缓存是否命中; </li>
+<li>如果协商缓存命中,请求响应返回的http状态为<code>304</code> 并且会显示一个<code>Not Modified(未修改的)</code>的字符串</li>
+</ul>
+</blockquote>
+<h4 id="①-Last-Modified，If-Modified-Since"><a href="#①-Last-Modified，If-Modified-Since" class="headerlink" title="①  Last-Modified，If-Modified-Since"></a>①  Last-Modified，If-Modified-Since</h4><blockquote>
+<ol>
+<li><code>Last-Modified</code>表示本地文件最后修改日期</li>
+</ol>
+<ul>
+<li>浏览器会在request header 加上 <code>If-Modified-Since</code>(上此返回的<code>Last-Modified</code>的值)</li>
+<li>询问服务器在该日期后资源是否有更新</li>
+<li>有更新的话就会将新的资源发送过来</li>
+</ul>
+<ol start="2">
+<li>但如果在本地打开缓存文件,就会造成<code>Last-Modified</code>的修改,所以在HTTP1.1中出现了<code>Etag</code></li>
+<li>当资源过期时（使用<code>Cache-Control</code>标识的max-age&#x2F;s-maxage）</li>
+</ol>
+<ul>
+<li>发现资源具有<code>Last-Msodified</code>声明，则向服务器请求时带上头 <code>If-Modified-Since</code>（即响应头中的<code>Last-Modified</code>值），表示请求时间。</li>
+<li>这个时候服务器收到请求后发现有头<code>If-Modified-Since</code>则与<strong>被请求资源</strong>的最后修改时间进行比对</li>
+<li>若最后修改时间较新，说明资源有被改动过，将新资源返回并返回状态<code>200</code>，否则返回<code>304</code>表示资源没被更新使用缓存即可。</li>
+</ul>
+</blockquote>
+<h4 id="②-ETag、If-None-Match"><a href="#②-ETag、If-None-Match" class="headerlink" title="② ETag、If-None-Match"></a>② ETag、If-None-Match</h4><blockquote>
+<ol>
+<li><code>Etag</code>就行是一个直问,资源变化都会导致Etag变化,跟最后修改时间没有关系,Etag可以保证每一个资源都是唯一的</li>
+<li>当资源过期时（使用Cache-Control标识的max-age&#x2F;s-maxage）</li>
+</ol>
+<ul>
+<li>发现资源具有<code>Etage</code>声明，则向服务器请求时带上头<code>If-None-Match</code>（即响应头中<code>Etag</code>的值）</li>
+<li>服务器收到请求后发现有头<code>If-None-Match</code> 则与被请求资源的相应校验串进行比对</li>
+<li>决定返回200或304（<strong>注意：服务器会优先验证If-None-Match</strong>）</li>
+</ul>
+<h6 id="两者优先级"><a href="#两者优先级" class="headerlink" title="两者优先级?"></a>两者优先级?</h6><blockquote>
+<p><strong><code>ETag</code>的优先级比<code>Last-Modified</code>更高</strong></p>
+<p>具体为什么要用<code>ETag</code>，主要出于下面几种情况考虑：</p>
+<ul>
+<li>一些文件也许会周期性的更改,但是它的内容并不会改变(仅仅只改变了修改时间),这种时候我们并不希望客户端认为这个文件被修改了,而重新GET</li>
+<li>某些文件修改非常频繁,比如在秒以下的时间内进行修改(比如说1s内修改了N次),而其他方法检查到的粒度是s级的,这种修改无法判断</li>
+<li>某些服务器不能精确的得到文件的最后修改时间</li>
+</ul>
+</blockquote>
+<h6 id="服务端返回-304-流程图"><a href="#服务端返回-304-流程图" class="headerlink" title="服务端返回 304 流程图"></a>服务端返回 304 流程图</h6><p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png" alt="image-20211027175045937"></p>
+</blockquote>
+<h3 id="Ⅲ-强缓存与协商缓存简单异同点"><a href="#Ⅲ-强缓存与协商缓存简单异同点" class="headerlink" title="Ⅲ -强缓存与协商缓存简单异同点"></a>Ⅲ -强缓存与协商缓存简单异同点</h3><blockquote>
+<ul>
+<li><strong>相同点</strong>: 如果命中,都是从客户端缓存中加载资源,而不是从服务器加载资源数据</li>
+<li><strong>不同点</strong>: 强缓存不发送请求到服务器,协商缓存会发送请求到服务器</li>
+</ul>
+</blockquote>
+<h2 id="4、常见几种状态码的区别"><a href="#4、常见几种状态码的区别" class="headerlink" title="4、常见几种状态码的区别"></a>4、常见几种状态码的区别</h2><blockquote>
+<p>缓存中: 200状态码总是强缓存, 304总是协商缓存</p>
+<ul>
+<li><code>200</code>: 强缓存<code>expires/Cache-Control</code>失效时,返回新的资源文件</li>
+<li><code>200(form cache)</code>: 强缓存两者都存在且未过期; <code>Cache-Control</code> 优先<code>Expirs</code>(默认就是这个优先级)时–&gt;浏览器从本地获取资源成功  (这个状态还能更详细分类,在下面再给出详解)</li>
+<li><code>304(Not Modified)</code>:协商缓存<code>Last-modified/Etag</code>没有过期时,服务端返回状态码304</li>
+</ul>
+<h6 id="这里给出个截图-安装了中文包-所以显示的中文"><a href="#这里给出个截图-安装了中文包-所以显示的中文" class="headerlink" title="这里给出个截图(安装了中文包,所以显示的中文)"></a>这里给出个截图(安装了中文包,所以显示的中文)</h6><p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"> </p>
+</blockquote>
+<h2 id="5、缓存位置"><a href="#5、缓存位置" class="headerlink" title="5、缓存位置"></a>5、缓存位置</h2><blockquote>
+<h6 id="强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分"><a href="#强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分" class="headerlink" title="强缓存我们会把资源放在 memory cache(内存缓存)和disk cache(磁盘缓存) 中,那么他们的区别在哪呢?为何要如此区分?"></a>强缓存我们会把资源放在 <code>memory cache(内存缓存)</code>和<code>disk cache(磁盘缓存)</code> 中,那么他们的区别在哪呢?为何要如此区分?</h6><p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"></p>
+<ul>
+<li>存储图像和网页等资源主要存储在<code>disk cache(磁盘存储)</code></li>
+<li>操作系统缓存文件等资源大部分都会缓存在<code>memory cache</code>中</li>
+<li>具体操作浏览器自动分配,看谁的资源利用率不高就给谁</li>
+<li>查找浏览器缓存时会按照 <code>Service Worker</code> –&gt; <code>Memory Cache</code> –&gt; <code>Disk Cache</code> –&gt;  <code>Push Cache</code></li>
+</ul>
+</blockquote>
+<h3 id="Ⅰ-Service-Worker"><a href="#Ⅰ-Service-Worker" class="headerlink" title="Ⅰ -  Service Worker"></a>Ⅰ -  Service Worker</h3><blockquote>
+<ul>
+<li>是运行在浏览器背后的独立线程,一般可以用来实现缓存功能. </li>
+<li>使用<code>Service Worker</code> 的话,因为其中涉及到请求拦截,所以传输协议必须为<code>HTTPS</code>来保障安全</li>
+<li><code>Service Worker</code>的缓存和浏览器其他内建的缓存机制不同,它可以让我们自由控制缓存那些文件,如何匹配缓存、读取缓存,并且缓存时持续性的</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-Memory-Cache"><a href="#Ⅱ-Memory-Cache" class="headerlink" title="Ⅱ - Memory Cache"></a>Ⅱ - Memory Cache</h3><blockquote>
+<ul>
+<li><strong>内存中的缓存</strong>: 主要包含的是当前页面中已经抓取到的资源: 例如页面下载的样式、脚本、图片等</li>
+<li>读取 <strong>内存</strong> 中的数据肯定比 <strong>磁盘</strong> 的快</li>
+<li><strong>内存缓存</strong> 虽然读取高效,但是缓存持续性很短,会随着进程的释放而释放: 如我们关闭了tab页面 ,内存中的缓存也就被释放了</li>
+</ul>
+</blockquote>
+<h3 id="Ⅲ-Disk-Cache"><a href="#Ⅲ-Disk-Cache" class="headerlink" title="Ⅲ -  Disk Cache"></a>Ⅲ -  Disk Cache</h3><blockquote>
+<ul>
+<li>存储在 <strong>硬盘</strong> 中的缓存,读取速度慢点,但是什么都能存储到磁盘中,比之 <code>Memory Cache</code> 胜在容量和存储时效性上</li>
+<li>在所有浏览器缓存中,<code>Disk Cache</code>覆盖面基本是最大的</li>
+<li>他会根据 <code>HTTP Header</code> 中的字段判断哪些资源需要缓存,哪些资源可以不请求直接使用,哪些资源已经过期需要重新请求</li>
+<li>并且即便在跨站点的情况下,相同地址的资源一旦被硬盘缓存下来,就不会再去请求数据,绝大部分数据都来自<code>Disk Cache</code></li>
+<li><strong>磁盘缓存</strong> 比 <strong>内存缓存</strong> 慢的多</li>
+</ul>
+<h6 id="举个🌰"><a href="#举个🌰" class="headerlink" title="举个🌰"></a>举个🌰</h6><blockquote>
+<p>从远程 Web 服务器直接提取访问文件可能需要 <strong>500毫秒(半秒)</strong>, 那么磁盘访问可能需要 <strong>10~20毫秒</strong> ; 而内存访问可能只需要 <strong>100纳秒</strong>; 更高级的还有 <strong>L1缓存访问</strong> 只需要0.5纳秒 (最快和最小的CPU缓存,详见此笔记 <a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%BC%93%E5%AD%98%E3%80%81%E5%86%85%E5%AD%98%E3%80%81CPU%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0.md#%E5%9B%9Bcpu%E7%9A%84%E5%A4%9A%E7%BA%A7%E7%BC%93%E5%AD%98%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98">缓存、内存、CPU知识点解析</a> )</p>
+</blockquote>
+</blockquote>
+<h3 id="Ⅳ-prefetch-cache-预取缓存"><a href="#Ⅳ-prefetch-cache-预取缓存" class="headerlink" title="Ⅳ -  prefetch cache(预取缓存)"></a>Ⅳ -  prefetch cache(预取缓存)</h3><blockquote>
+<ul>
+<li><strong>link</strong> 标签带上 <strong>prefetch</strong> ,再次加载时会出现</li>
+<li><code>prefetch</code> 是 <strong>预加载</strong> 的一种方式: 被标记为 <code>prefetch</code> 的资源,将会被浏览器在空闲时间加载</li>
+</ul>
+</blockquote>
+<h3 id="Ⅴ-Push-Cache"><a href="#Ⅴ-Push-Cache" class="headerlink" title="Ⅴ -  Push Cache"></a>Ⅴ -  Push Cache</h3><blockquote>
+<ul>
+<li><code>Push Cache(推送缓存)</code> 是 <strong>HTTP&#x2F;2</strong> 中的内容,当以上三种缓存都没有命中时,它才会被使用</li>
+<li>它只在 <strong>会话 (Session)</strong> 中存在,一旦会话结束就会被释放,并且缓存时间也会很短暂</li>
+<li>在Chrome浏览器中只有 <strong>5分钟</strong> 左右,同时它也并非严格执行HTTP头中的缓存指令</li>
+</ul>
+</blockquote>
+<h3 id="Ⅵ-CPU、内存、硬盘概述"><a href="#Ⅵ-CPU、内存、硬盘概述" class="headerlink" title="Ⅵ -  CPU、内存、硬盘概述"></a>Ⅵ -  CPU、内存、硬盘概述</h3><blockquote>
+<h6 id="可能有小伙伴对于此处知识点没什么直观的概念-此处给出一个大概叙述-想了解更多的话此部分知识点本人有专门梳理笔记文件"><a href="#可能有小伙伴对于此处知识点没什么直观的概念-此处给出一个大概叙述-想了解更多的话此部分知识点本人有专门梳理笔记文件" class="headerlink" title="可能有小伙伴对于此处知识点没什么直观的概念,此处给出一个大概叙述; 想了解更多的话此部分知识点本人有专门梳理笔记文件"></a>可能有小伙伴对于此处知识点没什么直观的概念,此处给出一个大概叙述; 想了解更多的话此部分知识点本人有专门梳理笔记文件</h6><h6 id="–-点我传送"><a href="#–-点我传送" class="headerlink" title="–&gt; 点我传送"></a>–&gt; <a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/%E7%BC%93%E5%AD%98%E3%80%81%E5%86%85%E5%AD%98%E3%80%81CPU%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0.md">点我传送</a></h6><ul>
+<li>CPU、内存、硬盘都是计算机的主要组成部分</li>
+<li><strong>CPU</strong>: 中央处理单元的缩写,也叫做 <code>处理器</code>,是计算机的运算核心和控制核心; 电脑靠CPU来运算、控制. 让电脑各个部件顺利工作,起到协调作用</li>
+<li><strong>硬盘</strong>: 存储资料和软件等数据的设备,有容量大、断电数据不丢失的特点</li>
+<li><strong>内存</strong>: 负责 <strong>硬盘</strong> 等硬件上的数据与 <strong>CPU</strong> 之间数据的交换处理. 特点是: <code>体积小</code>、<code>速度快</code>、<code>有电可存</code>、<code>无电清空</code>,即电脑在开机状态时内存中可存储数据,关机后将自动清空其中的所有数据</li>
+</ul>
+</blockquote>
+<h2 id="6、强缓存有协商缓存的区别"><a href="#6、强缓存有协商缓存的区别" class="headerlink" title="6、强缓存有协商缓存的区别"></a>6、强缓存有协商缓存的区别</h2><blockquote>
+<p>这里再次总结整理一下两者之间的区别</p>
+<ul>
+<li>强缓存不发请求到服务端,所以有时候资源更新了浏览器还不知道; </li>
+<li>但是协商缓存会发请求到服务器,所以资源是否更新,服务器肯定知道</li>
+<li>大部分web服务器都默认开启协商缓存</li>
+</ul>
+</blockquote>
+<h2 id="7、刷新对于强缓存和协商缓存的影响"><a href="#7、刷新对于强缓存和协商缓存的影响" class="headerlink" title="7、刷新对于强缓存和协商缓存的影响"></a>7、刷新对于强缓存和协商缓存的影响</h2><blockquote>
+<ul>
+<li>当 <code>ctrl+F5</code>强制刷新网页时: 直接从服务器加载, <strong>跳过强缓存和协商缓存</strong></li>
+<li>当 f5 刷新网页时,跳过强缓存,但是会检查协商缓存</li>
+<li>浏览器地址写入URL并回车: 浏览器发现缓存中有这个文件了,就不用继续请求了,直接去缓存拿 (最快)</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" title="强制缓存和协商缓存" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/计算机网络-浏览器缓存机制：强缓存、协商缓存/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" title="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="软件设计模式"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

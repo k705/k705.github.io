@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>pm2  、nginx的概念与使用 | Hexo</title>
+  <meta name="description" content="———————–&#x3D;&#x3D;(NODE柒)&#x3D;&#x3D;————————pm2  、nginx的概念与使用&#x3D;&gt;Day7_27~28一.pm2命令1.pm2的使用    进程守卫:        1.监控当前的项目的资源的消耗情况        2.实现对当前的项目的热部署  2..实际操作1.pm2安装1npm install  pm2 -g  2.检验是否由">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pm2  、nginx的概念与使用">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Nodejs-day7_27~28_pm2%20%20%E3%80%81nginx%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="———————–&#x3D;&#x3D;(NODE柒)&#x3D;&#x3D;————————pm2  、nginx的概念与使用&#x3D;&gt;Day7_27~28一.pm2命令1.pm2的使用    进程守卫:        1.监控当前的项目的资源的消耗情况        2.实现对当前的项目的热部署  2..实际操作1.pm2安装1npm install  pm2 -g  2.检验是否由">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:49:56.223Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="nodejs">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Nodejs-day7_27~28_pm2%20%20%E3%80%81nginx%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Nodejs-day7_27~28_pm2  、nginx的概念与使用" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      pm2  、nginx的概念与使用
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Nodejs-day7_27~28_pm2%20%20%E3%80%81nginx%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Nodejs-day7_27~28_pm2%20%20%E3%80%81nginx%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="———————–-NODE柒-————————"><a href="#———————–-NODE柒-————————" class="headerlink" title="———————–&#x3D;&#x3D;(NODE柒)&#x3D;&#x3D;————————"></a>———————–&#x3D;&#x3D;(NODE柒)&#x3D;&#x3D;————————</h1><h1 id="pm2-、nginx的概念与使用-Day7-27-28"><a href="#pm2-、nginx的概念与使用-Day7-27-28" class="headerlink" title="pm2  、nginx的概念与使用&#x3D;&gt;Day7_27~28"></a>pm2  、nginx的概念与使用&#x3D;&gt;Day7_27~28</h1><h3 id="一-pm2命令"><a href="#一-pm2命令" class="headerlink" title="一.pm2命令"></a>一.pm2命令</h3><h5 id="1-pm2的使用"><a href="#1-pm2的使用" class="headerlink" title="1.pm2的使用"></a>1.pm2的使用</h5><blockquote>
+<p>   进程守卫:<br>        1.监控当前的项目的资源的消耗情况<br>        2.实现对当前的项目的热部署</p>
+</blockquote>
+<h5 id="2-实际操作"><a href="#2-实际操作" class="headerlink" title="2..实际操作"></a>2..实际操作</h5><h6 id="1-pm2安装"><a href="#1-pm2安装" class="headerlink" title="1.pm2安装"></a>1.pm2安装</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install  pm2 -g</span><br></pre></td></tr></table></figure>
+
+<h6 id="2-检验是否由安装成功"><a href="#2-检验是否由安装成功" class="headerlink" title="2.检验是否由安装成功:"></a>2.检验是否由安装成功:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm list 包名 -g</span><br></pre></td></tr></table></figure>
+
+<h6 id="3-了解下面的命令的使用以及顺序"><a href="#3-了解下面的命令的使用以及顺序" class="headerlink" title="3.了解下面的命令的使用以及顺序"></a>3.了解下面的命令的使用以及顺序</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">pm2 init    				##创建pm2配置文件</span><br><span class="line">pm2 start bin/www   ##启动服务器 bin/www表示要运行的脚本,express项目就</span><br><span class="line">pm2 list            ##查看运行状态</span><br><span class="line">pm2 log             ##查看日志</span><br><span class="line">pm2 restart www     ##重启应用 www是 pm2启动进程的名称</span><br><span class="line">pm2 stop www        ##停止应用 www是 pm2启动进程的名称(也可以输入id)</span><br><span class="line">pm2 delete www      ##卸载应用(即终止运行) www是 pm2启动进程的名称(也可以输入id)</span><br><span class="line">pm2 monit           ##实时监控cpu</span><br></pre></td></tr></table></figure>
+
+<h6 id="4-ecosystem-config-js修改"><a href="#4-ecosystem-config-js修改" class="headerlink" title="4.ecosystem.config.js修改"></a>4.ecosystem.config.js修改</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">module</span>.<span class="property">exports</span> = &#123;</span><br><span class="line">  apps : [</span><br><span class="line">      <span class="comment">//删除apps里面所有元素,这些都是多余的,然后添加以下元素</span></span><br><span class="line">      &#123;</span><br><span class="line">          <span class="attr">script</span>: <span class="string">&#x27;bin/www&#x27;</span>,</span><br><span class="line">          <span class="comment">//监听</span></span><br><span class="line">          <span class="attr">watch</span>: <span class="literal">true</span></span><br><span class="line">      &#125;,</span><br><span class="line">  ],</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="二-Nginx"><a href="#二-Nginx" class="headerlink" title="二.Nginx"></a>二.<strong>Nginx</strong></h3><h4 id="1-了解Nginx"><a href="#1-了解Nginx" class="headerlink" title="1. 了解Nginx:"></a>1. 了解Nginx:</h4><blockquote>
+<p>   Nginx是一款<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%BD%BB%E9%87%8F%E7%BA%A7/10002835">轻量级</a>的<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/Web/150564">Web</a> 服务器&#x2F;<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86/7793488">反向代理</a>服务器及<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6/111106">电子邮件</a>（IMAP&#x2F;POP3）代理服务器，在BSD-like 协议下发行。其特点是占有内存少，<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%B9%B6%E5%8F%91/11024806">并发</a>能力强，事实上nginx的并发能力在同类型的网页服务器中表现较好，中国大陆使用nginx网站用户有：百度、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BA%AC%E4%B8%9C/210931">京东</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%B0%E6%B5%AA/125692">新浪</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BD%91%E6%98%93/185754">网易</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%85%BE%E8%AE%AF/112204">腾讯</a>、<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%B7%98%E5%AE%9D/145661">淘宝</a>等。</p>
+</blockquote>
+<h4 id="2-Nginx的作用"><a href="#2-Nginx的作用" class="headerlink" title="2.Nginx的作用:"></a>2.Nginx的作用:</h4><blockquote>
+<p>1)反向代理解决跨域问题<br>    2)负载均衡<br>    3)翻墙……</p>
+</blockquote>
+<h4 id="3-Nginx的三个bat文件"><a href="#3-Nginx的三个bat文件" class="headerlink" title="3.Nginx的三个bat文件&#x3D;&gt;"></a>3.Nginx的三个bat文件&#x3D;&gt;</h4><h6 id="3-1-start-bat"><a href="#3-1-start-bat" class="headerlink" title="3.1)start.bat&#x3D;&gt;"></a>3.1)start.bat&#x3D;&gt;</h6><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">start</span> nginx -c ./conf/nginx.conf</span><br><span class="line"><span class="built_in">echo</span> success</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-2-stop-bat"><a href="#3-2-stop-bat" class="headerlink" title="3.2)stop.bat&#x3D;&gt;"></a>3.2)stop.bat&#x3D;&gt;</h6><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx.exe -s stop</span><br><span class="line"><span class="built_in">echo</span> success</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="3-3-reload-bat"><a href="#3-3-reload-bat" class="headerlink" title="3.3)reload.bat&#x3D;&gt;"></a>3.3)reload.bat&#x3D;&gt;</h6><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx.exe -s reload</span><br><span class="line"><span class="built_in">echo</span> success</span><br><span class="line"><span class="built_in">pause</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-Nginx实操"><a href="#4-Nginx实操" class="headerlink" title="4.Nginx实操&#x3D;&gt;"></a>4.Nginx实操&#x3D;&gt;</h4><h6 id="4-1-配置start-bat-stop-bat-reload-bat"><a href="#4-1-配置start-bat-stop-bat-reload-bat" class="headerlink" title="4.1)配置start.bat stop.bat reload.bat"></a>4.1)配置start.bat stop.bat reload.bat</h6><ol>
+<li>start.bat :启动nginx(通过start.bat启动的nginx,千万不能多次启动,否则会出现多个nginx实例,这个时候stop来不及了  stop只能关闭最后一个,但是如果真的犯错了,怎么关闭以前呢:在任务栏,右击打开任务管理器&#x3D;&#x3D;&gt;进入到详细服务列表,找到nginx服务,统统结束)</li>
+<li>stop.bat :停用nginx(在start之后可以用)</li>
+<li>reload.bat:重启nginx(在start之后可以用)</li>
+<li>通过cmd执行start.bat来启动nginx启动之后,千万别关闭串口</li>
+</ol>
+<h6 id="4-2-nginx出现访问不了的情况"><a href="#4-2-nginx出现访问不了的情况" class="headerlink" title="4.2)nginx出现访问不了的情况&#x3D;&gt;"></a>4.2)nginx出现访问不了的情况&#x3D;&gt;</h6><ol>
+<li>只有一种:配置出现问题&#x3D;&gt;学会看日志: E:\nginx\logs\error.log去看日志内容</li>
+</ol>
+<h4 id="5-配置文件"><a href="#5-配置文件" class="headerlink" title="5.配置文件&#x3D;&gt;"></a>5.配置文件&#x3D;&gt;</h4><h5 id="5-1-配置文件位置"><a href="#5-1-配置文件位置" class="headerlink" title="5.1)配置文件位置:"></a>5.1)配置文件位置:</h5><blockquote>
+<p>   E:\nginx\conf\nginx.conf</p>
+</blockquote>
+<h5 id="5-2-配置文件服务器配置部分解释"><a href="#5-2-配置文件服务器配置部分解释" class="headerlink" title="5.2)配置文件服务器配置部分解释&#x3D;&gt;"></a>5.2)配置文件服务器配置部分解释&#x3D;&gt;</h5><figure class="highlight bat"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       <span class="number">80</span>;</span><br><span class="line">        #//监听的域名</span><br><span class="line">        //本地IP地址</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        #charset koi8-r;</span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line">           #//如果是localhost <span class="number">80</span>端口   就访问根目录下的index.html</span><br><span class="line">        location / &#123;</span><br><span class="line">            root   html;</span><br><span class="line">            index  index.html index.htm;</span><br><span class="line">        &#125;</span><br><span class="line">        //测试静态文件服务器配置(注意斜杠)</span><br><span class="line">        location /xk &#123;</span><br><span class="line">              alias  E:/fyWebStrom/Xunke_Code/day7_27_28/public;</span><br><span class="line">		&#125;</span><br><span class="line">		location /cross/ &#123;</span><br><span class="line">			proxy_pass  http://localhost:<span class="number">3000</span>/;</span><br><span class="line">			add_header  to http://localhost:<span class="number">3000</span>;</span><br><span class="line">		&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h5 id="5-3-静态文件服务器配置-注意斜杠"><a href="#5-3-静态文件服务器配置-注意斜杠" class="headerlink" title="5.3)静态文件服务器配置(注意斜杠)"></a>5.3)静态文件服务器配置(注意斜杠)</h5><h6 id="5-3-1-方式一"><a href="#5-3-1-方式一" class="headerlink" title="5.3.1)方式一:"></a>5.3.1)方式一:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">location /qn &#123; alias  E:/fyWebStrom/Xunke_Code/day7_27_28/public;	&#125;</span><br><span class="line">  alias表示别名,意思就是当我们请求的uri里头包含了qn,那么就会自动去访问alias指向的路径下的文件</span><br><span class="line">    eg:</span><br><span class="line">    http://localhost/qn/test.html</span><br><span class="line">    表示:请求alias路径下的test.html</span><br></pre></td></tr></table></figure>
+
+<h6 id="5-3-2-方式二"><a href="#5-3-2-方式二" class="headerlink" title="5.3.2)方式二:"></a>5.3.2)方式二:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location  /qn&#123;</span><br><span class="line">    root E:/fyWebStrom/Xunke_Code/day7_27_28/public/Demo.html</span><br><span class="line">    //表示根, 请求root路径下的qn文件夹下的test.html</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-跨域代理"><a href="#6-跨域代理" class="headerlink" title="6.跨域代理&#x3D;&gt;"></a>6.跨域代理&#x3D;&gt;</h4><h5 id="6-1-配置文件配置"><a href="#6-1-配置文件配置" class="headerlink" title="6.1)配置文件配置:"></a>6.1)配置文件配置:</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;</span><br><span class="line">        server_name  localhost;</span><br><span class="line">        #charset koi8-r;</span><br><span class="line">        #access_log  logs/host.access.log  main;</span><br><span class="line">        //nginx跨域配置</span><br><span class="line">            location /cross/ &#123;</span><br><span class="line">        proxy_pass http://localhost:3000/;</span><br><span class="line">        add_header to http://localhost:3000;</span><br><span class="line">   &#125; &#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="6-2-配置proxy-pass代理转发四种方式"><a href="#6-2-配置proxy-pass代理转发四种方式" class="headerlink" title="6.2)配置proxy_pass代理转发四种方式&#x3D;&gt;"></a>6.2)配置proxy_pass代理转发四种方式&#x3D;&gt;</h5><h6 id="6-2-1-配置路径原理"><a href="#6-2-1-配置路径原理" class="headerlink" title="6.2.1)配置路径原理"></a>6.2.1)配置路径原理</h6><blockquote>
+<p>   在nginx中配置proxy_pass代理转发时，如果在proxy_pass后面的url加&#x2F;，表示绝对根路径；如果没有&#x2F;，表示相对路径，把匹配的路径部分也给代理走。</p>
+</blockquote>
+<p>假设下面四种情况分别用 <a target="_blank" rel="noopener" href="http://192.168.1.1/proxy/test.html">http://192.168.1.1/proxy/test.html</a> 进行访问:</p>
+<h6 id="6-2-1-第一种方法"><a href="#6-2-1-第一种方法" class="headerlink" title="6.2.1)第一种方法:"></a>6.2.1)第一种方法:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /proxy/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1/;</span><br><span class="line">&#125;</span><br><span class="line">代理到URL：http://127.0.0.1/test.html</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-2-2-第二种方法（相对于第一种，最后少一个-）"><a href="#6-2-2-第二种方法（相对于第一种，最后少一个-）" class="headerlink" title="6.2.2)第二种方法（相对于第一种，最后少一个 &#x2F; ）:"></a>6.2.2)第二种方法（相对于第一种，最后少一个 &#x2F; ）:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /proxy/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1;</span><br><span class="line">&#125;</span><br><span class="line">代理到URL：http://127.0.0.1/proxy/test.html</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-2-3-第三种方法"><a href="#6-2-3-第三种方法" class="headerlink" title="6.2.3)第三种方法:"></a>6.2.3)第三种方法:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /proxy/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1/aaa/;</span><br><span class="line">&#125;</span><br><span class="line">代理到URL：http://127.0.0.1/aaa/test.html</span><br></pre></td></tr></table></figure>
+
+<h6 id="6-2-4-第四种方法-相对于第三种，最后少一个-）"><a href="#6-2-4-第四种方法-相对于第三种，最后少一个-）" class="headerlink" title="6.2.4)第四种方法(相对于第三种，最后少一个 &#x2F; ）:"></a>6.2.4)第四种方法(相对于第三种，最后少一个 &#x2F; ）:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /proxy/ &#123;</span><br><span class="line">    proxy_pass http://127.0.0.1/aaa;</span><br><span class="line">&#125;</span><br><span class="line">代理到URL：http://127.0.0.1/aaatest.html</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-Niginx配置文件及其跨域原理"><a href="#7-Niginx配置文件及其跨域原理" class="headerlink" title="7.Niginx配置文件及其跨域原理&#x3D;&gt;"></a>7.Niginx配置文件及其跨域原理&#x3D;&gt;</h4><h6 id="①-server表示启动一个代理服务器"><a href="#①-server表示启动一个代理服务器" class="headerlink" title="① server表示启动一个代理服务器"></a>① server表示启动一个代理服务器</h6><h6 id="②-该代理服务器也是静态文服-静态文件要通过代理服务器来访问"><a href="#②-该代理服务器也是静态文服-静态文件要通过代理服务器来访问" class="headerlink" title="② 该代理服务器也是静态文服 (静态文件要通过代理服务器来访问)"></a>② 该代理服务器也是静态文服 (静态文件要通过代理服务器来访问)</h6><pre><code>             1)因为代理服务器只能监听代理服务器的端口
+                     2)所以前端发出的所有请求一定是基于80端口去发出
+       			  3)这样子,前端的所有跨域请求才可以被监听到
+                     4)才能实现 前端和代理服务器之间的不跨域
+</code></pre>
+<h6 id="③-80-表示监听80端口-所以最终我们的前端资源一定是部署在80端口上"><a href="#③-80-表示监听80端口-所以最终我们的前端资源一定是部署在80端口上" class="headerlink" title="③ 80 表示监听80端口 所以最终我们的前端资源一定是部署在80端口上"></a>③ 80 表示监听80端口 所以最终我们的前端资源一定是部署在80端口上</h6><pre><code>             1)通过相对路径 html
+            		 2)通过绝对路径  静态文服
+</code></pre>
+<h6 id="④-location-cross"><a href="#④-location-cross" class="headerlink" title="④ location &#x2F;cross"></a>④ location &#x2F;cross</h6><pre><code>             1)服务端的接口的uri ,不一定要cross(联想alias,它只是一个规则,并没有表示真正的意图)
+                     http://localhost/cross/cross 后面的cross才是我们正要去访问的uri
+</code></pre>
+<h6 id="⑤-proxy-pass"><a href="#⑤-proxy-pass" class="headerlink" title="⑤ proxy_pass"></a>⑤ proxy_pass</h6><p>​    			  1) 表示我们真正想要请求的地址是……</p>
+<h6 id="⑥-add-header"><a href="#⑥-add-header" class="headerlink" title="⑥ add_header"></a>⑥ add_header</h6><pre><code>              2) 就是我们在请求成功之后 响应头要添加的内容
+</code></pre>
+<h6 id="⑦练习"><a href="#⑦练习" class="headerlink" title="⑦练习:"></a>⑦练习:</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">http://localhost:81/cross/cross/get  (跨域不成功) 端口无法监听到</span><br><span class="line"> http://localhost:81/cross1/cross/get (跨域不成功)找不到路径且端口也不正确</span><br><span class="line"> http://localhost:80/cross/cross/get  (跨域成功)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Nodejs-day7_27~28_pm2%20%20%E3%80%81nginx%E7%9A%84%E6%A6%82%E5%BF%B5%E4%B8%8E%E4%BD%BF%E7%94%A8/" title="pm2  、nginx的概念与使用" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Nodejs-day7_27~28_pm2  、nginx的概念与使用/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Nodejs-day7_25_Redis+Mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%89%E8%A3%85%E4%BB%A5%E5%8F%8A%E4%BD%BF%E7%94%A8/" title="Redis+Mysql数据库安装以及使用"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Nodejs-A_Node%E7%AC%94%E8%AE%B0%E6%80%BB%E7%BA%B2/" title="node笔记总纲"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

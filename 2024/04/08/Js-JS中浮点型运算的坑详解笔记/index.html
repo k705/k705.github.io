@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>JS中浮点型运算 | Hexo</title>
+  <meta name="description" content="#说明 也许在看到这个笔记之前,你就听说过JS进行浮点运算时可能会有些误差.当初我老师曾跟我们说过,就是因为如此JS不能用来做高精度运算的系统(大二三的时候问的),如银行金融软件等,当时也不是很清楚为何会如此,而现在我又想起了,就本着钻研的精神将其整理梳理出来 查阅借鉴的资料:B站UP主 前端周老师的0.1+0.2竟然不等于0.3，你是认真的吗？视频; CSDN的js中浮点型数据的计算;博客园的彻">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JS中浮点型运算">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BF%90%E7%AE%97%E7%9A%84%E5%9D%91%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#说明 也许在看到这个笔记之前,你就听说过JS进行浮点运算时可能会有些误差.当初我老师曾跟我们说过,就是因为如此JS不能用来做高精度运算的系统(大二三的时候问的),如银行金融软件等,当时也不是很清楚为何会如此,而现在我又想起了,就本着钻研的精神将其整理梳理出来 查阅借鉴的资料:B站UP主 前端周老师的0.1+0.2竟然不等于0.3，你是认真的吗？视频; CSDN的js中浮点型数据的计算;博客园的彻">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920103506056.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920092848998.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920093853995.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100244664.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100712599.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100723698.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920101114078.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920102646558.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920102706603.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920102736032.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100244664.png">
+<meta property="og:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920104410607.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:59:03.211Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="JS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920103506056.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BF%90%E7%AE%97%E7%9A%84%E5%9D%91%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-Js-JS中浮点型运算的坑详解笔记" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JS中浮点型运算
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BF%90%E7%AE%97%E7%9A%84%E5%9D%91%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/JS/" rel="tag">JS</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BF%90%E7%AE%97%E7%9A%84%E5%9D%91%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h1><blockquote>
+<p>也许在看到这个笔记之前,你就听说过JS进行浮点运算时可能会有些误差.当初我老师曾跟我们说过,就是因为如此JS不能用来做高精度运算的系统(大二三的时候问的),如银行金融软件等,当时也不是很清楚为何会如此,而现在我又想起了,就本着钻研的精神将其整理梳理出来</p>
+<p>查阅借鉴的资料:B站UP主 前端周老师的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NM4y1L7qK?share_source=copy_web">0.1+0.2竟然不等于0.3，你是认真的吗？</a>视频; CSDN的<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41572552/article/details/105659722">js中浮点型数据的计算</a>;博客园的<a target="_blank" rel="noopener" href="https://www.cnblogs.com/fsjohnhuang/p/5115672.html">彻底理解0.1 + 0.2 &#x3D;&#x3D;&#x3D; 0.30000000000000004的背后</a>、<a target="_blank" rel="noopener" href="https://www.cnblogs.com/shiyun32/p/12759742.html">js 浮点型数据运算</a>;思否的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010841961">IEEE754浮点表示法详解</a>;简书的<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e5d72d764f2f">IEEE754表示浮点数</a>;百度文库的<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/6c945dd6e009581b6ad9eb15.html">IEEE754标准浮点数表示法</a>;<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/314.html">IEEE 754浮点数标准详解</a> 等</p>
+</blockquote>
+<h1 id="一、常见的坑"><a href="#一、常见的坑" class="headerlink" title="一、常见的坑"></a>一、常见的坑</h1><blockquote>
+<p>此处列举几个常见的浮点型运算的坑</p>
+<ol>
+<li>著名的 0.1 + 0.2 &#x3D;&#x3D;&#x3D; 0.30000000000000004</li>
+<li>1000000000000000128 &#x3D;&#x3D;&#x3D; 1000000000000000129</li>
+<li>0.7 * 180 &#x3D;&#x3D; 125.99999999998</li>
+<li>其他</li>
+</ol>
+</blockquote>
+<h1 id="二、IEEE-Floating-Point-Standard-IEEE754浮点数表示法标准"><a href="#二、IEEE-Floating-Point-Standard-IEEE754浮点数表示法标准" class="headerlink" title="二、IEEE Floating Point Standard (IEEE754浮点数表示法标准)"></a>二、IEEE Floating Point Standard (IEEE754浮点数表示法标准)</h1><blockquote>
+<p>在正式开始说JS浮点型运算前,我们要先了解一个东西,那就是: <strong>IEEE754浮点数表示法标准</strong> 此处只要大致看一下就行,有个概念</p>
+<p>因为JS的浮点就是按照 IEEE754浮点数表示法标准 进行的</p>
+<p>此部分借鉴资料: 思否的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000010841961">IEEE754浮点表示法详解</a>;简书的<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/e5d72d764f2f">IEEE754表示浮点数</a>;百度文库的<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/6c945dd6e009581b6ad9eb15.html">IEEE754标准浮点数表示法</a>;<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/314.html">IEEE 754浮点数标准详解</a>；实际上这应是大学时期学的，只是可能你忘记了</p>
+</blockquote>
+<h2 id="Ⅰ-组成"><a href="#Ⅰ-组成" class="headerlink" title="Ⅰ - 组成"></a>Ⅰ - 组成</h2><blockquote>
+<p>IEEE754标准包含一组实数的二进制表示法。它有三部分组成：</p>
+<ul>
+<li>符号位</li>
+<li>指数位</li>
+<li>尾数位</li>
+</ul>
+<p>三种精度的浮点数各个部分位数如下：</p>
+<table>
+<thead>
+<tr>
+<th>精度</th>
+<th>符号</th>
+<th>阶&#x2F;指数</th>
+<th>尾数</th>
+<th>总位数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单精度</td>
+<td>1</td>
+<td>8</td>
+<td>23</td>
+<td>32</td>
+</tr>
+<tr>
+<td>双精度</td>
+<td>1</td>
+<td>11</td>
+<td>52</td>
+<td>64</td>
+</tr>
+<tr>
+<td>长双精度</td>
+<td>1</td>
+<td>15</td>
+<td>64</td>
+<td>80</td>
+</tr>
+</tbody></table>
+<h4 id="分类："><a href="#分类：" class="headerlink" title="分类："></a>分类：</h4><p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920103506056.png" alt="image-20210920103506056"> </p>
+</blockquote>
+<h2 id="Ⅱ-正规化"><a href="#Ⅱ-正规化" class="headerlink" title="Ⅱ - 正规化"></a>Ⅱ - 正规化</h2><blockquote>
+<p>对于将某个实数表示为计算机浮点数，首先要将其<strong>正规化</strong>，也就是表示为形如：</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920092848998.png" alt="image-20210920092848998"> </p>
+<p>的样子。其中 [b] 是 <code>0</code> 或 <code>1</code> ，而 [p] 二进制数表示的指数位。这样，假设想表示为单精度(float)的浮点数，那么：</p>
+<ul>
+<li>第一位符号位用 <code>0</code> 表示正，用 <code>1</code> 表示负</li>
+<li>将指数 [p] 加上 <strong>移码</strong> 表示为8位的二进制数</li>
+<li>在接下来的23位填充位数 [b] 部分。由于正规化表示时，最左边部分<strong>总是</strong> <code>1</code> ，所以我们只需表示23位的尾数即可。</li>
+</ul>
+</blockquote>
+<h3 id="1、移码"><a href="#1、移码" class="headerlink" title="1、移码"></a>1、移码</h3><blockquote>
+<p>上述中有一个词：<strong>移码</strong>(exponential bias),相信很多同学都不知道是什么.</p>
+<p>因为指数 [p] 有正有负，那么在8位的指数位中我们就要拿出第一位来<strong>指示符号</strong>，这样显然会造成不必要的浪费。给指数加上移码，就能保证结果<strong>总是</strong>一个非负数，也就可以将8个指数位都利用起来。对于有 [M] 个指数位的精度，其移码为：</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920093853995.png" alt="image-20210920093853995"> </p>
+<p>这样就能得到上方三种精度的移码:</p>
+<table>
+<thead>
+<tr>
+<th>精度</th>
+<th>M(阶&#x2F;指数位数)</th>
+<th>移码</th>
+<th>二进制表示</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单精度</td>
+<td>8</td>
+<td>127</td>
+<td>0111 1111</td>
+</tr>
+<tr>
+<td>双精度</td>
+<td>11</td>
+<td>1023</td>
+<td>011 1111 1111</td>
+</tr>
+<tr>
+<td>长双精度</td>
+<td>15</td>
+<td>16383</td>
+<td>011 1111 1111 1111</td>
+</tr>
+</tbody></table>
+<p>以双精度(Double)的为例。双精度的指数位有11位。这样可以表示的数是从<code>000 0000 0000</code>到<code>111 1111 1111</code>，也就是 <strong>指数加移码</strong> 所表示的范围从0到2047，那么，减去移码1023，则可以表示的指数是-1023到1024。但是注意，*-1023和1024作为他用*（后面会说到）。所以<strong>实际</strong>上能表示数的指数是从-1022到1023。</p>
+</blockquote>
+<h3 id="2、单精度、双精度、长双精度"><a href="#2、单精度、双精度、长双精度" class="headerlink" title="2、单精度、双精度、长双精度"></a>2、单精度、双精度、长双精度</h3><blockquote>
+<p>这边可能会有基础比较差的同学会问单精度双精度这是啥,其实这个就是很基础的知识点了,在很多变成课本或者书籍上都有记录,这边就不深入讨论,而从使用的角度来讲，我想大体了解以下的情况就可以了：</p>
+<ol>
+<li>整数、长整数: 都是相当于数学中的整数，只是由于计算机中存放数据的内存空间有限，所以计算机中的整数和长整数都有一定的范围，而且因计算机硬件的不同而不同，但一般而言存放长整数的内存空间比整数的要多，所以表示的范围也更大。</li>
+<li>单精度浮点数、双精度浮点数: 都是计算机用来表示实数的方法，与上边的整数、长整数类似，也有一定的表示范围，而且相应的双精度浮点数比单精度浮点数的范围更大、而且有效位数也更多，也即更精确。</li>
+<li>如果在程序中用一个变量表示一个人的年龄，那么由于人的年龄都是整数，所以这个变量定义为整数类型的最合适了。如果要用一个变量表示一件物品的价格，由于价格是实数，比如66.60元，那么要用单精度浮点数。</li>
+<li>如果变量的范围要比整数、单精度浮点数大，或者精度比单精度浮点数要高，那么就要改用长整数或者双精度浮点数。</li>
+<li>长双精度顾名思义就是比双精度更长,更精确</li>
+<li>以上的数的范围和精度都可以在很多课本和手册中查到。</li>
+</ol>
+</blockquote>
+<h3 id="3、举些栗子"><a href="#3、举些栗子" class="headerlink" title="3、举些栗子"></a>3、举些栗子</h3><h4 id="①-【例】：0-1与0-2转化为二进制表示"><a href="#①-【例】：0-1与0-2转化为二进制表示" class="headerlink" title="① 【例】：0.1与0.2转化为二进制表示"></a>① 【例】：0.1与0.2转化为二进制表示</h4><blockquote>
+<p>这边以图文方式举例:</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100244664.png" alt="image-20210920100244664"></p>
+</blockquote>
+<h4 id="②【例】：求3-14的单精度浮点数表示。"><a href="#②【例】：求3-14的单精度浮点数表示。" class="headerlink" title="②【例】：求3.14的单精度浮点数表示。"></a>②【例】：求3.14的单精度浮点数表示。</h4><blockquote>
+<blockquote>
+<p>首先将3.14转成二进制:</p>
+<ul>
+<li>整数部分3的二进制是11<code>b</code></li>
+<li>小数部分0.14的二进制是：0.0010001111010111000<strong>010</strong>[10001111…..]<code>b</code>（方括号中表示小数点后第23位及之后）。</li>
+</ul>
+<p>这样，3.14的二进制代码就是：11.0010001111010111000<strong>010</strong>[10001111….]×20<code>b</code>，那么用正规化表示就是：1.10010001111010111000<strong>010</strong>[10001111….]×21<code>b</code>。</p>
+<p>方括号表示的就是小数点后第24位了，由于单精度浮点数尾数只有23位，所以需要<strong>舍入</strong>（舍入方法见后）：由于第24位为1，且之后 <em>不全为</em> 0，所以需要向第23位进1完成上舍入：1.10010001111010111000<strong>011</strong>×21<code>b</code>。<br>而其指数是1，需要加上移码127，即128，也就是(1000 0000)<code>b</code>。<br>它又是正数，所以符号为0。<br>综上所述，3.14的单精度浮点数表示为：<br><strong>0 1000-0000 1001-0001-1110-1011-1000-011</strong><code>b</code><br>十六进制代码为：<strong>0x4048F5C3</strong></p>
+</blockquote>
+<p>通过此例可知，3.14的单精度浮点数表示是<code>0 1000-0000 1001-0001-1110-1011-1000-011</code>。现在我们来还原，看看它的误差：</p>
+<ul>
+<li>指数是128，那么还原回去（减去移码），实际指数就是1</li>
+<li>尾数还原也就是：10010001111010111000011<code>b</code>，所以是：1.10010001111010111000011×21<code>b</code>，也就是11.0010001111010111000011<code>b</code>。</li>
+</ul>
+<p>利用二进制转十进制，可得它对应的十进制数是：<strong>3.1400001049041748046875</strong>。显然与3.14是有误差的。</p>
+<p>我们再通过另一种方法估算误差。从例子中可知，对于3.14的单精度浮点数，我们舍去了第24位以及之后，它们是：<br>0.00…(23个0)….00 <strong>[10001111…..]×21</strong><code>b</code>。<br>为了方便计算，不妨假设此后全是0（即方括号中省略部分），也就是舍去了：<br><strong>0.10001111b×2-23×21</strong><code>b</code><br>约为0.00000013317912817001；由于舍入进位关系，给第23位又加了1，所以加了：2-23×21，故而要减去这一部分。<br>所以，误差约为2-23×21 - 0.10001111b×2-23×21&#x3D;0.00000010523945093155。所以结果大致为3.14+0.00000010523945093155&#x3D;<code>3.14000010523945093155</code>。<br>可见和上面计算结果大致相同。 </p>
+</blockquote>
+<h3 id="4、机器ε（machine-epsilon）"><a href="#4、机器ε（machine-epsilon）" class="headerlink" title="4、机器ε（machine epsilon）"></a>4、机器ε（machine epsilon）</h3><blockquote>
+<p>机器ε表示1与大于1的最小浮点数之差。不同精度定义的机器ε不同。以双精度为例，双精度表示的1是：</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100712599.png" alt="image-20210920100712599"> </p>
+<p>而比1大的最小双精度浮点数是：</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100723698.png" alt="image-20210920100723698"> </p>
+<p>可见，此二者之差为：2-52≈2.220446049250313e-16。所以它就是双精度浮点数的机器ε。<br>在舍入中，相对舍入误差不能大于机器ε的一半。比如上面的3.14的单精度浮点数，二者误差绝对值是0.0000001049041748046875….，从而相对舍入误差为0.0000001049041748046875….÷3.14≈<code>0.00000003340897286773</code>。而单精度浮点数的机器ε为2-23≈1.1920928955078125e-7，它的一半是<code>0.00000005960464477539</code>。显然，相对舍入误差小于单精度浮点数机器ε的一半。</p>
+</blockquote>
+<h2 id="Ⅲ-非正规化：0的表示"><a href="#Ⅲ-非正规化：0的表示" class="headerlink" title="Ⅲ - 非正规化：0的表示"></a>Ⅲ - 非正规化：0的表示</h2><blockquote>
+<p>从正规化中可知，<strong>无论如何</strong>浮点数都满足最左边是1。这就有一个严重问题：0没有办法被表示。为此，可以使用<strong>非正规化</strong>的表示方法，即让最左边默认为0，这样再另尾数也全部为0，就可以表示0了。</p>
+</blockquote>
+<h3 id="1、根据什么判断是非正规化还是正规化呢？"><a href="#1、根据什么判断是非正规化还是正规化呢？" class="headerlink" title="1、根据什么判断是非正规化还是正规化呢？"></a>1、<strong>根据什么</strong>判断是非正规化还是正规化呢？</h3><blockquote>
+<p>答案就是通过 <strong>指数部分</strong> 来反映。记得前面说过，双精度浮点数中，<em>指数加移码</em> 的范围可以从0到2047，然而0和2047是作为他用的。在这里，<strong>指数部分为0就代表着非正规化</strong>。</p>
+<p>所以，当见到指数部分为0是，尾数部分就不再是<code>1.bbbbb...</code>而是<code>0.bbbbb...</code>了。<br>再进一步，对于非正规化，可以看成是正规化中，小数点向<strong>左边</strong>跑了一位：1.bbbb….×2-1023&#x3D;0.1bbbb….×2×2-1023&#x3D;&#x3D;0.1bbbb….×2-1022（只是概念上理解，小数第一位也不一定非要是1，如<code>0.001010×2^-1022</code>也可）。所以，非正规化下表示为：</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920101114078.png" alt="image-20210920101114078"> </p>
+<p>现在，0就可以表示了。值得注意的是，此时0可以表示位+0和-0。</p>
+<p>因为它的最左边不是1是0，实际上可以表示更小的数。双精度浮点数下，使用非正规化可以表示的<strong>最小的正数</strong>是0.00……01×2-1022也就是2-52×2-1022&#x3D;<strong>2-1074</strong>。</p>
+</blockquote>
+<h3 id="2、与机器ε的区别"><a href="#2、与机器ε的区别" class="headerlink" title="2、与机器ε的区别"></a>2、与机器ε的<strong>区别</strong></h3><blockquote>
+<p>请注意这个最小数和前面提到的机器ε的<strong>区别</strong>。比机器ε小的数是可以被表示出来的（利用非正规化）。但是当它们与其他浮点数做运算时，因为要转成同一种格式（正规化格式），从而可能会因为溢出位而被舍弃。最终结果就是，这些更小的数尽管能被表示，但是对运算结果没有影响。</p>
+</blockquote>
+<h2 id="Ⅳ-浮点数加法"><a href="#Ⅳ-浮点数加法" class="headerlink" title="Ⅳ - 浮点数加法"></a>Ⅳ - 浮点数加法</h2><blockquote>
+<p>机器加法要先将两个操作数的小数点对齐，相加后再转为浮点数存储。这里最重要的一点是，尽管浮点数有位数限制，但是加法会在精度更高的寄存器中进行，这意味着，寄存器能够运算出比52位还要多的位数，但是在转回浮点数存储时，多余位数会被舍弃，造成两者相加的机器结果不严格等于算术结果。</p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920102646558.png" alt="image-20210920102646558"> </p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920102706603.png" alt="image-20210920102706603"> 并不表示在IEEE模型中可以忽略比<img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920102736032.png" alt="image-20210920102736032"> 小的数只要它们在模型中可以表示出来. </p>
+<p><strong>假定没有把它们与单位大小的数相加减,那么用这样大的数进行的计算就如同精确的一样</strong></p>
+</blockquote>
+<h2 id="Ⅴ-无穷大与NaN"><a href="#Ⅴ-无穷大与NaN" class="headerlink" title="Ⅴ - 无穷大与NaN"></a>Ⅴ - 无穷大与NaN</h2><blockquote>
+<p>上面说到，在双精度浮点数中，指数为0表示非正规化，那么指数为2047（二进制是111 1111 1111b，即11位指数位全为1）就表示无穷大和 NaN（Not a Number）。具体表现在，当指数是2047，当尾数,全为0就表示无穷大，当尾数不全为0就表示 NaN。</p>
+</blockquote>
+<h2 id="Ⅵ-舍入规则"><a href="#Ⅵ-舍入规则" class="headerlink" title="Ⅵ - 舍入规则"></a>Ⅵ - 舍入规则</h2><h3 id="1、以52位尾数位的双精度浮点数为例，舍入时需要重点参考第53位："><a href="#1、以52位尾数位的双精度浮点数为例，舍入时需要重点参考第53位：" class="headerlink" title="1、以52位尾数位的双精度浮点数为例，舍入时需要重点参考第53位："></a>1、以52位尾数位的双精度浮点数为例，舍入时需要重点参考第53位：</h3><blockquote>
+<ul>
+<li>若第53位为1，而第53位之后全部为0。此时就要使第52位为0：若第52位本来就是0则不管，若第52位为1，则第53位就要向第52位进一位，这样第52位就可以为0</li>
+<li>若不是上面的情况，即第53位1，但是第53位之后不全为0，则第53位就要向第52位进一完成上舍入。</li>
+<li>若也不是上面两种情况，那么第53位必为0，此时直接舍去不进位，称为下舍入。</li>
+</ul>
+<p>由于存在这种舍入规则，浮点数一般在机器内都不会以原数精确相等的存储，这就会使在某些情况下，使用浮点数做算术运算时出现令人费解的情况，如在JavaScript中（数以双精度存储）：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt;<span class="number">9.4</span><span class="number">-9</span><span class="number">-0.4</span>===<span class="number">0</span> <span class="comment">//9.4减去9再减去0.4，与0比较大小</span></span><br><span class="line">&gt;&lt;&lt;<span class="literal">false</span></span><br><span class="line">&gt;&gt;&gt;(<span class="number">9.4</span><span class="number">-9</span><span class="number">-0.4</span>).<span class="built_in">toFixed</span>(<span class="number">20</span>)</span><br><span class="line">&gt;&lt;&lt;<span class="string">&quot;0.00000000000000033307&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>可见机器表示中，9.4-9-0.4<strong>不严格等于</strong>0，其结果有极小误差。因为按照上面的算法可知，9.4在机器内被表示为：9.4+0.2×2-49，而0.4被表示为0.4+0.1×2-52。这样，当9.4-9时（因为9是整数是可以精确存储的）得0.4+0.2×2-49，再减去0.4+0.1×2-52得3×2-53，约等于”0.00000000000000033307”。</p>
+</blockquote>
+<h3 id="2、循环小数的二进制转回十进制的技巧"><a href="#2、循环小数的二进制转回十进制的技巧" class="headerlink" title="2、循环小数的二进制转回十进制的技巧"></a>2、循环小数的二进制转回十进制的技巧</h3><blockquote>
+<p>某循环小数的二进制码是：0. 0110 0110 0110 0110 0110…..b。可见是0110的循环，令x为其十进制数：x&#x3D;0.01100110…..b，则24x&#x3D;110,01100110…..b，两式相减得：(24-1)x&#x3D;110b，即15x&#x3D;6，从而x&#x3D;6&#x2F;15&#x3D;0.4</p>
+</blockquote>
+<h1 id="三、回归JS"><a href="#三、回归JS" class="headerlink" title="三、回归JS"></a>三、回归JS</h1><blockquote>
+<p>众所周知JS仅有Number这个数值类型，而Number采用的时IEEE 754 64位双精度浮点数编码。而浮点数表示方式具有以下特点：</p>
+<ol>
+<li><p>浮点数可表示的值范围比同等位数的整数表示方式的值范围要大得多；</p>
+</li>
+<li><p>浮点数无法精确表示其值范围内的所有数值，而有符号和无符号整数则是精确表示其值范围内的每个数值；</p>
+</li>
+<li><p>浮点数只能精确表示m*2e的数值；</p>
+</li>
+<li><p>当biased-exponent为2e-1-1时，浮点数能精确表示该范围内的各整数值；</p>
+</li>
+<li><p>当biased-exponent不为2e-1-1时，浮点数不能精确表示该范围内的各整数值。</p>
+</li>
+</ol>
+<p>由于部分数值无法精确表示（存储），于是在运算统计后偏差会愈见明显。</p>
+</blockquote>
+<h2 id="Ⅰ-为何-0-1-0-2-0-30000000000000004"><a href="#Ⅰ-为何-0-1-0-2-0-30000000000000004" class="headerlink" title="Ⅰ - 为何 0.1 + 0.2 &#x3D;&#x3D;&#x3D; 0.30000000000000004 ?"></a>Ⅰ - 为何 0.1 + 0.2 &#x3D;&#x3D;&#x3D; 0.30000000000000004 ?</h2><h3 id="1、文字描述"><a href="#1、文字描述" class="headerlink" title="1、文字描述"></a>1、文字描述</h3><blockquote>
+<p>在浮点数运算中产生误差值的示例中，最出名应该是0.1 + 0.2 &#x3D;&#x3D;&#x3D; 0.30000000000000004了，到底有多有名？看看这个网站就知道了<a target="_blank" rel="noopener" href="http://0.30000000000000004.com/%E3%80%82%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%AF%B4%E4%B8%8D%E4%BB%85%E6%98%AFJavaScript%E4%BC%9A%E4%BA%A7%E7%94%9F%E8%BF%99%E7%A7%8D%E9%97%AE%E9%A2%98%EF%BC%8C%E5%8F%AA%E8%A6%81%E6%98%AF%E9%87%87%E7%94%A8IEEE">http://0.30000000000000004.com/。也就是说不仅是JavaScript会产生这种问题，只要是采用IEEE</a> 754 Floating-point的浮点数编码方式来表示浮点数时，则会产生这类问题。下面我们来分析整个运算过程。</p>
+<ol>
+<li><p>0.1 的二进制表示为 1.1001100110011001100110011001100110011001100110011001 1(0011)+ * 2^-4；</p>
+</li>
+<li><p>当64bit的存储空间无法存储完整的无限循环小数，而IEEE 754 Floating-point采用round to nearest, tie to even的舍入模式，因此0.1实际存储时的位模式是0-01111111011-1001100110011001100110011001100110011001100110011010；</p>
+</li>
+<li><p>0.2 的二进制表示为 1.1001100110011001100110011001100110011001100110011001 1(0011)+ * 2^-3；</p>
+</li>
+<li><p>当64bit的存储空间无法存储完整的无限循环小数，而IEEE 754 Floating-point采用round to nearest, tie to even的舍入模式，因此0.2实际存储时的位模式是0-01111111100-1001100110011001100110011001100110011001100110011010；</p>
+</li>
+<li><p>实际存储的位模式作为操作数进行浮点数加法，得到 0-01111111101-0011001100110011001100110011001100110011001100110100。转换为十进制即为0.30000000000000004。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="2、图文解析"><a href="#2、图文解析" class="headerlink" title="2、图文解析"></a>2、图文解析</h3><blockquote>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920100244664.png" alt="image-20210920100244664"></p>
+<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210920104410607.png" alt="image-20210920104410607"> </p>
+</blockquote>
+<h2 id="Ⅱ-为何-0-7-180-125-99999999998"><a href="#Ⅱ-为何-0-7-180-125-99999999998" class="headerlink" title="Ⅱ - 为何 0.7 * 180&#x3D;&#x3D;&#x3D;125.99999999998 ?"></a>Ⅱ - 为何 0.7 * 180&#x3D;&#x3D;&#x3D;125.99999999998 ?</h2><blockquote>
+<ol>
+<li><p>0.7实际存储时的位模式是0-01111111110-0110011001100110011001100110011001100110011001100110；</p>
+</li>
+<li><p>180实际存储时的位模式是0-10000000110-0110100000000000000000000000000000000000000000000000；</p>
+</li>
+<li><p>实际存储的位模式作为操作数进行浮点数乘法，得到0-10000000101-1111011111111111111111111111111111111111101010000001。转换为十进制即为125.99999999998。</p>
+</li>
+</ol>
+</blockquote>
+<h2 id="Ⅲ-为何-1000000000000000128-1000000000000000129"><a href="#Ⅲ-为何-1000000000000000128-1000000000000000129" class="headerlink" title="Ⅲ - 为何 1000000000000000128&#x3D;&#x3D;&#x3D; 1000000000000000129 ?"></a>Ⅲ - 为何 <strong><code>1000000000000000128</code>&#x3D;&#x3D;&#x3D; <code>1000000000000000129</code> ?</strong></h2><blockquote>
+<p>　1. <code>1000000000000000128</code>实际存储时的位模式是0-10000111010-1011110000010110110101100111010011101100100000000001；</p>
+<ol start="2">
+<li><p><code>1000000000000000129</code>实际存储时的位模式是0-10000111010-1011110000010110110101100111010011101100100000000001；</p>
+</li>
+<li><p>因此<code>1000000000000000128和``1000000000000000129的实际存储的位模式是一样的。</code></p>
+</li>
+</ol>
+</blockquote>
+<h2 id="Ⅳ-为何-0-1-0-1-0-2-？"><a href="#Ⅳ-为何-0-1-0-1-0-2-？" class="headerlink" title="Ⅳ - 为何 0.1+0.1 &#x3D;&#x3D;&#x3D; 0.2 ？"></a>Ⅳ - 为何 0.1+0.1 &#x3D;&#x3D;&#x3D; 0.2 ？</h2><blockquote>
+<p>实际上 0.1+0.1 得到的是 0.20000000….00x,也是有误差，但是JS只取17位有效数字，四舍五入后就相当于是正确答案了</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/Js-JS%E4%B8%AD%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BF%90%E7%AE%97%E7%9A%84%E5%9D%91%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="JS中浮点型运算" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/Js-JS中浮点型运算的坑详解笔记/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/Js-JS%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="逻辑运算符"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/Js-JavaScript%E5%AE%9E%E7%94%A8%E7%9F%AD%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86%E5%90%88%E9%9B%86/" title="Js实用短代码整理"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

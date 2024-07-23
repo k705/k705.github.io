@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>ElementUI使用 | Hexo</title>
+  <meta name="description" content="一、el-date-picker时间控件相关1、开始实现与结束时间选择关联代码实现 直接上代码，没啥好说的,方便日后自己写类似代码好复制,后面的一些问题就是针对写出这些代码过程中 模板中引用1234567891011121314151617181920212223  &lt;el-form-item label&#x3D;&quot;登记证有效期起始&quot; prop&#x3D;&quot;validStartD">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ElementUI使用">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="一、el-date-picker时间控件相关1、开始实现与结束时间选择关联代码实现 直接上代码，没啥好说的,方便日后自己写类似代码好复制,后面的一些问题就是针对写出这些代码过程中 模板中引用1234567891011121314151617181920212223  &lt;el-form-item label&#x3D;&quot;登记证有效期起始&quot; prop&#x3D;&quot;validStartD">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211215144633764.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211215145041672.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220113190604745.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220114102555998.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220114103733877.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220121161918055.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220121162923292.png">
+<meta property="og:image" content="https://gitee.com/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220729162214344.png">
+<meta property="og:image" content="https://gitee.com/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220729164100155.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220713170758805.png">
+<meta property="og:image" content="https://gitee.com/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220803180847029.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211223094312981.png">
+<meta property="og:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211223100047277.png">
+<meta property="og:image" content="https://gitee.com/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220728112311798.png">
+<meta property="og:image" content="https://gitee.com/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220728112523979.png">
+<meta property="og:image" content="https://gitee.com/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220728112821906.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T09:54:54.757Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="前端UI库">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gitee.com/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211215144633764.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-前端UI库-ElementUI使用" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      ElementUI使用
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="一、el-date-picker时间控件相关"><a href="#一、el-date-picker时间控件相关" class="headerlink" title="一、el-date-picker时间控件相关"></a>一、<code>el-date-picker</code>时间控件相关</h1><h2 id="1、开始实现与结束时间选择关联代码实现"><a href="#1、开始实现与结束时间选择关联代码实现" class="headerlink" title="1、开始实现与结束时间选择关联代码实现"></a>1、开始实现与结束时间选择关联代码实现</h2><blockquote>
+<p>直接上代码，没啥好说的,方便日后自己写类似代码好复制,后面的一些问题就是针对写出这些代码过程中</p>
+<h6 id="模板中引用"><a href="#模板中引用" class="headerlink" title="模板中引用"></a>模板中引用</h6><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">  <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;登记证有效期起始&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;validStartDate&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">el-date-picker</span></span></span><br><span class="line"><span class="tag">         <span class="attr">v-model</span>=<span class="string">&quot;form.validStartDate&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">value-format</span>=<span class="string">&quot;yyyy-MM-dd [00:00:00]&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">:style</span>=<span class="string">&quot;&#123;width:&#x27;100% &#x27;&#125;&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">type</span>=<span class="string">&quot;date&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">placeholder</span>=<span class="string">&quot;选择时间&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">:picker-options</span>=<span class="string">&quot;pickerOptions.validStartDate&quot;</span></span></span><br><span class="line"><span class="tag">       &gt;</span><span class="tag">&lt;/<span class="name">el-date-picker</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">&quot;8&quot;</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">&quot;登记证有效期截止&quot;</span> <span class="attr">prop</span>=<span class="string">&quot;validEndDate&quot;</span>&gt;</span></span><br><span class="line">       <span class="tag">&lt;<span class="name">el-date-picker</span></span></span><br><span class="line"><span class="tag">         <span class="attr">v-model</span>=<span class="string">&quot;form.validEndDate&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">value-format</span>=<span class="string">&quot;yyyy-MM-dd [23:59:59]&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">:style</span>=<span class="string">&quot;&#123;width:&#x27;100% &#x27;&#125;&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">type</span>=<span class="string">&quot;date&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">placeholder</span>=<span class="string">&quot;结束时间&quot;</span></span></span><br><span class="line"><span class="tag">         <span class="attr">:picker-options</span>=<span class="string">&quot;pickerOptions.validEndDate&quot;</span></span></span><br><span class="line"><span class="tag">       &gt;</span><span class="tag">&lt;/<span class="name">el-date-picker</span>&gt;</span></span><br><span class="line">     <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="data-中的定义"><a href="#data-中的定义" class="headerlink" title="data 中的定义"></a>data 中的定义</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">pickerOptions: &#123;</span><br><span class="line">       // 开始时间限制</span><br><span class="line">       validStartDate: &#123;</span><br><span class="line">         disabledDate: (time) =&gt; &#123;</span><br><span class="line">            // 修复截止日期选择后删除日期，然后选择起止日期，会显示无法选择日期的问题</span><br><span class="line">           if (!this.form.validEndDate) return null</span><br><span class="line">           return new Date(this.form.validEndDate) ? new Date(this.form.validEndDate) &lt; new Date(time) : null</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;,</span><br><span class="line">       // 结束时间限制</span><br><span class="line">       validEndDate: &#123;</span><br><span class="line">         disabledDate: (time) =&gt; &#123;</span><br><span class="line">           // elementui时间默认多了8小时,需要消除这8小时的影响</span><br><span class="line">           const tempDate = new Date(time)</span><br><span class="line">           const newDate = tempDate.setDate(tempDate.getDate() + 1)</span><br><span class="line">           return new Date(this.form.validStartDate) ? new Date(this.form.validStartDate) &gt;= new Date(newDate) : null</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;,</span><br><span class="line">     &#125;,</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="2、关于日期控件日期少一天的问题"><a href="#2、关于日期控件日期少一天的问题" class="headerlink" title="2、关于日期控件日期少一天的问题"></a>2、关于日期控件日期少一天的问题</h2><blockquote>
+<p>在我进行前后端联调时,<strong>发现传给服务端的参数比输入选择的日期少一天</strong>,但代码逻辑并没有什么错误</p>
+<p>随后经过排查发现是 <code>el-date-picker日期控件</code>的问题</p>
+</blockquote>
+<h3 id="Ⅰ-问题说明"><a href="#Ⅰ-问题说明" class="headerlink" title="Ⅰ- 问题说明"></a>Ⅰ- 问题说明</h3><blockquote>
+<ol>
+<li>代码示例</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=&quot;申请时间&quot; prop=&quot;applyDate&quot;&gt;</span><br><span class="line"> &lt;el-date-picker</span><br><span class="line">   class=&quot;eve-common-date-picker&quot;</span><br><span class="line">   :size=&quot;$size&quot;</span><br><span class="line">   v-model=&quot;form.applyDate&quot;</span><br><span class="line">   type=&quot;date&quot;</span><br><span class="line">   :style=&quot;&#123;width:&#x27;100% &#x27;&#125;&quot;</span><br><span class="line">   placeholder=&quot;请选择申请时间&quot;</span><br><span class="line"> &gt;&lt;/el-date-picker&gt;</span><br><span class="line">&lt;/el-form-item&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>传参截图</li>
+</ol>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211215144633764.png" alt="image-20211215144633764"></p>
+</blockquote>
+<h3 id="Ⅱ-原因剖析"><a href="#Ⅱ-原因剖析" class="headerlink" title="Ⅱ- 原因剖析"></a>Ⅱ- 原因剖析</h3><blockquote>
+<p><strong>element-ui 中时间控件的默认时间为国际标准时间，所以与北京时间差 8 个小时</strong></p>
+</blockquote>
+<h3 id="Ⅲ-解决方案"><a href="#Ⅲ-解决方案" class="headerlink" title="Ⅲ- 解决方案"></a>Ⅲ- 解决方案</h3><blockquote>
+<p>在标签中加上<strong>value-format&#x3D;”yyyy-MM-dd”</strong> 即可,将其转换格式</p>
+<ol>
+<li>解决代码</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=&quot;申请时间&quot; prop=&quot;applyDate&quot;&gt;</span><br><span class="line"> &lt;el-date-picker</span><br><span class="line">   class=&quot;eve-common-date-picker&quot;</span><br><span class="line">   :size=&quot;$size&quot;</span><br><span class="line">   v-model=&quot;form.applyDate&quot;</span><br><span class="line">   type=&quot;date&quot;</span><br><span class="line">   :style=&quot;&#123;width:&#x27;100% &#x27;&#125;&quot;</span><br><span class="line">   placeholder=&quot;请选择申请时间&quot;</span><br><span class="line">   value-format=&quot;yyyy-MM-dd&quot;      //--------多加这一行代码-----//</span><br><span class="line"> &gt;&lt;/el-date-picker&gt;</span><br><span class="line">&lt;/el-form-item&gt;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>成功解决</li>
+</ol>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211215145041672.png" alt="image-20211215145041672"></p>
+</blockquote>
+<h2 id="3、关于时间区间选择-查询边界错误的问题"><a href="#3、关于时间区间选择-查询边界错误的问题" class="headerlink" title="3、关于时间区间选择 查询边界错误的问题"></a>3、关于时间区间选择 查询边界错误的问题</h2><h3 id="Ⅰ-问题说明-1"><a href="#Ⅰ-问题说明-1" class="headerlink" title="Ⅰ - 问题说明"></a>Ⅰ - 问题说明</h3><blockquote>
+<p>当我们使用时间选择框选择时间区间时,处于边界的数据往往会得不到 比如 :</p>
+<ul>
+<li>选择 1<del>11 号的数据,实际上默认转换成 &#96;1号0时0分</del>11号0时0分&#96;</li>
+<li>这样我们是查不到 11 号 0 时到 23:59 分的数据的</li>
+</ul>
+</blockquote>
+<h3 id="Ⅱ-解决方案"><a href="#Ⅱ-解决方案" class="headerlink" title="Ⅱ - 解决方案"></a>Ⅱ - 解决方案</h3><blockquote>
+<p>设置两个属性即可</p>
+<p><code>value-format=&quot;yyyy-MM-dd HH:mm:ss&quot; :default-time=&quot;[&#39;00:00:00&#39;, &#39;23:59:59&#39;]&quot;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-date-picker</span><br><span class="line">  v-model=&quot;form.applyDate&quot;</span><br><span class="line">  value-format=&quot;yyyy-MM-dd HH:mm:ss&quot;</span><br><span class="line">  :default-time=&quot;[&#x27;00:00:00&#x27;, &#x27;23:59:59&#x27;]&quot;</span><br><span class="line">  :style=&quot;&#123; width: &#x27;100% &#x27; &#125;&quot;</span><br><span class="line">  type=&quot;daterange&quot;</span><br><span class="line">  range-separator=&quot;~&quot;</span><br><span class="line">  start-placeholder=&quot;开始日期&quot;</span><br><span class="line">  end-placeholder=&quot;结束日期&quot;</span><br><span class="line">&gt;&lt;/el-date-picker&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="4、日期格式转化后限制时间范围-picker-options-失效的问题"><a href="#4、日期格式转化后限制时间范围-picker-options-失效的问题" class="headerlink" title="4、日期格式转化后限制时间范围 picker-options 失效的问题"></a>4、日期格式转化后限制时间范围 picker-options 失效的问题</h2><h3 id="Ⅰ-问题说明-2"><a href="#Ⅰ-问题说明-2" class="headerlink" title="Ⅰ- 问题说明"></a>Ⅰ- 问题说明</h3><blockquote>
+<ol>
+<li><p>因为 element-ui 如不指定 <code>value-format</code> 就会出现日期数据少一天的问题,所以需要加上这个属性</p>
+</li>
+<li><p>但是当我们加上格式转换后,原来的<code>picker-options</code>就失去了限制时间范围的效果,这是为什么?</p>
+</li>
+</ol>
+<blockquote>
+<p>实际上是因为格式转换后,我们的时间格式转换成了 <strong>字符串</strong> 格式,所以我们要在<code>picker-options</code>对比时间的时候将其转换回来日期格式即可</p>
+</blockquote>
+</blockquote>
+<h3 id="Ⅱ-解决方案-1"><a href="#Ⅱ-解决方案-1" class="headerlink" title="Ⅱ - 解决方案"></a>Ⅱ - 解决方案</h3><blockquote>
+<p>此处只展示部分代码帮助理解</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-date-picker</span><br><span class="line">    value-format=&quot;yyyy-MM-dd&quot;</span><br><span class="line">    v-model=&quot;form.applyEndDate&quot;</span><br><span class="line">    type=&quot;date&quot;</span><br><span class="line">    :picker-options=&quot;pickerOptions.theoryExamEndTime&quot;</span><br><span class="line">    placeholder=&quot;选择日期&quot;</span><br><span class="line">  &gt;&lt;/el-date-picker&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      theoryExamEndTime: &#123;</span><br><span class="line">        disabledDate: (time) =&gt; &#123;</span><br><span class="line">          return new Date(this.form.theoryExamStartTime)</span><br><span class="line">            ? new Date(this.form.theoryExamStartTime) &gt; new Date(time)</span><br><span class="line">            : null;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>效果图<img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220113190604745.png" alt="image-20220113190604745"></p>
+</blockquote>
+<h2 id="5、日期选择器设置默认时间-23-59-59"><a href="#5、日期选择器设置默认时间-23-59-59" class="headerlink" title="5、日期选择器设置默认时间 23:59:59"></a>5、日期选择器设置默认时间 23:59:59</h2><h3 id="Ⅰ-问题说明-3"><a href="#Ⅰ-问题说明-3" class="headerlink" title="Ⅰ - 问题说明"></a>Ⅰ - 问题说明</h3><blockquote>
+<ol>
+<li><p>一般来说,设置默认时间区间可以用<code>:default-time=&quot;[&#39;00:00:00&#39;, &#39;23:59:59&#39;]&quot;</code> 进行设置,但这个属性要求你的类型<code>  type=&quot;daterange&quot;</code></p>
+</li>
+<li><p>这时我突然有个需求:因为有些用户显示屏较小,导致<code>type=&quot;daterange&quot;</code>的选择器部分显示内容被隐藏,所以要我拆分成两个字段</p>
+</li>
+</ol>
+<blockquote>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220114102555998.png" alt="image-20220114102555998"></p>
+</blockquote>
+<ol start="3">
+<li>所以这时,原本的<code>type=&quot;daterange&quot;</code>就要改成<code>type=&quot;date&quot;</code>,就导致<code>:default-time=&quot;[&#39;00:00:00&#39;, &#39;23:59:59&#39;]&quot;</code>失效甚至报错</li>
+</ol>
+</blockquote>
+<h3 id="Ⅱ-解决方案一"><a href="#Ⅱ-解决方案一" class="headerlink" title="Ⅱ - 解决方案一"></a>Ⅱ - 解决方案一</h3><blockquote>
+<p>这个方案是我最初自己想出来的,因为对于 Element-ui 的不熟悉,就想在最终使用数据的时候将默认时间添加上去</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=&quot;考试结束时间&quot; prop=&quot;examEndDate&quot;&gt;</span><br><span class="line">&lt;el-date-picker</span><br><span class="line">v-model=&quot;form.examEndDate&quot;</span><br><span class="line">value-format=&quot;yyyy-MM-dd&quot;</span><br><span class="line">:style=&quot;&#123;width:&#x27;100% &#x27;&#125;&quot;</span><br><span class="line">type=&quot;date&quot;</span><br><span class="line">placeholder=&quot;选择日期&quot;</span><br><span class="line"> &gt;&lt;/el-date-picker&gt;</span><br><span class="line">&lt;/el-form-item&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">//使用数据时</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    use() &#123;</span><br><span class="line">      //从form中获取该时间</span><br><span class="line">      let &#123; examEndDate &#125; = this.form;</span><br><span class="line">      // 结束时间手动加上 23:59:59  防止查询边界错误</span><br><span class="line">      examEndDate = examEndDate ? (examEndDate += &quot; 23:59:59&quot;) : undefined;</span><br><span class="line">      //填入请求参数中</span><br><span class="line">      const condition = &#123; ...this.form, examEndDate &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样实现是可行的,但是也有缺点,就是如果当你时间选择框特别多时,代码就会变得冗余</p>
+</blockquote>
+<h3 id="Ⅱ-解决方案二"><a href="#Ⅱ-解决方案二" class="headerlink" title="Ⅱ - 解决方案二"></a>Ⅱ - 解决方案二</h3><blockquote>
+<p>后来觉得 Element-ui 应该会有相应的处理,不应该这种常见的需求会没有解决方案,果然,在文档中发现了这个</p>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220114103733877.png" alt="image-20220114103733877"></p>
+<p>所以,实际上我们只要在时间控件中这样写,就不用自己亲自做数据处理了 <code>value-format=&quot;yyyy-MM-dd [23:59:59]&quot;</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-form-item label=&quot;考试结束时间&quot; prop=&quot;examEndDate&quot;&gt;</span><br><span class="line">&lt;el-date-picker</span><br><span class="line">v-model=&quot;form.examEndDate&quot;</span><br><span class="line">value-format=&quot;yyyy-MM-dd [23:59:59]&quot;</span><br><span class="line">:style=&quot;&#123;width:&#x27;100% &#x27;&#125;&quot;</span><br><span class="line">type=&quot;date&quot;</span><br><span class="line">placeholder=&quot;选择日期&quot;</span><br><span class="line"> &gt;&lt;/el-date-picker&gt;</span><br><span class="line">&lt;/el-form-item&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="6、两个关联时间框无法选择同一天"><a href="#6、两个关联时间框无法选择同一天" class="headerlink" title="6、两个关联时间框无法选择同一天"></a>6、两个关联时间框无法选择同一天</h2><h3 id="Ⅰ-问题提出"><a href="#Ⅰ-问题提出" class="headerlink" title="Ⅰ- 问题提出"></a>Ⅰ- 问题提出</h3><blockquote>
+<p>需求要求,开始时间与结束时间需要可以选择同一天,但突然发现一个 BUG,两个时间选择框,当限制开始时间后,结束时间无法选择与开始时间同一天(限制结束时间后却可以选择同一天的开始时间)</p>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220121161918055.png" alt="image-20220121161918055"></p>
+<h6 id="代码展示"><a href="#代码展示" class="headerlink" title="代码展示"></a>代码展示</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-date-picker</span><br><span class="line">    value-format=&quot;yyyy-MM-dd&quot;</span><br><span class="line">    v-model=&quot;form.applyEndDate&quot;</span><br><span class="line">    type=&quot;date&quot;</span><br><span class="line">    :picker-options=&quot;pickerOptions.theoryExamEndTime&quot;</span><br><span class="line">    placeholder=&quot;选择日期&quot;</span><br><span class="line">  &gt;&lt;/el-date-picker&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      theoryExamEndTime: &#123;</span><br><span class="line">        disabledDate: (time) =&gt; &#123;</span><br><span class="line">          return new Date(this.form.theoryExamStartTime)</span><br><span class="line">            ? //此处明明是 &gt;= 为何还不能选择同一天??</span><br><span class="line">              new Date(this.form.theoryExamStartTime) &gt;= new Date(time)</span><br><span class="line">            : null;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅱ-问题分析"><a href="#Ⅱ-问题分析" class="headerlink" title="Ⅱ - 问题分析"></a>Ⅱ - 问题分析</h3><blockquote>
+<p>Element-ui 的时间偏差了 8 小时,所以导致这个判断结束时间错误,所以一个是当天的 8 小时,一个是当天的 0 时,就导致了,开始时间可以选择到截止时间的当当天,而反过来却不行</p>
+<p>一般来说 我们加个 <code>value-format=&quot;yyyy-MM-dd&quot;</code> 就可以消除这个问题,就能转换成年月日 然后再转成时间 就是默认 0 时 0 分<br>我这边这个是要进行范围限制 它默认传入的时间却没有受到我们 value-format 的影响 他就是默认偏差 8 小时,需要我们将这个传入的 time 在进行格式转换</p>
+<h6 id="所以解决方案理论上会有两种"><a href="#所以解决方案理论上会有两种" class="headerlink" title="所以解决方案理论上会有两种"></a>所以解决方案理论上会有两种</h6><ol>
+<li>可以是将默认传入的时间都用 value-format 转换成 <code>yyyy-MM-dd [00:00:00]</code> 格式(也可以先转成年月日再转换成时间格式,取决于自己),这样就能把超出的 8 小时去除</li>
+<li>直接操作日期加减一天</li>
+</ol>
+</blockquote>
+<h3 id="Ⅲ-代码示例"><a href="#Ⅲ-代码示例" class="headerlink" title="Ⅲ - 代码示例"></a>Ⅲ - 代码示例</h3><blockquote>
+<p>这里直接操作日期加减一天,问就是代码简单</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-date-picker</span><br><span class="line">    value-format=&quot;yyyy-MM-dd&quot;</span><br><span class="line">    v-model=&quot;form.applyEndDate&quot;</span><br><span class="line">    type=&quot;date&quot;</span><br><span class="line">    :picker-options=&quot;pickerOptions.theoryExamEndTime&quot;</span><br><span class="line">    placeholder=&quot;选择日期&quot;</span><br><span class="line">  &gt;&lt;/el-date-picker&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      theoryExamEndTime: &#123;</span><br><span class="line">        disabledDate: (time) =&gt; &#123;</span><br><span class="line">          // elementui时间默认多了8小时,需要消除这8小时的影响</span><br><span class="line">          const tempDate = new Date(time);</span><br><span class="line">          const newDate = tempDate.setDate(tempDate.getDate() + 1);</span><br><span class="line">          return new Date(this.form.applyStartDate)</span><br><span class="line">            ? new Date(this.form.applyStartDate) &gt;= new Date(newDate)</span><br><span class="line">            : null;</span><br><span class="line">        &#125;,</span><br><span class="line">      &#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅳ-解决"><a href="#Ⅳ-解决" class="headerlink" title="Ⅳ - 解决"></a>Ⅳ - 解决</h3><blockquote>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220121162923292.png" alt="image-20220121162923292"></p>
+</blockquote>
+<h2 id="7、关联选择框限制时间后出现结束日期选择后删除日期，然后选择开始日期，会显示无法选择日期的问题"><a href="#7、关联选择框限制时间后出现结束日期选择后删除日期，然后选择开始日期，会显示无法选择日期的问题" class="headerlink" title="7、关联选择框限制时间后出现结束日期选择后删除日期，然后选择开始日期，会显示无法选择日期的问题"></a>7、关联选择框限制时间后出现<strong>结束日期选择后删除日期，然后选择开始日期，会显示无法选择日期</strong>的问题</h2><h3 id="Ⅰ-问题提出-1"><a href="#Ⅰ-问题提出-1" class="headerlink" title="Ⅰ- 问题提出"></a>Ⅰ- 问题提出</h3><blockquote>
+<p><img src="/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220729162214344.png" alt="image-20220729162214344"></p>
+</blockquote>
+<h3 id="Ⅱ-问题代码与分析"><a href="#Ⅱ-问题代码与分析" class="headerlink" title="Ⅱ- 问题代码与分析"></a>Ⅱ- 问题代码与分析</h3><blockquote>
+<p>可以去问题[1]处看正确的完整代码,此处只截取有问题的代码</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pickerOptions</span>: &#123;</span><br><span class="line">       <span class="comment">// 开始时间限制</span></span><br><span class="line">       <span class="attr">validStartDate</span>: &#123;</span><br><span class="line">         <span class="attr">disabledDate</span>: <span class="function">(<span class="params">time</span>) =&gt;</span> &#123;</span><br><span class="line">           <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="variable language_">this</span>.<span class="property">form</span>.<span class="property">validEndDate</span>) ? <span class="keyword">new</span> <span class="title class_">Date</span>(<span class="variable language_">this</span>.<span class="property">form</span>.<span class="property">validEndDate</span>) &lt; <span class="keyword">new</span> <span class="title class_">Date</span>(time) : <span class="literal">null</span></span><br><span class="line">         &#125;</span><br><span class="line">       &#125;,</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>根据问题截图操作可以推测,当选中后再重新删除,</p>
+<ul>
+<li>这时<code>this.form.validEndDate</code>就为 null,而<code>new Date(null)</code>的结果是 <code>1970年1月1日</code>–此处不懂的可以百度,很容易查到此处不做科普</li>
+<li>而<code>1970年1月1日</code>隐式会转换为 true,<code>&#39;1970年1月1日&#39;?&#39;1970年1月1日&#39;&lt;1970年1月1日以及之后的某时刻:null</code>得到的就是 <code>&#39;&#39;1970年1月1日&#39;&lt;1970年1月1日以及之后的某时刻</code></li>
+<li>而 <code>&#39;1970年1月1日&#39;&lt;1970年1月1日以及之后的某时刻</code>可想而知结果都会是<code>true</code>,就导致全部都无法选择了</li>
+</ul>
+<p><img src="/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220729164100155.png" alt="image-20220729164100155"></p>
+</blockquote>
+<h3 id="Ⅲ-解决"><a href="#Ⅲ-解决" class="headerlink" title="Ⅲ- 解决"></a>Ⅲ- 解决</h3><blockquote>
+<p>知道了出现问题的地方,就很好解决了,在开始时间的限制处,判断是否结束时间为<code>null</code>,如果是<code>null</code>,就直接返回<code>null</code>,这样组件就不会进行限制</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">pickerOptions: &#123;</span><br><span class="line">       // 开始时间限制</span><br><span class="line">       validStartDate: &#123;</span><br><span class="line">         disabledDate: (time) =&gt; &#123;</span><br><span class="line">          // 修复有效期截止日期选择后删除日期，然后选择有效期起止日期，会显示无法选择日期的问题</span><br><span class="line">           if (!this.form.validEndDate) return nu</span><br><span class="line">           return new Date(this.form.validEndDate) ? new Date(this.form.validEndDate) &lt; new Date(time) : null</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;,</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<h1 id="二、el-tree相关"><a href="#二、el-tree相关" class="headerlink" title="二、el-tree相关"></a>二、<code>el-tree</code>相关</h1><h2 id="1、-el-tree-实现超出悬浮显示"><a href="#1、-el-tree-实现超出悬浮显示" class="headerlink" title="1、 el-tree 实现超出悬浮显示"></a>1、 el-tree 实现超出悬浮显示</h2><blockquote>
+<p>使用<code>render-content</code>属性可以进行设置 — <a target="_blank" rel="noopener" href="https://element.eleme.io/#/zh-CN/component/tree#attributes">文档地址</a></p>
+<h6 id="模板代码"><a href="#模板代码" class="headerlink" title="模板代码"></a>模板代码</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-tree ref=&quot;tree&quot; :render-content=&quot;renderTreeContent&quot;&gt;&lt;/el-tree&gt;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Method-方法"><a href="#Method-方法" class="headerlink" title="Method 方法"></a>Method 方法</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="comment">// 渲染树</span></span><br><span class="line">    <span class="title function_">renderTreeContent</span>(<span class="params">h, &#123; node &#125;</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">el-tooltip</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">class</span>=<span class="string">&quot;item&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">effect</span>=<span class="string">&quot;dark&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">content</span>=<span class="string">&#123;node.label&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">placement</span>=<span class="string">&quot;top-start&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          &gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;node.label&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">el-tooltip</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">      );</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>效果展示：</p>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20220713170758805.png" alt="image-20220713170758805"></p>
+</blockquote>
+<h2 id="2、el-tree-点击复选框后的文字也能勾选"><a href="#2、el-tree-点击复选框后的文字也能勾选" class="headerlink" title="2、el-tree 点击复选框后的文字也能勾选"></a>2、el-tree 点击复选框后的文字也能勾选</h2><blockquote>
+<p>在 tree 中加上<code>@node-click</code>事件进行操作即可</p>
+<h6 id="模板代码-1"><a href="#模板代码-1" class="headerlink" title="模板代码"></a>模板代码</h6><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-tree ref=&quot;tree&quot; @node-click=&quot;handleRowClick&quot;&gt;&lt;/el-tree&gt;</span><br></pre></td></tr></table></figure>
+
+<h6 id="Method-方法-1"><a href="#Method-方法-1" class="headerlink" title="Method 方法"></a>Method 方法</h6><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="comment">// 点击行即可让复选框勾选</span></span><br><span class="line">    <span class="title function_">handleRowClick</span>(<span class="params">data, node</span>) &#123;</span><br><span class="line">      node.<span class="property">checked</span> = !node.<span class="property">checked</span>;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="3、el-tree-放入下拉框中"><a href="#3、el-tree-放入下拉框中" class="headerlink" title="3、el-tree 放入下拉框中"></a>3、el-tree 放入下拉框中</h2><h3 id="Ⅰ-效果图"><a href="#Ⅰ-效果图" class="headerlink" title="Ⅰ - 效果图"></a>Ⅰ - 效果图</h3><blockquote>
+<p><img src="/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220803180847029.png" alt="image-20220803180847029"></p>
+<p>如果放到下拉框中，直接将树形结构放到表单中会显得特别占位置。做成这样的效果就会更好</p>
+</blockquote>
+<h3 id="Ⅱ-封装的代码"><a href="#Ⅱ-封装的代码" class="headerlink" title="Ⅱ - 封装的代码"></a>Ⅱ - 封装的代码</h3><blockquote>
+<p>使用<code>el-popover</code>+<code>el-input</code>+<code>el-tree</code>模拟实现以上效果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 树状选择器 --&gt;</span><br><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-popover</span><br><span class="line">    ref=&quot;popover&quot;</span><br><span class="line">    placement=&quot;bottom-start&quot;</span><br><span class="line">    trigger=&quot;click&quot;</span><br><span class="line">    :disabled=&quot;disabled&quot;</span><br><span class="line">    @show=&quot;onShowPopover&quot;</span><br><span class="line">    @hide=&quot;onHidePopover&quot;</span><br><span class="line">  &gt;</span><br><span class="line">    &lt;el-tree</span><br><span class="line">      ref=&quot;tree&quot;</span><br><span class="line">      class=&quot;select-tree&quot;</span><br><span class="line">      highlight-current</span><br><span class="line">      :style=&quot;`min-width: $&#123;treeWidth&#125;;height:50vh;overflowY:scroll`&quot;</span><br><span class="line">      :data=&quot;data&quot;</span><br><span class="line">      :props=&quot;props&quot;</span><br><span class="line">      :expand-on-click-node=&quot;false&quot;</span><br><span class="line">      :filter-node-method=&quot;filterNode&quot;</span><br><span class="line">      :default-expand-all=&quot;false&quot;</span><br><span class="line">      @node-click=&quot;onClickNode&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    &lt;/el-tree&gt;</span><br><span class="line">    &lt;el-input</span><br><span class="line">      slot=&quot;reference&quot;</span><br><span class="line">      ref=&quot;input&quot;</span><br><span class="line">      v-model=&quot;labelModel&quot;</span><br><span class="line">      clearable</span><br><span class="line">      :style=&quot;`width: $&#123;width&#125;px`&quot;</span><br><span class="line">      :class=&quot;&#123; rotate: showStatus &#125;&quot;</span><br><span class="line">      suffix-icon=&quot;el-icon-arrow-down&quot;</span><br><span class="line">      :placeholder=&quot;placeholder&quot;</span><br><span class="line">      :disabled=&quot;disabled&quot;</span><br><span class="line">    &gt;</span><br><span class="line">    &lt;/el-input&gt;</span><br><span class="line">  &lt;/el-popover&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  name: &quot;Pagination&quot;,</span><br><span class="line">  props: &#123;</span><br><span class="line">    // 接收绑定参数</span><br><span class="line">    value: String,</span><br><span class="line">    // 输入框宽度</span><br><span class="line">    width: String,</span><br><span class="line">    // 选项数据</span><br><span class="line">    options: &#123;</span><br><span class="line">      type: Array,</span><br><span class="line">      required: true,</span><br><span class="line">    &#125;,</span><br><span class="line">    // 是否可选</span><br><span class="line">    disabled: &#123;</span><br><span class="line">      type: Boolean,</span><br><span class="line">      default: false,</span><br><span class="line">    &#125;,</span><br><span class="line">    // 输入框占位符</span><br><span class="line">    placeholder: &#123;</span><br><span class="line">      type: String,</span><br><span class="line">      required: false,</span><br><span class="line">      default: &quot;请选择&quot;,</span><br><span class="line">    &#125;,</span><br><span class="line">    // 树节点配置选项</span><br><span class="line">    props: &#123;</span><br><span class="line">      type: Object,</span><br><span class="line">      required: false,</span><br><span class="line">      default: () =&gt; (&#123;</span><br><span class="line">        parent: &quot;parentId&quot;,</span><br><span class="line">        value: &quot;rowGuid&quot;,</span><br><span class="line">        label: &quot;areaName&quot;,</span><br><span class="line">        children: &quot;children&quot;,</span><br><span class="line">      &#125;),</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  // 设置绑定参数</span><br><span class="line">  model: &#123;</span><br><span class="line">    prop: &quot;value&quot;,</span><br><span class="line">    event: &quot;selected&quot;,</span><br><span class="line">  &#125;,</span><br><span class="line">  computed: &#123;</span><br><span class="line">    // 是否为树状结构数据</span><br><span class="line">    dataType() &#123;</span><br><span class="line">      const jsonStr = JSON.stringify(this.options);</span><br><span class="line">      return jsonStr.indexOf(this.props.children) !== -1;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 若非树状结构，则转化为树状结构数据</span><br><span class="line">    data() &#123;</span><br><span class="line">      return this.dataType ? this.options : this.switchTree();</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    labelModel(val) &#123;</span><br><span class="line">      if (!val) &#123;</span><br><span class="line">        this.valueModel = &quot;&quot;;</span><br><span class="line">      &#125;</span><br><span class="line">      this.$refs.tree.filter(val);</span><br><span class="line">    &#125;,</span><br><span class="line">    value(val) &#123;</span><br><span class="line">      this.labelModel = this.queryTree(this.data, val);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      // 树状菜单显示状态</span><br><span class="line">      showStatus: false,</span><br><span class="line">      // 菜单宽度</span><br><span class="line">      treeWidth: &quot;auto&quot;,</span><br><span class="line">      // 输入框显示值</span><br><span class="line">      labelModel: &quot;&quot;,</span><br><span class="line">      // 实际请求传值</span><br><span class="line">      valueModel: &quot;0&quot;,</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    // 检测输入框原有值并显示对应 label</span><br><span class="line">    if (this.value) &#123;</span><br><span class="line">      this.labelModel = this.queryTree(this.data, this.value);</span><br><span class="line">    &#125;</span><br><span class="line">    // 获取输入框宽度同步至树状菜单宽度</span><br><span class="line">    this.$nextTick(() =&gt; &#123;</span><br><span class="line">      this.treeWidth = `$&#123;</span><br><span class="line">        (this.width || this.$refs.input.$refs.input.clientWidth) - 24</span><br><span class="line">      &#125;px`;</span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    // 单击节点</span><br><span class="line">    onClickNode(node) &#123;</span><br><span class="line">      this.labelModel = node[this.props.label];</span><br><span class="line">      this.valueModel = node[this.props.value];</span><br><span class="line">      this.onCloseTree();</span><br><span class="line">      this.$emit(&quot;treeSelect&quot;, this.valueModel);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 偏平数组转化为树状层级结构</span><br><span class="line">    switchTree() &#123;</span><br><span class="line">      return this.cleanChildren(this.buildTree(this.options, &quot;0&quot;));</span><br><span class="line">    &#125;,</span><br><span class="line">    // 隐藏树状菜单</span><br><span class="line">    onCloseTree() &#123;</span><br><span class="line">      this.$refs.popover.showPopper = false;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 显示时触发</span><br><span class="line">    onShowPopover() &#123;</span><br><span class="line">      this.showStatus = true;</span><br><span class="line">      this.$refs.tree.filter(false);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 隐藏时触发</span><br><span class="line">    onHidePopover() &#123;</span><br><span class="line">      this.showStatus = false;</span><br><span class="line">      this.$emit(&quot;selected&quot;, this.valueModel);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 树节点过滤方法</span><br><span class="line">    filterNode(query, data) &#123;</span><br><span class="line">      if (!query) return true;</span><br><span class="line">      return data[this.props.label].indexOf(query) !== -1;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 搜索树状数据中的 ID</span><br><span class="line">    queryTree(tree, id) &#123;</span><br><span class="line">      let stark = [];</span><br><span class="line">      stark = stark.concat(tree);</span><br><span class="line">      while (stark.length) &#123;</span><br><span class="line">        const temp = stark.shift();</span><br><span class="line">        if (temp[this.props.children]) &#123;</span><br><span class="line">          stark = stark.concat(temp[this.props.children]);</span><br><span class="line">        &#125;</span><br><span class="line">        if (temp[this.props.value] === id) &#123;</span><br><span class="line">          return temp[this.props.label];</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      return &quot;&quot;;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 将一维的扁平数组转换为多层级对象</span><br><span class="line">    buildTree(data, id = &quot;0&quot;) &#123;</span><br><span class="line">      const fa = (parentId) =&gt; &#123;</span><br><span class="line">        const temp = [];</span><br><span class="line">        for (let i = 0; i &lt; data.length; i++) &#123;</span><br><span class="line">          const n = data[i];</span><br><span class="line">          if (n[this.props.parent] === parentId) &#123;</span><br><span class="line">            n.children = fa(n.rowGuid);</span><br><span class="line">            temp.push(n);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return temp;</span><br><span class="line">      &#125;;</span><br><span class="line">      return fa(id);</span><br><span class="line">    &#125;,</span><br><span class="line">    // 清除空 children项</span><br><span class="line">    cleanChildren(data) &#123;</span><br><span class="line">      const fa = (list) =&gt; &#123;</span><br><span class="line">        list.map((e) =&gt; &#123;</span><br><span class="line">          if (e.children.length) &#123;</span><br><span class="line">            fa(e.children);</span><br><span class="line">          &#125; else &#123;</span><br><span class="line">            delete e.children;</span><br><span class="line">          &#125;</span><br><span class="line">          return e;</span><br><span class="line">        &#125;);</span><br><span class="line">        return list;</span><br><span class="line">      &#125;;</span><br><span class="line">      return fa(data);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">.el-input.el-input--suffix &#123;</span><br><span class="line">  cursor: pointer;</span><br><span class="line">  overflow: hidden;</span><br><span class="line">&#125;</span><br><span class="line">.el-input.el-input--suffix.rotate .el-input__suffix &#123;</span><br><span class="line">  transform: rotate(180deg);</span><br><span class="line">&#125;</span><br><span class="line">.select-tree &#123;</span><br><span class="line">  max-height: 350px;</span><br><span class="line">  overflow-y: scroll;</span><br><span class="line">&#125;</span><br><span class="line">/* 菜单滚动条 */</span><br><span class="line">.select-tree::-webkit-scrollbar &#123;</span><br><span class="line">  z-index: 11;</span><br><span class="line">  width: 6px;</span><br><span class="line">&#125;</span><br><span class="line">.select-tree::-webkit-scrollbar-track,</span><br><span class="line">.select-tree::-webkit-scrollbar-corner &#123;</span><br><span class="line">  background: #fff;</span><br><span class="line">&#125;</span><br><span class="line">.select-tree::-webkit-scrollbar-thumb &#123;</span><br><span class="line">  border-radius: 5px;</span><br><span class="line">  width: 6px;</span><br><span class="line">  background: #b4bccc;</span><br><span class="line">&#125;</span><br><span class="line">.select-tree::-webkit-scrollbar-track-piece &#123;</span><br><span class="line">  background: #fff;</span><br><span class="line">  width: 6px;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="4、el-tree-可选任意级且单选"><a href="#4、el-tree-可选任意级且单选" class="headerlink" title="4、el-tree 可选任意级且单选"></a>4、el-tree 可选任意级且单选</h2><h3 id="Ⅰ-需求分析"><a href="#Ⅰ-需求分析" class="headerlink" title="Ⅰ - 需求分析"></a>Ⅰ - 需求分析</h3><blockquote>
+<p>我们正常的<code>el-tree</code>是可以多选，并且选中父级后会自动选中子级全部数据，而本人需求是可以选中任何一级，并且单选的同时不会全选子级，<strong>下面的代码是在【3、el-tree 放入下拉框中】的基础上进行修改的</strong>,效果图如上，就不重复展示了</p>
+</blockquote>
+<h3 id="Ⅱ-代码与解析"><a href="#Ⅱ-代码与解析" class="headerlink" title="Ⅱ - 代码与解析"></a>Ⅱ - 代码与解析</h3><blockquote>
+<p>这里直接将注释标注上去,需要使用时记得删除</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div &gt;</span><br><span class="line">      &lt;el-popover</span><br><span class="line">        ref=&quot;popover&quot;</span><br><span class="line">        placement=&quot;bottom-start&quot;</span><br><span class="line">        trigger=&quot;click&quot;</span><br><span class="line">        :disabled=&quot;disabled&quot;</span><br><span class="line">        @show=&quot;onShowPopover&quot;</span><br><span class="line">        @hide=&quot;onHidePopover&quot;</span><br><span class="line">      &gt;</span><br><span class="line">        &lt;el-tree</span><br><span class="line">          :data=&quot;treeData&quot;</span><br><span class="line">          :check-on-click-node=&quot;false&quot;</span><br><span class="line">          ref=&quot;treeVerNew&quot;</span><br><span class="line">          show-checkbox</span><br><span class="line">          :check-strictly=&quot;true&quot;  					//ps:是否严格的遵循父子不互相关联（父级选择不会自动全选子级）--重要</span><br><span class="line">          node-key=&quot;id&quot;  								//绑定id，后续都用id回填</span><br><span class="line">          :props=&quot;treeProp&quot;</span><br><span class="line">          :options=&quot;treeData&quot;</span><br><span class="line">          :default-checked-keys=&quot;monitorFactor&quot;      //设置默认回填的数据</span><br><span class="line">          :default-expanded-keys=&quot;monitorFactor&quot;		//设置默认展开的数据</span><br><span class="line">          style=&quot;height:50vh;overflowY:scroll&quot;</span><br><span class="line">          @current-change=&quot;handleCheckChange&quot;</span><br><span class="line">          @check=&quot;handleCheck&quot;</span><br><span class="line">          empty-text=&quot;暂无数据&quot;</span><br><span class="line">        &gt;&lt;/el-tree&gt;</span><br><span class="line">        &lt;el-input										//输入框是用来模拟显示选中项的</span><br><span class="line">          slot=&quot;reference&quot;</span><br><span class="line">          ref=&quot;input&quot;</span><br><span class="line">          :value=&quot;form.orgName&quot;</span><br><span class="line">          suffix-icon=&quot;el-icon-arrow-down&quot;</span><br><span class="line">        &gt;&lt;/el-input&gt;</span><br><span class="line">      &lt;/el-popover&gt;</span><br><span class="line"></span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line"></span><br><span class="line">export default &#123;</span><br><span class="line">data () &#123;</span><br><span class="line">return &#123;</span><br><span class="line">//用作临时存储选中项</span><br><span class="line">monitorFactor: [],</span><br><span class="line">orgName: &#x27;&#x27;,//临时存放机构名称，用作显示使用</span><br><span class="line">form: &#123;</span><br><span class="line">  orgId: &#x27;&#x27;,</span><br><span class="line">  orgName: &#x27;&#x27;</span><br><span class="line">&#125;,</span><br><span class="line">treeData: [],</span><br><span class="line">treeProp: &#123; // 左侧树配置属性</span><br><span class="line">  label: &#x27;name&#x27;,</span><br><span class="line">  value: &#x27;id&#x27;,</span><br><span class="line">  children: &#x27;children&#x27;,</span><br><span class="line">  isLeaf: &#x27;leaf&#x27;,</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch: &#123;</span><br><span class="line">&#x27;form.orgId&#x27;: &#123;</span><br><span class="line">handler (id) &#123;</span><br><span class="line">  // form的机构id发生变化时渲染到页面上  --编辑回填数据的时候会用到</span><br><span class="line">  this.monitorFactor = [id]</span><br><span class="line">   //本轮组件渲染完成后触发下面的组件回填</span><br><span class="line">  this.$nextTick(() =&gt; &#123;</span><br><span class="line">      //将form表单中的机构名称 ·单向绑定· 给this.orgName 用作展示使用</span><br><span class="line">    this.orgName = this.form.orgName</span><br><span class="line">      //将获取到的机构id回显到树形选项中</span><br><span class="line">    this.$refs.treeVerNew.setCheckedKeys(this.monitorFactor)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;,</span><br><span class="line"></span><br><span class="line">methods: &#123;</span><br><span class="line">/* ******************* S：树形结构相关函数  **************************** */</span><br><span class="line">// 显示时触发</span><br><span class="line">onShowPopover () &#123;</span><br><span class="line">this.showStatus = true</span><br><span class="line">// this.$refs.treeVerNew.filter(false)</span><br><span class="line">&#125;,</span><br><span class="line">// 隐藏时触发</span><br><span class="line">onHidePopover () &#123;</span><br><span class="line">this.showStatus = false</span><br><span class="line">&#125;,</span><br><span class="line"> //重复点击时会触发</span><br><span class="line">handleCheck (data) &#123;</span><br><span class="line"> // 再次点击清空功能</span><br><span class="line">     if (data.id === this.monitorFactor?.[0]) &#123;</span><br><span class="line">       this.$refs.treeVerNew.setCheckedKeys([])</span><br><span class="line">       this.$set(this.form, &#x27;orgName&#x27;, &#x27;&#x27;)</span><br><span class="line">       this.monitorFactor = []</span><br><span class="line">       return</span><br><span class="line">     &#125;</span><br><span class="line">// if (!data.children)   this.monitorFactor = [data.id]  --如果要只能选择最后一级，就加这个判断</span><br><span class="line">  //将当前选中项的id存储起来</span><br><span class="line">this.monitorFactor = [data.id]</span><br><span class="line">  //选中数据后将名称存到FORM中</span><br><span class="line">this.$set(this.form, &#x27;orgName&#x27;, data.name)</span><br><span class="line">  //将存储的选中项id,回填到tree组件中</span><br><span class="line">this.$refs.treeVerNew.setCheckedKeys(this.monitorFactor)</span><br><span class="line">&#125;,</span><br><span class="line">//修改选中项时触发</span><br><span class="line">handleCheckChange (data) &#123;</span><br><span class="line">// if (!data.children)   this.monitorFactor = [data.id]  --如果要只能选择最后一级，就加这个判断</span><br><span class="line">this.monitorFactor = [data.id]</span><br><span class="line">this.$set(this.form, &#x27;orgName&#x27;, data.name)</span><br><span class="line">this.$refs.treeVerNew.setCheckedKeys(this.monitorFactor)</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="三、el-table相关"><a href="#三、el-table相关" class="headerlink" title="三、el-table相关"></a>三、<code>el-table</code>相关</h1><h2 id="1、el-table-实现多选变单选"><a href="#1、el-table-实现多选变单选" class="headerlink" title="1、el-table 实现多选变单选"></a>1、el-table 实现多选变单选</h2><h3 id="需求说明"><a href="#需求说明" class="headerlink" title="#需求说明"></a>#需求说明</h3><blockquote>
+<p>需求场景: 要求表格选框显示，但是一次只能操作一个多选框，所以需要把全选框隐藏处理,具体效果变更如下</p>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211223094312981.png" alt="image-20211223094312981"></p>
+</blockquote>
+<h3 id="1）隐藏表头中的全选框"><a href="#1）隐藏表头中的全选框" class="headerlink" title="1）隐藏表头中的全选框"></a>1）隐藏表头中的全选框</h3><h4 id="Ⅰ-添加以下-css-样式"><a href="#Ⅰ-添加以下-css-样式" class="headerlink" title="Ⅰ - 添加以下 css 样式"></a>Ⅰ - 添加以下 css 样式</h4><blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;css&quot; &gt;</span><br><span class="line"><span class="selector-class">.el-table__header-wrapper</span>  <span class="selector-class">.el-checkbox</span>&#123;</span><br><span class="line">	<span class="attribute">display</span>:none</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="Ⅱ-Vue-组件需要加-deep"><a href="#Ⅱ-Vue-组件需要加-deep" class="headerlink" title="Ⅱ - Vue 组件需要加 /deep/"></a>Ⅱ - Vue 组件需要加 <code>/deep/</code></h4><blockquote>
+<ul>
+<li>一般来说不用加 <code>/deep/</code>,就有效果</li>
+<li>但是当你将 style 设置为 scoped 的时候,里面的样式是无法影响到子组件的</li>
+<li>如果想让某些样式穿透到子组件,能够对子组件都生效,就需要加 <code>/deep/ (深度选择器)</code></li>
+</ul>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">/deep/ <span class="selector-class">.el-table__header-wrapper</span> <span class="selector-class">.el-checkbox</span> &#123;</span><br><span class="line"><span class="attribute">display</span>: none;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="Ⅲ-当前效果"><a href="#Ⅲ-当前效果" class="headerlink" title="Ⅲ - 当前效果"></a>Ⅲ - 当前效果</h4><blockquote>
+<p>多选框已经删除,但是选项仍可多选</p>
+<p><img src="/study73/.%5CReadme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87%5Cimage-20211223100047277.png" alt="image-20211223100047277"></p>
+</blockquote>
+<h3 id="2）多选变单选思路"><a href="#2）多选变单选思路" class="headerlink" title="2）多选变单选思路"></a>2）多选变单选思路</h3><h4 id="Ⅰ-在-table-组件中添加以下代码"><a href="#Ⅰ-在-table-组件中添加以下代码" class="headerlink" title="Ⅰ - 在 table 组件中添加以下代码"></a>Ⅰ - 在 table 组件中添加以下代码</h4><blockquote>
+<ul>
+<li><code>ref=&quot;multipleTable&quot;</code>:此代码方便后续直接操作 table 选中项显示</li>
+<li><code>@selection-change=&quot;handleSelectionChange&quot;</code>:此代码将绑定后续过滤当前选中项的函数,使其变为单选</li>
+<li><code>@current-change=&quot;currentChange&quot;</code>: 此代码是绑定 勾选当前项 触发的事件,可以做一些自己想要的操作</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-table</span><br><span class="line">    ref=&quot;multipleTable&quot;</span><br><span class="line">    @current-change=&quot;currentChange&quot;</span><br><span class="line">    @selection-change=&quot;handleSelectionChange&quot;</span><br><span class="line">  &gt;&lt;/el-table&gt;</span><br><span class="line">&lt;/template&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="Ⅱ-在-data-中定义一个状态"><a href="#Ⅱ-在-data-中定义一个状态" class="headerlink" title="Ⅱ - 在 data 中定义一个状态"></a>Ⅱ - 在 data 中定义一个状态</h4><blockquote>
+<p>这个状态将放置我们当前选中项,后续操作中我们需要将此状态渲染到界面选项上</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      currSelect: &#123;&#125;, // 当前选中项--&gt;默认就是一个对象</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="Ⅲ-定义过滤当前选中项的函数-使其变为单选"><a href="#Ⅲ-定义过滤当前选中项的函数-使其变为单选" class="headerlink" title="Ⅲ - 定义过滤当前选中项的函数,使其变为单选"></a>Ⅲ - 定义过滤当前选中项的函数,使其变为单选</h4><blockquote>
+<ul>
+<li>原理时每次选中状态发生变化时,将传入项过滤出最新一次选中属性,赋予之前定义的 <code>currSelect</code></li>
+<li>这样我们的 <code>currSelect</code> 存放的就是我们当前最新选中项</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  methods: &#123;</span><br><span class="line">    // 将多选变成单选 --&gt;每次选中状态变化时,将选中项过滤成最新项赋予 [currSelect]</span><br><span class="line">    handleSelectionChange(emit) &#123;</span><br><span class="line">      // 当emit大于2时一般是全选,这时我们清空即可--&gt;如果用第一步去掉了全选框,这个情况可以忽略</span><br><span class="line">      if (emit.length &gt; 2) this.currSelect = undefined;</span><br><span class="line">      // 当==2时一般是切换选择的时候,这时候我们保留最新选择的那个</span><br><span class="line">      else if (emit.length === 2) this.currSelect = emit?.pop();</span><br><span class="line">      // 当==1时一般是直接选择的情况</span><br><span class="line">      else if (emit.length === 1) this.currSelect = emit?.[0];</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="Ⅳ-监听状态变化"><a href="#Ⅳ-监听状态变化" class="headerlink" title="Ⅳ - 监听状态变化"></a>Ⅳ - 监听状态变化</h4><blockquote>
+<ol>
+<li>当我们 <code>currSelect</code> 发生变化时,表示我们进行了选择操作,这时对其进行监听</li>
+<li>然后做以下两件事:</li>
+</ol>
+<ul>
+<li>清空原有所有选中项</li>
+<li>将当前选中项 渲染到界面上</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  watch: &#123;</span><br><span class="line">    // 监听当前项 --&gt;需要监听到变化后手动清空之前的选中项</span><br><span class="line">    currSelect() &#123;</span><br><span class="line">      // 清空原有所有选中项</span><br><span class="line">      this.$refs.multipleTable.clearSelection();</span><br><span class="line">      // 将当前选中项 渲染到界面上</span><br><span class="line">      if (this.currSelect)</span><br><span class="line">        this.$refs.multipleTable.toggleRowSelection(this.currSelect);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>注意</code>:不能偷懒将监听环节的代码直接放到<code>handleSelectionChange</code>函数中,否则会因为触发重绘,然后又触发此函数,如此重复无限循环就卡死了</p>
+</blockquote>
+<h3 id="3）完整代码示例"><a href="#3）完整代码示例" class="headerlink" title="3）完整代码示例"></a>3）完整代码示例</h3><blockquote>
+<p>以下只保留相关代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">  &lt;el-table</span><br><span class="line">    ref=&quot;multipleTable&quot;</span><br><span class="line">    @current-change=&quot;currentChange&quot;</span><br><span class="line">    @selection-change=&quot;handleSelectionChange&quot;</span><br><span class="line">  &gt;&lt;/el-table&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export default &#123;</span><br><span class="line">  data() &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">      currSelect: &#123;&#125;, // 当前选中项--&gt;默认就是一个对象</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  watch: &#123;</span><br><span class="line">    // 监听当前项 --&gt;需要监听到变化后手动清空之前的选中项</span><br><span class="line">    currSelect() &#123;</span><br><span class="line">      // 清空原有所有选中项</span><br><span class="line">      this.$refs.multipleTable.clearSelection();</span><br><span class="line">      // 将当前选中项 渲染到界面上</span><br><span class="line">      if (this.currSelect)</span><br><span class="line">        this.$refs.multipleTable.toggleRowSelection(this.currSelect);</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    // 将多选变成单选 --&gt;每次选中状态变化时,将选中项过滤成最新项赋予 [currSelect]</span><br><span class="line">    handleSelectionChange(emit) &#123;</span><br><span class="line">      // 当emit大于2时一般是全选,这时我们清空即可--&gt;如果用第一步去掉了全选框,这个情况可以忽略</span><br><span class="line">      if (emit.length &gt; 2) &#123;</span><br><span class="line">        this.currSelect = undefined;</span><br><span class="line">      &#125; else if (emit.length === 2) &#123;</span><br><span class="line">        // 当==2时一般是切换选择的时候,这时候我们保留最新选择的那个</span><br><span class="line">        this.currSelect = emit?.pop();</span><br><span class="line">      &#125; else if (emit.length === 1) &#123;</span><br><span class="line">        // 当==1时一般是直接选择的情况</span><br><span class="line">        this.currSelect = emit?.[0];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">&lt;style lang=&quot;scss&quot; scoped&gt;</span><br><span class="line">/deep/ .el-table__header-wrapper .el-checkbox &#123;</span><br><span class="line">  display: none;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="四、输入组件相关"><a href="#四、输入组件相关" class="headerlink" title="四、输入组件相关"></a>四、输入组件相关</h1><h2 id="1、修改el-input-el-checkbox-el-radio等禁用状态下颜色"><a href="#1、修改el-input-el-checkbox-el-radio等禁用状态下颜色" class="headerlink" title="1、修改el-input/el-checkbox/el-radio等禁用状态下颜色"></a>1、修改<code>el-input/el-checkbox/el-radio</code>等禁用状态下颜色</h2><h3 id="Ⅰ-需求分析-1"><a href="#Ⅰ-需求分析-1" class="headerlink" title="Ⅰ - 需求分析"></a>Ⅰ - 需求分析</h3><blockquote>
+<p>业务中收到了一个问题反馈<img src="/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220728112311798.png" alt="image-20220728112311798"><br>反馈就是禁用状态下的内容灰色难以看清，要求换一个颜色</p>
+</blockquote>
+<h3 id="Ⅱ-代码实现"><a href="#Ⅱ-代码实现" class="headerlink" title="Ⅱ- 代码实现"></a>Ⅱ- 代码实现</h3><blockquote>
+<p>直接上代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;style scoped lang=&quot;scss&quot;&gt;  //scoped是防止影响到其他组件样式</span><br><span class="line">//checkBox自定义禁用样式</span><br><span class="line">/deep/ <span class="selector-class">.el-checkbox__input</span><span class="selector-class">.is-disabled</span> + <span class="selector-class">.el-checkbox__label</span> &#123;  //deep是穿透，必须加这个才能穿透到样式中</span><br><span class="line"> <span class="attribute">color</span>: <span class="number">#808080</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line">//radio自定义禁用样式</span><br><span class="line">/deep/ <span class="selector-class">.el-radio__input</span><span class="selector-class">.is-disabled</span> + <span class="selector-class">.el-radio__label</span>&#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#808080</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/style&gt;</span><br></pre></td></tr></table></figure>
+
+<h6 id="其他一些拓展"><a href="#其他一些拓展" class="headerlink" title="其他一些拓展"></a>其他一些拓展</h6><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//下面是选中状态下的样式改变</span><br><span class="line"><span class="selector-class">.el-checkbox__input</span><span class="selector-class">.is-disabled</span><span class="selector-class">.is-checked</span> + <span class="selector-class">.el-checkbox__label</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#1890ff</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.el-checkbox__input</span><span class="selector-class">.is-disabled</span><span class="selector-class">.is-checked</span> <span class="selector-class">.el-checkbox__inner</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#1890ff</span> <span class="meta">!important</span>;</span><br><span class="line">  <span class="attribute">border-color</span>: <span class="number">#1890ff</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">//输入框 还有 <span class="selector-tag">textarea</span> 禁用状态下颜色改变</span><br><span class="line"><span class="selector-class">.el-input</span><span class="selector-class">.is-disabled</span> <span class="selector-class">.el-input__inner</span>,</span><br><span class="line"><span class="selector-tag">textarea</span><span class="selector-pseudo">:disabled</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#606266</span> <span class="meta">!important</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h3 id="Ⅲ-实现效果"><a href="#Ⅲ-实现效果" class="headerlink" title="Ⅲ - 实现效果"></a>Ⅲ - 实现效果</h3><blockquote>
+<p>这里本人是将其颜色变为更深的灰色</p>
+<p><img src="/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220728112523979.png" alt="image-20220728112523979"><img src="/study73/Readme%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220728112821906.png" alt="image-20220728112821906"></p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8/" title="ElementUI使用" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/前端UI库-ElementUI使用/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8-%E5%85%B3%E4%BA%8E%E9%99%90%E5%88%B6%E8%BE%93%E5%85%A5%E6%A0%A1%E9%AA%8C/" title="ElementUI输入控件的键入校验"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%89%8D%E7%AB%AFUI%E5%BA%93-ElementUI%E4%BD%BF%E7%94%A8-%E5%85%B3%E4%BA%8E%E6%97%A5%E6%9C%9F%E6%8E%A7%E4%BB%B6%E7%9A%84%E9%97%AE%E9%A2%98%E7%AC%94%E8%AE%B0/" title="ElementUI日期控件"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

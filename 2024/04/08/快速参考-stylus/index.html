@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>Stylus 备忘清单 | Hexo</title>
+  <meta name="description" content="Stylus 备忘清单 本备忘单旨在快速理解 stylus 所涉及的主要概念，显示了它的常用方法使用清单   入门介绍  为 Node.js 构建的富有表现力、健壮、功能丰富的 CSS 语言  CSS 备忘清单 (jaywcjlove.github.io) 在线编译预览 (stylus-lang.com)  1234# npm$ npm install stylus -g# pnpm$ pnpm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Stylus 备忘清单">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-stylus/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="Stylus 备忘清单 本备忘单旨在快速理解 stylus 所涉及的主要概念，显示了它的常用方法使用清单   入门介绍  为 Node.js 构建的富有表现力、健壮、功能丰富的 CSS 语言  CSS 备忘清单 (jaywcjlove.github.io) 在线编译预览 (stylus-lang.com)  1234# npm$ npm install stylus -g# pnpm$ pnpm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img.shields.io/npm/v/stylus.svg?style=flat">
+<meta property="og:image" content="https://img.shields.io/npm/dm/stylus.svg?style=flat">
+<meta property="og:image" content="https://badgen.net/github/dependents-repo/stylus/stylus">
+<meta property="og:image" content="https://badgen.net/badge/icon/Github?icon=github&label">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-11T02:06:28.744Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="快速参考备忘清单">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://img.shields.io/npm/v/stylus.svg?style=flat">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-stylus/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-快速参考-stylus" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Stylus 备忘清单
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-stylus/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-stylus/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="Stylus-备忘清单"><a href="#Stylus-备忘清单" class="headerlink" title="Stylus 备忘清单"></a>Stylus 备忘清单</h1><p><a target="_blank" rel="noopener" href="https://npmjs.org/package/stylus"><img src="https://img.shields.io/npm/v/stylus.svg?style=flat" alt="NPM version"></a><br><a target="_blank" rel="noopener" href="https://www.npmjs.com/package/stylus"><img src="https://img.shields.io/npm/dm/stylus.svg?style=flat" alt="Downloads"></a><br><a target="_blank" rel="noopener" href="https://github.com/stylus/stylus/network/dependents"><img src="https://badgen.net/github/dependents-repo/stylus/stylus" alt="Repo Dependents"></a><br><a target="_blank" rel="noopener" href="https://github.com/stylus/stylus"><img src="https://badgen.net/badge/icon/Github?icon=github&label" alt="Github repo"></a></p>
+<p>本备忘单旨在快速理解 <a target="_blank" rel="noopener" href="https://github.com/stylus/stylus">stylus</a> 所涉及的主要概念，显示了它的常用方法使用清单</p>
+<!--rehype:style=padding-top: 12px;-->
+
+<h2 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><!--rehype:wrap-class=row-span-2-->
+
+<p>为 Node.js 构建的富有表现力、健壮、功能丰富的 <a href="./css.md">CSS</a> 语言</p>
+<ul>
+<li><a href="./css.md">CSS 备忘清单</a> <em>(jaywcjlove.github.io)</em></li>
+<li><a target="_blank" rel="noopener" href="https://stylus-lang.com/try.html">在线编译预览</a> <em>(stylus-lang.com)</em></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># npm</span></span><br><span class="line">$ npm install stylus -g</span><br><span class="line"><span class="comment"># pnpm</span></span><br><span class="line">$ pnpm add -g stylus</span><br></pre></td></tr></table></figure>
+
+<p>在 Node.js 环境中使用 <code>stylus</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ stylus one.styl two.styl</span><br><span class="line"><span class="comment"># stylus 从标准输入读取并输出到标准输出</span></span><br><span class="line">$ stylus --compress &lt; some.styl &gt; some.css</span><br><span class="line"><span class="comment"># 将 css 目录中的文件编译输出到 `public/css`</span></span><br><span class="line">$ stylus css --out public/css</span><br></pre></td></tr></table></figure>
+
+<p>转换 CSS，输出 <code>*.styl</code> 文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ stylus --css &lt; test.css &gt; test.styl</span><br><span class="line">$ stylus --css test.css /tmp/out.styl</span><br></pre></td></tr></table></figure>
+
+<h3 id="支持-CSS-嵌套语法"><a href="#支持-CSS-嵌套语法" class="headerlink" title="支持 CSS 嵌套语法"></a>支持 CSS 嵌套语法</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: blue;</span><br><span class="line">  <span class="selector-class">.button</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Stylus 是一个 CSS 预处理器。另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/">stylus-lang.com</a></p>
+<h3 id="支持类-python-缩进语法"><a href="#支持类-python-缩进语法" class="headerlink" title="支持类 python 缩进语法"></a>支持类 python 缩进语法</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.box</span></span><br><span class="line">  <span class="attribute">color</span>: blue</span><br><span class="line">  <span class="selector-class">.button</span></span><br><span class="line">    <span class="attribute">color</span>: red</span><br></pre></td></tr></table></figure>
+
+<p>也有效！冒号也是可选的。这通常用于 Stylus 文档的语法</p>
+<h3 id="混合-Mixins"><a href="#混合-Mixins" class="headerlink" title="混合 Mixins"></a>混合 Mixins</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">caps-type</span><span class="params">()</span></span></span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">0.05em</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><figcaption><span>&#123;2&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h5</span></span><br><span class="line">  <span class="built_in">caps-type</span>()</span><br></pre></td></tr></table></figure>
+
+<p>编译 css 为：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">h5</span> &#123;</span><br><span class="line">  <span class="attribute">letter-spacing</span>: <span class="number">0.05em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<!-- markdownlint-disable MD051 -->
+<p>另见：下面<a href="#%E6%B7%B7%E5%90%88-Mixins">Mixins</a></p>
+<h3 id="变量-Variables"><a href="#变量-Variables" class="headerlink" title="变量 Variables"></a>变量 Variables</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">royal-blue = <span class="number">#36a</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span></span><br><span class="line">  <span class="attribute">color</span>: royal-blue</span><br></pre></td></tr></table></figure>
+
+<p>标识符（变量名、函数等）也可以包括 <code>$</code> 字符</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$font</span>-size = <span class="number">14px</span></span><br><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  <span class="attribute">font</span>: <span class="variable">$font</span>-size sans-serif;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>另见：<a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/variables.html">变量 Variables</a></p>
+<h2 id="混合-Mixins-1"><a href="#混合-Mixins-1" class="headerlink" title="混合 Mixins"></a>混合 Mixins</h2><h3 id="没有参数"><a href="#没有参数" class="headerlink" title="没有参数"></a>没有参数</h3><figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">red-border</span><span class="params">()</span></span></span><br><span class="line">  <span class="attribute">border</span>: solid <span class="number">2px</span> red</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><figcaption><span>&#123;2&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span></span><br><span class="line">  <span class="built_in">red-border</span>()</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/mixins.html">Mixins</a></p>
+<h3 id="有参数"><a href="#有参数" class="headerlink" title="有参数"></a>有参数</h3><figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">border-radius</span><span class="params">(n)</span></span></span><br><span class="line">  -webkit-<span class="attribute">border-radius</span>: n</span><br><span class="line">  <span class="attribute">border-radius</span>: n</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><figcaption><span>&#123;2,3&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span></span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">2px</span></span><br><span class="line">  <span class="attribute">border-radius</span>(<span class="number">2px</span>)</span><br></pre></td></tr></table></figure>
+
+<p>Mixins can be applied in two different ways.</p>
+<h3 id="参数默认值"><a href="#参数默认值" class="headerlink" title="参数默认值"></a>参数默认值</h3><figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">border-radius</span><span class="params">(n = <span class="number">2px</span>)</span></span></span><br><span class="line">  -webkit-<span class="attribute">border-radius</span>: n</span><br></pre></td></tr></table></figure>
+
+<h3 id="块混合"><a href="#块混合" class="headerlink" title="块混合"></a>块混合</h3><figure class="highlight stylus"><figcaption><span>&#123;3&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">mobile</span><span class="params">()</span></span></span><br><span class="line">  <span class="keyword">@media</span> (<span class="attribute">max-width</span>: <span class="number">480px</span>)</span><br><span class="line">    &#123;block&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">+<span class="built_in">mobile</span>()</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">10px</span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/mixins.html#block-mixins">块混合</a></p>
+<h3 id="Rest-参数"><a href="#Rest-参数" class="headerlink" title="Rest 参数"></a>Rest 参数</h3><figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">shadow</span><span class="params">(offset-x, args...)</span></span></span><br><span class="line">  <span class="attribute">box-shadow</span>: offset-x args</span><br><span class="line">  <span class="attribute">margin-top</span>: offset-x</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#login</span></span><br><span class="line">  shadow: <span class="number">1px</span> <span class="number">2px</span> <span class="number">5px</span> <span class="number">#eee</span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/vargs.html">Rest 参数</a></p>
+<h2 id="函数-Functions"><a href="#函数-Functions" class="headerlink" title="函数 Functions"></a>函数 Functions</h2><h3 id="函数-Functions-1"><a href="#函数-Functions-1" class="headerlink" title="函数 Functions"></a>函数 Functions</h3><figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> + b</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><figcaption><span>&#123;2&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">padding</span>: <span class="built_in">add</span>(<span class="number">10px</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/functions.html">Functions</a></p>
+<h3 id="参数默认值-1"><a href="#参数默认值-1" class="headerlink" title="参数默认值"></a>参数默认值</h3><figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">add</span><span class="params">(a, b = <span class="number">2</span>)</span></span></span><br><span class="line">  <span class="selector-tag">a</span> + b</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/functions.html#argument-defaults">参数默认值</a></p>
+<h3 id="命名参数"><a href="#命名参数" class="headerlink" title="命名参数"></a>命名参数</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">shadow</span><span class="params">(x, y)</span></span></span><br><span class="line">  x y (y * <span class="number">1.5</span>) <span class="number">#000</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><figcaption><span>&#123;2&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.button</span></span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="built_in">shadow</span>(x: <span class="number">2</span>, y: <span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/functions.html#named-parameters">命名参数</a></p>
+<h3 id="多个返回值"><a href="#多个返回值" class="headerlink" title="多个返回值"></a>多个返回值</h3><figure class="highlight stylus"><figcaption><span>&#123;2&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">sizes</span><span class="params">()</span></span></span><br><span class="line">  <span class="number">8px</span> <span class="number">16px</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">sizes</span><span class="params">()</span></span><span class="selector-attr">[0]</span>  <span class="comment">// → 8px</span></span><br><span class="line"><span class="function"><span class="title">sizes</span><span class="params">()</span></span><span class="selector-attr">[1]</span>  <span class="comment">// → 16px</span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/functions.html#multiple-return-values">多个返回值</a></p>
+<h3 id="arguments"><a href="#arguments" class="headerlink" title="arguments"></a>arguments</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">sum</span><span class="params">()</span></span></span><br><span class="line">  n = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> num <span class="keyword">in</span> arguments</span><br><span class="line">    n = n + num</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">sum</span><span class="params">(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>)</span></span> <span class="comment">// =&gt; 15</span></span><br></pre></td></tr></table></figure>
+
+<p>参数 local 可用于所有函数体，并包含所有传递的参数</p>
+<h3 id="hash-示例"><a href="#hash-示例" class="headerlink" title="hash 示例"></a>hash 示例</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">get</span><span class="params">(hash, key)</span></span></span><br><span class="line">  return pair<span class="selector-attr">[1]</span> <span class="keyword">if</span> pair<span class="selector-attr">[0]</span> == key <span class="keyword">for</span> pair <span class="keyword">in</span> hash</span><br><span class="line"></span><br><span class="line">hash = (one <span class="number">1</span>) (two <span class="number">2</span>) (three <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">get</span><span class="params">(hash, two)</span></span></span><br><span class="line"><span class="comment">// =&gt; 2</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<h2 id="值-Values"><a href="#值-Values" class="headerlink" title="值 Values"></a>值 Values</h2><h3 id="条件赋值"><a href="#条件赋值" class="headerlink" title="条件赋值"></a>条件赋值</h3><figure class="highlight stylus"><figcaption><span>&#123;2&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">royal-blue = <span class="number">#36a</span></span><br><span class="line">royal-blue ?= <span class="number">#89f</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span></span><br><span class="line">  <span class="attribute">color</span>: royal-blue  // <span class="number">#36a</span></span><br></pre></td></tr></table></figure>
+
+<p><code>?=</code> 只会在之前未设置的情况下设置变量</p>
+<p>另见: <a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/operators.html#conditional-assignment--">条件赋值</a></p>
+<h3 id="属性查找"><a href="#属性查找" class="headerlink" title="属性查找"></a>属性查找</h3><figure class="highlight stylus"><figcaption><span>&#123;2,3&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.logo</span></span><br><span class="line">  <span class="attribute">width</span>: w = <span class="number">150</span></span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="built_in">-</span>(w / <span class="number">2</span>)</span><br><span class="line">  <span class="comment">// or</span></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">80px</span></span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="built_in">-</span>(@height / <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/variables.html#property-lookup">属性查找</a></p>
+<h3 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-&#123;prefix&#125;-<span class="attribute">border-radius</span>: <span class="number">2px</span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/interpolation.html">Interpolation</a></p>
+<h3 id="Color-operators"><a href="#Color-operators" class="headerlink" title="Color operators"></a>Color operators</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">#888</span> + <span class="number">50%</span>    <span class="comment">// → #c3c3c3 (lighten)</span></span><br><span class="line"><span class="number">#888</span> - <span class="number">50%</span>    <span class="comment">// → #444 (darken)</span></span><br><span class="line"><span class="number">#f00</span> + <span class="number">50deg</span>  <span class="comment">// → #ffd500 (hue)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Casting"><a href="#Casting" class="headerlink" title="Casting"></a>Casting</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n = <span class="number">5px</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><figcaption><span>&#123;1,2&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">foo: (n)<span class="selector-tag">em</span></span><br><span class="line">foo: (n * <span class="number">5</span>)%</span><br></pre></td></tr></table></figure>
+
+<h3 id="Lookup"><a href="#Lookup" class="headerlink" title="Lookup"></a>Lookup</h3><figure class="highlight stylus"><figcaption><span>&#123;3&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">light-blue = <span class="number">#3bd</span></span><br><span class="line">name = <span class="string">&#x27;blue&#x27;</span></span><br><span class="line"><span class="function"><span class="title">lookup</span><span class="params">(<span class="string">&#x27;light-&#x27;</span> + name)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/bifs.html#lookupname">lookup</a></p>
+<h2 id="高级功能"><a href="#高级功能" class="headerlink" title="高级功能"></a>高级功能</h2><h3 id="有条件的"><a href="#有条件的" class="headerlink" title="有条件的"></a>有条件的</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="attribute">color</span> == blue</span><br><span class="line">  <span class="attribute">display</span>: block</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> true and true</span><br><span class="line">  <span class="attribute">display</span>: inline</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span> <span class="string">&#x27;hey&#x27;</span> is not <span class="string">&#x27;bye&#x27;</span></span><br><span class="line">  <span class="attribute">display</span>: flex</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">  <span class="attribute">display</span>: none</span><br></pre></td></tr></table></figure>
+
+<p>别名:</p>
+<table>
+<thead>
+<tr>
+<th align="left">:-</th>
+<th align="left">:-</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left"><code>==</code></td>
+<td align="left"><code>is</code></td>
+</tr>
+<tr>
+<td align="left"><code>!=</code></td>
+<td align="left"><code>is not</code></td>
+</tr>
+<tr>
+<td align="left"><code>!=</code></td>
+<td align="left"><code>isnt</code></td>
+</tr>
+</tbody></table>
+<p>另见: <a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/functions.html#conditionals">Conditionals</a></p>
+<h3 id="对于循环"><a href="#对于循环" class="headerlink" title="对于循环"></a>对于循环</h3><figure class="highlight stylus"><figcaption><span>&#123;5&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">font-size</span>-<span class="number">1</span> = <span class="number">10px</span></span><br><span class="line"><span class="attribute">font-size</span>-<span class="number">2</span> = <span class="number">20px</span></span><br><span class="line"><span class="attribute">font-size</span>-<span class="number">3</span> = <span class="number">30px</span></span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="number">1</span>..<span class="number">3</span></span><br><span class="line">  .text-&#123;i&#125;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="built_in">lookup</span>(<span class="string">&#x27;font-size-&#x27;</span> + i)</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义检查"><a href="#定义检查" class="headerlink" title="定义检查"></a>定义检查</h3><figure class="highlight stylus"><figcaption><span>&#123;1&#125;</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> ohnoes is defined</span><br><span class="line">  <span class="attribute">color</span>: blue</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/operators.html#variable-definition-is-defined">is defined</a></p>
+<h3 id="False-值"><a href="#False-值" class="headerlink" title="False 值"></a>False 值</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span></span><br><span class="line">null</span><br><span class="line">false</span><br><span class="line"><span class="string">&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="类型检查"><a href="#类型检查" class="headerlink" title="类型检查"></a>类型检查</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> val is <span class="selector-tag">a</span> <span class="string">&#x27;string&#x27;</span></span><br><span class="line"><span class="keyword">if</span> val is <span class="selector-tag">a</span> <span class="string">&#x27;ident&#x27;</span></span><br><span class="line"><span class="keyword">if</span> <span class="number">#fff</span> is <span class="selector-tag">a</span> <span class="string">&#x27;rgba&#x27;</span>    <span class="comment">// → true</span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="https://stylus-lang.com/docs/operators.html#instance-check-is-a">Instance check</a></p>
+<h2 id="内置函数"><a href="#内置函数" class="headerlink" title="内置函数"></a>内置函数</h2><h3 id="颜色函数"><a href="#颜色函数" class="headerlink" title="颜色函数"></a>颜色函数</h3><!--rehype:wrap-class=row-span-4-->
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">alpha</span><span class="params">(<span class="number">#fff</span>)</span></span>   <span class="comment">//→ 1</span></span><br><span class="line"><span class="function"><span class="title">alpha</span><span class="params">(rgba(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0.2</span>)</span></span>)   <span class="comment">//→ 0.2</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">dark</span><span class="params">(black)</span></span>  <span class="comment">//→ true</span></span><br><span class="line"><span class="function"><span class="title">light</span><span class="params">(black)</span></span> <span class="comment">//→ false</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">hue</span><span class="params">(<span class="number">#0a0</span>)</span></span>         <span class="comment">//→ 50deg</span></span><br><span class="line"><span class="function"><span class="title">saturation</span><span class="params">(<span class="number">#f00</span>)</span></span>  <span class="comment">//→ 100%</span></span><br><span class="line"><span class="function"><span class="title">lightness</span><span class="params">(<span class="number">#f00</span>)</span></span>   <span class="comment">//→ 50%</span></span><br><span class="line"><span class="function"><span class="title">luminosity</span><span class="params">(<span class="number">#f00</span>)</span></span>  <span class="comment">//→ 0.2126</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">hue</span><span class="params">(<span class="number">#0a0</span>, <span class="number">0deg</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">saturation</span><span class="params">(<span class="number">#f00</span>, <span class="number">50%</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">lightness</span><span class="params">(<span class="number">#f00</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">lighten</span><span class="params">(color, <span class="number">10%</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">darken</span><span class="params">(color, <span class="number">10%</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">saturate</span><span class="params">(color, <span class="number">10%</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">desaturate</span><span class="params">(color, <span class="number">10%</span>)</span></span></span><br><span class="line"><span class="function"><span class="title">invert</span><span class="params">(color)</span></span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">tint</span><span class="params">(color, <span class="number">50%</span>)</span></span>  <span class="comment">// mix with white</span></span><br><span class="line"><span class="function"><span class="title">shade</span><span class="params">(color, <span class="number">50%</span>)</span></span> <span class="comment">// mix with black</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">unquote</span><span class="params">(string)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/bifs.html">Built-in functions</a></p>
+<h3 id="图片尺寸"><a href="#图片尺寸" class="headerlink" title="图片尺寸"></a>图片尺寸</h3><p>返回给定图像的宽度和高度</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">width</span>:  <span class="built_in">image-size</span>(<span class="string">&#x27;tux.png&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line"><span class="attribute">height</span>: <span class="built_in">image-size</span>(<span class="string">&#x27;tux.png&#x27;</span>)[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/bifs.html#image-sizepath">image-size</a></p>
+<h3 id="缓存-Caching"><a href="#缓存-Caching" class="headerlink" title="缓存 Caching"></a>缓存 Caching</h3><!--rehype:wrap-class=row-span-2-->
+
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">size</span><span class="params">(<span class="variable">$width</span>)</span></span></span><br><span class="line">  +<span class="built_in">cache</span>(<span class="string">&#x27;w&#x27;</span> + <span class="variable">$width</span>)</span><br><span class="line">    <span class="attribute">width</span>: <span class="variable">$width</span></span><br><span class="line"><span class="selector-class">.a</span> &#123; size: <span class="number">10px</span> &#125;</span><br><span class="line"><span class="selector-class">.b</span> &#123; size: <span class="number">10px</span> &#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 输出: .a, b &#123; width: 10px &#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>在第一次调用时将其内容应用于给定的选择器，但会在第二次调用时使用相同的参数 <code>@extend</code> 第一次调用的选择器。另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/bifs.html#cachekeys">cache</a></p>
+<h3 id="Embed-URL"><a href="#Embed-URL" class="headerlink" title="Embed URL"></a>Embed URL</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">background: embedurl(&#x27;logo.png&#x27;)</span><br><span class="line">// → background: url(&quot;data:image/png;base64,…&quot;)</span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/bifs.html#embedurlpath-encoding">embedurl</a></p>
+<h3 id="添加属性"><a href="#添加属性" class="headerlink" title="添加属性"></a>添加属性</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">gradient</span><span class="params">(color)</span></span></span><br><span class="line">  <span class="built_in">add-property</span>(<span class="string">&#x27;background-image&#x27;</span>, <span class="built_in">linear-gradient</span>(<span class="attribute">top</span>, color, <span class="built_in">darken</span>(color, <span class="number">20%</span>)))</span><br><span class="line">  <span class="attribute">color</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span></span><br><span class="line">  <span class="attribute">background</span>: <span class="built_in">gradient</span>(red)</span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/bifs.html#add-propertyname-expr">add-property</a></p>
+<h3 id="sprintf"><a href="#sprintf" class="headerlink" title="sprintf"></a>sprintf</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;-webkit-gradient(%s, %s, %s)&#x27;</span> % (linear (<span class="number">0</span> <span class="number">0</span>) (<span class="number">0</span> <span class="number">100%</span>))</span><br><span class="line"><span class="comment">// → -webkit-gradient(linear, 0 0, 0 100%)</span></span><br></pre></td></tr></table></figure>
+<!--rehype:className=wrap-text -->
+
+<hr>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">s</span><span class="params">(<span class="string">&quot;rgba(0, 0, 0, %s)&quot;</span>, <span class="number">0.3</span>)</span></span></span><br></pre></td></tr></table></figure>
+
+<p>另见: <a target="_blank" rel="noopener" href="http://stylus-lang.com/docs/bifs.html#sfmt-">s</a></p>
+<h2 id="另见"><a href="#另见" class="headerlink" title="另见"></a>另见</h2><ul>
+<li><a href="./css.md">CSS 备忘清单</a> <em>(jaywcjlove.github.io)</em></li>
+<li><a target="_blank" rel="noopener" href="https://stylus-lang.com/try.html">在线编译预览</a> <em>(stylus-lang.com)</em></li>
+<li><a href="./lessjs.md">Less.js 备忘清单</a> <em>(jaywcjlove.github.io)</em></li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-stylus/" title="Stylus 备忘清单" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/快速参考-stylus/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-sass/" title="Sass 备忘清单"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83-vscode/" title="VSCode 备忘清单"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>

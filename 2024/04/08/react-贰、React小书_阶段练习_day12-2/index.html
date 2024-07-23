@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>react小书阶段练习 | Hexo</title>
+  <meta name="description" content="本人的React学习笔记分类(也是对应本人技术成长过程):[想快速入门看这部分]、[想对React系统全面进行学习的同学看这里]、[对基础学习完成且有了一定开发经验,想尝试解析源码的看这里]  实战分析：评论功能（一）课程到这里大家已经掌握了 React.js 的基础知识和组件的基本写法了。现在可以把我们所学到的内容应用于实战当中。这里给大家提供一个实战的案例：一个评论功能。效果如下：  在线演">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react小书阶段练习">
+<meta property="og:url" content="https://gitee.com/study73/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="本人的React学习笔记分类(也是对应本人技术成长过程):[想快速入门看这部分]、[想对React系统全面进行学习的同学看这里]、[对基础学习完成且有了一定开发经验,想尝试解析源码的看这里]  实战分析：评论功能（一）课程到这里大家已经掌握了 React.js 的基础知识和组件的基本写法了。现在可以把我们所学到的内容应用于实战当中。这里给大家提供一个实战的案例：一个评论功能。效果如下：  在线演">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/2B86ED50-DDF5-4B3A-82A0-DECFD6767A8F.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/1.003.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/F1DAEB81-6DE9-4031-8476-9AA7047E4DA6.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/770AFFBC-852C-4770-965A-695B43B7BB65.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/4EFF52CA-B573-4DBB-A313-8ADD90F65F24.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/6A3B65A1-0CEA-4F98-B2E7-DC1D9B4CED83.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/2B73DDBA-0D90-473A-BC2A-DB9C8E132458.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/62C055E7-F668-4C70-A0C0-B8989A5E3B58.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/E01D3698-F041-4149-9626-849F023E5638.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/1.003.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/04093DE1-B4C0-4CBD-B3F8-DF924C9F6799.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/209D576F-45A1-42A7-ADDB-A01AE03BB3D5.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/83C3CDDD-F8C5-4C37-B848-852E98E0E464.png">
+<meta property="og:image" content="http://huzidaha.github.io/static/assets/img/posts/5C18C820-E406-4D38-95DC-B4FEA70E34EE.png">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-04-09T08:43:14.922Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="react">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://huzidaha.github.io/static/assets/img/posts/2B86ED50-DDF5-4B3A-82A0-DECFD6767A8F.png">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/study73/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/study73/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/study73/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/study73/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/study73/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/study73/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/study73/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/study73/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/study73/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-react-贰、React小书_阶段练习_day12-2" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react小书阶段练习
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/study73/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/study73/tags/react/" rel="tag">react</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>本人的React学习笔记分类(也是对应本人技术成长过程):[<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0/React%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0"><code>想快速入门看这部分</code></a>]、[<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Scss%E7%AC%94%E8%AE%B0"><code>想对React系统全面进行学习的同学看这里</code></a>]、[<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0"><code>对基础学习完成且有了一定开发经验,想尝试解析源码的看这里</code></a>]</p>
+</blockquote>
+<h1 id="实战分析：评论功能（一）"><a href="#实战分析：评论功能（一）" class="headerlink" title="实战分析：评论功能（一）"></a><strong>实战分析：评论功能（一）</strong></h1><p>课程到这里大家已经掌握了 React.js 的基础知识和组件的基本写法了。现在可以把我们所学到的内容应用于实战当中。这里给大家提供一个实战的案例：一个评论功能。效果如下：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/2B86ED50-DDF5-4B3A-82A0-DECFD6767A8F.png"><img src="http://huzidaha.github.io/static/assets/img/posts/2B86ED50-DDF5-4B3A-82A0-DECFD6767A8F.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p><a target="_blank" rel="noopener" href="https://huzidaha.github.io/react-naive-book-examples/comment-app/build/index.html">在线演示地址</a></p>
+<p>接下来会带大家一起来学习如何分析、编写这个功能。在这个过程中会补充一些之前没有提及的知识点，虽然这些知识点之前没有单独拿出来讲解，但是这些知识点也很关键。</p>
+<h2 id="组件划分"><a href="#组件划分" class="headerlink" title="组件划分"></a>组件划分</h2><p>React.js 中一切都是组件，用 React.js 构建的功能其实也就是由各种组件组合而成。所以拿到一个需求以后，我们要做的第一件事情就是理解需求、分析需求、划分这个需求由哪些组件构成。</p>
+<p>组件的划分没有特别明确的标准。划分组件的目的性是为了代码可复用性、可维护性。只要某个部分有可能复用到别的地方，你都可以把它抽离出来当成一个组件；或者把某一部分抽离出来对代码的组织和管理会带来帮助，你也可以毫不犹豫地把它抽离出来。</p>
+<p>对于上面这个评论功能，可以粗略地划分成以下几部分：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/1.003.png"><img src="http://huzidaha.github.io/static/assets/img/posts/1.003.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p><code>CommentApp</code>：评论功能的整体用一个叫 <code>CommentApp</code> 的组件包含起来。<code>CommentApp</code> 包含上部和下部两部分。</p>
+<p><code>CommentInput</code>：上面部分是负责用户输入可操作的输入区域，包括输入评论的用户名、评论内容和发布按钮，这一部分功能划分到一个单独的组件 <code>CommentInput</code> 中。</p>
+<p><code>CommentList</code>：下面部分是评论列表，用一个叫 <code>CommentList</code> 的组件负责列表的展示。</p>
+<p><code>Comment</code>：每个评论列表项由独立的组件 <code>Comment</code> 负责显示，这个组件被 <code>CommentList</code> 所使用。</p>
+<p>所以这个评论功能划分成四种组件，<code>CommentApp</code>、<code>CommentInput</code>、<code>CommentList</code>、<code>Comment</code>。用组件树表示：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png"><img src="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>现在就可以尝试编写代码了。</p>
+<h2 id="组件实现"><a href="#组件实现" class="headerlink" title="组件实现"></a>组件实现</h2><p>在写代码之前，我们先用 <code>create-react-app</code> 构建一个新的工程目录。所有的评论功能在这个工程内完成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create-react-app comment-app</span><br></pre></td></tr></table></figure>
+
+<p>然后在工程目录下的 <code>src/</code> 目录下新建四个文件，每个文件对应的是上述的四个组件。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">src/</span><br><span class="line">  CommentApp.js</span><br><span class="line">  CommentInput.js</span><br><span class="line">  CommentList.js</span><br><span class="line">  Comment.js</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<p>你可以注意到，这里的文件名的开头是大写字母。我们遵循一个原则：如果一个文件导出的是一个类，那么这个文件名就用大写开头。四个组件类文件导出都是类，所以都是大写字母开头。</p>
+<p>我们先铺垫一些基础代码，让组件之间的关系清晰起来。遵循“自顶而下，逐步求精”的原则，我们从组件的顶层开始，再一步步往下构建组件树。先修改 <code>CommentApp.js</code> 如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CommentInput</span> <span class="keyword">from</span> <span class="string">&#x27;./CommentInput&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CommentList</span> <span class="keyword">from</span> <span class="string">&#x27;./CommentList&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentApp</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentInput</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentList</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentApp</span></span><br></pre></td></tr></table></figure>
+
+<p><code>CommentApp</code> 现在暂时还很简单，文件顶部引入了 <code>CommentInput</code> 和 <code>CommentList</code> 。然后按照上面的需求，应用在了 <code>CommentApp</code> 返回的 JSX 结构中，上面是用户输入区域，下面是评论列表。</p>
+<p>现在来修改 <code>CommentInput.js</code> 中的内容：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentInput</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>CommentInput<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentInput</span></span><br></pre></td></tr></table></figure>
+
+<p>这里暂时让它只简单返回 <code>&lt;div&gt;</code> 结构，同样地修改 <code>CommentList.js</code> ：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>CommentList<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentList</span></span><br></pre></td></tr></table></figure>
+
+<p>现在可以把这个简单的结构渲染到页面上看看什么效果，修改 <code>src/index.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span> <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ReactDOM</span> <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CommentApp</span> <span class="keyword">from</span> <span class="string">&#x27;./CommentApp&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./index.css&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="title class_">ReactDOM</span>.<span class="title function_">render</span>(</span><br><span class="line">  <span class="language-xml"><span class="tag">&lt;<span class="name">CommentApp</span> /&gt;</span></span>,</span><br><span class="line">  <span class="variable language_">document</span>.<span class="title function_">getElementById</span>(<span class="string">&#x27;root&#x27;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>然后进入工程目录启动工程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run start</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中可以看到，基本的结构已经渲染到了页面上了：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/F1DAEB81-6DE9-4031-8476-9AA7047E4DA6.png"><img src="http://huzidaha.github.io/static/assets/img/posts/F1DAEB81-6DE9-4031-8476-9AA7047E4DA6.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<h2 id="添加样式"><a href="#添加样式" class="headerlink" title="添加样式"></a>添加样式</h2><p>现在想让这个结构在浏览器中居中显示，我们就要给 <code>CommentApp</code> 里面的 <code>&lt;div&gt;</code> 添加样式。修改 <code>CommentApp</code> 中的<code>render</code> 方法，给它添加一个 <code>wrapper</code> 类名：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentApp</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;wrapper&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentInput</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentList</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>然后在 <code>index.css</code> 文件中添加样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">10px</span> auto;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f1f1f1</span>;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中可以看到样式生效了：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/770AFFBC-852C-4770-965A-695B43B7BB65.png"><img src="http://huzidaha.github.io/static/assets/img/posts/770AFFBC-852C-4770-965A-695B43B7BB65.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>评论功能案例的所有样式都是通过这种方式进行添加。由于我们专注点在于 React.js，本案例后续不会在样式上过于纠缠。这里写好了一个样式文件（<a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples/blob/master/comment-app/src/index.css">index.css</a> ）提供给大家，可以复制到 <code>index.css</code> 当中。后续只需要在元素上加上类名就可以了。</p>
+<blockquote>
+<p>index.css</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">font-family</span>: sans-serif;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fbfbfb</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.wrapper</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span> auto;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f1f1f1</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* 评论框样式 */</span></span><br><span class="line">  <span class="selector-class">.comment-input</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f1f1f1</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field</span> &#123;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">15px</span>;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field</span> <span class="selector-class">.comment-field-name</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex-basis</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field</span> <span class="selector-class">.comment-field-input</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field-input</span> <span class="selector-tag">input</span>,</span><br><span class="line">  <span class="selector-class">.comment-field-input</span> <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#e6e6e6</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">14px</span>;</span><br><span class="line">    <span class="attribute">resize</span>: none;</span><br><span class="line">    <span class="attribute">flex</span>: <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field-input</span> <span class="selector-tag">textarea</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field-button</span> &#123;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">justify-content</span>: flex-end;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field-button</span> <span class="selector-tag">button</span> &#123;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">80px</span>;</span><br><span class="line">    <span class="attribute">border</span>: none;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#00a3cf</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">outline</span>: none;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-field-button</span> <span class="selector-tag">button</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#13c1f1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* 评论列表样式 */</span></span><br><span class="line">  <span class="selector-class">.comment-list</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#f1f1f1</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">/* 评论组件样式 */</span></span><br><span class="line">  <span class="selector-class">.comment</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">display</span>: flex;</span><br><span class="line">    <span class="attribute">border-bottom</span>: <span class="number">1px</span> solid <span class="number">#f1f1f1</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">padding-bottom</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">min-height</span>: <span class="number">50px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment</span> <span class="selector-class">.comment-user</span> &#123;</span><br><span class="line">    <span class="attribute">flex-shrink</span>: <span class="number">0</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-username</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#00a3cf</span>;</span><br><span class="line">    <span class="attribute">font-style</span>: italic;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-createdtime</span> &#123;</span><br><span class="line">    <span class="attribute">padding-right</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.comment-delete</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#00a3cf</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment-delete</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">color</span>: transparent;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">12px</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-class">.comment</span> <span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="comment">/*text-indent: 2em;*/</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="selector-tag">code</span> &#123;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#ccc</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f9f9f9</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0px</span> <span class="number">2px</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="实战分析：评论功能（二）"><a href="#实战分析：评论功能（二）" class="headerlink" title="实战分析：评论功能（二）"></a>实战分析：评论功能（二）</h1><h2 id="处理用户输入"><a href="#处理用户输入" class="headerlink" title="处理用户输入"></a>处理用户输入</h2><p>我们从 <code>ComponentInput</code> 组件开始，学习 React.js 是如何处理用户输入的。首先修改 <code>ComponentInput.js</code>，完善 <code>ComponentInput</code> 的 <code>render</code> 函数中的 HTML 结构：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentInput</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-input&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-name&#x27;</span>&gt;</span>用户名：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-input&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">input</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-name&#x27;</span>&gt;</span>评论内容：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-input&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">textarea</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-button&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            发布</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentInput</span></span><br></pre></td></tr></table></figure>
+
+<p>在浏览器中可以看到 <code>ComponentInput</code> 的结构和样式都已经生效：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png"><img src="http://huzidaha.github.io/static/assets/img/posts/E384080A-1876-4C76-B2B8-940D3EB2E774.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>因为还没有加入处理逻辑，所以你输入内容，然后点击发布是不会有什么效果的。用户可输入内容一个是用户名（username），一个是评论内容（content），我们在组件的构造函数中初始化一个 <code>state</code> 来保存这两个状态：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentInput</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span> () &#123;</span><br><span class="line">    <span class="variable language_">super</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">username</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">content</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>然后给输入框设置 <code>value</code> 属性，让它们的 <code>value</code> 值等于 <code>this.state</code> 里面相应的值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">        &lt;div className=<span class="string">&#x27;comment-field&#x27;</span>&gt;</span><br><span class="line">          <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-name&#x27;</span>&gt;</span>用户名：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">          <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-input&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">value</span>=<span class="string">&#123;this.state.username&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        &lt;/div&gt;</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-name&#x27;</span>&gt;</span>评论内容：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-input&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">value</span>=<span class="string">&#123;this.state.content&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>可以看到接受用户名输入的 <code>&lt;input /&gt;</code> 和接受用户评论内容的 <code>&lt;textarea /&gt;</code> 的 <code>value</code> 值分别由 <code>state.username</code> 和 <code>state.content</code> 控制。这时候你到浏览器里面去输入内容看看，你会发现你什么都输入不了。</p>
+<p>这是为什么呢？React.js 认为所有的状态都应该由 React.js 的 state 控制，只要类似于 <code>&lt;input /&gt;</code>、<code>&lt;textarea /&gt;</code>、<code>&lt;select /&gt;</code> 这样的输入控件被设置了 <code>value</code> 值，那么它们的值永远以被设置的值为准。值不变，<code>value</code> 就不会变化。</p>
+<p>例如，上面设置了 <code>&lt;input /&gt;</code> 的 <code>value</code> 为 <code>this.state.username</code>，<code>username</code> 在 <code>constructor</code> 中被初始化为空字符串。即使用户在输入框里面尝试输入内容了，还是没有改变 <code>this.state.username</code> 是空字符串的事实。</p>
+<p>所以应该怎么做才能把用户内容输入更新到输入框当中呢？在 React.js 当中必须要用 <code>setState</code> 才能更新组件的内容，所以我们需要做的就是：监听输入框的 <code>onChange</code> 事件，然后获取到用户输入的内容，再通过 <code>setState</code> 的方式更新 <code>state</code> 中的 <code>username</code>，这样 <code>input</code> 的内容才会更新。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-input&#x27;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">input</span></span></span><br><span class="line"><span class="tag">        <span class="attr">value</span>=<span class="string">&#123;this.state.username&#125;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">onChange</span>=<span class="string">&#123;this.handleUsernameChange.bind(this)&#125;</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>上面的代码给 <code>input</code> 加上了 <code>onChange</code> 事件监听，绑定到 <code>this.handleUsernameChange</code> 方法中，该方法实现如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleUsernameChange (event) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">username</span>: event.<span class="property">target</span>.<span class="property">value</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>在这个方法中，我们通过 <code>event.target.value</code> 获取 <code>&lt;input /&gt;</code> 中用户输入的内容，然后通过 <code>setState</code> 把它设置到 <code>state.username</code> 当中，这时候组件的内容就会更新，<code>input</code> 的 <code>value</code> 值就会得到更新并显示到输入框内。这时候输入已经没有问题了：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png"><img src="http://huzidaha.github.io/static/assets/img/posts/10C463F1-26E4-4E05-8945-9B56D5F68CDD.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>类似于 <code>&lt;input /&gt;</code>、<code>&lt;select /&gt;</code>、<code>&lt;textarea&gt;</code> 这些元素的 <code>value</code> 值被 React.js 所控制、渲染的组件，在 React.js 当中被称为受控组件（Controlled Component）。对于用户可输入的控件，一般都可以让它们成为受控组件，这是 React.js 所推崇的做法。另外还有非受控组件，这里暂时不提及。</p>
+<p>同样地，让 <code>&lt;textarea /&gt;</code> 成为受控组件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleContentChange (event) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">content</span>: event.<span class="property">target</span>.<span class="property">value</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line">      &lt;div className=<span class="string">&#x27;comment-field&#x27;</span>&gt;</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-name&#x27;</span>&gt;</span>评论内容：<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-field-input&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">textarea</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">value</span>=<span class="string">&#123;this.state.content&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">onChange</span>=<span class="string">&#123;this.handleContentChange.bind(this)&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h2 id="向父组件传递数据"><a href="#向父组件传递数据" class="headerlink" title="向父组件传递数据"></a>向父组件传递数据</h2><p>当用户在 <code>CommentInput</code> 里面输入完内容以后，点击发布，内容其实是需要显示到 <code>CommentList</code> 组件当中的。但这两个组件明显是单独的、分离的组件。我们再回顾一下之前是怎么划分组件的：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png"><img src="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>可以看到，<code>CommentApp</code> 组件将 <code>CommentInput</code> 和 <code>CommentList</code> 组合起来，它是它们俩的父组件，可以充当桥接两个子组件的桥梁。<em>所以当用户点击发布按钮的时候，我们就将 <code>CommentInput</code> 的 state 当中最新的评论数据传递给父组件 <code>CommentApp</code> ，然后让父组件把这个数据传递给 <code>CommentList</code> 进行渲染。</em></p>
+<p><code>CommentInput</code> 如何向 <code>CommentApp</code> 传递的数据？父组件 <code>CommentApp</code> 只需要通过 <code>props</code> 给子组件 <code>CommentInput</code> 传入一个回调函数。当用户点击发布按钮的时候，<code>CommentInput</code> 调用 <code>props</code> 中的回调函数并且将 <code>state</code> 传入该函数即可。</p>
+<p>先给发布按钮添加事件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">      &lt;div className=<span class="string">&#x27;comment-field-button&#x27;</span>&gt;</span><br><span class="line">        <span class="language-xml"><span class="tag">&lt;<span class="name">button</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">onClick</span>=<span class="string">&#123;this.handleSubmit.bind(this)&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          发布</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>用户点击按钮的时候会调用 <code>this.handleSubmit</code> 方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleSubmit () &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">onSubmit</span>) &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; username, content &#125; = <span class="variable language_">this</span>.<span class="property">state</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">props</span>.<span class="title function_">onSubmit</span>(&#123;username, content&#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">content</span>: <span class="string">&#x27;&#x27;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><code>handleSubmit</code> 方法会判断 <code>props</code> 中是否传入了 <code>onSubmit</code> 属性。有的话就调用该函数，并且把用户输入的用户名和评论数据传入该函数。然后再通过 <code>setState</code> 清空用户输入的评论内容（但为了用户体验，保留输入的用户名）。</p>
+<p>修改 <code>CommentApp.js</code> ，让它可以通过传入回调来获取到新增评论数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CommentApp</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  handleSubmitComment (comment) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(comment)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;wrapper&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentInput</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">onSubmit</span>=<span class="string">&#123;this.handleSubmitComment.bind(this)&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentList</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>CommentApp</code> 中给 <code>CommentInput</code> 传入一个 <code>onSubmit</code> 属性，这个属性值是 <code>CommentApp</code> 自己的一个方法 <code>handleSubmitComment</code>。这样 <code>CommentInput</code> 就可以调用 <code>this.props.onSubmit(…)</code> 把数据传给 <code>CommenApp</code>。</p>
+<p>现在在 <code>CommentInput</code> 中输入完评论内容以后点击发布，就可以看到 <code>CommentApp</code> 在控制台打印的数据：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png"><img src="http://huzidaha.github.io/static/assets/img/posts/7F15DF0A-1DC8-436A-98F4-E6072DCD78BE.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>这样就顺利地把数据传递给了父组件，接下来我们开始处理评论列表相关的逻辑。</p>
+<h1 id="实战分析：评论功能（三）"><a href="#实战分析：评论功能（三）" class="headerlink" title="实战分析：评论功能（三）"></a>实战分析：评论功能（三）</h1><p>接下来的代码比较顺理成章了。修改 <code>CommentList</code> 可以让它可以显示评论列表：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// CommentList.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> comments = [</span><br><span class="line">      &#123;<span class="attr">username</span>: <span class="string">&#x27;Jerry&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;Hello&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">username</span>: <span class="string">&#x27;Tomy&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;World&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">username</span>: <span class="string">&#x27;Lucy&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;Good&#x27;</span>&#125;</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;comments.map((comment, i) =&gt; &#123;</span></span><br><span class="line"><span class="language-xml">        return (</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">div</span> <span class="attr">key</span>=<span class="string">&#123;i&#125;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;comment.username&#125;：&#123;comment.content&#125;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        )</span></span><br><span class="line"><span class="language-xml">      &#125;)&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentList</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的代码没有什么新鲜的内容，只不过是建立了一个 <code>comments</code> 的数组来存放一些测试数据的内容，方便我们后续测试。然后把 <code>comments</code> 的数据渲染到页面上，这跟我们之前讲解的章节的内容一样——使用 map 构建一个存放 JSX 的数组。就可以在浏览器看到效果：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/4EFF52CA-B573-4DBB-A313-8ADD90F65F24.png"><img src="http://huzidaha.github.io/static/assets/img/posts/4EFF52CA-B573-4DBB-A313-8ADD90F65F24.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>修改 <code>Comment.js</code> 让它来负责具体每条评论内容的渲染：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Comment</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-user&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;this.props.comment.username&#125; <span class="tag">&lt;/<span class="name">span</span>&gt;</span>：</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;this.props.comment.content&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">Comment</span></span><br></pre></td></tr></table></figure>
+
+<p>这个组件可能是我们案例里面最简单的组件了，它只负责每条评论的具体显示。你只需要给它的 <code>props</code> 中传入一个 <code>comment</code> 对象，它就会把该对象中的 <code>username</code> 和 <code>content</code> 渲染到页面上。</p>
+<p>马上把 <code>Comment</code> 应用到 <code>CommentList</code> 当中，修改 <code>CommentList.js</code> 代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Comment</span> <span class="keyword">from</span> <span class="string">&#x27;./Comment&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> comments = [</span><br><span class="line">      &#123;<span class="attr">username</span>: <span class="string">&#x27;Jerry&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;Hello&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">username</span>: <span class="string">&#x27;Tomy&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;World&#x27;</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">username</span>: <span class="string">&#x27;Lucy&#x27;</span>, <span class="attr">content</span>: <span class="string">&#x27;Good&#x27;</span>&#125;</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;comments.map((comment, i) =&gt; <span class="tag">&lt;<span class="name">Comment</span> <span class="attr">comment</span>=<span class="string">&#123;comment&#125;</span> <span class="attr">key</span>=<span class="string">&#123;i&#125;</span> /&gt;</span>)&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentList</span></span><br></pre></td></tr></table></figure>
+
+<p>可以看到测试数据显示到了页面上：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/6A3B65A1-0CEA-4F98-B2E7-DC1D9B4CED83.png"><img src="http://huzidaha.github.io/static/assets/img/posts/6A3B65A1-0CEA-4F98-B2E7-DC1D9B4CED83.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>之前我们说过 <code>CommentList</code> 的数据应该是由父组件 <code>CommentApp</code> 传进来的，现在我们删除测试数据，改成从 <code>props</code> 获取评论数据：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">Comment</span> <span class="keyword">from</span> <span class="string">&#x27;./Comment&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;this.props.comments.map((comment, i) =&gt;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Comment</span> <span class="attr">comment</span>=<span class="string">&#123;comment&#125;</span> <span class="attr">key</span>=<span class="string">&#123;i&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        )&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentList</span></span><br></pre></td></tr></table></figure>
+
+<p>这时候可以看到浏览器报错了：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/2B73DDBA-0D90-473A-BC2A-DB9C8E132458.png"><img src="http://huzidaha.github.io/static/assets/img/posts/2B73DDBA-0D90-473A-BC2A-DB9C8E132458.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>这是因为<code>CommentApp</code> 使用 <code>CommentList</code> 的时候并没有传入 <code>comments</code>。我们给 <code>CommentList</code> 加上 <code>defaultProps</code> 防止 <code>comments</code> 不传入的情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CommentList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">    <span class="attr">comments</span>: []</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>这时候代码就不报错了。但是 <code>CommentInput</code> 给 <code>CommentApp</code> 传递的评论数据并没有传递给 <code>CommentList</code>，所以现在发表评论时没有反应的。</p>
+<p>我们在 <code>CommentApp</code> 的 <code>state</code> 中初始化一个数组，来保存所有的评论数据，并且通过 <code>props</code> 把它传递给 <code>CommentList</code>。修改 <code>CommentApp.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="title class_">React</span>, &#123; <span class="title class_">Component</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CommentInput</span> <span class="keyword">from</span> <span class="string">&#x27;./CommentInput&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">CommentList</span> <span class="keyword">from</span> <span class="string">&#x27;./CommentList&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CommentApp</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span> () &#123;</span><br><span class="line">    <span class="variable language_">super</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">comments</span>: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmitComment (comment) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(comment)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;wrapper&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentInput</span> <span class="attr">onSubmit</span>=<span class="string">&#123;this.handleSubmitComment.bind(this)&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentList</span> <span class="attr">comments</span>=<span class="string">&#123;this.state.comments&#125;/</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="title class_">CommentApp</span></span><br></pre></td></tr></table></figure>
+
+<p>接下来，修改 <code>handleSubmitComment</code> ：每当用户发布评论的时候，就把评论数据插入 <code>this.state.comments</code> 中，然后通过 <code>setState</code> 把数据更新到页面上：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleSubmitComment (comment) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span>.<span class="title function_">push</span>(comment)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">comments</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>小提示：这里的代码直接往 <code>state.comments</code> 数组里面插入数据其实违反了 React.js 的 <a target="_blank" rel="noopener" href="https://facebook.github.io/react/tutorial/tutorial.html#why-immutability-is-important"><code>state</code> 不可直接修改的原则</a> 。但其实这个原则是为了 <code>shouldComponentUpdate</code> 的优化和变化的跟踪，而这种目的在使用 React-redux 的时候其实会自然而然达到，我们很少直接手动地优化，这时候这个原则就会显得有点鸡肋。所以这里为了降低大家的理解成本就不强制使用这个原则，有兴趣的朋友可以参考： <a target="_blank" rel="noopener" href="https://facebook.github.io/react/tutorial/tutorial.html#why-immutability-is-important">Tutorial: Intro To React - React</a>。</p>
+</blockquote>
+<p>现在代码应该是可以按照需求正常运作了，输入用户名和评论内容，然后点击发布：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/62C055E7-F668-4C70-A0C0-B8989A5E3B58.png"><img src="http://huzidaha.github.io/static/assets/img/posts/62C055E7-F668-4C70-A0C0-B8989A5E3B58.png" alt="React.js 小书实战之评论功能图片"></a></p>
+<p>为了让代码的健壮性更强，给 <code>handleSubmitComment</code> 加入简单的数据检查：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleSubmitComment (comment) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!comment) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> (!comment.<span class="property">username</span>) <span class="keyword">return</span> <span class="title function_">alert</span>(<span class="string">&#x27;请输入用户名&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (!comment.<span class="property">content</span>) <span class="keyword">return</span> <span class="title function_">alert</span>(<span class="string">&#x27;请输入评论内容&#x27;</span>)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span>.<span class="title function_">push</span>(comment)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">comments</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>到这里，我们的第一个实战案例——评论功能已经完成了！完整的案例代码可以在这里 <a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples/tree/master/comment-app">comment-app</a> 找到， <a target="_blank" rel="noopener" href="https://huzidaha.github.io/react-naive-book-examples/comment-app/build/index.html">在线演示</a> 体验。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>在这个案例里面，我们除了复习了之前所学过的内容以外还学习了新的知识点。包括：</p>
+<ol>
+<li>实现功能之前先理解、分析需求，划分组件。并且掌握划分组件的基本原则——可复用性、可维护性。</li>
+<li>受控组件的概念，React.js 中的 <code>&lt;input /&gt;</code> 、<code>&lt;textarea /&gt;</code>、<code>&lt;select /&gt;</code> 等元素的 <code>value</code> 值如果是受到 React.js 的控制，那么就是受控组件。</li>
+<li>组件之间使用 <code>props</code> 通过父元素传递数据的技巧。</li>
+</ol>
+<p>当然，在真实的项目当中，这个案例很多地方是可以优化的。包括组件可复用性方面（有没有发现其实 <code>CommentInput</code> 中有重复的代码？）、应用的状态管理方面。但在这里为了给大家总结和演示，实现到这个程度也就足够了。</p>
+<p>到此为止，React.js 小书的第一阶段已经结束，你可以利用这些知识点来构建简单的功能模块了。但是在实际项目如果要构建比较系统和完善的功能，还需要更多的 React.js 的知识还有关于前端开发的一些认知来协助我们。接下来我们会开启新的一个阶段来学习更多关于 React.js 的知识，以及如何更加灵活和熟练地使用它们。让我们进入第二阶段吧！</p>
+<h1 id="实战分析：评论功能（四）"><a href="#实战分析：评论功能（四）" class="headerlink" title="实战分析：评论功能（四）"></a>实战分析：评论功能（四）</h1><p>目前为止，第二阶段知识已经基本介绍完，我们已经具备了项目上手实战必备的 React.js 知识，现在可以把这些知识应用起来。接下来是实战环节，我们会继续上一阶段的例子，把评论功能做得更加复杂一点。</p>
+<p>我们在上一阶段的评论功能基础上加上以下功能需求：</p>
+<ol>
+<li>页面加载完成自动聚焦到评论输入框。</li>
+<li>把用户名持久化，存放到浏览器的 LocalStorage 中。页面加载时会把用户名加载出来显示到输入框，用户就不需要重新输入用户名了。</li>
+<li>把已经发布的评论持久化，存放到浏览器的 LocalStorage 中。页面加载时会把已经保存的评论加载出来，显示到页面的评论列表上。</li>
+<li>评论显示发布日期，如“1 秒前”，”30 分钟前”，并且会每隔 5 秒更新发布日期。</li>
+<li>评论可以被删除。</li>
+<li>类似 Markdown 的行内代码块显示功能，用户输入的用 &#96;&#96; 包含起来的内容都会被处理成用 <code>&lt;code&gt;</code> 元素包含。例如输入 <code>console.log</code> 就会处理成 <code>&lt;code&gt;console.log&lt;/code&gt;</code> 再显示到页面上。</li>
+</ol>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/E01D3698-F041-4149-9626-849F023E5638.png"><img src="http://huzidaha.github.io/static/assets/img/posts/E01D3698-F041-4149-9626-849F023E5638.png" alt="React.js 小书实战评论功能图片"></a></p>
+<p><a target="_blank" rel="noopener" href="https://huzidaha.github.io/react-naive-book-examples/comment-app2/build/index.html">在线演示地址</a>。</p>
+<p>大家可以在原来的第一阶段代码的基础上进行修改，第一、二阶段评论功能代码可以在这里找到： <a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples">react-naive-book-examples</a>。可以直接使用最新的样式文件 <a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples/blob/master/comment-app2/src/index.css">index.css</a> 覆盖原来的 index.css。</p>
+<p>接下来可以分析如何利用第二阶段的知识来构建这些功能，在这个过程里面可能会穿插一些小技巧，希望对大家有用。我们回顾一下这个页面的组成：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/1.003.png"><img src="http://huzidaha.github.io/static/assets/img/posts/1.003.png" alt="React.js 小书实战评论功能图片"></a></p>
+<p>我们之前把页面分成了四种不同的组件：分别是 <code>CommentApp</code> 、<code>CommentInput</code>、<code>CommentList</code>、<code>Comment</code>。我们开始修改这个组件，把上面的需求逐个完成。</p>
+<h2 id="自动聚焦到评论框"><a href="#自动聚焦到评论框" class="headerlink" title="自动聚焦到评论框"></a>自动聚焦到评论框</h2><p>这个功能是很简单的，我们需要获取 <code>textarea</code> 的 DOM 元素然后调用 <code>focus()</code> API 就可以了。我们给输入框元素加上 <code>ref</code> 以便获取到 DOM 元素，修改 <code>src/CommentInput.js</code> 文件：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    &lt;textarea</span><br><span class="line">      ref=&#123;<span class="function">(<span class="params">textarea</span>) =&gt;</span> <span class="variable language_">this</span>.<span class="property">textarea</span> = textarea&#125;</span><br><span class="line">      value=&#123;<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">content</span>&#125;</span><br><span class="line">      onChange=&#123;<span class="variable language_">this</span>.<span class="property">handleContentChange</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125; /&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>组件挂载完以后完成以后就可以调用 <code>this.textarea.focus()</code>，给 <code>CommentInput</code> 组件加上 <code>ComponentDidMount</code> 生命周期：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CommentInput</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> propTypes = &#123;</span><br><span class="line">    <span class="attr">onSubmit</span>: <span class="title class_">PropTypes</span>.<span class="property">func</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span> () &#123;</span><br><span class="line">    <span class="variable language_">super</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">username</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">content</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">textarea</span>.<span class="title function_">focus</span>()</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>这个功能就完成了。现在体验还不是很好，接下来我们把用户名持久化一下，体验就会好很多。</p>
+<p>大家可以注意到我们给原来的 <code>props.onSubmit</code> 参数加了组件参数验证，在这次实战案例中，我们都会给评论功能的组件加上 <code>propTypes</code> 进行参数验证，接下来就不累述。</p>
+<h2 id="持久化用户名"><a href="#持久化用户名" class="headerlink" title="持久化用户名"></a>持久化用户名</h2><p>用户输入用户名，然后我们把用户名保存到浏览器的 LocalStorage 当中，当页面加载的时候再从 LocalStorage 把之前保存的用户名显示到用户名输入框当中。这样用户就不用每次都输入用户名了，并且评论框是自动聚焦的，用户的输入体验就好很多。</p>
+<p>我们监听用户名输入框失去焦点的事件 <code>onBlur</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">    &lt;input</span><br><span class="line">      value=&#123;<span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">username</span>&#125;</span><br><span class="line">      onBlur=&#123;<span class="variable language_">this</span>.<span class="property">handleUsernameBlur</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125;</span><br><span class="line">      onChange=&#123;<span class="variable language_">this</span>.<span class="property">handleUsernameChange</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125; /&gt;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>handleUsernameBlur</code> 中我们把用户的输入内容保存到 LocalStorage 当中：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CommentInput</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span> () &#123;</span><br><span class="line">    <span class="variable language_">super</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">username</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">      <span class="attr">content</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentDidMount () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">textarea</span>.<span class="title function_">focus</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _saveUsername (username) &#123;</span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;username&#x27;</span>, username)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleUsernameBlur (event) &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">_saveUsername</span>(event.<span class="property">target</span>.<span class="property">value</span>)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>handleUsernameBlur</code> 中我们把用户输入的内容传给了 <code>_saveUsername</code> 私有方法（所有私有方法都以 <code>_</code> 开头）。<code>_saveUsername</code> 会设置 LocalStorage 中的 <code>username</code> 字段，用户名就持久化了。这样就相当于每当用户输入完用户名以后（输入框失去焦点的时候），都会把用户名自动保存一次。</p>
+<p>输入用户名，然后到浏览器里里面看看是否保存了：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/04093DE1-B4C0-4CBD-B3F8-DF924C9F6799.png"><img src="http://huzidaha.github.io/static/assets/img/posts/04093DE1-B4C0-4CBD-B3F8-DF924C9F6799.png" alt="React.js 小书实战评论功能图片"></a></p>
+<p>然后我们组件挂载的时候把用户名加载出来。这是一种数据加载操作，我们说过，不依赖 DOM 操作的组件启动的操作都可以放在 <code>componentWillMount</code> 中进行，所以给 <code>CommentInput</code> 添加 <code>componentWillMount</code> 的组件生命周期：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  componentWillMount () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">_loadUsername</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _loadUsername () &#123;</span><br><span class="line">    <span class="keyword">const</span> username = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;username&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (username) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; username &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _saveUsername (username) &#123;</span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;username&#x27;</span>, username)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p><code>componentWillMount</code> 会调用 <code>_loadUsername</code> 私有方法，<code>_loadUsername</code> 会从 LocalStorage 加载用户名并且 <code>setState</code> 到组件的 <code>state.username</code> 中。那么组件在渲染的时候（<code>render</code> 方法）挂载的时候就可以用上用户名了。</p>
+<p>这样体验就好多了，刷新页面，不需要输入用户名，并且自动聚焦到了输入框。我们 1、 2 需求都已经完成。</p>
+<h2 id="小贴士"><a href="#小贴士" class="headerlink" title="小贴士"></a>小贴士</h2><p>这里插入一些小贴示，大家可以注意到我们组件的命名和方法的摆放顺序其实有一定的讲究，这里可以简单分享一下个人的习惯，仅供参考。</p>
+<p>组件的私有方法都用 <code>_</code> 开头，所有事件监听的方法都用 <code>handle</code> 开头。把事件监听方法传给组件的时候，属性名用 <code>on</code> 开头。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="title class_">CommentInput</span></span><br><span class="line">  onSubmit=&#123;<span class="variable language_">this</span>.<span class="property">handleSubmitComment</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>这样统一规范处理事件命名会给我们带来语义化组件的好处，监听（<code>on</code>）<code>CommentInput</code> 的 <code>Submit</code> 事件，并且交给 <code>this</code> 去处理（<code>handle</code>）。这种规范在多人协作的时候也会非常方便。</p>
+<p>另外，组件的内容编写顺序如下：</p>
+<ol>
+<li>static 开头的类属性，如 <code>defaultProps</code>、<code>propTypes</code>。</li>
+<li>构造函数，<code>constructor</code>。</li>
+<li>getter&#x2F;setter（还不了解的同学可以暂时忽略）。</li>
+<li>组件生命周期。</li>
+<li><code>_</code> 开头的私有方法。</li>
+<li>事件监听方法，<code>handle*</code>。</li>
+<li><code>render*</code>开头的方法，有时候 <code>render()</code> 方法里面的内容会分开到不同函数里面进行，这些函数都以 <code>render*</code> 开头。</li>
+<li><code>render()</code> 方法。</li>
+</ol>
+<p>如果所有的组件都按这种顺序来编写，那么维护起来就会方便很多，多人协作的时候别人理解代码也会一目了然。</p>
+<h1 id="实战分析：评论功能（五）"><a href="#实战分析：评论功能（五）" class="headerlink" title="实战分析：评论功能（五）"></a>实战分析：评论功能（五）</h1><ul>
+<li>作者：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/hu-zi-da-ha">胡子大哈</a></li>
+<li>原文链接：<a target="_blank" rel="noopener" href="http://huziketang.com/books/react/lesson26"> http://huziketang.com/books/react/lesson26</a></li>
+<li>转载请注明出处，保留原文链接和作者信息。</li>
+</ul>
+<p>（本文未审核）</p>
+<h2 id="持久化评论"><a href="#持久化评论" class="headerlink" title="持久化评论"></a>持久化评论</h2><p>同样地，可以通过类似于用户名持久化的方式对评论列表内容进行持久化，让用户发布的评论在刷新页面以后依然可以存在。修改 <code>src/CommentApp.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CommentApp</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="title function_">constructor</span> () &#123;</span><br><span class="line">    <span class="variable language_">super</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123;</span><br><span class="line">      <span class="attr">comments</span>: []</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillMount () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">_loadComments</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _loadComments () &#123;</span><br><span class="line">    <span class="keyword">let</span> comments = <span class="variable language_">localStorage</span>.<span class="title function_">getItem</span>(<span class="string">&#x27;comments&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (comments) &#123;</span><br><span class="line">      comments = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(comments)</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; comments &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _saveComments (comments) &#123;</span><br><span class="line">    <span class="variable language_">localStorage</span>.<span class="title function_">setItem</span>(<span class="string">&#x27;comments&#x27;</span>, <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(comments))</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleSubmitComment (comment) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!comment) <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> (!comment.<span class="property">username</span>) <span class="keyword">return</span> <span class="title function_">alert</span>(<span class="string">&#x27;请输入用户名&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> (!comment.<span class="property">content</span>) <span class="keyword">return</span> <span class="title function_">alert</span>(<span class="string">&#x27;请输入评论内容&#x27;</span>)</span><br><span class="line">    <span class="keyword">const</span> comments = <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span></span><br><span class="line">    comments.<span class="title function_">push</span>(comment)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; comments &#125;)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">_saveComments</span>(comments)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>我们增加了 <code>_loadComments</code> 和 <code>_saveComments</code> 分别用于加载和保存评论列表数据。用户每次提交评论都会把评论列表数据保存一次，所以我们在 <code>handleSubmitComment</code> 调用 <code>_saveComments</code> 方法；而在 <code>componentWillMount</code> 中调用 <code>_loadComments</code> 方法，在组件开始挂载的时候把评论列表数据加载出来 <code>setState</code> 到 <code>this.state</code> 当中，组件就可以渲染从 LocalStorage 从加载出来的评论列表数据了。</p>
+<p>现在发布评论，然后刷新可以看到我们的评论并不会像以前一样消失。非常的不错，持久化评论的功能也完成了。</p>
+<h2 id="显示评论发布时间"><a href="#显示评论发布时间" class="headerlink" title="显示评论发布时间"></a>显示评论发布时间</h2><p>现在我们给每条评论都加上发布的日期，并且在评论列表项上显示已经发表了多久，例如“1 秒前”、“30分钟前”，并且会每隔 5 秒进行更新。修改 <code>src/CommentInput.js</code> 当用户点击发布按钮的时候，传出去的评论数据带上评论发布的时间戳：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleSubmit () &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">onSubmit</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">props</span>.<span class="title function_">onSubmit</span>(&#123;</span><br><span class="line">        <span class="attr">username</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">username</span>,</span><br><span class="line">        <span class="attr">content</span>: <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">content</span>,</span><br><span class="line">        <span class="attr">createdTime</span>: +<span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; <span class="attr">content</span>: <span class="string">&#x27;&#x27;</span> &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>在评论列表项上显示评论，修改 <code>src/comment.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Comment</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> propTypes = &#123;</span><br><span class="line">    <span class="attr">comment</span>: <span class="title class_">PropTypes</span>.<span class="property">object</span>.<span class="property">isRequired</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">constructor</span> () &#123;</span><br><span class="line">    <span class="variable language_">super</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">state</span> = &#123; <span class="attr">timeString</span>: <span class="string">&#x27;&#x27;</span> &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  componentWillMount () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">_updateTimeString</span>()</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  _updateTimeString () &#123;</span><br><span class="line">    <span class="keyword">const</span> comment = <span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">comment</span></span><br><span class="line">    <span class="keyword">const</span> duration = (+<span class="title class_">Date</span>.<span class="title function_">now</span>() - comment.<span class="property">createdTime</span>) / <span class="number">1000</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123;</span><br><span class="line">      <span class="attr">timeString</span>: duration &gt; <span class="number">60</span></span><br><span class="line">        ? <span class="string">`<span class="subst">$&#123;<span class="built_in">Math</span>.round(duration / <span class="number">60</span>)&#125;</span> 分钟前`</span></span><br><span class="line">        : <span class="string">`<span class="subst">$&#123;<span class="built_in">Math</span>.round(<span class="built_in">Math</span>.max(duration, <span class="number">1</span>))&#125;</span> 秒前`</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-user&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">span</span>&gt;</span>&#123;this.props.comment.username&#125; <span class="tag">&lt;/<span class="name">span</span>&gt;</span>：</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;this.props.comment.content&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-createdtime&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          &#123;this.state.timeString&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>每个 <code>Comment</code> 组件实例会保存一个 <code>timeString</code> 状态，用于该评论显示发布了多久。<code>_updateTimeString</code> 这个私有方法会根据 <code>props.comment</code> 里面的 <code>createdTime</code> 来更新这个 <code>timeString</code>：计算当前时间和评论发布时间的时间差，如果已经发布 60 秒以上就显示分钟，否则就显示秒。然后 <code>componentWillMount</code> 会在组件挂载阶段调用 <code>_updateTimeString</code> 更新一下这个字符串，<code>render()</code> 方法就把这个显示时间差的字符串渲染到一个 <code>&lt;span&gt;</code> 上。</p>
+<p>再看看页面显示：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/209D576F-45A1-42A7-ADDB-A01AE03BB3D5.png"><img src="http://huzidaha.github.io/static/assets/img/posts/209D576F-45A1-42A7-ADDB-A01AE03BB3D5.png" alt="React.js 小书实战评论功能图片"></a></p>
+<p>这时候的时间是不会自动更新的。除非你手动刷新页面，否则永远显示“1 秒前”。我们可以在 <code>componentWillMount</code> 中启动一个定时器，每隔 5 秒调用一下 <code>_updateTimeString</code>，让它去通过 <code>setState</code> 更新 <code>timeString</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  componentWillMount () &#123;</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">_updateTimeString</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="property">_timer</span> = <span class="built_in">setInterval</span>(</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">_updateTimeString</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>),</span><br><span class="line">      <span class="number">5000</span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>这样就可以做到评论的发布时间自动刷新了，到这里前 4 个需求都已经完成了。</p>
+<h1 id="实战分析：评论功能（六）"><a href="#实战分析：评论功能（六）" class="headerlink" title="实战分析：评论功能（六）"></a>实战分析：评论功能（六）</h1><ul>
+<li>作者：<a target="_blank" rel="noopener" href="https://www.zhihu.com/people/hu-zi-da-ha">胡子大哈</a></li>
+<li>原文链接：<a target="_blank" rel="noopener" href="http://huziketang.com/books/react/lesson27"> http://huziketang.com/books/react/lesson27</a></li>
+<li>转载请注明出处，保留原文链接和作者信息。</li>
+</ul>
+<p>（本文未审核）</p>
+<h2 id="删除评论"><a href="#删除评论" class="headerlink" title="删除评论"></a>删除评论</h2><p>现在发布评论，评论不会消失，评论越来越多并不是什么好事。所以我们给评论组件加上删除评论的功能，这样就可以删除不想要的评论了。修改 <code>src/Comment.js</code> 的 <code>render</code> 方法，新增一个删除按钮：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">const</span> &#123; comment &#125; = <span class="variable language_">this</span>.<span class="property">props</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;comment-user&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-username&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">            &#123;comment.username&#125;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;/<span class="name">span</span>&gt;</span>：</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;comment.content&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-createdtime&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          &#123;this.state.timeString&#125;</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">span</span> <span class="attr">className</span>=<span class="string">&#x27;comment-delete&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">          删除</span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">... </span><br></pre></td></tr></table></figure>
+
+<p>我们在后面加了一个删除按钮，因为 <code>index.css</code> 定义了样式，所以鼠标放到特定的评论上才会显示删除按钮，让用户体验好一些。</p>
+<p>我们知道评论列表数据是放在 <code>CommentApp</code> 当中的，而这个删除按钮是在 <code>Comment</code> 当中的，现在我们要做的事情是用户点击某条评论的删除按钮，然后在 <code>CommentApp</code> 中把相应的数据删除。但是 <code>CommentApp</code> 和 <code>Comment</code> 的关系是这样的：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png"><img src="http://huzidaha.github.io/static/assets/img/posts/DAFA784B-6AD3-474B-9A87-316E5741DED6.png" alt="React.js 小书实战评论功能图片"></a></p>
+<p><code>Comment</code> 和 <code>CommentApp</code> 之间隔了一个 <code>CommentList</code>，<code>Comment</code> 无法直接跟 <code>CommentApp</code> 打交道，只能通过 <code>CommentList</code> 来转发这种删除评论的消息。修改 <code>Comment</code> 组件，让它可以把删除的消息传递到上一层：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Comment</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> propTypes = &#123;</span><br><span class="line">    <span class="attr">comment</span>: <span class="title class_">PropTypes</span>.<span class="property">object</span>.<span class="property">isRequired</span>,</span><br><span class="line">    <span class="attr">onDeleteComment</span>: <span class="title class_">PropTypes</span>.<span class="property">func</span>,</span><br><span class="line">    <span class="attr">index</span>: <span class="title class_">PropTypes</span>.<span class="property">number</span></span><br><span class="line">  &#125;</span><br><span class="line">...</span><br><span class="line">  handleDeleteComment () &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">onDeleteComment</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">props</span>.<span class="title function_">onDeleteComment</span>(<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">index</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render () &#123;</span><br><span class="line">    ...</span><br><span class="line">        &lt;span</span><br><span class="line">          onClick=&#123;<span class="variable language_">this</span>.<span class="property">handleDeleteComment</span>.<span class="title function_">bind</span>(<span class="variable language_">this</span>)&#125;</span><br><span class="line">          className=<span class="string">&#x27;comment-delete&#x27;</span>&gt;</span><br><span class="line">          删除</span><br><span class="line">        &lt;/span&gt;</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在在使用 <code>Comment</code> 的时候，可以传入 <code>onDeleteComment</code> 和 <code>index</code> 两个参数。<code>index</code> 用来标志这个评论在列表的下标，这样点击删除按钮的时候我们才能知道你点击的是哪个评论，才能知道怎么从列表数据中删除。用户点击删除会调用 <code>handleDeleteComment</code> ，它会调用从上层传入的 <code>props. onDeleteComment</code> 函数告知上一层组件删除的消息，并且把评论下标传出去。现在修改 <code>src/CommentList.js</code> 让它把这两个参数传进来：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">CommentList</span> <span class="keyword">extends</span> <span class="title class_ inherited__">Component</span> &#123;</span><br><span class="line">  <span class="keyword">static</span> propTypes = &#123;</span><br><span class="line">    <span class="attr">comments</span>: <span class="title class_">PropTypes</span>.<span class="property">array</span>,</span><br><span class="line">    <span class="attr">onDeleteComment</span>: <span class="title class_">PropTypes</span>.<span class="property">func</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">static</span> defaultProps = &#123;</span><br><span class="line">    <span class="attr">comments</span>: []</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  handleDeleteComment (index) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable language_">this</span>.<span class="property">props</span>.<span class="property">onDeleteComment</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="property">props</span>.<span class="title function_">onDeleteComment</span>(index)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        &#123;this.props.comments.map((comment, i) =&gt;</span></span><br><span class="line"><span class="language-xml">          <span class="tag">&lt;<span class="name">Comment</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">comment</span>=<span class="string">&#123;comment&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">key</span>=<span class="string">&#123;i&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">index</span>=<span class="string">&#123;i&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">            <span class="attr">onDeleteComment</span>=<span class="string">&#123;this.handleDeleteComment.bind(this)&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        )&#125;</span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当用户点击按钮的时候，<code>Comment</code> 组件会调用 <code>props.onDeleteComment</code>，也就是 <code>CommentList</code> 的 <code>handleDeleteComment</code> 方法。而 <code>handleDeleteComment</code> 会调用 <code>CommentList</code> 所接受的配置参数中的 <code>props.onDeleteComment</code>，并且把下标传出去。</p>
+<p>也就是说，我们可以在 <code>CommentApp</code> 给 <code>CommentList</code> 传入一个 <code>onDeleteComment</code> 的配置参数来接受这个删除评论的消息，修改 <code>CommentApp.js</code>：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleDeleteComment (index) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(index)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      <span class="language-xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&#x27;wrapper&#x27;</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentInput</span> <span class="attr">onSubmit</span>=<span class="string">&#123;this.handleSubmitComment.bind(this)&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">        <span class="tag">&lt;<span class="name">CommentList</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">comments</span>=<span class="string">&#123;this.state.comments&#125;</span></span></span></span><br><span class="line"><span class="tag"><span class="language-xml">          <span class="attr">onDeleteComment</span>=<span class="string">&#123;this.handleDeleteComment.bind(this)&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="language-xml">      <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>现在点击删除按钮，可以在控制台看到评论对应的下标打印了出来。其实这就是这么一个过程：<code>CommentList</code> 把下标 <code>index</code> 传给 <code>Comment</code>。点击删除按钮的时候，<code>Comment</code> 把 <code>index</code> 传给了 <code>CommentList</code>，<code>CommentList</code> 再把它传给 <code>CommentApp</code>。现在可以在 <code>CommentApp</code> 中删除评论了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  handleDeleteComment (index) &#123;</span><br><span class="line">    <span class="keyword">const</span> comments = <span class="variable language_">this</span>.<span class="property">state</span>.<span class="property">comments</span></span><br><span class="line">    comments.<span class="title function_">splice</span>(index, <span class="number">1</span>)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setState</span>(&#123; comments &#125;)</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">_saveComments</span>(comments)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>我们通过 <code>comments.splice</code> 删除特定下标的评论，并且通过 <code>setState</code> 重新渲染整个评论列表；当然了，还需要把最新的评论列表数据更新到 LocalStorage 中，所以我们在删除、更新以后调用了 <code>_saveComments</code> 方法把数据同步到 LocalStorage 中。</p>
+<p>现在就可以愉快地删除评论了。但是，你删除评论以后 5 秒钟后就会在控制台中看到报错了：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/83C3CDDD-F8C5-4C37-B848-852E98E0E464.png"><img src="http://huzidaha.github.io/static/assets/img/posts/83C3CDDD-F8C5-4C37-B848-852E98E0E464.png" alt="React.js 小书实战评论功能图片"></a></p>
+<p>这是因为我们忘了清除评论的定时器，修改 <code>src/Comment.js</code>，新增生命周期 <code>commentWillUnmount</code> 在评论组件销毁的时候清除定时器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  componentWillUnmount () &#123;</span><br><span class="line">    <span class="built_in">clearInterval</span>(<span class="variable language_">this</span>.<span class="property">_timer</span>)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>这才算完成了第 5 个需求。</p>
+<h2 id="显示代码块"><a href="#显示代码块" class="headerlink" title="显示代码块"></a>显示代码块</h2><p>用户在的输入内容中任何以 &#96;&#96; 包含的内容都会用 <code>&lt;code&gt;</code> 包含起来显示到页面上。<code>&lt;code&gt;</code> 这是一个 HTML 结构，需要往页面动态插入 HTML 结构我们只能用 <code>dangerouslySetInnerHTML</code> 了，修改 <code>src/Comment.js</code>，把原来 <code>render()</code> 函数中的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;p&gt;&#123;comment.<span class="property">content</span>&#125;&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p>修改成：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;p dangerouslySetInnerHTML=&#123;&#123;</span><br><span class="line">  <span class="attr">__html</span>: <span class="variable language_">this</span>.<span class="title function_">_getProcessedContent</span>(comment.<span class="property">content</span>)</span><br><span class="line">&#125;&#125; /&gt;</span><br></pre></td></tr></table></figure>
+
+<p>我们把经过 <code>this._getProcessedContent</code> 处理的评论内容以 HTML 的方式插入到 <code>&lt;p&gt;</code> 元素中。<code>this._getProcessedContent</code> 要把 &#96;&#96; 包含的内容用 <code>&lt;code&gt;</code> 包裹起来，一个正则表达式就可以做到了：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  _getProcessedContent (content) &#123;</span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/`([\S\s]+?)`/g</span>, <span class="string">&#x27;&lt;code&gt;$1&lt;/code&gt;&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>但是这样做会有严重的 XSS 漏洞，用户可以输入任意的 HTML 标签，用 <code>&lt;script&gt;</code> 执行任意的 JavaScript 代码。所以在替换代码之前，我们要手动地把这些 HTML 标签进行转义：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">  _getProcessedContent (content) &#123;</span><br><span class="line">    <span class="keyword">return</span> content</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/&amp;/g</span>, <span class="string">&quot;&amp;amp;&quot;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/&lt;/g</span>, <span class="string">&quot;&amp;lt;&quot;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/&gt;/g</span>, <span class="string">&quot;&amp;gt;&quot;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/&quot;/g</span>, <span class="string">&quot;&amp;quot;&quot;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/&#x27;/g</span>, <span class="string">&quot;&amp;#039;&quot;</span>)</span><br><span class="line">      .<span class="title function_">replace</span>(<span class="regexp">/`([\S\s]+?)`/g</span>, <span class="string">&#x27;&lt;code&gt;$1&lt;/code&gt;&#x27;</span>)</span><br><span class="line">  &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>前 5 个 <code>replace</code> 实际上是把类似于 <code>&lt;</code>、<code>&gt;</code> 这种内容替换转义一下，防止用户输入 HTML 标签。最后一行代码才是实现功能的代码。</p>
+<p>这时候在评论框中输入：</p>
+<blockquote>
+<p>这是代码块 <code>console.log</code>，这是 <h1>正常内容</h1>。</p>
+</blockquote>
+<p>然后点击发布，看看效果：</p>
+<p><a target="_blank" rel="noopener" href="http://huzidaha.github.io/static/assets/img/posts/5C18C820-E406-4D38-95DC-B4FEA70E34EE.png"><img src="http://huzidaha.github.io/static/assets/img/posts/5C18C820-E406-4D38-95DC-B4FEA70E34EE.png" alt="React.js 小书实战评论功能图片"></a></p>
+<p>我们安全地完成了第 6 个需求。到目前为止，第二阶段的实战已经全部完成，你可以在<a target="_blank" rel="noopener" href="https://github.com/huzidaha/react-naive-book-examples">这里</a>找到完整的代码。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>到这里第二阶段已经全部结束，我们已经掌握了全部 React.js 实战需要的入门知识。接下来我们会学习两个相对比较高级的 React.js 的概念，然后进入 React-redux 的世界，让它们配合 React.js 来构建更成熟的前端页面。</p>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://gitee.com/study73/2024/04/08/react-%E8%B4%B0%E3%80%81React%E5%B0%8F%E4%B9%A6_%E9%98%B6%E6%AE%B5%E7%BB%83%E4%B9%A0_day12-2/" title="react小书阶段练习" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/react-贰、React小书_阶段练习_day12-2/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/study73/2024/04/08/react-%E8%B4%B0%E3%80%81React%E7%9A%84%E6%B8%B2%E6%9F%93%E3%80%81%E4%BA%8B%E4%BB%B6%E3%80%81props_day12-3/" title="渲染、事件、props"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/study73/2024/04/08/umi%E5%AE%9E%E6%88%98%E4%B8%8E%E8%B8%A9%E5%9D%91%E8%AE%B0%E5%BD%95/" title="Umi项目"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/study73/js/plugin.min.js"></script>
+
+
+<script src="/study73/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/study73/',
+        CONTENT_URL: '/study73/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/study73/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
