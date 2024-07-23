@@ -25,20 +25,20 @@
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 此笔记为记录本人在**阿里云centos部署vue+node(express)+mysql项目**的踩坑填坑过程,希望能对小伙伴们有帮助 当然,实际上云服务器操作都是大同小异,此处拿阿里云做例子  一、购买云服务器  如果是学生,可以很优惠地买到云服务器,本人就是用的学生认证买的 建议 服务器的系统镜像选择centos 7 当然,这个可以重置,也不麻烦,具体操作可以百度 下面是几个按钮简单">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211129172801511.png">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202420224.png">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202746324.png">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201220692.png">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201454253.png">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201655572.png">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202223816.png">
-<meta property="og:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202822433.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211129172801511.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202420224.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202746324.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201220692.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201454253.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201655572.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202223816.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202822433.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:06:17.364Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="云服务器">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211129172801511.png">
+<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211129172801511.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%9B%E8%A1%8CNode%E3%80%81Mysql%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85.md-%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B/index.html">
   
@@ -314,7 +314,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -329,7 +329,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -402,7 +402,7 @@
 <li>建议 <strong>服务器的系统镜像选择centos 7</strong> 当然,这个可以重置,也不麻烦,具体操作可以百度</li>
 <li>下面是几个按钮简单介绍,防止找不到</li>
 </ul>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211129172801511.png" alt="image-20211129172801511"></p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211129172801511.png" alt="image-20211129172801511"></p>
 </blockquote>
 <h1 id="二、安装开发环境"><a href="#二、安装开发环境" class="headerlink" title="二、安装开发环境"></a>二、安装开发环境</h1><blockquote>
 <p>此处看本人其他笔记,有专门叙述,下面是链接</p>
@@ -412,11 +412,11 @@
 <h6 id="下载安装此软件是为了方便上传我们项目文件"><a href="#下载安装此软件是为了方便上传我们项目文件" class="headerlink" title="下载安装此软件是为了方便上传我们项目文件"></a>下载安装此软件是为了方便上传我们项目文件</h6><p>官网链接: <a target="_blank" rel="noopener" href="https://www.netsarang.com/zh/xftp/">https://www.netsarang.com/zh/xftp/</a> ,</p>
 <p>官网的个人家庭版(<strong>免费的,也是本人下载的版本</strong>): <a target="_blank" rel="noopener" href="https://www.netsarang.com/zh/free-for-home-school/">https://www.netsarang.com/zh/free-for-home-school/</a></p>
 <p>在这里面找一下个人版本,是免费的.</p>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202420224.png" alt="image-20211130202420224"> </p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202420224.png" alt="image-20211130202420224"> </p>
 </blockquote>
 <h2 id="Ⅱ-回到自己的邮箱点击链接下载"><a href="#Ⅱ-回到自己的邮箱点击链接下载" class="headerlink" title="Ⅱ  -  回到自己的邮箱点击链接下载"></a>Ⅱ  -  回到自己的邮箱点击链接下载</h2><blockquote>
 <p>这里选择 <code>Xftp</code> 下载,因为我们只要用来进行项目文件上传</p>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202746324.png" alt="image-20211130202746324"> </p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211130202746324.png" alt="image-20211130202746324"> </p>
 <p>傻瓜式安装,一直点下一步即可</p>
 </blockquote>
 <h2 id="Ⅲ-回到自己阿里云-设置远程链接密码"><a href="#Ⅲ-回到自己阿里云-设置远程链接密码" class="headerlink" title="Ⅲ - 回到自己阿里云,设置远程链接密码"></a>Ⅲ - 回到自己阿里云,设置远程链接密码</h2><blockquote>
@@ -426,25 +426,25 @@
 </ul>
 </blockquote>
 <h1 id="四、用Xftp连接服务器"><a href="#四、用Xftp连接服务器" class="headerlink" title="四、用Xftp连接服务器"></a>四、用Xftp连接服务器</h1><h2 id="Ⅰ-打开安装好的xftp-新建会话"><a href="#Ⅰ-打开安装好的xftp-新建会话" class="headerlink" title="Ⅰ - 打开安装好的xftp,新建会话"></a>Ⅰ - 打开安装好的xftp,新建会话</h2><blockquote>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201220692.png" alt="image-20211201201220692"> </p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201220692.png" alt="image-20211201201220692"> </p>
 </blockquote>
 <h2 id="Ⅱ-打开配置好的会话-连接服务器"><a href="#Ⅱ-打开配置好的会话-连接服务器" class="headerlink" title="Ⅱ  -  打开配置好的会话,连接服务器"></a>Ⅱ  -  打开配置好的会话,连接服务器</h2><blockquote>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201454253.png" alt="image-20211201201454253"></p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201454253.png" alt="image-20211201201454253"></p>
 </blockquote>
 <h2 id="Ⅲ-连接成功"><a href="#Ⅲ-连接成功" class="headerlink" title="Ⅲ - 连接成功"></a>Ⅲ - 连接成功</h2><blockquote>
 <p>连接成功会出现下面这个界面</p>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201655572.png" alt="image-20211201201655572"> </p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201201655572.png" alt="image-20211201201655572"> </p>
 <p>上传文件时只要将文件夹拖入即可</p>
 </blockquote>
 <h1 id="五、准备项目文件"><a href="#五、准备项目文件" class="headerlink" title="五、准备项目文件"></a>五、准备项目文件</h1><h2 id="Ⅰ-导出数据库-sql-文件"><a href="#Ⅰ-导出数据库-sql-文件" class="headerlink" title="Ⅰ - 导出数据库 sql 文件"></a>Ⅰ - 导出数据库 sql 文件</h2><blockquote>
 <ol>
 <li>这是用 workbench 文件导出的操作</li>
 </ol>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202223816.png" alt="image-20211201202223816"></p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202223816.png" alt="image-20211201202223816"></p>
 <ol start="2">
 <li>这是用 Navcat 软件导出的界面</li>
 </ol>
-<p><img src="/study73/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202822433.png" alt="image-20211201202822433"></p>
+<p><img src="/k705/kk.github.io.git/%E9%98%BF%E9%87%8C%E4%BA%91%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%85%A8%E8%BF%87%E7%A8%8B%E7%9A%84%E5%9B%BE%E7%89%87/image-20211201202822433.png" alt="image-20211201202822433"></p>
 </blockquote>
 
       
@@ -502,7 +502,7 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/k705/kk.github.io.git/2024/04/08/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8-%E8%BF%9B%E8%A1%8CNode%E3%80%81Mysql%E7%8E%AF%E5%A2%83%E7%9A%84%E5%AE%89%E8%A3%85/" title="Node、Mysql环境安装"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/react-%E5%A3%B9%E3%80%81React%E5%B0%8F%E4%B9%A6_%E5%AD%A6%E4%B9%A0%E4%B8%8E%E7%9F%A5%E8%AF%86%E7%82%B9%E6%95%B4%E7%90%86_day12-1/" title="react小书知识点整理"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     

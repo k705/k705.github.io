@@ -25,20 +25,20 @@
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 浏览器缓存策略对于我们前端来说应该算是必须要会的知识点,但如果没有系统地进行归纳总结,也很难三言两语说明白甚至说错;特别是在面试时,基本上就讲个概念,甚至有时候就忘掉了,所以整理一下,也为了以后遗忘时能快速复习 查阅借鉴的资料: 掘金的 http面试必会的：强制缓存和协商缓存、一文读懂前端缓存、前端浏览器缓存知识梳理;Github的 缓存（二）——浏览器缓存机制：强缓存、协商缓存;机器之心">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
-<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:17:08.320Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="底层知识">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
+<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/index.html">
   
@@ -314,7 +314,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -329,7 +329,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -418,7 +418,7 @@
 <li>浏览器缓存</li>
 </ol>
 <p><strong>此图截取自网上相关文章</strong></p>
-<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png" alt="image-20211027182618788"></p>
+<p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png" alt="image-20211027182618788"></p>
 </blockquote>
 <h2 id="2、什么是浏览器缓存策略"><a href="#2、什么是浏览器缓存策略" class="headerlink" title="2、什么是浏览器缓存策略"></a>2、什么是浏览器缓存策略</h2><blockquote>
 <p>良好的缓存策略可以降低资源的重复加载从而提高页面整体加载速度,通常浏览器缓存策略分为两种结果</p>
@@ -426,7 +426,7 @@
 <li>强缓存</li>
 <li>协商缓存</li>
 </ul>
-<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png" alt="image-20211027184535569"> </p>
+<p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png" alt="image-20211027184535569"> </p>
 </blockquote>
 <h3 id="Ⅰ-基本原理"><a href="#Ⅰ-基本原理" class="headerlink" title="Ⅰ - 基本原理"></a>Ⅰ - 基本原理</h3><blockquote>
 <ul>
@@ -466,7 +466,7 @@
 <li>如果 <strong>强缓存</strong> 和 <strong>协商缓存</strong> 都没有命中,则直接从服务器加载资源</li>
 </ul>
 </blockquote>
-<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png" alt="image-20211027190616969"> </p>
+<p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png" alt="image-20211027190616969"> </p>
 </blockquote>
 <h3 id="Ⅳ-优先级"><a href="#Ⅳ-优先级" class="headerlink" title="Ⅳ - 优先级"></a>Ⅳ - 优先级</h3><blockquote>
 <ul>
@@ -475,7 +475,7 @@
 </ul>
 </blockquote>
 <h3 id="Ⅴ-浏览器缓存流程图"><a href="#Ⅴ-浏览器缓存流程图" class="headerlink" title="Ⅴ - 浏览器缓存流程图"></a>Ⅴ - 浏览器缓存流程图</h3><blockquote>
-<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png" alt="image-20211027190721706"> </p>
+<p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png" alt="image-20211027190721706"> </p>
 </blockquote>
 <h2 id="3、强缓存与协商缓存"><a href="#3、强缓存与协商缓存" class="headerlink" title="3、强缓存与协商缓存"></a>3、强缓存与协商缓存</h2><h3 id="Ⅰ-强缓存"><a href="#Ⅰ-强缓存" class="headerlink" title="Ⅰ - 强缓存"></a>Ⅰ - 强缓存</h3><blockquote>
 <h6 id="通过Expires-过yu期-和cache-control-缓存控制器-两种响应头实现"><a href="#通过Expires-过yu期-和cache-control-缓存控制器-两种响应头实现" class="headerlink" title="通过Expires(过yu期)和cache-control(缓存控制器)两种响应头实现"></a>通过<code>Expires(过yu期)</code>和<code>cache-control(缓存控制器)</code>两种响应头实现</h6><p>浏览器在加载资源时,根据请求头的 <code>Expires(过期时间)</code> 和<code>chche-control(缓存控制)</code>判断是否命中强缓存,命中则直接从缓存中读取资源,不会发送到服务器</p>
@@ -493,7 +493,7 @@
 <li><code>Cache-Control: private</code>只能被终端浏览器缓存（而且是私有缓存），不允许中继缓存服务器进行缓存</li>
 </ul>
 <p>Cache-Control除了在响应中使用，在请求中也可以使用。我们用开发者工具来模拟下请求时带上Cache-Control：勾选Disable cache，刷新页面，可以看到Request Headers中有个字段Cache-Control: no-cache。</p>
-<p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png" alt="image-20220225160543826"></p>
+<p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png" alt="image-20220225160543826"></p>
 </blockquote>
 <h3 id="Ⅱ-协商缓存"><a href="#Ⅱ-协商缓存" class="headerlink" title="Ⅱ - 协商缓存"></a>Ⅱ - 协商缓存</h3><blockquote>
 <h6 id="协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的"><a href="#协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的" class="headerlink" title="协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的"></a>协商缓存是通过<code>【Last-Modified，If-Modified-Since】</code>和<code>【ETag、If-None-Match】</code>这两对Header来管理的</h6><ul>
@@ -540,7 +540,7 @@
 <li>某些服务器不能精确的得到文件的最后修改时间</li>
 </ul>
 </blockquote>
-<h6 id="服务端返回-304-流程图"><a href="#服务端返回-304-流程图" class="headerlink" title="服务端返回 304 流程图"></a>服务端返回 304 流程图</h6><p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png" alt="image-20211027175045937"></p>
+<h6 id="服务端返回-304-流程图"><a href="#服务端返回-304-流程图" class="headerlink" title="服务端返回 304 流程图"></a>服务端返回 304 流程图</h6><p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png" alt="image-20211027175045937"></p>
 </blockquote>
 <h3 id="Ⅲ-强缓存与协商缓存简单异同点"><a href="#Ⅲ-强缓存与协商缓存简单异同点" class="headerlink" title="Ⅲ -强缓存与协商缓存简单异同点"></a>Ⅲ -强缓存与协商缓存简单异同点</h3><blockquote>
 <ul>
@@ -555,10 +555,10 @@
 <li><code>200(form cache)</code>: 强缓存两者都存在且未过期; <code>Cache-Control</code> 优先<code>Expirs</code>(默认就是这个优先级)时–&gt;浏览器从本地获取资源成功  (这个状态还能更详细分类,在下面再给出详解)</li>
 <li><code>304(Not Modified)</code>:协商缓存<code>Last-modified/Etag</code>没有过期时,服务端返回状态码304</li>
 </ul>
-<h6 id="这里给出个截图-安装了中文包-所以显示的中文"><a href="#这里给出个截图-安装了中文包-所以显示的中文" class="headerlink" title="这里给出个截图(安装了中文包,所以显示的中文)"></a>这里给出个截图(安装了中文包,所以显示的中文)</h6><p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"> </p>
+<h6 id="这里给出个截图-安装了中文包-所以显示的中文"><a href="#这里给出个截图-安装了中文包-所以显示的中文" class="headerlink" title="这里给出个截图(安装了中文包,所以显示的中文)"></a>这里给出个截图(安装了中文包,所以显示的中文)</h6><p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"> </p>
 </blockquote>
 <h2 id="5、缓存位置"><a href="#5、缓存位置" class="headerlink" title="5、缓存位置"></a>5、缓存位置</h2><blockquote>
-<h6 id="强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分"><a href="#强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分" class="headerlink" title="强缓存我们会把资源放在 memory cache(内存缓存)和disk cache(磁盘缓存) 中,那么他们的区别在哪呢?为何要如此区分?"></a>强缓存我们会把资源放在 <code>memory cache(内存缓存)</code>和<code>disk cache(磁盘缓存)</code> 中,那么他们的区别在哪呢?为何要如此区分?</h6><p><img src="/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"></p>
+<h6 id="强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分"><a href="#强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分" class="headerlink" title="强缓存我们会把资源放在 memory cache(内存缓存)和disk cache(磁盘缓存) 中,那么他们的区别在哪呢?为何要如此区分?"></a>强缓存我们会把资源放在 <code>memory cache(内存缓存)</code>和<code>disk cache(磁盘缓存)</code> 中,那么他们的区别在哪呢?为何要如此区分?</h6><p><img src="/k705/kk.github.io.git/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"></p>
 <ul>
 <li>存储图像和网页等资源主要存储在<code>disk cache(磁盘存储)</code></li>
 <li>操作系统缓存文件等资源大部分都会缓存在<code>memory cache</code>中</li>

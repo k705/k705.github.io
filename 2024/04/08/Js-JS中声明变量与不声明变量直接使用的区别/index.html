@@ -25,14 +25,14 @@
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 一般来说,我们使用变量前都会先声明变量:let const var function … ; 但是JS中变量也可以不声明,直接使用,这是什么意思呢?他们之间有何区别呢? 查阅借鉴的资料:MDN的var 描述部分;慕课网的变量可以不声明直接使用?; CSDN的js 变量声明 （var使用与不使用的区别;思否的 JS函数中直接使用变量,不用VAR?、Javascript变量和属性的区别;博客园">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135428949.png">
-<meta property="og:image" content="https://github.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135820760.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135428949.png">
+<meta property="og:image" content="https://github.com/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135820760.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T08:59:19.754Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://github.com/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135428949.png">
+<meta name="twitter:image" content="https://github.com/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135428949.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/Js-JS%E4%B8%AD%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E4%B8%8E%E4%B8%8D%E5%A3%B0%E6%98%8E%E5%8F%98%E9%87%8F%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
   
@@ -308,7 +308,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -323,7 +323,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -417,13 +417,13 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;userName = <span class="string">&#x27;hongjilin&#x27;</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>,userName);   <span class="comment">//打印hongjilin</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;window&#x27;</span>,<span class="variable language_">window</span>.<span class="property">userName</span>) <span class="comment">//打印window上的userName</span></span><br><span class="line"><span class="keyword">function</span>  <span class="title function_">person</span>(<span class="params"></span>)&#123;</span><br><span class="line">    userName = <span class="string">&#x27;努力学习的汪&#x27;</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>,userName); <span class="comment">//打印 努力学习的汪</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>,userName); <span class="comment">//打印 努力学习的汪</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;window&#x27;</span>,<span class="variable language_">window</span>.<span class="property">userName</span>) <span class="comment">//打印window上的userName</span></span><br></pre></td></tr></table></figure>
 
 <p>可以明显看到,实际上变量是挂载在全局对象window上,以属性的形式存在</p>
-<p><img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135428949.png" alt="image-20210918135428949"> </p>
+<p><img src="/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135428949.png" alt="image-20210918135428949"> </p>
 </blockquote>
 <h3 id="3、当我们给声明过的变量赋值"><a href="#3、当我们给声明过的变量赋值" class="headerlink" title="3、当我们给声明过的变量赋值"></a>3、当我们给声明过的变量赋值</h3><blockquote>
 <p>与上方代码基本一致,只有第一行代码改为声明变量</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">let</span> userName = <span class="string">&#x27;hongjilin&#x27;</span>  <span class="comment">//##只有这一行声明改变</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">1</span>,userName);   <span class="comment">//打印hongjilin</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;window&#x27;</span>,<span class="variable language_">window</span>.<span class="property">userName</span>) <span class="comment">//打印window上的userName</span></span><br><span class="line"><span class="keyword">function</span>  <span class="title function_">person</span>(<span class="params"></span>)&#123;</span><br><span class="line">    userName = <span class="string">&#x27;努力学习的汪&#x27;</span>;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">2</span>,userName); <span class="comment">//打印 努力学习的汪</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">person</span>();</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="number">3</span>,userName); <span class="comment">//打印 努力学习的汪</span></span><br><span class="line">&gt;<span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;window&#x27;</span>,<span class="variable language_">window</span>.<span class="property">userName</span>) <span class="comment">//打印window上的userName</span></span><br></pre></td></tr></table></figure>
 
-<p>可以明显看到,实际上声明后的变量是局部存在的,在window上是找不到这个属性的<img src="/study73/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135820760.png" alt="image-20210918135820760"> </p>
+<p>可以明显看到,实际上声明后的变量是局部存在的,在window上是找不到这个属性的<img src="/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210918135820760.png" alt="image-20210918135820760"> </p>
 </blockquote>
 <h2 id="Ⅲ-总结"><a href="#Ⅲ-总结" class="headerlink" title="Ⅲ - 总结"></a>Ⅲ - 总结</h2><blockquote>
 <p>在当前域中声明变量. 如果在方法中声明，则为局部变量（local variable）；如果是在全局域中声明，则为全局变量。</p>
@@ -507,12 +507,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/k705/kk.github.io.git/2024/04/08/Js-JS%E4%B8%AD%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%E7%9A%84%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%AC%94%E8%AE%B0/" title="JS命名空间"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/Js-A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="JS进阶学习笔记"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/k705/kk.github.io.git/2024/04/08/Js-JS%E4%B8%AD%E7%9A%84%E9%80%BB%E8%BE%91%E8%BF%90%E7%AE%97%E7%AC%A6%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="逻辑运算符"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/Js-JS%E4%B8%AD%E6%B5%AE%E7%82%B9%E5%9E%8B%E8%BF%90%E7%AE%97%E7%9A%84%E5%9D%91%E8%AF%A6%E8%A7%A3%E7%AC%94%E8%AE%B0/" title="JS中浮点型运算"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
