@@ -21,24 +21,24 @@
   <meta name="description" content="#说明 此笔记为学习码上前端的2021年前端程序员必须要掌握的浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程视频;GitHub上SummerWang的从输入页面地址到展示页面信息都发生了些什么;segmentfault的浪里行舟的从URL输入到页面展现到底发生什么？;掘金的williamife的从URL输入到页面展现到底发生什么？等等包括但不仅限的资料学习整理而成  #目">
 <meta property="og:type" content="article">
 <meta property="og:title" content="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程">
-<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/index.html">
+<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 此笔记为学习码上前端的2021年前端程序员必须要掌握的浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程视频;GitHub上SummerWang的从输入页面地址到展示页面信息都发生了些什么;segmentfault的浪里行舟的从URL输入到页面展现到底发生什么？;掘金的williamife的从URL输入到页面展现到底发生什么？等等包括但不仅限的资料学习整理而成  #目">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623183143882.png">
-<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623184854722.png">
-<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623191500569.png">
-<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623192336724.png">
-<meta property="og:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/1692e4385f72aae4">
-<meta property="og:image" content="https://gitee.com/study73/%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/1460000017184713.png">
+<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623183143882.png">
+<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623184854722.png">
+<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623191500569.png">
+<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623192336724.png">
+<meta property="og:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/1692e4385f72aae4">
+<meta property="og:image" content="https://github.com/study73/%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/1460000017184713.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:17:28.083Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="底层知识">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623183143882.png">
+<meta name="twitter:image" content="https://github.com/study73/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210623183143882.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/index.html">
+  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -46,7 +46,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="/study73/css/style.css">
+<link rel="stylesheet" href="/k705/kk.github.io.git/css/style.css">
 
   
   
@@ -63,7 +63,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/k705/kk.github.io.git/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
@@ -107,7 +107,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="/study73/.">
+          <a href="/k705/kk.github.io.git/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -117,7 +117,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="/study73/archives">
+          <a href="/k705/kk.github.io.git/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -127,7 +127,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="/study73/categories">
+          <a href="/k705/kk.github.io.git/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -137,7 +137,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="/study73/tags">
+          <a href="/k705/kk.github.io.git/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -147,7 +147,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="/study73/repository">
+          <a href="/k705/kk.github.io.git/repository">
             
             <i class="icon icon-project"></i>
             
@@ -157,7 +157,7 @@
         
         
         <li class="menu-item menu-item-books">
-          <a href="/study73/books">
+          <a href="/k705/kk.github.io.git/books">
             
             <i class="icon icon-book-fill"></i>
             
@@ -167,7 +167,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="/study73/links">
+          <a href="/k705/kk.github.io.git/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -177,7 +177,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="/study73/about">
+          <a href="/k705/kk.github.io.git/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -198,7 +198,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705/kk.github.io.git/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -229,7 +229,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -239,7 +239,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+      <a href="/k705/kk.github.io.git/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/k705/kk.github.io.git/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/k705/kk.github.io.git/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/k705/kk.github.io.git/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/k705/kk.github.io.git/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/k705/kk.github.io.git/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/k705/kk.github.io.git/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/k705/kk.github.io.git/tags/Html/" style="font-size: 13px;">Html</a> <a href="/k705/kk.github.io.git/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/k705/kk.github.io.git/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/k705/kk.github.io.git/tags/Js/" style="font-size: 13px;">Js</a> <a href="/k705/kk.github.io.git/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/k705/kk.github.io.git/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/k705/kk.github.io.git/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/k705/kk.github.io.git/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/k705/kk.github.io.git/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/k705/kk.github.io.git/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/k705/kk.github.io.git/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/k705/kk.github.io.git/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/k705/kk.github.io.git/tags/go/" style="font-size: 13px;">go</a> <a href="/k705/kk.github.io.git/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/k705/kk.github.io.git/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/k705/kk.github.io.git/tags/react/" style="font-size: 13.54px;">react</a> <a href="/k705/kk.github.io.git/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/k705/kk.github.io.git/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/k705/kk.github.io.git/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/k705/kk.github.io.git/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/k705/kk.github.io.git/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/k705/kk.github.io.git/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/k705/kk.github.io.git/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/k705/kk.github.io.git/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/k705/kk.github.io.git/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/k705/kk.github.io.git/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/k705/kk.github.io.git/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/k705/kk.github.io.git/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/k705/kk.github.io.git/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
     </div>
   </div>
 
@@ -248,7 +248,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/k705/kk.github.io.git/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
     </div>
   </div>
 
@@ -267,7 +267,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+                <a href="/k705/kk.github.io.git/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
@@ -282,7 +282,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+                <a href="/k705/kk.github.io.git/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
@@ -297,7 +297,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+                <a href="/k705/kk.github.io.git/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
@@ -312,7 +312,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -327,7 +327,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -363,7 +363,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
+	<a href="/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" class="article-date">
 	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
 	</a>
 </span>
@@ -371,7 +371,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a>
+	<a class="article-tag-link-link" href="/k705/kk.github.io.git/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a>
   </span>
 
 
@@ -384,14 +384,14 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <h1 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h1><blockquote>
-<p>此笔记为学习码上前端的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1h44y167zh?p=2&share_source=copy_web"><code>2021年前端程序员必须要掌握的浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程</code></a>视频;GitHub上<a target="_blank" rel="noopener" href="https://github.com/kaola-fed/blog/issues/271"><code>SummerWang的从输入页面地址到展示页面信息都发生了些什么</code></a>;segmentfault的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017184701"><code>浪里行舟的从URL输入到页面展现到底发生什么？</code></a>;掘金的<a target="_blank" rel="noopener" href="https://juejin.cn/user/3386151545869783"><code>williamife的从URL输入到页面展现到底发生什么？</code></a>等等包括但不仅限的资料学习整理而成</p>
+<p>此笔记为学习码上前端的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1h44y167zh?p=2&share_source=copy_web"><code>2021年前端程序员必须要掌握的浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程</code></a>视频;GitHub上<a href="https://github.com/kaola-fed/blog/issues/271"><code>SummerWang的从输入页面地址到展示页面信息都发生了些什么</code></a>;segmentfault的<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000017184701"><code>浪里行舟的从URL输入到页面展现到底发生什么？</code></a>;掘金的<a target="_blank" rel="noopener" href="https://juejin.cn/user/3386151545869783"><code>williamife的从URL输入到页面展现到底发生什么？</code></a>等等包括但不仅限的资料学习整理而成</p>
 </blockquote>
 <h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
 <p>[TOC]</p>
@@ -432,7 +432,7 @@
 </blockquote>
 <h3 id="2、域名是什么"><a href="#2、域名是什么" class="headerlink" title="2、域名是什么?"></a>2、域名是什么?</h3><blockquote>
 <p><code>域名就相当于 IP 地址乔装打扮的伪装者，带着一副面具。它的作用就是便于记忆和沟通的一组服务器的地址</code>。用户通常使用主机名或域名来访问对方的计算机，而不是直接通过 IP 地址访问。因为与 IP 地址的一组纯数字相比，用字母配合数字的表示形式来指定计算机名更符合人类的记忆习惯。但要让计算机去理解名称,相对而言就变得困难了。因为计算机更擅长处理一长串数字。为了解决上述的问题，DNS 服务应运而生</p>
-<p>举个栗子:<a href="https://gitee.com/hongjilin"><code>47.100.xxx.xxx.xx:80/hongjilin</code></a>&#x3D;&#x3D;&#x3D;<a href="https://gitee.com/hongjilin"><code>gitee.com/hongjilin</code></a>,对于我们肯定是<a href="https://gitee.com/hongjilin"><code>gitee.com/hongjilin</code></a>更便于记忆,而对计算机而言更擅长前者</p>
+<p>举个栗子:<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin"><code>47.100.xxx.xxx.xx:80/hongjilin</code></a>&#x3D;&#x3D;&#x3D;<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin"><code>gitee.com/hongjilin</code></a>,对于我们肯定是<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin"><code>gitee.com/hongjilin</code></a>更便于记忆,而对计算机而言更擅长前者</p>
 </blockquote>
 <h3 id="3、什么是域名解析"><a href="#3、什么是域名解析" class="headerlink" title="3、什么是域名解析?"></a>3、什么是域名解析?</h3><blockquote>
 <p>DNS 协议提供通过域名查找 IP 地址，或逆向从 IP 地址反查域名的服务。**<code>DNS 是一个网络服务器，我们的域名解析简单来说就是在 DNS 上记录一条信息记录</code>**</p>
@@ -482,17 +482,17 @@
 </blockquote>
 <h2 id="四、发送-HTTP-请求"><a href="#四、发送-HTTP-请求" class="headerlink" title="四、发送 HTTP 请求"></a>四、发送 HTTP 请求</h2><blockquote>
 <p>TCP 三次握手结束后，开始发送 HTTP 请求报文。</p>
-<p>相关内容于本人<a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md"><code>浅学Http协议底层原理及浏览器工作流程笔记</code></a>有叙述,便不再赘述 –&gt; <a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md">点我传送</a></p>
+<p>相关内容于本人<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md"><code>浅学Http协议底层原理及浏览器工作流程笔记</code></a>有叙述,便不再赘述 –&gt; <a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md">点我传送</a></p>
 </blockquote>
 <h2 id="五、服务器处理请求并返回-HTTP-报文"><a href="#五、服务器处理请求并返回-HTTP-报文" class="headerlink" title="五、服务器处理请求并返回 HTTP 报文"></a>五、服务器处理请求并返回 HTTP 报文</h2><h3 id="1、服务器"><a href="#1、服务器" class="headerlink" title="1、服务器"></a>1、服务器</h3><blockquote>
 <p>服务器是网络环境中的高性能计算机，它侦听网络上的其他计算机（客户机）提交的服务请求，并提供相应的服务，比如网页服务、文件下载服务、邮件服务、视频服务。而客户端主要的功能是浏览网页、看视频、听音乐等等，两者截然不同。 每台服务器上都会安装处理请求的应用——web server。常见的 web server 产品有 apache、nginx、IIS 或 Lighttpd 等。<br><strong><code>web server</code> 担任管控的角色</strong>，对于不同用户发送的请求，会结合配置文件，把不同请求委托给服务器上处理相应请求的程序进行处理（常见的web server产品有apache、<code>nginx</code>、IIS、Lighttpd等），然后返回后台程序处理产生的结果作为响应。</p>
 </blockquote>
 <h3 id="2、http-响应报文"><a href="#2、http-响应报文" class="headerlink" title="2、http 响应报文"></a>2、http 响应报文</h3><blockquote>
 <p>此处同上</p>
-<p>相关内容于本人<a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md"><code>浅学Http协议底层原理及浏览器工作流程笔记</code></a>有叙述,便不再赘述 –&gt; <a href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md">点我传送</a></p>
+<p>相关内容于本人<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md"><code>浅学Http协议底层原理及浏览器工作流程笔记</code></a>有叙述,便不再赘述 –&gt; <a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/blob/master/%E7%BC%96%E7%A8%8B_%E7%AE%97%E6%B3%95%E5%8F%8A%E8%AF%BE%E7%A8%8B%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E6%B5%85%E5%AD%A6Http%E5%8D%8F%E8%AE%AE%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86%E5%8F%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E7%AC%94%E8%AE%B0.md">点我传送</a></p>
 </blockquote>
 <h2 id="六、浏览器解析渲染页面"><a href="#六、浏览器解析渲染页面" class="headerlink" title="六、浏览器解析渲染页面"></a>六、浏览器解析渲染页面</h2><blockquote>
-<p>相关详细内容包括如何优化已在‘浏览器解析渲染页面原理及回流重绘优化笔记’中有叙述  –》 <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E5%8E%9F%E7%90%86%E5%8F%8A%E5%9B%9E%E6%B5%81%E9%87%8D%E7%BB%98%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0">浏览器解析渲染页面原理及回流重绘优化笔记</a></strong> </p>
+<p>相关详细内容包括如何优化已在‘浏览器解析渲染页面原理及回流重绘优化笔记’中有叙述  –》 <strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%A7%A3%E6%9E%90%E6%B8%B2%E6%9F%93%E9%A1%B5%E9%9D%A2%E5%8E%9F%E7%90%86%E5%8F%8A%E5%9B%9E%E6%B5%81%E9%87%8D%E7%BB%98%E4%BC%98%E5%8C%96%E7%AC%94%E8%AE%B0">浏览器解析渲染页面原理及回流重绘优化笔记</a></strong> </p>
 <p>浏览器解析渲染页面分为一下五个步骤：</p>
 <ol>
 <li>根据HTML解析出DOM树</li>
@@ -549,7 +549,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://gitee.com/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" title="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/计算机网络-浅析从输入URL到页面展示这中间发生了什么/</a>
+      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" title="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/计算机网络-浅析从输入URL到页面展示这中间发生了什么/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -564,7 +564,7 @@
     <figure class="media">
       <div class="media-left">
         <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/k705/kk.github.io.git/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -596,12 +596,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%BC%93%E5%AD%98%E3%80%81%E5%86%85%E5%AD%98%E3%80%81CPU%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" title="CPU，缓存，内存"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86-%E7%BC%93%E5%AD%98%E3%80%81%E5%86%85%E5%AD%98%E3%80%81CPU%E7%9F%A5%E8%AF%86%E7%82%B9%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" title="CPU，缓存，内存"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/study73/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" title="强制缓存和协商缓存"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" title="强制缓存和协商缓存"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -636,14 +636,14 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="alipay">
               <div class="donate-payimg">
-                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705/kk.github.io.git/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="wechatpay">
               <div class="donate-payimg">
-                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705/kk.github.io.git/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
@@ -682,7 +682,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705/kk.github.io.git/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -698,10 +698,10 @@
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="/study73/js/plugin.min.js"></script>
+<script src="/k705/kk.github.io.git/js/plugin.min.js"></script>
 
 
-<script src="/study73/js/application.js"></script>
+<script src="/k705/kk.github.io.git/js/application.js"></script>
 
 
     <script>
@@ -714,14 +714,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: '/study73/',
-        CONTENT_URL: '/study73/content.json',
+        ROOT_URL: '/k705/kk.github.io.git/',
+        CONTENT_URL: '/k705/kk.github.io.git/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="/study73/js/insight.js"></script>
+<script src="/k705/kk.github.io.git/js/insight.js"></script>
 
 
 

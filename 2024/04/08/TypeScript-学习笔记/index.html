@@ -21,22 +21,22 @@
   <meta name="description" content="本笔记是来自翻阅xcatliu的typeScript入门教程文档、TypeScript官方文档的部分摘录、以及观看B站学习视频进行笔记记录与知识点补充、本人实际使用时遇到的问题与解决记录、碎片化接触到相关知识点合并整理而成   仅供本人洪的学习使用 本人笔记地址分享:全部笔记、TypeScript所有学习笔记  #目录 [TOC]  hello TypeScript一、TypeScript安装T">
 <meta property="og:type" content="article">
 <meta property="og:title" content="TypeScript">
-<meta property="og:url" content="https://gitee.com/study73/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="本笔记是来自翻阅xcatliu的typeScript入门教程文档、TypeScript官方文档的部分摘录、以及观看B站学习视频进行笔记记录与知识点补充、本人实际使用时遇到的问题与解决记录、碎片化接触到相关知识点合并整理而成   仅供本人洪的学习使用 本人笔记地址分享:全部笔记、TypeScript所有学习笔记  #目录 [TOC]  hello TypeScript一、TypeScript安装T">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png">
-<meta property="og:image" content="https://gitee.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%901.png">
-<meta property="og:image" content="https://gitee.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%902.png">
-<meta property="og:image" content="https://gitee.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210422115825841.png">
+<meta property="og:image" content="https://github.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png">
+<meta property="og:image" content="https://github.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%901.png">
+<meta property="og:image" content="https://github.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/%E5%8F%96%E5%87%BAMoment%E6%A0%BC%E5%BC%8F%E4%B8%AD%E7%9A%84%E5%85%B7%E4%BD%93%E6%97%B6%E9%97%B4%E6%8A%A5%E9%94%99%E5%8E%9F%E5%9B%A0%E5%88%86%E6%9E%902.png">
+<meta property="og:image" content="https://github.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210422115825841.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T09:52:05.701Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="TS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png">
+<meta name="twitter:image" content="https://github.com/study73/A_TypeScript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0_day12_8-10%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210412191035956.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -44,7 +44,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="/study73/css/style.css">
+<link rel="stylesheet" href="/k705/kk.github.io.git/css/style.css">
 
   
   
@@ -61,7 +61,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/k705/kk.github.io.git/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
@@ -105,7 +105,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="/study73/.">
+          <a href="/k705/kk.github.io.git/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -115,7 +115,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="/study73/archives">
+          <a href="/k705/kk.github.io.git/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -125,7 +125,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="/study73/categories">
+          <a href="/k705/kk.github.io.git/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -135,7 +135,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="/study73/tags">
+          <a href="/k705/kk.github.io.git/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -145,7 +145,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="/study73/repository">
+          <a href="/k705/kk.github.io.git/repository">
             
             <i class="icon icon-project"></i>
             
@@ -155,7 +155,7 @@
         
         
         <li class="menu-item menu-item-books">
-          <a href="/study73/books">
+          <a href="/k705/kk.github.io.git/books">
             
             <i class="icon icon-book-fill"></i>
             
@@ -165,7 +165,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="/study73/links">
+          <a href="/k705/kk.github.io.git/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -175,7 +175,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="/study73/about">
+          <a href="/k705/kk.github.io.git/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -196,7 +196,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705/kk.github.io.git/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -227,7 +227,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -237,7 +237,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+      <a href="/k705/kk.github.io.git/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/k705/kk.github.io.git/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/k705/kk.github.io.git/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/k705/kk.github.io.git/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/k705/kk.github.io.git/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/k705/kk.github.io.git/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/k705/kk.github.io.git/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/k705/kk.github.io.git/tags/Html/" style="font-size: 13px;">Html</a> <a href="/k705/kk.github.io.git/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/k705/kk.github.io.git/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/k705/kk.github.io.git/tags/Js/" style="font-size: 13px;">Js</a> <a href="/k705/kk.github.io.git/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/k705/kk.github.io.git/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/k705/kk.github.io.git/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/k705/kk.github.io.git/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/k705/kk.github.io.git/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/k705/kk.github.io.git/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/k705/kk.github.io.git/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/k705/kk.github.io.git/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/k705/kk.github.io.git/tags/go/" style="font-size: 13px;">go</a> <a href="/k705/kk.github.io.git/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/k705/kk.github.io.git/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/k705/kk.github.io.git/tags/react/" style="font-size: 13.54px;">react</a> <a href="/k705/kk.github.io.git/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/k705/kk.github.io.git/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/k705/kk.github.io.git/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/k705/kk.github.io.git/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/k705/kk.github.io.git/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/k705/kk.github.io.git/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/k705/kk.github.io.git/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/k705/kk.github.io.git/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/k705/kk.github.io.git/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/k705/kk.github.io.git/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/k705/kk.github.io.git/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/k705/kk.github.io.git/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/k705/kk.github.io.git/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
     </div>
   </div>
 
@@ -246,7 +246,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/k705/kk.github.io.git/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
     </div>
   </div>
 
@@ -265,7 +265,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+                <a href="/k705/kk.github.io.git/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
@@ -280,7 +280,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+                <a href="/k705/kk.github.io.git/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
@@ -295,7 +295,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+                <a href="/k705/kk.github.io.git/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
@@ -310,7 +310,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -325,7 +325,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -361,7 +361,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/study73/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+	<a href="/k705/kk.github.io.git/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
 	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
 	</a>
 </span>
@@ -369,7 +369,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/study73/tags/TS/" rel="tag">TS</a>
+	<a class="article-tag-link-link" href="/k705/kk.github.io.git/tags/TS/" rel="tag">TS</a>
   </span>
 
 
@@ -382,16 +382,16 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/k705/kk.github.io.git/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
     <div class="article-entry marked-body" itemprop="articleBody">
       
         <blockquote>
-<p>本笔记是来自翻阅<a target="_blank" rel="noopener" href="https://github.com/xcatliu/">xcatliu</a>的typeScript入门教程文档、TypeScript官方文档的部分摘录、以及观看B站学习视频进行笔记记录与知识点补充、本人实际使用时遇到的问题与解决记录、碎片化接触到相关知识点合并整理而成  </p>
+<p>本笔记是来自翻阅<a href="https://github.com/xcatliu/">xcatliu</a>的typeScript入门教程文档、TypeScript官方文档的部分摘录、以及观看B站学习视频进行笔记记录与知识点补充、本人实际使用时遇到的问题与解决记录、碎片化接触到相关知识点合并整理而成  </p>
 <p>仅供本人洪的学习使用</p>
-<p>本人笔记地址分享:<a href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a>、<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/TypeScrip%E7%AC%94%E8%AE%B0"><code>TypeScript所有学习笔记</code></a></p>
+<p>本人笔记地址分享:<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a>、<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/TypeScrip%E7%AC%94%E8%AE%B0"><code>TypeScript所有学习笔记</code></a></p>
 </blockquote>
 <h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
 <p>[TOC]</p>
@@ -771,7 +771,7 @@
 <p>需要注意的是，将一个变量断言为 <code>any</code> 可以说是解决 TypeScript 中类型问题的最后一个手段。</p>
 <p><strong>它极有可能掩盖了真正的类型错误，所以如果不是非常确定，就不要使用 <code>as any</code>。</strong></p>
 <p>上面的例子中，我们也可以通过[扩展 window 的类型（TODO）][]解决这个错误，不过如果只是临时的增加 <code>foo</code> 属性，<code>as any</code> 会更加方便。</p>
-<p>总之，<strong>一方面不能滥用 <code>as any</code>，另一方面也不要完全否定它的作用，我们需要在类型的严格性和开发的便利性之间掌握平衡</strong>（这也是 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals">TypeScript 的设计理念</a>之一），才能发挥出 TypeScript 最大的价值。</p>
+<p>总之，<strong>一方面不能滥用 <code>as any</code>，另一方面也不要完全否定它的作用，我们需要在类型的严格性和开发的便利性之间掌握平衡</strong>（这也是 <a href="https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals">TypeScript 的设计理念</a>之一），才能发挥出 TypeScript 最大的价值。</p>
 <h3 id="2-4、将-any-断言为一个具体的类型"><a href="#2-4、将-any-断言为一个具体的类型" class="headerlink" title="2.4、将 any 断言为一个具体的类型"></a>2.4、将 <code>any</code> 断言为一个具体的类型</h3><p>在日常的开发中，我们不可避免的需要处理 <code>any</code> 类型的变量，它们可能是由于第三方库未能定义好自己的类型，也有可能是历史遗留的或其他人编写的烂代码，还可能是受到 TypeScript 类型系统的限制而无法精确定义类型的场景。</p>
 <p>遇到 <code>any</code> 类型的变量时，我们可以选择无视它，任由它滋生更多的 <code>any</code>。</p>
 <p>我们也可以选择改进它，通过类型断言及时的把 <code>any</code> 断言为精确的类型，亡羊补牢，使我们的代码向着高可维护性的目标发展。</p>
@@ -911,17 +911,17 @@
 <p>我们通常这样获取一个 <code>id</code> 是 <code>foo</code> 的元素：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">&#x27;#foo&#x27;</span>);</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line"><span class="title function_">jQuery</span>(<span class="string">&#x27;#foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>但是在 ts 中，编译器并不知道 <code>$</code> 或 <code>jQuery</code> 是什么东西<a target="_blank" rel="noopener" href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/01-jquery">1</a>：</p>
+<p>但是在 ts 中，编译器并不知道 <code>$</code> 或 <code>jQuery</code> 是什么东西<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/01-jquery">1</a>：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">jQuery</span>(<span class="string">&#x27;#foo&#x27;</span>);</span><br><span class="line"><span class="comment">// ERROR: Cannot find name &#x27;jQuery&#x27;.</span></span><br></pre></td></tr></table></figure>
 
-<p>这时，我们需要使用 <code>declare var</code> 来定义它的类型<a target="_blank" rel="noopener" href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/02-declare-var">2</a>：</p>
+<p>这时，我们需要使用 <code>declare var</code> 来定义它的类型<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/02-declare-var">2</a>：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">declare</span> <span class="keyword">var</span> <span class="attr">jQuery</span>: <span class="function">(<span class="params">selector: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">any</span>;</span><br><span class="line"></span><br><span class="line"><span class="title function_">jQuery</span>(<span class="string">&#x27;#foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>上例中，<code>declare var</code> 并没有真的定义一个变量，只是定义了全局变量 <code>jQuery</code> 的类型，仅仅会用于编译时的检查，在编译结果中会被删除。它编译结果是：</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">jQuery</span>(<span class="string">&#x27;#foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>除了 <code>declare var</code> 之外，还有其他很多种声明语句，将会在后面详细介绍。</p>
-<h2 id="3、什么是声明文件"><a href="#3、什么是声明文件" class="headerlink" title="3、什么是声明文件"></a>3、什么是声明文件</h2><p>通常我们会把声明语句放到一个单独的文件（<code>jQuery.d.ts</code>）中，这就是声明文件<a target="_blank" rel="noopener" href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/03-jquery-d-ts">3</a>：</p>
+<h2 id="3、什么是声明文件"><a href="#3、什么是声明文件" class="headerlink" title="3、什么是声明文件"></a>3、什么是声明文件</h2><p>通常我们会把声明语句放到一个单独的文件（<code>jQuery.d.ts</code>）中，这就是声明文件<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/03-jquery-d-ts">3</a>：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/jQuery.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">var</span> <span class="attr">jQuery</span>: <span class="function">(<span class="params">selector: <span class="built_in">string</span></span>) =&gt;</span> <span class="built_in">any</span>;</span><br><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line"><span class="title function_">jQuery</span>(<span class="string">&#x27;#foo&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
 <p>声明文件必需以 <code>.d.ts</code> 为后缀。</p>
@@ -930,7 +930,7 @@
 
 <p>假如仍然无法解析，那么可以检查下 <code>tsconfig.json</code> 中的 <code>files</code>、<code>include</code> 和 <code>exclude</code> 配置，确保其包含了 <code>jQuery.d.ts</code> 文件。</p>
 <p>这里只演示了全局变量这种模式的声明文件，假如是通过模块导入的方式使用第三方库的话，那么引入声明文件又是另一种方式了，将会在后面详细介绍。</p>
-<h3 id="3-1、第三方声明文件"><a href="#3-1、第三方声明文件" class="headerlink" title="3.1、第三方声明文件"></a>3.1、第三方声明文件</h3><p>当然，jQuery 的声明文件不需要我们定义了，社区已经帮我们定义好了：<a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/jquery/index.d.ts">jQuery in DefinitelyTyped</a>。</p>
+<h3 id="3-1、第三方声明文件"><a href="#3-1、第三方声明文件" class="headerlink" title="3.1、第三方声明文件"></a>3.1、第三方声明文件</h3><p>当然，jQuery 的声明文件不需要我们定义了，社区已经帮我们定义好了：<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/jquery/index.d.ts">jQuery in DefinitelyTyped</a>。</p>
 <p>我们可以直接下载下来使用，但是更推荐的是使用 <code>@types</code> 统一管理第三方库的声明文件。</p>
 <p><code>@types</code> 的使用方式很简单，直接用 npm 安装对应的声明模块即可，以 jQuery 举例：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install @types/jquery --save-dev</span><br></pre></td></tr></table></figure>
@@ -989,10 +989,10 @@
 <p>比如 <code>jQuery</code> 是一个全局变量，它是一个对象，提供了一个 <code>jQuery.ajax</code> 方法可以调用，那么我们就应该使用 <code>declare namespace jQuery</code> 来声明这个拥有多个子属性的全局变量。</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/jQuery.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">namespace</span> jQuery &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">ajax</span>(<span class="params">url: <span class="built_in">string</span>, settings?: <span class="built_in">any</span></span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line">jQuery.<span class="title function_">ajax</span>(<span class="string">&#x27;/api/get_something&#x27;</span>);</span><br></pre></td></tr></table></figure>
 
-<p>注意，在 <code>declare namespace</code> 内部，我们直接使用 <code>function ajax</code> 来声明函数，而不是使用 <code>declare function ajax</code>。类似的，也可以使用 <code>const</code>, <code>class</code>, <code>enum</code> 等语句<a target="_blank" rel="noopener" href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/09-declare-namespace">9</a>：</p>
+<p>注意，在 <code>declare namespace</code> 内部，我们直接使用 <code>function ajax</code> 来声明函数，而不是使用 <code>declare function ajax</code>。类似的，也可以使用 <code>const</code>, <code>class</code>, <code>enum</code> 等语句<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/09-declare-namespace">9</a>：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/jQuery.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">namespace</span> jQuery &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">ajax</span>(<span class="params">url: <span class="built_in">string</span>, settings?: <span class="built_in">any</span></span>): <span class="built_in">void</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="attr">version</span>: <span class="built_in">number</span>;</span><br><span class="line">    <span class="keyword">class</span> <span class="title class_">Event</span> &#123;</span><br><span class="line">        <span class="title function_">blur</span>(<span class="attr">eventType</span>: <span class="title class_">EventType</span>): <span class="built_in">void</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">enum</span> <span class="title class_">EventType</span> &#123;</span><br><span class="line">        <span class="title class_">CustomClick</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line">jQuery.<span class="title function_">ajax</span>(<span class="string">&#x27;/api/get_something&#x27;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(jQuery.<span class="property">version</span>);</span><br><span class="line"><span class="keyword">const</span> e = <span class="keyword">new</span> jQuery.<span class="title class_">Event</span>();</span><br><span class="line">e.<span class="title function_">blur</span>(jQuery.<span class="property">EventType</span>.<span class="property">CustomClick</span>);</span><br></pre></td></tr></table></figure>
 
-<h5 id="嵌套的命名空间"><a href="#嵌套的命名空间" class="headerlink" title="嵌套的命名空间"></a>嵌套的命名空间</h5><p>如果对象拥有深层的层级，则需要用嵌套的 <code>namespace</code> 来声明深层的属性的类型<a target="_blank" rel="noopener" href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/10-declare-namespace-nesting">10</a>：</p>
+<h5 id="嵌套的命名空间"><a href="#嵌套的命名空间" class="headerlink" title="嵌套的命名空间"></a>嵌套的命名空间</h5><p>如果对象拥有深层的层级，则需要用嵌套的 <code>namespace</code> 来声明深层的属性的类型<a href="https://github.com/xcatliu/typescript-tutorial/tree/master/examples/declaration-files/10-declare-namespace-nesting">10</a>：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// src/jQuery.d.ts</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">declare</span> <span class="keyword">namespace</span> jQuery &#123;</span><br><span class="line">    <span class="keyword">function</span> <span class="title function_">ajax</span>(<span class="params">url: <span class="built_in">string</span>, settings?: <span class="built_in">any</span></span>): <span class="built_in">void</span>;</span><br><span class="line">    <span class="keyword">namespace</span> fn &#123;</span><br><span class="line">        <span class="keyword">function</span> <span class="title function_">extend</span>(<span class="params"><span class="built_in">object</span>: <span class="built_in">any</span></span>): <span class="built_in">void</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// src/index.ts</span></span><br><span class="line"></span><br><span class="line">jQuery.<span class="title function_">ajax</span>(<span class="string">&#x27;/api/get_something&#x27;</span>);</span><br><span class="line">jQuery.<span class="property">fn</span>.<span class="title function_">extend</span>(&#123;</span><br><span class="line">    <span class="attr">check</span>: <span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable language_">this</span>.<span class="title function_">each</span>(<span class="keyword">function</span>(<span class="params"></span>) &#123;</span><br><span class="line">            <span class="variable language_">this</span>.<span class="property">checked</span> = <span class="literal">true</span>;</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
 <p>假如 <code>jQuery</code> 下仅有 <code>fn</code> 这一个属性（没有 <code>ajax</code> 等其他属性或方法），则可以不需要嵌套 <code>namespace</code>：</p>
@@ -1181,9 +1181,9 @@
 <p>就会先识别 <code>package.json</code> 中是否存在 <code>types</code> 或 <code>typings</code> 字段。发现不存在，那么就会寻找是否存在 <code>index.d.ts</code> 文件。如果还是不存在，那么就会寻找是否存在 <code>lib/index.d.ts</code> 文件。假如说连 <code>lib/index.d.ts</code> 都不存在的话，就会被认为是一个没有提供类型声明文件的库了。</p>
 <p>有的库为了支持导入子模块，比如 <code>import bar from &#39;foo/lib/bar&#39;</code>，就需要额外再编写一个类型声明文件 <code>lib/bar.d.ts</code> 或者 <code>lib/bar/index.d.ts</code>，这与自动生成声明文件类似，一个库中同时包含了多个类型声明文件。</p>
 <h3 id="7-8、将声明文件发布到-types-下"><a href="#7-8、将声明文件发布到-types-下" class="headerlink" title="7.8、将声明文件发布到 @types 下"></a>7.8、将声明文件发布到 <code>@types</code> 下</h3><p>如果我们是在给别人的仓库添加类型声明文件，但原作者不愿意合并 pull request，那么就需要将声明文件发布到 <code>@types</code> 下。</p>
-<p>与普通的 npm 模块不同，<code>@types</code> 是统一由 <a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 管理的。要将声明文件发布到 <code>@types</code> 下，就需要给 <a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 创建一个 pull-request，其中包含了类型声明文件，测试代码，以及 <code>tsconfig.json</code> 等。</p>
+<p>与普通的 npm 模块不同，<code>@types</code> 是统一由 <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 管理的。要将声明文件发布到 <code>@types</code> 下，就需要给 <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 创建一个 pull-request，其中包含了类型声明文件，测试代码，以及 <code>tsconfig.json</code> 等。</p>
 <p>pull-request 需要符合它们的规范，并且通过测试，才能被合并，稍后就会被自动发布到 <code>@types</code> 下。</p>
-<p>在 <a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 中创建一个新的类型声明，需要用到一些工具，<a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 的文档中已经有了<a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped#create-a-new-package">详细的介绍</a>，这里就不赘述了，以官方文档为准。 &#96;</p>
+<p>在 <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 中创建一个新的类型声明，需要用到一些工具，<a href="https://github.com/DefinitelyTyped/DefinitelyTyped/">DefinitelyTyped</a> 的文档中已经有了<a href="https://github.com/DefinitelyTyped/DefinitelyTyped#create-a-new-package">详细的介绍</a>，这里就不赘述了，以官方文档为准。 &#96;</p>
 <h1 id="十、内置对象"><a href="#十、内置对象" class="headerlink" title="十、内置对象"></a>十、内置对象</h1><p>JavaScript 中有很多<a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects">内置对象</a>，它们可以直接在 TypeScript 中当做定义好了的类型。</p>
 <p>内置对象是指根据标准在全局作用域（Global）上存在的对象。这里的标准是指 ECMAScript 和其他环境（比如 DOM）的标准。</p>
 <h2 id="1、ECMAScript-的内置对象"><a href="#1、ECMAScript-的内置对象" class="headerlink" title="1、ECMAScript 的内置对象"></a>1、ECMAScript 的内置对象</h2><p>ECMAScript 标准提供的内置对象有：</p>
@@ -1192,14 +1192,14 @@
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">b</span>: <span class="title class_">Boolean</span> = <span class="keyword">new</span> <span class="title class_">Boolean</span>(<span class="number">1</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="attr">e</span>: <span class="title class_">Error</span> = <span class="keyword">new</span> <span class="title class_">Error</span>(<span class="string">&#x27;Error occurred&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> <span class="attr">d</span>: <span class="title class_">Date</span> = <span class="keyword">new</span> <span class="title class_">Date</span>();</span><br><span class="line"><span class="keyword">let</span> <span class="attr">r</span>: <span class="title class_">RegExp</span> = <span class="regexp">/[a-z]/</span>;</span><br></pre></td></tr></table></figure>
 
 <p>更多的内置对象，可以查看 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects">MDN 的文档</a>。</p>
-<p>而他们的定义文件，则在 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/tree/master/src/lib">TypeScript 核心库的定义文件</a>中。</p>
+<p>而他们的定义文件，则在 <a href="https://github.com/Microsoft/TypeScript/tree/master/src/lib">TypeScript 核心库的定义文件</a>中。</p>
 <h2 id="2、DOM-和-BOM-的内置对象"><a href="#2、DOM-和-BOM-的内置对象" class="headerlink" title="2、DOM 和 BOM 的内置对象"></a>2、DOM 和 BOM 的内置对象</h2><p>DOM 和 BOM 提供的内置对象有：</p>
 <p><code>Document</code>、<code>HTMLElement</code>、<code>Event</code>、<code>NodeList</code> 等。</p>
 <p>TypeScript 中会经常用到这些类型：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="attr">body</span>: <span class="title class_">HTMLElement</span> = <span class="variable language_">document</span>.<span class="property">body</span>;</span><br><span class="line"><span class="keyword">let</span> <span class="attr">allDiv</span>: <span class="title class_">NodeList</span> = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line"><span class="variable language_">document</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;click&#x27;</span>, <span class="keyword">function</span>(<span class="params">e: MouseEvent</span>) &#123;</span><br><span class="line">  <span class="comment">// Do something</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-<p>它们的定义文件同样在 <a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/tree/master/src/lib">TypeScript 核心库的定义文件</a>中。</p>
-<h2 id="3、TypeScript-核心库的定义文件"><a href="#3、TypeScript-核心库的定义文件" class="headerlink" title="3、TypeScript 核心库的定义文件"></a>3、TypeScript 核心库的定义文件</h2><p><a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/tree/master/src/lib">TypeScript 核心库的定义文件</a>中定义了所有浏览器环境需要用到的类型，并且是预置在 TypeScript 中的。</p>
+<p>它们的定义文件同样在 <a href="https://github.com/Microsoft/TypeScript/tree/master/src/lib">TypeScript 核心库的定义文件</a>中。</p>
+<h2 id="3、TypeScript-核心库的定义文件"><a href="#3、TypeScript-核心库的定义文件" class="headerlink" title="3、TypeScript 核心库的定义文件"></a>3、TypeScript 核心库的定义文件</h2><p><a href="https://github.com/Microsoft/TypeScript/tree/master/src/lib">TypeScript 核心库的定义文件</a>中定义了所有浏览器环境需要用到的类型，并且是预置在 TypeScript 中的。</p>
 <p>当你在使用一些常用的方法的时候，TypeScript 实际上已经帮你做了很多类型判断的工作了，比如：</p>
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Math</span>.<span class="title function_">pow</span>(<span class="number">10</span>, <span class="string">&#x27;2&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts(1,14): error TS2345: Argument of type &#x27;string&#x27; is not assignable to parameter of type &#x27;number&#x27;.</span></span><br></pre></td></tr></table></figure>
 
@@ -1577,7 +1577,7 @@
 
 
 <h1 id="问题与解决"><a href="#问题与解决" class="headerlink" title="问题与解决"></a><code>问题与解决</code></h1><h1 id="TypeScrpit使用过程问题与解决"><a href="#TypeScrpit使用过程问题与解决" class="headerlink" title="TypeScrpit使用过程问题与解决"></a>TypeScrpit<code>使用过程问题与解决</code></h1><blockquote>
-<p>本人笔记地址分享:<a href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a>、<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/TypeScrip%E7%AC%94%E8%AE%B0"><code>TypeScript所有学习笔记</code></a></p>
+<p>本人笔记地址分享:<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes"><code>全部笔记</code></a>、<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/TypeScrip%E7%AC%94%E8%AE%B0"><code>TypeScript所有学习笔记</code></a></p>
 <p>此部分是本人实际使用过程中遇到的问题与解决记录</p>
 </blockquote>
 <h2 id="1、vsCode报错函数重复"><a href="#1、vsCode报错函数重复" class="headerlink" title="1、vsCode报错函数重复"></a>1、vsCode报错函数重复</h2><blockquote>
@@ -1587,7 +1587,7 @@
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">jspang</span>(<span class="params"></span>)&#123;</span><br><span class="line">    <span class="keyword">let</span> web : <span class="built_in">string</span> =<span class="string">&quot;hello World&quot;</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(web)</span><br><span class="line">&#125;</span><br><span class="line"> <span class="comment">/*  */</span></span><br><span class="line"><span class="title function_">jspang</span>()</span><br><span class="line"><span class="comment">//`Duplicate function implementation.`函数重复</span></span><br></pre></td></tr></table></figure>
 
 <h5 id="解决"><a href="#解决" class="headerlink" title="解决:"></a>解决:</h5><blockquote>
-<p>看起来像这是Visual Studio代码中的一个错误。 GitHub对此有几个问题，如<a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/issues/10804">here</a>和<a target="_blank" rel="noopener" href="https://github.com/Microsoft/vscode/issues/1773">here</a>。对这些问题的评论意味着它是一个问题，然后被修复，并在v1.12.1中再次成为问题。</p>
+<p>看起来像这是Visual Studio代码中的一个错误。 GitHub对此有几个问题，如<a href="https://github.com/Microsoft/TypeScript/issues/10804">here</a>和<a href="https://github.com/Microsoft/vscode/issues/1773">here</a>。对这些问题的评论意味着它是一个问题，然后被修复，并在v1.12.1中再次成为问题。</p>
 <p>解决方案是运行<code>tsc --init</code>来初始化文件夹中的<code>tsconfig.json</code>。</p>
 </blockquote>
 <h2 id="2、在不同ts文件中声明同一个name时报错："><a href="#2、在不同ts文件中声明同一个name时报错：" class="headerlink" title="2、在不同ts文件中声明同一个name时报错："></a>2、在不同ts文件中声明同一个name时报错：</h2><blockquote>
@@ -1710,7 +1710,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://gitee.com/study73/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="TypeScript" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/TypeScript-学习笔记/</a>
+      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/TypeScript-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="TypeScript" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/TypeScript-学习笔记/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -1725,7 +1725,7 @@
     <figure class="media">
       <div class="media-left">
         <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/k705/kk.github.io.git/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -1757,12 +1757,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/study73/2024/04/08/Vue2.x-10_(%E6%8B%BE)_export%E3%80%81import%E3%80%81style%E3%80%81reder%E3%80%81@%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E5%BE%84%E5%8F%98%E9%87%8Fay8_18/" title="export、import、style、render、@自定义路径变量"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/Vue2.x-10_(%E6%8B%BE)_export%E3%80%81import%E3%80%81style%E3%80%81reder%E3%80%81@%E8%87%AA%E5%AE%9A%E4%B9%89%E8%B7%AF%E5%BE%84%E5%8F%98%E9%87%8Fay8_18/" title="export、import、style、render、@自定义路径变量"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/study73/2024/04/08/Vue2.x-11_(%E6%8B%BE%E5%A3%B9)_VUEX=day8_19/" title="VUEX"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/Vue2.x-11_(%E6%8B%BE%E5%A3%B9)_VUEX=day8_19/" title="VUEX"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -1797,14 +1797,14 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="alipay">
               <div class="donate-payimg">
-                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705/kk.github.io.git/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="wechatpay">
               <div class="donate-payimg">
-                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705/kk.github.io.git/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
@@ -1843,7 +1843,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705/kk.github.io.git/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -1859,10 +1859,10 @@
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="/study73/js/plugin.min.js"></script>
+<script src="/k705/kk.github.io.git/js/plugin.min.js"></script>
 
 
-<script src="/study73/js/application.js"></script>
+<script src="/k705/kk.github.io.git/js/application.js"></script>
 
 
     <script>
@@ -1875,14 +1875,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: '/study73/',
-        CONTENT_URL: '/study73/content.json',
+        ROOT_URL: '/k705/kk.github.io.git/',
+        CONTENT_URL: '/k705/kk.github.io.git/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="/study73/js/insight.js"></script>
+<script src="/k705/kk.github.io.git/js/insight.js"></script>
 
 
 

@@ -21,63 +21,63 @@
   <meta name="description" content="#说明 正则可以说是操作 [ 字符串 ] 最强大的工具了,没有之一,特别是在进行爬虫技术或 前端字符串处理时简直必备技能,然鹅正则总是学了忘、忘了学,用时还需要去百度翻资料,也是严重影响了工作效率,所以我也认真查阅许多资料认真学习梳理成此笔记. 在此我会尽量详细地对查阅的资料进行摘录梳理并加入自己理解,相信看完这个笔记后同学们能快速掌握或者定位知识点 查阅的资料或博客:【韩顺平讲 Java】Jav">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式学习笔记">
-<meta property="og:url" content="https://gitee.com/study73/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://github.com/k705/kk.github.io.git/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 正则可以说是操作 [ 字符串 ] 最强大的工具了,没有之一,特别是在进行爬虫技术或 前端字符串处理时简直必备技能,然鹅正则总是学了忘、忘了学,用时还需要去百度翻资料,也是严重影响了工作效率,所以我也认真查阅许多资料认真学习梳理成此笔记. 在此我会尽量详细地对查阅的资料进行摘录梳理并加入自己理解,相信看完这个笔记后同学们能快速掌握或者定位知识点 查阅的资料或博客:【韩顺平讲 Java】Jav">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160443209.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152404114.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152632978.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152705104.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152720265.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823163759857.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165209675.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165618928.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823170252598.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823171609152.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823174207663.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824150118740.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824152745988.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824155021720.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824160335439.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824174620834.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824175027635.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824183619120.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825100913892.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825102613183.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825104339765.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825105333415.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151100732.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151355148.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825115024261.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825120225726.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825134252419.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825135253647.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825140424777.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825142213481.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825143341960.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144241403.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144416801.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825164553046.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165158705.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165311702.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165609920.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170353449.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170801038.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171214600.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171655993.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173134832.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173334751.png">
-<meta property="og:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173421761.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160443209.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152404114.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152632978.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152705104.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152720265.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823163759857.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165209675.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165618928.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823170252598.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823171609152.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823174207663.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824150118740.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824152745988.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824155021720.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824160335439.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824174620834.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824175027635.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824183619120.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825100913892.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825102613183.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825104339765.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825105333415.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151100732.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151355148.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825115024261.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825120225726.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825134252419.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825135253647.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825140424777.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825142213481.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825143341960.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144241403.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144416801.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825164553046.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165158705.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165311702.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165609920.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170353449.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170801038.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171214600.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171655993.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173134832.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173334751.png">
+<meta property="og:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173421761.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:01:22.051Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="正则">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://gitee.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
+<meta name="twitter:image" content="https://github.com/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
   <!-- Canonical links -->
-  <link rel="canonical" href="https://gitee.com/study73/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
+  <link rel="canonical" href="https://github.com/k705/kk.github.io.git/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
   
     <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
   
@@ -85,7 +85,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="/study73/css/style.css">
+<link rel="stylesheet" href="/k705/kk.github.io.git/css/style.css">
 
   
   
@@ -102,7 +102,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="/study73/images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/k705/kk.github.io.git/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
@@ -146,7 +146,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="/study73/.">
+          <a href="/k705/kk.github.io.git/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -156,7 +156,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="/study73/archives">
+          <a href="/k705/kk.github.io.git/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -166,7 +166,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="/study73/categories">
+          <a href="/k705/kk.github.io.git/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -176,7 +176,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="/study73/tags">
+          <a href="/k705/kk.github.io.git/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -186,7 +186,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="/study73/repository">
+          <a href="/k705/kk.github.io.git/repository">
             
             <i class="icon icon-project"></i>
             
@@ -196,7 +196,7 @@
         
         
         <li class="menu-item menu-item-books">
-          <a href="/study73/books">
+          <a href="/k705/kk.github.io.git/books">
             
             <i class="icon icon-book-fill"></i>
             
@@ -206,7 +206,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="/study73/links">
+          <a href="/k705/kk.github.io.git/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -216,7 +216,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="/study73/about">
+          <a href="/k705/kk.github.io.git/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -237,7 +237,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705/kk.github.io.git/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -268,7 +268,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/study73/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705/kk.github.io.git/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -278,7 +278,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="/study73/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/study73/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/study73/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/study73/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/study73/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/study73/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/study73/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/study73/tags/Html/" style="font-size: 13px;">Html</a> <a href="/study73/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/study73/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/study73/tags/Js/" style="font-size: 13px;">Js</a> <a href="/study73/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/study73/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/study73/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/study73/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/study73/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/study73/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/study73/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/study73/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/study73/tags/go/" style="font-size: 13px;">go</a> <a href="/study73/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/study73/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/study73/tags/react/" style="font-size: 13.54px;">react</a> <a href="/study73/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/study73/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/study73/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/study73/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/study73/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/study73/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/study73/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/study73/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/study73/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/study73/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/study73/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/study73/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/study73/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+      <a href="/k705/kk.github.io.git/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/k705/kk.github.io.git/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/k705/kk.github.io.git/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/k705/kk.github.io.git/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/k705/kk.github.io.git/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/k705/kk.github.io.git/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/k705/kk.github.io.git/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/k705/kk.github.io.git/tags/Html/" style="font-size: 13px;">Html</a> <a href="/k705/kk.github.io.git/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/k705/kk.github.io.git/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/k705/kk.github.io.git/tags/Js/" style="font-size: 13px;">Js</a> <a href="/k705/kk.github.io.git/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/k705/kk.github.io.git/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/k705/kk.github.io.git/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/k705/kk.github.io.git/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/k705/kk.github.io.git/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/k705/kk.github.io.git/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/k705/kk.github.io.git/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/k705/kk.github.io.git/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/k705/kk.github.io.git/tags/go/" style="font-size: 13px;">go</a> <a href="/k705/kk.github.io.git/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/k705/kk.github.io.git/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/k705/kk.github.io.git/tags/react/" style="font-size: 13.54px;">react</a> <a href="/k705/kk.github.io.git/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/k705/kk.github.io.git/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/k705/kk.github.io.git/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/k705/kk.github.io.git/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/k705/kk.github.io.git/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/k705/kk.github.io.git/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/k705/kk.github.io.git/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/k705/kk.github.io.git/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/k705/kk.github.io.git/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/k705/kk.github.io.git/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/k705/kk.github.io.git/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/k705/kk.github.io.git/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/k705/kk.github.io.git/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
     </div>
   </div>
 
@@ -287,7 +287,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/study73/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/k705/kk.github.io.git/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
     </div>
   </div>
 
@@ -306,7 +306,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+                <a href="/k705/kk.github.io.git/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
@@ -321,7 +321,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+                <a href="/k705/kk.github.io.git/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
@@ -336,7 +336,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+                <a href="/k705/kk.github.io.git/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
@@ -351,7 +351,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -366,7 +366,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="/study73/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705/kk.github.io.git/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -402,7 +402,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="/study73/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+	<a href="/k705/kk.github.io.git/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
 	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
 	</a>
 </span>
@@ -410,7 +410,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="/study73/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a>
+	<a class="article-tag-link-link" href="/k705/kk.github.io.git/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a>
   </span>
 
 
@@ -423,7 +423,7 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/study73/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/k705/kk.github.io.git/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -432,8 +432,8 @@
         <h1 id="说明"><a href="#说明" class="headerlink" title="#说明"></a>#说明</h1><blockquote>
 <p>正则可以说是操作 [ 字符串 ] 最强大的工具了,没有之一,特别是在进行爬虫技术或 前端字符串处理时简直必备技能,然鹅正则总是学了忘、忘了学,用时还需要去百度翻资料,也是严重影响了工作效率,所以我也认真查阅许多资料认真学习梳理成此笔记.</p>
 <p>在此我会尽量详细地对查阅的资料进行摘录梳理并加入自己理解,相信看完这个笔记后同学们能快速掌握或者定位知识点</p>
-<p>查阅的资料或博客:<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Eq4y1E79W?share_source=copy_web">【韩顺平讲 Java】Java 正则表达式专题 -正则 正则表达式 元字符 限定符 Pattern Matcher 分组 捕获 反向引用等</a> ;[<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013075245">comer 的 60 分钟正则从入门到深入</a>]、[<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903648309297166">Vincent Ko 的可能是最好的正则表达式的教程笔记了吧…</a>]、[gitHub 的<a target="_blank" rel="noopener" href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md">learn-regex</a>]、<a target="_blank" rel="noopener" href="https://www.jb51.net/tools/zhengze.html">阮一峰的 ES6 文档</a>、<a target="_blank" rel="noopener" href="https://www.jb51.net/tools/zhengze.html">deerchao 的正则表达式 30 分钟入门教程</a> 、博客园的 <a target="_blank" rel="noopener" href="https://home.cnblogs.com/u/aidixie/">只争朝夕，不负韶华的正则常用的六种方法</a></p>
-<p>除此笔记外大家可以看我其他笔记 :<strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master">全栈笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_前端开发学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Vue%E7%AC%94%E8%AE%B0%E6%95%B4%E5%90%88">Vue 笔记整合</a></strong> 、**<a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0">React 笔记</a><strong>、 <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ReactHooks%E7%AC%94%E8%AE%B0">ReactHooks 笔记</a></strong> 、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">微信小程序学习笔记</a><strong>、</strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Chrome 开发使用及学习笔记</a>** 以及许多其他笔记就不一一例举了</p>
+<p>查阅的资料或博客:<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1Eq4y1E79W?share_source=copy_web">【韩顺平讲 Java】Java 正则表达式专题 -正则 正则表达式 元字符 限定符 Pattern Matcher 分组 捕获 反向引用等</a> ;[<a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000013075245">comer 的 60 分钟正则从入门到深入</a>]、[<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903648309297166">Vincent Ko 的可能是最好的正则表达式的教程笔记了吧…</a>]、[gitHub 的<a href="https://github.com/ziishaned/learn-regex/blob/master/translations/README-cn.md">learn-regex</a>]、<a target="_blank" rel="noopener" href="https://www.jb51.net/tools/zhengze.html">阮一峰的 ES6 文档</a>、<a target="_blank" rel="noopener" href="https://www.jb51.net/tools/zhengze.html">deerchao 的正则表达式 30 分钟入门教程</a> 、博客园的 <a target="_blank" rel="noopener" href="https://home.cnblogs.com/u/aidixie/">只争朝夕，不负韶华的正则常用的六种方法</a></p>
+<p>除此笔记外大家可以看我其他笔记 :<strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master">全栈笔记</a><strong>、</strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">编程_前端开发学习笔记</a><strong>、</strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Vue%E7%AC%94%E8%AE%B0%E6%95%B4%E5%90%88">Vue 笔记整合</a></strong> 、**<a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/React%E7%AC%94%E8%AE%B0">React 笔记</a><strong>、 <strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ReactHooks%E7%AC%94%E8%AE%B0">ReactHooks 笔记</a></strong> 、</strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">微信小程序学习笔记</a><strong>、</strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/Chrome%E5%BC%80%E5%8F%91%E4%BD%BF%E7%94%A8%E5%8F%8A%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">Chrome 开发使用及学习笔记</a>** 以及许多其他笔记就不一一例举了</p>
 </blockquote>
 <h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
 <p>[TOC]</p>
@@ -584,10 +584,10 @@
 <p>但是，很多时候我们希望匹配的是任意单个字符，这时有一种变通的写法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/foo[^]bar/.<span class="title function_">test</span>(<span class="string">&quot;foo\nbar&quot;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>当然,这种解决方案毕竟不太符合直觉， <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-regexp-dotall-flag">ES2018</a> 引入<code>s</code>修饰符，使得<code>.</code>可以匹配任意单个字符。</p>
+<p>当然,这种解决方案毕竟不太符合直觉， <a href="https://github.com/tc39/proposal-regexp-dotall-flag">ES2018</a> 引入<code>s</code>修饰符，使得<code>.</code>可以匹配任意单个字符。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/foo.<span class="property">bar</span>/s.<span class="title function_">test</span>(<span class="string">&quot;foo\nbar&quot;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>详见 ES 系列笔记正则部分 –&gt; <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6 及后续版本学习笔记</a></strong></p>
+<p>详见 ES 系列笔记正则部分 –&gt; <strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6 及后续版本学习笔记</a></strong></p>
 </blockquote>
 <h3 id="Ⅲ-重复次数-–-、-、"><a href="#Ⅲ-重复次数-–-、-、" class="headerlink" title="Ⅲ - 重复次数 –&gt;&gt; *、+、?"></a>Ⅲ - 重复次数 –&gt;&gt; <code>*、+、?</code></h3><blockquote>
 <p>后面跟着元字符 <code>+</code>，<code>*</code> or <code>?</code> 的，用来指定匹配子模式的次数。 这些元字符在不同的情况下有着不同的意思。</p>
@@ -921,7 +921,7 @@
 <li>[ String.prototype.search ] 调用 <code>RegExp.prototype[Symbol.search]</code></li>
 <li>[ String.prototype.split ] 调用 <code>RegExp.prototype[Symbol.split]</code></li>
 </ul>
-<p>ES 系列更多笔记可以点此跳转 –&gt;&gt; <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6 及后续版本学习笔记</a></strong></p>
+<p>ES 系列更多笔记可以点此跳转 –&gt;&gt; <strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6 及后续版本学习笔记</a></strong></p>
 </blockquote>
 <h3 id="Ⅰ-search-方法"><a href="#Ⅰ-search-方法" class="headerlink" title="Ⅰ- search()方法"></a>Ⅰ- search()方法</h3><h4 id="a-概念与介绍-1"><a href="#a-概念与介绍-1" class="headerlink" title="a) 概念与介绍"></a>a) 概念与介绍</h4><blockquote>
 <p>用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。<br>如果找到任何匹配的子串，则返回 该子串在原字符串中的第一次出现的位置。　　<br>如果没有找到任何匹配的子串，则返回 -1。</p>
@@ -980,7 +980,7 @@
 <p><img src="/study73/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173421761.png" alt="image-20210825173421761"></p>
 </blockquote>
 <h1 id="八、ES-系列中正则的拓展"><a href="#八、ES-系列中正则的拓展" class="headerlink" title="八、ES 系列中正则的拓展"></a>八、ES 系列中正则的拓展</h1><blockquote>
-<p>更多 ES 系列知识点笔记 –&gt; <strong><a href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6 及后续版本学习笔记</a></strong></p>
+<p>更多 ES 系列知识点笔记 –&gt; <strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6 及后续版本学习笔记</a></strong></p>
 </blockquote>
 <h2 id="1、概括与总结"><a href="#1、概括与总结" class="headerlink" title="1、概括与总结"></a>1、概括与总结</h2><blockquote>
 <ul>
@@ -1143,7 +1143,7 @@
 <p>但是，很多时候我们希望匹配的是任意单个字符，这时有一种变通的写法。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/foo[^]bar/.<span class="title function_">test</span>(<span class="string">&quot;foo\nbar&quot;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
-<p>这种解决方案毕竟不太符合直觉， <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-regexp-dotall-flag">ES2018</a> 引入<code>s</code>修饰符，使得<code>.</code>可以匹配任意单个字符。</p>
+<p>这种解决方案毕竟不太符合直觉， <a href="https://github.com/tc39/proposal-regexp-dotall-flag">ES2018</a> 引入<code>s</code>修饰符，使得<code>.</code>可以匹配任意单个字符。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/foo.<span class="property">bar</span>/s.<span class="title function_">test</span>(<span class="string">&quot;foo\nbar&quot;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <p>这被称为<code>dotAll</code>模式，即点（dot）代表一切字符。所以，正则表达式还引入了一个<code>dotAll</code>属性，返回一个布尔值，表示该正则表达式是否处在<code>dotAll</code>模式。</p>
@@ -1156,7 +1156,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 的 source 属性</span></span><br><span class="line"><span class="comment">// 返回正则表达式的正文</span></span><br><span class="line">/abc/gi.<span class="property">source</span> /</span><br><span class="line">  <span class="comment">// &quot;abc&quot;</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">// ES6 的 flags 属性</span></span><br><span class="line">  <span class="comment">// 返回正则表达式的修饰符</span></span><br><span class="line">  abc /</span><br><span class="line">  ig.<span class="property">flags</span>;</span><br><span class="line"><span class="comment">// &#x27;gi&#x27;</span></span><br></pre></td></tr></table></figure>
 </blockquote>
 <h2 id="8、-Unicode-属性类"><a href="#8、-Unicode-属性类" class="headerlink" title="8、 Unicode 属性类"></a>8、 Unicode 属性类</h2><blockquote>
-<p>ES2018 <a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-regexp-unicode-property-escapes">引入</a>了一种新的类的写法<code>\p&#123;...&#125;</code>和<code>\P&#123;...&#125;</code>，允许正则表达式匹配符合 Unicode 某种属性的所有字符。</p>
+<p>ES2018 <a href="https://github.com/tc39/proposal-regexp-unicode-property-escapes">引入</a>了一种新的类的写法<code>\p&#123;...&#125;</code>和<code>\P&#123;...&#125;</code>，允许正则表达式匹配符合 Unicode 某种属性的所有字符。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> regexGreekSymbol = <span class="regexp">/\p&#123;Script=Greek&#125;/u</span>;</span><br><span class="line">regexGreekSymbol.<span class="title function_">test</span>(<span class="string">&quot;π&quot;</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>\p&#123;Script=Greek&#125;</code>指定匹配一个希腊文字母，所以匹配<code>π</code>成功。</p>
@@ -1186,7 +1186,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">RE_DATE</span> = <span class="regexp">/(\d&#123;4&#125;)-(\d&#123;2&#125;)-(\d&#123;2&#125;)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matchObj = <span class="variable constant_">RE_DATE</span>.<span class="title function_">exec</span>(<span class="string">&quot;1999-12-31&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> year = matchObj[<span class="number">1</span>]; <span class="comment">// 1999</span></span><br><span class="line"><span class="keyword">const</span> month = matchObj[<span class="number">2</span>]; <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">const</span> day = matchObj[<span class="number">3</span>]; <span class="comment">// 31</span></span><br></pre></td></tr></table></figure>
 
 <p>组匹配的一个问题是，每一组的匹配含义不容易看出来，而且只能用数字序号（比如<code>matchObj[1]</code>）引用，要是组的顺序变了，引用的时候就必须修改序号。</p>
-<p>ES2018 引入了<a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-regexp-named-groups">具名组匹配</a>（Named Capture Groups），允许为每一个组匹配指定一个名字，既便于阅读代码，又便于引用。</p>
+<p>ES2018 引入了<a href="https://github.com/tc39/proposal-regexp-named-groups">具名组匹配</a>（Named Capture Groups），允许为每一个组匹配指定一个名字，既便于阅读代码，又便于引用。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="variable constant_">RE_DATE</span> = <span class="regexp">/(?&lt;year&gt;\d&#123;4&#125;)-(?&lt;month&gt;\d&#123;2&#125;)-(?&lt;day&gt;\d&#123;2&#125;)/</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> matchObj = <span class="variable constant_">RE_DATE</span>.<span class="title function_">exec</span>(<span class="string">&quot;1999-12-31&quot;</span>);</span><br><span class="line"><span class="keyword">const</span> year = matchObj.<span class="property">groups</span>.<span class="property">year</span>; <span class="comment">// 1999</span></span><br><span class="line"><span class="keyword">const</span> month = matchObj.<span class="property">groups</span>.<span class="property">month</span>; <span class="comment">// 12</span></span><br><span class="line"><span class="keyword">const</span> day = matchObj.<span class="property">groups</span>.<span class="property">day</span>; <span class="comment">// 31</span></span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，“具名组匹配”在圆括号内部，模式的头部添加 [ “问号 + 尖括号 + 组名” ] （<code>?&lt;year&gt;</code>），然后就可以在<code>exec</code>方法返回结果的<code>groups</code>属性上引用该组名。同时，数字序号（<code>matchObj[1]</code>）依然有效。</p>
@@ -1224,7 +1224,7 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/t(e)(st(\d?))/g</span>;</span><br><span class="line"><span class="keyword">var</span> string = <span class="string">&quot;test1test2test3&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> matches = [];</span><br><span class="line"><span class="keyword">var</span> match;</span><br><span class="line"><span class="keyword">while</span> ((match = regex.<span class="title function_">exec</span>(string))) &#123;</span><br><span class="line">  matches.<span class="title function_">push</span>(match);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">matches;</span><br><span class="line"><span class="comment">// [</span></span><br><span class="line"><span class="comment">//   [&quot;test1&quot;, &quot;e&quot;, &quot;st1&quot;, &quot;1&quot;, index: 0, input: &quot;test1test2test3&quot;],</span></span><br><span class="line"><span class="comment">//   [&quot;test2&quot;, &quot;e&quot;, &quot;st2&quot;, &quot;2&quot;, index: 5, input: &quot;test1test2test3&quot;],</span></span><br><span class="line"><span class="comment">//   [&quot;test3&quot;, &quot;e&quot;, &quot;st3&quot;, &quot;3&quot;, index: 10, input: &quot;test1test2test3&quot;]</span></span><br><span class="line"><span class="comment">// ]</span></span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，<code>while</code>循环取出每一轮的正则匹配，一共三轮。</p>
-<p><a target="_blank" rel="noopener" href="https://github.com/tc39/proposal-string-matchall">ES2020</a> 增加了<code>String.prototype.matchAll()</code>方法，可以一次性取出所有匹配。不过，它返回的是一个遍历器（Iterator），而不是数组。</p>
+<p><a href="https://github.com/tc39/proposal-string-matchall">ES2020</a> 增加了<code>String.prototype.matchAll()</code>方法，可以一次性取出所有匹配。不过，它返回的是一个遍历器（Iterator），而不是数组。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> string = <span class="string">&quot;test1test2test3&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> regex = <span class="regexp">/t(e)(st(\d?))/g</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">const</span> match <span class="keyword">of</span> string.<span class="title function_">matchAll</span>(regex)) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(match);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// [&quot;test1&quot;, &quot;e&quot;, &quot;st1&quot;, &quot;1&quot;, index: 0, input: &quot;test1test2test3&quot;]</span></span><br><span class="line"><span class="comment">// [&quot;test2&quot;, &quot;e&quot;, &quot;st2&quot;, &quot;2&quot;, index: 5, input: &quot;test1test2test3&quot;]</span></span><br><span class="line"><span class="comment">// [&quot;test3&quot;, &quot;e&quot;, &quot;st3&quot;, &quot;3&quot;, index: 10, input: &quot;test1test2test3&quot;]</span></span><br></pre></td></tr></table></figure>
 
 <p>上面代码中，由于<code>string.matchAll(regex)</code>返回的是遍历器，所以可以用<code>for...of</code>循环取出。相对于返回数组，返回遍历器的好处在于，如果匹配结果是一个很大的数组，那么遍历器比较节省资源。</p>
@@ -1291,7 +1291,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="https://gitee.com/study73/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="正则表达式学习笔记" target="_blank" rel="external">https://gitee.com/study73/2024/04/08/正则学习笔记/</a>
+      <a href="https://github.com/k705/kk.github.io.git/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="正则表达式学习笔记" target="_blank" rel="external">https://github.com/k705/kk.github.io.git/2024/04/08/正则学习笔记/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -1306,7 +1306,7 @@
     <figure class="media">
       <div class="media-left">
         <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="/study73/images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/k705/kk.github.io.git/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -1338,12 +1338,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="/study73/2024/04/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/" title="HTML+CSS基础"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/" title="HTML+CSS基础"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="/study73/2024/04/08/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="编程基础专项练习"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/k705/kk.github.io.git/2024/04/08/%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80%E4%B8%93%E9%A1%B9%E7%BB%83%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="编程基础专项练习"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -1378,14 +1378,14 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="alipay">
               <div class="donate-payimg">
-                <img src="/study73/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705/kk.github.io.git/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="wechatpay">
               <div class="donate-payimg">
-                <img src="/study73/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705/kk.github.io.git/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
@@ -1424,7 +1424,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="/study73/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705/kk.github.io.git/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -1440,10 +1440,10 @@
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="/study73/js/plugin.min.js"></script>
+<script src="/k705/kk.github.io.git/js/plugin.min.js"></script>
 
 
-<script src="/study73/js/application.js"></script>
+<script src="/k705/kk.github.io.git/js/application.js"></script>
 
 
     <script>
@@ -1456,14 +1456,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: '/study73/',
-        CONTENT_URL: '/study73/content.json',
+        ROOT_URL: '/k705/kk.github.io.git/',
+        CONTENT_URL: '/k705/kk.github.io.git/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="/study73/js/insight.js"></script>
+<script src="/k705/kk.github.io.git/js/insight.js"></script>
 
 
 
