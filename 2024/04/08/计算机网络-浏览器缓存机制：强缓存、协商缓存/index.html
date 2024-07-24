@@ -25,20 +25,20 @@
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 浏览器缓存策略对于我们前端来说应该算是必须要会的知识点,但如果没有系统地进行归纳总结,也很难三言两语说明白甚至说错;特别是在面试时,基本上就讲个概念,甚至有时候就忘掉了,所以整理一下,也为了以后遗忘时能快速复习 查阅借鉴的资料: 掘金的 http面试必会的：强制缓存和协商缓存、一文读懂前端缓存、前端浏览器缓存知识梳理;Github的 缓存（二）——浏览器缓存机制：强缓存、协商缓存;机器之心">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
-<meta property="og:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
+<meta property="og:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:17:08.320Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="底层知识">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://k705.github.io/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
+<meta name="twitter:image" content="https://k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://k705.github.io/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/index.html">
   
@@ -48,7 +48,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="/css/style.css">
 
   
   
@@ -65,7 +65,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="./images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
@@ -109,7 +109,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="./.">
+          <a href="/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -119,7 +119,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="./archives">
+          <a href="/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -129,7 +129,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="./categories">
+          <a href="/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -139,7 +139,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="./tags">
+          <a href="/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -149,7 +149,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="./repository">
+          <a href="/repository">
             
             <i class="icon icon-project"></i>
             
@@ -159,7 +159,7 @@
         
         
         <li class="menu-item menu-item-books">
-          <a href="./books">
+          <a href="/books">
             
             <i class="icon icon-book-fill"></i>
             
@@ -169,7 +169,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="./links">
+          <a href="/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -179,7 +179,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="./about">
+          <a href="/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -200,7 +200,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -231,7 +231,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="./tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -241,7 +241,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="./tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="./tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="./tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="./tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="./tags/ES/" style="font-size: 13.92px;">ES</a> <a href="./tags/Git/" style="font-size: 13.23px;">Git</a> <a href="./tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="./tags/Html/" style="font-size: 13px;">Html</a> <a href="./tags/JS/" style="font-size: 13.77px;">JS</a> <a href="./tags/Java/" style="font-size: 13.54px;">Java</a> <a href="./tags/Js/" style="font-size: 13px;">Js</a> <a href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="./tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="./tags/TS/" style="font-size: 13.15px;">TS</a> <a href="./tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="./tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="./tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="./tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="./tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="./tags/go/" style="font-size: 13px;">go</a> <a href="./tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="./tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="./tags/react/" style="font-size: 13.54px;">react</a> <a href="./tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="./tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="./tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="./tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="./tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="./tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+      <a href="/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Html/" style="font-size: 13px;">Html</a> <a href="/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/tags/Js/" style="font-size: 13px;">Js</a> <a href="/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/tags/go/" style="font-size: 13px;">go</a> <a href="/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/tags/react/" style="font-size: 13.54px;">react</a> <a href="/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
     </div>
   </div>
 
@@ -250,7 +250,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="./archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
     </div>
   </div>
 
@@ -269,7 +269,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+                <a href="/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
@@ -284,7 +284,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+                <a href="/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
@@ -299,7 +299,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+                <a href="/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
@@ -314,7 +314,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-%E5%B0%81%E8%A3%85Notification%E9%80%9A%E7%9F%A5%E6%8F%90%E9%86%92%E6%A1%86%E7%BB%84%E4%BB%B6/" class="title">antd原生Notification通知提醒框</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -329,7 +329,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/2024/04/08/Chrome%E6%89%A9%E5%B1%95%E7%A8%8B%E5%BA%8F%E8%B5%84%E6%96%99%E6%91%98%E5%BD%95%E5%8F%8A%E5%BC%80%E5%8F%91%E7%AC%94%E8%AE%B0%E6%95%B4%E7%90%86/" class="title">Chrome拓展</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -365,7 +365,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="./2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" class="article-date">
+	<a href="/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/" class="article-date">
 	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
 	</a>
 </span>
@@ -373,7 +373,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a>
+	<a class="article-tag-link-link" href="/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a>
   </span>
 
 
@@ -386,7 +386,7 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="./2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%EF%BC%9A%E5%BC%BA%E7%BC%93%E5%AD%98%E3%80%81%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -418,7 +418,7 @@
 <li>浏览器缓存</li>
 </ol>
 <p><strong>此图截取自网上相关文章</strong></p>
-<p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png" alt="image-20211027182618788"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027182618788.png" alt="image-20211027182618788"></p>
 </blockquote>
 <h2 id="2、什么是浏览器缓存策略"><a href="#2、什么是浏览器缓存策略" class="headerlink" title="2、什么是浏览器缓存策略"></a>2、什么是浏览器缓存策略</h2><blockquote>
 <p>良好的缓存策略可以降低资源的重复加载从而提高页面整体加载速度,通常浏览器缓存策略分为两种结果</p>
@@ -426,7 +426,7 @@
 <li>强缓存</li>
 <li>协商缓存</li>
 </ul>
-<p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png" alt="image-20211027184535569"> </p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027184535569.png" alt="image-20211027184535569"> </p>
 </blockquote>
 <h3 id="Ⅰ-基本原理"><a href="#Ⅰ-基本原理" class="headerlink" title="Ⅰ - 基本原理"></a>Ⅰ - 基本原理</h3><blockquote>
 <ul>
@@ -466,7 +466,7 @@
 <li>如果 <strong>强缓存</strong> 和 <strong>协商缓存</strong> 都没有命中,则直接从服务器加载资源</li>
 </ul>
 </blockquote>
-<p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png" alt="image-20211027190616969"> </p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190616969.png" alt="image-20211027190616969"> </p>
 </blockquote>
 <h3 id="Ⅳ-优先级"><a href="#Ⅳ-优先级" class="headerlink" title="Ⅳ - 优先级"></a>Ⅳ - 优先级</h3><blockquote>
 <ul>
@@ -475,7 +475,7 @@
 </ul>
 </blockquote>
 <h3 id="Ⅴ-浏览器缓存流程图"><a href="#Ⅴ-浏览器缓存流程图" class="headerlink" title="Ⅴ - 浏览器缓存流程图"></a>Ⅴ - 浏览器缓存流程图</h3><blockquote>
-<p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png" alt="image-20211027190721706"> </p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027190721706.png" alt="image-20211027190721706"> </p>
 </blockquote>
 <h2 id="3、强缓存与协商缓存"><a href="#3、强缓存与协商缓存" class="headerlink" title="3、强缓存与协商缓存"></a>3、强缓存与协商缓存</h2><h3 id="Ⅰ-强缓存"><a href="#Ⅰ-强缓存" class="headerlink" title="Ⅰ - 强缓存"></a>Ⅰ - 强缓存</h3><blockquote>
 <h6 id="通过Expires-过yu期-和cache-control-缓存控制器-两种响应头实现"><a href="#通过Expires-过yu期-和cache-control-缓存控制器-两种响应头实现" class="headerlink" title="通过Expires(过yu期)和cache-control(缓存控制器)两种响应头实现"></a>通过<code>Expires(过yu期)</code>和<code>cache-control(缓存控制器)</code>两种响应头实现</h6><p>浏览器在加载资源时,根据请求头的 <code>Expires(过期时间)</code> 和<code>chche-control(缓存控制)</code>判断是否命中强缓存,命中则直接从缓存中读取资源,不会发送到服务器</p>
@@ -493,7 +493,7 @@
 <li><code>Cache-Control: private</code>只能被终端浏览器缓存（而且是私有缓存），不允许中继缓存服务器进行缓存</li>
 </ul>
 <p>Cache-Control除了在响应中使用，在请求中也可以使用。我们用开发者工具来模拟下请求时带上Cache-Control：勾选Disable cache，刷新页面，可以看到Request Headers中有个字段Cache-Control: no-cache。</p>
-<p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png" alt="image-20220225160543826"></p>
+<p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20220225160543826.png" alt="image-20220225160543826"></p>
 </blockquote>
 <h3 id="Ⅱ-协商缓存"><a href="#Ⅱ-协商缓存" class="headerlink" title="Ⅱ - 协商缓存"></a>Ⅱ - 协商缓存</h3><blockquote>
 <h6 id="协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的"><a href="#协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的" class="headerlink" title="协商缓存是通过【Last-Modified，If-Modified-Since】和【ETag、If-None-Match】这两对Header来管理的"></a>协商缓存是通过<code>【Last-Modified，If-Modified-Since】</code>和<code>【ETag、If-None-Match】</code>这两对Header来管理的</h6><ul>
@@ -540,7 +540,7 @@
 <li>某些服务器不能精确的得到文件的最后修改时间</li>
 </ul>
 </blockquote>
-<h6 id="服务端返回-304-流程图"><a href="#服务端返回-304-流程图" class="headerlink" title="服务端返回 304 流程图"></a>服务端返回 304 流程图</h6><p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png" alt="image-20211027175045937"></p>
+<h6 id="服务端返回-304-流程图"><a href="#服务端返回-304-流程图" class="headerlink" title="服务端返回 304 流程图"></a>服务端返回 304 流程图</h6><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211027175045937-16353282573951.png" alt="image-20211027175045937"></p>
 </blockquote>
 <h3 id="Ⅲ-强缓存与协商缓存简单异同点"><a href="#Ⅲ-强缓存与协商缓存简单异同点" class="headerlink" title="Ⅲ -强缓存与协商缓存简单异同点"></a>Ⅲ -强缓存与协商缓存简单异同点</h3><blockquote>
 <ul>
@@ -555,10 +555,10 @@
 <li><code>200(form cache)</code>: 强缓存两者都存在且未过期; <code>Cache-Control</code> 优先<code>Expirs</code>(默认就是这个优先级)时–&gt;浏览器从本地获取资源成功  (这个状态还能更详细分类,在下面再给出详解)</li>
 <li><code>304(Not Modified)</code>:协商缓存<code>Last-modified/Etag</code>没有过期时,服务端返回状态码304</li>
 </ul>
-<h6 id="这里给出个截图-安装了中文包-所以显示的中文"><a href="#这里给出个截图-安装了中文包-所以显示的中文" class="headerlink" title="这里给出个截图(安装了中文包,所以显示的中文)"></a>这里给出个截图(安装了中文包,所以显示的中文)</h6><p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"> </p>
+<h6 id="这里给出个截图-安装了中文包-所以显示的中文"><a href="#这里给出个截图-安装了中文包-所以显示的中文" class="headerlink" title="这里给出个截图(安装了中文包,所以显示的中文)"></a>这里给出个截图(安装了中文包,所以显示的中文)</h6><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"> </p>
 </blockquote>
 <h2 id="5、缓存位置"><a href="#5、缓存位置" class="headerlink" title="5、缓存位置"></a>5、缓存位置</h2><blockquote>
-<h6 id="强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分"><a href="#强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分" class="headerlink" title="强缓存我们会把资源放在 memory cache(内存缓存)和disk cache(磁盘缓存) 中,那么他们的区别在哪呢?为何要如此区分?"></a>强缓存我们会把资源放在 <code>memory cache(内存缓存)</code>和<code>disk cache(磁盘缓存)</code> 中,那么他们的区别在哪呢?为何要如此区分?</h6><p><img src="/k705.github.io/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"></p>
+<h6 id="强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分"><a href="#强缓存我们会把资源放在-memory-cache-内存缓存-和disk-cache-磁盘缓存-中-那么他们的区别在哪呢-为何要如此区分" class="headerlink" title="强缓存我们会把资源放在 memory cache(内存缓存)和disk cache(磁盘缓存) 中,那么他们的区别在哪呢?为何要如此区分?"></a>强缓存我们会把资源放在 <code>memory cache(内存缓存)</code>和<code>disk cache(磁盘缓存)</code> 中,那么他们的区别在哪呢?为何要如此区分?</h6><p><img src="/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%B5%85%E5%AD%A6%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211102140503290.png" alt="image-20211102140503290"></p>
 <ul>
 <li>存储图像和网页等资源主要存储在<code>disk cache(磁盘存储)</code></li>
 <li>操作系统缓存文件等资源大部分都会缓存在<code>memory cache</code>中</li>
@@ -652,7 +652,7 @@
     <figure class="media">
       <div class="media-left">
         <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="./images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -684,12 +684,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="./2024/04/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/" title="HTML+CSS基础"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" title="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="./2024/04/08/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E6%B5%85%E6%9E%90%E4%BB%8E%E8%BE%93%E5%85%A5URL%E5%88%B0%E9%A1%B5%E9%9D%A2%E5%B1%95%E7%A4%BA%E8%BF%99%E4%B8%AD%E9%97%B4%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88/" title="浏览器的工作原理、HTTP协议底层原理、TCP网络协议、浏览器的渲染流程"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/2024/04/08/%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" title="软件设计模式"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -724,14 +724,14 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="alipay">
               <div class="donate-payimg">
-                <img src="./images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="wechatpay">
               <div class="donate-payimg">
-                <img src="./images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
@@ -770,7 +770,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -786,10 +786,10 @@
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="./js/plugin.min.js"></script>
+<script src="/js/plugin.min.js"></script>
 
 
-<script src="./js/application.js"></script>
+<script src="/js/application.js"></script>
 
 
     <script>
@@ -802,14 +802,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: './',
-        CONTENT_URL: './content.json',
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="./js/insight.js"></script>
+<script src="/js/insight.js"></script>
 
 
 
