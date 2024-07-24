@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>微信小程序学习笔记 | Hexo</title>
+  <meta name="description" content="#目录 [TOC]   一、小程序开屏动画封装组件1、源码： components&#x2F;openPage&#x2F;openPage.wxml 12345678910111213141516&lt;view class&#x3D;&quot;openPage-box&quot;&gt;  &lt;image src&#x3D;&quot;&#123;&#123;imagePath&#125;&#125;&quot; mode&#x3D;&amp;q">
+<meta property="og:type" content="article">
+<meta property="og:title" content="微信小程序学习笔记">
+<meta property="og:url" content="https://k705.github.io/2024/04/08/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="KK">
+<meta property="og:description" content="#目录 [TOC]   一、小程序开屏动画封装组件1、源码： components&#x2F;openPage&#x2F;openPage.wxml 12345678910111213141516&lt;view class&#x3D;&quot;openPage-box&quot;&gt;  &lt;image src&#x3D;&quot;&#123;&#123;imagePath&#125;&#125;&quot; mode&#x3D;&amp;q">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
+<meta property="article:modified_time" content="2024-07-24T08:47:24.483Z">
+<meta property="article:author" content="KK">
+<meta property="article:tag" content="微信小程序">
+<meta name="twitter:card" content="summary">
+  <!-- Canonical links -->
+  <link rel="canonical" href="https://k705.github.io/2024/04/08/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="KK" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+  
+  
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/cofess" target="_blank">
+          <img class="img-circle img-rotate" src="/images/avatar.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="icon icon-map-marker"></i> Shanghai, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat" onclick="return false;"><i class="icon icon-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+  <div class="ins-search-mask"></div>
+  <div class="ins-search-container">
+    <div class="ins-input-wrapper">
+      <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+      <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+    </div>
+    <div class="ins-section-wrapper">
+      <div class="ins-section-container"></div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav ">
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="icon icon-home-fill"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="icon icon-archives-fill"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories">
+            
+            <i class="icon icon-folder"></i>
+            
+            <span class="menu-title">分类</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags">
+            
+            <i class="icon icon-tags"></i>
+            
+            <span class="menu-title">标签</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-repository">
+          <a href="/repository">
+            
+            <i class="icon icon-project"></i>
+            
+            <span class="menu-title">项目</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-books">
+          <a href="/books">
+            
+            <i class="icon icon-book-fill"></i>
+            
+            <span class="menu-title">书单</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="icon icon-friendship"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="icon icon-cup-fill"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/tags/Html/" style="font-size: 13px;">Html</a> <a href="/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/tags/Js/" style="font-size: 13px;">Js</a> <a href="/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/tags/go/" style="font-size: 13px;">go</a> <a href="/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/tags/react/" style="font-size: 13.54px;">react</a> <a href="/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13.08px;">微信小程序</a> <a href="/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/04/">四月 2024</a><span class="archive-list-count">242</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                
+              </p>
+              <p class="item-title">
+                <a href="/2024/04/08/Axios%E5%85%A5%E9%97%A8%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" class="title">Axios笔记</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-微信小程序项目实用技巧" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      微信小程序学习笔记
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="icon icon-calendar-check"></i>
+	<a href="/2024/04/08/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" class="article-date">
+	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
+	</a>
+</span>
+        
+        
+  <span class="article-tag">
+    <i class="icon icon-tags"></i>
+	<a class="article-tag-link-link" href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="icon icon-eye-fill" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			<span id="busuanzi_value_page_pv">0</span>
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/2024/04/08/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+    </div>
+    <div class="article-entry marked-body" itemprop="articleBody">
+      
+        <h1 id="目录"><a href="#目录" class="headerlink" title="#目录"></a>#目录</h1><blockquote>
+<p>[TOC]</p>
+</blockquote>
+<hr>
+<h1 id="一、小程序开屏动画封装组件"><a href="#一、小程序开屏动画封装组件" class="headerlink" title="一、小程序开屏动画封装组件"></a>一、小程序开屏动画封装组件</h1><h2 id="1、源码："><a href="#1、源码：" class="headerlink" title="1、源码："></a>1、源码：</h2><blockquote>
+<p><code>components/openPage/openPage.wxml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;openPage-box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">&quot;&#123;&#123;imagePath&#125;&#125;&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;aspectFill&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;openPage-header&quot;</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 跳过按钮 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;openPage-btn&quot;</span> <span class="attr">bindtap</span>=<span class="string">&quot;skipOpenPage&quot;</span>&gt;</span>跳过 &#123;&#123;second&#125;&#125;s<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 创意指导：拼夕夕 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">&quot;openPage-gif&quot;</span>&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 图片形式 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">&quot;&#123;&#123;gifUrl&#125;&#125;&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;aspectFill&quot;</span>/&gt;</span></span><br><span class="line">      <span class="comment">&lt;!-- 视频形式 --&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">video</span> <span class="attr">class</span>=<span class="string">&quot;pos_center&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://image.kmeta.world/applet/images/home/openVideo.mp4&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;aspectFill&quot;</span> <span class="attr">autoplay</span> <span class="attr">muted</span> <span class="attr">controls</span>=<span class="string">&quot;&#123;&#123;false&#125;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><code>components/openPage/openPage.wxss</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 切记：最外面的盒子不能直接用百分之的形式 */</span></span><br><span class="line"><span class="selector-class">.openPage-box</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100vh</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100vh</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.openPage-box</span>&gt;image &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/* 因为图片已经占据了所有位置，而我们需要让按钮悬浮在图片左上角，</span></span><br><span class="line"><span class="comment">所以需要使用absolute */</span></span><br><span class="line"><span class="selector-class">.openPage-header</span> &#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute; </span><br><span class="line">  <span class="attribute">left</span>:<span class="number">40</span>rpx;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">80</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.openPage-btn</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;<span class="comment">/* 调大点提高用户舒适度，你也不想有被开屏广告支配的感觉吧 */</span></span><br><span class="line">  <span class="attribute">color</span>: white;</span><br><span class="line">  <span class="attribute">border</span>: <span class="number">1px</span> solid white;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">2px</span> <span class="number">5px</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">12px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="selector-class">.openPage-gif</span>&#123;</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  <span class="attribute">left</span>: <span class="number">30%</span>;</span><br><span class="line">  <span class="attribute">top</span>: <span class="number">40%</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.openPage-gif</span>&gt;image&#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">300</span>rpx;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">300</span>rpx;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>components/openPage/openPage.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Component</span>(&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 组件的属性列表</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">properties</span>: &#123;<span class="comment">//传入的数据</span></span><br><span class="line">    <span class="attr">imagePath</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">String</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">second</span>: &#123;</span><br><span class="line">      <span class="attr">type</span>: <span class="title class_">Number</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 组件的初始数据</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">gifUrl</span>:<span class="string">&#x27;https://wimg.588ku.com/gif620/21/09/23/e14212e58c7e5da94ef8fca48ecd202e.gif&#x27;</span>,</span><br><span class="line">    <span class="attr">timer</span>: <span class="literal">null</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="attr">lifetimes</span>: &#123;</span><br><span class="line">    <span class="attr">created</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">     </span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">attached</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">//在JavaScript中，this关键字的指向是动态的，取决于函数的调用方式。</span></span><br><span class="line">      <span class="comment">//比如普通调用方式里面的this则是这个函数，箭头函数则指的是外面的</span></span><br><span class="line">      <span class="comment">//如果里面不需要调用该函数这个this对象而只是需要访问外面的this对象则可以使用箭头函数</span></span><br><span class="line">      <span class="comment">//在某些情况下，为了在回调函数或异步操作中能够访问到外部的this对象并且访问这个函数的this对象，</span></span><br><span class="line">      <span class="comment">//可以将外部的this对象赋值给一个变量，通常命名为that或self</span></span><br><span class="line">      <span class="keyword">let</span> that = <span class="variable language_">this</span>;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//timer是一个表示定时器的变量，其类型是number</span></span><br><span class="line">      <span class="comment">//在JavaScript中，setInterval函数会返回一个唯一的定时器标识符，</span></span><br><span class="line">      <span class="comment">//可以通过这个标识符来清除定时器，即使用clearInterval(timer)来停止定时器的执行</span></span><br><span class="line">      <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="keyword">function</span> (<span class="params"></span>) &#123;<span class="comment">//因为这个地方相当于嵌套了一层</span></span><br><span class="line">        <span class="keyword">let</span> nowSecond = --(that.<span class="property">data</span>.<span class="property">second</span>);<span class="comment">//时间自减1</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(nowSecond);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (nowSecond &lt;= <span class="number">0</span>) &#123;<span class="comment">//计时到0则关闭开屏控件</span></span><br><span class="line">          <span class="built_in">clearInterval</span>(timer);<span class="comment">//关闭计时器</span></span><br><span class="line">          that.<span class="title function_">hideOpenPage</span>();<span class="comment">//隐藏开屏页面</span></span><br><span class="line">        &#125;</span><br><span class="line">       </span><br><span class="line">        that.<span class="title function_">setData</span>(&#123;<span class="comment">//赋值当前秒数（触发视图更新）</span></span><br><span class="line">          <span class="attr">second</span>: nowSecond,<span class="comment">//将计时器变量赋值给页面变量timer，方便在其他函数内关闭该计时器</span></span><br><span class="line">          <span class="attr">timer</span>: timer</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;, <span class="number">1000</span>);<span class="comment">//延时1s</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 组件的方法列表</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">methods</span>: &#123;</span><br><span class="line">    <span class="comment">//隐藏开屏控件</span></span><br><span class="line">    <span class="attr">hideOpenPage</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="comment">//触发hide的事件，在`index.wxml`内容里面设置了bind:hide=&quot;onMyEvent&quot;,</span></span><br><span class="line">      <span class="comment">//则调用`index.js`里面的onMyEvent方法</span></span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">triggerEvent</span>(<span class="string">&quot;hide&quot;</span>);</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//跳过开屏页面</span></span><br><span class="line">    <span class="attr">skipOpenPage</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">hideOpenPage</span>();<span class="comment">//先隐藏开屏控件</span></span><br><span class="line">      <span class="keyword">let</span> timer = <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">timer</span>;<span class="comment">//获取计时器变量</span></span><br><span class="line">      <span class="keyword">if</span> (timer) &#123;<span class="comment">//避免计时器还没初始化但用户已经点击跳过的情况（感觉只有yyds的李跳跳才能做到了）</span></span><br><span class="line">        <span class="built_in">clearInterval</span>(timer);<span class="comment">//关闭计时器</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>components/openPage/openPage.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;component&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">true</span></span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;usingComponents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>index.wxml</code></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">openPage</span> <span class="attr">wx:if</span>=<span class="string">&quot;&#123;&#123;openPageFlag&#125;&#125;&quot;</span> <span class="attr">imagePath</span>=<span class="string">&quot;&#123;&#123;url&#125;&#125;&quot;</span> <span class="attr">second</span>=<span class="string">&quot;&#123;&#123;5&#125;&#125;&quot;</span> <span class="attr">bind:hide</span>=<span class="string">&quot;onMyEvent&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">openPage</span>&gt;</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">&lt;!-- 图个方便咱样式全写行内了(毕竟这也不是重点) --&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot; border-radius: 30rpx; &quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot;padding:160rpx 0 0 0;display: flex;flex-direction: column; align-items: center;&quot;</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">&quot;&#123;&#123;userInfo.avatar&#125;&#125;&quot;</span> <span class="attr">mode</span>=<span class="string">&quot;aspectFill&quot;</span> <span class="attr">style</span>=<span class="string">&quot;width: 100rpx ;height: 100rpx; border-radius: 50%;&quot;</span> /&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">      <span class="tag">&lt;<span class="name">view</span> <span class="attr">style</span>=<span class="string">&quot;margin-bottom: 20rpx;&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">text</span> <span class="attr">style</span>=<span class="string">&quot;color: pink;&quot;</span>&gt;</span>&#123;&#123;userInfo.nickName&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>index.wxss</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">page&#123;</span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">https://pic3.zhimg.com/v2-a76bafdecdacebcc89b5d4f351a53e6a_r.jpg?source=1940ef5c</span>);</span><br><span class="line">  <span class="attribute">background-size</span>: <span class="number">100%</span> auto;</span><br><span class="line">  <span class="attribute">background-repeat</span>: no-repeat;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>index.js</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Page</span>(&#123;</span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">userInfo</span>:&#123;<span class="comment">//这里是默认的用户头像昵称信息</span></span><br><span class="line">      <span class="attr">avatar</span>:<span class="string">&#x27;https://profile-avatar.csdnimg.cn/06d540e9389b45649e01ca3798fdb924_m0_73756108.jpg&#x27;</span>,<span class="comment">//csdn整来的头像链接😎😎😎</span></span><br><span class="line">      <span class="attr">nickName</span>:<span class="string">&#x27;眨眼睛&#x27;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//开屏控件是否存在标记</span></span><br><span class="line">    <span class="attr">openPageFlag</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="comment">//开屏广告图片内容</span></span><br><span class="line">    <span class="attr">url</span>:<span class="string">&#x27;https://ts1.cn.mm.bing.net/th/id/R-C.a4616e92a020b344cec039516ac755d3?rik=1pgZKObA0CxALA&amp;riu=http%3a%2f%2fsjbz.fd.zol-img.com.cn%2ft_s1080x1920c%2fg5%2fM00%2f00%2f02%2fChMkJ1fJUwuIUssCAA39sthJrGMAAU9nwNNNewADf3K734.jpg&amp;ehk=oX398mB4NzTaBxvWpwJIR3bS7NzghbGRvY4qp7jJPuE%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//第一次加载这个页面触发一次，也就是开屏内容展现的时候</span></span><br><span class="line">  <span class="attr">onLoad</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//在有TabBar的情况下默认是不会隐藏的，所以我们手动隐藏一下</span></span><br><span class="line">    wx.<span class="title function_">hideTabBar</span>();</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">//当该控件隐藏时触发</span></span><br><span class="line">  <span class="attr">onMyEvent</span>: <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">//打印关闭</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;开屏控件关闭！！！&quot;</span>);</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;<span class="comment">//将开屏控件的存在标记设为否</span></span><br><span class="line">      <span class="attr">openPageFlag</span>: <span class="literal">false</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//显示TabBar（前面隐藏了）</span></span><br><span class="line">    wx.<span class="title function_">showTabBar</span>();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>index.json</code></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;usingComponents&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;openPage&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/components/openPage/openPage&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">  </span><br><span class="line">  <span class="attr">&quot;navigationStyle&quot;</span><span class="punctuation">:</span> <span class="string">&quot;custom&quot;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="2、用到的知识点"><a href="#2、用到的知识点" class="headerlink" title="2、用到的知识点"></a>2、用到的知识点</h2><h3 id="Ⅰ-video组件"><a href="#Ⅰ-video组件" class="headerlink" title="Ⅰ-video组件"></a>Ⅰ-video组件</h3><blockquote>
+<ol>
+<li><p>src&#x3D;”xxx”   需要在线资源，用本地视频无法播放</p>
+</li>
+<li><p>mode&#x3D;”aspectFill” autoplay muted controls&#x3D;”false“  隐藏组件自带图标controls需要false</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="Ⅱ-小程序封装组件"><a href="#Ⅱ-小程序封装组件" class="headerlink" title="Ⅱ-小程序封装组件"></a>Ⅱ-小程序封装组件</h3><blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">  /**</span><br><span class="line">   组件的属性列表</span><br><span class="line">      **/</span><br><span class="line">properties: &#123;//传入的数据</span><br><span class="line">imagePath: &#123;</span><br><span class="line">  type: String</span><br><span class="line">&#125;,</span><br><span class="line">second: &#123;</span><br><span class="line">  type: Number</span><br><span class="line">&#125; </span><br><span class="line">&#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<h1 id="二、高斯模糊"><a href="#二、高斯模糊" class="headerlink" title="二、高斯模糊"></a>二、高斯模糊</h1><h2 id="backdrop-filter"><a href="#backdrop-filter" class="headerlink" title="backdrop-filter"></a>backdrop-filter</h2><blockquote>
+<p>CSS 的 backdrop-filter 属性</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.blur-container</span> &#123; </span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200</span>rpx; </span><br><span class="line">  <span class="attribute">height</span>: <span class="number">200</span>rpx; </span><br><span class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">&#x27;path/to/your/image.jpg&#x27;</span>); </span><br><span class="line">  backdrop-<span class="attribute">filter</span>: <span class="built_in">blur</span>(<span class="number">10</span>rpx); </span><br><span class="line">  /\* 备用方案：半透明背景色 \*/ <span class="attribute">background-color</span>: <span class="built_in">rgba</span>(<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>, <span class="number">0.5</span>); &#125;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<hr>
+<h1 id="三、置灰效果"><a href="#三、置灰效果" class="headerlink" title="三、置灰效果"></a>三、置灰效果</h1><h2 id="filter"><a href="#filter" class="headerlink" title="filter"></a>filter</h2><blockquote>
+<p>CSS 的 filter 属性中的 grayscale 值来实现</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.button</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">width</span>: <span class="number">200</span>rpx;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">height</span>: <span class="number">80</span>rpx;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#007AFF</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#FFFFFF</span>;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">32</span>rpx;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">10</span>rpx;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">80</span>rpx;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.disabled</span> &#123;</span><br><span class="line"></span><br><span class="line">  <span class="attribute">filter</span>: <span class="built_in">grayscale</span>(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</blockquote>
+<h1 id="四、陀螺仪-动画创造出3d效果"><a href="#四、陀螺仪-动画创造出3d效果" class="headerlink" title="四、陀螺仪+动画创造出3d效果"></a>四、陀螺仪+动画创造出3d效果</h1><h2 id="wx-onDeviceMotionChange-transform"><a href="#wx-onDeviceMotionChange-transform" class="headerlink" title="wx.onDeviceMotionChange + transform"></a>wx.onDeviceMotionChange + transform</h2><p>1.获取设备旋转方向、角度  </p>
+<p>2.动画旋转 过渡效果</p>
+<blockquote>
+<p>js文件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**陀螺仪*/</span></span><br><span class="line"> <span class="title function_">demo</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="keyword">let</span> self = <span class="variable language_">this</span>;</span><br><span class="line">  <span class="comment">// 设备方向</span></span><br><span class="line">  wx.<span class="title function_">startDeviceMotionListening</span>(&#123;</span><br><span class="line">    <span class="attr">interval</span>: <span class="string">&#x27;ui&#x27;</span>,</span><br><span class="line">  &#125;);</span><br><span class="line"> </span><br><span class="line">  wx.<span class="title function_">onDeviceMotionChange</span>(<span class="function">(<span class="params">result</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// console.log(&#x27;设备方向：&#x27;, result); // alpha, beta, gamma</span></span><br><span class="line">    <span class="keyword">var</span> xVal = -(result.<span class="property">gamma</span>).<span class="title function_">toFixed</span>(<span class="number">2</span>)/<span class="number">5</span>;</span><br><span class="line">      <span class="keyword">var</span> yVal = -(result.<span class="property">beta</span>+<span class="number">60</span>).<span class="title function_">toFixed</span>(<span class="number">2</span>)/<span class="number">5</span>;</span><br><span class="line">      <span class="comment">// console.log(yVal,&#x27;yVal&#x27;);</span></span><br><span class="line">      <span class="keyword">var</span> zVal = -(result.<span class="property">alpha</span>).<span class="title function_">toFixed</span>(<span class="number">2</span>)/<span class="number">5</span>;</span><br><span class="line">      self.<span class="title function_">setData</span>(&#123;</span><br><span class="line">        <span class="comment">// x: xVal &gt; 5 ? -35 : (xVal &lt; -5 ? 35 : 1.5*xVal),</span></span><br><span class="line">        <span class="comment">// x1: yVal &gt; 5 ? -35 : (yVal &lt; -5 ? 35 : -1.5*yVal),</span></span><br><span class="line">        <span class="comment">// scale: xVal &gt; 5 ? 1.1 : (xVal &lt; -5 ? 1.1 : 1),</span></span><br><span class="line">        <span class="attr">y</span>: yVal &gt; <span class="number">5</span> ? <span class="number">5</span> : (yVal &lt; -<span class="number">5</span> ? -<span class="number">5</span> : yVal),</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="attr">x</span>: xVal &gt; <span class="number">5</span> ? -<span class="number">20</span> : (xVal &lt; -<span class="number">5</span> ? <span class="number">20</span> : <span class="number">0</span>),</span><br><span class="line">        <span class="attr">x1</span>: yVal &gt; <span class="number">0.5</span> ? <span class="number">20</span> : (yVal &lt; <span class="number">0.5</span> ? -<span class="number">20</span> : <span class="number">0</span>),</span><br><span class="line"></span><br><span class="line">        <span class="comment">//  x: zVal &gt; 5 ? -25 : (zVal &lt; -5 ? 35 : 0),</span></span><br><span class="line">        <span class="comment">// x1: zVal &gt; 5 ? -55 : (zVal &lt; -5 ? 55 : 0),</span></span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>wxml文件</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">id</span>=<span class="string">&quot;orebox&quot;</span> <span class="attr">style</span>=<span class="string">&quot;position: absolute;left: &#123;&#123;finalDistance&#125;&#125;rpx;right: &#123;&#123;finalDistance&#125;&#125;rpx;top: &#123;&#123;240 + finalDistance&#125;&#125;rpx;bottom: &#123;&#123;218 + finalDistance&#125;&#125;rpx;transform: translate3d(&#123;&#123;-x&#125;&#125;rpx, &#123;&#123;-x1&#125;&#125;rpx, 0rpx);transition: transform 0.4s linear;z-index: 999;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+<h1 id="五、生成小程序码海报"><a href="#五、生成小程序码海报" class="headerlink" title="五、生成小程序码海报"></a>五、生成小程序码海报</h1><h2 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h2><p>1.获取小程序码</p>
+<p>2.通过canvas画出想要的海报</p>
+<blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">Page</span>(&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 页面的初始数据</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="attr">data</span>: &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">showImage</span>: <span class="literal">true</span>,</span><br><span class="line">    <span class="attr">page</span>: <span class="number">1</span>,</span><br><span class="line">    <span class="attr">totalPages</span>: <span class="number">0</span>, <span class="comment">// 总页数</span></span><br><span class="line">    <span class="attr">pageSize</span>: <span class="number">5</span>, <span class="comment">//每页条数</span></span><br><span class="line">    <span class="attr">lastId</span>: <span class="string">&#x27;&#x27;</span>, <span class="comment">//最后一条id</span></span><br><span class="line">    <span class="attr">recordsList</span>: [], <span class="comment">// 邀请列表</span></span><br><span class="line">    <span class="attr">showNoMore</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">showNoData</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">loading</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">showModal</span>: <span class="literal">false</span>,</span><br><span class="line">    <span class="attr">scrollTop</span>: <span class="number">0</span>, <span class="comment">// 记录滚动位置</span></span><br><span class="line">    <span class="attr">imageUrl</span>: <span class="string">&#x27;https://image.kmeta.world/applet/images/invite/btnbac.png&#x27;</span>,</span><br><span class="line">    <span class="attr">customerId</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">path</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="attr">envVersion</span>: <span class="string">&#x27;trial&#x27;</span>,</span><br><span class="line">    <span class="attr">scene</span>: <span class="string">&#x27;&#x27;</span>,</span><br><span class="line">    <span class="title class_">Wxacode</span>: <span class="literal">null</span>,</span><br><span class="line">    <span class="attr">isHidden</span>: <span class="literal">true</span>, <span class="comment">// 初始时元素隐藏</span></span><br><span class="line">    <span class="attr">imageTempPath</span>: <span class="string">&#x27;&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * 生命周期函数--监听页面加载</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">onLoad</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="comment">// this.getInviteRecordsList();</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">getWxacode</span>()</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">getRankList</span>();</span><br><span class="line">    <span class="comment">// this.getRankList();</span></span><br><span class="line">    <span class="comment">// 在需要显示加载提示的地方调用 wx.showLoading</span></span><br><span class="line">    wx.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;海报生成中...&#x27;</span>,</span><br><span class="line">      <span class="attr">mask</span>: <span class="literal">true</span> <span class="comment">// 是否显示透明蒙层，防止触摸穿透</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// // 模拟异步操作，比如网络请求</span></span><br><span class="line">    <span class="comment">// setTimeout(() =&gt; &#123;</span></span><br><span class="line">    <span class="comment">//   // 在异步操作完成后调用 wx.hideLoading 隐藏加载提示</span></span><br><span class="line">    <span class="comment">//   wx.hideLoading();</span></span><br><span class="line">    <span class="comment">//   this.setData(&#123;</span></span><br><span class="line">    <span class="comment">//     showModal: true,</span></span><br><span class="line">    <span class="comment">//     isHidden: !this.data.isHidden</span></span><br><span class="line">    <span class="comment">//   &#125;);</span></span><br><span class="line">    <span class="comment">// &#125;, 3000); // 模拟2秒后完成异步操作</span></span><br><span class="line"></span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line"><span class="comment">//获取小程序码</span></span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">getWxacode</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> customerId = app.<span class="property">globalData</span>.<span class="property">customerId</span></span><br><span class="line">    <span class="keyword">var</span> scene = customerId; <span class="comment">//拼接你要添加的参数</span></span><br><span class="line">    <span class="comment">// let scene = &#x27;code&#x27;; //拼接你要添加的参数</span></span><br><span class="line">    <span class="keyword">const</span> path = <span class="string">&#x27;pages/home/home&#x27;</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      path,</span><br><span class="line">      scene</span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">getWxacodeApi</span>(<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">path</span>, <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">envVersion</span>, <span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">scene</span>);</span><br><span class="line">    <span class="keyword">const</span> <span class="title class_">Wxacode</span> = res</span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      <span class="title class_">Wxacode</span></span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="keyword">if</span> (<span class="title class_">Wxacode</span>) &#123;</span><br><span class="line">      <span class="variable language_">this</span>.<span class="title function_">getCanvas</span>(<span class="title class_">Wxacode</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line"><span class="comment">//创建画布</span></span><br><span class="line">  <span class="title function_">getCanvas</span>(<span class="params">Wxacode</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> query = wx.<span class="title function_">createSelectorQuery</span>()</span><br><span class="line">    query.<span class="title function_">select</span>(<span class="string">&#x27;#myCanvas&#x27;</span>)</span><br><span class="line">      .<span class="title function_">fields</span>(&#123;</span><br><span class="line">        <span class="attr">node</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">size</span>: <span class="literal">true</span></span><br><span class="line">      &#125;)</span><br><span class="line">      .<span class="title function_">exec</span>(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> canvas = res[<span class="number">0</span>].<span class="property">node</span></span><br><span class="line">        <span class="keyword">const</span> ctx = canvas.<span class="title function_">getContext</span>(<span class="string">&#x27;2d&#x27;</span>)</span><br><span class="line">        <span class="keyword">const</span> dpr = wx.<span class="title function_">getSystemInfoSync</span>().<span class="property">pixelRatio</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(dpr, <span class="string">&#x27;dpr&#x27;</span>);</span><br><span class="line">        canvas.<span class="property">width</span> = res[<span class="number">0</span>].<span class="property">width</span> * dpr <span class="comment">// 获取宽</span></span><br><span class="line">        canvas.<span class="property">height</span> = res[<span class="number">0</span>].<span class="property">height</span> * dpr <span class="comment">// 获取高</span></span><br><span class="line">        ctx.<span class="title function_">scale</span>(dpr, dpr)</span><br><span class="line">        wx.<span class="title function_">showLoading</span>(&#123;</span><br><span class="line">          <span class="attr">title</span>: <span class="string">&#x27;海报生成中...&#x27;</span>,</span><br><span class="line">          <span class="attr">mask</span>: <span class="literal">true</span> <span class="comment">// 是否显示透明蒙层，防止触摸穿透</span></span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">let</span> image = canvas.<span class="title function_">createImage</span>(); <span class="comment">//创建iamge实例</span></span><br><span class="line">        image.<span class="property">src</span> = <span class="string">&#x27;https://image.kmeta.world/applet/images/invite/posterbac.png&#x27;</span>; <span class="comment">// 引入本地图片</span></span><br><span class="line">        image.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">          ctx.<span class="title function_">drawImage</span>(image, <span class="number">0</span>, <span class="number">0</span>, canvas.<span class="property">width</span> / dpr, canvas.<span class="property">height</span> / dpr); <span class="comment">// 背景图</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 小程序码</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="keyword">let</span> image1 = canvas.<span class="title function_">createImage</span>(); <span class="comment">//创建iamge实例</span></span><br><span class="line">          image1.<span class="property">src</span> = <span class="title class_">Wxacode</span>; <span class="comment">// 引入本地图片</span></span><br><span class="line">          image1.<span class="property">onload</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">            ctx.<span class="title function_">drawImage</span>(image1, (canvas.<span class="property">width</span> - <span class="number">260</span>) / <span class="number">2</span> / dpr, (canvas.<span class="property">height</span> - <span class="number">260</span>) / <span class="number">1.2</span> / dpr, <span class="number">260</span> / dpr, <span class="number">260</span> / dpr); <span class="comment">// 背景图</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;, <span class="number">2000</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="comment">//  文字</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          <span class="comment">// 在异步操作完成后调用 wx.hideLoading 隐藏加载提示</span></span><br><span class="line">          wx.<span class="title function_">hideLoading</span>();</span><br><span class="line">          <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">            <span class="attr">showModal</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">isHidden</span>: !<span class="variable language_">this</span>.<span class="property">data</span>.<span class="property">isHidden</span></span><br><span class="line">          &#125;);</span><br><span class="line">          ctx.<span class="property">font</span> = <span class="string">&#x27;15px HarmonyOS_Sans_SC&#x27;</span></span><br><span class="line">          ctx.<span class="property">textAlign</span> = <span class="string">&#x27;left&#x27;</span>;</span><br><span class="line">          ctx.<span class="property">fillStyle</span> = <span class="string">&#x27;rgba(255, 255, 255, 1)&#x27;</span></span><br><span class="line">          <span class="keyword">let</span> name = <span class="string">`<span class="subst">$&#123;<span class="variable language_">this</span>.data.name&#125;</span> 邀请你前往元宇宙K星探索`</span></span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(ctx.<span class="title function_">measureText</span>(name).<span class="property">width</span>, <span class="string">&#x27;ctx.measureText(name).width&#x27;</span>);</span><br><span class="line">          ctx.<span class="title function_">fillText</span>(name, (canvas.<span class="property">width</span> / dpr - ctx.<span class="title function_">measureText</span>(name).<span class="property">width</span>) / <span class="number">2</span>, <span class="number">40</span>);</span><br><span class="line">        &#125;, <span class="number">2000</span>);</span><br><span class="line">        <span class="comment">//  背景图</span></span><br><span class="line">        <span class="keyword">let</span> that = <span class="variable language_">this</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">          wx.<span class="title function_">canvasToTempFilePath</span>(&#123;</span><br><span class="line">            <span class="comment">// x: 0, //指定的画布区域的左上角横坐标    </span></span><br><span class="line">            <span class="comment">// y: 0, //指定的画布区域的左上角纵坐标    </span></span><br><span class="line">            <span class="comment">// width: 375, //指定的画布区域的宽度</span></span><br><span class="line">            <span class="comment">// height: 589, //指定的画布区域的高度</span></span><br><span class="line">            <span class="comment">// destWidth: 375*dpr, //输出的图片的宽度 </span></span><br><span class="line">            <span class="comment">// destHeight: 589*dpr, //输出的图片的高度 </span></span><br><span class="line">            <span class="attr">canvas</span>: canvas,</span><br><span class="line">            <span class="comment">// canvasId: &#x27;firstCanvas&#x27;,</span></span><br><span class="line">            <span class="attr">fileType</span>: <span class="string">&#x27;jpg&#x27;</span>, <span class="comment">//图片的质量，目前仅对 jpg 有效。取值范围为 (0, 1]，不在范围内时当作 1.0 处理。</span></span><br><span class="line">            <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">              <span class="comment">// 获得图片临时路径</span></span><br><span class="line">              <span class="variable language_">console</span>.<span class="title function_">log</span>(res, <span class="string">&#x27;8520&#x27;</span>);</span><br><span class="line">              wx.<span class="title function_">hideLoading</span>(&#123;</span><br><span class="line">                <span class="attr">fial</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;&#125;</span><br><span class="line">              &#125;)</span><br><span class="line">              that.<span class="title function_">setData</span>(&#123;</span><br><span class="line">                <span class="attr">imageTempPath</span>: res.<span class="property">tempFilePath</span></span><br><span class="line">              &#125;);</span><br><span class="line">              <span class="comment">// that.saveImg(res.tempFilePath)</span></span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125;, <span class="number">4000</span>);</span><br><span class="line"></span><br><span class="line">      &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line">  <span class="comment">//保存海报到相册</span></span><br><span class="line">  <span class="title function_">saveImg</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> that = <span class="variable language_">this</span></span><br><span class="line">    wx.<span class="title function_">showModal</span>(&#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;提示&#x27;</span>, <span class="comment">// 标题</span></span><br><span class="line">      <span class="attr">content</span>: <span class="string">&#x27;是否保存到相册&#x27;</span>, <span class="comment">// 提示内容</span></span><br><span class="line">      <span class="attr">showCancel</span>: <span class="literal">true</span>, <span class="comment">// 是否显示取消按钮</span></span><br><span class="line">      <span class="attr">cancelText</span>: <span class="string">&#x27;取消&#x27;</span>, <span class="comment">// 取消按钮的文字，默认为&quot;取消&quot;</span></span><br><span class="line">      <span class="attr">cancelColor</span>: <span class="string">&#x27;#000000&#x27;</span>, <span class="comment">// 取消按钮的文字颜色，默认为&quot;#000000&quot;</span></span><br><span class="line">      <span class="attr">confirmText</span>: <span class="string">&#x27;确定&#x27;</span>, <span class="comment">// 确定按钮的文字，默认为&quot;确定&quot;</span></span><br><span class="line">      <span class="attr">confirmColor</span>: <span class="string">&#x27;#3CC51F&#x27;</span>, <span class="comment">// 确定按钮的文字颜色，默认为&quot;#3CC51F&quot;</span></span><br><span class="line">      <span class="title function_">success</span>(<span class="params">res</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (res.<span class="property">confirm</span>) &#123;</span><br><span class="line">          <span class="comment">// 用户点击了确定按钮，执行相应操作</span></span><br><span class="line">          <span class="comment">// wx.hideLoading()</span></span><br><span class="line">         </span><br><span class="line">          wx.<span class="title function_">saveImageToPhotosAlbum</span>(&#123;</span><br><span class="line">            <span class="attr">filePath</span>: that.<span class="property">data</span>.<span class="property">imageTempPath</span>,</span><br><span class="line">            <span class="attr">success</span>: <span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">              wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">                <span class="attr">title</span>: <span class="string">&#x27;已保存到相册&#x27;</span>,</span><br><span class="line">                <span class="attr">icon</span>: <span class="string">&#x27;success&#x27;</span>,</span><br><span class="line">                <span class="attr">duration</span>: <span class="number">2000</span></span><br><span class="line">              &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="attr">fail</span>: <span class="function">(<span class="params">err</span>) =&gt;</span> &#123;</span><br><span class="line">              wx.<span class="title function_">showToast</span>(&#123;</span><br><span class="line">                <span class="attr">title</span>: <span class="string">&#x27;保存失败&#x27;</span>,</span><br><span class="line">                <span class="attr">icon</span>: <span class="string">&#x27;none&#x27;</span></span><br><span class="line">              &#125;);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;)</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (res.<span class="property">cancel</span>) &#123;</span><br><span class="line">          <span class="comment">// 用户点击了取消按钮，执行相应操作</span></span><br><span class="line">          <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;用户点击取消&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">// 发送请求，获取昵称</span></span><br><span class="line">  <span class="keyword">async</span> <span class="title function_">getRankList</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> res = <span class="keyword">await</span> <span class="title function_">getRankListApi</span>();</span><br><span class="line">    <span class="keyword">const</span> self = res.<span class="property">self</span></span><br><span class="line">    <span class="keyword">const</span> name = self.<span class="property">nickname</span></span><br><span class="line">    <span class="variable language_">this</span>.<span class="title function_">setData</span>(&#123;</span><br><span class="line">      name</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="title function_">onShareAppMessage</span>(<span class="params">options</span>) &#123;</span><br><span class="line">    <span class="keyword">const</span> inviteId = app.<span class="property">globalData</span>.<span class="property">customerId</span></span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(inviteId, <span class="string">&#x27;inviteId&#x27;</span>);</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="attr">title</span>: <span class="string">&#x27;K星矿元 ，K分兑大奖！&#x27;</span>,</span><br><span class="line">      <span class="attr">path</span>: <span class="string">&#x27;/pages/home/home?scene=&#x27;</span> + inviteId,</span><br><span class="line">      <span class="attr">imageUrl</span>: <span class="string">&#x27;https://image.kmeta.world/applet/images/coffeeSharePic.png&#x27;</span>, <span class="comment">// 分享图片路径</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="https://k705.github.io/2024/04/08/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E9%A1%B9%E7%9B%AE%E5%AE%9E%E7%94%A8%E6%8A%80%E5%B7%A7/" title="微信小程序学习笔记" target="_blank" rel="external">https://k705.github.io/2024/04/08/微信小程序项目实用技巧/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/images/avatar.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/cofess" target="_blank"><span class="text-dark">KK</span><small class="ml-1x">前端工程师</small></a></h3>
+        <div>个人简介。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+      <div id="vcomments"></div>
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-%E7%A7%8B%E6%8B%9B%E6%80%BB%E7%BB%93/" title="高频面试题2"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-hello-world/" title="Hello World"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  <!-- <div class="wave-icon wave-icon-danger btn-donate" data-toggle="modal" data-target="#donateModal">
+    <div class="wave-circle"><span class="icon"><i class="icon icon-bill"></i></span></div>
+  </div> -->
+  
+  
+  <div class="bar-right">
+    
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+    
+  </div>
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-small modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content donate">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-head">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane fade active in" id="alipay">
+              <div class="donate-payimg">
+                <img src="/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="wechatpay">
+              <div class="donate-payimg">
+                <img src="/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+              </div>
+              <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+              <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+          <div class="donate-footer">
+            <ul class="nav nav-tabs nav-justified" role="tablist">
+              <li role="presentation" class="active">
+                <a href="#alipay" id="alipay-tab" role="tab" data-toggle="tab" aria-controls="alipay" aria-expanded="true"><i class="icon icon-alipay"></i> 支付宝</a>
+              </li>
+              <li role="presentation" class="">
+                <a href="#wechatpay" role="tab" id="wechatpay-tab" data-toggle="tab" aria-controls="wechatpay" aria-expanded="false"><i class="icon icon-wepay"></i> 微信支付</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/cofess" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="icon icon-github"></i></a></li>
+        
+        <li><a href="http://weibo.com/cofess" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="icon icon-weibo"></i></a></li>
+        
+        <li><a href="https://twitter.com/iwebued" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="icon icon-twitter"></i></a></li>
+        
+        <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="//cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+
+<script src="/js/plugin.min.js"></script>
+
+
+<script src="/js/application.js"></script>
+
+
+    <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+
+
+
+
+   
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+   
+    
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/valine"></script>
+  <script type="text/javascript">
+  var GUEST = ['nick', 'mail', 'link'];
+  var meta = 'nick,mail,link';
+  meta = meta.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#vcomments',
+    verify: false,
+    notify: false,
+    appId: '',
+    appKey: '',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: meta,
+    pageSize: '10' || 10,
+    visitor: false
+  });
+  </script>
+
+     
+
+
+
+
+
+
+
+</body>
+</html>
