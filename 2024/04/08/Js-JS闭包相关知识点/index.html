@@ -25,19 +25,19 @@
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 此部分知识点实际上在本人 A_JavaScript进阶学习笔记 中就有详细的记载,但现在仍单独抽出,为了是自己复习or同学们更快地找到这个知识点  一、闭包预备知识点梳理 在进入闭包之前,你要确保上面知识点你能掌握.你不确定 ? 噢好吧,那你就跟着我看下这部分梳理(如果懂得直接跳过即可)  Ⅰ- 举个栗子分析执行上下文 在讨论闭包之前，让我们看下下方的代码(建议先只看代码自己头脑风暴再看笔">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143351376.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415160945789.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415161137977.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727193110329.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211223203829560.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143351376.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415160945789.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415161137977.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727193110329.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211223203829560.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T08:57:51.653Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="JS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143351376.png">
+<meta name="twitter:image" content="https://k705.github.io/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143351376.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://k705.github.io/2024/04/08/Js-JS%E9%97%AD%E5%8C%85%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/index.html">
   
@@ -47,7 +47,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="/k705.github.io/css/style.css">
 
   
   
@@ -64,7 +64,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="./images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/k705.github.io/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
@@ -108,7 +108,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="./.">
+          <a href="/k705.github.io/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -118,7 +118,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="./archives">
+          <a href="/k705.github.io/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -128,7 +128,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="./categories">
+          <a href="/k705.github.io/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -138,7 +138,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="./tags">
+          <a href="/k705.github.io/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -148,7 +148,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="./repository">
+          <a href="/k705.github.io/repository">
             
             <i class="icon icon-project"></i>
             
@@ -158,7 +158,7 @@
         
         
         <li class="menu-item menu-item-books">
-          <a href="./books">
+          <a href="/k705.github.io/books">
             
             <i class="icon icon-book-fill"></i>
             
@@ -168,7 +168,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="./links">
+          <a href="/k705.github.io/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -178,7 +178,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="./about">
+          <a href="/k705.github.io/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -199,7 +199,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705.github.io/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -230,7 +230,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="./tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -240,7 +240,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="./tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="./tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="./tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="./tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="./tags/ES/" style="font-size: 13.92px;">ES</a> <a href="./tags/Git/" style="font-size: 13.23px;">Git</a> <a href="./tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="./tags/Html/" style="font-size: 13px;">Html</a> <a href="./tags/JS/" style="font-size: 13.77px;">JS</a> <a href="./tags/Java/" style="font-size: 13.54px;">Java</a> <a href="./tags/Js/" style="font-size: 13px;">Js</a> <a href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="./tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="./tags/TS/" style="font-size: 13.15px;">TS</a> <a href="./tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="./tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="./tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="./tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="./tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="./tags/go/" style="font-size: 13px;">go</a> <a href="./tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="./tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="./tags/react/" style="font-size: 13.54px;">react</a> <a href="./tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="./tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="./tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="./tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="./tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="./tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+      <a href="/k705.github.io/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/k705.github.io/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/k705.github.io/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/k705.github.io/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/k705.github.io/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/k705.github.io/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/k705.github.io/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/k705.github.io/tags/Html/" style="font-size: 13px;">Html</a> <a href="/k705.github.io/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/k705.github.io/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/k705.github.io/tags/Js/" style="font-size: 13px;">Js</a> <a href="/k705.github.io/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/k705.github.io/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/k705.github.io/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/k705.github.io/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/k705.github.io/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/k705.github.io/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/k705.github.io/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/k705.github.io/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/k705.github.io/tags/go/" style="font-size: 13px;">go</a> <a href="/k705.github.io/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/k705.github.io/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/k705.github.io/tags/react/" style="font-size: 13.54px;">react</a> <a href="/k705.github.io/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/k705.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/k705.github.io/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/k705.github.io/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/k705.github.io/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/k705.github.io/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/k705.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/k705.github.io/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/k705.github.io/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/k705.github.io/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/k705.github.io/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/k705.github.io/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
     </div>
   </div>
 
@@ -249,7 +249,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="./archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/k705.github.io/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
     </div>
   </div>
 
@@ -268,7 +268,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+                <a href="/k705.github.io/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
@@ -283,7 +283,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+                <a href="/k705.github.io/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
@@ -298,7 +298,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+                <a href="/k705.github.io/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
@@ -313,7 +313,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705.github.io/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -328,7 +328,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705.github.io/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -364,7 +364,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="./2024/04/08/Js-JS%E9%97%AD%E5%8C%85%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
+	<a href="/k705.github.io/2024/04/08/Js-JS%E9%97%AD%E5%8C%85%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/" class="article-date">
 	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
 	</a>
 </span>
@@ -372,7 +372,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="./tags/JS/" rel="tag">JS</a>
+	<a class="article-tag-link-link" href="/k705.github.io/tags/JS/" rel="tag">JS</a>
   </span>
 
 
@@ -385,7 +385,7 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="./2024/04/08/Js-JS%E9%97%AD%E5%8C%85%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/k705.github.io/2024/04/08/Js-JS%E9%97%AD%E5%8C%85%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86%E7%82%B9/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -581,20 +581,20 @@ console.log(arr3)// [2,4]
 </ul>
 <p>此处错误是,直接修改并使用全局变量[<code>i</code>],导致for循环结束后,所有点击按钮绑定的弹窗值都是[<code>i+1</code>]</p>
 <p>随后调用时,都会找到[<code>i</code>]这个变量,但是此时i&#x3D;&#x3D;3,所以所有结果都是4</p>
-<p><img src="/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143351376.png" alt="image-20210727143351376"> </p>
+<p><img src="/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143351376.png" alt="image-20210727143351376"> </p>
 </blockquote>
 <h4 id="②-将变量挂载到自身来解决"><a href="#②-将变量挂载到自身来解决" class="headerlink" title="② 将变量挂载到自身来解决"></a>② 将变量挂载到自身来解决</h4><blockquote>
 <p>解决方式:将btn所对应的下标保存在btn上</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>测试1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>测试2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">button</span>&gt;</span>测试3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&gt;&lt;!--</span><br><span class="line">&gt;需求: 点击某个按钮, 提示<span class="string">&quot;点击的是第n个按钮&quot;</span></span><br><span class="line">&gt;--&gt;</span><br><span class="line">&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;<span class="keyword">var</span> btns = <span class="variable language_">document</span>.<span class="title function_">getElementsByTagName</span>(<span class="string">&#x27;button&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>,length=btns.<span class="property">length</span>; i &lt; length; i++) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;<span class="keyword">var</span> btn = btns[i]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;<span class="comment">//将btn所对应的下标保存在btn上</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;btn.<span class="property">index</span> = i</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;btn.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;  <span class="comment">//遍历加监听</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="title function_">alert</span>(<span class="string">&#x27;第&#x27;</span>+(i+<span class="number">1</span>)+<span class="string">&#x27;个&#x27;</span>)     <span class="comment">//结果 全是[4]</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span>    </span><br></pre></td></tr></table></figure>
 
 <p>将其放在自己的身上,需要时自己找自己拿,这样就能解决</p>
-<p><img src="/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png" alt="image-20210727143824641"></p>
+<p><img src="/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png" alt="image-20210727143824641"></p>
 </blockquote>
 <h4 id="③-利用闭包"><a href="#③-利用闭包" class="headerlink" title="③ 利用闭包"></a>③ 利用闭包</h4><blockquote>
 <p>利用闭包知识点解决,引出下方知识点,不懂的可以带着疑问继续往下看</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="language-xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">&gt;<span class="tag">&lt;<span class="name">button</span>&gt;</span>测试1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">&gt;<span class="tag">&lt;<span class="name">button</span>&gt;</span>测试2<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">&gt;<span class="tag">&lt;<span class="name">button</span>&gt;</span>测试3<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"></span></span><br><span class="line"><span class="language-xml">&gt;<span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;<span class="comment">//利用闭包</span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>,length=btns.<span class="property">length</span>; i &lt; length; i++) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;<span class="comment">//此处的j是局部的,它将传入的[i]存入局部的[j]中,这样就能实现效果 </span></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;(<span class="keyword">function</span> (<span class="params">j</span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">var</span> btn = btns[j]</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">btn.<span class="property">onclick</span> = <span class="keyword">function</span> (<span class="params"></span>) &#123;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">  <span class="title function_">alert</span>(<span class="string">&#x27;第&#x27;</span>+(j+<span class="number">1</span>)+<span class="string">&#x27;个&#x27;</span>)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;&#125;)(i)</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;&#125;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml">&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span>  </span></span><br><span class="line"><span class="language-xml">&gt;<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png" alt="image-20210727143824641"></p>
+<p><img src="/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727143824641.png" alt="image-20210727143824641"></p>
 </blockquote>
 <h3 id="Ⅱ-举个闭包栗子分析理解"><a href="#Ⅱ-举个闭包栗子分析理解" class="headerlink" title="Ⅱ-举个闭包栗子分析理解"></a>Ⅱ-举个闭包栗子分析理解</h3><blockquote>
 <p>按照上方 [<code>4</code>]代码举例分析流程的方式 来尝试理解<code>闭包</code>概念</p>
@@ -752,13 +752,13 @@ console.log(arr3)// [2,4]
 <ol start="4">
 <li>虽然好像没什么意义，但是很显然上述使用了[<code>闭包</code>]，而且该函数的返回值是一个函数。其实，这就是<code>高阶函数的定义：以函数为参数或者返回值是函数的函数。</code></li>
 </ol>
-<p><img src="/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415160945789.png" alt="image-20210415160945789"></p>
+<p><img src="/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415160945789.png" alt="image-20210415160945789"></p>
 </blockquote>
 <h5 id="2、柯里化"><a href="#2、柯里化" class="headerlink" title="2、柯里化"></a>2、柯里化</h5><blockquote>
 <ol>
 <li>图例:</li>
 </ol>
-<p><img src="/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415161137977.png" alt="image-20210415161137977"></p>
+<p><img src="/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210415161137977.png" alt="image-20210415161137977"></p>
 <ol start="2">
 <li>关键就是<code>理解柯里化</code>，其实可以把它理解成，柯里化后，<code>将第一个参数变量存在函数里面了(闭包)</code>，然后本来需要n个参数的函数可以变成只需要剩下的（n - 1个）参数就可以调用，比如</li>
 </ol>
@@ -885,7 +885,7 @@ f = null //让内部函数成为垃圾对象--&gt;回收闭包
 </code></pre>
 </li>
 </ul>
-<p>不使用let const var等去声明,实际上是挂载到[<code>window</code>]上的,所以导致内存泄露<img src="/k705/kk.github.io.git/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727193110329.png" alt="image-20210727193110329"></p>
+<p>不使用let const var等去声明,实际上是挂载到[<code>window</code>]上的,所以导致内存泄露<img src="/k705.github.io/A_JavaScript%E8%BF%9B%E9%98%B6%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210727193110329.png" alt="image-20210727193110329"></p>
 </blockquote>
 <h3 id="Ⅸ-相关面试题1"><a href="#Ⅸ-相关面试题1" class="headerlink" title="Ⅸ-相关面试题1"></a>Ⅸ-相关面试题1</h3><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="comment">//代码片段一  --&gt;没有产生闭包:因为内部函数没有调用外部变量</span></span><br><span class="line">&gt;<span class="keyword">var</span> name = <span class="string">&quot;The Window&quot;</span>;</span><br><span class="line">&gt;<span class="keyword">var</span> object = &#123;</span><br><span class="line">&gt;name : <span class="string">&quot;My Object&quot;</span>,</span><br><span class="line">&gt;getNameFunc : <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">&gt;<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="keyword">return</span> <span class="variable language_">this</span>.<span class="property">name</span>;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="title function_">alert</span>(object.<span class="title function_">getNameFunc</span>()());  <span class="comment">//?  the window</span></span><br><span class="line">&gt;<span class="comment">//函数体的this是window</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//代码片段二</span></span><br><span class="line">&gt;<span class="keyword">var</span> name2 = <span class="string">&quot;The Window&quot;</span>;</span><br><span class="line">&gt;<span class="keyword">var</span> object2 = &#123;</span><br><span class="line">&gt;name2 : <span class="string">&quot;My Object&quot;</span>,</span><br><span class="line">&gt;getNameFunc : <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">&gt;<span class="comment">//此处的this指向是[getNameFunc],他是对象中的属性,所以this指向就是object</span></span><br><span class="line">&gt;<span class="keyword">var</span> that = <span class="variable language_">this</span>;</span><br><span class="line">&gt;<span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line"><span class="comment">//此处用的是保存的  that</span></span><br><span class="line"><span class="keyword">return</span> that.<span class="property">name2</span>;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;&#125;;</span><br><span class="line">&gt;<span class="title function_">alert</span>(object2.<span class="title function_">getNameFunc</span>()()); <span class="comment">//?  my object</span></span><br></pre></td></tr></table></figure>
@@ -923,7 +923,7 @@ f = null //让内部函数成为垃圾对象--&gt;回收闭包
 <li>随后每次调用,都是相当于添加一段<code>黄色部分代码</code></li>
 <li>闭包相当于:只要不将其指向都清空,<code>红色框内代码</code>,只会增加不会被销毁,所以做到了类似维护自己内部变量数据的效果</li>
 </ul>
-<p><img src="/k705/kk.github.io.git/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211223203829560.png" alt="image-20211223203829560"> </p>
+<p><img src="/k705.github.io/JavaScript%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20211223203829560.png" alt="image-20211223203829560"> </p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&gt;<span class="keyword">let</span> createSingle = (<span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">       <span class="keyword">let</span> _unique = <span class="literal">null</span>;</span><br><span class="line">       <span class="keyword">function</span> <span class="title function_">single</span>(<span class="params"></span>)&#123;</span><br><span class="line">           <span class="keyword">return</span> &#123;</span><br><span class="line">               <span class="attr">a</span>: <span class="number">1</span></span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">           <span class="keyword">if</span> (_unique === <span class="literal">null</span>) &#123;</span><br><span class="line">               _unique = <span class="title function_">single</span>()</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">return</span> _unique</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;)()</span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//1.上面代码运行后，createSingle 相当于下面代码</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="keyword">let</span> _unique = <span class="literal">null</span>;</span><br><span class="line">&gt;<span class="keyword">function</span> <span class="title function_">single</span>(<span class="params"></span>)&#123;</span><br><span class="line">   <span class="keyword">return</span> &#123;</span><br><span class="line">       <span class="attr">a</span>: <span class="number">1</span></span><br><span class="line">   &#125;</span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="keyword">let</span> createSingle = <span class="keyword">function</span>(<span class="params"></span>)&#123;</span><br><span class="line">     <span class="keyword">if</span> (_unique === <span class="literal">null</span>) &#123;</span><br><span class="line">         _unique = <span class="title function_">single</span>()<span class="comment">//找到上面 single() 函数</span></span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> _unique</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&gt;<span class="comment">//2. 之后的每次调用  执行下面的代码</span></span><br><span class="line">&gt;<span class="title function_">createSingle</span>()</span><br><span class="line">&gt;<span class="comment">/********* S:相当于此段代码 **************/</span></span><br><span class="line">&gt;<span class="keyword">if</span> (_unique === <span class="literal">null</span>) &#123;</span><br><span class="line"> _unique = <span class="title function_">single</span>()<span class="comment">//找到上面 single() 函数</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="keyword">return</span> _unique</span><br><span class="line">&gt;<span class="comment">/********* E:相当于此段代码 **************/</span></span><br><span class="line"></span><br><span class="line">&gt;<span class="title function_">createSingle</span>() <span class="comment">//再次调用</span></span><br><span class="line">&gt;<span class="comment">/********* S:相当于此段代码 **************/</span></span><br><span class="line">&gt;<span class="keyword">if</span> (_unique === <span class="literal">null</span>) &#123;</span><br><span class="line"> _unique = <span class="title function_">single</span>()<span class="comment">//找到上面 single() 函数</span></span><br><span class="line">&gt;&#125;</span><br><span class="line">&gt;<span class="keyword">return</span> _unique</span><br><span class="line">&gt;<span class="comment">/********* E:相当于此段代码 **************/</span></span><br></pre></td></tr></table></figure>
 
 
@@ -952,7 +952,7 @@ f = null //让内部函数成为垃圾对象--&gt;回收闭包
     <figure class="media">
       <div class="media-left">
         <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="./images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/k705.github.io/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -984,12 +984,12 @@ f = null //让内部函数成为垃圾对象--&gt;回收闭包
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="./2024/04/08/Js-JavaScript%E5%AE%9E%E7%94%A8%E7%9F%AD%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86%E5%90%88%E9%9B%86/" title="Js实用短代码整理"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705.github.io/2024/04/08/Js-JavaScript%E5%AE%9E%E7%94%A8%E7%9F%AD%E4%BB%A3%E7%A0%81%E6%95%B4%E7%90%86%E5%90%88%E9%9B%86/" title="Js实用短代码整理"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="./2024/04/08/Js-jsonP%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F%E6%96%B9%E6%A1%88/" title="jsonP跨域"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/k705.github.io/2024/04/08/Js-setInterval%E5%92%8CsetTimeout%E7%AC%AC%E4%B8%80%E4%B8%AA%E5%8F%82%E6%95%B0%E5%8A%A0%E4%B8%8E%E4%B8%8D%E5%8A%A0%E5%BC%95%E5%8F%B7%E7%9A%84%E5%8C%BA%E5%88%AB/" title="setTimeout或setInterval第一个参数加不加引号"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -1024,14 +1024,14 @@ f = null //让内部函数成为垃圾对象--&gt;回收闭包
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="alipay">
               <div class="donate-payimg">
-                <img src="./images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705.github.io/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="wechatpay">
               <div class="donate-payimg">
-                <img src="./images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705.github.io/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
@@ -1070,7 +1070,7 @@ f = null //让内部函数成为垃圾对象--&gt;回收闭包
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705.github.io/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -1086,10 +1086,10 @@ f = null //让内部函数成为垃圾对象--&gt;回收闭包
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="./js/plugin.min.js"></script>
+<script src="/k705.github.io/js/plugin.min.js"></script>
 
 
-<script src="./js/application.js"></script>
+<script src="/k705.github.io/js/application.js"></script>
 
 
     <script>
@@ -1102,14 +1102,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: './',
-        CONTENT_URL: './content.json',
+        ROOT_URL: '/k705.github.io/',
+        CONTENT_URL: '/k705.github.io/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="./js/insight.js"></script>
+<script src="/k705.github.io/js/insight.js"></script>
 
 
 

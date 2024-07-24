@@ -25,57 +25,57 @@
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 正则可以说是操作 [ 字符串 ] 最强大的工具了,没有之一,特别是在进行爬虫技术或 前端字符串处理时简直必备技能,然鹅正则总是学了忘、忘了学,用时还需要去百度翻资料,也是严重影响了工作效率,所以我也认真查阅许多资料认真学习梳理成此笔记. 在此我会尽量详细地对查阅的资料进行摘录梳理并加入自己理解,相信看完这个笔记后同学们能快速掌握或者定位知识点 查阅的资料或博客:【韩顺平讲 Java】Jav">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160443209.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152404114.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152632978.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152705104.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152720265.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823163759857.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165209675.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165618928.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823170252598.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823171609152.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823174207663.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824150118740.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824152745988.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824155021720.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824160335439.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824174620834.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824175027635.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824183619120.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825100913892.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825102613183.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825104339765.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825105333415.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151100732.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151355148.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825115024261.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825120225726.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825134252419.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825135253647.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825140424777.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825142213481.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825143341960.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144241403.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144416801.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825164553046.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165158705.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165311702.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165609920.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170353449.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170801038.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171214600.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171655993.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173134832.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173334751.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173421761.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160443209.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152404114.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152632978.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152705104.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152720265.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823163759857.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165209675.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165618928.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823170252598.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823171609152.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823174207663.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824150118740.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824152745988.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824155021720.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824160335439.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824174620834.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824175027635.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824183619120.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825100913892.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825102613183.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825104339765.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825105333415.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151100732.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151355148.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825115024261.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825120225726.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825134252419.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825135253647.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825140424777.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825142213481.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825143341960.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144241403.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144416801.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825164553046.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165158705.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165311702.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165609920.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170353449.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170801038.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171214600.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171655993.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173134832.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173334751.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173421761.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T10:01:22.051Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="正则">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
+<meta name="twitter:image" content="https://k705.github.io/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://k705.github.io/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/index.html">
   
@@ -85,7 +85,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="/k705.github.io/css/style.css">
 
   
   
@@ -102,7 +102,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="./images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/k705.github.io/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
@@ -146,7 +146,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="./.">
+          <a href="/k705.github.io/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -156,7 +156,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="./archives">
+          <a href="/k705.github.io/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -166,7 +166,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="./categories">
+          <a href="/k705.github.io/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -176,7 +176,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="./tags">
+          <a href="/k705.github.io/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -186,7 +186,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="./repository">
+          <a href="/k705.github.io/repository">
             
             <i class="icon icon-project"></i>
             
@@ -196,7 +196,7 @@
         
         
         <li class="menu-item menu-item-books">
-          <a href="./books">
+          <a href="/k705.github.io/books">
             
             <i class="icon icon-book-fill"></i>
             
@@ -206,7 +206,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="./links">
+          <a href="/k705.github.io/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -216,7 +216,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="./about">
+          <a href="/k705.github.io/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -237,7 +237,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705.github.io/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -268,7 +268,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="./tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -278,7 +278,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="./tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="./tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="./tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="./tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="./tags/ES/" style="font-size: 13.92px;">ES</a> <a href="./tags/Git/" style="font-size: 13.23px;">Git</a> <a href="./tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="./tags/Html/" style="font-size: 13px;">Html</a> <a href="./tags/JS/" style="font-size: 13.77px;">JS</a> <a href="./tags/Java/" style="font-size: 13.54px;">Java</a> <a href="./tags/Js/" style="font-size: 13px;">Js</a> <a href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="./tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="./tags/TS/" style="font-size: 13.15px;">TS</a> <a href="./tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="./tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="./tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="./tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="./tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="./tags/go/" style="font-size: 13px;">go</a> <a href="./tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="./tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="./tags/react/" style="font-size: 13.54px;">react</a> <a href="./tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="./tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="./tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="./tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="./tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="./tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+      <a href="/k705.github.io/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/k705.github.io/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/k705.github.io/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/k705.github.io/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/k705.github.io/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/k705.github.io/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/k705.github.io/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/k705.github.io/tags/Html/" style="font-size: 13px;">Html</a> <a href="/k705.github.io/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/k705.github.io/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/k705.github.io/tags/Js/" style="font-size: 13px;">Js</a> <a href="/k705.github.io/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/k705.github.io/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/k705.github.io/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/k705.github.io/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/k705.github.io/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/k705.github.io/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/k705.github.io/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/k705.github.io/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/k705.github.io/tags/go/" style="font-size: 13px;">go</a> <a href="/k705.github.io/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/k705.github.io/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/k705.github.io/tags/react/" style="font-size: 13.54px;">react</a> <a href="/k705.github.io/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/k705.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/k705.github.io/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/k705.github.io/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/k705.github.io/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/k705.github.io/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/k705.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/k705.github.io/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/k705.github.io/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/k705.github.io/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/k705.github.io/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/k705.github.io/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
     </div>
   </div>
 
@@ -287,7 +287,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="./archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/k705.github.io/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
     </div>
   </div>
 
@@ -306,7 +306,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+                <a href="/k705.github.io/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
@@ -321,7 +321,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+                <a href="/k705.github.io/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
@@ -336,7 +336,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+                <a href="/k705.github.io/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
@@ -351,7 +351,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705.github.io/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -366,7 +366,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705.github.io/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -402,7 +402,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="./2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
+	<a href="/k705.github.io/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="article-date">
 	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
 	</a>
 </span>
@@ -410,7 +410,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="./tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a>
+	<a class="article-tag-link-link" href="/k705.github.io/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a>
   </span>
 
 
@@ -423,7 +423,7 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="./2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/k705.github.io/2024/04/08/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -496,17 +496,17 @@
 <p>此示例图解析部分主要摘录自 <code>comer的60分钟正则从入门到深入</code>,本人觉得其图画的挺好的,且确实刚开始可以稍微看下正则具体应用,方便后续理解,便摘录下来</p>
 </blockquote>
 <h4 id="a-通用正则表达式"><a href="#a-通用正则表达式" class="headerlink" title="a) 通用正则表达式"></a>a) 通用正则表达式</h4><blockquote>
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png" alt="image-20210823160637803"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160637803.png" alt="image-20210823160637803"></p>
 </blockquote>
 <h4 id="b-手机号正则"><a href="#b-手机号正则" class="headerlink" title="b) 手机号正则"></a>b) 手机号正则</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^<span class="number">1</span>[<span class="number">34578</span>][<span class="number">0</span>-<span class="number">9</span>]&#123;<span class="number">9</span>&#125;$/;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160443209.png" alt="image-20210823160443209"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823160443209.png" alt="image-20210823160443209"></p>
 </blockquote>
 <h4 id="c-日期匹配与分组替换"><a href="#c-日期匹配与分组替换" class="headerlink" title="c) 日期匹配与分组替换"></a>c) 日期匹配与分组替换</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^\d&#123;<span class="number">4</span>&#125;[<span class="regexp">/-]d&#123;1,2&#125;[/-]\d&#123;1,2&#125;$/</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152404114.png" alt="image-20210825152404114"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152404114.png" alt="image-20210825152404114"></p>
 <p>这个正则比较复杂，画符念咒的地方太多了，一一分析：</p>
 <ul>
 <li>Start of line 是由^生效的表示以此开头</li>
@@ -518,23 +518,23 @@
 <blockquote>
 <p>好了这个正则解释完了，接下来用它做什么呢？</p>
 </blockquote>
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152632978.png" alt="image-20210825152632978"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152632978.png" alt="image-20210825152632978"></p>
 <p>我们可以验证日期的合法性<br>结合 URL 分组替换所用到的分组特性，我们可以轻松写出日期格式化的方法</p>
 <blockquote>
 <p>改造下这个正则</p>
 </blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/^(\d&#123;<span class="number">4</span>&#125;)[<span class="regexp">/-](\d&#123;1,2&#125;)[/-](\d&#123;1,2&#125;)$/</span>;</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152705104.png" alt="image-20210825152705104"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152705104.png" alt="image-20210825152705104"></p>
 <p>轻松的可以拿到 group#1 #2 #3 的内容，对应 $1 $2 $3</p>
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152720265.png" alt="image-20210825152720265"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825152720265.png" alt="image-20210825152720265"></p>
 </blockquote>
 <h2 id="3、基本匹配"><a href="#3、基本匹配" class="headerlink" title="3、基本匹配"></a>3、基本匹配</h2><blockquote>
 <p>正则表达式其实就是在执行搜索时的格式，它由一些字母(也可以是汉字)和数字组合而成。</p>
 <p>例如：一个正则表达式 <code>学习的汪 H</code>，它表示一个规则：由<code>学</code>开始，接着是<code>习</code>,…最后<code>H</code>。它是组个字符与输入的正则表达式作比较,同时大小写敏感</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;学习的汪 H&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hongjilin <span class="comment">//无符合匹配字符串</span></span><br><span class="line">努力学习的汪 <span class="title class_">Hongjilin</span>   <span class="comment">//其中的 [ 学习的汪 H ] 高亮</span></span><br></pre></td></tr></table></figure>
 
-<p>结果示例: 这里分享一个在线练习正则的网站,同学们可以在这里进行练习 –&gt; [ <a target="_blank" rel="noopener" href="https://regex101.com/">在线练习</a> ]<img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823163759857.png" alt="image-20210823163759857"></p>
+<p>结果示例: 这里分享一个在线练习正则的网站,同学们可以在这里进行练习 –&gt; [ <a target="_blank" rel="noopener" href="https://regex101.com/">在线练习</a> ]<img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823163759857.png" alt="image-20210823163759857"></p>
 </blockquote>
 <h1 id="二、元字符"><a href="#二、元字符" class="headerlink" title="二、元字符"></a>二、元字符</h1><blockquote>
 <p>正则表达式主要依赖于元字符。 元字符不代表他们本身的字面意思，他们都有特殊的含义。<strong>一些元字符写在方括号中的时候有一些特殊的意思</strong></p>
@@ -547,27 +547,27 @@
 <p><code>.</code>是元字符中最简单的例子。 <code>.</code>匹配任意单个字符，但不匹配换行符。 例如，表达式 [<code>...o</code> ] 匹配 3 个(几个点就几位)任意字符后面跟着是 [ <code>o</code> ] 的字符串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;...o&#x27;</span> =&gt;  <span class="comment">//此处给出三个点 就是前三位为任意</span></span><br><span class="line">努力学习的汪 hongjilin   <span class="comment">//其中的 [ 汪 ho ] 高亮</span></span><br><span class="line">努力学习的汪 <span class="title class_">Hongjilin</span>   <span class="comment">//其中的 [ 汪 Ho ] 高亮</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165209675.png" alt="image-20210823165209675"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165209675.png" alt="image-20210823165209675"></p>
 <p>这时,某个认真看笔记的同学提问: <code>.</code> 用来匹配任意字符 那么字符串中的<code>句号.</code>,我们又怎么匹配呢?别急,带着这个疑问继续往下看,答案就在下方字符集中</p>
 </blockquote>
 <h2 id="3、字符集"><a href="#3、字符集" class="headerlink" title="3、字符集"></a>3、字符集</h2><blockquote>
 <p>字符集也叫做字符类。 方括号用来指定一个字符集。 在方括号中使用连字符来指定字符集的范围。 在方括号中的字符集不关心顺序。 例如，表达式 [ <code>学习的汪 [Hh]</code> ] 匹配 [ <code>学习的汪 h</code> ] 和 [ <code>学习的汪 H</code> ] 。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;学习的汪 [Hh]&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hongjilin   <span class="comment">//其中的 [ 学习的汪 h ] 高亮</span></span><br><span class="line">努力学习的汪 <span class="title class_">Hongjilin</span>   <span class="comment">//其中的 [ 学习的汪 H ] 高亮</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165618928.png" alt="image-20210823165618928"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823165618928.png" alt="image-20210823165618928"></p>
 </blockquote>
 <h3 id="Ⅰ-字符集中匹配句号-–"><a href="#Ⅰ-字符集中匹配句号-–" class="headerlink" title="Ⅰ- 字符集中匹配句号. –&gt;&gt; [.]"></a>Ⅰ- 字符集中匹配句号. –&gt;&gt; <code>[.]</code></h3><blockquote>
 <p>前面我们说过<code>点运算符</code>,那同学们是否会有个疑惑, <code>.</code> 被用来匹配任意字符,那么作为字符串中的<code>句号.</code>,又该用什么匹配呢?</p>
 <p>方括号的句号就表示句号。 表达式 <code>lin[.]</code> 匹配 <code>lin.</code>字符串</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;lin[.]&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hongjilins</span><br><span class="line">努力学习的汪 <span class="title class_">Hongjilin</span>.</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823170252598.png" alt="image-20210823170252598"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823170252598.png" alt="image-20210823170252598"></p>
 </blockquote>
 <h3 id="Ⅱ-否定字符集-–"><a href="#Ⅱ-否定字符集-–" class="headerlink" title="Ⅱ - 否定字符集 –&gt;&gt; [^]"></a>Ⅱ - 否定字符集 –&gt;&gt; <code>[^]</code></h3><blockquote>
 <p>一般来说 <code>^</code> 表示一个字符串的开头，但它用在一个方括号的开头的时候，它表示这个字符集是否定的。 例如，表达式<code>[^地]学习的[^帅]</code> 匹配一个字符串为 [ 学习的 ]的, 同时前面一位字符串不能为<code>地</code>,后面一位字符串不能为<code>帅</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[^地]学习的[^帅]&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hongjilins  <span class="comment">//只有此处高亮</span></span><br><span class="line">努力学习的帅汪 <span class="title class_">Hongjilin</span>.</span><br><span class="line">帅气地学习的</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823171609152.png" alt="image-20210823171609152"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823171609152.png" alt="image-20210823171609152"></p>
 </blockquote>
 <h4 id="a-一个特殊的用法"><a href="#a-一个特殊的用法" class="headerlink" title="a) 一个特殊的用法"></a>a) 一个特殊的用法</h4><blockquote>
 <p>正则表达式中，点（<code>.</code>）是一个特殊字符，代表任意的单个字符，但是有两个例外。一个是四个字节的 UTF-16 字符，这个可以用<code>u</code>修饰符解决；另一个是行终止符（line terminator character）。</p>
@@ -596,65 +596,65 @@
 <p><code>*</code>号匹配 在<code>*</code>之前的字符出现<code>大于等于0</code>次。 例如，表达式 <code>a*</code> 匹配 0 或更多个以 a 开头的字符。表达式<code>[a-z]*</code> 匹配一个行中所有以小写字母开头的字符串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[a-z]*&quot;</span> =&gt;</span><br><span class="line"><span class="title class_">Hong</span> ji lin <span class="variable constant_">VERY</span> shuai <span class="comment">//部分高亮</span></span><br><span class="line"><span class="variable constant_">HONGJILINHAOSHUAI</span>	  <span class="comment">//全部不亮</span></span><br><span class="line">hongjilinhaoshuai	  <span class="comment">//全部高亮</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823174207663.png" alt="image-20210823174207663"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210823174207663.png" alt="image-20210823174207663"></p>
 <blockquote>
 <p><code>*</code>号搭配 <code>.</code>号</p>
 </blockquote>
 <p><code>*</code>字符和<code>.</code>字符搭配可以匹配所有的字符<code>.*</code>。 <code>*</code>和表示匹配空格的符号<code>\s</code>连起来用，如表达式<code>\s*学习\s*</code>匹配 0 或更多个空格开头和 0 或更多个空格结尾的 cat 字符串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;\s*学习\s*&quot;</span> =&gt; 					  <span class="comment">//0~无限次,所以只要有[ 学习 ]都会被匹配,同时会被匹配的还有其紧靠的无限次的空格</span></span><br><span class="line">努力 学习的汪 hongjilins  		    <span class="comment">//[ 学习 ]前一个空格,后面无空格</span></span><br><span class="line">努力      学习       的汪hongjilins    <span class="comment">//[ 学习 ]前后多个空格</span></span><br><span class="line">努力学习的帅汪 <span class="title class_">Hongjilin</span>. 			   <span class="comment">//[ 学习 ] 前后无空格</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824150118740.png" alt="image-20210824150118740"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824150118740.png" alt="image-20210824150118740"></p>
 </blockquote>
 <h4 id="b-号"><a href="#b-号" class="headerlink" title="b) +号"></a>b) <code>+</code>号</h4><blockquote>
 <p><code>+</code>号匹配<code>+</code>号之前的字符出现 &gt;&#x3D;1 次。 例如表达式<code>学习.+汪</code> 匹配以中文(也可以是字母)<code>学习</code>开头以 [汪] 结尾，中间跟着至少一个字符的字符串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;学习.+汪&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hongjilins</span><br><span class="line">努力学习的帅汪 <span class="title class_">Hongjilin</span>.</span><br><span class="line">努力学习 <span class="number">66</span> 汪 <span class="title class_">Hongjilin</span>.</span><br><span class="line">努力的学习汪  			 <span class="comment">//此行无匹配结果</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824152745988.png" alt="image-20210824152745988"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824152745988.png" alt="image-20210824152745988"></p>
 </blockquote>
 <h4 id="c-号"><a href="#c-号" class="headerlink" title="c) ? 号"></a>c) <code>?</code> 号</h4><blockquote>
 <p>在正则表达式中元字符 <code>?</code> 标记在符号前面的字符为可选，即出现 0 或 1 次。 例如，表达式 <code>学习的[帅]?汪</code> 匹配字符串 <code>学习的汪</code> 和 <code>学习的帅汪</code>。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;学习的[帅]?汪&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hongjilins</span><br><span class="line">努力学习的帅汪 <span class="title class_">Hongjilin</span>.</span><br><span class="line">努力的学习汪 				<span class="comment">//无匹配结果</span></span><br><span class="line">努力学习的帅气汪 <span class="title class_">Hongjilin</span>. <span class="comment">//无匹配结果</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824155021720.png" alt="image-20210824155021720"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824155021720.png" alt="image-20210824155021720"></p>
 </blockquote>
 <h3 id="Ⅳ-量词-–"><a href="#Ⅳ-量词-–" class="headerlink" title="Ⅳ - 量词 –&gt;&gt; {}"></a>Ⅳ - 量词 –&gt;&gt; <code>&#123;&#125;</code></h3><h4 id="a-正常使用示例"><a href="#a-正常使用示例" class="headerlink" title="a) 正常使用示例"></a>a) 正常使用示例</h4><blockquote>
 <p>在正则表达式中 <code>&#123;&#125;</code> 是一个量词，常用来限定一个或一组字符可以重复出现的次数。 例如， 表达式 <code>[0-9]&#123;2,3&#125;</code> 匹配最少 2 位最多 3 位 0~9 的数字。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[0-9]&#123;2,3&#125;&quot;</span> =&gt;</span><br><span class="line">努力学习的<span class="number">1</span>汪<span class="number">1</span></span><br><span class="line">努力学习的<span class="number">233</span>汪</span><br><span class="line">努力学习的<span class="number">4</span>个<span class="number">4444</span>汪</span><br><span class="line">努力学习的<span class="number">5</span>个<span class="number">55555</span>汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824160335439.png" alt="image-20210824160335439"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824160335439.png" alt="image-20210824160335439"></p>
 </blockquote>
 <h4 id="b-省略第二个参数-带逗号"><a href="#b-省略第二个参数-带逗号" class="headerlink" title="b) 省略第二个参数,带逗号"></a>b) 省略第二个参数,带逗号</h4><blockquote>
 <p>我们可以省略第二个参数。 例如，<code>[0-9]&#123;2,&#125;</code> 匹配至少两位 0~9 的数字。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[0-9]&#123;2,&#125;&quot;</span> =&gt;</span><br><span class="line">努力学习的<span class="number">1</span>汪<span class="number">1</span></span><br><span class="line">努力学习的<span class="number">233</span>汪</span><br><span class="line">努力学习的<span class="number">4</span>个<span class="number">4444</span>汪</span><br><span class="line">努力学习的<span class="number">5</span>个<span class="number">55555</span>汪</span><br></pre></td></tr></table></figure>
 
-<p><a target="_blank" rel="noopener" href="https://regex101.com/r/Gdy4w5/1"><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824174620834.png" alt="image-20210824174620834"> </a></p>
+<p><a target="_blank" rel="noopener" href="https://regex101.com/r/Gdy4w5/1"><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824174620834.png" alt="image-20210824174620834"> </a></p>
 </blockquote>
 <h4 id="c-逗号也省略"><a href="#c-逗号也省略" class="headerlink" title="c) 逗号也省略"></a>c) 逗号也省略</h4><blockquote>
 <p>如果逗号也省略掉则表示重复固定的次数。 例如，<code>[0-9]&#123;2&#125;</code> 匹配 2 位数字</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;[0-9]&#123;2&#125;&quot;</span> =&gt;</span><br><span class="line">努力学习的<span class="number">1</span>汪<span class="number">1</span></span><br><span class="line">努力学习的<span class="number">233</span>汪</span><br><span class="line">努力学习的<span class="number">4</span>个<span class="number">4444</span>汪</span><br><span class="line">努力学习的<span class="number">5</span>个<span class="number">55555</span>汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824175027635.png" alt="image-20210824175027635"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824175027635.png" alt="image-20210824175027635"></p>
 </blockquote>
 <h3 id="Ⅴ-特征标群-–"><a href="#Ⅴ-特征标群-–" class="headerlink" title="Ⅴ- 特征标群 –&gt;&gt; (...)"></a>Ⅴ- 特征标群 –&gt;&gt; <code>(...)</code></h3><blockquote>
 <p>特征标群是一组写在 <code>(...)</code> 中的子模式。<code>(...)</code> 中包含的内容将会被看成一个整体，和数学中小括号（ ）的作用相同。例如, 表达式 <code>(ab)*</code> 匹配连续出现 0 或更多个 <code>ab</code>。如果没有使用 <code>(...)</code> ，那么表达式 <code>ab*</code> 将匹配连续出现 0 或更多个 <code>b</code> 。再比如之前说的 <code>&#123;&#125;</code> 是用来表示前面一个字符出现指定次数。但如果在 <code>&#123;&#125;</code> 前加上特征标群 <code>(...)</code> 则表示整个标群内的字符重复 N 次。</p>
 <p>我们还可以在 <code>()</code> 中用或字符 <code>|</code> 表示或。例如，<code>(学习|打工)的汪</code> 匹配 <code>学习的汪</code> 或 <code>打工的汪</code> .</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(学习|打工)的汪 (hong)&#123;2&#125;&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hongjilins</span><br><span class="line">努力学习打工的汪 hongjilins</span><br><span class="line">努力打工的汪 honghongjilins</span><br><span class="line">努力学习打工的汪 honghongjilins</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824183619120.png" alt="image-20210824183619120"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210824183619120.png" alt="image-20210824183619120"></p>
 </blockquote>
 <h3 id="Ⅵ-或运算符-–"><a href="#Ⅵ-或运算符-–" class="headerlink" title="Ⅵ - 或运算符 –&gt;&gt; |"></a>Ⅵ - 或运算符 –&gt;&gt; <code>|</code></h3><blockquote>
 <p>或运算符就表示或，用作判断条件。</p>
 <p>举个栗子: <code>(学习|打工)的(汪|打工人)</code> 进行匹配</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(学习|打工)的(汪|打工人)&quot;</span> =&gt;</span><br><span class="line">努力打工的汪 hongjilins</span><br><span class="line">努力学习的打工人 honghongjilins</span><br><span class="line">努力学习打工的打工人汪 hongjilins</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825100913892.png" alt="image-20210825100913892"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825100913892.png" alt="image-20210825100913892"></p>
 </blockquote>
 <h3 id="Ⅶ-转码特殊字符-–"><a href="#Ⅶ-转码特殊字符-–" class="headerlink" title="Ⅶ - 转码特殊字符 –&gt;&gt; \"></a>Ⅶ - 转码特殊字符 –&gt;&gt; <code>\</code></h3><blockquote>
 <p>反斜线 <code>\</code> 在表达式中用于转码紧跟其后的字符。用于指定 <code>&#123; &#125; [ ] / \ + * . $ ^ | ?</code> 这些特殊字符。如果想要匹配这些特殊字符则要在其前面加上反斜线 <code>\</code>。</p>
 <p>例如 <code>.</code> 是用来匹配除换行符外的所有字符的。如果想要匹配句子中的 <code>.</code> 则要写成 <code>\.</code> 以下这个例子 <code>\.?</code>是选择性匹配<code>.</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(学习|打工)的汪\.? hong\??&quot;</span> =&gt;</span><br><span class="line">努力打工的汪. hong</span><br><span class="line">努力学习的汪? hong</span><br><span class="line">努力学习的汪 hong?</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825102613183.png" alt="image-20210825102613183"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825102613183.png" alt="image-20210825102613183"></p>
 </blockquote>
 <h3 id="Ⅷ-锚点-边界-–-、-、-b、-B"><a href="#Ⅷ-锚点-边界-–-、-、-b、-B" class="headerlink" title="Ⅷ - 锚点(边界) –&gt;&gt; ^、$、\b、\B"></a>Ⅷ - 锚点(边界) –&gt;&gt; <code>^、$、\b、\B</code></h3><blockquote>
 <p>在正则表达式中，想要匹配指定开头或结尾的字符串就要使用到锚点。<code>^</code> 指定开头，<code>$</code> 指定结尾。</p>
@@ -667,25 +667,25 @@
 <p>例如，<code>^(学习|打工)的汪</code> 进行匹配</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;^(学习|打工)的汪&quot;</span> =&gt;  <span class="comment">//注意:下列字符串要分四次匹配,因为即使换行了,后三行字符串本质上都不在字符串开头</span></span><br><span class="line"><span class="comment">//或者标志换成 /m 而不是 /g  因为此处还未说到标志,所以默认大家使用/g全局搜索</span></span><br><span class="line">学习的汪 hong</span><br><span class="line">打工的汪 hong</span><br><span class="line">努力打工的汪 hong</span><br><span class="line">努力学习的汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825104339765.png" alt="image-20210825104339765"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825104339765.png" alt="image-20210825104339765"></p>
 </blockquote>
 <h4 id="b-号-1"><a href="#b-号-1" class="headerlink" title="b) $ 号"></a>b) <code>$</code> 号</h4><blockquote>
 <p>同理于 <code>^</code> 号，<code>$</code> 号用来匹配字符是否是最后一个。</p>
 <p>例如，<code>学习的(汪|打工人)$</code> 匹配以 [ 汪 ] 或者 [ 打工人 ] 结尾的字符串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;学习的(汪|打工人)$&quot;</span> =&gt;  <span class="comment">//注意:下列字符串要分四次匹配,因为即使换行了,前三行字符串本质上都不在字符串结尾</span></span><br><span class="line"><span class="comment">//或者标志换成 /m 而不是 /g  因为此处还未说到标志,所以默认大家使用/g全局搜索</span></span><br><span class="line">努力学习的汪</span><br><span class="line">努力学习的打工人</span><br><span class="line">努力学习的打工人 hongjilins</span><br><span class="line">努力学习的汪_  <span class="comment">//此处 _ 模拟表示空格</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825105333415.png" alt="image-20210825105333415"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825105333415.png" alt="image-20210825105333415"></p>
 </blockquote>
 <h4 id="c-单词边界-b"><a href="#c-单词边界-b" class="headerlink" title="c) 单词边界 \b"></a>c) 单词边界 <code>\b</code></h4><blockquote>
 <p>\b : 单词边界:指[a-zA-z0-9]之外的字符,举个栗子:<code>\bis\b</code></p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;\bis\b&#x27;</span>=&gt;</span><br><span class="line"><span class="title class_">My</span> name is hongjilin</span><br><span class="line">my name@is@hong jilin</span><br><span class="line">myname学is习hongjilin</span><br><span class="line">mynameishongjilin <span class="comment">//只有此处不被匹配</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151100732.png" alt="image-20210825151100732"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151100732.png" alt="image-20210825151100732"></p>
 </blockquote>
 <h4 id="d-非单词边界-B"><a href="#d-非单词边界-B" class="headerlink" title="d) 非单词边界 \B"></a>d) 非单词边界 <code>\B</code></h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;\Bis\B&#x27;</span>=&gt;</span><br><span class="line"><span class="title class_">My</span> name is hongjilin</span><br><span class="line">my name@is@hong jilin</span><br><span class="line">myname学is习hongjilin</span><br><span class="line">mynameishongjilin <span class="comment">//只有此处被匹配,与单词边界切好相反</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151355148.png" alt="image-20210825151355148"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825151355148.png" alt="image-20210825151355148"></p>
 </blockquote>
 <h1 id="三、简写字符集"><a href="#三、简写字符集" class="headerlink" title="三、简写字符集"></a>三、简写字符集</h1><blockquote>
 <p>这些简写字符集,简洁明了且非常常用,但是也因为这样当初没有仔细去记,用时还得查阅资料十分不便,建议背下来</p>
@@ -788,26 +788,26 @@
 <p>正先行断言的内容写在括号中的等号后面。 例如，表达式 <code>学习的汪(?=\shong)</code> 首先匹配 [ 学习的汪 ]，然后在括号中我们又定义了正先行断言 <code>(?=\shong)</code> ，即 [ 学习的汪 ]后面紧跟着 [ <code>(空格)hong </code>]。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;学习的汪(?=\shong)&quot;</span> =&gt;  <span class="comment">//此处断言中的可以再加如`+` 、`*` ......,此处举其中一个栗子说明</span></span><br><span class="line">努力学习的汪 hong <span class="comment">//只有此处被匹配到    返回: [学习的汪]  --&gt;断言中的匹配项作为约束不会返回</span></span><br><span class="line">努力学习的汪 帅</span><br><span class="line">努力学习的汪hong  <span class="comment">//此处后面没有空格</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825115024261.png" alt="image-20210825115024261"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825115024261.png" alt="image-20210825115024261"></p>
 </blockquote>
 <h2 id="2、负先行断言-–"><a href="#2、负先行断言-–" class="headerlink" title="2、负先行断言 –&gt;&gt; ?!..."></a>2、负先行断言 –&gt;&gt; <code>?!...</code></h2><blockquote>
 <p>负先行断言 <code>?!</code> 用于筛选所有匹配结果，筛选条件为 其后不跟随着断言中定义的格式。 <code>正先行断言</code> 定义和 <code>负先行断言</code> 一样，区别就是 <code>=</code> 替换成 <code>!</code> 也就是 <code>(?!...)</code>。</p>
 <p>表达式 <code>学习的汪(?!\s+hong)</code> 首先匹配 [ 学习的汪 ]，然后在括号中我们又定义了负先行断言 <code>(?!\shong)</code> ,即 [ 学习的汪 ]后面不跟着 [ <code>(空格)hong </code> ]。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;学习的汪(?!\s+hong)&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 hong  <span class="comment">//只有此处不被匹配到</span></span><br><span class="line">努力学习的汪 帅</span><br><span class="line">努力学习的汪hong</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825120225726.png" alt="image-20210825120225726"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825120225726.png" alt="image-20210825120225726"></p>
 </blockquote>
 <h2 id="3、-正后发断言-–"><a href="#3、-正后发断言-–" class="headerlink" title="3、 正后发断言 –&gt;&gt; ?&lt;= ..."></a>3、 正后发断言 –&gt;&gt; <code>?&lt;= ...</code></h2><blockquote>
 <p>正后发断言 记作<code>(?&lt;=...)</code> 用于筛选所有匹配结果，筛选条件为 其前跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;=[学习|打工])的(汪|打工人)</code> 匹配 [汪] 和 [打工人] ，且需要其前方跟着 [学习] 或 [打工] 。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;(?&lt;=[学习|打工])的(汪|打工人)&quot;</span> =&gt;</span><br><span class="line">努力学习的汪</span><br><span class="line">努力打工的打工人</span><br><span class="line">努力学习汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825134252419.png" alt="image-20210825134252419"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825134252419.png" alt="image-20210825134252419"></p>
 </blockquote>
 <h2 id="4、负后发断言-–"><a href="#4、负后发断言-–" class="headerlink" title="4、负后发断言 –&gt;&gt; ?&lt;!..."></a>4、负后发断言 –&gt;&gt; <code>?&lt;!...</code></h2><blockquote>
 <p>负后发断言 记作 <code>(?&lt;!...)</code> 用于筛选所有匹配结果，筛选条件为 其前 <strong>不</strong> 跟随着断言中定义的格式。 例如，表达式 <code>(?&lt;![学习|打工])的(汪|打工人)</code> 匹配 [汪] 和 [打工人] ，且需要其前方 <strong>不</strong> 跟着 [学习] 或 [打工] 。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;/(?&lt;![学习|打工])的(汪|打工人)/g&quot;</span> =&gt;</span><br><span class="line">努力学习的汪</span><br><span class="line">努力打工的打工人</span><br><span class="line">努力学习汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825135253647.png" alt="image-20210825135253647"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825135253647.png" alt="image-20210825135253647"></p>
 </blockquote>
 <h1 id="五、标志-修饰符"><a href="#五、标志-修饰符" class="headerlink" title="五、标志(修饰符)"></a>五、标志(修饰符)</h1><blockquote>
 <p>标志也叫模式修正符，因为它可以用来修改表达式的搜索结果。 这些标志可以任意的组合使用，它也是整个正则表达式的一部分。</p>
@@ -836,13 +836,13 @@
 <p>修饰符 <code>g</code> 常用于执行一个全局搜索匹配，即（不仅仅返回第一个匹配的，而是返回全部）。 例如，表达式 <code>/学习的汪/g</code> 表示搜索 任意字符（除了换行）+ <code>学习的汪</code>，并返回全部结果。</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;/学习的汪/g&quot; =&gt;</span><br><span class="line">努力学习的汪</span><br><span class="line">努力学习的汪</span><br><span class="line">非常努力学习的汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825140424777.png" alt="image-20210825140424777"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825140424777.png" alt="image-20210825140424777"></p>
 </blockquote>
 <h2 id="2、忽略大小写-Case-Insensitive-–-i"><a href="#2、忽略大小写-Case-Insensitive-–-i" class="headerlink" title="2、忽略大小写 (Case Insensitive) –&gt;&gt; /i"></a>2、忽略大小写 (Case Insensitive) –&gt;&gt; <code>/i</code></h2><blockquote>
 <p>修饰语 <code>i</code> 用于忽略大小写。 例如，表达式 <code>/Hong/gi</code> 表示在全局搜索 <code>Hong</code>，在后面的 <code>i</code> 将其条件修改为忽略大小写，则变成搜索 [hong(忽略大小写)]，<code>g</code> 表示全局搜索。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;/Hong/gi&quot;</span> =&gt;  <span class="comment">//默认情况下是大小写敏感的,但此处这样标志后,就成为忽略大小写</span></span><br><span class="line">hongjilin</span><br><span class="line"><span class="title class_">Hongjilin</span></span><br><span class="line"><span class="variable constant_">HONGJILIN</span></span><br><span class="line">hOngjilin</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825142213481.png" alt="image-20210825142213481"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825142213481.png" alt="image-20210825142213481"></p>
 </blockquote>
 <h2 id="3、-多行注释符"><a href="#3、-多行注释符" class="headerlink" title="3、 多行注释符"></a>3、 多行注释符</h2><blockquote>
 <p>多行修饰符 <code>m</code> 常用于执行一个多行匹配。</p>
@@ -850,19 +850,19 @@
 <p>例如，表达式 <code>/学习的(汪|打工人)$/gm</code> 表示 [学习的] 后面跟着 [汪] 或 [打工人] ，末尾可选除换行符外任意字符。根据 <code>m</code> 修饰符，现在表达式匹配每行的结尾。–&gt;此处举出上方锚点的例子</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;/学习的(汪|打工人)$/gm&quot;</span> =&gt;  <span class="comment">//在之前说到 锚点 时提到,如果是 /g 只能一行一行匹配,而如果换成这个就可以直接匹配</span></span><br><span class="line">努力学习的汪</span><br><span class="line">努力学习的打工人</span><br><span class="line">努力学习的打工人 hongjilins</span><br><span class="line">努力学习的汪_  <span class="comment">//此处 _ 模拟表示空格</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825143341960.png" alt="image-20210825143341960"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825143341960.png" alt="image-20210825143341960"></p>
 </blockquote>
 <h1 id="六-、贪婪匹配与惰性匹配-Greedy-vs-lazy-matching"><a href="#六-、贪婪匹配与惰性匹配-Greedy-vs-lazy-matching" class="headerlink" title="六 、贪婪匹配与惰性匹配 (Greedy vs lazy matching)"></a>六 、贪婪匹配与惰性匹配 (Greedy vs lazy matching)</h1><h2 id="1、贪婪匹配"><a href="#1、贪婪匹配" class="headerlink" title="1、贪婪匹配"></a>1、贪婪匹配</h2><blockquote>
 <p>正则表达式默认采用贪婪匹配模式，在该模式下意味着会匹配尽可能长的子串。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;/(.*汪)/&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 非常认真读书的汪  的汪  的汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144241403.png" alt="image-20210825144241403"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144241403.png" alt="image-20210825144241403"></p>
 </blockquote>
 <h2 id="2、-惰性匹配"><a href="#2、-惰性匹配" class="headerlink" title="2、 惰性匹配"></a>2、 惰性匹配</h2><blockquote>
 <p>我们可以使用 <code>?</code> 将贪婪匹配模式转化为惰性匹配模式。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;/(.*?汪)/&quot;</span> =&gt;</span><br><span class="line">努力学习的汪 非常认真读书的汪  的汪  的汪</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144416801.png" alt="image-20210825144416801"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825144416801.png" alt="image-20210825144416801"></p>
 </blockquote>
 <h1 id="七、正则常用方法"><a href="#七、正则常用方法" class="headerlink" title="七、正则常用方法"></a>七、正则常用方法</h1><blockquote>
 <p><strong>正则中常用方法主要分为两类，一类是：RegExp 对象方法；一类是：支持正则表达式的 String 对象的方法。</strong></p>
@@ -888,23 +888,23 @@
 <h4 id="b-当正则匹配中没有分组时"><a href="#b-当正则匹配中没有分组时" class="headerlink" title="b) 当正则匹配中没有分组时"></a>b) 当正则匹配中没有分组时</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力666 123 学习! 456 的打工人! qrw&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> patt = <span class="regexp">/\d+/</span>;</span><br><span class="line"><span class="keyword">const</span> result = patt.<span class="title function_">exec</span>(str);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825164553046.png" alt="image-20210825164553046"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825164553046.png" alt="image-20210825164553046"></p>
 </blockquote>
 <h4 id="c-当正则匹配中有分组且分组存在名字时"><a href="#c-当正则匹配中有分组且分组存在名字时" class="headerlink" title="c ) 当正则匹配中有分组且分组存在名字时"></a>c ) 当正则匹配中有分组且分组存在名字时</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力666 123 学习! 456 的打工人! qrw&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> patt = <span class="regexp">/(?&lt;努力&gt;\d)+/</span>;</span><br><span class="line"><span class="keyword">const</span> result = patt.<span class="title function_">exec</span>(str);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result);</span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165158705.png" alt="image-20210825165158705"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165158705.png" alt="image-20210825165158705"></p>
 </blockquote>
 <h4 id="d-没有匹配到符合正则的字符时"><a href="#d-没有匹配到符合正则的字符时" class="headerlink" title="d) 没有匹配到符合正则的字符时"></a>d) 没有匹配到符合正则的字符时</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力学习的汪&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> patt = <span class="regexp">/\d+/</span>;</span><br><span class="line"><span class="keyword">const</span> result = patt.<span class="title function_">exec</span>(str);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">//返回 null</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165311702.png" alt="image-20210825165311702"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165311702.png" alt="image-20210825165311702"></p>
 </blockquote>
 <h3 id="Ⅱ-test-方法"><a href="#Ⅱ-test-方法" class="headerlink" title="Ⅱ - test()方法"></a>Ⅱ - test()方法</h3><blockquote>
 <p>介绍：方法用于检测一个字符串是否匹配某个模式；如果字符串中有匹配的值返回 true ，否则返回 false。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力学习的汪&quot;</span>;</span><br><span class="line"><span class="comment">//查找&quot;学习&quot;</span></span><br><span class="line"><span class="keyword">const</span> reg1 = <span class="regexp">/学习/g</span>;</span><br><span class="line"><span class="keyword">const</span> result1 = reg1.<span class="title function_">test</span>(str);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result1); <span class="comment">//true</span></span><br><span class="line"><span class="comment">//查找 &quot;打工&quot;</span></span><br><span class="line"><span class="keyword">const</span> reg2 = <span class="regexp">/打工/g</span>;</span><br><span class="line"><span class="keyword">const</span> result2 = reg2.<span class="title function_">test</span>(str);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result2); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165609920.png" alt="image-20210825165609920"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825165609920.png" alt="image-20210825165609920"></p>
 </blockquote>
 <h3 id="Ⅲ-compile-方法"><a href="#Ⅲ-compile-方法" class="headerlink" title="Ⅲ - compile()方法"></a>Ⅲ - compile()方法</h3><blockquote>
 <p>该方法的作用是能够对正则表达式进行编译，被编译过的正则在使用的时候效率会更高，适合于对一个正则多次调用的情况下，如果对一个正则只使用一两次，那么该方法没有特别显著的效应。</p>
@@ -929,7 +929,7 @@
 <h4 id="b-举个栗子"><a href="#b-举个栗子" class="headerlink" title="b) 举个栗子"></a>b) 举个栗子</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str1 = <span class="string">&quot;努力学习 123 的汪 456&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> reg1 = <span class="regexp">/\d+/</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str1.<span class="title function_">search</span>(reg1)); <span class="comment">//5</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str1.<span class="title function_">search</span>(<span class="string">&quot;的汪&quot;</span>)); <span class="comment">//9</span></span><br><span class="line"><span class="keyword">const</span> str2 = <span class="string">&quot;hello world&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> reg2 = <span class="regexp">/\d+/</span>;</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str2.<span class="title function_">search</span>(reg2)); <span class="comment">//-1</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str2.<span class="title function_">search</span>(<span class="string">&quot;打工人&quot;</span>)); <span class="comment">//-1</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170353449.png" alt="image-20210825170353449"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170353449.png" alt="image-20210825170353449"></p>
 </blockquote>
 <h3 id="Ⅱ-replace-方法"><a href="#Ⅱ-replace-方法" class="headerlink" title="Ⅱ - replace()方法"></a>Ⅱ - replace()方法</h3><h4 id="a-概念与介绍-2"><a href="#a-概念与介绍-2" class="headerlink" title="a) 概念与介绍"></a>a) 概念与介绍</h4><blockquote>
 <p>用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。原字符串不变，创建一个新的字符串</p>
@@ -938,12 +938,12 @@
 <h4 id="b-替换第一个"><a href="#b-替换第一个" class="headerlink" title="b) 替换第一个"></a>b) 替换第一个</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力学习的汪! 努力学习的汪!! 努力学习的汪!!!&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> n = str.<span class="title function_">replace</span>(<span class="string">&quot;学习&quot;</span>, <span class="string">&quot;打工&quot;</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str); <span class="comment">//原字符串不变</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(n); <span class="comment">//新字符串</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170801038.png" alt="image-20210825170801038"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825170801038.png" alt="image-20210825170801038"></p>
 </blockquote>
 <h4 id="c-替换全部"><a href="#c-替换全部" class="headerlink" title="c) 替换全部"></a>c) 替换全部</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力学习的汪! 努力学习的汪!! 努力学习的汪!!!&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> n = str.<span class="title function_">replace</span>(<span class="regexp">/学习/g</span>, <span class="string">&quot;打工&quot;</span>); <span class="comment">//替换全部</span></span><br><span class="line"><span class="keyword">const</span> a = str.<span class="title function_">replace</span>(<span class="regexp">/学习/</span>, <span class="string">&quot;打工&quot;</span>); <span class="comment">//仍是替换单行</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(str); <span class="comment">//原字符串不变</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">//仍是替换单行</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(n); <span class="comment">//新字符串 全部替换</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171214600.png" alt="image-20210825171214600"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171214600.png" alt="image-20210825171214600"></p>
 </blockquote>
 <h3 id="Ⅲ-split-方法"><a href="#Ⅲ-split-方法" class="headerlink" title="Ⅲ - split()方法"></a>Ⅲ - split()方法</h3><h4 id="a-概念与介绍-3"><a href="#a-概念与介绍-3" class="headerlink" title="a) 概念与介绍"></a>a) 概念与介绍</h4><blockquote>
 <p>用于把一个字符串按符合匹配条件的方式分割成一个字符串数组。不改变原字符串</p>
@@ -951,7 +951,7 @@
 <h4 id="b-举个栗子-1"><a href="#b-举个栗子-1" class="headerlink" title="b) 举个栗子"></a>b) 举个栗子</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;How 1are 2you 3? 4I&#x27;m 5fine! 6thanks&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> a = str.<span class="title function_">split</span>(<span class="string">&quot; &quot;</span>);</span><br><span class="line"><span class="keyword">const</span> b = str.<span class="title function_">split</span>(<span class="string">&quot; &quot;</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">const</span> c = str.<span class="title function_">split</span>(<span class="regexp">/\d/</span>);</span><br><span class="line"><span class="keyword">const</span> d = str.<span class="title function_">split</span>(<span class="regexp">/\d/</span>, <span class="number">3</span>);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(a); <span class="comment">// [&quot;How&quot;, &quot;1are&quot;, &quot;2you&quot;, &quot;3?&quot;, &quot;4I&#x27;m&quot;, &quot;5fine!&quot;, &quot;6thanks&quot;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(b); <span class="comment">// [&quot;How&quot;, &quot;1are&quot;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(c); <span class="comment">// [&quot;How &quot;, &quot;are &quot;, &quot;you &quot;, &quot;? &quot;, &quot;I&#x27;m &quot;, &quot;fine! &quot;, &quot;thanks&quot;]</span></span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(d); <span class="comment">// [&quot;How &quot;, &quot;are &quot;, &quot;you &quot;]</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171655993.png" alt="image-20210825171655993"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825171655993.png" alt="image-20210825171655993"></p>
 </blockquote>
 <h3 id="Ⅳ-match-方法"><a href="#Ⅳ-match-方法" class="headerlink" title="Ⅳ- match()方法"></a>Ⅳ- match()方法</h3><h4 id="a-概念与介绍-4"><a href="#a-概念与介绍-4" class="headerlink" title="a) 概念与介绍"></a>a) 概念与介绍</h4><blockquote>
 <ol>
@@ -967,17 +967,17 @@
 <h4 id="b-没有-g-的正则匹配"><a href="#b-没有-g-的正则匹配" class="headerlink" title="b) 没有 g 的正则匹配"></a>b) 没有 g 的正则匹配</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力学习 123 的汪 456&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/\d+/</span>;</span><br><span class="line"><span class="keyword">const</span> result = str.<span class="title function_">match</span>(reg);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">//没有 全局搜索 的时候返回与 exce() 完全一致</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173134832.png" alt="image-20210825173134832"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173134832.png" alt="image-20210825173134832"></p>
 </blockquote>
 <h4 id="c-有-g-的正则匹配"><a href="#c-有-g-的正则匹配" class="headerlink" title="c) 有 g 的正则匹配"></a>c) 有 g 的正则匹配</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力学习 123 的汪 456&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/\d+/g</span>;</span><br><span class="line"><span class="keyword">const</span> result = str.<span class="title function_">match</span>(reg);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">//返回数组</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173334751.png" alt="image-20210825173334751"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173334751.png" alt="image-20210825173334751"></p>
 </blockquote>
 <h4 id="d-没有匹配到子字符串"><a href="#d-没有匹配到子字符串" class="headerlink" title="d) 没有匹配到子字符串"></a>d) 没有匹配到子字符串</h4><blockquote>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> str = <span class="string">&quot;努力学习 123 的汪 456&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> reg = <span class="regexp">/打工/g</span>;</span><br><span class="line"><span class="keyword">const</span> result = str.<span class="title function_">match</span>(reg);</span><br><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(result); <span class="comment">//匹配不到返回null</span></span><br></pre></td></tr></table></figure>
 
-<p><img src="/k705/kk.github.io.git/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173421761.png" alt="image-20210825173421761"></p>
+<p><img src="/k705.github.io/%E6%AD%A3%E5%88%99%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210825173421761.png" alt="image-20210825173421761"></p>
 </blockquote>
 <h1 id="八、ES-系列中正则的拓展"><a href="#八、ES-系列中正则的拓展" class="headerlink" title="八、ES 系列中正则的拓展"></a>八、ES 系列中正则的拓展</h1><blockquote>
 <p>更多 ES 系列知识点笔记 –&gt; <strong><a target="_blank" rel="noopener" href="https://gitee.com/hongjilin/hongs-study-notes/tree/master/%E7%BC%96%E7%A8%8B_%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ES6%E5%8F%8A%E5%90%8E%E7%BB%AD%E7%89%88%E6%9C%AC%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0">ES6 及后续版本学习笔记</a></strong></p>
@@ -1306,7 +1306,7 @@
     <figure class="media">
       <div class="media-left">
         <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="./images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/k705.github.io/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -1338,12 +1338,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="./2024/04/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" title="数据结构与算法基础"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705.github.io/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-HTML%E9%9D%A2%E8%AF%95%E9%A2%98/" title="Html面试题"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="./2024/04/08/%E7%9F%A5%E8%AF%86%E7%82%B9%E6%A2%B3%E7%90%86/" title="HTML+CSS基础"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/k705.github.io/2024/04/08/%E9%9D%A2%E8%AF%95%E9%A2%98-CSS1/" title="CSS1"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -1378,14 +1378,14 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="alipay">
               <div class="donate-payimg">
-                <img src="./images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705.github.io/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="wechatpay">
               <div class="donate-payimg">
-                <img src="./images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705.github.io/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
@@ -1424,7 +1424,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705.github.io/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -1440,10 +1440,10 @@
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="./js/plugin.min.js"></script>
+<script src="/k705.github.io/js/plugin.min.js"></script>
 
 
-<script src="./js/application.js"></script>
+<script src="/k705.github.io/js/application.js"></script>
 
 
     <script>
@@ -1456,14 +1456,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: './',
-        CONTENT_URL: './content.json',
+        ROOT_URL: '/k705.github.io/',
+        CONTENT_URL: '/k705.github.io/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="./js/insight.js"></script>
+<script src="/k705.github.io/js/insight.js"></script>
 
 
 

@@ -25,17 +25,17 @@
 <meta property="og:site_name" content="KK">
 <meta property="og:description" content="#说明 本笔记为本人洪深入学习React并尝试阅读理解React源码所记录笔记   –&gt;源码版本16.9.0 建议预备知识:react基础 学习过程及笔记记录时查阅借鉴的相关资料官方文档的源码概览;ILoveDevelop的React 源码解析;知乎的全栈潇晨的React系列文章、万字长文+图文并茂+全面解析 React 源码 - render 篇;前端桃园的Deep In React之浅谈">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715165316019.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715171023093.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715180450728.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715165316019.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715171023093.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715180450728.png">
 <meta property="og:image" content="https://k705.github.io/2024/04/08/react-React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715182038527.png">
-<meta property="og:image" content="https://k705.github.io/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715184238480.png">
+<meta property="og:image" content="https://k705.github.io/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715184238480.png">
 <meta property="article:published_time" content="2024-04-08T06:36:10.000Z">
 <meta property="article:modified_time" content="2024-04-09T08:42:38.610Z">
 <meta property="article:author" content="KK">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://k705.github.io/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715165316019.png">
+<meta name="twitter:image" content="https://k705.github.io/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715165316019.png">
   <!-- Canonical links -->
   <link rel="canonical" href="https://k705.github.io/2024/04/08/react-React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/index.html">
   
@@ -45,7 +45,7 @@
     <link rel="icon" href="/favicon.png" type="image/x-icon">
   
   
-<link rel="stylesheet" href="./css/style.css">
+<link rel="stylesheet" href="/k705.github.io/css/style.css">
 
   
   
@@ -62,7 +62,7 @@
       
       <div class="profile-block text-center">
         <a id="avatar" href="https://github.com/cofess" target="_blank">
-          <img class="img-circle img-rotate" src="./images/avatar.jpg" width="200" height="200">
+          <img class="img-circle img-rotate" src="/k705.github.io/images/avatar.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">KK</h2>
         <h3 id="title" class="hidden-xs hidden-sm hidden-md">前端工程师</h3>
@@ -106,7 +106,7 @@
         
         
         <li class="menu-item menu-item-home">
-          <a href="./.">
+          <a href="/k705.github.io/.">
             
             <i class="icon icon-home-fill"></i>
             
@@ -116,7 +116,7 @@
         
         
         <li class="menu-item menu-item-archives">
-          <a href="./archives">
+          <a href="/k705.github.io/archives">
             
             <i class="icon icon-archives-fill"></i>
             
@@ -126,7 +126,7 @@
         
         
         <li class="menu-item menu-item-categories">
-          <a href="./categories">
+          <a href="/k705.github.io/categories">
             
             <i class="icon icon-folder"></i>
             
@@ -136,7 +136,7 @@
         
         
         <li class="menu-item menu-item-tags">
-          <a href="./tags">
+          <a href="/k705.github.io/tags">
             
             <i class="icon icon-tags"></i>
             
@@ -146,7 +146,7 @@
         
         
         <li class="menu-item menu-item-repository">
-          <a href="./repository">
+          <a href="/k705.github.io/repository">
             
             <i class="icon icon-project"></i>
             
@@ -156,7 +156,7 @@
         
         
         <li class="menu-item menu-item-books">
-          <a href="./books">
+          <a href="/k705.github.io/books">
             
             <i class="icon icon-book-fill"></i>
             
@@ -166,7 +166,7 @@
         
         
         <li class="menu-item menu-item-links">
-          <a href="./links">
+          <a href="/k705.github.io/links">
             
             <i class="icon icon-friendship"></i>
             
@@ -176,7 +176,7 @@
         
         
         <li class="menu-item menu-item-about">
-          <a href="./about">
+          <a href="/k705.github.io/about">
             
             <i class="icon icon-cup-fill"></i>
             
@@ -197,7 +197,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705.github.io/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -228,7 +228,7 @@
   <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="./tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="./tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Ajax/" rel="tag">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/AntDesign/" rel="tag">AntDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Axios/" rel="tag">Axios</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/CSS/" rel="tag">CSS</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/ES/" rel="tag">ES</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Git/" rel="tag">Git</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/HTML-CSS/" rel="tag">HTML+CSS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Html/" rel="tag">Html</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/JS/" rel="tag">JS</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Java/" rel="tag">Java</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Js/" rel="tag">Js</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">Js工具库</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Mysql/" rel="tag">Mysql</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/TS/" rel="tag">TS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Umi/" rel="tag">Umi</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue/" rel="tag">Vue</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue2/" rel="tag">Vue2</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/Vue3/" rel="tag">Vue3</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/antDesign/" rel="tag">antDesign</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/go/" rel="tag">go</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/jQuery/" rel="tag">jQuery</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/nodejs/" rel="tag">nodejs</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/react/" rel="tag">react</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/webpack/" rel="tag">webpack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" rel="tag">代码规范</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" rel="tag">前端UI库</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" rel="tag">封装JavaScript工具包</a><span class="tag-list-count">14</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%B7%A5%E5%85%B7/" rel="tag">工具</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" rel="tag">底层知识</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" rel="tag">微信小程序</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" rel="tag">快速参考备忘清单</a><span class="tag-list-count">34</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E6%AD%A3%E5%88%99/" rel="tag">正则</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E8%BD%AF%E4%BB%B6/" rel="tag">软件</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E9%85%8D%E7%BD%AE/" rel="tag">配置</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/k705.github.io/tags/%E9%9D%A2%E8%AF%95/" rel="tag">面试</a><span class="tag-list-count">23</span></li></ul>
     </div>
   </div>
 
@@ -238,7 +238,7 @@
   <div class="widget">
     <h3 class="widget-title">标签云</h3>
     <div class="widget-body tagcloud">
-      <a href="./tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="./tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="./tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="./tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="./tags/ES/" style="font-size: 13.92px;">ES</a> <a href="./tags/Git/" style="font-size: 13.23px;">Git</a> <a href="./tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="./tags/Html/" style="font-size: 13px;">Html</a> <a href="./tags/JS/" style="font-size: 13.77px;">JS</a> <a href="./tags/Java/" style="font-size: 13.54px;">Java</a> <a href="./tags/Js/" style="font-size: 13px;">Js</a> <a href="./tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="./tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="./tags/TS/" style="font-size: 13.15px;">TS</a> <a href="./tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="./tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="./tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="./tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="./tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="./tags/go/" style="font-size: 13px;">go</a> <a href="./tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="./tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="./tags/react/" style="font-size: 13.54px;">react</a> <a href="./tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="./tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="./tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="./tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="./tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="./tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="./tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="./tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="./tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="./tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="./tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="./tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="./tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
+      <a href="/k705.github.io/tags/Ajax/" style="font-size: 13px;">Ajax</a> <a href="/k705.github.io/tags/AntDesign/" style="font-size: 13px;">AntDesign</a> <a href="/k705.github.io/tags/Axios/" style="font-size: 13.08px;">Axios</a> <a href="/k705.github.io/tags/CSS/" style="font-size: 13.31px;">CSS</a> <a href="/k705.github.io/tags/ES/" style="font-size: 13.92px;">ES</a> <a href="/k705.github.io/tags/Git/" style="font-size: 13.23px;">Git</a> <a href="/k705.github.io/tags/HTML-CSS/" style="font-size: 13px;">HTML+CSS</a> <a href="/k705.github.io/tags/Html/" style="font-size: 13px;">Html</a> <a href="/k705.github.io/tags/JS/" style="font-size: 13.77px;">JS</a> <a href="/k705.github.io/tags/Java/" style="font-size: 13.54px;">Java</a> <a href="/k705.github.io/tags/Js/" style="font-size: 13px;">Js</a> <a href="/k705.github.io/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.23px;">Js工具库</a> <a href="/k705.github.io/tags/Mysql/" style="font-size: 13.08px;">Mysql</a> <a href="/k705.github.io/tags/TS/" style="font-size: 13.15px;">TS</a> <a href="/k705.github.io/tags/Umi/" style="font-size: 13.08px;">Umi</a> <a href="/k705.github.io/tags/Vue/" style="font-size: 13.38px;">Vue</a> <a href="/k705.github.io/tags/Vue2/" style="font-size: 13.77px;">Vue2</a> <a href="/k705.github.io/tags/Vue3/" style="font-size: 13px;">Vue3</a> <a href="/k705.github.io/tags/antDesign/" style="font-size: 13px;">antDesign</a> <a href="/k705.github.io/tags/go/" style="font-size: 13px;">go</a> <a href="/k705.github.io/tags/jQuery/" style="font-size: 13px;">jQuery</a> <a href="/k705.github.io/tags/nodejs/" style="font-size: 13.46px;">nodejs</a> <a href="/k705.github.io/tags/react/" style="font-size: 13.54px;">react</a> <a href="/k705.github.io/tags/webpack/" style="font-size: 13.23px;">webpack</a> <a href="/k705.github.io/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 13.23px;">云服务器</a> <a href="/k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" style="font-size: 13px;">代码规范</a> <a href="/k705.github.io/tags/%E5%89%8D%E7%AB%AFUI%E5%BA%93/" style="font-size: 13.38px;">前端UI库</a> <a href="/k705.github.io/tags/%E5%B0%81%E8%A3%85JavaScript%E5%B7%A5%E5%85%B7%E5%8C%85/" style="font-size: 13.69px;">封装JavaScript工具包</a> <a href="/k705.github.io/tags/%E5%B7%A5%E5%85%B7/" style="font-size: 13.08px;">工具</a> <a href="/k705.github.io/tags/%E5%BA%95%E5%B1%82%E7%9F%A5%E8%AF%86/" style="font-size: 13.62px;">底层知识</a> <a href="/k705.github.io/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/" style="font-size: 13px;">微信小程序</a> <a href="/k705.github.io/tags/%E5%BF%AB%E9%80%9F%E5%8F%82%E8%80%83%E5%A4%87%E5%BF%98%E6%B8%85%E5%8D%95/" style="font-size: 14px;">快速参考备忘清单</a> <a href="/k705.github.io/tags/%E6%AD%A3%E5%88%99/" style="font-size: 13.08px;">正则</a> <a href="/k705.github.io/tags/%E8%BD%AF%E4%BB%B6/" style="font-size: 13.62px;">软件</a> <a href="/k705.github.io/tags/%E9%85%8D%E7%BD%AE/" style="font-size: 13px;">配置</a> <a href="/k705.github.io/tags/%E9%9D%A2%E8%AF%95/" style="font-size: 13.85px;">面试</a>
     </div>
   </div>
 
@@ -247,7 +247,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="./archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/k705.github.io/archives/2024/04/">四月 2024</a><span class="archive-list-count">241</span></li></ul>
     </div>
   </div>
 
@@ -266,7 +266,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
+                <a href="/k705.github.io/2024/04/25/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/" class="title">代码规范</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T09:08:57.000Z" itemprop="datePublished">2024-04-25</time>
@@ -281,7 +281,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
+                <a href="/k705.github.io/2024/04/25/%E5%B7%A5%E5%85%B7-vscode%20%E5%8A%9F%E8%83%BD%E4%B8%8E%E6%8A%80%E5%B7%A7/" class="title">vscode 功能与技巧</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-25T03:22:46.000Z" itemprop="datePublished">2024-04-25</time>
@@ -296,7 +296,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
+                <a href="/k705.github.io/2024/04/22/Vue3-pure-admin/" class="title">Vue3-pure-admin</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-22T01:58:28.000Z" itemprop="datePublished">2024-04-22</time>
@@ -311,7 +311,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
+                <a href="/k705.github.io/2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -326,7 +326,7 @@
                 
               </p>
               <p class="item-title">
-                <a href="./2024/04/08/AntDesignOfReact%E5%B0%81%E8%A3%85-Table%E5%8F%8A%E5%85%B6%E7%AD%9B%E9%80%89%E7%BB%84%E4%BB%B6%E5%B0%81%E8%A3%85/" class="title">AntDesign封装</a>
+                <a href="/k705.github.io/2024/04/08/Ajax%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="title">Ajax笔记</a>
               </p>
               <p class="item-date">
                 <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
@@ -362,7 +362,7 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="icon icon-calendar-check"></i>
-	<a href="./2024/04/08/react-React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" class="article-date">
+	<a href="/k705.github.io/2024/04/08/react-React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/" class="article-date">
 	  <time datetime="2024-04-08T06:36:10.000Z" itemprop="datePublished">2024-04-08</time>
 	</a>
 </span>
@@ -370,7 +370,7 @@
         
   <span class="article-tag">
     <i class="icon icon-tags"></i>
-	<a class="article-tag-link-link" href="./tags/react/" rel="tag">react</a>
+	<a class="article-tag-link-link" href="/k705.github.io/tags/react/" rel="tag">react</a>
   </span>
 
 
@@ -383,7 +383,7 @@
 	</span>
 
 
-        <span class="post-comment"><i class="icon icon-comment"></i> <a href="./2024/04/08/react-React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="icon icon-comment"></i> <a href="/k705.github.io/2024/04/08/react-React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0/#comments" class="article-comment-link">评论</a></span>
         
       </div>
     </div>
@@ -425,13 +425,13 @@
 <li>它本身可以理解为是一个规范,开发者在JSX的帮助下,避免重复地学习不同框架或者库,因为在JSX的规范中,他产生的结果是一致的.用React的思想来说,JSX最终的作用是把模板语法解析成Component、props、children….等等;而具体怎么利用这些产物,就是不同的框架或者库的特性了,比如下面的一个组件它被解析以后其实产生的是一段代码段,并且有固定的参数位置</li>
 </ul>
 <blockquote>
-<p><img src="/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715165316019.png" alt="image-20210715165316019"></p>
+<p><img src="/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715165316019.png" alt="image-20210715165316019"></p>
 <p>由上图可以看出JSX的产物(h函数名称和h函数的参数),它很像虚拟DOM</p>
 </blockquote>
 </blockquote>
 <h3 id="Ⅱ-JSX的产物"><a href="#Ⅱ-JSX的产物" class="headerlink" title="Ⅱ-JSX的产物"></a>Ⅱ-JSX的产物</h3><h4 id="①-简单的JSX产物"><a href="#①-简单的JSX产物" class="headerlink" title="① 简单的JSX产物"></a>① 简单的JSX产物</h4><blockquote>
 <p>以下是一个最简单的JSX编译后的结果</p>
-<p><img src="/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715171023093.png" alt="image-20210715171023093"> </p>
+<p><img src="/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715171023093.png" alt="image-20210715171023093"> </p>
 <p>JSX的产物可以理解是基于JSX代码,利用一个函数模板(如同<a href="#%E2%85%A0-%E6%88%91%E4%BB%AC%E8%AE%A4%E4%B8%BA%E7%9A%84JSX%E6%98%AF%E4%BB%80%E4%B9%88?"><code>Ⅰ</code></a>中图示的[h]函数),生成一段[<code>调用</code>]函数模板,然后里面的函数名可能在不同的框架或者库中是不一样的,他没有实现h函数,需要框架或者库自己实现</p>
 <p>可以得出一个大胆的结论:<code>JSX理论上是完全跨平台的,只要有人实现它在对应平台的[h]函数,它甚至可以在任何支持JS语言的平台上运行</code></p>
 </blockquote>
@@ -784,7 +784,7 @@
 <li><p>以下是一个React的虚拟DOM结构</p>
 </li>
 </ul>
-<p><img src="/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715180450728.png" alt="image-20210715180450728"> </p>
+<p><img src="/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715180450728.png" alt="image-20210715180450728"> </p>
 </blockquote>
 <h3 id="Ⅱ-为什么需要虚拟DOM"><a href="#Ⅱ-为什么需要虚拟DOM" class="headerlink" title="Ⅱ-为什么需要虚拟DOM"></a>Ⅱ-为什么需要虚拟DOM</h3><blockquote>
 <p>其实在上面说明[<a href="#%E2%85%A0-%E4%BB%80%E4%B9%88%E6%98%AF%E8%99%9A%E6%8B%9FDOM">什么是虚拟DOM</a>]的时候就已经大概说明了为什么需要虚拟DOM了.因为<code>一个新事物只有被需要、能解决某一痛点的时候才会被创造</code></p>
@@ -812,7 +812,7 @@
 </blockquote>
 <h4 id="无图无真相"><a href="#无图无真相" class="headerlink" title="无图无真相"></a>无图无真相</h4><blockquote>
 <p>网络上有人做了一个操作更新组件各种样式1000次的时间点对比(设定重绘次数一致):</p>
-<p><img src="/k705/kk.github.io.git/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715184238480.png" alt="image-20210715184238480"></p>
+<p><img src="/k705.github.io/React%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A0%E4%B8%8E%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90%E7%AC%94%E8%AE%B0%E4%B8%AD%E7%9A%84%E5%9B%BE%E7%89%87/image-20210715184238480.png" alt="image-20210715184238480"></p>
 <p>可以看出,直接操作DOM是最快的!<code>但是React需要的渲染时间可能是0</code>,下限更低,也正是因为计算出来某些[<code>state</code>(状态)]不需要更新DOM</p>
 </blockquote>
 <h1 id="二、创建更新"><a href="#二、创建更新" class="headerlink" title="二、创建更新"></a>二、创建更新</h1><blockquote>
@@ -1104,7 +1104,7 @@
     <figure class="media">
       <div class="media-left">
         <a href="https://github.com/cofess" target="_blank" class="img-burn thumb-sm visible-lg">
-          <img src="./images/avatar.jpg" class="img-rounded w-full" alt="">
+          <img src="/k705.github.io/images/avatar.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
@@ -1136,12 +1136,12 @@
   <ul class="pager pull-left">
     
     <li class="prev">
-      <a href="./2024/04/08/react-%E8%82%86%E3%80%81%E6%8F%92%E6%A7%BD%E3%80%81%E8%B7%AF%E7%94%B1%E3%80%81redux_day12-3/" title="插槽、路由、redux"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
+      <a href="/k705.github.io/2024/04/08/react-%E5%8F%81%E3%80%81%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E4%B8%8E%E8%A1%A8%E5%8D%95%E8%BE%93%E5%85%A5_day12-3/" title="生命周期与表单输入"><i class="icon icon-angle-left" aria-hidden="true"></i><span>&nbsp;&nbsp;上一篇</span></a>
     </li>
     
     
     <li class="next">
-      <a href="./2024/04/08/react-%E8%B4%B0%E3%80%81React%E7%9A%84%E6%B8%B2%E6%9F%93%E3%80%81%E4%BA%8B%E4%BB%B6%E3%80%81props_day12-3/" title="渲染、事件、props"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
+      <a href="/k705.github.io/2024/04/08/react-%E8%82%86%E3%80%81%E6%8F%92%E6%A7%BD%E3%80%81%E8%B7%AF%E7%94%B1%E3%80%81redux_day12-3/" title="插槽、路由、redux"><span>下一篇&nbsp;&nbsp;</span><i class="icon icon-angle-right" aria-hidden="true"></i></a>
     </li>
     
     
@@ -1176,14 +1176,14 @@
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane fade active in" id="alipay">
               <div class="donate-payimg">
-                <img src="./images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705.github.io/images/donate/alipayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开支付宝扫一扫，即可进行扫码打赏哦</p>
             </div>
             <div role="tabpanel" class="tab-pane fade" id="wechatpay">
               <div class="donate-payimg">
-                <img src="./images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
+                <img src="/k705.github.io/images/donate/wechatpayimg.png" alt="扫码支持" title="扫一扫" />
               </div>
               <p class="text-muted mv">扫码打赏，你说多少就多少</p>
               <p class="text-grey">打开微信扫一扫，即可进行扫码打赏哦</p>
@@ -1222,7 +1222,7 @@
         
         <li><a href="https://www.behance.net/cofess" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="icon icon-behance"></i></a></li>
         
-        <li><a href="./atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
+        <li><a href="/k705.github.io/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="icon icon-rss"></i></a></li>
         
     </ul>
 
@@ -1238,10 +1238,10 @@
 window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
 </script>
 
-<script src="./js/plugin.min.js"></script>
+<script src="/k705.github.io/js/plugin.min.js"></script>
 
 
-<script src="./js/application.js"></script>
+<script src="/k705.github.io/js/application.js"></script>
 
 
     <script>
@@ -1254,14 +1254,14 @@ window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
             TAGS: '标签',
             UNTITLED: '(未命名)',
         },
-        ROOT_URL: './',
-        CONTENT_URL: './content.json',
+        ROOT_URL: '/k705.github.io/',
+        CONTENT_URL: '/k705.github.io/content.json',
     };
     window.INSIGHT_CONFIG = INSIGHT_CONFIG;
 })(window);
 </script>
 
-<script src="./js/insight.js"></script>
+<script src="/k705.github.io/js/insight.js"></script>
 
 
 
