@@ -2171,15 +2171,6 @@
   </url>
   
   <url>
-    <loc>https://k705.github.io/404.html</loc>
-    
-    <lastmod>2024-04-08</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://k705.github.io/about/index.html</loc>
     
     <lastmod>2024-04-08</lastmod>
@@ -2189,7 +2180,7 @@
   </url>
   
   <url>
-    <loc>https://k705.github.io/books/index.html</loc>
+    <loc>https://k705.github.io/404.html</loc>
     
     <lastmod>2024-04-08</lastmod>
     
@@ -2198,7 +2189,7 @@
   </url>
   
   <url>
-    <loc>https://k705.github.io/tags/index.html</loc>
+    <loc>https://k705.github.io/books/index.html</loc>
     
     <lastmod>2024-04-08</lastmod>
     
@@ -2217,6 +2208,15 @@
   
   <url>
     <loc>https://k705.github.io/categories/index.html</loc>
+    
+    <lastmod>2024-04-08</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://k705.github.io/tags/index.html</loc>
     
     <lastmod>2024-04-08</lastmod>
     
@@ -2271,14 +2271,14 @@
   </url>
   
   <url>
-    <loc>https://k705.github.io/tags/CSS/</loc>
+    <loc>https://k705.github.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
     <lastmod>2024-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://k705.github.io/tags/%E8%BD%AF%E4%BB%B6/</loc>
+    <loc>https://k705.github.io/tags/CSS/</loc>
     <lastmod>2024-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2348,13 +2348,6 @@
   </url>
   
   <url>
-    <loc>https://k705.github.io/tags/Umi/</loc>
-    <lastmod>2024-07-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://k705.github.io/tags/Vue/</loc>
     <lastmod>2024-07-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -2363,6 +2356,13 @@
   
   <url>
     <loc>https://k705.github.io/tags/Vue2/</loc>
+    <lastmod>2024-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://k705.github.io/tags/Umi/</loc>
     <lastmod>2024-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -2411,6 +2411,13 @@
   </url>
   
   <url>
+    <loc>https://k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
+    <lastmod>2024-07-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://k705.github.io/tags/%E9%85%8D%E7%BD%AE/</loc>
     <lastmod>2024-07-24</lastmod>
     <changefreq>weekly</changefreq>
@@ -2419,13 +2426,6 @@
   
   <url>
     <loc>https://k705.github.io/tags/Js%E5%B7%A5%E5%85%B7%E5%BA%93/</loc>
-    <lastmod>2024-07-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://k705.github.io/tags/%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83/</loc>
     <lastmod>2024-07-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
